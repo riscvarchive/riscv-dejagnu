@@ -18,7 +18,7 @@ config
 config.guess
 config.sub
 configure
-configure.in
+configure.ac
 dejagnu.h
 depcomp
 doc
@@ -32,6 +32,5 @@ runtest
 runtest.exp
 site.tmpl
 stub-loader.c
-tcl-mode.el
 testglue.c
 testsuite

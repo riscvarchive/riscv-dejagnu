@@ -1,5 +1,5 @@
 dnl Process this file with autoconf to produce a configure script.
-AC_PREREQ(2.13)
+AC_PREREQ(2.50)
 AC_INIT(runtest.exp)
 dnl AC_CONFIG_AUX_DIR(..)
 

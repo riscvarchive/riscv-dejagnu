@@ -1,5 +1,10 @@
 2004-02-06  Ben Elliston  <bje@wasabisystems.com>
 
+	* configure.in: Rename from this ..
+	* configure.ac: .. to this.  Require Autoconf 2.50.
+
+2004-02-06  Ben Elliston  <bje@wasabisystems.com>
+
 	* lib/target.exp (prune_warnings): Add spaces where required in
 	NetBSD warnings.  Supersedes a patch in pkgsrc's devel/dejagnu.
 
