@@ -1,3 +1,8 @@
+2001-05-13  Rob Savoye  <rob@peggyo.welcomehome.org>
+
+	* lib/target.exp: Fix the regsub line where it prunes -fPIC
+	warnings so the text variable is on the same line.
+
 2001-05-09  Rob Savoye  <rob@peggyo.welcomehome.org>
 
 	* runtest.exp: Add new command line option, --status (or -st) to

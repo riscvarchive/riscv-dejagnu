@@ -272,8 +272,7 @@ proc prune_warnings { text } {
     regsub -all "(^|\n)\[^\n\]*: In function\[^\n\]*\n\[^\n\]\[^\n\]*is not implemented and will always fail\[^\n\]*" $text "" text
 
     # Cygwin cc1 warns about -fpic and -fPIC
-    regsub -all ".*: warning: -f(pic|PIC) ignored for target .*" $text ""
-text
+    regsub -all ".*: warning: -f(pic|PIC) ignored for target .*" $text "" text
 
     # It might be tempting to get carried away and delete blank lines, etc.
     # Just delete *exactly* what we're ask to, and that's it.
