@@ -1,5 +1,5 @@
 # Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000,
-# 2001, 2002, 2003 Free Software Foundation, Inc.
+# 2001, 2002, 2003, 2004 Free Software Foundation, Inc.
 #
 # This file is part of DejaGnu.
 #
@@ -17,10 +17,8 @@
 # along with DejaGnu; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
-#
-# A set of standard functions for tools. Calls the
-# target-machine-specific versions.
-#
+# A set of standard functions for tools. Calls the target-specific
+# versions.
 
 proc ${tool}_load { program args } {
     if { [llength $args] > 0 } {
@@ -34,6 +32,7 @@ proc ${tool}_load { program args } {
     } else {
 	set input_file ""
     }
+
     return [remote_load target $program $program_args $input_file]
 }
 

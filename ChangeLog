@@ -1,3 +1,7 @@
+2004-02-08  Ben Elliston  <bje@wasabisystems.com>
+
+	* lib/standard.exp: Tidy.
+
 2004-02-07  Ben Elliston  <bje@wasabisystems.com>
 
 	* Makefile.am (pkgdata_SCRIPTS): Remove lib/mondfe, lib/xsh.exp.
