@@ -169,36 +169,17 @@ pkgdata_DATA = stub-loader.c testglue.c
 djlibexecdir = $(pkgdatadir)/libexec
 djlibexec_SCRIPTS = config.guess
 
-PKGING = packaging
-PACKAGING_METAFILES = $(PKGING)/depot/dejagnu.psf \
-	$(PKGING)/deb/site.exp $(PKGING)/deb/changelog $(PKGING)/deb/conffiles \
-	$(PKGING)/deb/control $(PKGING)/deb/copyright $(PKGING)/deb/postinst \
-	$(PKGING)/deb/preinst $(PKGING)/deb/rules $(PKGING)/pkg/pkginfo \
-	$(PKGING)/pkg/prototype $(PKGING)/rpm/dejagnu.spec
+PACKAGING_METAFILES = packaging/depot/dejagnu.psf \
+	packaging/deb/site.exp packaging/deb/changelog packaging/deb/conffiles \
+	packaging/deb/control packaging/deb/copyright packaging/deb/postinst \
+	packaging/deb/preinst packaging/deb/rules packaging/pkg/pkginfo \
+	packaging/pkg/prototype packaging/rpm/dejagnu.spec
 
 RUNTESTDEFAULTFLAGS = --srcdir $(srcdir)/testsuite RUNTEST=$(RUNTEST)
 RUNTEST = ` \
   if [ -f ${srcdir}/runtest$(EXEEXT) ] ; then \
     echo ${srcdir}/runtest$(EXEEXT); \
   else echo "ERROR: runtest not found" ; exit 1; fi`
-
-CLEANFILES = x.log x.sum site.bak setval.tmp
-check-DEJAGNU:
-	cd testsuite ; $(MAKE) check
-	cd example ; $(MAKE) check
-
-# Set ourselves up to build an RPM
-tarball: book1.html overview.ps overview.pdf
-	-rm -fr dejagnu-${VERSION}
-	cp -fpPR $(srcdir) dejagnu-${VERSION}
-	src=$(srcdir); \
-	dir=`(cd $${src}; pwd)`; \
-	(cd dejagnu-${VERSION} ; $${dir}/Clean.tcl); \
-	  cp -R $(srcdir)/doc/html dejagnu-${VERSION}/doc/; \
-	  cp $(srcdir)/doc/overview.ps dejagnu-${VERSION}/doc/; \
-	  cp $(srcdir)/doc/overview.pdf dejagnu-${VERSION}/doc/; \
-	  tar cvf ../dejagnu-${VERSION}.tar dejagnu-${VERSION}; \
-	  gzip -9fv ../dejagnu-${VERSION}.tar
 
 rpmspec: $(srcdir)/packaging/rpm/dejagnu.spec
 	cp -f $(srcdir)/packaging/rpm/dejagnu.spec /usr/src/redhat/SPECS/
@@ -208,19 +189,11 @@ rpm: rpmspec dist
 	cp -f dejagnu-${VERSION}.tar.gz /usr/src/redhat/SOURCES/
 	rpm -ba /usr/src/redhat/SPECS/dejagnu.spec
 
-# Build a Debian package
+# Build a Debian GNU/Linux package
 deb: dist
 	-rm -fr dejagnu-${VERSION}
-	cp -fpr $(srcdir) dejagnu-${VERSION}
-	@echo "clean up stuff we don't want in the source file"
-	src=$(srcdir); \
-	dir=`(cd $${src}; pwd)`; \
-	(cd dejagnu-${VERSION} ; $${dir}/Clean.tcl);
-	-mkdir -p doc/html;
-	-cp -fr $(srcdir)/packaging/deb dejagnu-${VERSION}/
-	-cp -fr doc/html dejagnu-${VERSION}/doc/;
-	-cp -fr doc/overview.ps dejagnu-${VERSION}/doc/;
-	-cp -fr doc/overview.pdf dejagnu-${VERSION}/doc/;
+	tar xfz dejagnu-${VERSION}.tar.gz
+	cp -fr $(srcdir)/packaging/deb dejagnu-${VERSION}/
 	(cd dejagnu-${VERSION}; dpkg-buildpackage)
 
 PKGDIR = /opt
@@ -246,15 +219,15 @@ solpkg: $(srcdir)/packaging/pkg/prototype
 # Build a HP depot package
 hpdepot:
 	if test ! -d $(PKGDIR)/dejagnu; then \
-	rm -fr dejagnu-${VERSION}; \
-	mkdir dejagnu-${VERSION}; \
-	cd dejagnu-${VERSION}; \
-	$(srcdir)/configure -v --prefix $(PKGDIR)/dejagnu; \
-	make install ; \
+	  rm -fr dejagnu-${VERSION}; \
+	  mkdir dejagnu-${VERSION}; \
+	  cd dejagnu-${VERSION}; \
+	  $(srcdir)/configure -v --prefix $(PKGDIR)/dejagnu; \
+	  make install ; \
 	fi
 	swpackage -s $(srcdir)/packaging/depot/dejagnu.psf -x target_type=directory -d /tmp
 	here=`pwd`; \
-	cd /tmp; \
-	tar cf $$here/dejagnu-${VERSION}.hpux11.depot dejagnu; \
-	gzip -9fv  $$here/dejagnu-${VERSION}.hpux11.depot; \
-	rm -fr /tmp/dejagnu
+	  cd /tmp; \
+	  tar cf $$here/dejagnu-${VERSION}.hpux11.depot dejagnu; \
+	  gzip -9fv  $$here/dejagnu-${VERSION}.hpux11.depot; \
+	  rm -fr /tmp/dejagnu

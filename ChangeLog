@@ -1,5 +1,13 @@
 2004-02-07  Ben Elliston  <bje@wasabisystems.com>
 
+	* Makefile.am (PKGING): Remove.
+	(PACKAGING_METAFILES): Update accordingly.
+	(CLEANFILES, check-DEJAGNU): Remove.
+	(tarball): Remove; use `dist'.
+	(deb): Update target recipe to use `make dist'.
+
+2004-02-07  Ben Elliston  <bje@wasabisystems.com>
+
 	* Clean.tcl: Remove.
 
 	* Makefile.am (SUBDIRS): Add testsuite, example directories.
