@@ -1,3 +1,8 @@
+2001-05-14  Rob Savoye  <rob@peggyo.welcomehome.org>
+
+	* runtest.exp: Conditionally set the exit_status so we don't stomp
+	on FAIL. Rearrange --status so it works correctly with --strace.
+
 2001-05-13  Rob Savoye  <rob@peggyo.welcomehome.org>
 
 	* lib/target.exp: Fix the regsub line where it prunes -fPIC
