@@ -1,3 +1,8 @@
+2002-03-31  Hans-Peter Nilsson  <hp@bitrange.com>
+
+        * lib/remote.exp (check_for_board_status): Also strip a \r before
+        a \n before the exit message.
+
 2002-03-26  Hans-Peter Nilsson  <hp@bitrange.com>
 
         * lib/libgloss.exp (build_wrapper): Wrap _exit too, unless
