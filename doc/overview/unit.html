@@ -2,7 +2,7 @@
 <HTML
 ><HEAD
 ><TITLE
->Abstract</TITLE
+>Unit Testing</TITLE
 ><META
 NAME="GENERATOR"
 CONTENT="Modular DocBook HTML Stylesheet Version 1.64
@@ -11,13 +11,13 @@ REL="HOME"
 TITLE="DejaGnu"
 HREF="book1.html"><LINK
 REL="PREVIOUS"
-TITLE="DejaGnu"
-HREF="book1.html"><LINK
+TITLE="Special variables used by test cases."
+HREF="tvariables.html"><LINK
 REL="NEXT"
-TITLE="Overview"
-HREF="overview.html"></HEAD
+TITLE="The dejagnu.h Header File"
+HREF="djh.html"></HEAD
 ><BODY
-CLASS="PREFACE"
+CLASS="CHAPTER"
 BGCOLOR="#FFFFFF"
 TEXT="#000000"
 LINK="#0000FF"
@@ -42,7 +42,7 @@ WIDTH="10%"
 ALIGN="left"
 VALIGN="bottom"
 ><A
-HREF="book1.html"
+HREF="tvariables.html"
 >&#60;&#60;&#60; Previous</A
 ></TD
 ><TD
@@ -55,7 +55,7 @@ WIDTH="10%"
 ALIGN="right"
 VALIGN="bottom"
 ><A
-HREF="overview.html"
+HREF="djh.html"
 >Next &#62;&#62;&#62;</A
 ></TD
 ></TR
@@ -64,47 +64,35 @@ HREF="overview.html"
 ALIGN="LEFT"
 WIDTH="100%"></DIV
 ><DIV
-CLASS="PREFACE"
+CLASS="CHAPTER"
 ><H1
 ><A
-NAME="PREFACE"
->Abstract</A
+NAME="UNIT"
+>Unit Testing</A
+></H1
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="UNITTEST"
+>What Is Unit Testing ?</A
 ></H1
 ><P
->This document attempts to describe the functionality of
-    DejaGnu, the GNU Testing Framework. DejaGnu is entirely written in
-    <SPAN
-CLASS="PRODUCTNAME"
->Expect</SPAN
->, which uses
-    <SPAN
-CLASS="PRODUCTNAME"
->Tcl</SPAN
-> as a command
-    language. <SPAN
-CLASS="PRODUCTNAME"
->Expect</SPAN
-> serves as a very
-    programmable shell; you can run any program, as with the usual
-    Unix command shells---but once the program is started, your
-    test script has fully programmable control of
-    its input and output.  This does not just apply to the programs
-    under test; <B
-CLASS="COMMAND"
->expect</B
-> can also run any auxiliary
-    program, such as <B
-CLASS="COMMAND"
->diff</B
-> or <B
-CLASS="COMMAND"
->sh</B
->,
-    with full control over its input and output.</P
+>Most regression testing as done by DejaGnu is system
+      testing. This is the complete application is tested all at
+      once. Unit testing is for testing single files, or small
+      libraries. In this case, each file is linked with a test case in
+      C or C++, and each function or class and method is tested in
+      series, with the test case having to check private data or
+      global variables to see if the function or method worked.</P
 ><P
->DejaGnu itself is merely a framework for creation of a test
-    suites. Test suites are distributed separately for each GNU
-    tool.</P
+>This works particularly well for testing APIs and at level
+      where it is easier to debug them, than by needing to trace through
+      the entire appication. Also if there is a specification for the
+      API to be tested, the testcase can also function as a compliance
+      test.</P
+></DIV
 ></DIV
 ><DIV
 CLASS="NAVFOOTER"
@@ -121,7 +109,7 @@ WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
 ><A
-HREF="book1.html"
+HREF="tvariables.html"
 >&#60;&#60;&#60; Previous</A
 ></TD
 ><TD
@@ -137,7 +125,7 @@ WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
 ><A
-HREF="overview.html"
+HREF="djh.html"
 >Next &#62;&#62;&#62;</A
 ></TD
 ></TR
@@ -146,7 +134,7 @@ HREF="overview.html"
 WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
->DejaGnu</TD
+>Special variables used by test cases.</TD
 ><TD
 WIDTH="34%"
 ALIGN="center"
@@ -156,7 +144,7 @@ VALIGN="top"
 WIDTH="33%"
 ALIGN="right"
 VALIGN="top"
->Overview</TD
+>The dejagnu.h Header File</TD
 ></TR
 ></TABLE
 ></DIV
