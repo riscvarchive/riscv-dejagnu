@@ -4,12 +4,12 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
@@ -84,7 +84,7 @@ proc start_expect { } {
 	set EXPECT [findfile $base_dir/../../expect/expect "$base_dir/../../expect/expect" expect]
 	verbose "EXPECT defaulting to $EXPECT" 2
     }
-    
+
 #    catch close
 #    catch wait
 
@@ -99,7 +99,7 @@ proc start_expect { } {
 	    return -1
 	}
     }
-    
+
     # Load the defaults file
     exp_send "source ${defaults_file}\n"
     expect {
@@ -119,7 +119,7 @@ proc start_expect { } {
 #
 proc stop_expect { }  {
     global spawn_id
-    
+
     # make expect exit
     exp_send "exit\n"
     catch "close -i $spawn_id"
@@ -148,7 +148,7 @@ proc load_test_lib { lib } {
 #
 proc exp_test { cmd pattern msg } {
     global spawn_id
-    
+
     exp_send "puts ACK ; $cmd ; puts NAK\r\n"
     expect {
 	"puts ACK*puts NAK" {
@@ -158,7 +158,7 @@ proc exp_test { cmd pattern msg } {
 	    warning "Never got command echo"
 	}
     }
-    
+
     expect {
 	"ACK" {
 	    exp_continue
@@ -196,7 +196,7 @@ proc config_test { cmd true false msg } {
 	    warning "Never got command echo"
 	}
     }
-    
+
     expect {
 	-re "Checking pattern*with*\[\r\n\]" {
 	    exp_continue

@@ -4,12 +4,12 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -188,7 +188,7 @@ proc gdb_stub_startup { dest } {
 	    }
 	    -re "Reading symbols from.*done..*$gdb_prompt $" {}
 	    -re "$gdb_prompt $" { warning "GDB couldn't find loader" }
-	    timeout { 
+	    timeout {
 		warning "(timeout) read symbol file"
 		return -1
 	    }
@@ -203,7 +203,7 @@ proc gdb_stub_startup { dest } {
 	remote_expect host 60 {
 	    -re "appears to be alive.*$gdb_prompt" { }
 	    -re "Remote target.*connected to.*$gdb_prompt" { }
-	    -re "$gdb_prompt" { 
+	    -re "$gdb_prompt" {
 		warning "Error reconnecting to stub."
 		return -1
 	    }
@@ -262,12 +262,12 @@ proc gdb_stub_startup { dest } {
 		    remote_send host "y\n"
 		    exp_continue
 		}
-		-re "Starting program:.*loader.*$" { 
+		-re "Starting program:.*loader.*$" {
 		    verbose "Starting loader succeeded"
 		}
-		timeout { 
+		timeout {
 		    warning "(timeout) starting the loader"
-		    return -1 
+		    return -1
 		}
 		default {
 		    warning "error starting the loader"
@@ -286,9 +286,9 @@ proc gdb_stub_startup { dest } {
 		-re "$gdb_prompt $" {
 		    verbose "Running loader succeeded"
 		}
-		timeout { 
+		timeout {
 		    warning "(timeout) interrupting the loader"
-		    return -1 
+		    return -1
 		}
 		default {
 		    warning "error interrupting the loader"
@@ -369,7 +369,7 @@ proc gdb_stub_start { dest } {
     }
     remote_send host "break copyloop\n"
     remote_expect host 10 {
-	-re "Breakpoint.*$gdb_prompt $" { 
+	-re "Breakpoint.*$gdb_prompt $" {
 	    set start_comm "continue\n"
 	}
 	-re "Function.*not defined.*$gdb_prompt $" { }
@@ -491,7 +491,7 @@ proc gdb_stub_load { dest prog args } {
     set result [remote_wait $dest 120]
     set status [lindex $result 0]
     set output [lindex $result 1]
-    
+
     if { $status == 0 } {
 	return [list "pass" $output]
     } else if { $status > 0 } {
@@ -546,7 +546,7 @@ proc gdb_stub_ld { dest prog } {
 	    warning "GDB couldn't read file"
 	    return [gdb_stub_retry_ld "$dest" "$prog"]
 	}
-	timeout { 
+	timeout {
 	    warning "(timeout) read symbol file"
 	    return [gdb_stub_retry_ld "$dest" "$prog"]
 	}
@@ -572,7 +572,7 @@ proc gdb_stub_ld { dest prog } {
 	-re "$gdb_prompt $"	{
 	    verbose "Set remote target to $serial" 2
 	}
-	timeout { 
+	timeout {
 	    warning "Couldn't set remote target."
 	    return 0
 	}

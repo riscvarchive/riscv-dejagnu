@@ -4,12 +4,12 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
@@ -87,7 +87,7 @@ proc bug_load { shell_id file } {
 	    return -1
 	}
     }
-    
+
     catch "exec rm -f $file.srec"
     return 0
 }
@@ -115,7 +115,7 @@ proc bug_execute { shell_id addr } {
 	    set exec_output $expect_out(buffer)
 	    return 0
 	}
-	-i $shell_id timeout { 
+	-i $shell_id timeout {
 	    perror "Couldn't execute program (timed out)."
 	    return 1
 	}

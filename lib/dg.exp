@@ -5,12 +5,12 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
@@ -156,7 +156,7 @@
 # The default do-what keyword.
 set dg-do-what-default compile
 
-# When dg-interpreter-batch-mode is 1, no execution test or excess error 
+# When dg-interpreter-batch-mode is 1, no execution test or excess error
 # tests are performed.
 set dg-interpreter-batch-mode 0
 
@@ -591,7 +591,7 @@ proc dg-runtest { testcases flags default-extra-flags } {
 # Syntax: dg-trim-dirname dir_name file_name
 # We need to go through this contorsion in order to properly support
 # directory-names which might have embedded regexp special characters.
-     
+
 proc dg-trim-dirname { dir_name file_name } {
     set special_character "\[\?\+\-\.\(\)\$\|\]"
     regsub -all $special_character $dir_name "\\\\&" dir_name
@@ -658,9 +658,9 @@ proc dg-test { args } {
     if { "$tool_flags" != "" } {
 	set name "$name $tool_flags"
     }
-    
+
     # Process any embedded dg options in the testcase.
-    
+
     # Use "" for the second element of dg-do-what so we can tell if it's been
     # explicitly set to "S".
     set dg-do-what [list ${dg-do-what-default} "" P]

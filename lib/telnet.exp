@@ -4,15 +4,15 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@gnu.org
@@ -78,7 +78,7 @@ proc telnet_open { hostname args } {
     if ![info exists shell_prompt] {	# if no prompt, then set it to something generic
 	set shell_prompt ".*> "
     }
- 
+
     set tries 0
     set result -1
     set need_respawn 1
@@ -174,7 +174,7 @@ proc telnet_open { hostname args } {
 	    -re "\[\r\n\]+" {
 		exp_continue
 	    }
-	    timeout { 
+	    timeout {
 		exp_send "\n"
 	    }
 	    eof {

@@ -25,7 +25,7 @@ that you may (or may not) find helpful in understanding just what is
 going on with the runtest script.  Fortunately tcl is a pretty simply
 language and a quick scan of Ousterhout's text on tcl has been more than
 sufficient for me to conduct these experiments.  Again, this document
-only records my observations.  
+only records my observations.
 
 SECOND: I am not interested in or concerned with testing
 cross-compilation systems or anything exotic like remote execution.  I
@@ -36,7 +36,7 @@ was simply trying to gain an overall understanding of what and when the
 various tcl/expect files and procedures are executed.
 
 THIRD: There are really two parts to my studies, specifically: (i) the
-study of runtest, and (ii) the use of the auto- tools to realize a 
+study of runtest, and (ii) the use of the auto- tools to realize a
 "make check" target that will invoke the runtest script for you.  As a
 result, this document is organized into three parts:
 
@@ -45,7 +45,7 @@ result, this document is organized into three parts:
     Part III: Running the example
 
 For small projects, you may not be interested in the autoconf/automake
-tools and can safely skip Part II of this document.  
+tools and can safely skip Part II of this document.
 
 FOURTH: This example is setup only for recording the files and
 procedures that runtest uses.  Technically it will compile a simple c++
@@ -85,31 +85,31 @@ let's take a look at the contents of the helloworld.* subdirectories in
 the testsuite subdirectory of this example:
 
     peabody>ls -R testsuite/helloworld.test*
-    ~/test/dejagnu/helloDemo 
+    ~/test/dejagnu/helloDemo
     testsuite/helloworld.test1:
     total 8
        4 helloworld.test1-1/     4 test1.exp
-    
+
     testsuite/helloworld.test1/helloworld.test1-1:
     total 4
        4 test1-1.exp
-    
+
     testsuite/helloworld.test2:
     total 8
        4 test2.exp     4 test3.exp
-    
+
     testsuite/helloworld.test3:
     total 12
        4 config/     4 lib/     4 non_compliant_dir_name/
-    
+
     testsuite/helloworld.test3/config:
     total 4
        4 config.exp
-    
+
     testsuite/helloworld.test3/lib:
     total 4
        4 lib.exp
-    
+
     testsuite/helloworld.test3/non_compliant_dir_name:
     total 4
        4 non_compliant.exp
@@ -173,10 +173,10 @@ runtest command is issued):
    this file will be automagically created for you).  Technically this
    file is organized into two parts, one that is set when the .configure
    script is executed; the second part can be edited and changed by the
-   user. 
+   user.
 3. It will try to load the file ./lib/TOOL.exp (this is probably a good
    place to locate definitions for the TOOL_init/TOOL_exit/TOOL_version
-   procedures. 
+   procedures.
 4. It will try to load some configuration files.  Specifically
 4a. It will try to load a base-config.exp file.  On my system it
     searches, in order, the following subdirectories:
@@ -234,7 +234,7 @@ I.3 Some notes I made during my week of study
 
 3a. Look into srcdir (where the runtest command was issued) for
     lib/tool.exp; I guess the principle concept is to put tool specific
-    and platform independent expect scripts here. 
+    and platform independent expect scripts here.
 
 3b. Next look for for platform scripts in --srcdir/config (on my linux
     system it looks for one of unix.exp, gnu.exp, and default.exp (in
@@ -247,7 +247,7 @@ I.3 Some notes I made during my week of study
 4. Executing expect scripts.
 
 4a. If an expect script is named on the command line it (and only it) is
-    run.  otherwise.... 
+    run.  otherwise....
 
 4b. runtest looks in the testsuite directory and does a glob on
     TOOL.*/*.exp (ok, it's a recursive glob TOOL.*/.../*.exp) and
@@ -263,7 +263,7 @@ I.3 Some notes I made during my week of study
    particular, on my machine, the search path is:
 
 5a. the dejagnu install directory (/usr/share/dejagnu) and its
-    accompanying library directory (/usr/share/dejagnu/lib) 
+    accompanying library directory (/usr/share/dejagnu/lib)
 5b. in a dejagnu/lib directory one above the current directory (where
     runtest was run).  that is in ../dejagnu/lib
 5c. in the --srcdir lib
@@ -275,14 +275,14 @@ I.3 Some notes I made during my week of study
    investigate this.
 
 7. COOL: I can name an expect script in the --ignore command line option
-   to prune it from the set of scripts that are executed.  
+   to prune it from the set of scripts that are executed.
 
 
 I.4 Some gotchas
 ----------------
 
 1. As far as I can tell the "testsuite" name is completely artificial
-   and you can store your tests in whatever subdirectory name you like. 
+   and you can store your tests in whatever subdirectory name you like.
 
 2. Don't try to issue the runtest command from outside the testsuite
    subdirectory using the "--srcdir target" command line argument.
@@ -311,12 +311,12 @@ autoconf/automake and friends (I still don't).
    directory containing the testsuite you must have a Makefile.am to
    build the "make check" target.  You only need to define the dejagnu
    option for AUTOMAKE_OPTIONS.  If you want you can also add runtest
-   command line arguments to the RUNTESTDEFAULTFLAGS variable.  
+   command line arguments to the RUNTESTDEFAULTFLAGS variable.
 
    The only problem I had with this was realizing that the Makefile.am
    to locate these definitions in is the one located *in* the testsuite
    subdirectory.  DO NOT make these definitions in the root Makefile.am
-   file (unless you intend to place you TOOL.* subdirectories there). 
+   file (unless you intend to place you TOOL.* subdirectories there).
 
 2. I cannot figure out a good way to add alternate check targets (e.g.,
    make check-test1) to run alternate tests on the command line.  Since

@@ -4,12 +4,12 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
@@ -24,7 +24,7 @@
 # Remove at some point.
 set shell_id   	0
 
-# 
+#
 # Open a connection to a remote host or target. This requires the target_info
 # array be filled in with the proper info to work. The old variables are also
 # still functional.
@@ -41,7 +41,7 @@ proc remote_open { args } {
     global reboot
     global shell_id
     global spawn_id
-   
+
     if { [llength $args] == 0 } {
 	set type "target"
     } else {
@@ -92,7 +92,7 @@ proc remote_open { args } {
 #
 # Close the remote connection.
 #	shell_id - This is the id number returned by the any of the connection
-#	procedures, or an index into one of the arrays. 
+#	procedures, or an index into one of the arrays.
 #
 proc remote_close { arg } {
     # get the type of connection, host or target
@@ -141,14 +141,14 @@ proc telnet { args } {
     global errno
 
     set hostname [lindex $args 0]
-    
+
     # get the port number
     if { [llength $args] > 1 } {
 	set port [lindex $args 1]
     } else {
         set port 23
     }
-    
+
     # get the hostname and port number from the config array
     if [expr [string match "host" $hostname] || [string match "target" $hostname]] {
 	set type $hostname
@@ -167,7 +167,7 @@ proc telnet { args } {
     if ![info exists shell_prompt] {	# if no prompt, then set it to something generic
 	set shell_prompt ".*> "
     }
- 
+
     set tries 0
     set result -1
     verbose "Starting a telnet connection to $hostname:$port" 2
@@ -221,7 +221,7 @@ proc telnet { args } {
 		warning "telnet: connection closed by foreign host."
 		break
 	    }
-	    timeout { 
+	    timeout {
 		exp_send "\003"
 		warning "telnet: timed out trying to connect."
 	    }
@@ -283,12 +283,12 @@ proc rlogin { arg } {
     if ![info exists shell_prompt] {	# if no prompt, then set it to something generic
 	set shell_prompt ".*> "
     }
- 
+
     # get the right version of rlogin
     if ![info exists RLOGIN] {
 	set RLOGIN rlogin
     }
-    
+
     # start connection and store the spawn_id
     verbose "Opening a $RLOGIN connection to $hostname" 2
     spawn $RLOGIN $hostname
@@ -300,7 +300,7 @@ proc rlogin { arg } {
     if [info exists target_info($type,name)] {
 	set target_info($target_info($type,name),fileid) $spawn_id
     }
-    
+
     # try to connect to the target. We give up after 3 attempts. At one point
     # we used to look for the prompt, but we may not know what it looks like.
     while { $tries <= 3 } {
@@ -374,7 +374,7 @@ proc rlogin { arg } {
 		catch wait
 		break
 	    }
-	    timeout	{ 
+	    timeout	{
 		warning "rlogin: timed out trying to connect."
 	    }
 	    eof {
@@ -422,7 +422,7 @@ proc rlogin { arg } {
     } else {
 	verbose "rlogin: connected to $hostname" 2
     }
-    
+
     return $spawn_id
 }
 
@@ -452,7 +452,7 @@ proc rsh { arg } {
     if ![info exists shell_prompt] {	# if no prompt, then set it to something generic
 	set shell_prompt ".*> "
     }
- 
+
     if ![info exists RSH] {
 	set RSH rsh
     }
@@ -528,17 +528,17 @@ proc rsh { arg } {
 	    -re "Sorry, shell is locked.*Connection closed.*$" {
 		warning "rsh: already connected."
 	    }
-	    timeout {	    
+	    timeout {
 	       warning "rsh: timed out trying to connect."
 	    }
-	    eof {	    
+	    eof {
 		perror "rsh: got EOF while trying to connect."
 		break
 	    }
 	}
 	incr tries
     }
-    
+
     if { $result < 0 } {
 #	perror "rsh: couldn't connect after $tries tries."
 	set spawn_id -1
@@ -627,7 +627,7 @@ proc tip { arg } {
     if ![info exists shell_prompt] {	# if no prompt, then set it to something generic
 	set shell_prompt ".*> "
     }
- 
+
     spawn tip -v $port
     if { $spawn_id < 0 } {
 	perror "invalid spawn id from tip"
@@ -636,7 +636,7 @@ proc tip { arg } {
     set target_info(target,fileid) $spawn_id
     set target_info($target_info(target,name),fileid) $spawn_id
     expect {
-	-re ".*connected.*$" { 
+	-re ".*connected.*$" {
 	    send "\r\n"
 	    expect {
 		-re ".*$shell_prompt.*$" {
@@ -660,7 +660,7 @@ proc tip { arg } {
 	    incr tries
 	    if { $tries <= 2 } {
 		exp_continue
-	    }	    
+	    }
 	}
 	-re "Connection Closed.*$" {
 	    perror "Never connected."
@@ -768,7 +768,7 @@ proc tip_download { shell_id file } {
 #
 # Connect to using kermit
 #     args - first is the device name, ie. /dev/ttyb
-#         second is the optional baud rate. If this is "host" or "target" the 
+#         second is the optional baud rate. If this is "host" or "target" the
 #	  config array is used instead.
 #     returns -1 if it failed, otherwise it returns
 #         the spawn_id.
@@ -782,7 +782,7 @@ proc kermit { args } {
 	set baud 9600
     } else {
 	set baud [lindex $args 1]
-    } 
+    }
 
     if [expr [string match "host" [lindex $args 0]] || [string match "target" [lindex $arg 0]]] {
 	set device $target_info(${type},serial)
@@ -792,7 +792,7 @@ proc kermit { args } {
     } else {
 	set device [lindex $args 0]
     }
- 
+
     set tries 0
     set result -1
     spawn kermit -l $device -b $baud
@@ -803,7 +803,7 @@ proc kermit { args } {
     set target_info(${type},fileid) $spawn_id
     set target_info($target_info(${type},name),fileid) $spawn_id
     expect {
-	-re ".*ermit.*>.*$" { 
+	-re ".*ermit.*>.*$" {
 	    send "c\n"
 	    expect {
 		-re ".*Connecting to $port.*Type the escape character followed by C to.*$" {
@@ -829,7 +829,7 @@ proc kermit { args } {
 		exp_continue
 	    }
 	}
-	timeout			{	    
+	timeout			{
 	    warning "Timed out trying to connect."
 	    set result -1
 	    incr tries

@@ -39,7 +39,7 @@ if [isbuild $build_triplet] {
 } else {
     puts "FAILED: isbuild, native"
 }
- 
+
 if [isbuild $target_cpu-*-$target_os ] {
     puts "PASSED: isbuild, native regexp"
 } else {
@@ -98,7 +98,7 @@ if [isnative] {
 }
 
 if [is3way] {
-     puts "FAILED: is3way, native" 
+     puts "FAILED: is3way, native"
 } else {
     puts "PASSED: is3way, native"
 }
@@ -114,7 +114,7 @@ if [isnative] {
 }
 
 if [is3way] {
-     puts "FAILED: is3way, cross" 
+     puts "FAILED: is3way, cross"
 } else {
     puts "PASSED: is3way, cross"
 }
@@ -130,7 +130,7 @@ if [isnative] {
 }
 
 if [is3way] {
-     puts "PASSED: is3way, canadian cross" 
+     puts "PASSED: is3way, canadian cross"
 } else {
     puts "FAILED: is3way, canadian cross"
 }

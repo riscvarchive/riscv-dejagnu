@@ -54,7 +54,7 @@ proc sim_spawn { dest cmdline args } {
     puts $handle "g 28"
     puts $handle "quit"
     close $handle
-    
+
     return [eval remote_spawn host \{ $sim $simflags "-sdoit" \} $args]
 }
 
@@ -118,7 +118,7 @@ proc find_sim { target_alias sim_dir sim_name } {
 
     ## XXX - fixme - this should not be hardcoded.
     ## XXX - fixme - this should vary depending upon endianism selected.
-    
+
     return "/home/nickc/bin/linux/sim-be"
 }
 

@@ -4,15 +4,15 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. 
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@prep.ai.mit.edu
@@ -377,7 +377,7 @@ proc libstdc++_link_flags { args } {
 
 #
 # Get the list of directories and -m options for gcc. This is kinda bogus that
-# generic testing software needs support for gcc hardwired in, but to make 
+# generic testing software needs support for gcc hardwired in, but to make
 # testing the GNU tools work right, there didn't seem to be any other way.
 #
 
@@ -513,7 +513,7 @@ proc get_multilibs { args } {
 
     # extract the MULTILIB_MATCHES from dumpspecs
     set multimatches ""
-    set lines [split [exec $compiler -dumpspecs] "\n"]  
+    set lines [split [exec $compiler -dumpspecs] "\n"]
     for {set i 0} {$i <= [llength $lines] - 1} {incr i 1} {
 	if {"*multilib_matches:" == "[lindex $lines $i]"} {
 	    set multimatches [lindex $lines [expr $i + 1]]
@@ -597,7 +597,7 @@ proc find_binutils_prog { name } {
     global tool_root_dir
 
     if ![is_remote host] {
-    
+
 	set file [lookfor_file $tool_root_dir $name]
 	if { $file == "" } {
 	    set file [lookfor_file $tool_root_dir ${name}-new]
@@ -878,7 +878,7 @@ proc winsup_include_flags { args } {
 	}
     }
     verbose "No winsup support for this target"
-    
+
 }
 #
 # Find the winsup libraries in the current source tree.

@@ -4,15 +4,15 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. 
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@gnu.org
@@ -41,7 +41,7 @@ set text "\[- A-Za-z0-9\.\;\"\_\:\'\`\(\)\!\#\=\+\?\&\*]"
 #	    connect - the connectmode for this target. This is for both IP and
 #		      serial connections.
 #	    hostname  - the hostname of the target. This is for TCP/IP based
-#		      connections, and is also used for versions of tip that 
+#		      connections, and is also used for versions of tip that
 #		      use /etc/remote.
 #	    serial  - the serial port. This is typically /dev/tty? or com?:.
 #	    baud    - the baud rate for a serial port connection.
@@ -144,9 +144,9 @@ proc prune_warnings { text } {
     }
     if [ishost "hppa*-*-hpux*"] {
        # Ignore the compiler's warnings about PA incompatibility.
-       regsub -all "(^|\n)\[^\n\]*PA 2.0 object file \[^\n\]* was detected. The linked output may not run on a PA 1.x system." $text "" text 
- 
-       regsub -all "(^|\n)\[^\n\]*PA 2.0 object file \[^\n\]* was detected. The linked output may not run on a PA 1.x system." $text "" text 
+       regsub -all "(^|\n)\[^\n\]*PA 2.0 object file \[^\n\]* was detected. The linked output may not run on a PA 1.x system." $text "" text
+
+       regsub -all "(^|\n)\[^\n\]*PA 2.0 object file \[^\n\]* was detected. The linked output may not run on a PA 1.x system." $text "" text
 
        # And the linker's +vcompatwarnings verbage.
        regsub -all "(^|\n)\[^\n\]*Linker features were used that may not be supported\[^\n\]*.\[^\n\]*." $text "" text
@@ -162,7 +162,7 @@ proc prune_warnings { text } {
        # the source line and underline chars.
        #
        regsub -all "Warning .*The linkage directive is ignored for an object or function declared static..\[^\n\]*.\[^\n\]*." $text "" text
- 
+
        # Ignore these warnings, which I often see from the ANSI C
        # compiler installed on HP-UX 11.0 machines.  (Something is
        # probably wrong with an installation, or perhaps NLS isn't
@@ -175,19 +175,19 @@ proc prune_warnings { text } {
        #
        regsub -all "Warning: Unable to open pxdb message catalog.*" $text "" text
        regsub -all ".* Using internal messages.*" $text "" text
- 
+
        # Another form of the "unable to find message catalog" warning.
        #
        regsub -all "cpp: warning .*Possibly incorrect message catalog." $text "" text
- 
+
        # Another odd warning on 11.0.
        #
        regsub -all "aCC .assigner.: Warning .*Could not find library for -l.*" $text "" text
- 
+
        # Oh heck, just keep adding 'em here...
        #
        regsub -all "aCC .assigner.: Warning .*Could not satisfy instantiation request for \[^\n\]* contained in\[^\n\]*\n\t/lib/pa20_64/lib\[a-zA-Z0-9\]*.sl" $text "" text
-       
+
       # Remove the lines that are output by the HP F77 compiler to
       # indicate the functions that are being compiled.
       upvar compiler_type compiler_type
@@ -270,7 +270,7 @@ proc prune_warnings { text } {
     # GNU ld warns about functions marked as dangerous in GNU libc.
     regsub -all "(^|\n)\[^\n\]*: In function\[^\n\]*\n\[^\n\]\[^\n\]*function is dangerous\[^\n\]*" $text "" text
 
-     # GNU ld warns about functions marked as dangerous in GNU libc.   
+     # GNU ld warns about functions marked as dangerous in GNU libc.
      regsub -all "(^|\n)\[^\n\]*: In function\[^\n\]*\n\[^\n\]\[^\n\]*the use of \[^\n\]* is dangerous, better use \[^\n\]*" $text "" text
 
      # Libgloss libnosys defines functions that warn when linked in
@@ -405,7 +405,7 @@ proc default_target_compile {source destfile type options} {
     global CC_FOR_TARGET
     global CXX_FOR_TARGET
     global F77_FOR_TARGET
-    
+
     if [info exists CC_FOR_TARGET] {
 	if { $compiler == "" } {
 	    set compiler $CC_FOR_TARGET
@@ -444,7 +444,7 @@ proc default_target_compile {source destfile type options} {
     if { $type == "preprocess" } {
 	append add_flags " -E"
     }
-    
+
     if { $type == "assembly" } {
 	append add_flags " -S"
     }

@@ -4,15 +4,15 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@gnu.org
@@ -30,11 +30,11 @@ load_lib "tip.exp"
 load_lib "rsh.exp"
 load_lib "ftp.exp"
 
-# 
+#
 # Open a connection to a remote host or target. This requires the target_info
 # array be filled in with the proper info to work.
 #
-# type is either "build", "host", "target", or the name of a board loaded 
+# type is either "build", "host", "target", or the name of a board loaded
 # into the board_info array. The default is target if no name is supplied.
 # It returns the spawn id of the process that is the connection.
 #
@@ -124,9 +124,9 @@ proc local_exec { commandline inp outp timeout } {
 	}
 	# Why do we use tee? Because open can't redirect both input and output.
 	if { $use_tee } {
-	    set result [catch {open "| ${commandline} $inp |& tee $outpf" RDONLY} id] 
+	    set result [catch {open "| ${commandline} $inp |& tee $outpf" RDONLY} id]
 	} else {
-	    set result [catch {open "| ${commandline} $inp $outp" $mode} id] 
+	    set result [catch {open "| ${commandline} $inp $outp" $mode} id]
 	}
 
 	if { $result != 0 } {
@@ -175,7 +175,7 @@ proc local_exec { commandline inp outp timeout } {
 
     # Uuuuuuugh. Now I'm getting really sick.
     # If we didn't get an EOF, we have to kill the poor defenseless program.
-    # However, Tcl has no kill primitive, so we have to execute an external 
+    # However, Tcl has no kill primitive, so we have to execute an external
     # command in order to execute the execution. (English. Gotta love it.)
     if { ! $got_eof } {
 	verbose "killing $pid $pgid"
@@ -221,7 +221,7 @@ proc local_exec { commandline inp outp timeout } {
     }
 }
 
-# 
+#
 # Execute the supplied program on HOSTNAME. There are four optional arguments
 # the first is a set of arguments to pass to PROGRAM, the second is an
 # input file to feed to stdin of PROGRAM, the third is the name of an
@@ -240,7 +240,7 @@ proc remote_exec { hostname program args } {
     } else {
 	set pargs ""
     }
-    
+
     if { [llength $args] > 1 } {
 	set inp "[lindex $args 1]"
     } else {
@@ -262,7 +262,7 @@ proc remote_exec { hostname program args } {
 
     verbose -log "Executing on $hostname: $program $pargs $inp $outp (timeout = $timeout)" 2
 
-    # Run it locally if appropriate. 
+    # Run it locally if appropriate.
     if { ![is_remote $hostname] } {
 	return [local_exec "$program $pargs" $inp $outp $timeout]
     } else {
@@ -586,8 +586,8 @@ proc remote_transmit { dest file } {
 proc remote_raw_transmit { dest file } {
     return [call_remote raw transmit "$dest" "$file"]
 }
-    
-# 
+
+#
 # The default transmit procedure if no other exists. This feeds the
 # supplied file directly into the connection.
 #
@@ -667,7 +667,7 @@ proc remote_raw_file { dest args } {
     return [eval call_remote raw file \"$dest\" $args]
 }
 
-# 
+#
 # Perform the specified file op on a remote Unix board.
 #
 
@@ -798,7 +798,7 @@ proc remote_spawn { dest commandline args } {
 		    return -1
 		}
 	    } else {
-		set result [catch {open "| ${commandline}" "w"} id] 
+		set result [catch {open "| ${commandline}" "w"} id]
 		if { $result != 0 } {
 		    return -1
 		}
@@ -1019,7 +1019,7 @@ proc standard_load { dest prog args } {
 	if [board_info $dest exists remote_link] {
 	    if [[board_info $dest remote_link] $remotefile] {
 		verbose -log "Couldn't do remote link"
-		remote_file target delete $remotefile 
+		remote_file target delete $remotefile
 		return "unresolved"
 	    }
 	}
@@ -1142,8 +1142,8 @@ proc check_for_board_status  { variable } {
     # status message, then the absence of it means that the program
     # crashed, regardless of status found elsewhere (e.g. simulator exit
     # code).
-    if { [target_info needs_status_wrapper] != "" } then {  
-       set nomatch_return 2  
+    if { [target_info needs_status_wrapper] != "" } then {
+       set nomatch_return 2
     } else {
        set nomatch_return -1
     }

@@ -4,15 +4,15 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. 
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@prep.ai.mit.edu
@@ -20,7 +20,7 @@
 # This file was written by Rob Savoye. (rob@welcomehome.org)
 
 #
-# Most of the procedures found here mimic their unix counter-part. 
+# Most of the procedures found here mimic their unix counter-part.
 # This file is sourced by runtest.exp, so they are usable by any test case.
 #
 
@@ -67,7 +67,7 @@ proc getdirs { args } {
 	perror "$tmp"
 	return ""
     }
-    
+
     if ![info exists dirs] {
 	return ""
     } else {
@@ -80,7 +80,7 @@ proc getdirs { args } {
 #     rootdir - this is the directory to start the search
 #   	  from. This is and all subdirectories are search for
 #   	  filenames. Directory names are not included in the
-#   	  list, but the filenames have path information. 
+#   	  list, but the filenames have path information.
 #     pattern - this is the pattern to match. Patterns are csh style
 #   	  globbing rules.
 #     returns: a list or a NULL.
@@ -106,7 +106,7 @@ proc find { rootdir pattern } {
 	}
 	set tmp ""
     }
-    
+
     # find all the files that match the pattern
     foreach i $dirs {
 	verbose "Looking in $i" 3
@@ -120,7 +120,7 @@ proc find { rootdir pattern } {
 	    }
 	}
     }
-    
+
     if ![info exists files] {
 	lappend files ""
     }
@@ -136,10 +136,10 @@ proc find { rootdir pattern } {
 #
 proc which { file } {
     global env
-    
+
     # strip off any extraneous arguments (like flags to the compiler)
     set file [lindex $file 0]
-    
+
     # if it exists then the path must be OK
     # ??? What if $file has no path and "." isn't in $PATH?
     if [file exists $file] {
@@ -150,7 +150,7 @@ proc which { file } {
     } else {
 	return 0
     }
-    
+
     foreach i $path {
 	verbose "Checking against $i" 3
 	if [file exists $i/$file] {
@@ -166,7 +166,7 @@ proc which { file } {
 }
 
 #
-# Looks for a string in a file. 
+# Looks for a string in a file.
 #     return:list of lines that matched or NULL if none match.
 #     args:  first arg is the filename,
 #            second is the pattern,
@@ -174,12 +174,12 @@ proc which { file } {
 #     Options: line  - puts line numbers of match in list
 #
 proc grep { args } {
-    
+
     set file [lindex $args 0]
     set pattern [lindex $args 1]
-    
+
     verbose "Grepping $file for the pattern \"$pattern\"" 3
-    
+
     set argc [llength $args]
     if { $argc > 2 } {
 	for { set i 2 } { $i < $argc } { incr i } {
@@ -189,7 +189,7 @@ proc grep { args } {
     } else {
 	set options ""
     }
-    
+
     set i 0
     set fd [open $file r]
     while { [gets $fd cur_line]>=0 } {
@@ -259,7 +259,7 @@ proc absolute { path } {
     if [string match "." $path] {
         return [pwd]
     }
-    
+
     set basedir [pwd]
     cd $path
     set path [pwd]
@@ -359,23 +359,23 @@ if { [info procs prune_system_crud] == "" } {
 proc diff { file_1 file_2 } {
     set eof -1
     set differences 0
-    
+
     if [file exists ${file_1}] {
         set file_a [open ${file_1} r]
     } else {
         warning "${file_1} doesn't exist"
         return 0
     }
-    
+
     if [file exists ${file_2}] {
         set file_b [open ${file_2} r]
     } else {
         warning "${file_2} doesn't exist"
         return 0
     }
-    
+
     verbose "# Diff'ing: ${file_1} ${file_2}\n" 1
-    
+
     while { [gets ${file_a} line] != ${eof} } {
         if [regexp "^#.*$" ${line}] {
             continue
@@ -384,7 +384,7 @@ proc diff { file_1 file_2 } {
         }
     }
     close ${file_a}
-    
+
     while { [gets ${file_b} line] != ${eof} } {
         if [regexp "^#.*$" ${line}] {
             continue
@@ -411,7 +411,7 @@ proc diff { file_1 file_2 } {
             set differences -1
         }
     }
-    
+
     if { [llength ${list_a}] != [llength ${list_b}] } {
 	verbose "Files not the same" 2
         set differences -1
@@ -427,7 +427,7 @@ proc diff { file_1 file_2 } {
 #
 proc setenv { var val } {
     global env
-    
+
     set env($var) $val
 }
 

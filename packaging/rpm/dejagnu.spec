@@ -49,7 +49,7 @@ rm -rf $RPM_BUILD_ROOT
 # %config site.exp
 
 %doc COPYING NEWS README AUTHORS INSTALL ChangeLog doc/overview doc/overview.ps doc/overview.pdf
- 
+
 %changelog
 * Thu Aug 29 2002 Rob Savoye <rob@welcomehome.org>
 - Update version number for 1.4.3 release.
@@ -89,4 +89,4 @@ rm -rf $RPM_BUILD_ROOT
 
 * Sun Feb  1 1998 Jeff Johnson <jbj@jbj.org>
 - Create.
- 
+

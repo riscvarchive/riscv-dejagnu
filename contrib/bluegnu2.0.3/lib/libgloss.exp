@@ -4,15 +4,15 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. 
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@prep.ai.mit.edu
@@ -66,13 +66,13 @@ proc libgloss_script { } {
 	warning "Couldn't find the linker script name for target"
 	return ""
     }
-    
+
     # if we're on a remote host, we can't search for the file, so use the
     # linker script in the path.
     if [is3way] {
 	return "-T${script}"
     }
-    
+
     # search for the general directories
     foreach i ".. ../.. ../../.. ../../../.." {
 	verbose "Looking for a ${srcdir}/${i}/libgloss/${target_cpu}/${script}" 2
@@ -88,7 +88,7 @@ proc libgloss_script { } {
 
 #
 # Find all the pieces of libgloss for testing the GNU development tools
-# needed to use $CC or $CXX. It returns a string suitable to pass to 
+# needed to use $CC or $CXX. It returns a string suitable to pass to
 # $CC or $CXX to get a fully linked binary for the target.
 #
 proc libgloss_flags { } {
@@ -107,7 +107,7 @@ proc libgloss_flags { } {
     if [is3way] {
 	return "[libgloss_script]"
     }
-    
+
     # search for the general directories
     foreach i ".. ../.. ../../.. ../../../.." {
 	if [file exists ${base_dir}/${i}/${target_alias}/libgloss/${target_cpu} ] {
@@ -115,7 +115,7 @@ proc libgloss_flags { } {
 	    return  "-L${base_dir}/${i}/${target_alias}/libgloss/${target_cpu} [libgloss_script]"
 	}
     }
-    
+
     # we didn't find any support at all
     return "[libgloss_script]"
 }
@@ -206,7 +206,7 @@ proc libgloss_ld {} {
     } else {
 	perror "No crt0.o built for this target"
     }
-    
+
     # find the BSP (currently an object, it may become an archive soon)
     foreach i "[list_targets]" {
 	if [info exists target_info($i,name}] {

@@ -77,7 +77,7 @@
 2002-08-30  Rob Savoye  <rob@welcomehome.org>
 
 	* configure.in: Add AC_NO_EXECUTABLES, so things configure without
-	building C++ executables. 
+	building C++ executables.
 	* example/hello/hello.c: New C version of the example.
 	* example/hello/Makefile.am: Build C based example.
 	* example/hello/configure.in: Add AC_NO_EXECUTABLES, so things
@@ -145,7 +145,7 @@ Wed Jun  5 14:52:15 PDT 2002   Joey Ekstrom <joey@ekstrom.org>
 
         * runtest.exp: Add kfail_flag and kfail_prms variable
         initializations.
-        * lib/framework.exp (setup_kfail): New proc. Like setup_xfail, but  
+        * lib/framework.exp (setup_kfail): New proc. Like setup_xfail, but
         for known tool bugs already registered in a bug database.
         (kfail): New proc. Record that a test has failed due to a known bug.
         (kpass): New proc. Record that a test for a known bug has passed
@@ -180,7 +180,7 @@ Wed Jun  5 14:52:15 PDT 2002   Joey Ekstrom <joey@ekstrom.org>
         * example/calc/Makefile.in: Regenerate.
 
 2002-03-22  Elena Zannoni  <ezannoni@redhat.com>
- 
+
 	* baseboards/powerpc-sim.exp: Don't disable inferior
         function calls.
 
@@ -251,9 +251,9 @@ Wed Nov 21 18:02:49 PST 2001  Brendan Conoboy <blc@redhat.com>
         (libstdc++_include_flags): Add top level libstdc++-v3 build
         include path.
 
-2001-11-10  Hans-Peter Nilsson  <hp@bitrange.com>  
+2001-11-10  Hans-Peter Nilsson  <hp@bitrange.com>
 
-        * baseboards/mmixware-sim.exp: New file.   
+        * baseboards/mmixware-sim.exp: New file.
 	* lib/remote.exp (check_for_board_status): Return 2 if the board
 	uses a status wrapper and there was no match for the expected
         pattern.
@@ -311,21 +311,21 @@ Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
         directories as well as the basename.
 
 2001-06-08 John Cotton <john.cotton@nrc.ca>
-  
-        * testglue.c: 
-        * lib/remote.exp: 
-        * lib/standard.exp: 
-        * lib/target.exp: 
-        * lib/utils.exp:    
+
+        * testglue.c:
+        * lib/remote.exp:
+        * lib/standard.exp:
+        * lib/target.exp:
+        * lib/utils.exp:
         * baseboards/mbx821_001.exp:
         * baseboards/mbx860_002.exp:
         * baseboards/mbx8xx.exp:
-        * baseboards/mvme167.exp:  
+        * baseboards/mvme167.exp:
          Added support for automated testing of RTEMS targets,
          specifically the mbx821, mbx860 and mvme167.
-  
-2001-06-08 John Cotton <john.cotton@nrc.ca> 
-  
+
+2001-06-08 John Cotton <john.cotton@nrc.ca>
+
          */lib/libgloss.exp: fixed regexp bug.
 
 2001-05-30  Jeffrey Oldham  <oldham@codesourcery.com>
@@ -366,7 +366,7 @@ Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
 	depending on the version.
 
 2001-05-20  Stephane Carrez  <Stephane.Carrez@worldnet.fr>
-  
+
         * baseboards/m68hc11-sim.exp: New file for 68HC11/68HC12 validation.
         * config/m68hc11.exp: New file.
 
@@ -446,7 +446,7 @@ Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
 	* debian/rules: and install dejagnu.h
 
 2001-05-01  Matt Hiller  <hiller@redhat.com>
-  
+
         * lib/libgloss.exp (get_multilibs): Correction to Catherine
         Moore's patch of 2000-06-09.
 
@@ -834,7 +834,7 @@ Mon May  3 11:14:37 1999  Jim Wilson  <wilson@cygnus.com>
 1999-04-23  Angela Marie Thomas <angela@cygnus.com>
 
 	* baseboards/cf.exp: gdb protocol is case-sensitive.
- 
+
 1999-04-19  Nick Clifton  <nickc@cygnus.com>
 
 	* baseboards/Makefile.am (boards): Add mcore-sim.exp
@@ -910,14 +910,14 @@ Sun Feb 28 23:26:36 1999  Geoffrey Noer  <noer@cygnus.com>
 	message.
 
 	* lib/target.exp (proc default_target_compile): Add support for
-	timeout option. 
+	timeout option.
 
 	* baseboards/arm-sim.exp: Set gcc,timeout to 500.
 
 1999-02-10  Nick Clifton  <nickc@cygnus.com>
 
 	* config/dos.exp: Fix typo: need_status_wrapper ->
-	needs_status_wrapper. 
+	needs_status_wrapper.
 
 1999-02-09  Nick Clifton  <nickc@cygnus.com>
 
@@ -953,8 +953,8 @@ Fri Jan 29 17:16:25 1999  Edith Epstein  <eepstein@sophia.cygnus.com>
 
 	* lib/remote.exp: Added check for value of $outp.
 
-	* lib/target.exp: Ignore some hppa specific warning messages. Added 
-	checks for CC_FOR_TARGET and CXX_FOR_TARGET. Check for redirection 
+	* lib/target.exp: Ignore some hppa specific warning messages. Added
+	checks for CC_FOR_TARGET and CXX_FOR_TARGET. Check for redirection
 	and optimization flags.
 
 1999-01-26  Frank Ch. Eigler  <fche@cygnus.com>
@@ -1786,7 +1786,7 @@ Wed Sep  3 16:55:52 1997  Bob Manson  <manson@charmed.cygnus.com>
 	(standard_file): Added cmp operation to compare two binary
 	files.
 
-	* lib/libgloss.exp: Add dwarf2 target variant.  
+	* lib/libgloss.exp: Add dwarf2 target variant.
 	
 	* lib/target.exp: Make sure the CC_FOR_TARGET variable overrides
  	any default compiler.
@@ -1971,7 +1971,7 @@ Sat Jun 28 13:37:27 1997  Bob Manson  <manson@charmed.cygnus.com>
 	load_board_description.
 
 	* lib/target.exp(default_target_compile): If we're compiling
-	with the C++ compiler, include g++_include_flags and 
+	with the C++ compiler, include g++_include_flags and
 	g++_link_flags as appropriate.
 
 Fri Jun 27 15:17:12 1997  Bob Manson  <manson@charmed.cygnus.com>
@@ -3115,7 +3115,7 @@ Fri Jan 31 11:36:12 1997  Bob Manson  <manson@charmed.cygnus.com>
 	* lib/libgloss.exp(get_multilibs): If the host is remote, or if we
  	have no compiler, or it can't be found, don't look for multilibs.
 	(find_gcc): Don't even check to see if the compiler exists.
-	(libio_include_flags): Don't bother looking for the include dir if we 
+	(libio_include_flags): Don't bother looking for the include dir if we
 	haven't got libio.a.
 
 Thu Jan 30 11:48:29 1997  Bob Manson  <manson@charmed.cygnus.com>
@@ -3274,7 +3274,7 @@ Thu Dec 12 18:11:24 1996  Rob Savoye  <rob@chinadoll.cygnus.com>
 	* lib/utils.exp (diff): Set list_a and list_b to null so diffing
 	empty files works.
 	* lib/framework.exp (unknown): Set the exit status before calling
-	log_summary. 
+	log_summary.
 
 Thu Dec  5 10:24:27 1996  Fred Fish  <fnf@rtl.cygnus.com>
 
@@ -3404,16 +3404,16 @@ Tue Jun 25 10:21:24 1996  Tom Tromey  <tromey@creche.cygnus.com>
 
 Mon Jun 24 17:26:20 1996  Jason Molenda  (crash@godzilla.cygnus.co.jp)
 
-	* Makefile.in (bindir, libdir, datadir, infodir, includedir): Use 
+	* Makefile.in (bindir, libdir, datadir, infodir, includedir): Use
 	autoconf-set values.
 	(docdir): Removed.
 	* configure.in (AC_PREREQ): autoconf 2.5 or higher.
 	* configure: Rebuilt.
-	* doc/Makefile.in (VPATH, mandir, infodir, INSTALL_PROGRAM, 
+	* doc/Makefile.in (VPATH, mandir, infodir, INSTALL_PROGRAM,
 	INSTALL_DATA): Use autoconf set values.
 	* doc/configure.in (AC_PREREQ): autoconf 2.5 or higher.
 	* doc/configure: Rebuilt.
-	* example/Makefile.in (bindir, libdir, datadir, mandir, infodir, 
+	* example/Makefile.in (bindir, libdir, datadir, mandir, infodir,
 	includedir): Use autoconf set values.
 	(docdir): Removed.
 	* example/configure.in (AC_PREREQ): autoconf 2.5 or higher.
@@ -3480,9 +3480,9 @@ Thu Feb  1 22:48:15 1996  Rob Savoye  <rob@chinadoll.cygnus.com>
 	error message is from a subroutine is accessible to the calling
 	proc.
 	* remote.exp (rlogin, telnet, rsh): Trap various kerberos message
-	when kinit is needed. 
+	when kinit is needed.
 	* testsuite/runtest.all/libs.exp: Trap untested, unsupported,
-	warnings, and errors too. 
+	warnings, and errors too.
 	* testsuite/runtest.all/remote.exp: Look for kerberos messages so
 	those come up untested, rather than failures. This is only cause
 	we're testing by connecting to the localhost.
@@ -3522,7 +3522,7 @@ Thu Jan 18 19:51:11 1996  Rob Savoye  <rob@chinadoll.cygnus.com>
 	* runtest.exp: Minor formatting changes.
 	* lib/target.exp: Fix a few config bugs.
 	* testsuite/runtest.all/{remote,target}.exp: New test cases for
-	remote.exp and target.exp. 
+	remote.exp and target.exp.
 
 Wed Jan 17 11:32:21 1996  Tom Tromey  <tromey@creche.cygnus.com>
 
@@ -3639,7 +3639,7 @@ Fri Sep 29 12:36:43 1995  Rob Savoye  <rob@darkstar.cygnus.com>
 
 	*  lib/targets.exp (prune_warnings): Only check for ld.so warning
 	on sunos systems. Check against host, not target.
-	* lib/debugger.exp: 
+	* lib/debugger.exp:
 	* runtest.exp: Set target_abbrev to default to "unix" rather than
 	"-unset-".
 
@@ -3689,7 +3689,7 @@ Mon Sep 18 10:24:51 1995  Rob Savoye  <rob@darkstar.cygnus.com>
 
 	* runtest.exp: Get $tool dirs first, then process the subdirs.
 	* lib/utils.exp (getdir,find): Search for directories and files
-	the old way. 
+	the old way.
 
 	* testsuite/runtest.all/options.exp: Fix broken options and add
 	tests for new options.
@@ -3909,7 +3909,7 @@ Fri Mar 24 13:44:52 1995  Jim Kingdon  (kingdon@lioth.cygnus.com)
 Thu Mar 23 22:12:07 1995  Rob Savoye  <rob@darkstar.cygnus.com>
 
 	* aclocal.m4: Split AC_PATH_T* into two pieces, one for	headers
-	and one for libraries. 
+	and one for libraries.
 	* testuite/configure.in: Use CY_PATH_TCLH so we don't get a
 	warning looking for the libraries.
 
@@ -4278,10 +4278,10 @@ Wed Dec 15 20:38:49 1993  Rob Savoye  (rob@darkstar.cygnus.com)
 	it actually exists after printing the summary.
 
 Fri Dec  3 20:58:27 1993  Rob Savoye  (rob@darkstar.cygnus.com)
- 
+
 	* runtest.exp: Only consider a TCL_ERROR to be a sign of a problem
 	worth handling. This is when sourcing the test case.
- 
+
 Thu Dec  2 14:16:20 1993  Rob Savoye  (rob@darkstar.cygnus.com)
 
 	* runtest.exp: If the verbose level is greater than 2, display
@@ -4302,7 +4302,7 @@ Mon Nov 15 19:43:28 1993  Rob Savoye  (rob@darkstar.cygnus.com)
 	variables specified by a regular expression.Add dumpvars
 	which dumps the body of procedures specified by a regular
 	expression.
-	* Makefile.in: Install site.exp as only config file. 
+	* Makefile.in: Install site.exp as only config file.
 	* runtest.exp: look for site.tmpl in $srcdir, not site.exp in
 	$objdir.
 	* lib/framework.exp: Make istarget and isnative procs use
@@ -4392,7 +4392,7 @@ Mon Sep 13 11:30:37 1993  Jeffrey Wheat  (cassidy@cygnus.com)
 	* runtest.exp: add global testcnt variable.
 	* lib/framework.exp: add testcnt mechanism. Gives a total
 	  number of testcases run in summary. incremented by the
-	  pass/fail/etc procs. Also added a "Tool version" string 
+	  pass/fail/etc procs. Also added a "Tool version" string
 	  in the summary.
 
 Thu Sep  9 12:37:27 1993  Rob Savoye  (rob@darkstar.cygnus.com)
@@ -4437,7 +4437,7 @@ Tue Jul 20 15:32:51 1993  Jeffrey Wheat  (cassidy@cygnus.com)
 
 Mon Jul 19 09:31:48 1993  Jeffrey Wheat  (cassidy@cygnus.com)
 
-	* remote.exp: Added a supplied patch to allow specifing a port 
+	* remote.exp: Added a supplied patch to allow specifing a port
 	  to the telnet command.
 
 Mon Jul 12 17:54:58 1993  Rob Savoye  (rob at darkstar.cygnus.com)
@@ -4469,7 +4469,7 @@ Sun Jun 13 21:05:25 1993  Rob Savoye  (rob at darkstar.cygnus.com)
 Thu May 27 20:01:51 1993  Rob Savoye  (rob at darkstar.cygnus.com)
 
 	* Makefile.in: Make the release image of the testsuites from the
-	special stubs. 
+	special stubs.
 
 Sun May 23 18:40:01 1993  Rob Savoye  (rob at darkstar.cygnus.com)
 
@@ -4716,7 +4716,7 @@ Thu Feb 11 12:23:53 1993  Fred Fish  (fnf@cygnus.com)
 	* gdb.t21/demangle.exp (demangle):  Fix proc so that demangling
 	failures don't trigger two failure reports, one erroneously
 	indicating the cause as a timeout.
-	* gdb.t21/demangle.exp (various):  Print number of correct 
+	* gdb.t21/demangle.exp (various):  Print number of correct
 	demanglings when suppressing remaining tests.
 	* gdb.t21/demangle.exp (test_cfront_style_demangling):
 	New test for cfront style demangling.
@@ -4776,7 +4776,7 @@ Wed Jan 27 21:48:15 1993  Fred Fish  (fnf@cygnus.com)
 	compiled with ALIGN_STACK_ON_STARTUP defined.  Fix "print foo"
 	expected output to match current gdb.  Fix tests for finding
 	pathname to gdb executable to use the TCL "file" command.
-	* gdb.t20/classes.exp:  Change error when binfile does not 
+	* gdb.t20/classes.exp:  Change error when binfile does not
 	exist to be a simple fail instead.
 	* tcl.tests/Makefile.in (tcltest):  Use CC_FOR_TARGET.
 	* tcl.tests/Makefile.in (Makefile):  Add target.
@@ -4870,11 +4870,11 @@ Tue Jan 12 12:51:46 1993  Fred Fish  (fnf@cygnus.com)
 	* config/{abug-g++.exp, aout-g++.exp, coff-g++.exp, mt-a29k-udi,
 	mt-i960-nindy, mt-i960-vx, mt-m68k-abug-aout, mt-m68k-abug-coff,
 	mt-m68k-aout, mt-m68k-coff, mt-m68k-vx, mt-unix, nind-g++.exp,
-	udi-g++.exp, unix-g++.exp, vx-g++.exp}, doc/deja-gnu.texi, 
+	udi-g++.exp, unix-g++.exp, vx-g++.exp}, doc/deja-gnu.texi,
 	g++.mike/{misc2.exp, misc8.exp, misc9.exp}, g++.old-deja/tests/
 	g++.sun/g++.frag/1076585.C, gdb.t20/Makefile.in, gdb.t21/
 	Makefile.in, gdb.t22/Makefile.in, lib/mike-g++.exp:
-	Use CXX rather than CPLUS, CPLUSPLUS, or C++, use CXXFLAGS 
+	Use CXX rather than CPLUS, CPLUSPLUS, or C++, use CXXFLAGS
 	rather than CFLAGS or CPLUSFLAGS or C++FLAGS.
 	* Makefile.in (CHILL):  Use freshly built binaries if available.
 	* Makefile.in (CHILLFLAGS):  Provide default flags for CHILL.
@@ -4886,7 +4886,7 @@ Mon Jan 11 18:02:48 1993  Rob Savoye  (rob at darkstar.cygnus.com)
 	send-exp.test, spawn.test: Test case for expect tests.
 	* expect.tests/exp-test.exp: Test driver for expect tests.
 	* expect.tests/Makefile.in, configure.in: Configure
-	support. 
+	support.
 	* expect.tests/exp-test.c: Simple interactive program for expect
 	tests.
 	* expect.tests: New directory.
@@ -4968,7 +4968,7 @@ Sun Dec 27 11:52:45 1992  Rob Savoye  (rob at darkstar.cygnus.com)
 	* lib/udi.exp: Fixed so that it downloads stably. Added better
 	error trapping. Works with simulator or demo board.
 	* runtest.exp: Cleaned up handling of signals during the init
-	phase. 
+	phase.
 	* lib/old-dejagnu.exp: Fixed bug that made $CFLAGS accumulate
 	repititions of the same flags.
 	* runtest.exp: cleans up temp file better.
@@ -5137,7 +5137,7 @@ Wed Dec  2 11:39:28 1992  Fred Fish  (fnf@cygnus.com)
 
 	* lib/gdb.exp (gdb_reinitialize_dir):  New utility proc.
 	* gdb.t03/ptype.exp, gdb.t06/break.exp, gdb.t07/watchpoint.exp,
-	gdb.t08/opaque.exp, gdb.t09/corefile.exp, gdb.t11/list.exp, 
+	gdb.t08/opaque.exp, gdb.t09/corefile.exp, gdb.t11/list.exp,
 	gdb.t12/scope.exp, gdb.t13/bitfields.exp, gdb.t15/funcargs.exp,
 	gdb.t16/printcmds.exp, gdb.t20/{classes.exp, inherit.exp,
 	misc.exp}, gdb.t21/{cplusfuncs.exp, demangle.exp},
@@ -5198,13 +5198,13 @@ Sun Nov 29 23:10:43 1992  Mike Stump  (mrs@rtl.cygnus.com)
 Sun Nov 29 15:16:06 1992  Rob Savoye  (rob at darkstar.cygnus.com)
 
 	* config:/vx-g++.exp, udi-g++.exp: Replaced with gcc init code.
-	* runtest.exp: Now executes recursively any *.exp files.  
+	* runtest.exp: Now executes recursively any *.exp files.
 	* lib/old-dejagnu.exp: proc old-dejagnu executes tests that are
 	supposed to.
 	* g++.old-deja/old-deja.exp: Recursively get all the C code in a
 	subdirectory tree.
 	* lib/utils.exp: New file, contains utility procs grep, find,
-	and which. 
+	and which.
 	* runtest.exp: Applied Fred's patch for the output.
 
 Sun Nov 29 08:51:15 1992  Fred Fish  (fnf@cygnus.com)
@@ -5546,12 +5546,12 @@ Thu Oct 29 19:07:28 1992  Rob Savoye  (rob at darkstar.cygnus.com)
 	* runtest.exp: Removed the --nfshost option cause it's become
 	unnessary.
 	* configure.in: Deals with the shorter names in config. Creates an
-	 abbreviation for the OS and uses that for the filename substring. 
+	 abbreviation for the OS and uses that for the filename substring.
 	* config/*: All names shortened to <= 14 characters.
-	All init-$target_os-$tool.exp changed to $target_os-$tool.exp. 
+	All init-$target_os-$tool.exp changed to $target_os-$tool.exp.
 	* config/mt-vxworks68, mt-vxworks960: Changed to use the
 	abbreviated triplet form like all the other stubs. Now mt-m68k-vx
-	and mt-i960-vx. 
+	and mt-i960-vx.
 
 Tue Oct 27 10:27:33 1992  Mike Stump  (mrs@cygnus.com)
 
@@ -5608,7 +5608,7 @@ Mon Oct 26 09:16:24 1992  Ian Lance Taylor  (ian@cygnus.com)
 Sun Oct 25 11:35:49 1992  Rob Savoye  (rob at darkstar.cygnus.com)
 
 	* config/init-vxworks-gcc.exp: Now works good, traps load errors
-	cleanly. 
+	cleanly.
 	* runtest.exp, doc/dejagnu.texi: Changed all occurences of
 	$defaultmode to $connectmode.
 	* config/init-vxworks-gcc.exp, init-unix-gcc.exp: Fixed so
@@ -5631,7 +5631,7 @@ Sat Oct 24 22:44:09 1992  Rob Savoye  (rob at darkstar.cygnus.com)
 	test code.
 	* config/init-unix-gcc.exp: Made gcc_load work and set $status.
 	* runtest.exp: Moved regex variables for decimal and hex from
-	init-unix-gdb.exp. 
+	init-unix-gdb.exp.
 
 Fri Oct 23 12:03:47 1992  Rob Savoye  (rob at darkstar.cygnus.com)
 
@@ -5729,7 +5729,7 @@ Fri Oct 16 17:25:31 1992  Rob Savoye  (rob at darkstar.cygnus.com)
 
 	* g++.mike/misc1.C, misc4.C misc5.C p646.C: Changed all occurences
 	of 'i' as a variable, cause it screws up the vxworks 'i' shell
-	command. 
+	command.
 
 Fri Oct 16 15:51:10 1992  Fred Fish  (fnf@cygnus.com)
 
@@ -5849,22 +5849,22 @@ Fri Oct  2 15:42:10 1992  Rob Savoye  (rob at darkstar.cygnus.com)
 Thu Oct  1 21:26:35 1992  Rob Savoye  (rob at darkstar.cygnus.com)
 
 	* teststrategy.exp:  Changed the test for target vs host to using
-	$target_alias & $host_alias instead of $target_os & $host_os. 
+	$target_alias & $host_alias instead of $target_os & $host_os.
 	* corefile.exp: Added line to dump output of tests to detail
-	log. 
+	log.
 	* scope.exp: Added line to dump output of tests to detail
-	log. 
+	log.
 	* opaque.exp: Added line to dump output of tests to detail
-	log. 
+	log.
 	* crossload.exp: Added line to dump output of tests to detail
-	log. 
+	log.
 	* watchpoint.exp: Added line to dump output of tests to detail
-	log. 
+	log.
 
 Thu Oct  1 21:05:28 1992  Rob Savoye  (rob at darkstar.cygnus.com)
 
 	* runtest: Changed the test for target vs host to using
-	$target_alias & $host_alias instead of $target_aos & $host_os. 
+	$target_alias & $host_alias instead of $target_aos & $host_os.
 
 Sep 30 08:45:00 1992  Fred Fish  (fnf@fishpond.cygnus.com)
 
@@ -5886,7 +5886,7 @@ Sep 30 08:45:00 1992  Fred Fish  (fnf@fishpond.cygnus.com)
 	opaque.exp}:  New tests for opaque structs.
 	* gdb.t09/{Makefile.in, configure.in, in-gdbme.c, corefile.exp}:
 	New tests for core file handling.
-	* gdb.t10/{Makefile.in, configure.in, README, in-gdbme.c, 
+	* gdb.t10/{Makefile.in, configure.in, README, in-gdbme.c,
 	crossload.exp, i486-elf.u, i860-elf.u, m68k-aout.u, m68k-aout2.u,
 	m68k-elf.u, mips-ecoff.u, sparc-aout.u}:  New files for non-native
 	executable handling tests.
@@ -5964,7 +5964,7 @@ Fri Aug  7 21:55:48 1992  Rob Savoye  (rob at darkstar.cygnus.com)
 	* init-vxworks-gdb.exp: Now uses config file.
 	* Makefile.in: Now has a target to make a config file.
 	* site.exp: Created by make/configure. Holds init values for
-	init module. 
+	init module.
 	* configure.in: Now configures init modules for tool.
 	* runtest: Now uses init setup by configure.
 

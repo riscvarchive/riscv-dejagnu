@@ -4,21 +4,21 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@gnu.org
 
 #
-# Connect to DEST using kermit. Note that we're just using kermit as a 
+# Connect to DEST using kermit. Note that we're just using kermit as a
 # simple serial or network connect program; we don't actually use Kermit
 # protocol to do downloads.
 #     returns -1 if it failed, otherwise it returns
@@ -41,7 +41,7 @@ proc kermit_open { dest args } {
 	set port [board_info ${dest} netport]
 	set device "-j [board_info ${dest} netport]"
     }
- 
+
     set tries 0
     set result -1
     verbose "kermit $device"
@@ -52,7 +52,7 @@ proc kermit_open { dest args } {
     }
 
     expect {
-	-re ".*ermit.*>.*$" { 
+	-re ".*ermit.*>.*$" {
 	    send "c\n"
 	    expect {
 		-re "Connecting to.*$port.*Type the escape character followed by C to.*options.*\[\r\n\]$" {
@@ -78,7 +78,7 @@ proc kermit_open { dest args } {
 		exp_continue
 	    }
 	}
-	timeout			{	    
+	timeout			{
 	    warning "Timed out trying to connect."
 	    set result -1
 	    incr tries

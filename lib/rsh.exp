@@ -4,15 +4,15 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@gnu.org
@@ -56,7 +56,7 @@ proc rsh_open { hostname } {
     if [board_info $hostname exists fileid] {
 	unset board_info($hostname,fileid)
     }
- 
+
     spawn $RSH $rsh_useropts $hostname
     if { $spawn_id < 0 } {
 	perror "invalid spawn id from $RSH"
@@ -133,7 +133,7 @@ proc rsh_open { hostname } {
 	}
 	incr tries
     }
-    
+
     if { $result < 0 } {
 #	perror "$RSH: couldn't connect after $tries tries."
 	close -i $spawn_id
@@ -227,7 +227,7 @@ proc rsh_upload {desthost srcfile destfile} {
 
 #
 # Execute "$cmd $args[0]" on $boardname.
-# 
+#
 proc rsh_exec { boardname cmd args } {
     if { [llength $args] > 0 } {
 	set pargs [lindex $args 0]
@@ -252,7 +252,7 @@ proc rsh_exec { boardname cmd args } {
     } else {
 	set RSH [board_info $boardname rsh_prog]
     }
- 
+
     if [board_info $boardname exists username] {
 	set rsh_useropts "-l [board_info $boardname username]"
     } else {

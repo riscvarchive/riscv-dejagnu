@@ -4,15 +4,15 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@gnu.org
@@ -42,7 +42,7 @@ proc exe_size {object} {
 	perror "Need GNU size from the binutils" 0
 	return [list "-1" "Need GNU size."]
     }
-    
+
     # Get the object size. We pass -x, to force hex output
     verbose "Getting the object file size for $object" 2
     set status [catch "exec $SIZE -x $object" output]
@@ -64,7 +64,7 @@ proc exe_size {object} {
     return [list $text $data]
 }
 
-# Run the host's native compiler, not the cross one. Filter out the 
+# Run the host's native compiler, not the cross one. Filter out the
 # warnings and other extraneous stuff.
 #    Returns:
 #	A "" (empty) string if everything worked, or the
@@ -78,7 +78,7 @@ proc host_compile {compline} {
     verbose "Compiling for the host using: $CC $INCLUDES $LIBS $compline" 2
     set status [catch "exec $CC $INCLUDES $LIBS $compline" comp_output]
     verbose "Compiler returned $comp_output" 2
-    
+
     # prune common warnings and other stuff we can safely ignore
     set comp_output [prune_warnings $comp_output]
 
@@ -97,7 +97,7 @@ proc host_compile {compline} {
     return ${comp_output}
 }
 
-# Execute the executable file, and anaylyse the output for the 
+# Execute the executable file, and anaylyse the output for the
 # test state keywords.
 #    Returns:
 #	A "" (empty) string if everything worked, or an error message
@@ -110,9 +110,9 @@ proc host_execute {args} {
     set file all
     set timetol 0
     set arguments ""
-    
+
     expect_before buffer_full { perror "Buffer full" }
-    
+
     if { [llength $args] == 0} {
 	set executable $args
     } else {

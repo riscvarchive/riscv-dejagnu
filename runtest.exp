@@ -5,12 +5,12 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
@@ -52,7 +52,7 @@ set exit_status	0		;# exit code returned by this program
 set xfail_flag  0		;# indicates that a failure is expected
 set xfail_prms	0		;# GNATS prms id number for this expected failure
 set kfail_flag  0		;# indicates that it is a known failure
-set kfail_prms	0		;# bug id for the description of the known failure 
+set kfail_prms	0		;# bug id for the description of the known failure
 set sum_file	""		;# name of the file that contains the summary log
 set base_dir	""		;# the current working directory
 set xml_file    ""              ;# name of the xml output if requested
@@ -67,7 +67,7 @@ set objdir	"."		;# directory where test case binaries live
 set reboot      0
 set configfile  site.exp	;# (local to this file)
 set multipass   ""		;# list of passes and var settings
-set errno	"";		;# 
+set errno	"";		;#
 set exit_error  0		;# Toggle for whether to set the exit status
 				;# on Tcl bugs in test case drivers.
 #
@@ -182,7 +182,7 @@ proc verbose { args } {
 	set level [lindex $args [expr $i+1]]
     }
     set message [lindex $args $i]
-    
+
     if { $verbose >= $level } {
 	# There is no need for the "--" argument here, but play it safe.
 	# We assume send_user also sends the text to the log file (which
@@ -260,7 +260,7 @@ proc transform { name } {
 #       arg2 is optional, and it's what gets returned if
 #            the file doesn't exist.
 #
-proc findfile { args } {    
+proc findfile { args } {
     # look for the file
     verbose "Seeing if [lindex $args 0] exists." 2
     if [file exists [lindex $args 0]] {
@@ -692,7 +692,7 @@ if [expr  { $build_triplet == ""  &&  $host_triplet == ""} ] {
 	    break
 	}
     }
-    
+
     # get the canonical config name
     if ![info exists config_guess] {
 	send_error "ERROR: Couldn't find config.guess program.\n"
@@ -743,7 +743,7 @@ proc get_local_hostname { } {
 #
 # We put these here so that they can be overridden later by site.exp or
 # friends.
-# 
+#
 # Set up the target as machine NAME. We also load base-config.exp as a
 # default configuration. The config files are sourced with the global
 # variable $board set to the name of the current target being defined.
@@ -1128,7 +1128,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 	"--sr*" {			# (--srcdir) where the testsuite source code lives
 	    # Already parsed, but parse again to make sure command line
 	    # options override any config file.
-	    
+
 	    set srcdir $optarg
 	    continue
 	}
@@ -1180,7 +1180,7 @@ for { set i 0 } { $i < $argc } { incr i } {
        "[A-Z0-9_-.]*=*" { # skip makefile style args like CC=gcc, etc... (processed in first pass)
                continue
        }
-  
+
 	default {
 	    if [info exists tool] {
 		if { [info proc ${tool}_option_proc] != "" } {
@@ -1227,7 +1227,7 @@ open_logs
 clone_output "Test Run By $logname on [timestamp -format %c]"
 if [is3way]  {
     clone_output "Target is $target_triplet"
-    clone_output "Host   is $host_triplet"  
+    clone_output "Host   is $host_triplet"
     clone_output "Build  is $build_triplet"
 } else {
     if [isnative] {
@@ -1290,7 +1290,7 @@ proc load_config { args } {
 # are assumed to be two of them; one defines a basic set of
 # functionality for the target that can be used by all tool
 # testsuites, and the other defines any necessary tool-specific
-# functionality. These files are loaded via load_config.  
+# functionality. These files are loaded via load_config.
 #
 # These used to all be named $target_abbrev-$tool.exp, but as the
 # $tool variable goes away, it's now just $target_abbrev.exp.  First
@@ -1467,7 +1467,7 @@ proc runtest { test_file_name } {
 	    # We can't call `perror' here, it resets `errorInfo'
 	    # before we want to look at it.  Also remember that perror
 	    # increments `errcnt'.  If we do call perror we'd have to
-	    # reset errcnt afterwards.   
+	    # reset errcnt afterwards.
 	    clone_output "ERROR: tcl error sourcing $test_file_name."
 	    if [info exists errorInfo] {
 		clone_output "ERROR: $errorInfo"
@@ -1515,7 +1515,7 @@ if ![exp_debug] {
 
 #
 # Given a list of targets, process any iterative lists.
-# 
+#
 proc process_target_variants { target_list } {
     set result {}
     foreach x $target_list {

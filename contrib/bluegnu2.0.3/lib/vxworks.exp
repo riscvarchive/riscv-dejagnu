@@ -4,12 +4,12 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  */
@@ -77,7 +77,7 @@ if { [info procs vxworks_transform_path] == "" } {
 # -2 - unsupported (not used)
 # -3 - untested (not used)
 #
-proc vxworks_ld { shell_id prog } { 
+proc vxworks_ld { shell_id prog } {
     global shell_prompt
     global expect_out
     global logname
@@ -165,13 +165,13 @@ proc vxworks_ld { shell_id prog } {
 		warning "Load failed: $expect_out(1,string)"
 		set result -1
 	    }
-	    -i $shell_id timeout { 
+	    -i $shell_id timeout {
 		warning "Timed out trying load $prog."
 		set result -1
 	    }
 	}
     }
-    
+
     if { $result && [info exists expect_out(buffer)] } {
 	send_log "$expect_out(buffer)"
     }
@@ -245,14 +245,14 @@ proc vxworks_spawn { shell_id function } {
 			# Task is no longer running.
 			set result 0
 		    }
-		    -i $shell_id timeout { 
+		    -i $shell_id timeout {
 			warning "$function started, can't determine status (timed out)"
 			set result -1
 		    }
 		}
 	    }
 	}
-	-i $shell_id timeout { 
+	-i $shell_id timeout {
 	    warning "Couldn't run $function (timed out)"
 	    set result -1
 	}

@@ -4,15 +4,15 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@gnu.org
@@ -45,7 +45,7 @@ proc rlogin_open { arg } {
     } else {
 	set shell_prompt [board_info $arg shell_prompt]
     }
- 
+
     if [board_info $arg exists fileid] {
 	unset board_info($arg,fileid)
     }
@@ -55,7 +55,7 @@ proc rlogin_open { arg } {
     } else {
 	set RLOGIN [board_info $arg rlogin_prog]
     }
-    
+
     # start connection and store the spawn_id
     verbose "Opening a $RLOGIN connection to $hostname" 2
     spawn $RLOGIN $hostname
@@ -64,7 +64,7 @@ proc rlogin_open { arg } {
 	return
     }
     set board_info($arg,fileid) $spawn_id
-    
+
     # Try to connect to the target. We give up after 3 attempts.
     while { $tries <= 3 } {
 	expect {
@@ -107,7 +107,7 @@ proc rlogin_open { arg } {
 	    -re "Sorry, this system is engaged.*Connection closed.*$" {
 		warning "rlogin: system engaged."
 	    }
-	    timeout	{ 
+	    timeout	{
 		warning "rlogin: timed out trying to connect."
 	    }
 	    eof {
@@ -153,7 +153,7 @@ proc rlogin_spawn { dest cmdline } {
 		    set prefix "shell "
 		    set ok 1
 		}
-		-re ".*$shell_prompt" { 
+		-re ".*$shell_prompt" {
 		    set ok 1
 		}
 		default { }

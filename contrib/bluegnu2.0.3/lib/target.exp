@@ -4,15 +4,15 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. 
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@prep.ai.mit.edu
@@ -268,7 +268,7 @@ proc pop_host { } {
 #
 proc list_targets { } {
     global target_info
-    
+
     if ![info exists target_info] {
 	return ""
     }
@@ -306,7 +306,7 @@ proc prune_warnings { text } {
         regsub -all "(^|\n)(/usr/(ucb|bin)/ld.*without exceptions was\[^\n\]+\n?)" $text "\\1" text
     }
 
- 
+
     # Ignore these.
     regsub -all "(^|\n)\[^\n\]*linker input file unused since linking not done" $text "" text
     regsub -all "(^|\n)\[^\n\]*file path prefix \[^\n\]* never used" $text "" text
@@ -324,7 +324,7 @@ proc compile { arg } {
     global target_info
     global comp_output
     global CC
-    
+
     if [info exists target_info(target,cflags)] {
 	lappend options "$target_info(target,cflags)"
     }
@@ -337,13 +337,13 @@ proc compile { arg } {
 }
 
 #
-# Invoke the archiver. 
+# Invoke the archiver.
 #
 proc archive { arg } {
     global target_info
     global comp_output
     global AR
-    
+
     if [info exists target_info(target,arflags)] {
 	lappend options "$target_info(target,arflags)"
     }
@@ -358,7 +358,7 @@ proc ranlib { arg } {
     global target_info
     global comp_output
     global RANLIB
-    
+
     append options "$arg"
 
     verbose "Invoking the archiver as $RANLIB $options"
@@ -374,12 +374,12 @@ proc link_objects { arg } {
     global target_info
     global comp_output
     global LD
-    
+
     set options "$arg"
     if [info exists target_info(target,ldlags)] {
 	lappend options "$target_info(target,ldlags)"
     }
-   
+
     set comp_output [execute_anywhere "$LD $args"]
     return [ prune_warnings $comp_output]
 }
@@ -393,13 +393,13 @@ proc link_objects { arg } {
 proc execute_anywhere { cmdline } {
     global exec_output
     global target_info
-  
+
     if ![info exists target_info(current,prompt)] {
 	set prompt ""
     } else {
 	set prompt $target_info(current,prompt)
     }
-    
+
     # if we're running stuff that's hosted on the same machine
     if ![is3way] {
 	verbose -log "Executing on local host: ${cmdline}" 2
@@ -443,12 +443,12 @@ proc execute_anywhere { cmdline } {
     if [info exists exec_output] {
 	verbose "EXEC_OUTPUT = \"$exec_output\"" 2
     }
-    
-    
+
+
 #    stty echo
     # close the connection
     remote_close $shellid
-    
+
     if [info exists exec_output] {
 	return $exec_output
     } else {
@@ -474,7 +474,7 @@ proc getprompt { shellid } {
 
     set tries 0
     set text ""
-  
+
     while { $tries <=3 } {
 	verbose "Trying to get the remote host's prompt"
 	send -i $shellid "ACK\r\n"
@@ -503,7 +503,7 @@ proc getprompt { shellid } {
 	}
 	incr tries
     }
-    
+
     # see if we maxed out on errors
     if { $tries >= 3 } {
 	warning "Couldn't get the prompt"
