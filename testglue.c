@@ -40,6 +40,10 @@
 #define ORIG_ABORT __wrap_abort
 #define ORIG_MAIN __wrap_main
 #endif
+
+extern void abort (void);
+extern void exit (int);
+
 #endif
 
 #ifdef REAL_MAIN
