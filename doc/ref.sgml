@@ -4257,7 +4257,6 @@
       <listitem><para>lib/targetdb.exp</para></listitem>
       <listitem><para>lib/telnet.exp</para></listitem>
       <listitem><para>lib/tip.exp</para></listitem>
-      <listitem><para>lib/util-defs.exp</para></listitem>
       <listitem><para>lib/utils.exp</para></listitem>
       <listitem><para>lib/xsh.exp</para></listitem>
       <listitem><para>lib/dejagnu.exp</para></listitem>

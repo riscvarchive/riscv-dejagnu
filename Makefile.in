@@ -190,7 +190,7 @@ pkgdata_SCRIPTS = \
   lib/ftp.exp lib/kermit.exp lib/libgloss.exp lib/mondfe.exp \
   lib/remote.exp lib/rlogin.exp lib/rsh.exp lib/standard.exp \
   lib/target.exp lib/targetdb.exp lib/telnet.exp lib/tip.exp \
-  lib/util-defs.exp lib/utils.exp lib/xsh.exp
+  lib/utils.exp lib/xsh.exp
 
 configdir = $(pkgdatadir)/config
 config_DATA = config/README

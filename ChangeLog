@@ -1,5 +1,16 @@
 2004-02-07  Ben Elliston  <bje@wasabisystems.com>
 
+	* lib/util-defs.exp: Move from here ..
+	* testsuite/lib/util-defs.exp: .. to here.
+	* Makefile.am (EXTRA_DIST): Remove lib/util-defs.exp.
+	* Makefile.in: Regenerate.
+	* testsuite/Makefile.am (EXTRA_DIST): Add lib/util-defs.exp.
+	* testsuite/Makefile.in: Regenerate.
+	* doc/ref.sgml (File Map): Remove util-defs.exp.
+	* packaging/pkg/prototype: Update file list.
+
+2004-02-07  Ben Elliston  <bje@wasabisystems.com>
+
 	* NEWS: Document changes since 1.4.4.
 
 2004-02-07  Ben Elliston  <bje@wasabisystems.com>

@@ -19,7 +19,8 @@ EXTRA_DIST = \
 	runtest.all/config.test \
 	runtest.all/default_procs.tcl \
 	config/default.exp \
-	lib/libsup.exp
+	lib/libsup.exp \
+	lib/util-defs.exp
 
 RUNTEST = ` \
   if [ -f ${top_srcdir}/runtest$(EXEEXT) ] ; then \

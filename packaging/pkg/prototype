@@ -124,7 +124,6 @@ f none /opt/dejagnu/share/dejagnu/target.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/targetdb.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/telnet.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/tip.exp 0644 nobody nobody
-f none /opt/dejagnu/share/dejagnu/util-defs.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/utils.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/xsh.exp 0644 nobody nobody
 d none /opt/dejagnu/share/dejagnu/config 0775 nobody nobody

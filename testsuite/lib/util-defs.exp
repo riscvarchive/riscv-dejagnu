@@ -19,6 +19,7 @@
 
 # This file was written by Rob Savoye. (rob@welcomehome.org)
 
+note "Hello!"
 #
 # Run a utility and test the result.
 #
