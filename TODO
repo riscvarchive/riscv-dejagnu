@@ -1,5 +1,6 @@
 Mon Aug 18 09:58:25 EST 2003
 
+* Transfer timeouts should be dependent on file size and link speed.
 * Add more support for target boards and realtime OS's.
 * Use the new expect terminal support for an "escape codes" API.
 * Use expectk and write a GUI testing API, complete with
