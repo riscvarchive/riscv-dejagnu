@@ -1,4 +1,4 @@
-  DejaGnu is a framework for testing other programs. Its purpose is to
+DejaGnu is a framework for testing other programs. Its purpose is to
 provide a single front end for all tests.  Beyond this, DejaGnu offers
 several advantages for testing:
 
@@ -19,7 +19,11 @@ several advantages for testing:
           the testing framework and the testsuites themselves. Tests
           are usually written in expect using Tcl.
 
-  Bugs can be reported to bug-dejagnu@gnu.org.
+If you think you have found a bug in DejaGnu, then please send a bug
+report according to the guidelines outlined at:
+
+	<http://www.gnu.org/software/dejagnu/#bug>
+
 
  		      How To Configure and Build
 

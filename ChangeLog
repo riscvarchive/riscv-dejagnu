@@ -1,3 +1,7 @@
+2003-08-23  Ben Elliston  <bje@wasabisystems.com>
+
+	* README: Update section on reporting bugs.
+
 2003-08-22  Ben Elliston  <bje@wasabisystems.com>
 
 	* lib/kermit.exp: Document procs.
