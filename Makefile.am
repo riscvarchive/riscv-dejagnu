@@ -3,7 +3,7 @@
 AUTOMAKE_OPTIONS = dejagnu
 
 # Install all the associated data files
-SUBDIRS = doc testsuite example
+SUBDIRS = doc # testsuite example
 
 # Install the bourne shell script driver in the bindir
 bin_SCRIPTS = runtest
@@ -26,7 +26,17 @@ RUNTEST = ` \
 
 CLEANFILES = x.log x.sum site.bak setval.tmp
 check-DEJAGNU:
-	@echo "Do nothing here, cause we don't want to run the tests twice"
+	cd testsuite ; $(MAKE) check
+	cd example ; $(MAKE) check
+#	@echo "Do nothing here, cause we don't want to run the tests twice"
+
+# Since we don't use SUBDIRS, we have to manually clean the sub directories.
+# We don't use SUBDIRS, so the excample or test cases don't get built
+# by default for a "make all".
+clean-local:
+	cd doc       ; $(MAKE) clean
+	cd testsuite ; $(MAKE) clean
+	cd example   ; $(MAKE) clean
 
 # Set ourselves up to build a RedHat package
 tarball: overview.html overview.ps overview.pdf

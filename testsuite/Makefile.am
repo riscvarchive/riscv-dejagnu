@@ -2,8 +2,10 @@
 
 AUTOMAKE_OPTIONS = dejagnu
 
-all: site.exp
+all all-am all-am-local all-local all-redirect-local all-redirect: force
 	@echo "Nothing to be done for all"
+
+force:
 
 RUNTEST = ` \
   if [ -f ${top_srcdir}/runtest$(EXEEXT) ] ; then \

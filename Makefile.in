@@ -1,4 +1,4 @@
-# Makefile.in generated automatically by automake 1.4 from Makefile.am
+# Makefile.in generated automatically by automake 1.4-p4 from Makefile.am
 
 # Copyright (C) 1994, 1995-8, 1999 Free Software Foundation, Inc.
 # This Makefile.in is free software; the Free Software Foundation
@@ -74,7 +74,7 @@ tclsh = @tclsh@
 AUTOMAKE_OPTIONS = dejagnu
 
 # Install all the associated data files
-SUBDIRS = doc testsuite example
+SUBDIRS = doc # testsuite example
 
 # Install the bourne shell script driver in the bindir
 bin_SCRIPTS = runtest
@@ -135,7 +135,7 @@ Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status $(BUILT_SOURCES)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ configure.in  acinclude.m4
 	cd $(srcdir) && $(ACLOCAL)
 
-config.status: $(srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+config.status: $(srcdir)/configure.in $(CONFIG_STATUS_DEPENDENCIES)
 	$(SHELL) ./config.status --recheck
 $(srcdir)/configure: @MAINTAINER_MODE_TRUE@$(srcdir)/configure.in $(ACLOCAL_M4) $(CONFIGURE_DEPENDENCIES)
 	cd $(srcdir) && $(AUTOCONF)
@@ -399,7 +399,7 @@ mostlyclean-am:  mostlyclean-tags mostlyclean-generic
 
 mostlyclean: mostlyclean-recursive
 
-clean-am:  clean-tags clean-generic mostlyclean-am
+clean-am:  clean-tags clean-generic mostlyclean-am clean-local
 
 clean: clean-recursive
 
@@ -432,7 +432,14 @@ distclean-generic clean-generic maintainer-clean-generic clean \
 mostlyclean distclean maintainer-clean
 
 check-DEJAGNU:
-	@echo "Do nothing here, cause we don't want to run the tests twice"
+	cd testsuite ; $(MAKE) check
+	cd example ; $(MAKE) check
+#	@echo "Do nothing here, cause we don't want to run the tests twice"
+
+clean-local:
+	cd doc ; $(MAKE) clean
+	cd testsuite ; $(MAKE) clean
+	cd example ; $(MAKE) clean
 
 # Set ourselves up to build a RedHat package
 tarball: overview.html overview.ps overview.pdf

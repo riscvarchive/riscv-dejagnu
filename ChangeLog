@@ -1,3 +1,11 @@
+2001-09-12  Rob Savoye  <rob@peggyo.welcomehome.org>
+
+	* Makefile.am: Add a clean-local target, and nuke example and
+	testsuite from SUBDIRS, so they don't get built via "make all".
+	* Makefile: All Makefiles regenerated.
+	* debian/changelog: Update version for 1.4.2 release.
+	* redhat/dejagnu.spec: Update version for 1.4.2 release.
+
 2001-09-07  Will Cohen  <wcohen@redhat.com>
 
         * lib/target.exp: Ignore ld's warning about alternative functions
@@ -10,7 +18,7 @@ Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
 
 2001-07-30  Paul A. Houghton <houghton@wcomnet.com>
 
-	* dejagnu.h, testsuite/libdejagnu/unit.cc: Make the oustate array
+	* dejagnu.h, testsuite/libdejagnu/unit.cc: Make the outstate array
 	be a const to work with Sun's compiler.
 	* runtest.exp: Move the command line variable instantiation to the
 	first block of command line option tests, so command line

@@ -1,14 +1,14 @@
-%define version 1.4.1
+%define version 1.4.2
 
 Summary: A front end for testing other programs.
 Name: dejagnu
 Version: %{version}
-Release: 1
+Release: 2
 Copyright: GPL
 Source: ftp://ftp.gnu.org/gnu/dejagnu/snapshots/dejagnu-%{version}.tar.gz
 
-#Patch0: dejagnu-1.4.1-rth.patch
-#Patch1: dejagnu-1.4.1-glibc21.patch
+#Patch0: dejagnu-1.4.2-rth.patch
+#Patch1: dejagnu-1.4.2-glibc21.patch
 Group: Development/Tools
 # Since we're building this on a debian system, we can't require these.
 Requires: tcl >= 8.0, expect >= 5.21
@@ -52,6 +52,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc COPYING NEWS README AUTHORS INSTALL ChangeLog doc/overview doc/overview.ps doc/overview.pdf
  
 %changelog
+* Wed Apr 11 2001 Rob Savoye <rob@welcomehome.org>
+- Updfate version number for 1.4.2 release.
+
 * Wed Apr 11 2001 Rob Savoye <rob@welcomehome.org>
 - Added installing dejagnu.h.
 - Install the ps and pdf formatted docs too

@@ -4,7 +4,7 @@
 
 <?Fm: Validation Off>
 
-<!ENTITY version "1.4.1">
+<!ENTITY version "1.4.2">
 <!ENTITY dj "DejaGnu">
 
 <!ENTITY dejagnu-copyright "
@@ -54,7 +54,7 @@ into another language, under the above conditions for modified versions.
   <bookinfo>
     <title>&dj;</title>
     <subtitle>The GNU Testing Framework</subtitle>
-    <date>2001 May 2</date>
+    <date>2001 Sept 12</date>
     <edition> &version</edition>
     <releaseinfo> New release</releaseinfo>
     <authorgroup>

@@ -333,7 +333,7 @@ proc search_and_load_file { type filelist dirlist } {
 
     foreach dir $dirlist {
 	foreach initfile $filelist {
-	    verbose "Looking for $type ${dir}/${initfile}" 1
+	    verbose "Looking for $type ${dir}/${initfile}" 2
 	    if [file exists ${dir}/${initfile}] {
 		set found 1
 		set error ""
@@ -507,7 +507,6 @@ for { set i 0 } { $i < $argc } { incr i } {
 
 	"--di*" {
 	    set cmdline_dir_to_run $optarg
-	    puts "cmdline_dir_to_run = $cmdline_dir_to_run"
 	    continue
 	}
 
@@ -516,6 +515,20 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    incr verbose
 	    continue
 	}
+
+	"[A-Z0-9_-.]*=*" { # process makefile style args like CC=gcc, etc...
+	    if [regexp "^(\[A-Z0-9_-\]+)=(.*)$" $option junk var val] {
+		set $var $val
+		verbose "$var is now $val"
+		append makevars "set $var $val;" ;# FIXME: Used anywhere?
+		unset junk var val
+	    } else {
+		send_error "Illegal variable specification:\n"
+		send_error "$option\n"
+	    }
+	    continue
+	}
+
     }
 }
 verbose "Verbose level is $verbose"
@@ -552,7 +565,7 @@ if [string match "" $logname] {
 #
 proc lookfor_file { dir name } {
     foreach x ".. ../.. ../../.. ../../../.." {
-	verbose "$dir/$name"
+	verbose "$dir/$name" 2
 	if [file exists $dir/$name] {
 	    return $dir/$name;
 	}
@@ -1146,19 +1159,6 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    continue
         }
 
-	"[A-Z0-9_-.]*=*" { # process makefile style args like CC=gcc, etc...
-	    if [regexp "^(\[A-Z0-9_-\]+)=(.*)$" $option junk var val] {
-		set $var $val
-		verbose "$var is now $val"
-		append makevars "set $var $val;" ;# FIXME: Used anywhere?
-		unset junk var val
-	    } else {
-		send_error "Illegal variable specification:\n"
-		send_error "$option\n"
-	    }
-	    continue
-	}
-
 	"--he*" {			# (--help) help text
 	    usage;
 	    exit 0	
@@ -1177,6 +1177,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    exit 1
 	}
     }
+
 }
 
 #

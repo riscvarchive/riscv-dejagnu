@@ -1,4 +1,4 @@
-# Makefile.in generated automatically by automake 1.4 from Makefile.am
+# Makefile.in generated automatically by automake 1.4-p4 from Makefile.am
 
 # Copyright (C) 1994, 1995-8, 1999 Free Software Foundation, Inc.
 # This Makefile.in is free software; the Free Software Foundation
@@ -304,8 +304,10 @@ installdirs mostlyclean-generic distclean-generic clean-generic \
 maintainer-clean-generic clean mostlyclean distclean maintainer-clean
 
 
-all: site.exp
+all all-am all-am-local all-local all-redirect-local all-redirect: force
 	@echo "Nothing to be done for all"
+
+force:
 
 site.exp: Makefile
 	@echo 'Making a new site.exp file...'

@@ -1,3 +1,8 @@
+			Changes from 1.4.1
+	1. Various patches for bugs reported from net users.
+	2. Test case builds with either libstdc++-v3 (as used by
+	gcc-3.0.x) or the older v2.(as used by gcc-2.95.x)
+
 			Changes from 1.4.0
 	1. There is new support for a simple unit testing API, that is
 	also useful for embedded testing.
