@@ -185,7 +185,7 @@ proc dos_exec { dest program pargs inp outp } {
 
     # Make a DOS batch file; we use @echo off so we don't have to see
     # the DOS command prompts and such.
-    for { set i 0; } { $i < 2 } { incr i } {
+    for { set i 0 } { $i < 2 } { incr i } {
 	set exit_status -1
 	verbose "calling open"
 	set batfile [dos_prep_command $dest "$cmdline$inp$outpf"]
@@ -222,7 +222,7 @@ proc dos_start_command { cmdline dest } {
     set shell_prompt [board_info $dest shell_prompt]
     set prefix ""
     set ok 0
-    for {set i 0;} {$i <= 2 && ! $ok} {incr i;} {
+    for { set i 0 } {$i <= 2 && ! $ok} { incr i } {
 	set shell_id [remote_open $dest]
 	if { $shell_id != "" && $shell_id > 0 } {
 	    remote_send $dest "echo k\r"
@@ -287,7 +287,7 @@ proc dos_spawn { dest program args } {
     verbose "running $program on $dest"
     set remotebat [dos_prep_command $dest $program]
 
-    for { set x 0; } { $x < 3 } { incr x } {
+    for { set x 0 } { $x < 3 } { incr x } {
 	if { [dos_start_command $remotebat $dest] == "" } {
 	    return [board_info $dest fileid]
 	}

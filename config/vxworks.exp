@@ -69,7 +69,7 @@ proc ${board}_init { dest } {
     remote_send $dest "\n\n"
     remote_expect $dest 3 {
 	timeout {}
-	-re ".+" { exp_continue; }
+	-re ".+" { exp_continue }
     }
     remote_send $dest "p\n"
     remote_expect $dest 20 {
@@ -286,16 +286,16 @@ proc vxworks_ld { dest prog } {
     # If the load fails we want `expect_out' stored in the log and this
     # saves duplicating that code.
 
-    for { set x 0 ; } { $x < 3 } {incr x; } {
+    for { set x 0 } { $x < 3 } { incr x } {
 	remote_send $dest "\n"
 	remote_expect $dest 30 {
-	    -re ".*$shell_prompt $" { set x 20; }
+	    -re ".*$shell_prompt $" { set x 20 }
 	    -re "\\\[VxWorks Boot\\\]:" {
 		remote_send $dest "@\n"
 		sleep 20
 		exp_continue
 	    }
-	    timeout { return -1; }
+	    timeout { return -1 }
 	}
     }
 
@@ -462,7 +462,7 @@ proc vxworks_load {dest prog args} {
 	set outp ""
     }
 
-    for { set x 0; } { $x < 3 } { incr x } {
+    for { set x 0 } { $x < 3 } { incr x } {
 	set status [vxworks_ld $dest $prog]
 	if { $status >= 0 } {
 	    if { $status > 0 } {

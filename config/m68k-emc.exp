@@ -37,7 +37,7 @@ proc m68k_emc_board_connect { dest } {
     set board_info($tname,m68k_connected) 1
     set dos_host [board_info $dest dos_host]
 
-    for { set x 0; } { $x < 3 } { incr x; } {
+    for { set x 0 } { $x < 3 } { incr x } {
 	set shell_id [remote_open $dos_host]
 	if { $shell_id == "" || $shell_id < 0 } {
 	    remote_reboot $dos_host
@@ -54,7 +54,7 @@ proc m68k_emc_board_connect { dest } {
     }
     # Flush the buffer.
     remote_expect $dos_host 2 {
-	-re ".+" { exp_continue; }
+	-re ".+" { exp_continue }
     }
     # Get past first menu.
     remote_send $dos_host "\n"

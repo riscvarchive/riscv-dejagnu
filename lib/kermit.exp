@@ -116,10 +116,10 @@ proc kermit_command { dest args } {
     # Sometimes we have to send multiple ^\c sequences. Don't know
     # why.
     set timeout 2
-    for { set i 1; } {$i<=5} {incr i} {
+    for { set i 1 } { $i <= 5 } { incr i } {
 	send -i $shell_id "c"
 	expect {
-	    -i $shell_id -re ".*Back at.*ermit.*>.*$" { set i 10;}
+	    -i $shell_id -re ".*Back at.*ermit.*>.*$" { set i 10 }
 	    -i $shell_id timeout {
 		if { $i > 2 } {
 		    warning "Unable to get prompt from kermit."

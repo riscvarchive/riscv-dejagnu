@@ -895,7 +895,7 @@ proc remote_load { dest prog args } {
     if { [board_info $dest exists is_simulator] || [getenv REMOTELOAD_CACHE] == "" } {
 	set empty 0
     } else {
-	for { set x 0; } {$x < [llength $args] } {incr x} {
+	for { set x 0 } {$x < [llength $args] } {incr x} {
 	    if { [lindex $args $x] != "" } {
 		set empty 0
 		break
@@ -1197,7 +1197,7 @@ proc remote_expect { board timeout args } {
 	set spawn_id 1000
     }
 
-    for { set i 0; } { $i < [llength $args] } { incr i ; }  {
+    for { set i 0 } { $i < [llength $args] } { incr i }  {
 	if { $need_append } {
 	    append res "\n-i $spawn_id "
 	    set need_append 0

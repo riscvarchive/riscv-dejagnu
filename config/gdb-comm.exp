@@ -253,7 +253,7 @@ proc gdb_comm_load { dest prog args } {
     global timeout
     set argnames { "command-line arguments" "input file" "output file" }
 
-    for { set x 0; } { $x < [llength $args] } { incr x } {
+    for { set x 0 } { $x < [llength $args] } { incr x } {
 	if { [lindex $args $x] != "" } {
 	    return [list "unsupported" "no support for [lindex $argnames $x] on this target"]
 	}
@@ -431,7 +431,7 @@ proc gdb_comm_load { dest prog args } {
 		-re ".*$gdb_prompt $" {
 		    remote_send host "signal 0\n"
 		    remote_expect host 10 {
-			-re "signal 0\[\r\n\]+" { exp_continue; }
+			-re "signal 0\[\r\n\]+" { exp_continue }
 			-re "Continuing(\\.| with no signal\\.)\[\r\n\]" {}
 		    }
 		}

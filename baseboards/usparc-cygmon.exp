@@ -24,7 +24,7 @@ proc ${board}_init { dest } {
 	remote_send $dest "\n"
 	set got_one 0
 	remote_expect $dest 5 {
-	    -re "$shell_prompt" { set got_one 1; exp_continue; }
+	    -re "$shell_prompt" { set got_one 1; exp_continue }
 	    default {
 		if { ! $got_one } {
 		    remote_close $dest

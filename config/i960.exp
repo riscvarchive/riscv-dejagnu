@@ -34,7 +34,7 @@ proc ${board}_init { dest } {
 
     remote_close $dest
     if { [remote_open $dest] != "" } {
-	for { set tries 0; } { $tries < 7 && ! $done } { incr tries } {
+	for { set tries 0 } { $tries < 7 && ! $done } { incr tries } {
 	    remote_send $dest "\n"
 	    remote_expect $dest 1 {
 		-re "${prompt}" {
@@ -129,7 +129,7 @@ proc i960_ld { dest prog } {
 proc i960_spawn { dest prog args } {
     set shell_prompt [board_info $dest shell_prompt]
 
-    for { set tries 0 ; } { $tries < 3 } { incr tries } {
+    for { set tries 0 } { $tries < 3 } { incr tries } {
 	set result [remote_ld $dest $prog]
 	if { $result == 0 } {
 	    set comm "go [board_info $dest start_addr]"
@@ -185,7 +185,7 @@ proc i960_wait { dest timeout } {
 }
 
 proc i960_load { dest prog args } {
-    for { set x 0; } { $x < 3 } { incr x; } {
+    for { set x 0 } { $x < 3 } { incr x } {
 	set id [eval remote_spawn \{$dest\} \{$prog\} $args]
 	if { $id < 0 } {
 	    return [list "fail" ""]

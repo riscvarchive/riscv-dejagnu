@@ -92,7 +92,7 @@ proc base68k_ld { dest prog } {
     }
 
     set got_p 0
-    for { set tries 0; } { (! $got_p) && $tries < 5 } { incr tries } {
+    for { set tries 0 } { (! $got_p) && $tries < 5 } { incr tries } {
 	remote_send $dest "\r\n\r\n"
 	remote_expect $dest 5 {
 	    -re "${shell_prompt}$" {
@@ -279,7 +279,7 @@ proc base68k_load { dest prog args } {
     set shell_prompt [board_info $dest shell_prompt]
 
     if { [llength $args] > 0 } {
-	for { set x 0; } { $x < [llength $args] } { incr x ; } {
+	for { set x 0 } { $x < [llength $args] } { incr x } {
 	    if { [lindex $args $x] != "" } {
 		verbose -log "Cannot pass parameters or input file to this target"
 		return [list "unsupported" ""]

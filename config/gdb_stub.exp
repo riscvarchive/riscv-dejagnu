@@ -50,7 +50,7 @@ proc gdb_stub_restart { dest } {
 
     gdb_stub_init $dest
 
-    for {set x 1;} { $x < 4 } {incr x} {
+    for { set x 1 } { $x < 4 } {incr x} {
 	remote_close $dest
 	sleep 2
 	set command "$GDB -nw -nx"
@@ -394,7 +394,7 @@ proc gdb_stub_start { dest } {
 }
 
 proc gdb_stub_spawn { dest prog args } {
-    for { set x 0; } { $x < 3 } { incr x } {
+    for { set x 0 } { $x < 3 } { incr x } {
 	if { [remote_ld $dest $prog] != 1 } {
 	    return [list "fail" "remote_ld failed"]
 	}
@@ -475,7 +475,7 @@ proc gdb_stub_load { dest prog args } {
     global gdb_prompt
     set argnames { "command-line arguments" "input file" "output file" }
 
-    for { set x 0; } { $x < [llength $args] } { incr x } {
+    for { set x 0 } { $x < [llength $args] } { incr x } {
 	if { [lindex $args $x] != "" } {
 	    return [list "unsupported" "no support for [lindex $argnames $x] on this target"]
 	}

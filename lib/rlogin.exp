@@ -142,7 +142,7 @@ proc rlogin_spawn { dest cmdline } {
     }
     set prefix ""
     set ok 0
-    for {set i 0;} {$i <= 2 && ! $ok} {incr i;} {
+    for { set i 0 } {$i <= 2 && ! $ok} { incr i } {
 	set shell_id [remote_open $dest]
 	if { $shell_id != "" && $shell_id > 0 } {
 	    remote_send $dest "echo k\r"

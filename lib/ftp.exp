@@ -145,7 +145,7 @@ proc ftp_upload { host remotefile localfile } {
 		set loop 0
 		set remotefile ""
 	    }
-	    -i $spawn_id -re "(^|\[\r\n\])226.*$prompt" { set loop 0; }
+	    -i $spawn_id -re "(^|\[\r\n\])226.*$prompt" { set loop 0 }
 	    -i $spawn_id -re "(^|\[\r\n\])\[0-9\]\[0-9\]\[0-9\].*$prompt" {
 		set loop 0
 		set remotefile ""
