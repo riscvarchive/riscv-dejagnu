@@ -68,10 +68,12 @@ totals (void) {
 #include <iomanip>
 #include <fstream>
 #include <string>
+#if 0
 #if HAVE_STL3
 #include <sstream>
 #else
 #include <strstream>
+#endif
 #endif
 
 char *outstate[] = {
