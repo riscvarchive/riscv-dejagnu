@@ -1,3 +1,7 @@
+2002-08-28  Nick Clifton  <nickc@redhat.com>
+
+        * baseboards/v850-sim.exp (target_install): Add v850e-elf.
+
 2002-07-16    <rob@direwolf.welcomehome.org>
 
 	* doc/user.sgml: Add new tutorial by Niklaus Giger as a new
