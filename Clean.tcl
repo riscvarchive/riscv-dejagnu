@@ -1,4 +1,4 @@
-#!/usr/bin/tclsh
+#!/usr/bin/env tclsh
 
 # Clean.tcl
 #	This script is used to remove all unwanted files from a
@@ -114,6 +114,7 @@ proc cleanfiles { directory } {
 
     # get a list of all the files in this directory
     set allfiles [glob -nocomplain "$directory/*"]
+    concat allfiles [glob -nocomplain -type f "$directory/.*"]
     regsub -all "$directory/" $allfiles "" allfiles
 
     # open the .clean file, which has the list of stuff we
