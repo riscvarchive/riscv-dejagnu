@@ -1,14 +1,14 @@
-%define version 1.4
+%define version 1.4.1
 
 Summary: A front end for testing other programs.
 Name: dejagnu
 Version: %{version}
-Release: 0
+Release: 1
 Copyright: GPL
-Source: ftp://ftp.gnu.org/gnu/dejagnu/snapshots/dejagnu-1.4.tar.gz
+Source: ftp://ftp.gnu.org/gnu/dejagnu/snapshots/dejagnu-%{version}.tar.gz
 
-#Patch0: dejagnu-1.4.0-rth.patch
-#Patch1: dejagnu-1.4.0-glibc21.patch
+#Patch0: dejagnu-1.4.1-rth.patch
+#Patch1: dejagnu-1.4.1-glibc21.patch
 Group: Development/Tools
 # Since we're building this on a debian system, we can't require these.
 Requires: tcl >= 8.0, expect >= 5.21
@@ -32,6 +32,7 @@ make
 %install
 rm -rf $RPM_BUILD_ROOT
 mkdir -p $RPM_BUILD_ROOT/usr
+mkdir -p $RPM_BUILD_ROOT/usr/include
 mkdir -p $RPM_BUILD_ROOT/usr/share/dejagnu
 mkdir -p $RPM_BUILD_ROOT/usr/doc/dejagnu-%{version}
 make prefix=$RPM_BUILD_ROOT/usr install
@@ -42,6 +43,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(-,root,root)
 /usr/bin/runtest
+/usr/include/dejagnu.h
 /usr/share/dejagnu/*
 
 # %config site.exp
@@ -49,6 +51,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc COPYING NEWS README AUTHORS INSTALL ChangeLog doc/overview
  
 %changelog
+* Wed Apr 11 2001 Rob Savoye <rob@welcomehome.org>
+- Added installing dejagnu.h.
+
 * Wed Feb 21 2001 Rob Savoye <rob@welcomehome.org>
 - Fixed Requires line, and changed the URL to the new ftp site.
 
