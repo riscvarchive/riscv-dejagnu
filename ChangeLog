@@ -1,3 +1,7 @@
+2004-04-16  Kazuhiro Inaoka  <inaoka dot kazuhiro at renesas dot com>
+                                                                                
+        * baseboards/m32r-linux-sim.exp: Add New file.
+	
 2004-04-02  Rob Savoye  <rob@direwolf.welcomehome.org>
 
 	* configure.ac, example/Makefile.am: Add example/mathhelper.
