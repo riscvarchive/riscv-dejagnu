@@ -1,3 +1,10 @@
+2003-07-20  Ben Elliston  <bje@wasabisystems.com>
+
+	* config.guess: Update to most recent version.
+	* config.sub: Ditto.
+
+	* AUTHORS: Add self to list of maintainers.
+
 2003-03-16  Rob Savoye  <rob@direwolf.welcomehome.org>
 
 	* lib/unix.exp: Preservce the value of LD_LIBRARY_PATH, rather
