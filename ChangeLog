@@ -1,3 +1,7 @@
+2002-03-11  Chris Demetriou  <cgd@broadcom.com>
+
+        * baseboards/mips-sim-idt32.exp: New file.
+
 Wed Nov 21 18:02:49 PST 2001  Brendan Conoboy <blc@redhat.com>
 
 	* lib/rsh.exp: Obey rsh_prog/rcp_prog, support username
