@@ -4,7 +4,7 @@
 >Board Config File</TITLE
 ><META
 NAME="GENERATOR"
-CONTENT="Modular DocBook HTML Stylesheet Version 1.33"><LINK
+CONTENT="Modular DocBook HTML Stylesheet Version 1.44"><LINK
 REL="HOME"
 TITLE="DejaGnu"
 HREF="book1.html"><LINK
@@ -29,7 +29,7 @@ CELLSPACING="0"
 ><TH
 COLSPAN="3"
 ALIGN="center"
->DejaGnu</TH
+>DejaGnu: The GNU Testing Framework</TH
 ></TR
 ><TR
 ><TD
@@ -82,9 +82,7 @@ HREF="addboard.html"
 >An example board config file for a GNU simulator is as
       follows. <TT
 CLASS="FUNCTION"
-><B
->set_board_info</B
-></TT
+>set_board_info</TT
 > is a procedure that sets the
       field name to the specified value. The procedures in square brackets
       <I
@@ -152,24 +150,18 @@ CLASS="PROGRAMLISTING"
 >There are five helper procedures used in this example. The first
      one, <TT
 CLASS="FUNCTION"
-><B
->find gcc</B
-></TT
+>find gcc</TT
 > looks for a copy of the GNU compiler in
      your build tree, or it uses the one in your path. This will also return
      the proper transformed name for a cross compiler if you whole build tree
      is configured for one. The next helper procedures are
      <TT
 CLASS="FUNCTION"
-><B
->libgloss_include_flags</B
-></TT
+>libgloss_include_flags</TT
 > &#38;
      <TT
 CLASS="FUNCTION"
-><B
->libgloss_link_flags</B
-></TT
+>libgloss_link_flags</TT
 >. These return the proper flags to
      compiler and link an executable image using <A
 HREF="builtins.html#LIBGLOSS"
@@ -179,15 +171,11 @@ HREF="builtins.html#LIBGLOSS"
 >, the GNU BSP (Board Support Package). The final
      procedures are <TT
 CLASS="FUNCTION"
-><B
->newlib_include_flag</B
-></TT
+>newlib_include_flag</TT
 > &#38;
      <TT
 CLASS="FUNCTION"
-><B
->newlib_include_flag</B
-></TT
+>newlib_include_flag</TT
 >. These find the Newlib C
      library, which is a reentrant standard C library for embedded systems
      comprising of non GPL'd code.</P

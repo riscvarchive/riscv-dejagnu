@@ -1,3 +1,19 @@
+2001-02-21  Rob Savoye  <rob@slipknot.welcomehome.org>
+
+	* debian/changelog: Add entry for new release.
+	* debian/control: Fix problem with "no binary package" error.
+	* debian/rules: Fix so things actually build a package. This was
+	mostly installing the new html version of the doc, not an info
+	page.
+	* doc/Makefile.am: Build and install the rtf and ps versions
+	of the manual. Remove all the created files and subdirectories.
+	* doc/overview.sgml: Update the copyright message.
+	* doc/ref.sgml: Update the copyright messages. Add section on
+	obtaining DejaGnu releases.
+	* doc/user.sgml: Update the copyright messages. Add blurb about
+	the --mail option.
+	* doc/overview: Regenerated.
+
 2001-02-17  Rob Savoye  <rob@slipknot.welcomehome.org>
 
 	* Most all files: Update copyright notices.

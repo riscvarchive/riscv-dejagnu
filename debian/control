@@ -1,9 +1,10 @@
 Source: dejagnu
 Section: devel
 Priority: optional
-Maintainer: Kevin Dalley <kevind@rahul.net>
+Maintainer: Rob Savoye <welcomehome.org>
 Standards-Version: 2.5.0.0
-Package: dejagnu-1.4
+
+Package: dejagnu
 Architecture: all
 Depends: expect, dpkg (>=1.2.1)
 Description: framework for running test suites on software tools.

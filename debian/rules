@@ -52,16 +52,21 @@ binary-indep:	checkroot build
 	install -d debian/tmp debian/tmp/DEBIAN
 	install -d debian/tmp/usr/doc/$(package)
 	install -d -g root -m 755 -o root debian/tmp/etc/$(package)
-	install debian/{postinst,postrm,preinst,prerm} debian/tmp/DEBIAN/.
+	install debian/{postinst,preinst} debian/tmp/DEBIAN/.
 	cd $(package); $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" \
 	  LDFLAGS="$(LDFLAGS)" \
-	  prefix=`pwd`/../debian/tmp/usr install
-	chmod 0644 debian/tmp/usr/lib/dejagnu/runtest.exp
+	  prefix=`pwd`/debian/tmp/usr install
+	chmod 0644 debian/tmp/usr/share/dejagnu/runtest.exp
 	cd $(package); $(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" \
 	  LDFLAGS="$(LDFLAGS)" \
-	  prefix=`pwd`/../debian/tmp/usr install-info
-	gzip -9v debian/tmp/usr/info/*
-	gzip -9v debian/tmp/usr/man/man1/*
+	  pkgdatadir=debian/tmp/usr/doc/$(package) install-doc
+#	gzip -9v debian/tmp/usr/info/*
+#	gzip -9v debian/tmp/usr/man/man1/*
+	install -d debian/tmp/usr/doc/$(package)/html/stylesheet-images
+	install -m 0644 doc/overview.rtf debian/tmp/usr/doc/$(package)
+	install -m 0644 doc/overview.ps debian/tmp/usr/doc/$(package)
+	install -m 0644 doc/overview/*.html debian/tmp/usr/doc/$(package)/html
+	install -m 0644 doc/overview/stylesheet-images/*.png debian/tmp/usr/doc/$(package)/html/stylesheet-images
 	install -m 0644 debian/copyright debian/tmp/usr/doc/$(package)
 	install -m 0644 debian/changelog debian/tmp/usr/doc/$(package)/changelog.Debian
 	gzip -9v debian/tmp/usr/doc/$(package)/changelog.Debian
@@ -71,11 +76,11 @@ binary-indep:	checkroot build
 	install -g root -m 644 -o root debian/site.exp \
 		debian/tmp/etc/$(package)/site.exp
 	cd debian/tmp/usr/lib/$(package); ln -fs /etc/$(package)/site.exp .
-	install -d debian/tmp/usr/doc/$(package)/examples
+#	install -d debian/tmp/usr/doc/$(package)/examples
 	-cd example; $(MAKE) -i distclean
-	(cd example; tar cf - . ) | \
-		(cd debian/tmp/usr/doc/$(package)/examples; tar xf -)
-	install install.sh debian/tmp/usr/doc/$(package)/examples
+#	(cd example; tar cf - . ) | \
+#		(cd debian/tmp/usr/doc/$(package)/examples; tar xf -)
+#	install debian/tmp/usr/doc/$(package)/examples
 	dpkg-gencontrol
 #	chown -R root.root debian/tmp
 #	chmod -R g-ws debian/tmp
@@ -88,7 +93,7 @@ define checkdir
 endef
 # Below here is fairly generic really
 
-binary:		binary-indep binary-arch
+binary:		binary-indep
 
 source diff:
 	@echo >&2 'source and diff are obsolete - use dpkg-source -b'; false

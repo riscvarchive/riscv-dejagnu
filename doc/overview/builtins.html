@@ -4,7 +4,7 @@
 >Builtin Procedures</TITLE
 ><META
 NAME="GENERATOR"
-CONTENT="Modular DocBook HTML Stylesheet Version 1.33"><LINK
+CONTENT="Modular DocBook HTML Stylesheet Version 1.44"><LINK
 REL="HOME"
 TITLE="DejaGnu"
 HREF="book1.html"><LINK
@@ -12,8 +12,8 @@ REL="UP"
 TITLE="Reference"
 HREF="reference.html"><LINK
 REL="PREVIOUS"
-TITLE="Reference"
-HREF="reference.html"><LINK
+TITLE="Installation"
+HREF="installation.html"><LINK
 REL="NEXT"
 TITLE="File Map"
 HREF="filemap.html"></HEAD
@@ -29,7 +29,7 @@ CELLSPACING="0"
 ><TH
 COLSPAN="3"
 ALIGN="center"
->DejaGnu</TH
+>DejaGnu: The GNU Testing Framework</TH
 ></TR
 ><TR
 ><TD
@@ -37,7 +37,7 @@ WIDTH="10%"
 ALIGN="left"
 VALIGN="bottom"
 ><A
-HREF="reference.html"
+HREF="installation.html"
 >Prev</A
 ></TD
 ><TD
@@ -692,20 +692,14 @@ CLASS="PRODUCTNAME"
 ><P
 >Once you use <TT
 CLASS="FUNCTION"
-><B
->setup_xfail</B
-></TT
+>setup_xfail</TT
 >, the
 	  <TT
 CLASS="FUNCTION"
-><B
->fail</B
-></TT
+>fail</TT
 > and <TT
 CLASS="FUNCTION"
-><B
->pass</B
-></TT
+>pass</TT
 > procedures
 	  produce the messages <I
 CLASS="EMPHASIS"
@@ -739,22 +733,16 @@ ALIGN="LEFT"
 >Warning you must clear the expected failure after
 	  using setup_xfail in a test case.  Any call to <TT
 CLASS="FUNCTION"
-><B
 >pass
-	  </B
-></TT
+	  </TT
 >or <TT
 CLASS="FUNCTION"
-><B
->fail</B
-></TT
+>fail</TT
 >l clears the expected failure
 	  implicitly; if the test has some other outcome, e.g. an error, you
 	  can call <TT
 CLASS="FUNCTION"
-><B
->clear_xfail</B
-></TT
+>clear_xfail</TT
 > to clear the expected
 	  failure explicitly.  Otherwise, the expected-failure declaration
 	  applies to whatever test runs next, leading to surprising
@@ -895,9 +883,7 @@ NAME="PASS"
 ><P
 >Declares a test to have passed. <TT
 CLASS="FUNCTION"
-><B
->pass</B
-></TT
+>pass</TT
 >
 	  writes in the log files a message beginning with
 	  <I
@@ -958,9 +944,7 @@ NAME="FAIL"
 ><P
 >Declares a test to have failed.  <TT
 CLASS="FUNCTION"
-><B
->fail</B
-></TT
+>fail</TT
 >
 	  writes in the log files a message beginning with
 	  <I
@@ -1022,9 +1006,7 @@ NAME="XPASS"
 >Declares a test to have unexpectably passed, when it was
 	  expected to be a failure.  <TT
 CLASS="FUNCTION"
-><B
->xpass</B
-></TT
+>xpass</TT
 >
 	  writes in the log files a message beginning with
 	  <I
@@ -1086,9 +1068,7 @@ NAME="XFAIL"
 >Declares a test to have expectably
 	  failed. <TT
 CLASS="FUNCTION"
-><B
->xfail</B
-></TT
+>xfail</TT
 > 
 	  writes in the log files a message beginning with
 	  <I
@@ -1157,9 +1137,7 @@ CLASS="EMPHASIS"
 > disables it: calls to
 	  <TT
 CLASS="FUNCTION"
-><B
->warning</B
-></TT
+>warning</TT
 > will not turn a
 	  <I
 CLASS="EMPHASIS"
@@ -1221,9 +1199,7 @@ CLASS="SYMBOL"
 >. The default value is 3. This
 	  value controls how many <TT
 CLASS="FUNCTION"
-><B
->warning</B
-></TT
+>warning</TT
 > procedures can
 	  be called before becoming <I
 CLASS="EMPHASIS"
@@ -1258,9 +1234,7 @@ NAME="WARNING"
 >Declares detection of a minor error in the test case
 	itself. <TT
 CLASS="FUNCTION"
-><B
->warning</B
-></TT
+>warning</TT
 > writes in the log files a message
 	beginning with <I
 CLASS="EMPHASIS"
@@ -1273,15 +1247,11 @@ CLASS="PARAMETER"
 ></TT
 >.  Use <TT
 CLASS="FUNCTION"
-><B
->warning</B
-></TT
+>warning</TT
 > rather
 	than <TT
 CLASS="FUNCTION"
-><B
->perror</B
-></TT
+>perror</TT
 > for cases (such as communication
 	failure to be followed by a retry) where the test case can recover from
 	the error. If the optional <TT
@@ -1300,14 +1270,10 @@ CLASS="SYMBOL"
 	calls to warning in a single test case also changes the effect of the
 	next <TT
 CLASS="FUNCTION"
-><B
->pass</B
-></TT
+>pass</TT
 > or <TT
 CLASS="FUNCTION"
-><B
->fail</B
-></TT
+>fail</TT
 > command:
 	the test outcome becomes <I
 CLASS="EMPHASIS"
@@ -1379,9 +1345,7 @@ CLASS="PARAMETER"
 	    is only used to fake out the counter when using the
 	    <TT
 CLASS="FUNCTION"
-><B
->xfail</B
-></TT
+>xfail</TT
 > procedure to control when it flips the
 	    output over to <I
 CLASS="EMPHASIS"
@@ -1403,9 +1367,7 @@ NAME="PERROR"
 >Declares a severe error in the testing framework
 	itself. <TT
 CLASS="FUNCTION"
-><B
->perror</B
-></TT
+>perror</TT
 > writes in the log files a message
 	beginning with <I
 CLASS="EMPHASIS"
@@ -1421,14 +1383,10 @@ CLASS="PARAMETER"
 >As a side effect, perror also changes the effect of the next
 	<TT
 CLASS="FUNCTION"
-><B
->pass</B
-></TT
+>pass</TT
 > or <TT
 CLASS="FUNCTION"
-><B
->fail</B
-></TT
+>fail</TT
 > command: the
 	test outcome becomes <I
 CLASS="EMPHASIS"
@@ -1500,9 +1458,7 @@ CLASS="PARAMETER"
 	    is only used to fake out the counter when using the
 	    <TT
 CLASS="FUNCTION"
-><B
->xfail</B
-></TT
+>xfail</TT
 > procedure to control when it flips the
 	    output over to <I
 CLASS="EMPHASIS"
@@ -1524,9 +1480,7 @@ NAME="NOTE"
 >Appends an informational message to the log
 	file. <TT
 CLASS="FUNCTION"
-><B
->note</B
-></TT
+>note</TT
 > writes in the log files a message
 	beginning with <I
 CLASS="EMPHASIS"
@@ -1539,22 +1493,16 @@ CLASS="PARAMETER"
 ></TT
 >.  Use <TT
 CLASS="FUNCTION"
-><B
->note</B
-></TT
+>note</TT
 >
 	sparingly. The <TT
 CLASS="FUNCTION"
-><B
->verbose</B
-></TT
+>verbose</TT
 > should be used for most
 	such messages, but in cases where a message is needed in the log file
 	regardless of the verbosity level use <TT
 CLASS="FUNCTION"
-><B
->note</B
-></TT
+>note</TT
 >.</P
 ><DIV
 CLASS="FUNCSYNOPSIS"
@@ -1599,9 +1547,7 @@ NAME="UNTESTED"
 ><P
 >Declares a test was not run. <TT
 CLASS="FUNCTION"
-><B
->untested</B
-></TT
+>untested</TT
 > writes
 	in the log file a message beginning with <I
 CLASS="EMPHASIS"
@@ -1658,9 +1604,7 @@ NAME="UNRESOLVED"
 >Declares a test to have an unresolved
 	outcome. <TT
 CLASS="FUNCTION"
-><B
->unresolved</B
-></TT
+>unresolved</TT
 > writes in the log file a
 	message beginning with <I
 CLASS="EMPHASIS"
@@ -1717,9 +1661,7 @@ NAME="UNSUPPORTED"
 >Declares that a test case depends on some facility that does not
 	exist in the testing environment. <TT
 CLASS="FUNCTION"
-><B
->unsupported</B
-></TT
+>unsupported</TT
 >
 	writes in the log file a message beginning with
 	<I
@@ -2806,9 +2748,7 @@ CLASS="PARAMETER"
 >This is the value returned by a call
 	        to <TT
 CLASS="FUNCTION"
-><B
->remote_open</B
-></TT
+>remote_open</TT
 >. This closes the
 	        connection to the target so resources can be used by
 	        others. This parameter can be left off if the
@@ -7987,76 +7927,54 @@ NAME="TOOLSTART"
 >Starts a particular tool.  For an interactive tool,
 	  <TT
 CLASS="FUNCTION"
-><B
->${tool}_start</B
-></TT
+>${tool}_start</TT
 > starts and initializes the
 	  tool, leaving the tool up and running for the test cases; an
 	  example is <TT
 CLASS="FUNCTION"
-><B
->gdb_start</B
-></TT
+>gdb_start</TT
 >, the start function
 	  for GDB. For a batch oriented tool,
 	  <TT
 CLASS="FUNCTION"
-><B
->${tool}_start</B
-></TT
+>${tool}_start</TT
 > is optional; the recommended
 	  convention is to let <TT
 CLASS="FUNCTION"
-><B
->${tool}_start</B
-></TT
+>${tool}_start</TT
 > run the
 	  tool, leaving the output in a variable called
 	  <TT
 CLASS="FUNCTION"
-><B
->comp_output</B
-></TT
+>comp_output</TT
 >.  Test scripts can then analyze
 	  <TT
 CLASS="FUNCTION"
-><B
->$comp_output</B
-></TT
+>$comp_output</TT
 > to determine the test results.
 	  An example of this second kind of start function is
 	  <TT
 CLASS="FUNCTION"
-><B
->gcc_start</B
-></TT
+>gcc_start</TT
 >, the start function for GCC.</P
 ><P
 >DejaGnu itself does not call
 	  <TT
 CLASS="FUNCTION"
-><B
->${tool}_start</B
-></TT
+>${tool}_start</TT
 >.  The initialization
 	  module <TT
 CLASS="FUNCTION"
-><B
->${tool}_init.exp</B
-></TT
+>${tool}_init.exp</TT
 > must call
 	  <TT
 CLASS="FUNCTION"
-><B
->${tool}_start</B
-></TT
+>${tool}_start</TT
 > for interactive tools;
 	  for batch-oriented tools, each individual test script calls
 	  <TT
 CLASS="FUNCTION"
-><B
->${tool}_start</B
-></TT
+>${tool}_start</TT
 > (or makes other
 	  arrangements to run the tool).</P
 ><DIV
@@ -8089,30 +8007,22 @@ NAME="TOOLLOAD"
 	  this conditions the tool for a particular test case; for
 	  example, <TT
 CLASS="FUNCTION"
-><B
->gdb_load</B
-></TT
+>gdb_load</TT
 > loads a new
 	  executable file into the debugger. For batch oriented tools,
 	  <TT
 CLASS="FUNCTION"
-><B
->${tool}_load</B
-></TT
+>${tool}_load</TT
 > may do nothing---though,
 	  for example, the GCC support uses
 	  <TT
 CLASS="FUNCTION"
-><B
->gcc_load</B
-></TT
+>gcc_load</TT
 > to load and run a binary on
 	  the target environment.  Conventionally,
 	  <TT
 CLASS="FUNCTION"
-><B
->${tool}_load</B
-></TT
+>${tool}_load</TT
 > leaves the output of any
 	  program it runs in a variable called
 	  <SPAN
@@ -8121,18 +8031,14 @@ CLASS="SYMBOL"
 >. Writing
 	  <TT
 CLASS="FUNCTION"
-><B
->${tool}_load</B
-></TT
+>${tool}_load</TT
 > can be the most complex
 	  part of extending DejaGnu to a new tool or a new target, if
 	  it requires much communication coding or file
 	  downloading. Test scripts call
 	  <TT
 CLASS="FUNCTION"
-><B
->${tool}_load</B
-></TT
+>${tool}_load</TT
 >.</P
 ><DIV
 CLASS="FUNCSYNOPSIS"
@@ -8164,9 +8070,7 @@ NAME="TOOLEXIT"
 	  interactive tools, this usually ends the interactive
 	  session.  You can also use <TT
 CLASS="FUNCTION"
-><B
->${tool}_exit</B
-></TT
+>${tool}_exit</TT
 >
 	  to remove any temporary files left over from the
 	  tests. <B
@@ -8175,9 +8079,7 @@ CLASS="COMMAND"
 > calls
 	  <TT
 CLASS="FUNCTION"
-><B
->${tool}_exit</B
-></TT
+>${tool}_exit</TT
 >.</P
 ><DIV
 CLASS="FUNCSYNOPSIS"
@@ -8303,9 +8205,7 @@ CLASS="PARAMETER"
 >,
 	    <TT
 CLASS="FUNCTION"
-><B
->Getdirs</B
-></TT
+>Getdirs</TT
 > assumes a default pattern of
 	    <I
 CLASS="EMPHASIS"
@@ -10676,7 +10576,7 @@ WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
 ><A
-HREF="reference.html"
+HREF="installation.html"
 >Prev</A
 ></TD
 ><TD
@@ -10701,7 +10601,7 @@ HREF="filemap.html"
 WIDTH="33%"
 ALIGN="left"
 VALIGN="top"
->Reference</TD
+>Installation</TD
 ><TD
 WIDTH="34%"
 ALIGN="center"

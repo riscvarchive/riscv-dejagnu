@@ -5,13 +5,13 @@ Name: dejagnu
 Version: %{version}
 Release: 0
 Copyright: GPL
-Source: ftp://dejagnu.on.openprojects.net/pub/dejagnu/snapshots/dejagnu-1.4.tar.gz
+Source: ftp://ftp.gnu.org/gnu/dejagnu/snapshots/dejagnu-1.4.tar.gz
 
 #Patch0: dejagnu-1.4.0-rth.patch
 #Patch1: dejagnu-1.4.0-glibc21.patch
 Group: Development/Tools
 # Since we're building this on a debian system, we can't require these.
-#Requires: tcl >= 8.0, expect >= 5.21
+Requires: tcl >= 8.0, expect >= 5.21
 BuildRoot: /tmp/%{name}-root
 
 %description
@@ -49,6 +49,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc COPYING NEWS README AUTHORS INSTALL ChangeLog doc/overview
  
 %changelog
+* Wed Feb 21 2001 Rob Savoye <rob@welcomehome.org>
+- Fixed Requires line, and changed the URL to the new ftp site.
+
 * Sun Oct 31 1999 Rob Savoye <rob@welcomehome.org>
 - updated to the latest snapshot
 - added doc files
