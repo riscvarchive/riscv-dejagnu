@@ -84,9 +84,3 @@ make_defaults_file [pwd]/setval.tmp
 foreach i [glob $srcdir/$subdir/*.test] {
     process_test $i
 }
-
-
-
-
-
-

@@ -214,9 +214,3 @@ proc config_test { cmd true false msg } {
 	}
     }
 }
-
-
-
-
-
-

@@ -29,7 +29,3 @@ site.exp: Makefile
 	@test ! -f site.exp || sed '1,/^## All variables above are.*##/ d' site.exp >> $@-t
 	@test ! -f site.exp || mv site.exp site.bak
 	@mv $@-t site.exp
-
-
-
-
