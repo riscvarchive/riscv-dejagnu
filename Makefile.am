@@ -126,7 +126,7 @@ hpdepot: # $(srcdir)/depot/dejagnu.psf
 	$(srcdir)/configure -v --prefix $(PKGDIR)/dejagnu; \
 	make install ; \
 	fi
-	swpackage -s /home/projects/dejagnu/depot/dejagnu.psf -x target_type=directory -d /tmp
+	swpackage -s $(srcdir)/depot/dejagnu.psf -x target_type=directory -d /tmp
 	here=`pwd`; \
 	cd /tmp; \
 	tar cf $$here/dejagnu-${VERSION}.hpux11.depot dejagnu; \

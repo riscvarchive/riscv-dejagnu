@@ -18,7 +18,7 @@ dgt:~$ mkdir ~/dejagnu.test
 dgt:~$ cd ~/dejagnu.test
 </programlisting>
 
-<para>Now you are ready to test DejaGnu's main program called ruuntest. The expecteted output is shown</para>
+<para>Now you are ready to test DejaGnu's main program called runtest. The expecteted output is shown</para>
 
 <example>
 <title>Runtest output in a empty directory
@@ -550,7 +550,7 @@ This can be done by adding the following lines to our file remote_echo.exp.</par
 <title>A first (local) remote "Hello world" test</title>
 <programlisting>
 set test "Remote_send Hello World" 
-set status [remote_send $target "echo \"Hello World\"\n" ]
+set status [remote_send $target "echo \"Hello\" \"World\"\n" ]
 pass "$test"
 set test "Remote_expect Hello World" 
 remote_expect $target 5 { 
@@ -1609,7 +1609,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       <title>Global Config File</title>
     
       <para>The master config file is where all the target specific
-      config variables get set for a whole site get set. The idea is
+      config variables for a whole site get set. The idea is
       that for a centralized testing lab where people have to share a
       target between multiple developers. There are settings for both
       remote targets and remote hosts.  Here's an example of a Master

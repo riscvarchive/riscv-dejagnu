@@ -1,4 +1,4 @@
-#!/usr/local/bin/tclsh
+#!/usr/bin/tclsh
 
 # Clean.tcl
 #	This script is used to remove all unwanted files from a

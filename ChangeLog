@@ -1,3 +1,27 @@
+2003-03-16  Rob Savoye  <rob@direwolf.welcomehome.org>
+
+	* lib/unix.exp: Preservce the value of LD_LIBRARY_PATH, rather
+	than stomp on it. This is based on a patch from Brendan Conoboy
+	<blc@redhat.com>.
+	* Most files: Update copyright dates.
+
+2003-03-13  Mike Stump  <mrs@apple.com>
+
+        * lib/dg.exp(dg-test): Add compiler flags to testcase name, to
+	help ensure uniqueness.
+
+2003-03-05  Alexandre Oliva  <aoliva@redhat.com>
+
+        * lib/remote.exp (standard_download, standard_upload): Support
+        nfsdir and nfsroot_server.
+
+2001-11-12  Andrew Cagney  <ac131313@redhat.com>
+
+         * lib/remote.exp (local_exec, standard_close): Use SHELL
+         background instead of tcl background to background the kill
+         processes.  Work around problem found by Nick Duffek in older
+         CYGWINs. (migrated from Redhat's sources kind late, sorry)
+
 2003-02-19  DJ Delorie  <dj@redhat.com>
 
         * config/sim.exp: Support both sid and rawsid protocols.
@@ -15,7 +39,7 @@
         example.
 
 2002-11-21 Matt Bemis <bemis@iol.unh.edu>
-		*modified xml_output to handle null input and output
+	* modified xml_output to handle null input and output
 		
 2002-10-21  Adam Nemet  <anemet@lnxw.com>
         * libgloss.exp (get_multilibs): Don't use the first argument
@@ -93,6 +117,9 @@
         * baseboards/frv-tiger.exp: New board description.
         * baseboards/frv-tomcat.exp: New board description.
 
+Wed Jun  5 14:52:15 PDT 2002   Joey Ekstrom <joey@ekstrom.org>
+	* dejagnu.h: modfied C functions to behave like printf.
+	
 2001-01-15  Ben Elliston  <bje@redhat.com>
 
         * lib/framework.exp (record_test): Invoke a user-defined procedure
@@ -596,7 +623,7 @@ Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
 	(all-local): Add at least `calc' building back.
 	* example/Makefile.in: Regenerated.
 
-Fri Jul 21 16:01:43 2000  Andrew Cagney  <cagney@b1.cygnus.com>
+ri Jul 21 16:01:43 2000  Andrew Cagney  <cagney@b1.cygnus.com>
 
 	From 2000-04-25 Felix Lee <flee@cygnus.com>:
 	* baseboards/tx39-sim.exp: Use idt, not dve linker script.  Delete
@@ -5672,11 +5699,11 @@ Mon Oct 19 10:59:19 1992  Rob Savoye  (rob at darkstar.cygnus.com)
 	* gcc.execute/execute.exp: Runs all the test from the c-torture test's
 	execute directory.
 	* gcc.execute: New directory
-	* gcc.code_quality/code_quality.exp: Runs all the test from the c-torture test's
-	code_quality directory.
+	* gcc.code_quality/code_quality.exp: Runs all the test from the
+	c-torture test's code_quality directory.
 	* gcc.code_quality: New directory
-	* gcc.noncompile/noncompile.exp: Runs all the test from the c-torture test's
-	noncompile directory.
+	* gcc.noncompile/noncompile.exp: Runs all the test from the
+	c-torture test's noncompile directory.
 	* gcc.noncompile: New directory
 	* gdb.*/*.exp: Removed all references to $det_file.
 	* nm.all/nm.exp: Removed all references to $det_file.
@@ -6004,6 +6031,3 @@ Thu May 21 17:20:23 1992  Rob Savoye  (rob@darkstar.cygnus.com)
 
 	* Hacking in better detailed reports.
 
-Wed Jun  5 14:52:15 PDT 2002   Joey Ekstrom <joey@ekstrom.org>
-	* dejagnu.h: modfied C functions to behave like printf.
-	

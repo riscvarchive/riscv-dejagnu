@@ -29,7 +29,7 @@ product
 	#
 	architecture S700/S800_HPUX_11
 	machine_type 9000/[78]*
-	swcopy 	os_name HP-UX
+#	swcopy 	os_name HP-UX
 	os_release ?.11.*
 	os_version *
 	#

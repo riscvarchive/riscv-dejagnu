@@ -1,6 +1,5 @@
-# Copyright (C) 1992 - 2001, 2002
-# Free Software Foundation, Inc.
-
+# Copyright (C) 1992 - 2002, 2003 Free Software Foundation, Inc.
+#
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
@@ -18,7 +17,8 @@
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@prep.ai.mit.edu
 
-# This file was written by Rob Savoye. (rob@cygnus.com) (now rob@welcomehome.org)
+# This file was written by Rob Savoye. (rob@cygnus.com)
+#	(now rob@welcomehome.org)
 
 # this contains a list of gcc options and their respective directories.
 
@@ -433,10 +433,14 @@ proc get_multilibs { args } {
 	return "";
     }
 
-    if { [board_info $target_board exists multilib_flags] } {
-	set mopts [board_info $target_board multilib_flags];
+    if { [llength $args] > 0 } {
+	set mopts [lindex $args 0];
     } else {
-	set mopts ""
+	if { [board_info $target_board exists multilib_flags] } {
+	    set mopts [board_info $target_board multilib_flags];
+	} else {
+	    set mopts ""
+	}
     }
 
     set default_multilib [exec $compiler --print-multi-lib]

@@ -1,5 +1,5 @@
 # `dg' general purpose testcase driver.
-# Copyright (C) 1994 - 2002 Free Software Foundation, Inc.
+# Copyright (C) 1994 - 2002, 2003 Free Software Foundation, Inc.
 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -653,8 +653,14 @@ proc dg-test { args } {
 	set name "[file tail [file dirname $prog]]/[file tail $prog]"
     }
 
+    # We append the compilation flags, if any, to ensure that the test case
+    # names are unique.
+    if { "$tool_flags" != "" } {
+	set name "$name $tool_flags"
+    }
+    
     # Process any embedded dg options in the testcase.
-
+    
     # Use "" for the second element of dg-do-what so we can tell if it's been
     # explicitly set to "S".
     set dg-do-what [list ${dg-do-what-default} "" P]
