@@ -1,3 +1,9 @@
+2001-04-03  David Billinghurst <David.Billinghurst@riotinto.com>
+
+	* baseboards/unix.exp: Don't link with -lm on cygwin.
+	* lib/target.exp: Remove compiler warnings about -fpic or -fPIC on
+	cygwin.
+
 2001-02-21  Rob Savoye  <rob@slipknot.welcomehome.org>
 
 	* debian/changelog: Add entry for new release.
