@@ -1,3 +1,7 @@
+2003-10-13  Ben Elliston  <bje@wasabisystems.com>
+
+	* baseboards/sh-hms-sim.exp: Remove. Replaced by sh-sim.exp.
+
 2003-10-11  Corinna Vinschen  <vinschen@redhat.com>
 
 	* basebaords/sh-sim.exp: New file.
