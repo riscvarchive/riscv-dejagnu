@@ -1,3 +1,6 @@
+2002-11-21 Matt Bemis <bemis@iol.unh.edu>
+		*modified xml_output to handle null input and output
+		
 2002-10-21  Adam Nemet  <anemet@lnxw.com>
         * libgloss.exp (get_multilibs): Don't use the first argument
         passed to this function as the multilib option unless it is in
