@@ -15,7 +15,6 @@ f none /opt/dejagnu/share/dejagnu/libexec/config.guess 0755 nobody nobody
 d none /opt/dejagnu/share/dejagnu/baseboards 0775 nobody nobody
 f none /opt/dejagnu/share/dejagnu/baseboards/op50n.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/baseboards/README 0644 nobody nobody
-f none /opt/dejagnu/share/dejagnu/baseboards/a29k-udi.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/baseboards/arc-sim.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/baseboards/arm-ice.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/baseboards/arm-sid.exp 0644 nobody nobody
@@ -115,7 +114,6 @@ f none /opt/dejagnu/share/dejagnu/framework.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/ftp.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/kermit.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/libgloss.exp 0644 nobody nobody
-f none /opt/dejagnu/share/dejagnu/mondfe.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/remote.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/rlogin.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/rsh.exp 0644 nobody nobody
@@ -125,7 +123,6 @@ f none /opt/dejagnu/share/dejagnu/targetdb.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/telnet.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/tip.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/utils.exp 0644 nobody nobody
-f none /opt/dejagnu/share/dejagnu/xsh.exp 0644 nobody nobody
 d none /opt/dejagnu/share/dejagnu/config 0775 nobody nobody
 f none /opt/dejagnu/share/dejagnu/config/README 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/config/arc.exp 0644 nobody nobody
@@ -163,12 +160,10 @@ f none /opt/dejagnu/share/dejagnu/config/sim.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/config/slite.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/config/sparclet.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/config/tic80.exp 0644 nobody nobody
-f none /opt/dejagnu/share/dejagnu/config/udi.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/config/unix.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/config/vr4100.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/config/vr4300.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/config/vr5000.exp 0644 nobody nobody
-f none /opt/dejagnu/share/dejagnu/config/vrtx.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/config/vxworks.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/runtest.exp 0755 nobody nobody
 d none /opt/dejagnu/include 0775 nobody nobody

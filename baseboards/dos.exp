@@ -36,8 +36,6 @@ set_board_info ldflags "[newlib_link_flags] [libio_link_flags] [winsup_link_flag
 # We don't need a link script.
 set_board_info ldscript ""
 
-# mondfe can't return exit statuses, so gcc (ctorture et al) needs to
-# do what it can to get them.
 set_board_info needs_status_wrapper 1
 
 set_board_info gdb_opts "--command gdbinit"

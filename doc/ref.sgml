@@ -4248,7 +4248,6 @@
       <listitem><para>lib/ftp.exp</para></listitem>
       <listitem><para>lib/kermit.exp</para></listitem>
       <listitem><para>lib/libgloss.exp</para></listitem>
-      <listitem><para>lib/mondfe.exp</para></listitem>
       <listitem><para>lib/remote.exp</para></listitem>
       <listitem><para>lib/rlogin.exp</para></listitem>
       <listitem><para>lib/rsh.exp</para></listitem>
@@ -4258,7 +4257,6 @@
       <listitem><para>lib/telnet.exp</para></listitem>
       <listitem><para>lib/tip.exp</para></listitem>
       <listitem><para>lib/utils.exp</para></listitem>
-      <listitem><para>lib/xsh.exp</para></listitem>
       <listitem><para>lib/dejagnu.exp</para></listitem>
     </itemizedlist>
 

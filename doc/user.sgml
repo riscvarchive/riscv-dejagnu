@@ -1021,15 +1021,16 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
         <varlistentry>
           <term><option>--connect [program]</option></term>
-	  <listitem><para>Connect to a target testing environment as specified
-	  by <emphasis>type</emphasis>, if the target is not the computer
-	  running <emphasis>runtest</emphasis>.  For example, use
-	  <emphasis>--connect</emphasis> to change the program used to connect
-	  to a ``bare board'' boot monitor.  The choices for
-	  <emphasis>type</emphasis> in the DejaGnu 1.4 distribution are
-	  <emphasis>rlogin</emphasis>, <emphasis>telnet</emphasis>,
-	  <emphasis>rsh</emphasis>, <emphasis>tip</emphasis>,
-	  <emphasis>kermit</emphasis>, and <emphasis>mondfe</emphasis>.</para>
+	  <listitem><para>Connect to a target testing environment as
+	  specified by <emphasis>type</emphasis>, if the target is not
+	  the computer running <emphasis>runtest</emphasis>.  For
+	  example, use <emphasis>--connect</emphasis> to change the
+	  program used to connect to a ``bare board'' boot monitor.
+	  The choices for <emphasis>type</emphasis> in the DejaGnu 1.4
+	  distribution are <emphasis>rlogin</emphasis>,
+	  <emphasis>telnet</emphasis>, <emphasis>rsh</emphasis>,
+	  <emphasis>tip</emphasis> and
+	  <emphasis>kermit</emphasis>.</para>
 
 	  <para>The default for this option depends on the configuration most
 	  convenient communication method available, but often other
@@ -1948,8 +1949,8 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	    <entry>connectmode</entry>
 	    <entry><command>rlogin</command>,
 	    <command>telnet</command>, <command>rsh</command>,
-	    <command>kermit</command>, <command>tip</command>, or
-	    <command>mondfe</command></entry>
+	    <command>kermit</command> or <command>tip</command>.
+	    </entry>
 	  </row>
 
 	  <row>

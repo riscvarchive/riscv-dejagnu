@@ -318,8 +318,8 @@ into another language, under the above conditions for modified versions.
     thereafter.  Once a communication procedure is coded, any test can
     use it.  Currently DejaGnu can use <command>rsh</command>,
     <command>rlogin</command>, <command>telnet</command>,
-    <command>tip</command>, <command>kermit</command> and
-    <command>mondfe</command> for remote communications.</para>
+    <command>tip</command> and <command>kermit</command> for remote
+    communications.</para>
 
     </sect1>
 

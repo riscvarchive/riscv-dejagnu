@@ -189,10 +189,9 @@ include_HEADERS = dejagnu.h
 pkgdata_SCRIPTS = \
   runtest.exp \
   lib/debugger.exp lib/dejagnu.exp lib/dg.exp lib/framework.exp \
-  lib/ftp.exp lib/kermit.exp lib/libgloss.exp lib/mondfe.exp \
-  lib/remote.exp lib/rlogin.exp lib/rsh.exp lib/standard.exp \
-  lib/target.exp lib/targetdb.exp lib/telnet.exp lib/tip.exp \
-  lib/utils.exp lib/xsh.exp
+  lib/ftp.exp lib/kermit.exp lib/libgloss.exp lib/remote.exp \
+  lib/rlogin.exp lib/rsh.exp lib/standard.exp lib/target.exp \
+  lib/targetdb.exp lib/telnet.exp lib/tip.exp lib/utils.exp
 
 configdir = $(pkgdatadir)/config
 config_DATA = config/README
@@ -232,18 +231,15 @@ config_SCRIPTS = \
 	config/slite.exp \
 	config/sparclet.exp \
 	config/tic80.exp \
-	config/udi.exp \
 	config/unix.exp \
 	config/vr4100.exp \
 	config/vr4300.exp \
 	config/vr5000.exp \
-	config/vrtx.exp \
 	config/vxworks.exp
 
 baseboarddir = $(pkgdatadir)/baseboards
 baseboard_DATA = baseboards/README
 baseboard_SCRIPTS = \
-	baseboards/a29k-udi.exp \
 	baseboards/am33_2.0-libremote.exp \
 	baseboards/arc-sim.exp \
 	baseboards/arm-ice.exp \
@@ -952,14 +948,14 @@ uninstall-info: uninstall-info-recursive
 
 
 # Build an RPM package
-rpm: dist
+rpm: dist $(srcdir)/packaging/rpm/dejagnu.spec
 	cp -f $(srcdir)/packaging/rpm/dejagnu.spec /usr/src/redhat/SPECS/
 	cp -f dejagnu-${VERSION}.tar.gz /usr/src/redhat/SOURCES/
 	rpm -ba /usr/src/redhat/SPECS/dejagnu.spec
 
 # Build a Debian GNU/Linux package
 deb: dist
-	-rm -rf dejagnu-${VERSION}
+	rm -rf dejagnu-${VERSION}
 	tar xfz dejagnu-${VERSION}.tar.gz
 	cp -fr $(srcdir)/packaging/deb dejagnu-${VERSION}/
 	(cd dejagnu-${VERSION}; dpkg-buildpackage)

@@ -2,9 +2,9 @@ Changes from 1.4.4
 
 1. The automake/autoconf-based build system has been cleaned up
    significantly.  It now has less moving parts for maintainers.
-2. lib/mondfe.exp and lib/xsh.exp are now deprecated and will be
-   removed in the next major release.  If you still use this code,
-   please notify dejagnu@gnu.org.
+2. lib/mondfe.exp and lib/xsh.exp have been removed.  Users requiring
+   these communication modes can still use the DejaGnu 1.4 branch or
+   can contact dejagnu@gnu.org to discuss reinstating these files.
 
 Changes from 1.4.2
 

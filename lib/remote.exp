@@ -19,10 +19,8 @@
 
 # This file was written by Rob Savoye. (rob@welcomehome.org)
 
-# load various protocol support modules
+# Load various protocol support modules.
 
-load_lib "mondfe.exp"
-load_lib "xsh.exp"
 load_lib "telnet.exp"
 load_lib "rlogin.exp"
 load_lib "kermit.exp"
