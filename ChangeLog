@@ -1,5 +1,9 @@
 2004-02-06  Ben Elliston  <bje@wasabisystems.com>
 
+	* site.tmpl: Tidy.
+
+2004-02-06  Ben Elliston  <bje@wasabisystems.com>
+
 	* INSTALL: Import latest version.
 	* depcomp: Likewise.
 	* install-sh: Likewise.
