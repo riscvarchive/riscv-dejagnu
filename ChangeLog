@@ -6,7 +6,8 @@
 	(DJ_AC_PATH_TCLSH): Likewise.
 	(DJ_AC_PATH_DOCBOOK): Likewise.
 	* aclocal.m4: Rebuild.
-	* doc/Makefile.in: Rebuild with Automake 1.8.2.
+	* Makefile.in: Rebuild with Automake 1.8.2.
+	* doc/Makefile.in: Likewise.
 	* example/Makefile.in: Likewise.
 	* testsuite/Makefile.in: Likewise.
 	* testsuite/libdejagnu/Makefile.in: Likewise.
