@@ -1502,8 +1502,7 @@ proc runtest { test_file_name } {
 if ![exp_debug] {
     foreach sig "{SIGTERM {terminated}} \
              {SIGINT  {interrupted by user}} \
-             {SIGQUIT {interrupted by user}} \
-             {SIGSEGV {segmentation violation}}" {
+             {SIGQUIT {interrupted by user}}" {
 	set signal [lindex $sig 0]
 	set str [lindex $sig 1]
 	trap "send_error \"got a \[trap -name\] signal, $str \\n\"; log_and_exit;" $signal

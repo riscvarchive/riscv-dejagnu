@@ -1,3 +1,7 @@
+2004-02-17  Ben Elliston  <bje@wasabisystems.com>
+
+	* runtest.exp: Do not trap SIGSEGV.
+
 2004-02-16  Ben Elliston  <bje@wasabisystems.com>
 
 	* configure.ac: Update AC_INIT and AM_INIT_AUTOMAKE invocations.
