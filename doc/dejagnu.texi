@@ -407,7 +407,7 @@ DejaGnu can use @code{rsh}, @code{rlogin}, @code{telnet}, @code{tip},
 @cindex name ``DejaGnu''
 @cindex DejaGnu, the name
 @cindex Menapace, Julia
-Julia Menapace first coined the term ``Deja Gnu'' to describe an earlier
+Julia Menapace first coined the term ``DejaGnu'' to describe an earlier
 testing framework at Cygnus Support.  When we replaced it with the
 Expect-based framework, it was like DejaGnu all over again@dots{}
 

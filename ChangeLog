@@ -1,3 +1,13 @@
+2003-08-16  Ben Elliston  <bje@wasabisystems.com>
+
+	* doc/overview.sgml (overview): Start overhauling chapter.
+	
+	* doc/README.Writers: New document on style conventions.
+	* doc/ref.sgml: Replace "test suite" with "testsuite" throughout.
+	* doc/user.sgml: Likewise.
+	* doc/overview.sgml: Likewise.
+	* doc/dejagnu.texi (Design Goals): Change "Deja Gnu" to "DejaGnu".
+
 2003-08-12  Ben Elliston  <bje@wasabisystems.com>
 
 	* Makefile.am (tarball): Update path to dejagnu.spec.

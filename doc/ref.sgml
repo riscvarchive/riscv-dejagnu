@@ -51,8 +51,8 @@
       <emphasis>exec</emphasis>prefix}.)</para>
 
       <para>Save for a small number of example tests, the DejaGnu distribution
-      itself does not include any test suites; these are available
-      separately. Test suites for the GNU development tools are included in
+      itself does not include any testsuites; these are available
+      separately. Testsuites for the GNU development tools are included in
       those releases. After configuring the top-level DejaGnu directory, unpack
       and configure the test directories for the tools you want to test; then,
       in each test directory, run <emphasis>make check</emphasis> to build
@@ -3161,7 +3161,7 @@
       and <symbol>${tool}_load</symbol>}, are only called by the test
       suites themselves (or by testsuite-specific initialization
       code); they may take arguments  or not, depending on the
-      conventions used within each test suite.</para>
+      conventions used within each testsuite.</para>
 
       <para>The usual convention for return codes from any of these
       procedures (although it is not required by

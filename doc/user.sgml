@@ -711,7 +711,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
  <chapter id=runningtests>
     <title>Running Tests</title>
 
-    <para>There are two ways to execute a test suite. The most
+    <para>There are two ways to execute a testsuite. The most
     common way is when there is existing support in the
     <filename>Makefile</filename>. This support consists of a
     <emphasis>check</emphasis> target. The other way is to execute the
@@ -812,7 +812,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	<varlistentry>
 	  <term>UNRESOLVED</term>
           <listitem><para>Output from a test requires manual inspection; the
-          test suite could not automatically determine the outcome.  For
+          testsuite could not automatically determine the outcome.  For
           example, your tests can report this outcome is when a test does not
           complete as expected.</para></listitem>
 	</varlistentry>
@@ -844,7 +844,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
           <listitem><para>Indicates a major problem (detected by the test case
           itself) in running the test. This is usually an unrecoverable error,
           such as a missing file or loss of communication to the target. (POSIX
-          test suites should not emit this message; use
+          testsuites should not emit this message; use
           <emphasis>UNSUPPORTED</emphasis>, <emphasis>UNTESTED</emphasis>, or
           <emphasis>UNRESOLVED</emphasis> instead, as
           appropriate.)</para></listitem>
@@ -1054,7 +1054,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	
         <varlistentry id=tool-opt>
           <term><option>--tool[name(s)]</option></term>
-	  <listitem><para>Specifies which test suite to run, and what
+	  <listitem><para>Specifies which testsuite to run, and what
 	  initialization module to use. <option>--tool</option> is used
 	  <emphasis>only</emphasis> for these two purposes. It is
 	  <emphasis>not</emphasis> used to name the executable program to
@@ -1163,7 +1163,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	
 	<para>Typically, you don't need must to use any command-line options.
 	<option>--tool</option> used is only required when there are more than
-	one test suite in the same directory. The default options are in the
+	one testsuite in the same directory. The default options are in the
 	local site.exp file, created by "make site.exp".</para>
 
 	<para>For example, if the directory <filename>gdb/testsuite</filename>
@@ -1465,7 +1465,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     DejaGnu test environment using Tcl variables.  This ties the
     DejaGnu test scripts into the <command>configure</command> and
     <command>make</command> programs. If this file is setup correctly,
-    it is possible to execute a test suite merely by typing
+    it is possible to execute a testsuite merely by typing
     <command>runtest</command>.</para>
 
     <para>DejaGnu supports two <filename>site.exp</filename>
@@ -1487,7 +1487,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     <symbol>DEJAGNU</symbol> to the name of the file. This is also
     refered to as the ``global'' config file.</para>
 
-    <para>Any directory containing a configured test suite also has a
+    <para>Any directory containing a configured testsuite also has a
     local <filename>site.exp</filename>, capturing configuration values
     specific to the tool under test.  Since <command>runtest</command>
     loads these values last, the individual test configuration can
@@ -1496,7 +1496,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     <para>You can usually generate or update the testsuite's local 
     <filename>site.exp</filename> by typing <command>make
-    site.exp</command> in the test suite directory, after the test
+    site.exp</command> in the testsuite directory, after the test
     suite is configured.</para>
 
     <para>You can also have a file in your home directory called
@@ -1519,7 +1519,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       local to each test directory, rather than in the global
       <filename>site.exp</filename> in the installed DejaGnu
       library. This file is mostly for supplying tool specific info
-      that is required by the test suite.</para>
+      that is required by the testsuite.</para>
 
       <para>All local <filename>site.exp</filename> files have
       two sections, separated by comment text. The first section is
@@ -1601,7 +1601,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     <para>This file defines the required fields for a local config
     file, namely the three config triplets, and the srcdir. It also
     defines several other Tcl variables that are used exclusivly by
-    the GCC test suite. For most test cases, the CXXFLAGS and LDFLAGS
+    the GCC testsuite. For most test cases, the CXXFLAGS and LDFLAGS
     are supplied by DejaGnu itself for cross testing, but to test a
     compiler, GCC needs to manipulate these itself.</para>
 
@@ -2067,8 +2067,8 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
   <chapter id=Extending xreflabel="Extending DejaGnu">
     <title>Extending DejaGnu</title>
     
-    <sect1 id=addsuite  xreflabel="Adding a new Test Suite">
-      <title>Adding A New Test Suite</title>
+    <sect1 id=addsuite  xreflabel="Adding a new Testsuite">
+      <title>Adding A New Testsuite</title>
     
       <para>The testsuite for a new tool should always be located in that tools
       source directory. DejaGnu require the directory be named
@@ -2084,29 +2084,29 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     
       <para>In general, the best way to learn how to write (code or even prose)
       is to read something similar.  This principle applies to test cases and
-      to test suites.  Unfortunately, well-established test suites have a way
+      to testsuites.  Unfortunately, well-established testsuites have a way
       of developing their own conventions: as test writers become more
       experienced with DejaGnu and with Tcl, they accumulate more utilities,
       and take advantage of more and more features of
       <productname>Expect</productname> and <productname>Tcl</productname> in
       general.</para>
 
-      <para>Inspecting such established test suites may make the prospect of
-      creating an entirely new test suite appear overwhelming.  Nevertheless,
-      it is quite straightforward to get a new test suite going.</para>
+      <para>Inspecting such established testsuites may make the prospect of
+      creating an entirely new testsuite appear overwhelming.  Nevertheless,
+      it is quite straightforward to get a new testsuite going.</para>
 
-      <para>There is one test suite that is guaranteed not to grow more
+      <para>There is one testsuite that is guaranteed not to grow more
       elaborate over time: both it and the tool it tests were created expressly
       to illustrate what it takes to get started with DejaGnu.  The
       <filename>example/</filename> directory of the DejaGnu distribution
       contains both an interactive tool called <command>calc</command>, and a
-      test suite for it.  Reading this test suite, and experimenting with it,
+      testsuite for it.  Reading this testsuite, and experimenting with it,
       is a good way to supplement the information in this section.  (Thanks to
-      Robert Lupton for creating calc and its test suite---and also the first
+      Robert Lupton for creating calc and its testsuite---and also the first
       version of this section of the manual!)</para>
 
       <para>To help orient you further in this task, here is an outline of the
-      steps to begin building a test suite for a program example.</para>
+      steps to begin building a testsuite for a program example.</para>
 
       <itemizedlist mark=bullet>
       
@@ -2897,8 +2897,8 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     </sect1>
 
-    <sect1 id=adding xreflabel="Adding A Test Case To A Test Suite">
-      <title>Adding A Test Case To A Test Suite.</title>
+    <sect1 id=adding xreflabel="Adding A Test Case To A Testsuite">
+      <title>Adding A Test Case To A Testsuite.</title>
     
       <para>There are two slightly different ways to add a test
       case. One is to add the test case to an existing directory. The
@@ -2937,7 +2937,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
       <listitem><para>Add the new directory name to the
       <symbol>configdirs</symbol> definition in the
-      <filename>configure.in</filename> file for the test suite
+      <filename>configure.in</filename> file for the testsuite
       directory. This way when <command>make</command> and
       <command>configure</command> next run, they include the new
       directory.</para></listitem>
