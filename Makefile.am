@@ -16,7 +16,10 @@ pkgdata_SCRIPTS = runtest.exp
 libexecdir = $(pkgdatadir)/libexec
 libexec_SCRIPTS = config.guess
 
+DATE = `date "+%Y%m%d`
+
 TLCSH = @TCLSH@
+PKGDIR = /opt
 
 RUNTESTDEFAULTFLAGS = --srcdir $(srcdir)/testsuite RUNTEST=$(RUNTEST)
 RUNTEST = ` \
@@ -55,7 +58,7 @@ tarball: overview.html overview.ps overview.pdf
 	cp -f ../dejagnu-${VERSION}.tar.gz /usr/src/redhat/SOURCES/; \
 	cp -f $${dir}/redhat/dejagnu.spec /usr/src/redhat/SPECS/
 
-DATE = `date "+%Y%m%d`
+# this builds a date stamped tarball of the current sources
 snapshot:
 	-rm -fr dejagnu-${DATE}
 	cp -fpr $(srcdir) dejagnu-${DATE}
@@ -73,10 +76,12 @@ snapshot:
 rpmspec: $(srcdir)/redhat/dejagnu.spec
 	cp -f $(srcdir)/redhat/dejagnu.spec /usr/src/redhat/SPECS/
 
+# this builds a Redhat Linux style rpm package
 rpm: tarball rpmspec
 	cp -f ../$(distdir).tar.gz /usr/src/redhat/SOURCES/
 	rpm -ba /usr/src/redhat/SPECS/dejagnu.spec
 
+# this builds a Debian Linux style deb package.
 deb: overview.html overview.ps overview.pdf
 	-rm -fr dejagnu-${VERSION}
 	cp -fpr $(srcdir) dejagnu-${VERSION}
@@ -90,6 +95,40 @@ deb: overview.html overview.ps overview.pdf
 	-cp -fr doc/overview.ps dejagnu-${VERSION}/doc/;
 	-cp -fr doc/overview.pdf dejagnu-${VERSION}/doc/;
 	(cd dejagnu-${VERSION}; dpkg-buildpackage)
+
+# this builds a Solaris style pkg package.
+solpkg: $(srcdir)/pkg/prototype
+	if test ! -d $(PKGDIR)/dejagnu; then \
+	  rm -fr dejagnu-${VERSION}; \
+	  mkdir dejagnu-${VERSION}; \
+	  cd dejagnu-${VERSION}; \
+	  $(srcdir)/configure -v --prefix $(PKGDIR)/dejagnu; \
+	  make install ; \
+	fi
+	cp $(srcdir)/pkg/prototype /tmp
+	cp $(srcdir)/pkg/pkginfo /tmp
+	here=`pwd`; \
+	  cd /tmp; \
+	  pkgmk -o -r / -d /tmp; \
+	  tar cf $$here/dejagnu-${VERSION}.SPARC.2.8.pkg.tar DejaGnu; \
+	  gzip -9fv  $$here/dejagnu-${VERSION}.SPARC.2.8.pkg.tar
+	rm -fr /tmp/prototype /tmp/pkginfo /tmp/DejaGnu
+
+# this builds a HPUX style depot file
+hpdepot: # $(srcdir)/depot/dejagnu.psf
+	if test ! -d $(PKGDIR)/dejagnu; then \
+	rm -fr dejagnu-${VERSION}; \
+	mkdir dejagnu-${VERSION}; \
+	cd dejagnu-${VERSION}; \
+	$(srcdir)/configure -v --prefix $(PKGDIR)/dejagnu; \
+	make install ; \
+	fi
+	swpackage -s /home/projects/dejagnu/depot/dejagnu.psf -x target_type=directory -d /tmp
+	here=`pwd`; \
+	cd /tmp; \
+	tar cf $$here/dejagnu-${VERSION}.hpux11.depot dejagnu; \
+	gzip -9fv  $$here/dejagnu-${VERSION}.hpux11.depot; \
+	rm -fr /tmp/dejagnu
 
 overview.html overview.ps overview.pdf install-doc:
 	cd doc && $(MAKE) $(FLAGS_TO_PASS) $@
