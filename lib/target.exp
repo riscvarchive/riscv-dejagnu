@@ -497,6 +497,7 @@ proc default_target_compile {source destfile type options} {
     }
 
     if { $type == "executable" } {
+	append add_flags " $ldflags"
 	foreach x $libs {
 	    if [file exists $x] {
 		append source " $x"
@@ -504,7 +505,6 @@ proc default_target_compile {source destfile type options} {
 		append add_flags " $x";
 	    }
 	}
-	append add_flags " $ldflags"
 
 	if [board_info $dest exists libs] {
 	    append add_flags " [board_info $dest libs]"
