@@ -1,6 +1,7 @@
 2004-02-06  Ben Elliston  <bje@wasabisystems.com>
 
-	* depcomp: Import latest version.
+	* INSTALL: Import latest version.
+	* depcomp: Likewise.
 	* install-sh: Likewise.
 	* missing: Likewise.
 
