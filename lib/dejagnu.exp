@@ -119,30 +119,35 @@ proc host_execute {args} {
 	}
 	-re "NOTE:${text}*" {
 	    regsub "\[\n\r\t\]*NOTE: $text\r\n" $expect_out(0,string) "" output
+	    set output [string range $output 6 end]
 	    verbose "$output" 2
 	    set timetol 0
 	    exp_continue
 	}
 	-re "PASSED:${text}*" {
 	    regsub "\[\n\r\t\]*PASSED: $text\r\n" $expect_out(0,string) "" output
+	    set output [string range $output 8 end]
 	    pass "$output"
 	    set timetol 0
 	    exp_continue
 	}
 	-re "FAILED:${text}*" {
 	    regsub "\[\n\r\t\]*FAILED: $text\r\n" $expect_out(0,string) "" output
+	    set output [string range $output 8 end]
 	    fail "$output"
 	    set timetol 0
 	    exp_continue
 	}
 	-re "UNTESTED:${text}*" {
 	    regsub "\[\n\r\t\]*TESTED: $text\r\n" $expect_out(0,string) "" output
+	    set output [string range $output 8 end]
 	    untested "$output"
 	    set timetol 0
 	    exp_continue
 	}
 	-re "UNRESOLVED:${text}*" {
 	    regsub "\[\n\r\t\]*UNRESOLVED: $text\r\n" $expect_out(0,string) "" output
+	    set output [string range $output 8 end]
 	    unresolved "$output"
 	    set timetol 0
 	    exp_continue
