@@ -1,3 +1,16 @@
+2004-02-04  Ben Elliston  <bje@wasabisystems.com>
+
+	* configure.in (AC_NO_EXECUTABLES): Remove.
+	* configure: Rebuild with Autoconf 2.59.
+	* acinclude.m4 (DJ_AC_STL): Quote macro name to appease aclocal.
+	(DJ_AC_PATH_TCLSH): Likewise.
+	(DJ_AC_PATH_DOCBOOK): Likewise.
+	* aclocal.m4: Rebuild.
+	* doc/Makefile.in: Rebuild with Automake 1.8.2.
+	* example/Makefile.in: Likewise.
+	* testsuite/Makefile.in: Likewise.
+	* testsuite/libdejagnu/Makefile.in: Likewise.
+
 2004-01-30  Ben Elliston  <bje@wasabisystems.com>
 
 	Import orphaned patches from sources.redhat.com:

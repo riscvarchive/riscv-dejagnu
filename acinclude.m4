@@ -1,4 +1,4 @@
-AC_DEFUN(DJ_AC_STL, [
+AC_DEFUN([DJ_AC_STL], [
 AC_MSG_CHECKING(for STL versions)
 AC_CACHE_VAL(ac_cv_stl,[
   AC_LANG_CPLUSPLUS
@@ -21,7 +21,7 @@ else
 fi
 ])
 
-AC_DEFUN(DJ_AC_PATH_TCLSH, [
+AC_DEFUN([DJ_AC_PATH_TCLSH], [
 dirlist=".. ../../ ../../../ ../../../../ ../../../../../ ../../../../../../ ../
 ../../../../../.. ../../../../../../../.. ../../../../../../../../.. ../../../..
 /../../../../../.."
@@ -74,7 +74,7 @@ AC_SUBST(TCLSH)
 ])
 
 
-AC_DEFUN(DJ_AC_PATH_DOCBOOK, [
+AC_DEFUN([DJ_AC_PATH_DOCBOOK], [
 dirlist=".. ../../ ../../.. ../../../.. ../../../../.. ../../../../../.. ../../../../../../.. ../../../../../../../.. ../../../../../../../../.. ../../../../../../../../../.."
 AC_MSG_CHECKING(for docbook tools)
 AC_ARG_WITH(oskith, [  --with-docbook       directory where the db2 sgml tools are], with_docbook=${withval})
