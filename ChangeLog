@@ -1,5 +1,9 @@
 2003-08-18  Ben Elliston  <bje@wasabisystems.com>
 
+	* contrib/bluegnu2.0.3: Remove unsupported subtree.
+
+2003-08-18  Ben Elliston  <bje@wasabisystems.com>
+
 	* MAINTAINERS: New file.
 
 2003-08-17  Ben Elliston  <bje@wasabisystems.com>
