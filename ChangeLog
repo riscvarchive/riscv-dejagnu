@@ -1,3 +1,29 @@
+2003-08-12  Ben Elliston  <bje@wasabisystems.com>
+
+	* Makefile.am (tarball): Update path to dejagnu.spec.
+	(rpmspec): Likewise.
+	(deb): Likewise, update path to package metafiles.
+	(solpkg): Likewise.
+	(hpdepot): Likewise.
+	* Makefile.in: Regenerate.
+	* aclocal.m4: Likewise.
+	* configure: Likewise.
+	* doc/Makefile.in: Likewise.
+	* example/Makefile.in: Likewise.
+	* testsuite/Makefile.in: Likewise.
+	* deb: Move from here ..
+	* packaging/deb: .. to here.
+	* redhat: Move from here ..
+	* packaging/rpm: .. to here.
+	* depot: Move from here ..
+	* packaging/depot: .. to here.
+	* pkg: Move from here ..
+	* packaging/pkg: .. to here.
+
+	* testsuite/libdejagnu/Makefile.am (CXXFLAGS): Rename from this ..
+	(AM_CXXFLAGS): .. to this, in order to suppress Automake warning.
+	* testsuite/libdejagnu/Makefile.in: Regenerate.
+
 2003-08-07  Ben Elliston  <bje@wasabisystems.com>
 
 	* config/ddb.exp (${board}_init): Fix thinko: use Tcl incr command

@@ -41,7 +41,7 @@ clean-local:
 	cd testsuite ; $(MAKE) clean
 	cd example   ; $(MAKE) clean
 
-# Set ourselves up to build a RedHat package
+# Set ourselves up to build an RPM
 tarball: overview.html overview.ps overview.pdf
 	-rm -fr dejagnu-${VERSION}
 	cp -fpr $(srcdir) dejagnu-${VERSION}
@@ -57,7 +57,7 @@ tarball: overview.html overview.ps overview.pdf
 	  tar cvf ../dejagnu-${VERSION}.tar dejagnu-${VERSION}; \
 	  gzip -9fv ../dejagnu-${VERSION}.tar; \
 	  cp -f ../dejagnu-${VERSION}.tar.gz /usr/src/redhat/SOURCES/; \
-	  cp -f $${dir}/redhat/dejagnu.spec /usr/src/redhat/SPECS/
+	  cp -f $${dir}/packaging/rpm/dejagnu.spec /usr/src/redhat/SPECS/
 
 # this builds a date stamped tarball of the current sources
 snapshot:
@@ -75,10 +75,10 @@ snapshot:
 	tar cf ../dejagnu-${DATE}.tar dejagnu-${DATE}
 	gzip -9fv ../dejagnu-${DATE}.tar
 
-rpmspec: $(srcdir)/redhat/dejagnu.spec
-	cp -f $(srcdir)/redhat/dejagnu.spec /usr/src/redhat/SPECS/
+rpmspec: $(srcdir)/packaging/rpm/dejagnu.spec
+	cp -f $(srcdir)/packaging/rpm/dejagnu.spec /usr/src/redhat/SPECS/
 
-# this builds a Redhat Linux style rpm package
+# this builds an RPM package
 rpm: tarball rpmspec
 	cp -f ../$(distdir).tar.gz /usr/src/redhat/SOURCES/
 	rpm -ba /usr/src/redhat/SPECS/dejagnu.spec
@@ -92,7 +92,7 @@ deb: overview.html overview.ps overview.pdf
 	dir=`(cd $${src}; pwd)`; \
 	(cd dejagnu-${VERSION} ; $${dir}/Clean.tcl);
 	-mkdir -p doc/html;
-	-cp -fr $(srcdir)/debian dejagnu-${VERSION}/
+	-cp -fr $(srcdir)/packaging/deb dejagnu-${VERSION}/
 	-cp -fr doc/html dejagnu-${VERSION}/doc/;
 	-cp -fr doc/overview.ps dejagnu-${VERSION}/doc/;
 	-cp -fr doc/overview.pdf dejagnu-${VERSION}/doc/;
@@ -100,7 +100,7 @@ deb: overview.html overview.ps overview.pdf
 	(cd dejagnu-${VERSION}; dpkg-buildpackage)
 
 # this builds a Solaris style pkg package.
-solpkg: $(srcdir)/pkg/prototype
+solpkg: $(srcdir)/packaging/pkg/prototype
 	if test ! -d $(PKGDIR)/dejagnu; then \
 	  rm -fr dejagnu-${VERSION}; \
 	  mkdir dejagnu-${VERSION}; \
@@ -108,8 +108,8 @@ solpkg: $(srcdir)/pkg/prototype
 	  $(srcdir)/configure -v --prefix $(PKGDIR)/dejagnu; \
 	  make install ; \
 	fi
-	cp $(srcdir)/pkg/prototype /tmp
-	cp $(srcdir)/pkg/pkginfo /tmp
+	cp $(srcdir)/packaging/pkg/prototype /tmp
+	cp $(srcdir)/packaging/pkg/pkginfo /tmp
 	here=`pwd`; \
 	  cd /tmp; \
 	  pkgmk -o -r / -d /tmp; \
@@ -118,7 +118,7 @@ solpkg: $(srcdir)/pkg/prototype
 	rm -fr /tmp/prototype /tmp/pkginfo /tmp/DejaGnu
 
 # this builds a HPUX style depot file
-hpdepot: # $(srcdir)/depot/dejagnu.psf
+hpdepot: # $(srcdir)/packaging/depot/dejagnu.psf
 	if test ! -d $(PKGDIR)/dejagnu; then \
 	rm -fr dejagnu-${VERSION}; \
 	mkdir dejagnu-${VERSION}; \
@@ -126,7 +126,7 @@ hpdepot: # $(srcdir)/depot/dejagnu.psf
 	$(srcdir)/configure -v --prefix $(PKGDIR)/dejagnu; \
 	make install ; \
 	fi
-	swpackage -s $(srcdir)/depot/dejagnu.psf -x target_type=directory -d /tmp
+	swpackage -s $(srcdir)/packaging/depot/dejagnu.psf -x target_type=directory -d /tmp
 	here=`pwd`; \
 	cd /tmp; \
 	tar cf $$here/dejagnu-${VERSION}.hpux11.depot dejagnu; \
@@ -206,11 +206,3 @@ site.exp: Makefile
 	@test ! -f site.exp || sed '1,/^## All variables above are.*##/ d' site.exp >> $@-t
 	@test ! -f site.exp || mv site.exp site.bak
 	@mv $@-t site.exp
-
-
-
-
-
-
-
-
