@@ -1,3 +1,8 @@
+2003-08-07  Ben Elliston  <bje@wasabisystems.com>
+
+	* config/ddb.exp (${board}_init): Fix thinko: use Tcl incr command
+	to increment count rather than count++ as in C.
+
 2003-08-06  Ben Elliston  <bje@wasabisystems.com>
 
 	* lib/remote.exp: Replace "TCL" with "Tcl".
