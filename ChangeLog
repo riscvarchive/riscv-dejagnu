@@ -1,3 +1,22 @@
+2001-04-11  Rob Savoye  <rob@slipknot.welcomehome.org>
+
+	* Clean.tcl: Add -r to rm, so it gets rid of CVS directories.
+	* .clean: Don't install the debian or redhat packaging directories.
+	* Makefle.am: Install dejagnu.h. Fix dist2 target, so we build our
+	own tarballs, instead of letting automake do it for us.
+	* examples/cala/Makefile.am: Use noist_PROGRAMS, so calc doesn't
+	get installed.
+	* doc/Makefile.am: Install the man page for runtest.
+	* configure.in: Make VERSION 1.4.0, not just 1.4, so distributions
+	get built right.
+
+2001-04-07  Rob Savoye  <rob@blackpeter.welcomehome.org>
+
+	* lib/dejagnu.exp: Test driver for embedded DejaGnu API.
+	* dejagnu.h: Embedded DejaGnu API main header file.
+	* config/default.exp: Default tool init file for simple test
+	suites.
+
 2001-04-06  Rob Savoye  <rob@slipknot.welcomehome.org>
 
 	* Makefile.am: Add an empty check-DEJAGNU target, cause we only

@@ -3,13 +3,13 @@
 AUTOMAKE_OPTIONS = dejagnu
 
 # Install all the associated data files
-SUBDIRS = doc testsuite example
+SUBDIRS = doc testsuite example 
 
 # Install the bourne shell script driver in the bindir
 bin_SCRIPTS = runtest
 
 # Install the main DejaGnu expect file in the datadir
-pkgdata_SCRIPTS = config.guess runtest.exp
+pkgdata_SCRIPTS = runtest.exp
 
 # Install config.guess too, so we can use it to figure out
 # what type of machine we're running on.
@@ -29,22 +29,37 @@ check-DEJAGNU:
 	@echo "Do nothing here, cause we don't want to run the tests twice"
 
 # Set ourselves up to build a RedHat package
-dist2: rpmspec overview.html
-	-rm -fr dejagnu-${VERSION}.0
-	cp -fpr $(srcdir) dejagnu-${VERSION}.0
-	@echo "clean up stuff we don't want in the source file"
-	(cd dejagnu-${VERSION}.0 ; $(srcdir)/Clean.tcl)
-	-mkdir -p doc/overview
-	-cp -fr doc/overview dejagnu-${VERSION}.0/doc/
-	tar cvf ../dejagnu-${VERSION}.0.tar dejagnu-${VERSION}.0
-	gzip -9fv ../dejagnu-${VERSION}.0.tar
-	cp -f ../dejagnu-${VERSION}.0.tar.gz /usr/src/redhat/SOURCES/
+#dist2: tarball rpmspec overview.html overview.ps overview.pdf \
+#       dejagnu-${VERSION}.tar.gz
+#	-rm -fr dejagnu-${VERSION}
+#	cp -fpr $(srcdir) dejagnu-${VERSION}
+#	@echo "clean up stuff we don't want in the source file"
+#	(cd dejagnu-${VERSION} ; $(srcdir)/Clean.tcl)
+#	-mkdir -p doc/overview
+#	-cp -fr doc/overview dejagnu-${VERSION}/doc/
+#	-cp -fr doc/overview.ps dejagnu-${VERSION}/doc/
+#	-cp -fr doc/overview.pdf dejagnu-${VERSION}/doc/
+#	tar cvf ../dejagnu-${VERSION}.tar dejagnu-${VERSION}.0
+#	gzip -9fv ../dejagnu-${VERSION}.tar
+#	cp -f ../dejagnu-${VERSION}.tar.gz /usr/src/redhat/SOURCES/
+#	cp -f $(srcdir)/redhat/dejagnu.spec /usr/src/redhat/SPECS/
+
+#tarball: overview.html overview.ps overview.pdf
+#	-rm -fr dejagnu-${VERSION}
+#	cp -fpr $(srcdir) dejagnu-${VERSION}
+#	@echo "clean up stuff we don't want in the source file"
+#	(cd dejagnu-${VERSION} ; $(srcdir)/Clean.tcl)
+#	-mkdir -p doc/overview
+#	-cp -fr doc/overview dejagnu-${VERSION}/doc/
+#	-cp -fr doc/overview.ps dejagnu-${VERSION}/doc/
+#	-cp -fr doc/overview.pdf dejagnu-${VERSION}/doc/
+#	tar cf ../dejagnu-${VERSION}.tar dejagnu-${VERSION}.0
+#	gzip -9fv ../dejagnu-${VERSION}.tar
+
+rpmspec: $(srcdir)/redhat/dejagnu.spec
 	cp -f $(srcdir)/redhat/dejagnu.spec /usr/src/redhat/SPECS/
 
-rpmspec:
-	cp -f $(srcdir)/redhat/dejagnu.spec /usr/src/redhat/SPECS/
-
-rpm: dist rpmspec
+rpm: dist2 rpmspec
 	cp -f $(distdir).tar.gz /usr/src/redhat/SOURCES/
 	rpm -ba /usr/src/redhat/SPECS/dejagnu.spec
 
@@ -60,6 +75,8 @@ dist-hook: rpmspec overview.html
 	cp -fpr $(srcdir) $(distdir)
 	(cd $(distdir) ; $(TCLSH) $(srcdir)/Clean.tcl)
 	-cp -fr doc/overview $(distdir)/doc/
+	-cp -fr doc/overview.ps $(distdir)/doc/
+	-cp -fr doc/overview.pdf $(distdir)/doc/
 
 
 # Below, host-independent data files that need to get installed.
@@ -85,6 +102,8 @@ install-data-local:
 	  test ! -f "$$f" || $(INSTALL_DATA) $$f $(baseboards_dest); \
 	done
 	#
+	$(INSTALL_DATA) $(srcdir)/dejagnu.h $(includedir); \
+	#
 	$(mkinstalldirs) $(config_dest)
 	for f in $(config_files); do \
 	  test ! -f "$$f" || $(INSTALL_DATA) $$f $(config_dest); \
@@ -101,7 +120,10 @@ uninstall-local:
 	  test ! -f "$$f" || rm -f $(baseboards_dest)/`basename "$$f"`; \
 	done
 
-
+	for f in $(baseboards_files); do \
+	  test ! -f "$$f" || rm -f $(baseboards_dest)/`basename "$$f"`; \
+	done
+	rm -f $(baseboards_dest)/`basename dejagnu.h`;
 
 
 

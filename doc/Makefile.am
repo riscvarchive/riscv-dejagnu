@@ -2,6 +2,10 @@
 
 # AUTOMAKE_OPTIONS =
 
+man_MANS = runtest.1
+# FIXME: We need to generate an info doc from SGML somehow, but for
+# now, don't install the old texinfo document from version 1.3
+# info_TEXINFOS = dejagnu.texi
 DOCBOOK = @DOCBOOK@
 TARGETS = overview.html overview.rtf overview.ps # overview.pdf overview.dvi
 
@@ -45,5 +49,7 @@ install-doc: $(TARGETS)
 	$(INSTALL_DATA) overview/stylesheet-images/*.png $(DESTDIR)$(pkgdatadir)/html/stylesheet-images
 	$(INSTALL_DATA) overview.rtf $(DESTDIR)$(pkgdatadir)/dejagnu.ps
 	$(INSTALL_DATA) overview.ps $(DESTDIR)$(pkgdatadir)/dejagnu.ps
-#	$(INSTALL_DATA) overview.pdf $(DESTDIR)$(pkgdatadir)/dejagnu.pdf
+	$(INSTALL_DATA) overview.pdf $(DESTDIR)$(pkgdatadir)/dejagnu.pdf
+	$(INSTALL_DATA) runtest.1 $(mandir)/man1/
+
 
