@@ -859,7 +859,7 @@
       the test run. This is the ideal place to set the variables
       <symbol>host_triplet</symbol>, <symbol>build_triplet</symbol>,
       <symbol>target_triplet</symbol>. All other variables are tool
-      dependant. ie for testing a compiler, the value for
+      dependant, i.e., for testing a compiler, the value for
       <symbol>CC</symbol> might be set to a freshly built binary, as
       opposed to one in the user's path.</para>
 
