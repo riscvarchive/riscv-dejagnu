@@ -1,5 +1,10 @@
 2004-02-07  Ben Elliston  <bje@wasabisystems.com>
 
+	* example/Makefile.am (check-recursive): Remove target.
+	* example/Makefile.in: Regenerate.
+
+2004-02-07  Ben Elliston  <bje@wasabisystems.com>
+
 	* dejagnu.h: Conform with GNU coding standard.
 
 2004-02-07  Ben Elliston  <bje@wasabisystems.com>
