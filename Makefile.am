@@ -3,7 +3,7 @@
 AUTOMAKE_OPTIONS = dejagnu
 
 # Install all the associated data files
-SUBDIRS = doc testsuite example 
+SUBDIRS = doc testsuite example
 
 # Install the bourne shell script driver in the bindir
 bin_SCRIPTS = runtest

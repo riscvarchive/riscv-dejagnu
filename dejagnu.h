@@ -68,7 +68,11 @@ totals (void) {
 #include <iomanip>
 #include <fstream>
 #include <string>
+#if HAVE_STL3
+#include <sstream>
+#else
 #include <strstream>
+#endif
 
 char *outstate[] = {
     "FAILED: ",
@@ -110,16 +114,6 @@ OMANIP<int> testout(int i) {
 }
 #endif
 
-char *testout (int x) {
-  using namespace std;
-  const int len = 128;
-  static char buf[len];
-  static ostrstream oss(buf, len, ios::out);
-  oss.seekp(ios::beg);
-  oss << outstate[x] << ends;
-  return buf;
-}
-
 enum teststate {FAILED, PASSED,UNTESTED,UNRESOLVED} laststate;
 
 class TestState {
@@ -137,7 +131,6 @@ class TestState {
         totals();
     };
 
-
     void testrun (bool b, std::string s) {
         if (b)
             pass (s);
@@ -149,7 +142,7 @@ class TestState {
         passed++;
         laststate = PASSED;
         lastmsg = s;
-        std::cout << "\t" << testout(PASSED) << s << std::endl;
+        std::cout << "\t" << outstate[PASSED] << s << std::endl;
     }
     void pass (const char *c) {
         std::string s = c;
@@ -160,7 +153,7 @@ class TestState {
         failed++;
         laststate = FAILED;
         lastmsg = s;
-        std::cout << "\t" << testout(FAILED) << s << std::endl;
+        std::cout << "\t" << outstate[FAILED] << s << std::endl;
     }
     void fail (const char *c) {
         std::string s = c;
@@ -171,7 +164,7 @@ class TestState {
         untest++;
         laststate = UNTESTED;
         lastmsg = s;
-        std::cout << "\t" << testout(UNTESTED) << s << std::endl;
+        std::cout << "\t" << outstate[UNTESTED] << s << std::endl;
     }
     void untested (const char *c) {
         std::string s = c;
@@ -182,7 +175,7 @@ class TestState {
         unresolve++;
         laststate = UNRESOLVED;
         lastmsg = s;
-        std::cout << "\t" << testout(UNRESOLVED) << s << std::endl;
+        std::cout << "\t" << outstate[UNRESOLVED] << s << std::endl;
     }
     void unresolved (const char *c) {
         std::string s = c;

@@ -1784,14 +1784,21 @@ TCLSH="${ac_cv_path_tclsh}"
 
 
 
-echo $ac_n "checking for for STL versions""... $ac_c" 1>&6
-echo "configure:1789: checking for for STL versions" >&5
+echo $ac_n "checking for STL versions""... $ac_c" 1>&6
+echo "configure:1789: checking for STL versions" >&5
 if eval "test \"`echo '$''{'ac_cv_stl'+set}'`\" = set"; then
   echo $ac_n "(cached) $ac_c" 1>&6
 else
   
+  ac_ext=C
+# CXXFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
+ac_cpp='$CXXCPP $CPPFLAGS'
+ac_compile='${CXX-g++} -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
+ac_link='${CXX-g++} -o conftest${ac_exeext} $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
+cross_compiling=$ac_cv_prog_cxx_cross
+
   cat > conftest.$ac_ext <<EOF
-#line 1795 "configure"
+#line 1802 "configure"
 #include "confdefs.h"
 #include <iostream>
 int main() {
@@ -1801,7 +1808,7 @@ int main() {
   cout.rdbuf()->pubsetbuf(bbuuff, 5120); 
 ; return 0; }
 EOF
-if { (eval echo configure:1805: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
+if { (eval echo configure:1812: \"$ac_compile\") 1>&5; (eval $ac_compile) 2>&5; }; then
   rm -rf conftest*
   ac_cv_stl=v3
   
@@ -1816,6 +1823,13 @@ rm -f conftest*,
 
 fi
 
+
+ac_ext=c
+# CFLAGS is not in ac_cpp because -g, -O, etc. are not valid cpp options.
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='${CC-cc} -c $CFLAGS $CPPFLAGS conftest.$ac_ext 1>&5'
+ac_link='${CC-cc} -o conftest${ac_exeext} $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS 1>&5'
+cross_compiling=$ac_cv_prog_cc_cross
 
 if test x"${ac_cv_stl}" != x"v2" ; then  
   echo "$ac_t""v3" 1>&6
@@ -1950,7 +1964,7 @@ ac_given_srcdir=$srcdir
 ac_given_INSTALL="$INSTALL"
 
 trap 'rm -fr `echo "Makefile doc/Makefile testsuite/Makefile example/Makefile
-testsuite/libdejagnu/Makefile unitparse/Makefile" | sed "s/:[^ ]*//g"` conftest*; exit 1' 1 2 15
+testsuite/libdejagnu/Makefile" | sed "s/:[^ ]*//g"` conftest*; exit 1' 1 2 15
 EOF
 cat >> $CONFIG_STATUS <<EOF
 
@@ -2052,7 +2066,7 @@ EOF
 cat >> $CONFIG_STATUS <<EOF
 
 CONFIG_FILES=\${CONFIG_FILES-"Makefile doc/Makefile testsuite/Makefile example/Makefile
-testsuite/libdejagnu/Makefile unitparse/Makefile"}
+testsuite/libdejagnu/Makefile"}
 EOF
 cat >> $CONFIG_STATUS <<\EOF
 for ac_file in .. $CONFIG_FILES; do if test "x$ac_file" != x..; then

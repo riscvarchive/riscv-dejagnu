@@ -1,3 +1,17 @@
+2001-05-28  Rob Savoye  <rob@peggyo.welcomehome.org>
+
+	* acinclude.m4(DJ_AC_STL): Also use
+	AC_LANG_CPLUSPLUS so we build this test case with G++.
+	* aclocal.m4, configure: Regenerated.
+	* dejagnu.h: Don't use testout(), have each method print the array
+	value directly, which is much simpler.
+
+2001-05-27  Jeffrey Oldham  <oldham@codesourcery.com>
+
+        * acinclude.m4(DJ_AC_STL): s/for for/for/.
+        * dejagnu.h: Add conditional support for sstream.
+        (testout): Likewise. Make return type `const'.
+
 2001-05-25  Rob Savoye  <rob@peggyo.welcomehome.org>
 
 	* acinclude.m4: Add DJ_AC_STL, which figures out if we're running
