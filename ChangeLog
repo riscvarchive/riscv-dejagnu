@@ -1,5 +1,9 @@
 2001-05-03  Rob Savoye  <rob@peggyo.welcomehome.org>
 
+	* config/default.exp: New file for default config settings for
+	simple native testsuites that don't need anything else.
+	* lib/dejagnu.exp: Add $text\r\n to all strings, to make sure we
+	only get one line at a time.
 	* testsuite/libdejagnu: New directory for dejagnu library test
 	cases.
 	* testsuite/libdejagnu/unit.cc: Test case for dejagnu.h.
