@@ -1,3 +1,8 @@
+2003-07-30  Ben Elliston  <bje@wasabisystems.com>
+
+	* doc/runtest.1: Replace "TCL" with "Tcl".
+	Make last revision date current.
+
 2003-07-29  Ben Elliston  <bje@wasabisystems.com>
 
 	* doc/overview.sgml: Replace "NT" with "Windows", correct Cygwin
