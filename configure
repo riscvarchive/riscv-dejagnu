@@ -1272,7 +1272,6 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
-
 am__api_version="1.8"
 ac_aux_dir=
 for ac_dir in $srcdir $srcdir/.. $srcdir/../..; do
@@ -4970,5 +4969,4 @@ echo "$as_me: error: $ac_sub_configure failed for $ac_dir" >&2;}
     cd $ac_popdir
   done
 fi
-
 

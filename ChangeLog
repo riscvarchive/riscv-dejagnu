@@ -1,4 +1,9 @@
-2004-02-06  Ben Elliston  <bje@wasabisystems.com>
+2004-02-07  Ben Elliston  <bje@wasabisystems.com>
+
+	* configure.ac: Remove commented out code.
+	* configure: Regenerate.
+
+2004-02-06  Ben Elliston  <bje@wasabisystems.com>	
 
 	* site.tmpl: Tidy.
 
