@@ -2374,10 +2374,10 @@
       libraries. In this case, each file is linked with a test case in
       C or C++, and each function or class and method is tested in
       series, with the test case having to check private data or
-      global variable to see if the function or method worked.</para>
+      global variables to see if the function or method worked.</para>
 
-      <para>This works particularly well for testing API and a level
-      where it is easier to debug them, than by need to trace through
+      <para>This works particularly well for testing APIs and at level
+      where it is easier to debug them, than by needing to trace through
       the entire appication. Also if there is a specification for the
       API to be tested, the testcase can also function as a compliance
       test.</para>

@@ -65,7 +65,8 @@ binary-indep:	checkroot build
 	install -d debian/tmp/usr/doc/$(package)/html/stylesheet-images
 	install -m 0644 doc/overview.rtf debian/tmp/usr/doc/$(package)
 	install -m 0644 doc/overview.ps debian/tmp/usr/doc/$(package)
-	install -m 0644 doc/overview/*.html debian/tmp/usr/doc/$(package)/html
+	install -m 0644 doc/overview.pdf debian/tmp/usr/doc/$(package)
+	install -m 0644 doc/overview/*.html debian/tmp/usr/doc/$(package)/html/
 	install -m 0644 doc/overview/stylesheet-images/*.png debian/tmp/usr/doc/$(package)/html/stylesheet-images
 	install -m 0644 debian/copyright debian/tmp/usr/doc/$(package)
 	install -m 0644 debian/changelog debian/tmp/usr/doc/$(package)/changelog.Debian

@@ -1,5 +1,20 @@
+2001-05-06  Rob Savoye  <rob@blackpeter.welcomehome.org>
+
+	* debian/rules: Install all the doc formats.
+	* redhat/dejagnu.spec: Install all the doc formats.
+	* Clean.tcl: Also nuke all Emacs backup files.
+	* Makefile.am: Fix dependencies on tarball target. Add new target
+	to build Debian packages. Add $(includedir) to install-data-local
+	target so dejagnu.h gets installed in the right place.
+
 2001-05-03  Rob Savoye  <rob@peggyo.welcomehome.org>
 
+	* doc/Makefile.am: Make all paths absolute, cause some versions of
+	the db2* tools are braindead.
+	* doc/overview.sgml: Update version numbers and log.
+	* doc/user.sgml: Add mention of dejagnu.h header file.
+	* doc/ref.sgml: Add chapter on dejagnu.h header file for unit
+	testing.
 	* config/default.exp: New file for default config settings for
 	simple native testsuites that don't need anything else.
 	* lib/dejagnu.exp: Add $text\r\n to all strings, to make sure we

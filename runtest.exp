@@ -1275,15 +1275,20 @@ proc load_config { args } {
 #
 
 proc load_tool_target_config { name } {
-    global target_os
+    global target_os libdir srcdir
 
     set found [load_config "${name}.exp" "${target_os}.exp" "default.exp" "unknown.exp"];
 
     if { $found == 0 } {
-	send_error "ERROR: Couldn't find tool config file for $name.\n"
+	send_error "WARNING: Couldn't find tool config file for $name, using default.\n"
+	# If we can't load the tool init file, this must be a simple natively hosted
+	# test suite, so we use the default procs for Unix.
+	if { [search_and_load_file "library file" default.exp [list $libdir $libdir/config [file dirname [file dirname $srcdir]]/dejagnu/config $srcdir/config . [file dirname [file dirname [file dirname $srcdir]]]/dejagnu/config]] == 0 } {
+	send_error "ERROR: Couldn't find default tool init file.\n"
+	exit 1
+	}
     }
 }
-
 
 #
 # Find the file that describes the machine specified by board_name.

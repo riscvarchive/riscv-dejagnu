@@ -36,6 +36,7 @@ mkdir -p $RPM_BUILD_ROOT/usr/include
 mkdir -p $RPM_BUILD_ROOT/usr/share/dejagnu
 mkdir -p $RPM_BUILD_ROOT/usr/doc/dejagnu-%{version}
 make prefix=$RPM_BUILD_ROOT/usr install
+make prefix=$RPM_BUILD_ROOT/usr install-doc
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -48,11 +49,12 @@ rm -rf $RPM_BUILD_ROOT
 
 # %config site.exp
 
-%doc COPYING NEWS README AUTHORS INSTALL ChangeLog doc/overview
+%doc COPYING NEWS README AUTHORS INSTALL ChangeLog doc/overview doc/overview.ps doc/overview.pdf
  
 %changelog
 * Wed Apr 11 2001 Rob Savoye <rob@welcomehome.org>
 - Added installing dejagnu.h.
+- Install the ps and pdf formatted docs too
 
 * Wed Feb 21 2001 Rob Savoye <rob@welcomehome.org>
 - Fixed Requires line, and changed the URL to the new ftp site.

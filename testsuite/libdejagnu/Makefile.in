@@ -74,13 +74,13 @@ tclsh = @tclsh@
 
 CFLAGS = -I$(top_srcdir)
 
-bin_PROGRAMS = unit
+noinst_PROGRAMS = unit
 
 unit_SOURCES = unit.cc
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES = 
-bin_PROGRAMS =  unit$(EXEEXT)
-PROGRAMS =  $(bin_PROGRAMS)
+noinst_PROGRAMS =  unit$(EXEEXT)
+PROGRAMS =  $(noinst_PROGRAMS)
 
 
 DEFS = @DEFS@ -I. -I$(srcdir) 
@@ -117,30 +117,14 @@ Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status $(BUILT_SOURCES)
 	  && CONFIG_FILES=$(subdir)/$@ CONFIG_HEADERS= $(SHELL) ./config.status
 
 
-mostlyclean-binPROGRAMS:
+mostlyclean-noinstPROGRAMS:
 
-clean-binPROGRAMS:
-	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
+clean-noinstPROGRAMS:
+	-test -z "$(noinst_PROGRAMS)" || rm -f $(noinst_PROGRAMS)
 
-distclean-binPROGRAMS:
+distclean-noinstPROGRAMS:
 
-maintainer-clean-binPROGRAMS:
-
-install-binPROGRAMS: $(bin_PROGRAMS)
-	@$(NORMAL_INSTALL)
-	$(mkinstalldirs) $(DESTDIR)$(bindir)
-	@list='$(bin_PROGRAMS)'; for p in $$list; do \
-	  if test -f $$p; then \
-	    echo "  $(INSTALL_PROGRAM) $$p $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`"; \
-	     $(INSTALL_PROGRAM) $$p $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`; \
-	  else :; fi; \
-	done
-
-uninstall-binPROGRAMS:
-	@$(NORMAL_UNINSTALL)
-	list='$(bin_PROGRAMS)'; for p in $$list; do \
-	  rm -f $(DESTDIR)$(bindir)/`echo $$p|sed 's/$(EXEEXT)$$//'|sed '$(transform)'|sed 's/$$/$(EXEEXT)/'`; \
-	done
+maintainer-clean-noinstPROGRAMS:
 
 .s.o:
 	$(COMPILE) -c $<
@@ -272,7 +256,7 @@ check-am: all-am
 check: check-am
 installcheck-am:
 installcheck: installcheck-am
-install-exec-am: install-binPROGRAMS
+install-exec-am:
 install-exec: install-exec-am
 
 install-data-am:
@@ -281,14 +265,13 @@ install-data: install-data-am
 install-am: all-am
 	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
 install: install-am
-uninstall-am: uninstall-binPROGRAMS
+uninstall-am:
 uninstall: uninstall-am
 all-am: Makefile $(PROGRAMS)
 all-redirect: all-am
 install-strip:
 	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
 installdirs:
-	$(mkinstalldirs)  $(DESTDIR)$(bindir)
 
 
 mostlyclean-generic:
@@ -300,22 +283,22 @@ distclean-generic:
 	-rm -f config.cache config.log stamp-h stamp-h[0-9]*
 
 maintainer-clean-generic:
-mostlyclean-am:  mostlyclean-binPROGRAMS mostlyclean-compile \
+mostlyclean-am:  mostlyclean-noinstPROGRAMS mostlyclean-compile \
 		mostlyclean-tags mostlyclean-depend mostlyclean-generic
 
 mostlyclean: mostlyclean-am
 
-clean-am:  clean-binPROGRAMS clean-compile clean-tags clean-depend \
+clean-am:  clean-noinstPROGRAMS clean-compile clean-tags clean-depend \
 		clean-generic mostlyclean-am
 
 clean: clean-am
 
-distclean-am:  distclean-binPROGRAMS distclean-compile distclean-tags \
+distclean-am:  distclean-noinstPROGRAMS distclean-compile distclean-tags \
 		distclean-depend distclean-generic clean-am
 
 distclean: distclean-am
 
-maintainer-clean-am:  maintainer-clean-binPROGRAMS \
+maintainer-clean-am:  maintainer-clean-noinstPROGRAMS \
 		maintainer-clean-compile maintainer-clean-tags \
 		maintainer-clean-depend maintainer-clean-generic \
 		distclean-am
@@ -324,8 +307,8 @@ maintainer-clean-am:  maintainer-clean-binPROGRAMS \
 
 maintainer-clean: maintainer-clean-am
 
-.PHONY: mostlyclean-binPROGRAMS distclean-binPROGRAMS clean-binPROGRAMS \
-maintainer-clean-binPROGRAMS uninstall-binPROGRAMS install-binPROGRAMS \
+.PHONY: mostlyclean-noinstPROGRAMS distclean-noinstPROGRAMS \
+clean-noinstPROGRAMS maintainer-clean-noinstPROGRAMS \
 mostlyclean-compile distclean-compile clean-compile \
 maintainer-clean-compile tags mostlyclean-tags distclean-tags \
 clean-tags maintainer-clean-tags distdir mostlyclean-depend \

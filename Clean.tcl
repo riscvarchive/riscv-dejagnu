@@ -125,6 +125,7 @@ proc cleanfiles { directory } {
 	append allfiles " [glob -nocomplain "$directory/core"]"
 	append allfiles " [glob -nocomplain "$directory/CVS"]"
 	append allfiles " [glob -nocomplain "$directory/RCS"]"
+	append allfiles " [glob -nocomplain "$directory/.\#*"]"
     } else {
 	# read in the .clean file, line by line
 	while { [gets $cleanfile cur_line]>=0 } {
@@ -154,7 +155,7 @@ proc cleanfiles { directory } {
     # nuke the files
     if { [string length $allfiles] > 0 } {
 	verbose "Removing \"$allfiles\" from $directory"
-	catch "exec rm -f $allfiles"
+	catch "exec rm -fr $allfiles"
     } else {
 	verbose "Nothing to remove from $directory" 2
     }

@@ -433,7 +433,7 @@ check-DEJAGNU:
 	@echo "Do nothing here, cause we don't want to run the tests twice"
 
 # Set ourselves up to build a RedHat package
-tarball: doc/overview/overview.html doc/overview.pdf doc/overview.ps
+tarball: overview.html overview.ps overview.pdf
 	-rm -fr dejagnu-${VERSION}
 	cp -fpr $(srcdir) dejagnu-${VERSION}
 	@echo "clean up stuff we don't want in the source file"
@@ -452,7 +452,9 @@ snapshot:
 	-rm -fr dejagnu-${DATE}
 	cp -fpr $(srcdir) dejagnu-${DATE}
 	@echo "clean up stuff we don't want in the source file"
-	(cd dejagnu-${DATE} ; $(srcdir)/Clean.tcl)
+	src=$(srcdir); \
+	dir=`(cd $${src}; pwd)`; \
+	(cd dejagnu-${DATE} ; $${dir}/Clean.tcl);
 	-mkdir -p doc/overview
 	-cp -fr doc/overview dejagnu-${DATE}/doc/
 	-cp -fr doc/overview.ps dejagnu-${DATE}/doc/
@@ -467,14 +469,28 @@ rpm: tarball rpmspec
 	cp -f ../$(distdir).tar.gz /usr/src/redhat/SOURCES/
 	rpm -ba /usr/src/redhat/SPECS/dejagnu.spec
 
-overview.html install-doc doc html dvi ps pdf rtf:
+deb: overview.html overview.ps overview.pdf
+	-rm -fr dejagnu-${VERSION}
+	cp -fpr $(srcdir) dejagnu-${VERSION}
+	@echo "clean up stuff we don't want in the source file"
+	src=$(srcdir); \
+	dir=`(cd $${src}; pwd)`; \
+	(cd dejagnu-${VERSION} ; $${dir}/Clean.tcl);
+	-mkdir -p doc/overview;
+	-cp -fr $(srcdir)/debian dejagnu-${VERSION}/;
+	-cp -fr doc/overview dejagnu-${VERSION}/doc/;
+	-cp -fr doc/overview.ps dejagnu-${VERSION}/doc/;
+	-cp -fr doc/overview.pdf dejagnu-${VERSION}/doc/;
+	(cd dejagnu-${VERSION}; dpkg-buildpackage)
+
+overview.html overview.ps overview.pdf install-doc:
 	cd doc && $(MAKE) $(FLAGS_TO_PASS) $@
 
 # Automake sucks when it comes to building a distribution, so
 # we just copy the source tree onto of what Automake did, and
 # then we Clean it. Automake only includes the source files.
 # We want all the testsuites, data files, and html versions of the doc.
-dist-hook: rpmspec overview.html
+dist-hook: rpmspec overview.html overview.ps overview.pdf
 	-rm -fr $(distdir)
 	cp -fpr $(srcdir) $(distdir)
 	(cd $(distdir) ; $(TCLSH) $(srcdir)/Clean.tcl)
@@ -483,7 +499,7 @@ dist-hook: rpmspec overview.html
 	-cp -fr doc/overview.pdf $(distdir)/doc/
 
 install-data-local:
-	$(mkinstalldirs) $(lib_dest)
+	$(mkinstalldirs) $(lib_dest) $(includedir)
 	for f in $(lib_files); do \
 	  test ! -f "$$f" || $(INSTALL_DATA) $$f $(lib_dest); \
 	done
@@ -514,7 +530,7 @@ uninstall-local:
 	for f in $(baseboards_files); do \
 	  test ! -f "$$f" || rm -f $(baseboards_dest)/`basename "$$f"`; \
 	done
-	rm -f $(baseboards_dest)/`basename dejagnu.h`;
+	rm -f $(includedir)/dejagnu.h;
 
 site.exp: Makefile
 	@echo 'Making a new site.exp file...'

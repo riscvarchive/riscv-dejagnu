@@ -4,7 +4,7 @@
 
 CFLAGS = -I$(top_srcdir)
 
-bin_PROGRAMS = unit
+noinst_PROGRAMS = unit
 
 unit_SOURCES = unit.cc
 

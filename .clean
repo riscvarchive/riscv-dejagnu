@@ -1,10 +1,8 @@
 # this is a list of files to keep
-.clean
 ChangeLog
 AUTHORS
 COPYING
 ChangeLog
-Clean.tcl
 INSTALL
 Makefile.am
 Makefile.in
@@ -20,7 +18,7 @@ config.sub
 configure
 configure.in
 contrib
-debian
+dejagnu.h
 doc
 example
 i960glue.c
@@ -28,7 +26,6 @@ install-sh
 lib
 missing
 mkinstalldirs
-redhat
 runtest
 runtest.exp
 site.tmpl

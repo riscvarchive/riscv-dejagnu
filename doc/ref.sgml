@@ -4259,95 +4259,144 @@
 
 </chapter>
 
-<chapter id=unittesting>
-  <title>Unit Testing</title>
+<chapter id=unittestapi xreflabel="Unit Testing API">
+  <title>Unit Testing API</title>
 
-  <sect1 id=unittestapi xreflabel="Unit Testing API">
-    <title>Unit Testing API</title>
-
-    <para>For unit testing, you can use the dejagnu.h header file. </para>
-    
-    <sect2 id=cunit xreflabel="C Unit Testing API">
+    <sect1 id=cunit xreflabel="C Unit Testing API">
     <title>C Unit Testing API</title>
     
-    <para>For C code, there is a C API.</para>
-    
-    <sect3 id=passfunc xreflabel="pass function">
-    <title>Pass Method</title>
+    <para>All of the functions that take a
+    <parameter>msg</parameter> parameter use a C char * that is
+    the message to be dislayed. There currently is no support for
+    variable length arguments.</para>
+
+
+    <sect2 id=passfunc xreflabel="pass function">
+    <title>Pass Function</title>
 	  
 	  <para>This prints a message for a successful test
-	  completion.
-	  <parameter>msg</parameter>. This is a C char * string that
-	  is the message to be dislayed.</para>
+	  completion.</para>
 
 	  <funcsynopsis role="C"> 
 	  <funcdef><function>pass</function></funcdef>
 	  <paramdef><parameter>msg</parameter></paramdef>
 	  </funcsynopsis>
-    </sect3>
+
     </sect2>
 
-    <sect2 id=cppunit xreflabel="C++ Unit Testing API">
-	   <title>C++ Unit Testing API</title>
+    <sect2 id=failfunc xreflabel="fail function">
+    <title>Fail Function</title>
+	  
+	  <para>This prints a message for an unsuccessful test
+	  completion.</para>
 
-	   <sect3 id=passmeth xreflabel="pass method">
+	  <funcsynopsis role="C"> 
+	  <funcdef><function>fail</function></funcdef>
+	  <paramdef><parameter>msg</parameter></paramdef>
+	  </funcsynopsis>
+
+    </sect2>
+
+	<sect2 id=untestedfunc xreflabel="untested function">
+	  <title>Untested Function</title>
+
+	  <para>This prints a message for an test case that isn't run
+	  for some technical reason.</para>
+
+	<funcsynopsis role="C"> 
+            <funcdef><function>untested</function></funcdef>
+	    <paramdef><parameter>msg</parameter></paramdef>
+	        </funcsynopsis>
+	</sect2>
+
+	<sect2 id=unresolvedfunc xreflabel="unresolved function">
+	  <title>Unresolved Function</title>
+
+	  <para>This prints a message for an test case that is run,
+	  but there is no clear result. These output states require a
+	  human to look over the results to determine what happened.
+	  </para>
+
+	<funcsynopsis role="C"> 
+            <funcdef><function>unresolved</function></funcdef>
+	    <paramdef><parameter>msg</parameter></paramdef>
+	        </funcsynopsis>
+	</sect2>
+
+	<sect2 id=totalsfunc xreflabel="totals function">
+	  <title>Totals Function</title>
+
+	  <para>This prints out the total numbers of all the test
+	  state outputs.</para>
+
+	<funcsynopsis role="C"> 
+            <funcdef><function>totals</function></funcdef>
+	    <paramdef><parameter></parameter></paramdef>
+        </funcsynopsis>
+	</sect2>
+
+    </sect1>
+
+    <sect1 id=cppunit xreflabel="C++ Unit Testing API">
+	   <title>C++ Unit Testing API</title>
+	   
+	   <para>All of the methods that take a
+	   	  <parameter>msg</parameter> parameter use a C char *
+		  or STL string, that is the message to be
+	   	  dislayed. There currently is no support for variable
+	   	  length arguments.</para>
+	  
+	   <sect2 id=passmeth xreflabel="pass method">
 	   <title>Pass Method</title>
 
 	  <para>This prints a message for a successful test
-	  completion.
-	  <parameter>msg</parameter>. This is a C char * string that
-	  is the message to be dislayed.</para>
+	  completion.</para>
 
 	<funcsynopsis role="C++"> 
             <funcdef><function>TestState::pass</function></funcdef>
 	    <paramdef><parameter>msg</parameter></paramdef>
-	        </funcsynopsis>
-	</sect3>
+	</funcsynopsis>
+	</sect2>
 
-	<sect3 id=failmeth xreflabel="fail method">
+	<sect2 id=failmeth xreflabel="fail method">
 	  <title>Fail Method</title>
 
 	  <para>This prints a message for an unsuccessful test
-	  completion.
-	  <parameter>msg</parameter>. This is a C char * string that
-	  is the message to be dislayed.</para>
+	  completion.</para>
 
 	<funcsynopsis role="C++"> 
             <funcdef><function>TestState::fail</function></funcdef>
 	    <paramdef><parameter>msg</parameter></paramdef>
-	        </funcsynopsis>
-	</sect3>
+	</funcsynopsis>
+	</sect2>
 
-	<sect3 id=untestedmeth xreflabel="untested method">
+	<sect2 id=untestedmeth xreflabel="untested method">
 	  <title>Untested Method</title>
 
 	  <para>This prints a message for an test case that isn't run
-	  for some technical reason.
-	  <parameter>msg</parameter>. This is a C char * string that
-	  is the message to be dislayed.</para>
+	  for some technical reason.</para>
 
 	<funcsynopsis role="C++"> 
             <funcdef><function>TestState::untested</function></funcdef>
 	    <paramdef><parameter>msg</parameter></paramdef>
-	        </funcsynopsis>
-	</sect3>
+	</funcsynopsis>
+	</sect2>
 
-	<sect3 id=unresolvedmeth xreflabel="unresolved method">
+	<sect2 id=unresolvedmeth xreflabel="unresolved method">
 	  <title>Unresolved Method</title>
 
 	  <para>This prints a message for an test case that is run,
 	  but there is no clear result. These output states require a
 	  human to look over the results to determine what happened.
-	  <parameter>msg</parameter>. This is a C char * string that
-	  is the message to be dislayed.</para>
+	  </para>
 
 	<funcsynopsis role="C++"> 
             <funcdef><function>TestState::unresolved</function></funcdef>
 	    <paramdef><parameter>msg</parameter></paramdef>
-	        </funcsynopsis>
-	</sect3>
+	</funcsynopsis>
+	</sect2>
 
-	<sect3 id=totalsmeth xreflabel="totals method">
+	<sect2 id=totalsmeth xreflabel="totals method">
 	  <title>Totals Method</title>
 
 	  <para>This prints out the total numbers of all the test
@@ -4357,11 +4406,9 @@
             <funcdef><function>TestState::totals</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
-	</sect3>
+	</sect2>
 
-     </sect2>
-
-   </sect1>
+     </sect1>
 
 </chapter>
 
