@@ -125,6 +125,14 @@ proc sim_load { dest prog args } {
     return [list $result $output]
 }
 
+proc sim_download { dest file args } {
+    return [remote_download host $file $args]
+}
+
+proc sim_upload { dest srcfile destfile } {
+    return [remote_upload host $file $args]
+}
+
 set_board_info protocol  "sim"
 
 # By default, assume the simulator is slow.  This causes some tests

@@ -1,3 +1,7 @@
+2004-08-14  Paul Brook  <paul@codesourcery.com>
+
+	* config/sim.exp (sim_download, sim_upload): New procs.
+
 2004-06-30  Ben Elliston  <bje@gnu.org>
 
 	* config.guess: Update to current revision.
