@@ -75,7 +75,7 @@ proc remote_raw_open { args } {
 # the kill command will be invoked.
 #
 proc local_exec { commandline inp outp timeout } {
-    # TCL's exec is a pile of crap. It does two very inappropriate things
+    # Tcl's exec is a pile of crap. It does two very inappropriate things
     # firstly, it has no business returning an error if the program being
     # executed happens to write to stderr. Secondly, it appends its own
     # error messages to the output of the command if the process exits with
@@ -111,7 +111,7 @@ proc local_exec { commandline inp outp timeout } {
 	}
 
 	set use_tee 0
-	# We add |& cat so that TCL exec doesn't freak out if the
+	# We add |& cat so that Tcl exec doesn't freak out if the
 	# program writes to stderr.
 	if { $outp == "" } {
 	    set outp "|& cat"
@@ -175,7 +175,7 @@ proc local_exec { commandline inp outp timeout } {
 
     # Uuuuuuugh. Now I'm getting really sick.
     # If we didn't get an EOF, we have to kill the poor defenseless program.
-    # However, TCL has no kill primitive, so we have to execute an external 
+    # However, Tcl has no kill primitive, so we have to execute an external 
     # command in order to execute the execution. (English. Gotta love it.)
     if { ! $got_eof } {
 	verbose "killing $pid $pgid"
