@@ -1,3 +1,8 @@
+2002-10-21  Adam Nemet  <anemet@lnxw.com>
+        * libgloss.exp (get_multilibs): Don't use the first argument
+        passed to this function as the multilib option unless it is in
+        fact a multilib option.
+
 2002-11-13 Matt Bemis <bemis@iol.unh.edu>
 	* Fixed input/output to check for empty.
 
