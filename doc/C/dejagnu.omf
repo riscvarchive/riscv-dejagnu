@@ -1,0 +1,27 @@
+<?xml version="1.0" standalone="no"?>
+<omf>
+  <resource>
+    <creator>
+     rob@senecass.com (Rob Savoye)
+    </creator>
+    <title>
+	DejaGnu Manual
+    </title>
+    <date>
+     2004-02-05
+    </date>
+    <version identifier="1.4.4" date="2004-02-05" description="First release.  Updated for new OMF DTD."/>
+    <subject category="System|Other"/>
+    <description>
+	This is the manual for DejaGnu, the GNU regression Testing Framework
+    </description>
+    <type>
+     manual
+    </type>
+    <format mime="text/xml" dtd="-//OASIS//DTD DocBook XML V4.1.2//EN"/>
+    <identifier url=""/>
+    <language code="C"/>
+    <relation seriesid="31a101ca-363a-11d6-93d3-b34a9c6ce2e6"/>
+    <rights type="GNU FDL" license.version="1.1" license="http://www.gnu.org/licenses/fdl.html" holder="Free Software Foundation"/>
+  </resource>
+</omf>
