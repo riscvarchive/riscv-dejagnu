@@ -1,17 +1,14 @@
-Last updated $Date: 2004/02/08 05:22:06 $
+Last updated $Date: 2004/02/08 12:57:53 $
 
 Bigger items
 ============
 
+* Internationali[sz]ation.
+* Use a throw-away slave interpreter for running each test case.
 * Transfer timeouts should be dependent on file size and link speed.
 * Add more support for target boards and RTOSes.
 * Use the new expect terminal support for an "escape codes" API.
 * Use expectk and write a GUI testing API, complete with record/playback.
-
-Configure/build
-===============
-
-* Add a configure test to make sure the right version of Tcl is installed.
 
 Documentation
 =============

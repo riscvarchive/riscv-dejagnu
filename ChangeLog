@@ -1,3 +1,23 @@
+2004-02-08  Ben Elliston  <bje@wasabisystems.com>
+
+	* configure.ac: Quote strings throughout in good Autoconf style.
+	Remove AC_PROG_YACC invocation. Search for docbook2dvi, et al and
+	expect using AC_PATH_PROG. Remove DJ_AC_PATH_DOCBOOK in favour of
+	existing macros. Remove stale BOARDS and CONFIG substs. Ensure Tcl
+	is at version 8.3 or greater.
+	* configure: Regenerate.
+	* acinclude.m4: Remove.
+	* aclocal.m4: Regenerate.
+	* Makefile.in: Likewise.
+	* doc/Makefile.am (%.pdf: %.sgml): Use $(DOCBOOK2PDF).
+	(%.dvi: %.sgml): Use $(DOCBOOK2DVI).
+	(%.html: %.sgml): Use $(DOCBOOK2HTML).
+	* doc/Makefile.in: Regenerate.
+	* example/Makefile.in: Likewise.
+	* testsuite/Makefile.in: Likewise.
+	* testsuite/libdejagnu/Makefile.in: Likewise.
+	* TODO: Update.
+
 2004-02-08  Daniel Jacobowitz  <drow@mvista.com>
 
 	* baseboards/cf.exp: Use -T instead of -Wl,-T for ldscript.

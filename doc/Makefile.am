@@ -56,18 +56,18 @@ docs: $(TARGETS)
 %.pdf: %.sgml
 	src=$(srcdir); \
 	dir=`(cd $${src}; pwd)`; \
-	$(DOCBOOK)/db2pdf $${dir}/$*.sgml
+	$(DOCBOOK2PDF) $${dir}/$*.sgml
 
 %.dvi: %.sgml
 	src=$(srcdir); \
 	dir=`(cd $${src}; pwd)`; \
-	$(DOCBOOK)/db2dvi $${dir}/$*.sgml
+	$(DOCBOOK2DVI) $${dir}/$*.sgml
 
 %.html: %.sgml
 	src=$(srcdir); \
 	dir=`(cd $${src}; pwd)`; \
 	mkdir html; \
-	$(DOCBOOK)/db2html -o html $${dir}/$*.sgml
+	$(DOCBOOK2HTML) $${dir}/$*.sgml
 
 # Now for some extra dependencies that the automatic rules will not
 # catch:
