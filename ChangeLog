@@ -1,3 +1,12 @@
+2002-09-03  Rob Savoye  <rob@welcomehome.org>
+
+	* Makefile.am: Add support to build Solaris and HPUX packages.
+	* Makefile.in: Regenerated with automake 1.6.
+	* aclocal.m4: Regenerated with aclocal 1.6.
+	* example/hello/Makefile.in:  Regenerated with automake 1.6.
+	* example/calc/Makefile.in:  Regenerated with automake 1.6.
+	* missing: Update with the one from automake 1.6.
+	
 2002-08-30  Rob Savoye  <rob@welcomehome.org>
 
 	* configure.in: Add AC_NO_EXECUTABLES, so things configure without
