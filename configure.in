@@ -4,11 +4,12 @@ AC_INIT(runtest.exp)
 dnl AC_CONFIG_AUX_DIR(..)
 
 dnl These are required by automake
-AM_INIT_AUTOMAKE(dejagnu, 1.4.0)
+AM_INIT_AUTOMAKE(dejagnu, 1.4.1)
 AM_MAINTAINER_MODE
 AC_PROG_MAKE_SET
 
 AC_PROG_CC
+AC_PROG_CXX
 AC_PROG_INSTALL
 AC_EXEEXT
 
@@ -26,5 +27,6 @@ AC_SUBST(CONFIG)
  
 AC_CONFIG_SUBDIRS(example/calc)
 
-AC_OUTPUT(Makefile doc/Makefile testsuite/Makefile example/Makefile)
+AC_OUTPUT(Makefile doc/Makefile testsuite/Makefile example/Makefile
+testsuite/libdejagnu/Makefile)
 

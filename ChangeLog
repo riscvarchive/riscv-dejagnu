@@ -1,3 +1,29 @@
+2001-05-03  Rob Savoye  <rob@peggyo.welcomehome.org>
+
+	* testsuite/libdejagnu: New directory for dejagnu library test
+	cases.
+	* testsuite/libdejagnu/unit.cc: Test case for dejagnu.h.
+	* testsuite/libdejagnu/tunit.exp: Test driver for dejagnu.h.
+	* testsuite/libdejagnu/Makefile.am: New makefile to build the test
+	case.
+	* testsuite/libdejagnu/Makefile.in: Generated.
+	* testsuite/Makefile.am: Add libdejagnu to SUBDIRS. Replace the
+	site.exp rule, cause we don't want the $tool setting, so we run
+	all the test suites. Don't pass the tool name for "make check".
+	* configure.in: Add testsuite/libdejagnu/Makefile to AC_OUTPUT.
+	
+2001-05-02  Rob Savoye  <rob@peggyo.welcomehome.org>
+
+	* Makefile.am: Rename dist2 to tarball target. Fix the version
+	number to have the minor release too.
+	* doc/Makefile.am: Convert all paths from relative to absolute,
+	cause not all verions of the db2* tools can work with a relative
+	path.
+	* redhat/dejagnu.spec: Update version number, and install
+	dejagnu.h.
+	* debian/changelog: Update version number.
+	* debian/rules: and install dejagnu.h
+
 2001-05-01  Matt Hiller  <hiller@redhat.com>
   
         * lib/libgloss.exp (get_multilibs): Correction to Catherine
