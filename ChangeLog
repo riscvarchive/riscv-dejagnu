@@ -1,7 +1,13 @@
-2001-10-06  Gwenole Beauchesne <gbeauchesne@mandrakesoft.com>
+2001-11-02  Philip A. Wilsey  <philip.wilsey@cliftonlabs.com>
+	* lib/utils.exp: Need to pass -all to getdirs, so it descends
+	through all the subdirectories.
+	
+2001-10-08  Gwenole Beauchesne  <gbeauchesne@mandrakesoft.com>
 
-	* Check for Makefile style arguments in the second pass, but
-	ignore them, so they don't become invalid arguments.
+        * runtest.exp: Don't fail at processing Makefile style args in the
+        second command line parsing pass. Actually, skip them in this pass
+        since they are already processed in the first one for possible use
+        by init scripts.
 
 2001-10-02  Nick Clifton  <nickc@cambridge.redhat.com>
 

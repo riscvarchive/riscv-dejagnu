@@ -105,7 +105,7 @@ proc find { rootdir pattern } {
 	    break
 	}
 	foreach i $tmp {
-	    set j [getdirs $i]
+	    set j [getdirs -all $i]
 	    if ![string match "" $j] {
 		append dirs "$j "
 		set rootdir $j
