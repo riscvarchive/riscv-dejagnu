@@ -136,7 +136,7 @@
 
 2003-07-25  Jim Dein  <jdein@deinji5.apple.com>
 
-         * lib/utils.exp: fix double recursion bug in proc find.
+	* lib/utils.exp (find): Fix double recursion bug.
 
 2002-02-25  Jackie Smith Cashion  <jsmith@redhat.com>
 
