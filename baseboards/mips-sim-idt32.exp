@@ -53,4 +53,3 @@ set_board_info gdb,nosignals 1
 if {[string match "*soft-float*" $current_target_name]} {
     set_board_info gdb_init_command "set mipsfpu none"
 }
-

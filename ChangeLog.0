@@ -107,9 +107,6 @@
         * baseboards/frv-tiger.exp: New board description.
         * baseboards/frv-tomcat.exp: New board description.
 
-Wed Jun  5 14:52:15 PDT 2002   Joey Ekstrom <joey@ekstrom.org>
-	* dejagnu.h: modfied C functions to behave like printf.
-	
 2001-01-15  Ben Elliston  <bje@redhat.com>
 
         * lib/framework.exp (record_test): Invoke a user-defined procedure
@@ -132,8 +129,8 @@ Wed Jun  5 14:52:15 PDT 2002   Joey Ekstrom <joey@ekstrom.org>
 
 Wed Jun  5 14:52:15 PDT 2002   Joey Ekstrom <joey@ekstrom.org>
 
-	* dejagnu.h: modfied C functions to behave like printf.
-        * dejagnu.h: added wait() to fix problem with host_execute() in
+	* dejagnu.h: Modified C functions to behave like printf().
+        * dejagnu.h: Added wait() to fix problem with host_execute() in
         dejagnu.exp where if skips failed, untested, etc. messages from the
         executable.
 
@@ -613,7 +610,7 @@ Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
 	(all-local): Add at least `calc' building back.
 	* example/Makefile.in: Regenerated.
 
-ri Jul 21 16:01:43 2000  Andrew Cagney  <cagney@b1.cygnus.com>
+Fri Jul 21 16:01:43 2000  Andrew Cagney  <cagney@b1.cygnus.com>
 
 	From 2000-04-25 Felix Lee <flee@cygnus.com>:
 	* baseboards/tx39-sim.exp: Use idt, not dve linker script.  Delete

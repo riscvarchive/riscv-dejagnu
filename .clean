@@ -1,11 +1,12 @@
 # this is a list of files to keep
-ChangeLog
 AUTHORS
 COPYING
 ChangeLog
+ChangeLog.0
 INSTALL
 Makefile.am
 Makefile.in
+MAINTAINERS
 NEWS
 README
 TODO
@@ -17,14 +18,15 @@ config.guess
 config.sub
 configure
 configure.in
-contrib
 dejagnu.h
+depcomp
 doc
 example
 install-sh
 lib
 missing
 mkinstalldirs
+packaging
 runtest
 runtest.exp
 site.tmpl

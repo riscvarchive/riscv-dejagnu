@@ -4,7 +4,7 @@
 
 <?Fm: Validation Off>
 
-<!ENTITY version "1.4.3">
+<!ENTITY version "1.4.4">
 <!ENTITY dj "DejaGnu">
 
 <!ENTITY dejagnu-copyright "

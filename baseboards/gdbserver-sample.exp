@@ -62,4 +62,3 @@ set_board_info gdb,noinferiorio 1
 
 # Can't do hardware watchpoints, in general
 set_board_info gdb,no_hardware_watchpoints 1
-

@@ -33,4 +33,3 @@ proc ${tool}_start { } {
     verbose "WARNING: Using the default proc for tool_start" 2
     return $spawn_id
 }
-

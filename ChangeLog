@@ -1,3 +1,7 @@
+2004-01-30  Ben Elliston  <bje@wasabisystems.com>
+
+	* DejaGnu 1.4.4 released.
+
 2004-01-27  Ben Elliston  <bje@wasabisystems.com>
 
 	* Makefile.am (tarball): Depend on book1.html, not overview.html.
@@ -26,11 +30,30 @@
 
 	* baseboards/frv-sim.exp: Remove reference to devo/sim.
 
+2004-01-27  Ben Elliston  <bje@wasabisystems.com>
+
+	* doc/overview: Remove all files.
+
 2003-12-03  Ben Elliston  <bje@wasabisystems.com>
 
 	* testsuite/runtest.all/utils.test: Fix a test for proc find which
 	assumed that "subsubfile1" would appear at the end of the returned
 	list.  Adjust to use a more robust regular expression.
+
+2003-11-26  Ben Elliston  <bje@wasabisystems.com>
+
+	* doc/overview.sgml (version): Update.
+	* doc/overview/installation.html: Likewise.
+
+	* packaging/rpm/dejagnu.spec: Update version numbers throughout.
+	* packaging/pkg/pkginfo: Likewise.
+	* packaging/depot/dejagnu.psf: Likewise.
+	
+2003-10-25  Ben Elliston  <bje@wasabisystems.com>
+
+	* runtest.exp (frame_version): Bump version.	
+	* configure.in (AM_INIT_AUTOMAKE): Likewise.
+	* configure: Regenerate.
 
 2003-10-16  Rob Savoye   <rob@welcomehome.org>
 

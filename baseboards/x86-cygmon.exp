@@ -27,4 +27,3 @@ if { [board_info $board obj_format] == "a.out" } {
 } else {
     set_board_info gdb,start_symbol "__start"
 }
-

@@ -1,6 +1,6 @@
 PKG=DejaGnu
-NAME=DejaGnu 1.4.3
-VERSION=1.4.3
+NAME=DejaGnu 1.4.4
+VERSION=1.4.4
 ARCH=sparc
 CLASSES=none
 CATEGORY=utility

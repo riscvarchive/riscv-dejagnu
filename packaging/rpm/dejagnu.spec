@@ -1,4 +1,4 @@
-%define version 1.4.3
+%define version 1.4.4
 
 Summary: A front end for testing other programs.
 Name: dejagnu
