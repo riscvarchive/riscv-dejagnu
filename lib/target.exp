@@ -333,6 +333,20 @@ proc default_target_compile {source destfile type options} {
     }
 
     foreach i $options {
+
+	if { $i == "ada" } {
+	    set compiler_type "ada"
+	    if [board_info $dest exists adaflags] {
+		append add_flags " [target_info adaflags]"
+	    }
+	    # append add_flags " [gnatmake_include_flags]";
+	    if [board_info $dest exists gnatmake] {
+		set compiler [target_info gnatmake];
+	    } else {
+		set compiler [find_gnatmake];
+	    }
+	}
+	
 	if { $i == "c++" } {
 	    set compiler_type "c++"
 	    if [board_info $dest exists cxxflags] {
@@ -412,6 +426,13 @@ proc default_target_compile {source destfile type options} {
     global CC_FOR_TARGET
     global CXX_FOR_TARGET
     global F77_FOR_TARGET
+    global GNATMAKE_FOR_TARGET
+
+    if [info exists GNATMAKE_FOR_TARGET] {
+	if { $compiler_type == "ada" } {
+	    set compiler $GNATMAKE_FOR_TARGET
+	}
+    }
 
     if [info exists CC_FOR_TARGET] {
 	if { $compiler == "" } {

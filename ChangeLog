@@ -1,3 +1,8 @@
+2004-03-29  Joel Brobecker  <brobecker@gnat.com>
+
+	* lib/libgloss.exp (find_gnatmake): New procedure.
+	* lib/target.exp (default_target_compile): Add support for Ada.
+
 2004-04-16  Kazuhiro Inaoka  <inaoka dot kazuhiro at renesas dot com>
                                                                                 
         * baseboards/m32r-linux-sim.exp: Add New file.
