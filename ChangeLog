@@ -1,5 +1,9 @@
 2004-02-07  Ben Elliston  <bje@wasabisystems.com>
 
+	* NEWS: Document changes since 1.4.4.
+
+2004-02-07  Ben Elliston  <bje@wasabisystems.com>
+
 	* example/Makefile.am (check-recursive): Remove target.
 	* example/Makefile.in: Regenerate.
 

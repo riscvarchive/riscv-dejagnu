@@ -1,3 +1,11 @@
+Changes from 1.4.4
+
+1. The automake/autoconf-based build system has been cleaned up
+   significantly.  It now has less moving parts for maintainers.
+2. lib/mondfe.exp and lib/xsh.exp are now deprecated and will be
+   removed in the next major release.  If you still use this code,
+   please notify dejagnu@gnu.org.
+
 Changes from 1.4.2
 
 1. New XML output option, so test results can be loaded into a database.
