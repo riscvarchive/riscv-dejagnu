@@ -8,7 +8,7 @@ load_generic_config "sim"
 # basic-sim.exp is a basic description for the standard simulator.
 load_base_board_description "basic-sim"
 
-# "sh" is the name of the sim subdir in devo/sim.
+# "sh" is the name of the sim subdir.
 setup_sim sh
 
 # No multilib options needed by default.
