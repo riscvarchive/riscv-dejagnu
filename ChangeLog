@@ -1,5 +1,10 @@
 2004-02-08  Ben Elliston  <bje@wasabisystems.com>
 
+	* runtest: Terminate with an error if expect cannot be found.
+	* TODO: Update.
+
+2004-02-08  Ben Elliston  <bje@wasabisystems.com>
+
 	* configure.ac: Use AC_PATH_PROG to find expect(1).
 	(DJ_AC_PATH_TCLSH): Remove unneeded invocation.
 	* acinclude.m4 (DJ_AC_PATH_TCLSH): Remove.

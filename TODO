@@ -12,7 +12,6 @@ Configure/build
 ===============
 
 * Add a configure test to make sure the right version of Tcl is installed.
-* Add better error message to runtest when expect can't be found.
 
 Documentation
 =============

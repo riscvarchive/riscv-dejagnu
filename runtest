@@ -116,7 +116,12 @@ if [ x"$DEJAGNULIBS" != x ] ; then
     fi
 fi
 if [ x"$runpath" = x ] ; then
-    echo "ERROR: runtest.exp does not exist."
+    echo "ERROR: runtest.exp does not exist"
+    exit 1
+fi
+
+if ! type $expectbin >/dev/null 2>/dev/null ; then
+    echo "ERROR: unable to find expect on the PATH"
     exit 1
 fi
 
