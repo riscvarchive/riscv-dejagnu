@@ -50,10 +50,7 @@ if [string match "*/subdir2/subfile2" "[find ${srcdir}/runtest.all/topdir/subdir
     puts "FAILED: find, only one level deep"
 }
 
-#set path ${srcdir}/runtest.all/topdir/subdir1
-#exp_test "find ${path} sub*" "Adding */subdir1/subsubdir1/subsubfile1" "find, two levels deep"
-
-if [string match "*/subdir1/subsubdir1/subsubfile1" "[find ${srcdir}/runtest.all/topdir/subdir1 sub*]"] {
+if [regexp ".*/subdir1/subsubdir1/subsubfile1( |$)" "[find ${srcdir}/runtest.all/topdir/subdir1 sub*]"] {
     puts "PASSED: find, two levels deep"
 } else {
     puts "FAILED: find, two  levels deep"
@@ -108,11 +105,3 @@ if [info exists env(TESTRUN)] {
 # absolute path
 # psource file
 # diff file_1 file_2
-
-
-
-
-
-
-
-
