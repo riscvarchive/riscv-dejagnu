@@ -1,3 +1,16 @@
+2004-04-02  Rob Savoye  <rob@direwolf.welcomehome.org>
+
+	* configure.ac, example/Makefile.am: Add example/mathhelper.
+	* configure, alocal.m4, example/Makefile.in: Regenerated.
+
+2004-04-02 Joel Sherrill <joel@OARcorp.com>
+
+	* example/mathhelper: New example for using the unit testing API.
+
+2004-03-05  Daniel Jacobowitz  <drow@mvista.com>
+                                                                                
+        * lib/remote.exp (standard_spawn): Fix rsh username support.
+
 2004-03-06  Rob Savoye  <rob@althea.welcomehome.org>
 
 	* doc/C: New directory for DocBook XML files.
