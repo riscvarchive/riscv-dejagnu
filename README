@@ -29,7 +29,7 @@ several advantages for testing:
 
 followed by running ``make''.  (MYHOSTTYPE is a name for your host computer,
 for instance "sun4".  You can use the script ``config.sub'' to test whether
-a name is recognized; if it is, config.sub translates it to a triplet 
+a name is recognized; if it is, config.sub translates it to a triplet
 specifying CPU, vendor, and OS.) This is used when you plan to
 configure and build in the source tree.
 
@@ -46,19 +46,19 @@ default of /usr/local, use the --prefix option.
 	
 	configure MYHOSTYPE --prefix [PATH]
 
-where PATH is the prefix used to install the programs. 
+where PATH is the prefix used to install the programs.
 
   The configure testing and building will use the native compiler "cc"
 on your host machine. To change which compiler gets used (like gcc)
-set a the variable "CC" in your environment to point to it. 
+set a the variable "CC" in your environment to point to it.
 	
 	For csh users:		"setenv CC gcc"
 	For bourne shell users:	"CC=gcc;export CC"
 
-  Then when you compile, use "make CC=$CC". 
+  Then when you compile, use "make CC=$CC".
 
 See /usr/doc/dejagnu-$version/overview/book1.html or
-/usr/doc/dejagnu-$version/overview.ps for  for more details. 
+/usr/doc/dejagnu-$version/overview.ps for  for more details.
 
  As DejaGnu is a Tcl program, there is little to build. However, the
 documentation is not built by default. Use these targets:

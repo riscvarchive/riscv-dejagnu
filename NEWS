@@ -47,5 +47,5 @@
         3. The bugs in the GCC tests have been fixed.
         4. Testsuites are released separately.
         5. Testsuite sources now reside with the within each tool's
-           source tree. 
+           source tree.
 

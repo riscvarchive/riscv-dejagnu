@@ -11,12 +11,12 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
@@ -67,7 +67,7 @@ proc verbose { args } {
 	set level [lindex $args [expr $i+1]]
     }
     set message [lindex $args $i]
-    
+
     if { $verbose >= $level } {
 	# There is no need for the "--" argument here, but play it safe.
 	# We assume send_user also sends the text to the log file (which
@@ -115,7 +115,7 @@ proc cleanfiles { directory } {
     # get a list of all the files in this directory
     set allfiles [glob -nocomplain "$directory/*"]
     regsub -all "$directory/" $allfiles "" allfiles
-    
+
     # open the .clean file, which has the list of stuff we
     # want to save
     catch "set cleanfile [open "$directory/.clean" r]"
@@ -143,12 +143,12 @@ proc cleanfiles { directory } {
 	    if { [string index $cur_line 0] == "\#" } {
 		verbose "Ignoring comment" 2
 		continue
-	    } 
+	    }
 	    # ignore blank lines
 	    if { [string length $cur_line]<=0 } {
 		verbose "Ignoring blank line" 2
 		continue
-	    } 
+	    }
 	    regsub -all "\[\+\]" $cur_line "\\+" cur_line
 	    # remove the filename from the list
 	    regsub -all " $cur_line " $allfiles " " allfiles
@@ -158,7 +158,7 @@ proc cleanfiles { directory } {
 	    regsub -all "^$cur_line" $allfiles " " allfiles
 	}
     }
-    
+
     # remove the leading and trailing blank spaces for cleanliness sake
     set allfiles [string trimleft $allfiles]
     set allfiles [string trimright $allfiles]

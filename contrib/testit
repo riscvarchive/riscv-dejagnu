@@ -488,7 +488,7 @@ proc Alias { args} {
 #                   the alias name, and the second parameter is
 #                   the procedure that is aliased.
 # Returns: nothing, the command that is bound to the alias or a
-#          list of all aliases - command pairs. 
+#          list of all aliases - command pairs.
 # Sideeffects: internalAliasList is updated, and the alias
 #              proc is inserted
 ##########
@@ -819,7 +819,7 @@ if [string match "" $tmp] then {
 }
 }
 
-# Procedure: dialogbox 
+# Procedure: dialogbox
 proc dialogbox {} {
   set w .frame6.top2
   catch {destroy $w}
@@ -857,7 +857,7 @@ if [info exists editor] then {
     }
   }
 }
-.frame6.frame.text2 delete 0.0 end 
+.frame6.frame.text2 delete 0.0 end
 set fd [open $name r]
 while { [gets $fd line]>=0 } {
 .frame6.frame.text2 insert end "$line\n"
@@ -899,8 +899,8 @@ proc XFLocalParseAppDefs {xfAppDefFile} {
       # situation where a resource name ends in . and when it
       # ends in *.  In the second case you want to keep the *
       # in the widget name for pattern matching, but you want
-      # to get rid of the . if it is the end of the name. 
-      set backup -2  
+      # to get rid of the . if it is the end of the name.
+      set backup -2
       set line [string trim $line]
       if {[string index $line 0] == "#" || "$line" == ""} {
         # skip comments and empty lines
@@ -910,7 +910,7 @@ proc XFLocalParseAppDefs {xfAppDefFile} {
       set resource [string trim [lindex $list 0]]
       set i [string last "." $resource]
       set j [string last "*" $resource]
-      if {$j > $i} { 
+      if {$j > $i} {
         set i $j
         set backup -1
       }
@@ -1035,7 +1035,7 @@ proc XFLocalSetAppDefs {{xfWidgetPath "."}} {
           # make sure this command is a widget.
           if {![catch "winfo id $widget"] &&
               [string match "${xfWidgetPath}*" $widget]} {
-            catch "$widget configure -$name $value" 
+            catch "$widget configure -$name $value"
           }
         }
       }

@@ -65,14 +65,14 @@ fi
 if [ -x "$expectbin-bld.sh" ]; then
   expectbin="${CONFIG_SHELL-/bin/sh} $expectbin-bld.sh"
 fi
- 
+
 #
 # Extract a few options from the option list.
 #
 verbose=0
 debug=""
 for a in "$@" ; do
-  case $a in	    
+  case $a in
       -v|--v|-verb*|--verb*)    verbose=`expr $verbose + 1`;;
       -D0|--D0)       debug="-D 0" ;;
       -D1|--D1)       debug="-D 1" ;;
@@ -88,7 +88,7 @@ fi
 # start if from the source tree.
 #
 # runtest.exp is found in (autoconf-configure-set) @datadir@, but
-# $execpath is @bindir@.  We're assuming that 
+# $execpath is @bindir@.  We're assuming that
 #
 # @datadir@ == @bindir@/../share
 # or
@@ -99,7 +99,7 @@ fi
 for i in `echo ${execpath} | sed  -e 's@/[^/]*$@/share/dejagnu@'` `echo ${execpath} | sed  -e 's@/[^/]*/[^/]*$@/share/dejagnu@'` $execpath ; do
     if expr $verbose \> 1 > /dev/null ; then
 	echo Looking for $i/runtest.exp.
-    fi  
+    fi
     if [ -f $i/runtest.exp ] ; then
 	runpath=$i
 	if expr $verbose \> 0 > /dev/null ; then

@@ -26,7 +26,7 @@ AC_CACHE_VAL(ac_cv_stl,[
 ])
 
 AC_LANG_C
-if test x"${ac_cv_stl}" != x"v2" ; then  
+if test x"${ac_cv_stl}" != x"v2" ; then
   AC_MSG_RESULT(v3)
   AC_DEFINE(HAVE_STL3)
 else

@@ -60,7 +60,7 @@ done
 # FIXME: It sure would be nice if `testdir' wasn't necessary. :-(
 
 case $tool in
-    g++) 
+    g++)
 	devoname=gcc
 	checktarget=check-g++
 	testdir=testsuite
