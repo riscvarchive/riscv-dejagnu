@@ -5,6 +5,11 @@ Changes from 1.4.4
 2. lib/mondfe.exp and lib/xsh.exp have been removed.  Users requiring
    these communication modes can still use the DejaGnu 1.4 branch or
    can contact dejagnu@gnu.org to discuss reinstating these files.
+3. The configure script now ensures that Expect is installed and that
+   it is linked against Tcl 8.3 or greater.
+4. The runtest program now gracefully handles the possibility of the
+   expect binary vanishing after DejaGnu has been installed (for
+   example, by the user altering their PATH).
 
 Changes from 1.4.2
 
