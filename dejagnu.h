@@ -76,12 +76,14 @@ totals (void) {
 #endif
 #endif
 
-char *outstate[] = {
+const char *outstate_list[] = {
     "FAILED: ",
     "PASSED: ",
     "UNTESTED: ",
     "UNRESOLVED: "
 };
+
+const char ** outstate = outstate_list;
 
 #if 0
 extern ios& __iomanip_testout (ios&, int);

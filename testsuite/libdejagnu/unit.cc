@@ -1,11 +1,11 @@
 // unit.cc -- This is a test case for the Dejagnu.h classes.
 
+#include <sys/types.h>
 #include <iostream>
 #include <regex.h>
 #include <string>
 #include <fstream>
 #include <set>
-#include <sys/types.h>
 #include <dejagnu.h>
 
 using namespace std;
@@ -25,14 +25,14 @@ TestClass1 *testClassPtr;
 // We have to so this silly crap with renaming the output string, so the generic
 // Tcl code that looks for the output state gets confused, and records random
 // duplicate messages.
-char *os1[] = {
+const char *os1[] = {
     "FAI: ",
     "PAS: ",
     "UNT: ",
     "UNR: "
 };
 
-char *os2[] = {
+const char *os2[] = {
     "FAILED: ",
     "PASSED: ",
     "UNTESTED: ",
