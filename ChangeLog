@@ -1,5 +1,9 @@
 2004-02-09  Ben Elliston  <bje@wasabisystems.com>
 
+	* doc/runtest.1: Improve some wording. Update last revision date.
+
+2004-02-09  Ben Elliston  <bje@wasabisystems.com>
+
 	* NEWS: Document yesterday's work.
 
 	* runtest: Improve comments.

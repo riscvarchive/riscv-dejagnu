@@ -1,4 +1,4 @@
-.TH runtest 1 "29 Jul 2003"
+.TH runtest 1 "2004-02-09"
 .SH NAME
 runtest \- the DejaGnu test driver program
 .SH SYNOPSIS
@@ -6,12 +6,11 @@ runtest \- the DejaGnu test driver program
 [ options ]
 .SH DESCRIPTION
 .I DejaGnu
-is a framework for running test suites on GNU tools. It is written in
-expect, which uses Tcl (Tool command language).
+is a framework for running testsuites. It is written in Expect, which
+in turn uses Tcl, the Tool command language.
 .B runtest
-is the test driver program; use it to control what tests to run,
-and variations on how to run them.
-
+is the test driver program; use it to control what tests to run, and
+variations on how to run them.
 You can find a comprehensive description of DejaGnu and \fBruntest\fR in
 .I
 The DejaGnu Testing Framework
@@ -29,7 +28,7 @@ programs (like \fBtip\fR) don't use this value but instead use a separate
 initialization file.
 .TP
 .BI --connect \ type
-The type of connection to use.  The choices are
+The type of connection to use.  The supported types are
 .BR rlogin ,
 .BR telnet ,
 .BR rsh ,
@@ -40,9 +39,8 @@ and
 .B --debug
 Turn on
 .B expect
-internal debugging output. All output is logged to
-a file called \fBdbg.out\fR.
-The output of the \fB--strace\fR also goes into this file.
+internal debugging output. The output is logged to a file called
+\fBdbg.out\fR.
 .TP
 .B --help
 Prints out a help screen and then exits.
@@ -75,7 +73,8 @@ Reboot the target board when \fBruntest\fR initializes
 .BI --strace \ N
 Turns on
 .B expect
-internal tracing to \fIN\fR levels deep.
+internal tracing to \fIN\fR levels deep. The output is logged to a
+file called \fBdbg.out\fR.
 .TP
 .BI --target \ type
 The configuration string for the target.
@@ -101,7 +100,7 @@ Any file name on the command line is assumed to be a subset
 of the test names to run.  Usually these are the names of the
 expect test driver, ie... special.exp.
 
-Makefile style variables are used to specify tool names and their
+Makefile-style variables are used to specify tool names and their
 flags; these and other configuration dependent values are saved in the
 file \fBsite.exp\fR, created during configuration.
 .SH EXIT CODES
