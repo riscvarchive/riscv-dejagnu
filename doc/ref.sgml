@@ -75,15 +75,15 @@
         <listitem><para>Create another directory in the
         <filename>share</filename> directory, called
         <filename>dejagnu</filename>, and copy all the library files into
-        it.</listitem>
+        it.</para></listitem>
 
         <listitem><para>Create a directory in the
         <filename>dejagnu/share</filename> directory, called
         <filename>config</filename>, and copy all the configuration files into
-        it.</listitem>
+        it.</para></listitem>
 
 	<listitem><para>Copy the <emphasis>runtest</emphasis> shell script into
-	<filename>$exec_prefix/bin</filename>.
+	<filename>$exec_prefix/bin</filename>.</para></listitem>
 
 	<listitem><para>Copy <filename>runtest.exp</filename> into
 	<filename>$exec_prefix/lib/dejagnu</filename>. This is the main Tcl
@@ -539,6 +539,7 @@
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
 
+      </sect3>
       <sect3 id=warning xreflabel="warning procedure">
         <title>Warning Procedure</title>
 
@@ -584,6 +585,7 @@
           </varlistentry>
 	</variablelist>
 
+      </sect3>
       <sect3 id=perror xreflabel="perror procedure">
         <title>Perror Procedure</title>
 
@@ -623,6 +625,7 @@
           </varlistentry>
 	</variablelist>
 
+      </sect3>
        <sect3 id=note xreflabel="note procedure">
         <title>Note Procedure</title>
 
@@ -3118,6 +3121,7 @@
 	</variablelist>
 	</sect3>
 
+    </sect2>
     <sect2 id=platformprocs xreflabel="platform dependant procedures">
       <title>Platform Dependant Procedures</title>
 
@@ -3210,7 +3214,7 @@
 	  session.  You can also use <function>${tool}_exit</function>
 	  to remove any temporary files left over from the
 	  tests. <command>runtest</command> calls
-	  <function>${tool}_exit</function>.<para> 
+	  <function>${tool}_exit</function>.</para> 
 
 	<funcsynopsis role="tcl"> 
             <funcdef><function>${tool}_exit</function></funcdef>
@@ -3335,7 +3339,7 @@
 	<para>Use the optional third argument <emphasis>line</emphasis> to
 	start lines in the result with the line number in
 	<filename>filename</filename>.  (This argument is simply an option
-	flag; type it just as shown <option>--line</option>.)
+	flag; type it just as shown <option>--line</option>.)</para>
 
 	<funcsynopsis role="tcl"> 
             <funcdef><function>grep</function></funcdef>
@@ -3360,8 +3364,8 @@
 	    regexp matches.</para></listitem> 
           </varlistentry>
 	</variablelist>
-
 	</sect3>
+
 	<sect3 id=prune xreflabel="prune procedure">
 	  <title>Prune Procedure</title>
 
@@ -3437,7 +3441,7 @@
 	  <para>This sources the file <emphasis>filename</emphasis>, and traps
 	  all errors. It also ignores all extraneous output. If there was an
 	  error it returns a <emphasis>1</emphasis>, otherwise it returns a
-	  <emphasis>0</emphasis>.
+	  <emphasis>0</emphasis>.</para>
 
 	<funcsynopsis role="tcl"> 
             <funcdef><function>psource</function></funcdef>
@@ -3530,6 +3534,7 @@
           </varlistentry>
 	</variablelist>
 
+        </sect3>
 	<sect3 id=unsetenv xreflabel="unsetenv procedure">
 	  <title>unsetenv Procedure</title>
 
@@ -3553,7 +3558,7 @@
 	  <title>Getenv Procedure</title>
 
 	  <para>Returns the value of <emphasis>var</emphasis> in the
-	  environment if it exists, otherwise it returns NULL.
+	  environment if it exists, otherwise it returns NULL.</para>
 
 	<funcsynopsis role="tcl"> 
             <funcdef><function>getenv</function></funcdef>
@@ -3567,6 +3572,7 @@
           </varlistentry>
 	</variablelist>
 
+      </sect3>
 	<sect3 id=prunesystemcrud xreflabel="prune_system_crud procedure">
 	  <title>Prune_system_crud Procedure</title>
 

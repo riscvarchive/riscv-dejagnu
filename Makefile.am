@@ -1,14 +1,62 @@
 ## Process this file with automake to generate Makefile.in
 
-AUTOMAKE_OPTIONS = cygnus
+AUTOMAKE_OPTIONS = dejagnu
 
+# Install all the associated data files
 SUBDIRS = doc testsuite example
 
-# driver script goes in /usr/local/bin
+# Install the bourne shell script driver in the bindir
 bin_SCRIPTS = runtest
 
-# auxiliary scripts go in /usr/local/share/dejagnu
+# Install the main DejaGnu expect file in the datadir
 pkgdata_SCRIPTS = config.guess runtest.exp
+
+# Install config.guess too, so we can use it to figure out
+# what type of machine we're running on.
+libexecdir = $(pkgdatadir)/libexec
+libexec_SCRIPTS = config.guess
+
+TLCSH = @TCLSH@
+
+RUNTESTDEFAULTFLAGS = --tool runtest --srcdir $(srcdir)/testsuite RUNTEST=$(RUNTEST)
+RUNTEST = ` \
+  if [ -f ${srcdir}/runtest$(EXEEXT) ] ; then \
+    echo ${srcdir}/runtest$(EXEEXT) ; \
+  else echo runtest ;  fi`
+
+# Set ourselves up to build a RedHat package
+dist2: rpmspec overview.html
+	-rm -fr dejagnu-${VERSION}.0
+	cp -fpr $(srcdir) dejagnu-${VERSION}.0
+	@echo "clean up stuff we don't want in the source file"
+	(cd dejagnu-${VERSION}.0 ; $(srcdir)/Clean.tcl)
+	-mkdir -p doc/overview
+	-cp -fr doc/overview dejagnu-${VERSION}.0/doc/
+	tar cvf ../dejagnu-${VERSION}.tar dejagnu-${VERSION}.0
+	gzip -9fv ../dejagnu-${VERSION}.tar
+	cp -f ../dejagnu-${VERSION}.tar.gz /usr/src/redhat/SOURCES/
+	cp -f $(srcdir)/redhat/dejagnu.spec /usr/src/redhat/SPECS/
+
+rpmspec:
+	cp -f $(srcdir)/redhat/dejagnu.spec /usr/src/redhat/SPECS/
+
+rpm: dist rpmspec
+	cp -f $(distdir).tar.gz /usr/src/redhat/SOURCES/
+	rpm -ba /usr/src/redhat/SPECS/dejagnu.spec
+
+overview.html install-doc doc html dvi ps pdf rtf:
+	cd doc && $(MAKE) $(FLAGS_TO_PASS) $@
+
+# Automake sucks when it comes to building a distribution, so
+# we just copy the source tree onto of what Automake did, and
+# then we Clean it. Automake only includes the source files.
+# We want all the testsuites, data files, and html versions of the doc.
+dist-hook: rpmspec overview.html
+	-rm -fr $(distdir)
+	cp -fpr $(srcdir) $(distdir)
+	(cd $(distdir) ; $(TCLSH) $(srcdir)/Clean.tcl)
+	-cp -fr doc/overview $(distdir)/doc/
+
 
 # Below, host-independent data files that need to get installed.
 # We do it this way so we can use globbing.
@@ -48,3 +96,4 @@ uninstall-local:
 	for f in $(baseboards_files); do \
 	  test ! -f "$$f" || rm -f $(baseboards_dest)/`basename "$$f"`; \
 	done
+

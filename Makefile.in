@@ -21,7 +21,6 @@ exec_prefix = @exec_prefix@
 
 bindir = @bindir@
 sbindir = @sbindir@
-libexecdir = @libexecdir@
 datadir = @datadir@
 sysconfdir = @sysconfdir@
 sharedstatedir = @sharedstatedir@
@@ -60,21 +59,36 @@ POST_UNINSTALL = :
 BOARDS = @BOARDS@
 CC = @CC@
 CONFIG = @CONFIG@
+DOCBOOK = @DOCBOOK@
 EXEEXT = @EXEEXT@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
 PACKAGE = @PACKAGE@
+TCLSH = @TCLSH@
 VERSION = @VERSION@
+tclsh = @tclsh@
 
-AUTOMAKE_OPTIONS = cygnus
+AUTOMAKE_OPTIONS = dejagnu
 
+# Install all the associated data files
 SUBDIRS = doc testsuite example
 
-# driver script goes in /usr/local/bin
+# Install the bourne shell script driver in the bindir
 bin_SCRIPTS = runtest
 
-# auxiliary scripts go in /usr/local/share/dejagnu
+# Install the main DejaGnu expect file in the datadir
 pkgdata_SCRIPTS = config.guess runtest.exp
+
+# Install config.guess too, so we can use it to figure out
+# what type of machine we're running on.
+libexecdir = $(pkgdatadir)/libexec
+libexec_SCRIPTS = config.guess
+
+TLCSH = @TCLSH@
+
+RUNTESTDEFAULTFLAGS = --tool runtest --srcdir $(srcdir)/testsuite RUNTEST=$(RUNTEST)
+RUNTEST = `   if [ -f ${srcdir}/runtest$(EXEEXT) ] ; then     echo ${srcdir}/runtest$(EXEEXT) ;   else echo runtest ;  fi`
+
 
 # Below, host-independent data files that need to get installed.
 # We do it this way so we can use globbing.
@@ -88,29 +102,30 @@ baseboards_files = $(srcdir)/baseboards/README $(srcdir)/baseboards/*.exp
 config_dest = $(DESTDIR)$(pkgdatadir)/config
 config_files = $(srcdir)/config/README $(srcdir)/config/*.exp
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-mkinstalldirs = $(SHELL) $(top_srcdir)/../mkinstalldirs
+mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES = 
-SCRIPTS =  $(bin_SCRIPTS) $(pkgdata_SCRIPTS)
+SCRIPTS =  $(bin_SCRIPTS) $(libexec_SCRIPTS) $(pkgdata_SCRIPTS)
 
 DIST_COMMON =  README AUTHORS COPYING ChangeLog INSTALL Makefile.am \
-Makefile.in NEWS TODO aclocal.m4 config.guess configure configure.in \
-install-sh mkinstalldirs
+Makefile.in NEWS TODO acinclude.m4 aclocal.m4 config.guess config.sub \
+configure configure.in install-sh missing mkinstalldirs
 
 
 DISTFILES = $(DIST_COMMON) $(SOURCES) $(HEADERS) $(TEXINFOS) $(EXTRA_DIST)
 
-TAR = gtar
+TAR = tar
 GZIP_ENV = --best
+EXPECT = expect
 all: all-redirect
 .SUFFIXES:
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ Makefile.am $(top_srcdir)/configure.in $(ACLOCAL_M4) 
-	cd $(top_srcdir) && $(AUTOMAKE) --cygnus Makefile
+	cd $(top_srcdir) && $(AUTOMAKE) --gnu Makefile
 
-Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status
+Makefile: $(srcdir)/Makefile.in  $(top_builddir)/config.status $(BUILT_SOURCES)
 	cd $(top_builddir) \
 	  && CONFIG_FILES=$@ CONFIG_HEADERS= $(SHELL) ./config.status
 
-$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ configure.in 
+$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ configure.in  acinclude.m4
 	cd $(srcdir) && $(ACLOCAL)
 
 config.status: $(srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
@@ -135,6 +150,25 @@ uninstall-binSCRIPTS:
 	@$(NORMAL_UNINSTALL)
 	list='$(bin_SCRIPTS)'; for p in $$list; do \
 	  rm -f $(DESTDIR)$(bindir)/`echo $$p|sed '$(transform)'`; \
+	done
+
+install-libexecSCRIPTS: $(libexec_SCRIPTS)
+	@$(NORMAL_INSTALL)
+	$(mkinstalldirs) $(DESTDIR)$(libexecdir)
+	@list='$(libexec_SCRIPTS)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    echo " $(INSTALL_SCRIPT) $$p $(DESTDIR)$(libexecdir)/`echo $$p|sed '$(transform)'`"; \
+	    $(INSTALL_SCRIPT) $$p $(DESTDIR)$(libexecdir)/`echo $$p|sed '$(transform)'`; \
+	  else if test -f $(srcdir)/$$p; then \
+	    echo " $(INSTALL_SCRIPT) $(srcdir)/$$p $(DESTDIR)$(libexecdir)/`echo $$p|sed '$(transform)'`"; \
+	    $(INSTALL_SCRIPT) $(srcdir)/$$p $(DESTDIR)$(libexecdir)/`echo $$p|sed '$(transform)'`; \
+	  else :; fi; fi; \
+	done
+
+uninstall-libexecSCRIPTS:
+	@$(NORMAL_UNINSTALL)
+	list='$(libexec_SCRIPTS)'; for p in $$list; do \
+	  rm -f $(DESTDIR)$(libexecdir)/`echo $$p|sed '$(transform)'`; \
 	done
 
 install-pkgdataSCRIPTS: $(pkgdata_SCRIPTS)
@@ -166,7 +200,7 @@ uninstall-pkgdataSCRIPTS:
 @SET_MAKE@
 
 all-recursive install-data-recursive install-exec-recursive \
-installdirs-recursive install-recursive uninstall-recursive install-info-recursive \
+installdirs-recursive install-recursive uninstall-recursive  \
 check-recursive installcheck-recursive info-recursive dvi-recursive:
 	@set fnord $(MAKEFLAGS); amf=$$2; \
 	dot_seen=no; \
@@ -283,10 +317,15 @@ distdir: $(DISTFILES)
 	-rm -rf $(distdir)
 	mkdir $(distdir)
 	-chmod 777 $(distdir)
+	here=`cd $(top_builddir) && pwd`; \
+	top_distdir=`cd $(distdir) && pwd`; \
+	distdir=`cd $(distdir) && pwd`; \
+	cd $(top_srcdir) \
+	  && $(AUTOMAKE) --include-deps --build-dir=$$here --srcdir-name=$(top_srcdir) --output-dir=$$top_distdir --gnu Makefile
 	@for file in $(DISTFILES); do \
-	  if test -f $$file; then d=.; else d=$(srcdir); fi; \
+	  d=$(srcdir); \
 	  if test -d $$d/$$file; then \
-	    cp -pr $$d/$$file $(distdir)/$$file; \
+	    cp -pr $$/$$file $(distdir)/$$file; \
 	  else \
 	    test -f $(distdir)/$$file \
 	    || ln $$d/$$file $(distdir)/$$file 2> /dev/null \
@@ -303,17 +342,43 @@ distdir: $(DISTFILES)
 	      || exit 1; \
 	  fi; \
 	done
+	$(MAKE) $(AM_MAKEFLAGS) top_distdir="$(top_distdir)" distdir="$(distdir)" dist-hook
+
+RUNTESTFLAGS =
+
+DEJATOOL = $(PACKAGE)
+
+check-DEJAGNU: site.exp
+	srcdir=`cd $(srcdir) && pwd`; export srcdir; \
+	EXPECT=$(EXPECT); export EXPECT; \
+	runtest=$(RUNTEST); \
+	if $(SHELL) -c "$$runtest --version" > /dev/null 2>&1; then \
+	  $$runtest $(RUNTESTDEFAULTFLAGS) $(RUNTESTFLAGS); \
+	else echo "WARNING: could not find \`runtest'" 1>&2; :;\
+	fi
+site.exp: Makefile
+	@echo 'Making a new site.exp file...'
+	@test ! -f site.bak || rm -f site.bak
+	@echo '## these variables are automatically generated by make ##' > $@-t
+	@echo '# Do not edit here.  If you wish to override these values' >> $@-t
+	@echo '# edit the last section' >> $@-t
+	@echo 'set tool $(DEJATOOL)' >> $@-t
+	@echo 'set srcdir $(srcdir)' >> $@-t
+	@echo 'set objdir' `pwd` >> $@-t
+	@echo '## All variables above are generated by configure. Do Not Edit ##' >> $@-t
+	@test ! -f site.exp || sed '1,/^## All variables above are.*##/ d' site.exp >> $@-t
+	@test ! -f site.exp || mv site.exp site.bak
+	@mv $@-t site.exp
 info-am:
 info: info-recursive
 dvi-am:
 dvi: dvi-recursive
-check-am:
+check-am: all-am
+	$(MAKE) $(AM_MAKEFLAGS) check-DEJAGNU
 check: check-recursive
 installcheck-am:
 installcheck: installcheck-recursive
-install-info-am: 
-install-info: install-info-recursive
-install-exec-am: install-binSCRIPTS
+install-exec-am: install-binSCRIPTS install-libexecSCRIPTS
 install-exec: install-exec-recursive
 
 install-data-am: install-pkgdataSCRIPTS install-data-local
@@ -322,8 +387,8 @@ install-data: install-data-recursive
 install-am: all-am
 	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
 install: install-recursive
-uninstall-am: uninstall-binSCRIPTS uninstall-pkgdataSCRIPTS \
-		uninstall-local
+uninstall-am: uninstall-binSCRIPTS uninstall-libexecSCRIPTS \
+		uninstall-pkgdataSCRIPTS uninstall-local
 uninstall: uninstall-recursive
 all-am: Makefile $(SCRIPTS)
 all-redirect: all-recursive
@@ -331,7 +396,8 @@ install-strip:
 	$(MAKE) $(AM_MAKEFLAGS) AM_INSTALL_PROGRAM_FLAGS=-s install
 installdirs: installdirs-recursive
 installdirs-am:
-	$(mkinstalldirs)  $(DESTDIR)$(bindir) $(DESTDIR)$(pkgdatadir)
+	$(mkinstalldirs)  $(DESTDIR)$(bindir) $(DESTDIR)$(libexecdir) \
+		$(DESTDIR)$(pkgdatadir)
 
 
 mostlyclean-generic:
@@ -364,21 +430,54 @@ maintainer-clean-am:  maintainer-clean-tags maintainer-clean-generic \
 maintainer-clean: maintainer-clean-recursive
 	-rm -f config.status
 
-.PHONY: uninstall-binSCRIPTS install-binSCRIPTS uninstall-pkgdataSCRIPTS \
-install-pkgdataSCRIPTS install-data-recursive uninstall-data-recursive \
-install-exec-recursive uninstall-exec-recursive installdirs-recursive \
-uninstalldirs-recursive all-recursive check-recursive \
-installcheck-recursive info-recursive dvi-recursive \
-mostlyclean-recursive distclean-recursive clean-recursive \
+.PHONY: uninstall-binSCRIPTS install-binSCRIPTS uninstall-libexecSCRIPTS \
+install-libexecSCRIPTS uninstall-pkgdataSCRIPTS install-pkgdataSCRIPTS \
+install-data-recursive uninstall-data-recursive install-exec-recursive \
+uninstall-exec-recursive installdirs-recursive uninstalldirs-recursive \
+all-recursive check-recursive installcheck-recursive info-recursive \
+dvi-recursive mostlyclean-recursive distclean-recursive clean-recursive \
 maintainer-clean-recursive tags tags-recursive mostlyclean-tags \
-distclean-tags clean-tags maintainer-clean-tags distdir info-am info \
-dvi-am dvi check check-am installcheck-am installcheck install-info-am \
-install-info install-exec-am install-exec install-data-local \
-install-data-am install-data install-am install uninstall-local \
-uninstall-am uninstall all-redirect all-am all installdirs-am \
-installdirs mostlyclean-generic distclean-generic clean-generic \
-maintainer-clean-generic clean mostlyclean distclean maintainer-clean
+distclean-tags clean-tags maintainer-clean-tags distdir check-DEJAGNU \
+info-am info dvi-am dvi check check-am installcheck-am installcheck \
+install-exec-am install-exec install-data-local install-data-am \
+install-data install-am install uninstall-local uninstall-am uninstall \
+all-redirect all-am all installdirs-am installdirs mostlyclean-generic \
+distclean-generic clean-generic maintainer-clean-generic clean \
+mostlyclean distclean maintainer-clean
 
+
+# Set ourselves up to build a RedHat package
+dist2: rpmspec overview.html
+	-rm -fr dejagnu-${VERSION}.0
+	cp -fpr $(srcdir) dejagnu-${VERSION}.0
+	@echo "clean up stuff we don't want in the source file"
+	(cd dejagnu-${VERSION}.0 ; $(srcdir)/Clean.tcl)
+	-mkdir -p doc/overview
+	-cp -fr doc/overview dejagnu-${VERSION}.0/doc/
+	tar cvf ../dejagnu-${VERSION}.tar dejagnu-${VERSION}.0
+	gzip -9fv ../dejagnu-${VERSION}.tar
+	cp -f ../dejagnu-${VERSION}.tar.gz /usr/src/redhat/SOURCES/
+	cp -f $(srcdir)/redhat/dejagnu.spec /usr/src/redhat/SPECS/
+
+rpmspec:
+	cp -f $(srcdir)/redhat/dejagnu.spec /usr/src/redhat/SPECS/
+
+rpm: dist rpmspec
+	cp -f $(distdir).tar.gz /usr/src/redhat/SOURCES/
+	rpm -ba /usr/src/redhat/SPECS/dejagnu.spec
+
+overview.html install-doc doc html dvi ps pdf rtf:
+	cd doc && $(MAKE) $(FLAGS_TO_PASS) $@
+
+# Automake sucks when it comes to building a distribution, so
+# we just copy the source tree onto of what Automake did, and
+# then we Clean it. Automake only includes the source files.
+# We want all the testsuites, data files, and html versions of the doc.
+dist-hook: rpmspec overview.html
+	-rm -fr $(distdir)
+	cp -fpr $(srcdir) $(distdir)
+	(cd $(distdir) ; $(TCLSH) $(srcdir)/Clean.tcl)
+	-cp -fr doc/overview $(distdir)/doc/
 
 install-data-local:
 	$(mkinstalldirs) $(lib_dest)

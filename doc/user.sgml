@@ -490,7 +490,7 @@
 	verbose output about processes being run, communication, and so on, use
 	<emphasis>--verbose</emphasis>. To see even more output, use multiple
 	<emphasis>--verbose</emphasis> options. for a more detailed explanation
-	of each <command>runtest</command> option.
+	of each <command>runtest</command> option.</para>
 
 	<para>Test output goes into two files in your current directory:
 	summary output in <filename>tool.sum</filename>,
@@ -498,7 +498,8 @@
 	tool.log</filename>. (<emphasis>tool</emphasis>
 	refers to the collection of tests; for example, after a run with
 	<emphasis>--tool</emphasis> gdb, look for output files
-	<filename>gdb.sum</filename> and <filename>gdb.log</filename>.)
+	<filename>gdb.sum</filename> and
+	<filename>gdb.log</filename>.)</para>
       </sect2>
     </sect1>  
 
@@ -529,7 +530,8 @@
       (expected and unexpected); and the full pathname and version
       number of the tool tested.  (All possible outcomes, and all
       errors, are always reflected in the summary output file,
-      regardless of whether or not you specify <option>--all</option>.)
+      regardless of whether or not you specify
+      <option>--all</option>.)</para>
 
       <para>If any of your tests use the procedures
       <command>unresolved</command>, <command>unsupported</command>,
@@ -1137,7 +1139,7 @@
 	</example>
 
 	<para>If you are testing a native PC compiler (ex: you have
-	gcc.exe in your PATH on the PC), do this:
+	gcc.exe in your PATH on the PC), do this:</para>
 
       <example>
         <title>Setup Native Remote Testing</title>
@@ -1192,7 +1194,7 @@
       called <symbol>target_info</symbol>, and it has two indices. The
       following fields are part of the array.</para>
 
-      <sect1 id=optiondefs xreflabel="Option Variables">
+      <sect2 id=optiondefs xreflabel="Option Variables">
         <title>Command Line Option Variables</title>
 
 	<para>In the user editable second section of the <xref
@@ -1311,9 +1313,9 @@
 	  </table>
 	</para>
 
-    </sect1>
+    </sect2>
 
-    <sect1 id=personal xreflabel="Personal Config File">
+    <sect2 id=personal xreflabel="Personal Config File">
       <title>Personal Config File</title>
     
       <para>The personal config file is used to customize
@@ -1342,6 +1344,7 @@
       secure shell, as rsh is mostly used to test unix
       machines within a local network here.</para>
 
+      </sect2>
     </sect1>
 
   </chapter>
@@ -2146,13 +2149,13 @@
       appropriate for the particular test, allow successively higher
       values of <emphasis>$verbose</emphasis> to generate more
       information.  Be kind to other programmers who use your tests:
-      provide for a lot of debugging information.</para>
+      provide for a lot of debugging information.</para></listitem>
 
       <listitem><para>Output from the internal debugging functions of
       Tcl and <productname>Expect</productname>. There is a command
       line options for each; both forms of debugging output are
       recorded in the file <filename>dbg.log</filename> in the current
-      directory.</para> 
+      directory.</para>
 
       <para>Use <option>--debug</option> for information from the
        expect level; it generates displays of the expect attempts to
@@ -2162,7 +2165,7 @@
        latest attempt at a new test script and the corresponding
        <filename>dbg.log</filename> can allow you to create the final
        patterns by ``cut and paste''.  This is sometimes the best way
-       to write a test case.</para>
+       to write a test case.</para></listitem>
 
        <listitem><para>Use <option>--strace</option> to see more
        detail at the Tcl level; this shows how Tcl procedure
@@ -2174,7 +2177,7 @@
        the expect command <command>log_user</command>.  This command
        prints all expect actions to the expect standard output, to the
        detailed log file, and (if <option>--debug</option> is on) to
-       <filename>dbg.log</filename>.</para>
+       <filename>dbg.log</filename>.</para></listitem>
        </itemizedlist>
 
     </sect1>
@@ -2225,7 +2228,7 @@
       directory.</para></listitem>
 
       <listitem><para>Add the new test case to the directory, as
-      above. </para>
+      above. </para></listitem>
 
       <listitem><para>To add support in the new directory for
       configure and make, you must also create a

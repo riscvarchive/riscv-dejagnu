@@ -1,4 +1,4 @@
-# Copyright (C) 92, 93, 94, 95, 96, 97, 98, 1999 Free Software Foundation, Inc.
+# Copyright (C) 1992 - 2000, 2001 Free Software Foundation, Inc.
 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,9 +15,9 @@
 # Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  
 
 # Please email any bugs, comments, and/or additions to this file to:
-# bug-dejagnu@prep.ai.mit.edu
+# bug-dejagnu@gnu.org
 
-# This file was written by Rob Savoye. (rob@cygnus.com)
+# This file was written by Rob Savoye. (rob@welcomehome.org)
 
 # load various protocol support modules
 
@@ -212,7 +212,7 @@ proc local_exec { commandline inp outp timeout } {
     }
     verbose "output is $output";
     if { $outp == "" } {
-        return [list $status $output];
+    return [list $status $output];
     } else {
         return [list $status ""];
     }
@@ -602,7 +602,7 @@ proc remote_raw_file { dest args } {
 
 proc standard_file { dest op args } {
     set file [lindex $args 0];
-    verbose "dest in standard_file is $dest";
+    verbose "dest in proc standard_file is $dest" 3;
     if { ![is_remote $dest] } {
 	switch $op {
 	    cmp {

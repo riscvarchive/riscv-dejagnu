@@ -19,7 +19,7 @@ several advantages for testing:
           the testing framework and the testsuites themselves. Tests
           are usually written in expect using Tcl.
 
-  Bugs can be reported to bug-dejagnu@prep.ai.mit.edu.
+  Bugs can be reported to bug-dejagnu@gnu.org.
 
  		      How To Configure and Build
 
@@ -281,3 +281,5 @@ There is a new listserv based mailing list for the FROST project. To
 subscribe, send email to "listserv@cygnus.com" and the body should
 contain "SUBSCRIBE FROST <your name>". Messages sent to
 frost@cygnus.com go to the mailing list.
+
+
