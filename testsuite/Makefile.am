@@ -27,6 +27,4 @@ RUNTEST = ` \
     echo ${top_srcdir}/runtest$(EXEEXT); \
   else echo "ERROR: runtest not found" ; exit 1; fi`
 
-RUNTESTDEFAULTFLAGS = --tool runtest
-# --srcdir $$srcdir
-CLEANFILES = *.log *.sum site.bak setval.tmp
+RUNTESTDEFAULTFLAGS = --tool runtest --srcdir $(srcdir) RUNTEST=$(RUNTEST)

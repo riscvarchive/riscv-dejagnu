@@ -175,12 +175,6 @@ PACKAGING_METAFILES = packaging/depot/dejagnu.psf \
 	packaging/deb/preinst packaging/deb/rules packaging/pkg/pkginfo \
 	packaging/pkg/prototype packaging/rpm/dejagnu.spec
 
-RUNTESTDEFAULTFLAGS = --srcdir $(srcdir)/testsuite RUNTEST=$(RUNTEST)
-RUNTEST = ` \
-  if [ -f ${srcdir}/runtest$(EXEEXT) ] ; then \
-    echo ${srcdir}/runtest$(EXEEXT); \
-  else echo "ERROR: runtest not found" ; exit 1; fi`
-
 rpmspec: $(srcdir)/packaging/rpm/dejagnu.spec
 	cp -f $(srcdir)/packaging/rpm/dejagnu.spec /usr/src/redhat/SPECS/
 

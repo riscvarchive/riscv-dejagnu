@@ -78,7 +78,9 @@ HEADERS = $(include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DEJATOOL = $(PACKAGE)
+RUNTESTDEFAULTFLAGS = --tool $$tool --srcdir $$srcdir
 EXPECT = expect
+RUNTEST = runtest
 DIST_SUBDIRS = $(SUBDIRS)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
@@ -344,12 +346,6 @@ PACKAGING_METAFILES = packaging/depot/dejagnu.psf \
 	packaging/deb/control packaging/deb/copyright packaging/deb/postinst \
 	packaging/deb/preinst packaging/deb/rules packaging/pkg/pkginfo \
 	packaging/pkg/prototype packaging/rpm/dejagnu.spec
-
-RUNTESTDEFAULTFLAGS = --srcdir $(srcdir)/testsuite RUNTEST=$(RUNTEST)
-RUNTEST = ` \
-  if [ -f ${srcdir}/runtest$(EXEEXT) ] ; then \
-    echo ${srcdir}/runtest$(EXEEXT); \
-  else echo "ERROR: runtest not found" ; exit 1; fi`
 
 PKGDIR = /opt
 all: all-recursive

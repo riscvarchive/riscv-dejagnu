@@ -1,5 +1,13 @@
 2004-02-07  Ben Elliston  <bje@wasabisystems.com>
 
+	* Makefile.am (RUNTEST, RUNTESTDEFAULTFLAGS): Remove.
+	* Makefile.in: Regenerate.
+	* testsuite/Makefile.am (CLEANFILES): Remove.
+	(RUNTESTDEFAULTFLATS): Pass --srcdir and RUNTEST=$(RUNTEST).
+	* testsuite/Makefile.in: Regenerate.
+	
+2004-02-07  Ben Elliston  <bje@wasabisystems.com>
+
 	* lib/util-defs.exp: Move from here ..
 	* testsuite/lib/util-defs.exp: .. to here.
 	* Makefile.am (EXTRA_DIST): Remove lib/util-defs.exp.
