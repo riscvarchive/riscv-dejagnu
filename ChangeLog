@@ -1,3 +1,14 @@
+2001-05-20  Stephane Carrez  <Stephane.Carrez@worldnet.fr>
+  
+        * baseboards/m68hc11-sim.exp: New file for 68HC11/68HC12 validation.
+        * config/m68hc11.exp: New file.
+
+2001-05-16  Rob Savoye  <rob@peggyo.welcomehome.org>
+
+	* lib/target.exp: Reverse when add_flags gets set, so it actually
+	links with the libraries being tested. From J. David Anglin
+	<dave@hiauly1.hia.nrc.ca>.
+
 2001-05-14  Rob Savoye  <rob@peggyo.welcomehome.org>
 
 	* runtest.exp: Conditionally set the exit_status so we don't stomp
@@ -10,7 +21,7 @@
 
 2001-05-09  Rob Savoye  <rob@peggyo.welcomehome.org>
 
-	* runtest.exp: Add new command line option, --status (or -st) to
+	* runtest.exp: Add new command line option, --status (or -sta) to
 	toggle whether Tcl script bugs in test drivers should be
 	propogated as an error to the shell.
 
