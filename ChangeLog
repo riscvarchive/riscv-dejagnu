@@ -1,3 +1,8 @@
+Wed Nov 21 18:02:49 PST 2001  Brendan Conoboy <blc@redhat.com>
+
+	* lib/rsh.exp: Obey rsh_prog/rcp_prog, support username
+	* lib/remote.exp: same.
+
 2002-02-22  Bob Wilson  <bob.wilson@acm.org>
 
         * baseboards/xtensa-sim.exp: New file.
