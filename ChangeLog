@@ -1,10 +1,15 @@
+2001-05-01  Matt Hiller  <hiller@redhat.com>
+  
+        * lib/libgloss.exp (get_multilibs): Correction to Catherine
+        Moore's patch of 2000-06-09.
+
 2001-04-11  Rob Savoye  <rob@slipknot.welcomehome.org>
 
 	* Clean.tcl: Add -r to rm, so it gets rid of CVS directories.
 	* .clean: Don't install the debian or redhat packaging directories.
 	* Makefle.am: Install dejagnu.h. Fix dist2 target, so we build our
 	own tarballs, instead of letting automake do it for us.
-	* examples/cala/Makefile.am: Use noist_PROGRAMS, so calc doesn't
+	* examples/calc/Makefile.am: Use noist_PROGRAMS, so calc doesn't
 	get installed.
 	* doc/Makefile.am: Install the man page for runtest.
 	* configure.in: Make VERSION 1.4.0, not just 1.4, so distributions

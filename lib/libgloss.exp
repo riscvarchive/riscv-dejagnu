@@ -1,4 +1,4 @@
-# Copyright (C) 92, 93, 94, 95, 96, 97, 98, 1999 Free Software Foundation, Inc.
+# Copyright (C) 92 - 2000, 2001 Free Software Foundation, Inc.
 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -421,12 +421,15 @@ proc get_multilibs { args } {
     # set output [exec $objdump_name --file-headers objfmtst.o ]
     set default_multilib [exec $compiler --print-multi-lib]
     set default_multilib [lindex $default_multilib 0];
-    set extra [string trimleft $default_multilib "."]
+    set extra [string trimleft $default_multilib ".;@"]
 
     # extract the options and their directory names as know by gcc
     foreach i "[exec $compiler --print-multi-lib]" {
     	if {$extra != ""} {
-	  set i [string trimright $i $extra"]
+           # string trimright would do the wrong thing if we included
+           # the leading @ in $extra
+           set i [string trimright $i $extra]
+           set i [string trimright $i "@"]
 	}
 	set opts ""
 	set dir ""
