@@ -1,3 +1,27 @@
+2002-02-22  Bob Wilson  <bob.wilson@acm.org>
+
+        * baseboards/xtensa-sim.exp: New file.
+
+2001-11-02  Alexandre Oliva  <aoliva@redhat.com>
+
+        * lib/libgloss.exp [get_multilibs]: Compute multitop earlier, and
+        use --print-multi-directory if available.
+
+2002-02-05  Nick Clifton  <nickc@cambridge.redhat.com>
+
+        * lib/libgloss.exp (g++_include_flags): Add top level
+        libstdc++-v3 build include path, remove duplicate src path.
+        (libstdc++_include_flags): Add top level libstdc++-v3 build
+        include path.
+
+2001-11-10  Hans-Peter Nilsson  <hp@bitrange.com>  
+
+        * baseboards/mmixware-sim.exp: New file.   
+	* lib/remote.exp (check_for_board_status): Return 2 if the board
+	uses a status wrapper and there was no match for the expected
+        pattern.
+
+
 2001-11-02  Philip A. Wilsey  <philip.wilsey@cliftonlabs.com>
 	* lib/utils.exp: Need to pass -all to getdirs, so it descends
 	through all the subdirectories.
