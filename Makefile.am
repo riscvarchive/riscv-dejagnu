@@ -11,8 +11,8 @@ bin_SCRIPTS = runtest
 # Install the main DejaGnu expect file in the datadir
 pkgdata_SCRIPTS = runtest.exp
 
-# Install config.guess too, so we can use it to figure out
-# what type of machine we're running on.
+# Install config.guess too, so we can use it to figure out what type
+# of machine we're running on.
 libexecdir = $(pkgdatadir)/libexec
 libexec_SCRIPTS = config.guess
 
@@ -31,11 +31,10 @@ CLEANFILES = x.log x.sum site.bak setval.tmp
 check-DEJAGNU:
 	cd testsuite ; $(MAKE) check
 	cd example ; $(MAKE) check
-#	@echo "Do nothing here, cause we don't want to run the tests twice"
 
-# Since we don't use SUBDIRS, we have to manually clean the sub directories.
-# We don't use SUBDIRS, so the excample or test cases don't get built
-# by default for a "make all".
+# Since we don't use SUBDIRS, we have to manually clean the
+# subdirectories. We don't use SUBDIRS, so the example or test cases
+# don't get built by default for a "make all".
 clean-local:
 	cd doc       ; $(MAKE) clean
 	cd testsuite ; $(MAKE) clean
@@ -78,12 +77,12 @@ snapshot:
 rpmspec: $(srcdir)/packaging/rpm/dejagnu.spec
 	cp -f $(srcdir)/packaging/rpm/dejagnu.spec /usr/src/redhat/SPECS/
 
-# this builds an RPM package
+# Build an RPM package
 rpm: tarball rpmspec
 	cp -f ../$(distdir).tar.gz /usr/src/redhat/SOURCES/
 	rpm -ba /usr/src/redhat/SPECS/dejagnu.spec
 
-# this builds a Debian Linux style deb package.
+# Build a Debian deb package
 deb: overview.html overview.ps overview.pdf
 	-rm -fr dejagnu-${VERSION}
 	cp -fpr $(srcdir) dejagnu-${VERSION}
@@ -99,7 +98,7 @@ deb: overview.html overview.ps overview.pdf
 	-cp -fr doc/overview.rtf dejagnu-${VERSION}/doc/;
 	(cd dejagnu-${VERSION}; dpkg-buildpackage)
 
-# this builds a Solaris style pkg package.
+# Build a Solaris package
 solpkg: $(srcdir)/packaging/pkg/prototype
 	if test ! -d $(PKGDIR)/dejagnu; then \
 	  rm -fr dejagnu-${VERSION}; \
@@ -117,7 +116,7 @@ solpkg: $(srcdir)/packaging/pkg/prototype
 	  gzip -9fv  $$here/dejagnu-${VERSION}.SPARC.2.8.pkg.tar
 	rm -fr /tmp/prototype /tmp/pkginfo /tmp/DejaGnu
 
-# this builds a HPUX style depot file
+# Build a HP depot package
 hpdepot: # $(srcdir)/packaging/depot/dejagnu.psf
 	if test ! -d $(PKGDIR)/dejagnu; then \
 	rm -fr dejagnu-${VERSION}; \
@@ -148,7 +147,6 @@ dist-hook: rpmspec overview.html overview.ps overview.pdf
 	-cp -fr doc/overview.ps $(distdir)/doc/
 	-cp -fr doc/overview.pdf $(distdir)/doc/
 
-
 # Below, host-independent data files that need to get installed.
 # We do it this way so we can use globbing.
 
@@ -157,7 +155,6 @@ lib_files = $(srcdir)/*.c $(srcdir)/lib/*.exp
 
 baseboards_dest = $(DESTDIR)$(pkgdatadir)/baseboards
 baseboards_files = $(srcdir)/baseboards/README $(srcdir)/baseboards/*.exp
-
 
 include_dest = $(DESTDIR)$(includedir)
 config_dest = $(DESTDIR)$(pkgdatadir)/config

@@ -163,7 +163,7 @@ Makefile: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.in  $(top_builddir)/config.s
 
 clean-noinstPROGRAMS:
 	-test -z "$(noinst_PROGRAMS)" || rm -f $(noinst_PROGRAMS)
-unit$(EXEEXT): $(unit_OBJECTS) $(unit_DEPENDENCIES)
+unit$(EXEEXT): $(unit_OBJECTS) $(unit_DEPENDENCIES) 
 	@rm -f unit$(EXEEXT)
 	$(CXXLINK) $(unit_LDFLAGS) $(unit_OBJECTS) $(unit_LDADD) $(LIBS)
 

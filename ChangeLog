@@ -1,5 +1,9 @@
 2003-08-18  Ben Elliston  <bje@wasabisystems.com>
 
+	* Makefile.am: Tidy comments and unused command lines.
+	* Makefile.in: Regenerate.
+	* testsuite/libdejagnu/Makefile.in: Likewise.
+
 	* contrib/bluegnu2.0.3: Remove unsupported subtree.
 
 2003-08-18  Ben Elliston  <bje@wasabisystems.com>
