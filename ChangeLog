@@ -1,3 +1,7 @@
+2003-08-22  Ben Elliston  <bje@wasabisystems.com>
+
+	* lib/kermit.exp: Document procs.
+
 2003-08-19  Ben Elliston  <bje@wasabisystems.com>
 
 	* contrib/testit: Run wish via /usr/bin/env for portability.
