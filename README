@@ -72,6 +72,3 @@ documentation is not built by default. Use these targets:
 		  when configuring. Otherwise it defaults to
 		  /usr/local. See the DejaGnu manual for more
 		  information on installation.
-
-
-
