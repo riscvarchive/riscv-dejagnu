@@ -1,3 +1,7 @@
+2003-10-11  Corinna Vinschen  <vinschen@redhat.com>
+
+	* basebaords/sh-sim.exp: New file.
+
 2003-10-11  Ben Elliston  <bje@wasabisystems.com>
 
 	* NEWS: Tidy.
@@ -18,7 +22,6 @@
 2003-08-23  Ben Elliston  <bje@wasabisystems.com>
 
 	* TODO: Tidy.
-
 	* contrib/README: Bring up to date.
 
 2003-08-23  Corinna Vinschen  <vinschen@redhat.com>
