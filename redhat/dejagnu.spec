@@ -3,7 +3,7 @@
 Summary: A front end for testing other programs.
 Name: dejagnu
 Version: %{version}
-Release: 2
+Release: 0
 Copyright: GPL
 Source: ftp://ftp.gnu.org/gnu/dejagnu/snapshots/dejagnu-%{version}.tar.gz
 

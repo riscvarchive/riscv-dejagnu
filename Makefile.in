@@ -436,10 +436,13 @@ check-DEJAGNU:
 	cd example ; $(MAKE) check
 #	@echo "Do nothing here, cause we don't want to run the tests twice"
 
+# Since we don't use SUBDIRS, we have to manually clean the sub directories.
+# We don't use SUBDIRS, so the excample or test cases don't get built
+# by default for a "make all".
 clean-local:
-	cd doc ; $(MAKE) clean
+	cd doc       ; $(MAKE) clean
 	cd testsuite ; $(MAKE) clean
-	cd example ; $(MAKE) clean
+	cd example   ; $(MAKE) clean
 
 # Set ourselves up to build a RedHat package
 tarball: overview.html overview.ps overview.pdf
