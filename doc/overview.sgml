@@ -4,7 +4,7 @@
 
 <?Fm: Validation Off>
 
-<!ENTITY version "1.4">
+<!ENTITY version "1.4.1">
 <!ENTITY dj "DejaGnu">
 
 <!ENTITY dejagnu-copyright "
@@ -15,7 +15,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 This file documents the GNU Testing Framework ``DejaGnu''
 
-Copyright (C) 92, 93, 94, 95, 96, 97, 98, 99, 2000, 2001 Free Software
+Copyright (C) 92 - 2000, 2001 Free Software
 Foundation, Inc.
 
 This text may be freely distributed under the terms of the GNU
@@ -24,7 +24,7 @@ General Public License.
 ">
 
 <!ENTITY dejagnu-copyright "
-Copyright 92, 93, 94, 95, 96, 97, 98, 99, 2000, 2001 Free Software
+Copyright 92 - 2000, 2001 Free Software
 Foundation, Inc.
 
 Permission is granted to make and distribute verbatim copies of
@@ -54,9 +54,9 @@ into another language, under the above conditions for modified versions.
   <bookinfo>
     <title>&dj;</title>
     <subtitle>The GNU Testing Framework</subtitle>
-    <date>2001 Feb 16</date>
+    <date>2001 May 2</date>
     <edition> &version</edition>
-    <releaseinfo> for circulation within Cygnus</releaseinfo>
+    <releaseinfo> New release</releaseinfo>
     <authorgroup>
       <author>
         <firstname>Rob Savoye</firstname>
@@ -85,6 +85,12 @@ into another language, under the above conditions for modified versions.
       <!-- &cygnus-legal-notice; -->
     <!-- </legalnotice> -->
     <revhistory>
+      <revision>
+        <revnumber>0.6.1</revnumber>
+        <date>2001-2-16</date>
+        <authorinitials>rob@welcomehome.org</authorinitials>
+        <revremark>Add info on the new dejagnu.h file.</revremark>
+      </revision>
       <revision>
         <revnumber>0.6</revnumber>
         <date>2001-2-16</date>

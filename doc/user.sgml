@@ -2362,6 +2362,45 @@
    
 </chapter>
 
+  <chapter id=unit xreflabel="Unit Testing">
+    <title>Unit Testing</title>
+    
+    <sect1 id=unittest  xreflabel="What Is Unit Testing ?">
+      <title>What Is Unit Testing ?</title>
+    
+      <para>Most regression testing as done by DejaGnu is system
+      testing. This is the complete application is tested all at
+      once. Unit testing is for testing single files, or small
+      libraries. In this case, each file is linked with a test case in
+      C or C++, and each function or class and method is tested in
+      series, with the test case having to check private data or
+      global variable to see if the function or method worked.</para>
+
+      <para>This works particularly well for testing API and a level
+      where it is easier to debug them, than by need to trace through
+      the entire appication. Also if there is a specification for the
+      API to be tested, the testcase can also function as a compliance
+      test.</para>
+
+    </sect1>
+
+    <sect1 id=djh xreflabel="The dejagnu.h Header File">
+      <title>The dejagnu.h Header File</title>
+    
+      <para>DejaGnu uses a single header file to assist in unit
+      testing. As this file also produces it's one test state output,
+      it can be run standalone, which is very useful for testing on
+      embedded systems. This header file has a C and C++ API for the
+      test states, with simple totals, and standardized
+      output. Because the output has been standardized, DejaGnu can be
+      made to work with this test case, without writing almost any
+      Tcl. The library module, dejagnu.exp, will look for the output
+      messages, and then merge them into DejaGnu's.</para>
+
+     </sect1>
+ 
+</chapter>
+
 <!-- Keep this comment at the end of the file
 Local variables:
 mode: sgml
