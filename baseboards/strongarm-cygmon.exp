@@ -16,7 +16,7 @@ set_board_info ldflags  "[libgloss_link_flags] [newlib_link_flags] [board_info $
 # CygMON linker script.
 
 if {[string compare [board_info $board boardtype] "sa1100dp"] == 0} {
-  set_board_info ldscript "-specs=sa1100dp.specs"
+    set_board_info ldscript "-specs=sa1100dp.specs"
 } elseif {[string compare [board_info $board boardtype] "sa1100mm"] == 0} {
     set_board_info ldscript "-specs=sa1100mm.specs"
 } elseif {[string compare [board_info $board boardtype] "sa-iop"] == 0} {

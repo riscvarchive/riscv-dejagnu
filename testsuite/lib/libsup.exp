@@ -87,8 +87,8 @@ proc start_expect { } {
 	verbose "EXPECT defaulting to $EXPECT" 2
     }
 
-#    catch close
-#    catch wait
+    #    catch close
+    #    catch wait
 
     # Start expect runing
     spawn "$EXPECT"

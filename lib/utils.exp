@@ -362,8 +362,8 @@ proc diff { file_1 file_2 } {
         set line_a [lindex ${list_a} ${i}]
         set line_b [lindex ${list_b} ${i}]
 
-#        verbose "\t${file_1}: ${i}: ${line_a}\n" 3
-#        verbose "\t${file_2}: ${i}: ${line_b}\n" 3
+	#        verbose "\t${file_1}: ${i}: ${line_a}\n" 3
+	#        verbose "\t${file_2}: ${i}: ${line_b}\n" 3
         if [string compare ${line_a} ${line_b}] {
 	    verbose "line #${i}\n" 2
             verbose "\< ${line_a}\n" 2

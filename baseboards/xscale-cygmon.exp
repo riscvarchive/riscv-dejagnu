@@ -16,7 +16,7 @@ set_board_info ldflags  "[libgloss_link_flags] [newlib_link_flags] [board_info $
 # CygMON linker script.
 
 if {[string compare [board_info $board boardtype] "xaret"] == 0} {
-  set_board_info ldscript "-specs=xaret.specs"
+    set_board_info ldscript "-specs=xaret.specs"
 } elseif {[string compare [board_info $board boardtype] "iq80310"] == 0} {
     set_board_info ldscript "-specs=iq80310.specs"
 }

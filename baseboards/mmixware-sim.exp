@@ -17,10 +17,10 @@ unset_board_info slow_simulator
 # override.
 if ![board_info $board exists sim] {
     if [info exists SIM] {
-      set_board_info sim $SIM
+	set_board_info sim $SIM
     } else {
-      # Has to exist in the users path.
-      set_board_info sim mmix
+	# Has to exist in the users path.
+	set_board_info sim mmix
     }
 }
 

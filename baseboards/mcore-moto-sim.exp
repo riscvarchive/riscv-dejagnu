@@ -43,7 +43,7 @@ proc sim_spawn { dest cmdline args } {
     ## multilib option.
     ## XXX - fixme - this should not be hardcoded.
     set sim "/home/nickc/bin/linux/sim-be"
-#   set sim "/home/nickc/bin/linux/sim-le"
+    #   set sim "/home/nickc/bin/linux/sim-le"
 
     set simflags "-m abi"
 

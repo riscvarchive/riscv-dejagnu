@@ -82,13 +82,13 @@ proc sim_load { dest prog args } {
 
     set output ""
 
-     if { [board_info target sim,protocol] == "sid" } {
-       set cmd "-e \"set cpu-loader file [list $prog]\""
-     } elseif { [board_info target sim,protocol] == "rawsid" } {
-       set cmd "--load=$prog"
-     } else {
-       set cmd $prog
-     }
+    if { [board_info target sim,protocol] == "sid" } {
+	set cmd "-e \"set cpu-loader file [list $prog]\""
+    } elseif { [board_info target sim,protocol] == "rawsid" } {
+	set cmd "--load=$prog"
+    } else {
+	set cmd $prog
+    }
 
     # Run the program with a limited amount of real time. While
     # this isn't as nice as limiting the amount of CPU time, it

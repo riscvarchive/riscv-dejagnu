@@ -449,10 +449,10 @@ proc get_multilibs { args } {
     # extract the options and their directory names as know by gcc
     foreach i "[exec $compiler --print-multi-lib]" {
     	if {$extra != ""} {
-          # string trimright would do the wrong thing if we included
-          # the leading @@ in $extra
- 	  set i [string trimright $i $extra]
-          set i [string trimright $i "@@"]
+	    # string trimright would do the wrong thing if we included
+	    # the leading @@ in $extra
+	    set i [string trimright $i $extra]
+	    set i [string trimright $i "@@"]
 	}
 	set opts ""
 	set dir ""
@@ -847,7 +847,7 @@ proc build_wrapper { gluefile } {
 	lappend flags "additional_flags=[target_info wrap_compile_flags]"
     }
     if { [target_compile ${libdir}/testglue.c ${gluefile} object $flags] == "" } {
-      set gluefile [remote_download host ${gluefile} ${tool}_tg.o]
+	set gluefile [remote_download host ${gluefile} ${tool}_tg.o]
 	return [list $gluefile $result]
     } else {
 	return ""

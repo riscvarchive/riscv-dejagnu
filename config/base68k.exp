@@ -80,8 +80,8 @@ proc base68k_ld { dest prog } {
 	# dbug has problems if we go into binary mode, so this allows us to
 	# disable entry into binary mode.
 	if ![board_info $dest exists no_binary_mode] {
-	remote_binary $dest
-    }
+	    remote_binary $dest
+	}
     }
 
     # if we built the srecord on a remote host, copy it back here so we
@@ -147,8 +147,8 @@ proc base68k_ld { dest prog } {
 	remote_send $dest [board_info $dest download_command]
 	if [board_info $dest exists download_response] {
 	    remote_expect $dest 5 {
-		 [board_info $dest download_response] { }
-		 timeout {
+		[board_info $dest download_response] { }
+		timeout {
 		    perror "Download command never responded."
 		    return "unresolved"
 		}

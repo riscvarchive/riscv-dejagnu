@@ -1143,9 +1143,9 @@ proc check_for_board_status  { variable } {
     # crashed, regardless of status found elsewhere (e.g. simulator exit
     # code).
     if { [target_info needs_status_wrapper] != "" } then {
-       set nomatch_return 2
+	set nomatch_return 2
     } else {
-       set nomatch_return -1
+	set nomatch_return -1
     }
 
     if [regexp "(^|\[\r\n\])\\*\\*\\* EXIT code" $output] {

@@ -124,7 +124,7 @@ proc rsh_open { hostname } {
 		warning "$RSH: already connected."
 	    }
 	    timeout {
-	       warning "$RSH: timed out trying to connect."
+		warning "$RSH: timed out trying to connect."
 	    }
 	    eof {
 		perror "$RSH: got EOF while trying to connect."
@@ -135,7 +135,7 @@ proc rsh_open { hostname } {
     }
 
     if { $result < 0 } {
-#	perror "$RSH: couldn't connect after $tries tries."
+	#	perror "$RSH: couldn't connect after $tries tries."
 	close -i $spawn_id
 	set spawn_id -1
     } else {

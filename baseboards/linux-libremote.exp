@@ -12,7 +12,7 @@ set_board_info gdb_protocol "remote"
 
 # Path to the gdbserver executable, if required.
 set_board_info gdb_server_prog \
-	"../../libremote/native/server"
+    "../../libremote/native/server"
 
 # Name of the computer whose socket will be used, if required.
 # set_board_info sockethost "localhost"

@@ -92,8 +92,8 @@ proc ddb_ether_ld { dest prog } {
 
     remote_send $dest "\n"
     remote_expect $dest 10 {
-	 -re ".*${shell_prompt}$" { }
-	 default {
+	-re ".*${shell_prompt}$" { }
+	default {
 	    return "retry"
 	}
     }

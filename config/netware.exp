@@ -151,7 +151,7 @@ proc ${board}_load { dest prog args } {
 
     # Wait a second for the file to "settle" on the NetWare server.
     # I've encountered unexplained failures without this delay.
-#    sleep 1
+    #    sleep 1
 
 
     # The NetWare remote console expects to be connected to a vt100

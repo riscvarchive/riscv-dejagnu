@@ -49,7 +49,7 @@ proc find_rawsid { } {
 	set tcl_library "$srcdir/tcl/library"
         global host_os
 	switch -glob $host_os {
-	  {cygwin*} { set tcl_library [exec cygpath -w $tcl_library] }
+	    {cygwin*} { set tcl_library [exec cygpath -w $tcl_library] }
         }
 	set env(TCL_LIBRARY) $tcl_library
     }

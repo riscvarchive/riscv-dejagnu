@@ -69,7 +69,7 @@ set configfile  site.exp	;# (local to this file)
 set multipass   ""		;# list of passes and var settings
 set errno	"";		;#
 set exit_error  0		;# Toggle for whether to set the exit status
-				;# on Tcl bugs in test case drivers.
+;# on Tcl bugs in test case drivers.
 #
 # These describe the host and target environments.
 #
@@ -1177,9 +1177,9 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    exit 0	
 	}
 
-       "[A-Z0-9_-.]*=*" { # skip makefile style args like CC=gcc, etc... (processed in first pass)
-               continue
-       }
+	"[A-Z0-9_-.]*=*" { # skip makefile style args like CC=gcc, etc... (processed in first pass)
+	    continue
+	}
 
 	default {
 	    if [info exists tool] {
@@ -1311,8 +1311,8 @@ proc load_tool_target_config { name } {
 	# If we can't load the tool init file, this must be a simple natively hosted
 	# test suite, so we use the default procs for Unix.
 	if { [search_and_load_file "library file" default.exp [list $libdir $libdir/config [file dirname [file dirname $srcdir]]/dejagnu/config $srcdir/config . [file dirname [file dirname [file dirname $srcdir]]]/dejagnu/config]] == 0 } {
-	send_error "ERROR: Couldn't find default tool init file.\n"
-	exit 1
+	    send_error "ERROR: Couldn't find default tool init file.\n"
+	    exit 1
 	}
     }
 }
@@ -1505,10 +1505,10 @@ if ![exp_debug] {
              {SIGINT  {interrupted by user}} \
              {SIGQUIT {interrupted by user}} \
              {SIGSEGV {segmentation violation}}" {
-	 set signal [lindex $sig 0]
-	 set str [lindex $sig 1]
-	 trap "send_error \"got a \[trap -name\] signal, $str \\n\"; log_and_exit;" $signal
-	 verbose "setting trap for $signal to $str" 1
+	set signal [lindex $sig 0]
+	set str [lindex $sig 1]
+	trap "send_error \"got a \[trap -name\] signal, $str \\n\"; log_and_exit;" $signal
+	verbose "setting trap for $signal to $str" 1
     }
     unset signal str sig
 }
@@ -1599,8 +1599,8 @@ if [info exists errorInfo] {
 regsub -all "\(\[^/\]\)//*" $srcdir "\\1/" srcdir
 
 if ![info exists target_list] {
-# Make sure there is at least one target machine. It's probably a Unix box,
-# but that's just a guess.
+    # Make sure there is at least one target machine. It's probably a Unix box,
+    # but that's just a guess.
     set target_list { "unix" }
 } else {
     verbose "target list is $target_list"
@@ -1635,10 +1635,10 @@ foreach current_target $target_list {
 
     setup_target_hook $current_target_name $current_target
 
-# If multiple passes requested, set them up.  Otherwise prepare just one.
-# The format of `MULTIPASS' is a list of elements containing
-# "{ name var1=value1 ... }" where `name' is a generic name for the pass and
-# currently has no other meaning.
+    # If multiple passes requested, set them up.  Otherwise prepare just one.
+    # The format of `MULTIPASS' is a list of elements containing
+    # "{ name var1=value1 ... }" where `name' is a generic name for the pass and
+    # currently has no other meaning.
 
     global env
 
@@ -1649,9 +1649,9 @@ foreach current_target $target_list {
 	set multipass { "" }
     }
 
-# If PASS is specified, we want to run only the tests specified.
-# Its value should be a number or a list of numbers that specify
-# the passes that we want to run.
+    # If PASS is specified, we want to run only the tests specified.
+    # Its value should be a number or a list of numbers that specify
+    # the passes that we want to run.
     if [info exists PASS] {
 	set pass $PASS
     } else {

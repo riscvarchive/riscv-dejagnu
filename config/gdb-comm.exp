@@ -107,7 +107,7 @@ proc gdb_comm_file_cmd { arg } {
         -re "$gdb_prompt $" {
             perror "couldn't load $arg into $GDB."
             return -1
-            }
+	}
         timeout {
             perror "couldn't load $arg into $GDB (timed out)."
             return -1
@@ -402,7 +402,7 @@ proc gdb_comm_load { dest prog args } {
     }
 
     set output ""
-	
+    
     # Now start up the program and look for our magic breakpoints.
     # And a whole lot of other magic stuff too.
 

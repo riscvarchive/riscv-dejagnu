@@ -7,12 +7,12 @@ process_multilib_options ""
 
 if { [board_info $board obj_format] == "pe" } {
     set additional_options "-Wl,-oformat,pe-arm-little,--image-base,0"
-#    set_board_info uses_underscores 1
+    #    set_board_info uses_underscores 1
 } else {
 
-#    if [istarget "*-*-coff"] {
-#        set_board_info uses_underscores 1
-#    }
+    #    if [istarget "*-*-coff"] {
+    #        set_board_info uses_underscores 1
+    #    }
 
     set additional_options ""
 }

@@ -32,7 +32,7 @@ proc dumpvars { args } {
 	    }
 	}
     }
-       ]
+	      ]
 }
 
 #
@@ -48,7 +48,7 @@ proc dumplocals { args } {
 	    }
 	}
     }
-       ]
+	      ]
 }
 #
 # Dump the body of procedures specified by a regexp.
@@ -204,15 +204,15 @@ proc bt { } {
 # create some stub procedures since we can't alias the command names
 #
 proc dp { args } {
-  uplevel 1 dumprocs $args
+    uplevel 1 dumprocs $args
 }
 
 proc dv { args } {
-  uplevel 1 dumpvars $args
+    uplevel 1 dumpvars $args
 }
 
 proc dl { args } {
-  uplevel 1 dumplocals $args
+    uplevel 1 dumplocals $args
 }
 
 proc dw { args } {
