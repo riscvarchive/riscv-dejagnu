@@ -1,3 +1,8 @@
+2003-08-17  Ben Elliston  <bje@wasabisystems.com>
+
+	* doc/Makefile.am (AUTOMAKE_OPTIONS): Remove empty variable.
+	* doc/Makefile.in: Regenerate.
+	
 2003-08-16  Ben Elliston  <bje@wasabisystems.com>
 
 	* doc/overview.sgml (overview): Start overhauling chapter.

@@ -1,7 +1,5 @@
 ## Process this file with automake to generate Makefile.in
 
-# AUTOMAKE_OPTIONS =
-
 man_MANS = runtest.1
 # FIXME: We need to generate an info doc from SGML somehow, but for
 # now, don't install the old texinfo document from version 1.3
@@ -65,5 +63,3 @@ install-doc: $(TARGETS)
 	$(INSTALL_DATA) overview.ps $(DESTDIR)$(pkgdatadir)/dejagnu.ps
 	$(INSTALL_DATA) overview.pdf $(DESTDIR)$(pkgdatadir)/dejagnu.pdf
 	$(INSTALL_DATA) $(srcdir)/runtest.1 $(mandir)/man1/
-
-
