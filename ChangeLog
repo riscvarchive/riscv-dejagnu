@@ -1,5 +1,11 @@
 2004-02-06  Ben Elliston  <bje@wasabisystems.com>
 
+	* depcomp: Import latest version.
+	* install-sh: Likewise.
+	* missing: Likewise.
+
+2004-02-06  Ben Elliston  <bje@wasabisystems.com>
+
 	* configure.in: Rename from this ..
 	* configure.ac: .. to this.  Require Autoconf 2.50.
 	* Makefile.in: Regenerate.
