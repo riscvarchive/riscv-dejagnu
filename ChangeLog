@@ -1,3 +1,7 @@
+2003-08-19  Ben Elliston  <bje@wasabisystems.com>
+
+	* contrib/testit: Run wish via /usr/bin/env for portability.
+
 2003-08-18  Ben Elliston  <bje@wasabisystems.com>
 
 	* Makefile.am: Tidy comments and unused command lines.

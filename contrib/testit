@@ -1,10 +1,4 @@
-#!/usr/latest/bin/wish -f
-# Program: testit
-# Tcl version: 7.2 (Tcl/Tk/XF)
-# Tk version: 3.5
-# XF version: 2.2
-#
-
+#!/usr/bin/env wish
 
 # procedure to show window .
 proc ShowWindow. {args} {# xf ignore me 7
