@@ -50,7 +50,7 @@ main (int argc, char *argv[]) {
     // see what was displayed. Otherwise, there is no way we can test
     // the logging functions completely.
     char bbuuff[5120];
-#ifdef HAVE_STL3
+#ifdef __STDC_HOSTED__
     cout.rdbuf()->pubsetbuf(bbuuff, 5120);
 #else
     cout.rdbuf()->setbuf(bbuuff, 5120);

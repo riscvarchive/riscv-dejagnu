@@ -147,7 +147,7 @@ totals (void) {
 #include <fstream>
 #include <string>
 #if 0
-#if HAVE_STL3
+#ifdef __STDC___
 #include <sstream>
 #else
 #include <strstream>
