@@ -1,3 +1,15 @@
+2001-05-25  Rob Savoye  <rob@peggyo.welcomehome.org>
+
+	* acinclude.m4: Add DJ_AC_STL, which figures out if we're running
+	libstdc++ version 2 or 3.
+	* aclocal.m4: Regenerated.
+	* configure.in: Add DJ_AC_STL.
+	* configure: Regenerated.
+	* dejagnu.h: Add the use of the std namespace, so we work with
+	libstdc++ version 2 or 3.
+	* testsuite/libdejagnu/unit.cc: Use setbuf() or pubsetbuff(),
+	depending on the version.
+
 2001-05-20  Stephane Carrez  <Stephane.Carrez@worldnet.fr>
   
         * baseboards/m68hc11-sim.exp: New file for 68HC11/68HC12 validation.

@@ -13,11 +13,17 @@ AC_PROG_CXX
 AC_PROG_INSTALL
 AC_EXEEXT
 
+AC_PROG_YACC
+AM_PROG_LEX
+
 dnl we need the path to Docbook so we can build packages.
 DJ_AC_PATH_DOCBOOK
 
 dnl we need the path to the tcl shell to build a release
 DJ_AC_PATH_TCLSH
+
+dnl we need to know if we have libstl v2 or v3
+DJ_AC_STL
 
 dnl Level of indirection for automake macro (baseboards:boards_DATA)
 BOARDS='$(boards)'
@@ -28,5 +34,5 @@ AC_SUBST(CONFIG)
 AC_CONFIG_SUBDIRS(example/calc)
 
 AC_OUTPUT(Makefile doc/Makefile testsuite/Makefile example/Makefile
-testsuite/libdejagnu/Makefile)
+testsuite/libdejagnu/Makefile unitparse/Makefile)
 

@@ -1,3 +1,24 @@
+AC_DEFUN(DJ_AC_STL, [
+AC_MSG_CHECKING(for for STL versions)
+AC_CACHE_VAL(ac_cv_stl,[
+  AC_TRY_COMPILE([#include <iostream>], [
+  using namespace std;
+  char bbuuff[5120];
+  cout.rdbuf()->pubsetbuf(bbuuff, 5120); ],
+  ac_cv_stl=v3
+  ,
+  ac_cv_stl=v2
+  ),
+])
+
+if test x"${ac_cv_stl}" != x"v2" ; then  
+  AC_MSG_RESULT(v3)
+  AC_DEFINE(HAVE_STL3)
+else
+  AC_MSG_RESULT(v2)
+fi
+])
+
 AC_DEFUN(DJ_AC_PATH_TCLSH, [
 dirlist=".. ../../ ../../../ ../../../../ ../../../../../ ../../../../../../ ../
 ../../../../../.. ../../../../../../../.. ../../../../../../../../.. ../../../..

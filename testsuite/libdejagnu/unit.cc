@@ -1,13 +1,14 @@
 // unit.cc -- This is a test case for the Dejagnu.h classes.
 
 #include <iostream>
-#include <dejagnu.h>
-
 #include <regex.h>
 #include <string>
 #include <fstream>
 #include <set>
 #include <sys/types.h>
+#include <dejagnu.h>
+
+using namespace std;
 
 TestState runtest;
 TestState test;
@@ -48,9 +49,12 @@ main (int argc, char *argv[]) {
     // Replace the output buffer for cout, so we can examine it to
     // see what was displayed. Otherwise, there is no way we can test
     // the logging functions completely.
-    streambuf *sb =  cout.rdbuf();
     char bbuuff[5120];
-    sb->setbuf(bbuuff, 5120);
+#ifdef HAVE_STL3
+    cout.rdbuf()->pubsetbuf(bbuuff, 5120);
+#else
+    cout.rdbuf()->setbuf(bbuuff, 5120);
+#endif
 
     testClass1.tname = "testType1";
     testClass1.tnum = 1;  
@@ -108,7 +112,6 @@ main (int argc, char *argv[]) {
     } else {
 	runtest.fail ("Totals message");
     }
-
 }
 
 

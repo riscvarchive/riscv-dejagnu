@@ -10,6 +10,27 @@ dnl but WITHOUT ANY WARRANTY, to the extent permitted by law; without
 dnl even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 dnl PARTICULAR PURPOSE.
 
+AC_DEFUN(DJ_AC_STL, [
+AC_MSG_CHECKING(for for STL versions)
+AC_CACHE_VAL(ac_cv_stl,[
+  AC_TRY_COMPILE([#include <iostream>], [
+  using namespace std;
+  char bbuuff[5120];
+  cout.rdbuf()->pubsetbuf(bbuuff, 5120); ],
+  ac_cv_stl=v3
+  ,
+  ac_cv_stl=v2
+  ),
+])
+
+if test x"${ac_cv_stl}" != x"v2" ; then  
+  AC_MSG_RESULT(v3)
+  AC_DEFINE(HAVE_STL3)
+else
+  AC_MSG_RESULT(v2)
+fi
+])
+
 AC_DEFUN(DJ_AC_PATH_TCLSH, [
 dirlist=".. ../../ ../../../ ../../../../ ../../../../../ ../../../../../../ ../
 ../../../../../.. ../../../../../../../.. ../../../../../../../../.. ../../../..
@@ -222,4 +243,13 @@ else
   $1_TRUE='#'
   $1_FALSE=
 fi])
+
+
+dnl AM_PROG_LEX
+dnl Look for flex, lex or missing, then run AC_PROG_LEX and AC_DECL_YYTEXT
+AC_DEFUN(AM_PROG_LEX,
+[missing_dir=ifelse([$1],,`cd $ac_aux_dir && pwd`,$1)
+AC_CHECK_PROGS(LEX, flex lex, "$missing_dir/missing flex")
+AC_PROG_LEX
+AC_DECL_YYTEXT])
 

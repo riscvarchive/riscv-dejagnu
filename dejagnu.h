@@ -63,6 +63,7 @@ totals (void) {
 
 #ifdef __cplusplus
 
+
 #include <iostream>
 #include <iomanip>
 #include <fstream>
@@ -110,12 +111,13 @@ OMANIP<int> testout(int i) {
 #endif
 
 char *testout (int x) {
-    const int len = 128;
-    static char buf[len];
-    static ostrstream oss(buf, len, ios::out);
-    oss.seekp(ios::beg);
-    oss << outstate[x] << ends;
-    return buf;
+  using namespace std;
+  const int len = 128;
+  static char buf[len];
+  static ostrstream oss(buf, len, ios::out);
+  oss.seekp(ios::beg);
+  oss << outstate[x] << ends;
+  return buf;
 }
 
 enum teststate {FAILED, PASSED,UNTESTED,UNRESOLVED} laststate;
@@ -123,7 +125,7 @@ enum teststate {FAILED, PASSED,UNTESTED,UNRESOLVED} laststate;
 class TestState {
  private:
     teststate laststate;
-    string lastmsg;
+    std::string lastmsg;
  public:
     TestState(void) {
         passed = 0;
@@ -135,75 +137,76 @@ class TestState {
         totals();
     };
 
-    void testrun (bool b, string s) {
+
+    void testrun (bool b, std::string s) {
         if (b)
             pass (s);
         else
             fail (s);
     }
 
-    void pass (string s) {
+    void pass (std::string s) {
         passed++;
         laststate = PASSED;
         lastmsg = s;
-        cout << "\t" << testout(PASSED) << s << endl;
+        std::cout << "\t" << testout(PASSED) << s << std::endl;
     }
     void pass (const char *c) {
-        string s = c;
+        std::string s = c;
         pass (s);
     }
 
-    void fail (string s) {
+    void fail (std::string s) {
         failed++;
         laststate = FAILED;
         lastmsg = s;
-        cout << "\t" << testout(FAILED) << s << endl;
+        std::cout << "\t" << testout(FAILED) << s << std::endl;
     }
     void fail (const char *c) {
-        string s = c;
+        std::string s = c;
         fail (s);
     }
 
-    void untested (string s) {
+    void untested (std::string s) {
         untest++;
         laststate = UNTESTED;
         lastmsg = s;
-        cout << "\t" << testout(UNTESTED) << s << endl;
+        std::cout << "\t" << testout(UNTESTED) << s << std::endl;
     }
     void untested (const char *c) {
-        string s = c;
+        std::string s = c;
         untested (s);
     }
 
-    void unresolved (string s) {
+    void unresolved (std::string s) {
         unresolve++;
         laststate = UNRESOLVED;
         lastmsg = s;
-        cout << "\t" << testout(UNRESOLVED) << s << endl;
+        std::cout << "\t" << testout(UNRESOLVED) << s << std::endl;
     }
     void unresolved (const char *c) {
-        string s = c;
+        std::string s = c;
         unresolved (s);
     }
 
     void totals (void) {
-        cout << "\t#passed:\t\t" << passed << endl;
-        cout << "\t#failed:\t\t" << failed << endl;
+        std::cout << "\t#passed:\t\t" << passed << std::endl;
+        std::cout << "\t#failed:\t\t" << failed << std::endl;
         if (untest)
-            cout << "\t#untested:\t\t" << untest << endl;
+            std::cout << "\t#untested:\t\t" << untest << std::endl;
         if (unresolve)
-            cout << "\t#unresolved:\t\t" << unresolve << endl;
+            std::cout << "\t#unresolved:\t\t" << unresolve << std::endl;
     }
 
-    // This is so thjis class can be printed in an ostream.
-    friend ostream & operator << (ostream &os, TestState& t) {
+    // This is so this class can be printed in an ostream.
+    friend std::ostream & operator << (std::ostream &os, TestState& t) {
         return os << "\t" << outstate[t.laststate] << t.lastmsg ;
     }
 
     int GetState(void) {
         return laststate;
     }
-    string GetMsg(void) {
+    std::string GetMsg(void) {
         return lastmsg;
     }
 };
