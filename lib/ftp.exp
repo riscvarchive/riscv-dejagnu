@@ -17,14 +17,9 @@
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@gnu.org
 
+# Open an FTP connection to HOST.
 #
-# Support downloading files using ftp.
-#
-
-#
-# Open a connection to HOST.
-#
-proc ftp_open { host } {
+proc ftp_open {host} {
     set prompt "ftp>"
     global board_info
 
@@ -46,7 +41,7 @@ proc ftp_open { host } {
     # times when it gets a "connection refused".
     set spawn_id -1
     set count 3
-    while { $spawn_id < 0 && $count >= 0 } {
+    while {$spawn_id < 0 && $count >= 0} {
 	spawn ftp -n $remotehost
 	expect {
 	    -i $spawn_id -re ".*220.*$prompt" { }
@@ -63,7 +58,7 @@ proc ftp_open { host } {
 	}
 	incr count -1
     }
-    if { $spawn_id < 0 } {
+    if {$spawn_id < 0} {
 	return -1
     }
     set board_info($host,ftp_fileid) $spawn_id
@@ -121,21 +116,20 @@ proc ftp_open { host } {
     return $spawn_id
 }
 
+# Fetch REMOTEFILE from HOST and store it as LOCALFILE.
 #
-# Grab REMOTEFILE from HOST and store it as LOCALFILE.
-#
-proc ftp_upload { host remotefile localfile } {
+proc ftp_upload {host remotefile localfile} {
     set prompt "ftp>"
 
     verbose "ftping $remotefile from $host to $localfile"
     set timeout 15
     set spawn_id [ftp_open $host]
-    if { $spawn_id < 0 } {
+    if {$spawn_id < 0} {
 	return ""
     }
     set loop 1
 
-    while { $loop } {
+    while {$loop} {
 	send -i $spawn_id "get $remotefile $localfile\n"
 	expect {
 	    -i $spawn_id -re ".*Too many open files.*$prompt" {
@@ -145,7 +139,7 @@ proc ftp_upload { host remotefile localfile } {
 		set loop 0
 		set remotefile ""
 	    }
-	    -i $spawn_id -re "(^|\[\r\n\])226.*$prompt" { set loop 0 }
+	    -i $spawn_id -re "(^|\[\r\n\])226.*$prompt" {set loop 0}
 	    -i $spawn_id -re "(^|\[\r\n\])\[0-9\]\[0-9\]\[0-9\].*$prompt" {
 		set loop 0
 		set remotefile ""
@@ -154,9 +148,9 @@ proc ftp_upload { host remotefile localfile } {
 		ftp_close $host
 	    }
 	}
-	if { $loop } {
+	if {$loop} {
 	    set spawn_id [ftp_open $host]
-	    if { $spawn_id < 0 } {
+	    if {$spawn_id < 0} {
 		return ""
 	    }
 	}
@@ -164,10 +158,9 @@ proc ftp_upload { host remotefile localfile } {
     return $localfile
 }
 
-#
 # Download LOCALFILE to HOST as REMOTEFILE.
 #
-proc ftp_download { host localfile remotefile } {
+proc ftp_download {host localfile remotefile} {
     set prompt "ftp>"
 
     verbose "putting $localfile $remotefile"
@@ -179,12 +172,12 @@ proc ftp_download { host localfile remotefile } {
     }
 
     set spawn_id [ftp_open $host]
-    if { $spawn_id < 0 } {
+    if {$spawn_id < 0} {
 	return ""
     }
     set loop 1
 
-    while { $loop } {
+    while {$loop} {
 	send -i $spawn_id "put $localfile $remotefile\n"
 	expect {
 	    -i $spawn_id -re ".*Too many open files.*$prompt" {
@@ -212,9 +205,9 @@ proc ftp_download { host localfile remotefile } {
 		ftp_close $host
 	    }
 	}
-	if { $loop } {
+	if {$loop} {
 	    set spawn_id [ftp_open $host]
-	    if { $spawn_id < 0 } {
+	    if {$spawn_id < 0} {
 		return ""
 	    }
 	}
@@ -222,10 +215,9 @@ proc ftp_download { host localfile remotefile } {
     return $remotefile
 }
 
+# Close the FTP connection to HOST.
 #
-# Close the connection.
-#
-proc ftp_close { host } {
+proc ftp_close {host} {
     global board_info
 
     if [board_info $host exists name] {

@@ -1,6 +1,7 @@
 2003-08-22  Ben Elliston  <bje@wasabisystems.com>
 
 	* lib/kermit.exp: Document procs.
+	* lib/ftp.exp: Likewise.
 
 2003-08-19  Ben Elliston  <bje@wasabisystems.com>
 
