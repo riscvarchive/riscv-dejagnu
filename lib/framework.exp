@@ -719,16 +719,16 @@ proc record_test { type message args } {
 	    set error $errorInfo
         }
         global expect_out 
-	set l_input0_output1 { 0, 0 }
-	if { [catch { set l_input0_output1 [split $expect_out(buffer) "\n"] } result]} {
-		puts stderr "Warning: no input or ouput for test $message!"
+	set rio { "" "" }
+	if { [catch { set rio [split $expect_out(buffer) "\n"] } result]} {
+		#do nothing - leave as { "" "" }
 	}
 	
         set output ""
 	set output "expect_out(buffer)"
         xml_output "  <test>"
-        xml_output "    <input>[string trimright [lindex $l_input0_output1 0]]</input>"
-        xml_output "    <output>[string trimright [lindex $l_input0_output1 1]]</output>"
+        xml_output "    <input>[string trimright [lindex $rio 0]]</input>"
+        xml_output "    <output>[string trimright [lindex $rio 1]]</output>"
         xml_output "    <result>$type</result>"
         xml_output "    <name>$message</name>"
         xml_output "    <prms_id>$prms_id</prms_id>"
