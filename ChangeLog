@@ -1,3 +1,15 @@
+2003-01-31  Kazu Hirata  <kazu@cs.umass.edu>
+
+        * dejagnu/baseboards/h8300-sim.exp: Don't set
+	needs_status_wrapper.
+
+2002-11-12  Hans-Peter Nilsson  <hp@bitrange.com>
+        * lib/libgloss.exp (newlib_include_flags): Use -isystem, not -I.
+        (libio_include_flags, g++_include_flags, libstdc++_include_flags,
+        winsup_include_flags): Ditto.
+        * doc/user.sgml (Local Config File): Use -isystem, not -I, in
+        example.
+
 2002-11-21 Matt Bemis <bemis@iol.unh.edu>
 		*modified xml_output to handle null input and output
 		
@@ -16,7 +28,6 @@
         * doc/user.sgml (Local Config File): Use -isystem, not -I, in
         example.
 
-2002-11-12  Peter Breitenlohner <peb@mppmu.mpg.de>
 2002-10-29  Maciej W. Rozycki  <macro@ds2.pg.gda.pl>
 	* Makefile.am: Add support for DESTDIR.
 	* Makefile.in: Regenerated.
