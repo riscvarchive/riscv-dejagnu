@@ -205,7 +205,7 @@ into another language, under the above conditions for modified versions.
     <para>Julia Menapace first coined the term ``Deja Gnu'' to describe an
     earlier testing framework at Cygnus Support she had written for
     <command>GDB</command>. When we replaced it with the Expect-based
-    framework, it was like DejaGnu all over again... But more importantly, it
+    framework, it was like DejaGnu all over again.  More importantly, it
     was also named after my daughter,<ulink
     URL="mailto:deja@welcomehome.org">Deja Snow Savoye</ulink> (now 12
     years old in Sept of 2002), who was a toddler during DejaGnu's
@@ -245,28 +245,28 @@ into another language, under the above conditions for modified versions.
 	URL="http://nis-www.lanl.gov/~rosalia/mydocs/docbook-intro.html">free
 	GNU DocBook tools</ulink>) format.</para></listitem>
 	
-      <listitem><para>NT support. There is beta level support for NT
-      that is still a work in progress. This requires the <ulink
-      URL="http://sources.redhat.com">Cygwin</ulink> POSIX system
-      for NT.</para></listitem>
+      <listitem><para>Windows support. There is beta level support for
+      Windows that is still a work in progress. This requires the
+      <ulink URL="http://www.cygwin.com/">Cygwin</ulink> POSIX
+      subsystem for Windows.</para></listitem>
 
     </itemizedlist>
 
-    <sect2 id=cygwin xreflabel="NT Support">
-      <title>NT Support</title>
+    <sect2 id=cygwin xreflabel="Windows Support">
+      <title>Windows Support</title>
   
-      <para>To use DejaGnu on NT, you need to first install the
-	<ulink URL="http://sources.redhat.com/cygwin">Cygwin</ulink>
+      <para>To use DejaGnu on Windows, you need to first install the
+	<ulink URL="http://www.cygwin.com/">Cygwin</ulink>
 	release. This works as of the B20.1 release. Cygwin is a POSIX
-	system for NT. This covers both utility programs, and a libray
-	that adds POSIX system calls to NT. Among them is pseudo tty
-	support for NT that emulates the POSIX pty standard. The
+	system for Windows. This covers both utility programs, and a libray
+	that adds POSIX system calls to Windows. Among them is pseudo tty
+	support for Windows that emulates the POSIX pty standard. The
 	latest Cygwin is always available from <ulink
-	URL="http://sources.redhat.com/cygwin">this location</ulink>. This
+	URL="http://www.cygwin.com/">this location</ulink>. This
 	works well enough to run <emphasis>"make check"</emphasis> of
-	the GNU development tree on NT after a native build. But the
-	nature of pty's on NT is still evolving. Your mileage may
-	vary...</para>
+	the GNU development tree on Windows after a native build. But the
+	nature of ptys on Windows is still evolving. Your mileage may
+	vary.</para>
 
     </sect2>
 	

@@ -1,3 +1,10 @@
+2003-07-29  Ben Elliston  <bje@wasabisystems.com>
+
+	* doc/overview.sgml: Replace "NT" with "Windows", correct Cygwin
+	URLs and other stylistic improvements.
+	* doc/ref.sgml: Likewise.
+	* doc/user.sgml: Likewise.
+
 2003-07-25  Mike Stump  <mrs@apple.com>
 
 	* lib/target.exp (prune_warnings): Handle "nfs server .* not

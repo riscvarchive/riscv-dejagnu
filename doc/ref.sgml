@@ -3420,7 +3420,7 @@
 
 	  <para>This look in the process table for <emphasis>name</emphasis>
 	  and send it a unix SIGINT, killing the process. This will only work
-	  under NT if you have Cygwin or another Unix system for NT
+	  under Windows if you have Cygwin or another Unix subsystem for Windows
 	  installed.</para>
 
 	<funcsynopsis role="tcl"> 
