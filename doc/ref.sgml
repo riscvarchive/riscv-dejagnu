@@ -787,7 +787,7 @@
 	<sect3 id=checkconditionalxfail xreflabel="check_conditional_xfail procedure">
 	  <title>Check_conditional_xfail Procedure</title>
 
-	  <para>This procedure adds a condition xfail, based on compiler
+	  <para>This procedure adds a conditional xfail, based on compiler
 	  options used to create a test case executable. If an include options
 	  is found in the compiler flags, and it's the right architecture,
 	  it'll trigger an <emphasis>XFAIL</emphasis>. Otherwise it'll produce
@@ -825,9 +825,11 @@
          <varlistentry>
 	    <term><parameter>includes</parameter></term>
 	    <listitem><para>This is a list of sets of options to search for in
-	    the compiler options to activate this conditional. If any set of
-	    the options matches, then this conditional is
-	    true.</para></listitem>
+	    the compiler options to activate this conditional.  If the list of
+	    sets of options is empty or if any set of the options matches,
+	    then this conditional is true.  (It may be useful to specify an
+	    empty list of include sets if the conditional is always true
+	    unless one of the exclude sets matches.)</para></listitem>
           </varlistentry>
          <varlistentry>
 	    <term><parameter>excludes</parameter></term>

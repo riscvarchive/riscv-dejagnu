@@ -389,7 +389,8 @@ runtest -v -v -v --tool calc CALC=`pwd`/calc --srcdir ./testsuite
 
 <para>Calling runtest with the '--debug'-flag logs a lot of details to dbg.log where you can analyse it afterwards. </para>
 
-<para>In all test cases you can temporary adjust the verbosity of information by adding the following Tcl-command:</para>
+<para>In all test cases you can temporary adjust the verbosity of information by adding the following Tcl-command to any tcl file that gets loaded by
+dejagnu, for instance, ~/.dejagnurc:</para>
 
 <programlisting>
 set verbose 9

@@ -27,8 +27,7 @@ dirlist=".. ../../ ../../../ ../../../../ ../../../../../ ../../../../../../ ../
 /../../../../../.."
 no_itcl=true
 AC_MSG_CHECKING(for the tclsh program)
-AC_ARG_WITH(tclinclude, [  --with-tclinclude       directory where tcl header
-s are], with_tclinclude=${withval})
+AC_ARG_WITH(tclinclude, [  --with-tclinclude       directory where tcl headers are], with_tclinclude=${withval})
 AC_CACHE_VAL(ac_cv_path_tclsh,[
 dnl first check to see if --with-itclinclude was specified
 if test x"${with_tclinclude}" != x ; then

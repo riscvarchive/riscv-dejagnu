@@ -104,8 +104,8 @@ for i in `echo ${execpath} | sed  -e 's@/[^/]*$@/share/dejagnu@'` `echo ${execpa
 	runpath=$i
 	if expr $verbose \> 0 > /dev/null ; then
 	    echo Using $i/runtest.exp as main test driver
-	    break;
 	fi
+        break;
     fi
 done
 # check for an environment variable

@@ -16,6 +16,12 @@ set_board_info ldflags  "[libgloss_link_flags] [newlib_link_flags] [board_info $
 # CygMON linker script.
 set_board_info ldscript "-Teval.ld"
 
+if {[string compare [board_info $board boardtype] "asb2303"] == 0} {
+    set_board_info ldflags "[libgloss_link_flags] [newlib_link_flags] [board_info $board addl_link_flags] -mno-crt0 -mam33-2";
+    set_board_info ldscript "-mam33-2 -Tasb2303.ld"
+}
+                                                                                
+
 # Standard remote protocol.
 set_board_info gdb_protocol "remote";
 # We can't do input in GDB (yet! HA!). It *will* do output, hurrah.

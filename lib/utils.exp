@@ -25,12 +25,13 @@
 #
 
 #
-# Gets the directories in a directory
+# Gets the directories in a directory, or in a directory tree.
 #     args: the first is the dir to look in, the next
 #         is the pattern to match. It
 #         defaults to *. Patterns are csh style
 #   	  globbing rules
-#     returns: a list of dirs or NULL
+#     options: -all  search the tree recursively
+#     returns: a list of dirs or NULL; the root directory is not returned.
 #
 proc getdirs { args } {
     if { [lindex $args 0] == "-all" } {
@@ -86,54 +87,32 @@ proc getdirs { args } {
 }
 
 #
-# Finds all the files recursively
-#     rootdir - this is the directory to start the search
-#   	  from. This is and all subdirectories are search for
-#   	  filenames. Directory names are not included in the
-#   	  list, but the filenames have path information. 
-#     pattern - this is the pattern to match. Patterns are csh style
-#   	  globbing rules.
-#     returns: a list or a NULL.
+# Finds paths of all non-directory files, recursively, whose names match
+# a pattern.  Certain directory name are not searched (see proc getdirs).
+#     rootdir - search in this directory and its subdirectories, recursively.
+#     pattern - specified with Tcl string match "globbing" rules.
+#     returns: a possibly empty list of pathnames.
 #
 proc find { rootdir pattern } {
-    # first find all the directories
-    set dirs "$rootdir "
-    while 1 {
-	set tmp $rootdir
-	set rootdir ""
-	if [string match "" $tmp] {
-	    break
-	}
-	foreach i $tmp {
-	    set j [getdirs -all $i]
-	    if ![string match "" $j] {
-		append dirs "$j "
-		set rootdir $j
-		unset j
-	    } else {
-		set rootdir ""
-	    }
-	}
-	set tmp ""
+    set files [list]
+    if { [string length $rootdir] == 0 || [string length $pattern] == 0 } {
+	return $files
     }
+
+    # find all the directories
+    set dirs [concat [getdirs -all $rootdir] $rootdir]
     
-    # find all the files that match the pattern
+    # find all the files in the directories that match the pattern
     foreach i $dirs {
 	verbose "Looking in $i" 3
-	set tmp [glob -nocomplain $i/$pattern]
-	if { [llength $tmp] != 0 } {
-	    foreach j $tmp {
-		if ![file isdirectory $j] {
-		    lappend files $j
-		    verbose "Adding $j to file list" 3
-		}
+	foreach match [glob -nocomplain $i/$pattern] {
+	    if ![file isdirectory $match] {
+		lappend files $match
+		verbose "Adding $match to file list" 3
 	    }
 	}
     }
-    
-    if ![info exists files] {
-	lappend files ""
-    }
+
     return $files
 }
 

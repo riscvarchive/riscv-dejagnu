@@ -20,9 +20,9 @@ set_board_info ldflags "[libgloss_link_flags] [newlib_link_flags]";
 
 # Use idt.
 if { [board_info $board obj_format] == "ecoff" } {
-    set_board_info ldscript "-Wl,-Tidtecoff.ld";
+    set_board_info ldscript "-Tidtecoff.ld";
 } else {
-    set_board_info ldscript "-Wl,-Tidt.ld";
+    set_board_info ldscript "-Tidt.ld";
 }
 
 # And, it can't do arguments, and doesn't have real signals.

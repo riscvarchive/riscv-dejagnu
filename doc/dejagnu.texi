@@ -1985,7 +1985,7 @@ results.
 @cindex failure, conditional expected
 @cindex conditional expected failure
 
-This procedure adds a condition xfail, based on compiler options used to
+This procedure adds a conditional xfail, based on compiler options used to
 create a test case executable. If an include options is found in the
 compiler flags, and it's the right architecture, it'll trigger an
 XFAIL. Otherwise it'll produce an ordinary FAIL. You can also specify
@@ -2008,8 +2008,10 @@ is a string with the targets to activate this conditional on.
 
 @item includes
 is a list of sets of options to search for in the compiler options to
-activate this conditional. If any set of the options matches, then this
-conditional is true.
+activate this conditional. If the list of sets of options is empty or
+if any set of the options matches, then this conditional is true.
+(It may be useful to specify an empty list of include sets if the
+conditional is always true unless one of the exclude sets matches.)
 
 @item excludes
 is a list of sets of options to search for in the compiler options to
