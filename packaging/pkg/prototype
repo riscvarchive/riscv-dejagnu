@@ -106,7 +106,6 @@ f none /opt/dejagnu/share/dejagnu/baseboards/vxsparc.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/baseboards/x86-cygmon.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/baseboards/xscale-cygmon.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/baseboards/xtensa-sim.exp 0644 nobody nobody
-f none /opt/dejagnu/share/dejagnu/i960glue.c 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/stub-loader.c 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/testglue.c 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/debugger.exp 0644 nobody nobody

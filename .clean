@@ -21,7 +21,6 @@ contrib
 dejagnu.h
 doc
 example
-i960glue.c
 install-sh
 lib
 missing
