@@ -4,18 +4,18 @@
 
 <?Fm: Validation Off>
 
-<!ENTITY version "1.4.2">
+<!ENTITY version "1.4.3">
 <!ENTITY dj "DejaGnu">
 
 <!ENTITY dejagnu-copyright "
-	<YEAR>2001</YEAR>
+	<YEAR>2002</YEAR>
 	<HOLDER>Free Software Foundation, Inc.</HOLDER>">
 
 <!ENTITY dejagnu-code-copyright "
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 This file documents the GNU Testing Framework ``DejaGnu''
 
-Copyright (C) 92 - 2000, 2001 Free Software
+Copyright (C) 92 - 2001, 2002 Free Software
 Foundation, Inc.
 
 This text may be freely distributed under the terms of the GNU
@@ -24,7 +24,7 @@ General Public License.
 ">
 
 <!ENTITY dejagnu-copyright "
-Copyright 92 - 2000, 2001 Free Software
+Copyright 92 - 2001, 2002 Free Software
 Foundation, Inc.
 
 Permission is granted to make and distribute verbatim copies of
@@ -54,7 +54,7 @@ into another language, under the above conditions for modified versions.
   <bookinfo>
     <title>&dj;</title>
     <subtitle>The GNU Testing Framework</subtitle>
-    <date>2001 Sept 12</date>
+    <date>2002 July 16</date>
     <edition> &version</edition>
     <releaseinfo> New release</releaseinfo>
     <authorgroup>
@@ -85,6 +85,12 @@ into another language, under the above conditions for modified versions.
       <!-- &cygnus-legal-notice; -->
     <!-- </legalnotice> -->
     <revhistory>
+      <revision>
+        <revnumber>0.6.2</revnumber>
+        <date>2002-7-16</date>
+        <authorinitials>rob@welcomehome.org</authorinitials>
+        <revremark>Add new tutorial as a new chapter.</revremark>
+      </revision>
       <revision>
         <revnumber>0.6.1</revnumber>
         <date>2001-2-16</date>

@@ -29,8 +29,7 @@ docs: $(TARGETS)
 %.rtf: %.sgml
 	src=$(srcdir); \
 	dir=`(cd $${src}; pwd)`; \
-	touch $@; \
-	$(DOCBOOK)/db2rtf -o $@ $${dir}/$*.sgml
+	$(DOCBOOK)/db2rtf $${dir}/$*.sgml
 
 %.gif: %.fig
 	convert -transparency white $< $@ # .fig -> .gif
@@ -46,7 +45,8 @@ docs: $(TARGETS)
 %.html: %.sgml
 	src=$(srcdir); \
 	dir=`(cd $${src}; pwd)`; \
-	$(DOCBOOK)/db2html $${dir}/$*.sgml
+	mkdir html; \
+	$(DOCBOOK)/db2html -o html $${dir}/$*.sgml
 
 # now for some extra dependencies that the automatic rules will not
 # catch:

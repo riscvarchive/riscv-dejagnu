@@ -1,3 +1,25 @@
+2002-07-16    <rob@direwolf.welcomehome.org>
+
+	* doc/user.sgml: Add new tutorial by Niklaus Giger as a new
+	chapter.
+	* doc/Makefile.am: Tweak rules for building output files.
+	* doc/Makefile.in: Regenerated.
+
+2002-07-14 Daniel Jacobowitz <drow@false.org>
+
+	* lib/remote.exp: Fix standard_spawn{} to support SSH.
+
+Wed Jun  5 14:52:15 PDT 2002   Joey Ekstrom <joey@ekstrom.org>
+
+	* dejagnu.h: modfied C functions to behave like printf.
+        * dejagnu.h: added wait() to fix problem with host_execute() in
+        dejagnu.exp where if skips failed, untested, etc. messages from the
+        executable.
+
+2002-05-01  Matt Bemis <bemis@iol.unh.edu>
+
+        * added documentation on xml capabilities
+
 2002-05-02  Fernando Nasser  <fnasser@localhost.localdomain>
 
         * runtest.exp: Add kfail_flag and kfail_prms variable
@@ -5877,3 +5899,7 @@ Tue Jun 30 22:22:00 1992  Rob Savoye  (rob at darkstar.cygnus.com)
 Thu May 21 17:20:23 1992  Rob Savoye  (rob@darkstar.cygnus.com)
 
 	* Hacking in better detailed reports.
+
+Wed Jun  5 14:52:15 PDT 2002   Joey Ekstrom <joey@ekstrom.org>
+	* dejagnu.h: modfied C functions to behave like printf.
+	

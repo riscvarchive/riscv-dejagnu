@@ -894,20 +894,26 @@
 	  <symbol>verbose</symbol> is higher than or equal to the optional
 	  number. The default value for number is <emphasis>1</emphasis>.  Use
 	  the optional <option>-log</option> argument to cause string to always
-	  be added to the log file, even if it won't be printed.  Use the
-	  optional <option>-n</option> argument to print string without a
-	  trailing newline.  Use the optional <option>--</option> argument if
-	  string begins with "-".</para>
+          be added to the log file, even if it won't be printed.  Use the
+          optional <option>-x</option> argument to log the test results into
+          a parsable XML file.  Use the optional <option>-n</option> argument
+          to print string without a trailing newline.  Use the optional
+          <option>--</option> argument if string begins with "-".</para>
 
 	<funcsynopsis role="tcl"> 
             <funcdef><function>verbose</function></funcdef>
 	    <paramdef><parameter>-log</parameter>
+            <parameter>-x</parameter>
 	    <parameter>-n</parameter>
 	    <parameter>-r</parameter>
 	    <parameter>string</parameter>
 	    <parameter>number</parameter></paramdef>
         </funcsynopsis>
 	<variablelist>
+          <varlistentry>
+            <term><parameter>-x</parameter></term>
+            <listitem><para></para></listitem>
+          </varlistentry>
           <varlistentry>
 	    <term><parameter>-log</parameter></term>
  	    <listitem><para></para></listitem>
