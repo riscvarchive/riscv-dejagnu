@@ -1,5 +1,24 @@
 2004-02-07  Ben Elliston  <bje@wasabisystems.com>
 
+	* Makefile.am (pkgdata_SCRIPTS): Remove lib/mondfe, lib/xsh.exp.
+	(config_SCRIPTS): Remove udi.exp, vrtx.exp.
+	(baseboard_SCRIPTS): Remove a29k-udi.exp.
+	* Makefile.in: Regenerate.
+	* baseboards/a29k-udi.exp: Remove.
+	* baseboards/dos.exp: Update comments.
+	* config/udi.exp: Remove.
+	* config/vrtx.exp: Remove.
+	* doc/overview.sgml: Update. Don't mention mondfe and xsh support.
+	* doc/ref.sgml: Likewise.
+	* doc/user.sgml: Likewise.
+	* lib/mondfe.exp: Remove.
+	* lib/xsh.exp: Likewise.
+	* lib/remote.exp: Don't load mondfe.exp or xsh.exp.
+	* packaging/pkg/prototype: Update.
+	* NEWS: Update.
+	
+2004-02-07  Ben Elliston  <bje@wasabisystems.com>
+	
 	* Makefile.am (rpmspec): Remove.
 	(rpm): Additionally depend on dejagnu.spec.
 	($(PKGDIR)/dejagnu): New target that installs DejaGnu into this
