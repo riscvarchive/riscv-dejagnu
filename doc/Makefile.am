@@ -5,7 +5,7 @@ man_MANS = runtest.1
 # now, don't install the old texinfo document from version 1.3
 # info_TEXINFOS = dejagnu.texi
 DOCBOOK = @DOCBOOK@
-TARGETS = overview.html overview.ps overview.pdf overview.rtf
+TARGETS = book1.html overview.ps overview.pdf overview.rtf
 
 docs: $(TARGETS)
 
@@ -49,7 +49,9 @@ docs: $(TARGETS)
 # now for some extra dependencies that the automatic rules will not
 # catch:
 
-html/book1.html rtf overview.pdf overview.ps overview.dvi overview.rtf overview.html: overview.sgml ref.sgml user.sgml
+book1.html: html/book1.html
+
+html/book1.html rtf overview.pdf overview.ps overview.rtf overview.html: overview.sgml ref.sgml user.sgml
 
 html/book1.html: overview.sgml ref.sgml user.sgml
 

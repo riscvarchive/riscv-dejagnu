@@ -1,5 +1,24 @@
 2004-01-27  Ben Elliston  <bje@wasabisystems.com>
 
+	* Makefile.am (tarball): Depend on book1.html, not overview.html.
+	Don't echo needless messages. Portably copy the source tree to
+	dejagnu-${VERSION}.  Portably copy documentation files from the
+	source tree to the distribution directory.  Don't copy RPM-related
+	files -- leave that to the rpm target.
+	(snapshot): Remove target.
+	(overview.html): Rename target from this ..
+	(book1.htm): .. to this.
+	(rpm): Portably copy tar file to SOURCES directory.
+	(deb): Depend on book1.html, not overview.html.
+	(dist-hook): Depend on book1.html, not overview.html.
+	* Makefile.in: Rebuild.
+	* doc/Makefile.am (TARGETS): Depend on book1.html.
+	(book1.html): Depend on html/book1.html.
+	(overview.dvi): Remove target.
+	* doc/Makefile.in: Rebuild.
+
+2004-01-27  Ben Elliston  <bje@wasabisystems.com>
+
 	* Clean.tcl: Run tclsh via /usr/bin/env for portability.
 	(cleanfiles): Concatenate regular filenames that match .*.
 
