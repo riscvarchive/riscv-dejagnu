@@ -289,7 +289,7 @@ docs: $(TARGETS)
 html rtf overview.pdf overview.ps overview.dvi overview.rtf overview.html: overview.sgml ref.sgml user.sgml
 
 clean realclean distclean:
-	rm -fr $(TARGETS) DBHTOHTML* overview.junk overview overview.{aux,dvi,log,ps,pdf,tex}
+	rm -fr $(TARGETS) DBHTOHTML* html dejagnu.info* overview.junk overview overview.{aux,dvi,log,ps,pdf,tex}
 
 install-doc: $(TARGETS)
 	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/html $(DESTDIR)$(pkgdatadir)/html/stylesheet-images

@@ -24,7 +24,7 @@
 set warning_threshold 3
 # This or more errors and a test fails.
 set perror_threshold 1
-
+
 proc mail_file { file to subject } {
     if [file readable $file] {
 	catch "exec mail -s \"$subject\" $to < $file"
@@ -473,7 +473,7 @@ proc cleanup {} {
     #catch "exec rm -f [glob xgdb core *.x *.o *_soc a.out]"
     #catch "exec rm -f [glob -nocomplain $subdir/*.o $subdir/*.x $subdir/*_soc]"
 }
-
+
 #
 # Setup a flag to control whether a failure is expected or not
 #
@@ -720,6 +720,7 @@ proc record_test { type message args } {
         global expect_out
 	
         set output ""
+	set output "expect_out(buffer)"
         xml_output "  <test>"
         xml_output "    <log>$output</log>"
         xml_output "    <result>$type</result>"
@@ -915,7 +916,7 @@ proc kfail { bugid message } {
     set kfail_prms $bugid
     record_test KFAIL $message
 }
-
+
 #
 # Set warning threshold
 #
@@ -993,7 +994,7 @@ proc note { message } {
     #	unset errorInfo
     #}
 }
-
+
 #
 # untested -- mark the test case as untested
 #
@@ -1067,7 +1068,7 @@ proc incr_count { name args } {
     }
 }
 
-
+
 #
 # Create an exp_continue proc if it doesn't exist
 #

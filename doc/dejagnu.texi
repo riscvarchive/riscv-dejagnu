@@ -1,4 +1,4 @@
-o\input texinfo               @c             -*- Texinfo -*-
+\input texinfo               @c             -*- Texinfo -*-
 @finalout
 @setfilename dejagnu.info
 @c
@@ -82,6 +82,7 @@ Permission is granted to copy and distribute translations of this manual
 into another language, under the above conditions for modified versions.
 
 @node Top
+
 @top DejaGnu
 
 DejaGnu is a framework for running test suites on software tools.
@@ -1670,7 +1671,7 @@ exit 1
 At the beginning of the init file, you must first determine the proper
 executable name of the tool to execute, since the actual name of the
 tool to be tested my vary from system to system. Here's an example
-for the @sc{GNU} C compiler.
+for the @sc{gnu} C compiler.
 
 @cartouche
 @smallexample

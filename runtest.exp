@@ -20,7 +20,7 @@
 
 # This file was written by Rob Savoye. (rob@welcomehome.org)
 
-set frame_version	1.4.2.x
+set frame_version	1.4.3.x
 if ![info exists argv0] {
     send_error "Must use a version of Expect greater than 5.0\n"
     exit 1
@@ -395,6 +395,7 @@ proc usage { } {
     send_user "\t--directory (-di) name\tRun only the tests in directory 'name'\n"
     send_user "\t--verbose (-v)\t\tEmit verbose output\n"
     send_user "\t--version (-V)\t\tEmit all version numbers\n"
+    send_user "\t--xml (-x)\t\tTurn on XML output generation\n"
     send_user "\t--D\[0-1\]\t\tTcl debugger\n"
     send_user "\tscript.exp\[=arg(s)\]\tRun these tests only\n"
     if { [info exists tool] } {
