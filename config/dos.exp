@@ -26,97 +26,97 @@ proc dos_open { dest args } {
     global destbat_num
 
     if ![info exists destbat_num] {
-	set destbat_num [pid];
+	set destbat_num [pid]
     }
     if { [board_info $dest conninfo] == "" } {
-	global board_info;
-	set name [board_info $dest name];
+	global board_info
+	set name [board_info $dest name]
 
-	set board_info($name,conninfo) "b${destbat_num}.bat";
-	incr destbat_num;
+	set board_info($name,conninfo) "b${destbat_num}.bat"
+	incr destbat_num
     }
 
     if [board_info $dest exists fileid] {
-	return [board_info $dest fileid];
+	return [board_info $dest fileid]
     }
 
     verbose "doing a dos_open to $dest"
 
-    set shell_prompt [board_info $dest shell_prompt];
+    set shell_prompt [board_info $dest shell_prompt]
 
-    set shell_id [remote_raw_open $dest];
+    set shell_id [remote_raw_open $dest]
 
     if { $shell_id == "" || $shell_id < 0 } {
-	return -1;
+	return -1
     }
 
     if [board_info $dest exists init_command] {
-	remote_send $dest "[board_info $dest init_command]\n";
+	remote_send $dest "[board_info $dest init_command]\n"
 	remote_expect $dest 10 {
 	    -re "$shell_prompt" { }
 	    default {
 		perror "failed connection to DOS on $dest."
-		return -1;
+		return -1
 	    }
 	}
     }
 
     if [board_info $dest exists ftp_directory] {
-	set dir [board_info $dest ftp_directory];
-	regsub -all "/" "$dir" "\\" dir;
-	remote_send $dest "cd $dir\n";
+	set dir [board_info $dest ftp_directory]
+	regsub -all "/" "$dir" "\\" dir
+	remote_send $dest "cd $dir\n"
 	remote_expect $dest 10 {
 	    -re "$shell_prompt" { }
 	    default {
 		perror "failed connection to DOS on $dest."
-		return -1;
+		return -1
 	    }
 	}
     }
 
     if [board_info $dest exists dos_dir] {
-	set dos_dir [board_info $dest dos_dir];
-	regsub -all "^(\[a-zA-Z]:).*$" "$dos_dir" "\\1" drive;
-	regsub -all "^\[a-zA-Z]:" "$dos_dir" "" dos_dir;
-	remote_send $dest "${drive}\n";
+	set dos_dir [board_info $dest dos_dir]
+	regsub -all "^(\[a-zA-Z]:).*$" "$dos_dir" "\\1" drive
+	regsub -all "^\[a-zA-Z]:" "$dos_dir" "" dos_dir
+	remote_send $dest "${drive}\n"
 	remote_expect $dest 10 {
 	    -re "$shell_prompt" { }
 	    default {
 		perror "failed connection to DOS on $dest."
-		return -1;
+		return -1
 	    }
 	}
-	remote_send $dest "cd $dos_dir\n";
+	remote_send $dest "cd $dos_dir\n"
 	remote_expect $dest 10 {
 	    -re "$shell_prompt" { }
 	    default {
 		perror "failed connection to DOS on $dest."
-		return -1;
+		return -1
 	    }
 	}
     }
 
     global target_alias
     if [info exists target_alias] {
-	set talias $target_alias;
+	set talias $target_alias
     } else {
 	set talias "foo-bar"
     }
 
-    global board_info;
+    global board_info
     if [board_info $dest exists name] {
-	set n [board_info $dest name];
+	set n [board_info $dest name]
     } else {
-	set n $dest;
+	set n $dest
     }
-    set board_info($n,fileid) $shell_id;
+    set board_info($n,fileid) $shell_id
 
     if [board_info $dest exists init_script] {
 	remote_exec $dest "[board_info $dest init_script] $talias"
     }
 
     verbose "Succeeded in connecting to DOS."
-    return $shell_id;
+    return $shell_id
 }
 
 #
@@ -126,33 +126,33 @@ proc dos_open { dest args } {
 proc dos_close { dest args } {
     if [board_info $dest exists fileid] {
 	if { [board_info $dest connect] == "telnet" } {
-	    remote_send $dest "exit\n";
-	    sleep 2;
+	    remote_send $dest "exit\n"
+	    sleep 2
 	}
-	return [remote_raw_close $dest];
+	return [remote_raw_close $dest]
     }
 }
 
 proc dos_prep_command { dest cmdline } {
-    global board_info;
+    global board_info
 
-    set name [board_info $dest name];
-    set shell_id [remote_open "$dest"];
+    set name [board_info $dest name]
+    set shell_id [remote_open "$dest"]
 
-    set localbat "/tmp/b[pid].bat";
-    set remotebat [board_info $dest conninfo];
+    set localbat "/tmp/b[pid].bat"
+    set remotebat [board_info $dest conninfo]
 
     verbose "opened"
     if { $shell_id != "" && $shell_id >= 0 } {
-	set fileid [open "$localbat" "w"];
-	puts -nonewline $fileid "@echo off\r\n$cmdline\r\nif errorlevel 1 echo *** DOSEXIT code 1\r\nif not errorlevel 1 echo *** DOSEXIT code 0\r\n";
-	close $fileid;
-	set result [remote_download $dest $localbat $remotebat];
+	set fileid [open "$localbat" "w"]
+	puts -nonewline $fileid "@echo off\r\n$cmdline\r\nif errorlevel 1 echo *** DOSEXIT code 1\r\nif not errorlevel 1 echo *** DOSEXIT code 0\r\n"
+	close $fileid
+	set result [remote_download $dest $localbat $remotebat]
     } else {
 	set result ""
     }
-    remote_file build delete $localbat;
-    return $result;
+    remote_file build delete $localbat
+    return $result
 }
 
 # 
@@ -166,19 +166,19 @@ proc dos_prep_command { dest cmdline } {
 proc dos_exec { dest program pargs inp outp } {
     set cmdline "$program $pargs"
 
-    set shell_prompt [board_info $dest shell_prompt];
+    set shell_prompt [board_info $dest shell_prompt]
 
     if { $inp != "" } {
-	set inp [remote_download $dest $inp inpfile];
+	set inp [remote_download $dest $inp inpfile]
 	if { $inp != "" } {
-	    set inp " < $inp";
+	    set inp " < $inp"
 	}
     }
 
     if { $outp != "" } {
-	set outpf " > tempout";
+	set outpf " > tempout"
     }  else {
-	set outpf "";
+	set outpf ""
     }
 
     verbose "cmdline is $cmdline$inp." 2
@@ -186,30 +186,30 @@ proc dos_exec { dest program pargs inp outp } {
     # Make a DOS batch file; we use @echo off so we don't have to see
     # the DOS command prompts and such.
     for { set i 0; } { $i < 2 } { incr i } {
-	set exit_status -1;
+	set exit_status -1
 	verbose "calling open"
-	set batfile [dos_prep_command $dest "$cmdline$inp$outpf"];
+	set batfile [dos_prep_command $dest "$cmdline$inp$outpf"]
 	if { $batfile != "" } {
 	    if { [dos_start_command $batfile $dest] == "" } {
 		# FIXME: The 300 below should be a parameter.
-		set result [remote_wait $dest 300];
-		set exit_status [lindex $result 0];
-		set output [lindex $result 1];
+		set result [remote_wait $dest 300]
+		set exit_status [lindex $result 0]
+		set output [lindex $result 1]
 	    }
 	}
 	if { $exit_status >= 0 } {
 	    if { $outp != "" } {
-		remote_upload $dest tempout $outp;
-		remote_file $dest delete tempout;
+		remote_upload $dest tempout $outp
+		remote_file $dest delete tempout
 	    }
-	    return [list $exit_status $output];
+	    return [list $exit_status $output]
 	}
 	if { $exit_status != -2 } {
-	    remote_close $dest;
-	    remote_reboot $dest;
+	    remote_close $dest
+	    remote_reboot $dest
 	}
     }
-    return [list -1 "program execution failed"];
+    return [list -1 "program execution failed"]
 }
 
 # 
@@ -219,40 +219,40 @@ proc dos_exec { dest program pargs inp outp } {
 #
 
 proc dos_start_command { cmdline dest } {
-    set shell_prompt [board_info $dest shell_prompt];
+    set shell_prompt [board_info $dest shell_prompt]
     set prefix ""
-    set ok 0;
+    set ok 0
     for {set i 0;} {$i <= 2 && ! $ok} {incr i;} {
-	set shell_id [remote_open $dest];
+	set shell_id [remote_open $dest]
 	if { $shell_id != "" && $shell_id > 0 } {
-	    remote_send $dest "echo k\r";
+	    remote_send $dest "echo k\r"
 	    remote_expect $dest 20 {
 		-re "\\(gdb\\)" {
-		    set shell_prompt "\\(gdb\\)";
+		    set shell_prompt "\\(gdb\\)"
 		    # gdb uses 'shell command'.
-		    set prefix "shell ";
-		    set ok 1;
+		    set prefix "shell "
+		    set ok 1
 		}
 		-re "$shell_prompt" { 
-		    set ok 1; 
+		    set ok 1
 		}
 		default { }
 	    }
 	}
 	if { ! $ok } {
-	    remote_close $dest;
-	    remote_reboot $dest;
+	    remote_close $dest
+	    remote_reboot $dest
 	}
     }
     if { ! $ok } {
 	return "unable to start command"
     } else {
-	remote_send $dest "${prefix}${cmdline}\n";
+	remote_send $dest "${prefix}${cmdline}\n"
 	remote_expect $dest 2 {
 	    -re "${cmdline}\[\r\n\]\[\r\n\]?" { }
 	    timeout { }
 	}
-	return "";
+	return ""
     }
 }
 
@@ -285,47 +285,47 @@ proc dos_send { dest string } {
 
 proc dos_spawn { dest program args } {
     verbose "running $program on $dest"
-    set remotebat [dos_prep_command $dest $program];
+    set remotebat [dos_prep_command $dest $program]
 
     for { set x 0; } { $x < 3 } { incr x } {
 	if { [dos_start_command $remotebat $dest] == "" } {
-	    return [board_info $dest fileid];
+	    return [board_info $dest fileid]
 	}
-	remote_close $dest;
-	remote_reboot $dest;
+	remote_close $dest
+	remote_reboot $dest
     }
-    return -1;
+    return -1
 }
 
 proc dos_wait { dest timeout } {
-    set output "";
-    set shell_prompt [board_info $dest shell_prompt];
-    set status 1;
+    set output ""
+    set shell_prompt [board_info $dest shell_prompt]
+    set status 1
 
-    verbose "waiting in dos_wait";
+    verbose "waiting in dos_wait"
     remote_expect $dest $timeout {
 	-re "(.*)\[*\]\[*\]\[*\] DOSEXIT code (\[0-9\]+)\[\r\n\]\[\r\n\]?" {
-	    verbose "got exit status";
-	    append output $expect_out(1,string);
-	    set status $expect_out(2,string);
-	    exp_continue;
+	    verbose "got exit status"
+	    append output $expect_out(1,string)
+	    set status $expect_out(2,string)
+	    exp_continue
 	}
 
 	-re "(.*)${shell_prompt}" {
-	    append output $expect_out(1,string);
-	    verbose "output from dos is:'$output'";
-	    return [list $status $output];
+	    append output $expect_out(1,string)
+	    verbose "output from dos is:'$output'"
+	    return [list $status $output]
 	}
 
 	-re "(.*)\\(gdb\\)" {
-	    append output $expect_out(1,string);
-	    return [list $status $output];
+	    append output $expect_out(1,string)
+	    return [list $status $output]
 	}
 
 	-re "In.*cygwin.*except" {
-	    remote_close $dest;
-	    remote_reboot $dest;
-	    return [list -2 $output];
+	    remote_close $dest
+	    remote_reboot $dest
+	    return [list -2 $output]
 	}
 
 	-re "\[\r\n\]+" {
@@ -335,89 +335,89 @@ proc dos_wait { dest timeout } {
 	    # first time 'round. The other tricky bit is that
 	    # expect_out(buffer) will contain everything before and including
 	    # the matched pattern.
-	    append output $expect_out(buffer);
-	    exp_continue -continue_timer;
+	    append output $expect_out(buffer)
+	    exp_continue -continue_timer
 	}
 
 	timeout {
-	    warning "timeout in dos_wait";
+	    warning "timeout in dos_wait"
 	    if { [dos_interrupt_job $dest] == "" } {
-		return [list 1 $output];
+		return [list 1 $output]
 	    }
 	}
 
 	eof {
-	    warning "got EOF from dos host.";
+	    warning "got EOF from dos host."
 	}
     }
 
-    remote_close $dest;
+    remote_close $dest
 
-    return [list -1 $output];
+    return [list -1 $output]
 }
 
 proc dos_load { dest prog args } {
-    global dos_dll_loaded;
-    set progargs "";
-    set inpfile "";
+    global dos_dll_loaded
+    set progargs ""
+    set inpfile ""
     if { [llength $args] > 0 } {
-	set progargs [lindex $args 1];
+	set progargs [lindex $args 1]
     }
     if { [llength $args] > 1 } {
-	set inpfile [lindex $args 1];
+	set inpfile [lindex $args 1]
     }
     if ![info exists dos_dll_loaded] {
 	if ![is_remote host] {
-	    global target_alias;
+	    global target_alias
 
-	    set comp [get_multilibs];
+	    set comp [get_multilibs]
 	    if [file exists "${comp}/winsup/new-cygwin1.dll"] {
-		set dll "${comp}/winsup/new-cygwin1.dll";
-		set dll_name "cygwin1.dll";
+		set dll "${comp}/winsup/new-cygwin1.dll"
+		set dll_name "cygwin1.dll"
 	    } elseif [file exists "${comp}/winsup/new-cygwin.dll"] {
-		set dll "${comp}/winsup/new-cygwin.dll";
-		set dll_name "cygwin.dll";
+		set dll "${comp}/winsup/new-cygwin.dll"
+		set dll_name "cygwin.dll"
 	    } elseif [file exists ${comp}/lib/cygwin1.dll] {
-		set dll "${comp}/lib/cygwin1.dll";
-		set dll_name "cygwin1.dll";
+		set dll "${comp}/lib/cygwin1.dll"
+		set dll_name "cygwin1.dll"
 	    } elseif [file exists ${comp}/lib/cygwin.dll] {
-		set dll "${comp}/lib/cygwin.dll";
-		set dll_name "cygwin.dll";
+		set dll "${comp}/lib/cygwin.dll"
+		set dll_name "cygwin.dll"
 	    } else {
 		error "couldn't find cygwin.dll:$comp"
-		return "fail";
+		return "fail"
 	    }
 	    remote_download $dest $dll $dll_name
 	}
-	set dos_dll_loaded 1;
+	set dos_dll_loaded 1
     }
-    set remote_prog [remote_download $dest $prog "aout.exe"];
-    set result [remote_exec $dest $remote_prog $progargs $inpfile];
-    set status [lindex $result 0];
-    set output [lindex $result 1];
-    set status2 [check_for_board_status output];
+    set remote_prog [remote_download $dest $prog "aout.exe"]
+    set result [remote_exec $dest $remote_prog $progargs $inpfile]
+    set status [lindex $result 0]
+    set output [lindex $result 1]
+    set status2 [check_for_board_status output]
     if { $status2 >= 0 } {
-	set status $status2;
+	set status $status2
     }
     if { $status != 0 } {
-	set status "fail";
+	set status "fail"
     } else {
-	set status "pass";
+	set status "pass"
     }
-    return [list $status $output];
+    return [list $status $output]
 }
 
 proc dos_file { dest op args } {
     switch $op {
 	delete {
 	    foreach x $args {
-		remote_exec $dest "del" "$x";
+		remote_exec $dest "del" "$x"
 	    }
-	    return;
+	    return
 	    
 	}
 	default {
-	    return [eval standard_file \{$dest\} \{$op\} $args];
+	    return [eval standard_file \{$dest\} \{$op\} $args]
 	}
     }
 }
@@ -427,32 +427,32 @@ proc dos_file { dest op args } {
 # part is that we have to handle the "Terminate batch job" prompt.
 #
 proc dos_interrupt_job { host } {
-    set shell_prompt [board_info $host shell_prompt];
+    set shell_prompt [board_info $host shell_prompt]
 
-    remote_send $host "\003";
+    remote_send $host "\003"
     remote_expect $host 10 {
 	-re "Terminate batch job.*Y/N\[)\]\[?\] *$" {
-	    remote_send $host "n\n";
-	    exp_continue;
+	    remote_send $host "n\n"
+	    exp_continue
 	}
 	-re "$shell_prompt" {
-	    return "";
+	    return ""
 	}
 	-re ">" {
-	    remote_send $host "\n";
-	    exp_continue;
+	    remote_send $host "\n"
+	    exp_continue
 	}
     }
-    return "fail";
+    return "fail"
 }
 
 proc dos_copy_download { host localfile remotefile } {
-    remote_file build delete "[board_info $host local_dir]/$remotefile";
+    remote_file build delete "[board_info $host local_dir]/$remotefile"
     if [remote_file build exists $localfile] {
-	set result [remote_download build $localfile "[board_info $host local_dir]/$remotefile"];
+	set result [remote_download build $localfile "[board_info $host local_dir]/$remotefile"]
 	if { $result != "" } {
-	    remote_exec build "chmod" "a+rw $result";
-	    return $remotefile;
+	    remote_exec build "chmod" "a+rw $result"
+	    return $remotefile
 	}
     } else {
 	return ""
@@ -460,25 +460,25 @@ proc dos_copy_download { host localfile remotefile } {
 }
 
 proc dos_copy_upload { host remotefile localfile } {
-    remote_file build delete $localfile;
+    remote_file build delete $localfile
     if [file exists "[board_info $host local_dir]/$remotefile"] {
-	set result [remote_download build "[board_info $host local_dir]/$remotefile" $localfile];
+	set result [remote_download build "[board_info $host local_dir]/$remotefile" $localfile]
     } else {
-	set result "";
+	set result ""
     }
     if { $result != "" } {
-	remote_exec build "chmod" "a+rw $result";
-	return $result;
+	remote_exec build "chmod" "a+rw $result"
+	return $result
     }
 }
 
 proc dos_copy_file { dest op args } {
     if { $op == "delete" } {
-	set file "[board_info $dest local_dir]/[lindex $args 0]";
-	remote_file build delete $file;
+	set file "[board_info $dest local_dir]/[lindex $args 0]"
+	remote_file build delete $file
     }
 }
 
-set_board_info protocol  "dos";
-set_board_info shell_prompt  "(^|\[\r\n\])\[a-zA-Z\]:\[^\r\n\]*>\[ \t\]*$";
+set_board_info protocol  "dos"
+set_board_info shell_prompt  "(^|\[\r\n\])\[a-zA-Z\]:\[^\r\n\]*>\[ \t\]*$"
 set_board_info needs_status_wrapper 1

@@ -11,4 +11,4 @@ set_board_info libjava,options "-G 0"
 set_board_info gcc,stack_size "8192"
 
 # Otherwise we're the same as the standard MIPS simulator.
-load_base_board_description "mips-sim";
+load_base_board_description "mips-sim"

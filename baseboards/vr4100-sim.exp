@@ -9,4 +9,4 @@ if { [board_info $board obj_format] == "ecoff" } {
 set_board_info needs_status_wrapper 1
 
 # Otherwise, we're a standard MIPS config.
-load_base_board_description "mips64-sim";
+load_base_board_description "mips64-sim"

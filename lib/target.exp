@@ -126,7 +126,7 @@ proc pop_host { } {
 # Remove extraneous warnings we don't care about
 #
 proc prune_warnings { text } {
-    global host_triplet;
+    global host_triplet
 
     # remove the \r part of "\r\n" so we don't break all the patterns
     # we want to match.
@@ -290,11 +290,11 @@ proc prune_warnings { text } {
 #
 
 proc target_compile {source destfile type options} {
-    set target [target_info name];
+    set target [target_info name]
     if { [info proc ${target}_compile] != "" } {
-        return [${target}_compile $source $destfile $type $options];
+        return [${target}_compile $source $destfile $type $options]
     } else {
-        return [default_target_compile $source $destfile $type $options];
+        return [default_target_compile $source $destfile $type $options]
     }
 }
 
@@ -320,9 +320,9 @@ proc default_target_compile {source destfile type options} {
     }
 
     if [info exists target_info(host,name)] {
-	set host [host_info name];
+	set host [host_info name]
     } else {
-	set host "unix";
+	set host "unix"
     }
 
     foreach i $options {
@@ -331,11 +331,11 @@ proc default_target_compile {source destfile type options} {
 	    if [board_info $dest exists cxxflags] {
 		append add_flags " [target_info cxxflags]"
 	    }
-	    append add_flags " [g++_include_flags]";
+	    append add_flags " [g++_include_flags]"
 	    if [board_info $dest exists c++compiler] {
-		set compiler [target_info c++compiler];
+		set compiler [target_info c++compiler]
 	    } else {
-		set compiler [find_g++];
+		set compiler [find_g++]
 	    }
 	}
 
@@ -355,9 +355,9 @@ proc default_target_compile {source destfile type options} {
 	if [regexp "^dest=" $i] {
 	    regsub "^dest=" $i "" tmp
 	    if [board_info $tmp exists name] {
-		set dest [board_info $tmp name];
+		set dest [board_info $tmp name]
 	    } else {
-		set dest $tmp;
+		set dest $tmp
 	    }
 	}
 	if [regexp "^compiler=" $i] {
@@ -399,7 +399,7 @@ proc default_target_compile {source destfile type options} {
     }
 
     if [board_info $host exists cflags_for_target] {
-	append add_flags " [board_info $host cflags_for_target]";
+	append add_flags " [board_info $host cflags_for_target]"
     }
 
     global CC_FOR_TARGET
@@ -425,9 +425,9 @@ proc default_target_compile {source destfile type options} {
     }
 
     if { $compiler == "" } {
-	set compiler [board_info $dest compiler];
+	set compiler [board_info $dest compiler]
 	if { $compiler == "" } {
-	    return "default_target_compile: No compiler to compile with";
+	    return "default_target_compile: No compiler to compile with"
 	}
     }
 
@@ -463,7 +463,7 @@ proc default_target_compile {source destfile type options} {
 	    append add_flags " [board_info $dest ldflags]"
 	}
 	if { $compiler_type == "c++" } {
-	    append add_flags " [g++_link_flags]";
+	    append add_flags " [g++_link_flags]"
 	}
 	if [isnative] {
 	    # This is a lose.
@@ -490,7 +490,7 @@ proc default_target_compile {source destfile type options} {
     foreach i $options {
 	if { $i == "debug" } {
 	    if [board_info $dest exists debug_flags] {
-		append add_flags " [board_info $dest debug_flags]";
+		append add_flags " [board_info $dest debug_flags]"
 	    } else {
 		append add_flags " -g"
 	    }
@@ -498,7 +498,7 @@ proc default_target_compile {source destfile type options} {
     }
 
     if [info exists optimize] {
-	append add_flags " $optimize";
+	append add_flags " $optimize"
     }
 
     if { $type == "executable" } {
@@ -507,7 +507,7 @@ proc default_target_compile {source destfile type options} {
 	    if [file exists $x] {
 		append source " $x"
 	    } else {
-		append add_flags " $x";
+		append add_flags " $x"
 	    }
 	}
 
@@ -527,19 +527,19 @@ proc default_target_compile {source destfile type options} {
 	}
 
 	# This must be added here.
-	append add_flags " $ldscript";
+	append add_flags " $ldscript"
 
 	if [board_info $dest exists remote_link] {
 	    # Relink option.
 	    append add_flags " -Wl,-r"
 	}
 	if [board_info $dest exists output_format] {
-	    append add_flags " -Wl,-oformat,[board_info $dest output_format]";
+	    append add_flags " -Wl,-oformat,[board_info $dest output_format]"
 	}
     }
 
     if [board_info $dest exists multilib_flags] {
-	append add_flags " [board_info $dest multilib_flags]";
+	append add_flags " [board_info $dest multilib_flags]"
     }
 
     verbose "doing compile"
@@ -547,12 +547,12 @@ proc default_target_compile {source destfile type options} {
     set sources ""
     if [is_remote host] {
 	foreach x $source {
-	    set file [remote_download host $x];
+	    set file [remote_download host $x]
 	    if { $file == "" } {
 		warning "Unable to download $x to host."
 		return "Unable to download $x to host."
 	    } else {
-		append sources " $file";
+		append sources " $file"
 	    }
 	}
     } else {
@@ -561,10 +561,10 @@ proc default_target_compile {source destfile type options} {
 
     if [is_remote host] {
 	append add_flags " -o a.out"
-	remote_file host delete a.out;
+	remote_file host delete a.out
     } else {
 	if { $destfile != "" } {
-	    append add_flags " -o $destfile";
+	    append add_flags " -o $destfile"
 	}
     }
 
@@ -579,9 +579,9 @@ proc default_target_compile {source destfile type options} {
 
     if [is_remote host] {
 	if [host_info exists use_at] {
-	    set fid [open "atfile" "w"];
-	    puts $fid "$opts";
-	    close $fid;
+	    set fid [open "atfile" "w"]
+	    puts $fid "$opts"
+	    close $fid
 	    set opts "@[remote_download host atfile]"
 	    remote_file build delete atfile
 	}
@@ -591,39 +591,39 @@ proc default_target_compile {source destfile type options} {
 
     if [info exists redirect] {
 	verbose "Redirecting output to $redirect" 2
-	set status [remote_exec host "$compiler $opts" "" "" $redirect];
+	set status [remote_exec host "$compiler $opts" "" "" $redirect]
     } else {
 	if [info exists timeout] {
 	    verbose "Setting timeout to $timeout" 2
-	    set status [remote_exec host "$compiler $opts" "" "" "" $timeout];
+	    set status [remote_exec host "$compiler $opts" "" "" "" $timeout]
 	} else {
-	    set status [remote_exec host "$compiler $opts"];
+	    set status [remote_exec host "$compiler $opts"]
 	}
     }
 
     set compiler_flags $opts
     if [is_remote host] {
-	remote_upload host a.out $destfile;
-	remote_file host delete a.out;
+	remote_upload host a.out $destfile
+	remote_file host delete a.out
     }
-    set comp_output [prune_warnings [lindex $status 1]];
-    regsub "^\[\r\n\]+" $comp_output "" comp_output;
+    set comp_output [prune_warnings [lindex $status 1]]
+    regsub "^\[\r\n\]+" $comp_output "" comp_output
     if { [lindex $status 0] != 0 } {
-	verbose -log "compiler exited with status [lindex $status 0]";
+	verbose -log "compiler exited with status [lindex $status 0]"
     }
     if { [lindex $status 1] != "" } {
-	verbose -log "output is:\n[lindex $status 1]" 2;
+	verbose -log "output is:\n[lindex $status 1]" 2
     }
     if { [lindex $status 0] != 0 && "${comp_output}" == "" } {
-	set comp_output "exit status is [lindex $status 0]";
+	set comp_output "exit status is [lindex $status 0]"
     }
-    return ${comp_output};
+    return ${comp_output}
 }
 
 proc reboot_target { } {
     set result [remote_reboot target]
     puts "REBOOT_TARGET: \"$result\""
-    return ${result};
+    return ${result}
 }
 
 #
@@ -632,7 +632,7 @@ proc reboot_target { } {
 # assembler.
 #
 proc target_assemble { source destfile flags } {
-    return [default_target_assemble $source $destfile $flags];
+    return [default_target_assemble $source $destfile $flags]
 }
 
 proc default_target_assemble { source destfile flags } {
@@ -640,21 +640,21 @@ proc default_target_assemble { source destfile flags } {
     global ASFLAGS_FOR_TARGET
 
     if [info exists AS_FOR_TARGET] {
-	set AS "$AS_FOR_TARGET";
+	set AS "$AS_FOR_TARGET"
     } else {
 	if ![board_info target exists assembler] {
-	    set AS [find_gas];
+	    set AS [find_gas]
 	} else {
-	    set AS [board_info target assembler];
+	    set AS [board_info target assembler]
 	}
     }
 
     if [info exists ASFLAGS_FOR_TARGET] {
-	append flags " $ASFLAGS_FOR_TARGET";
+	append flags " $ASFLAGS_FOR_TARGET"
     }
 
     if [is_remote host] {
-	set source [remote_download host $source];
+	set source [remote_download host $source]
 	set dest "a.out"
     } else {
 	set dest $destfile
@@ -664,14 +664,14 @@ proc default_target_assemble { source destfile flags } {
 	remote_upload host $dest $destfile
     }
 
-    set comp_output [prune_warnings [lindex $status 1]];
+    set comp_output [prune_warnings [lindex $status 1]]
     if { [lindex $status 0] != 0 } {
-	verbose -log "assembler exited with status [lindex $status 0]";
+	verbose -log "assembler exited with status [lindex $status 0]"
     }
     if { [lindex $status 1] != "" } {
-	verbose -log "assembler output is:\n[lindex $status 1]" 2;
+	verbose -log "assembler output is:\n[lindex $status 1]" 2
     }
-    return ${comp_output};
+    return ${comp_output}
 }
 
 #
@@ -680,7 +680,7 @@ proc default_target_assemble { source destfile flags } {
 # linker.
 #
 proc target_link { objects destfile flags } {
-    return [default_link target "$objects" "$destfile" $flags];
+    return [default_link target "$objects" "$destfile" $flags]
 }
 
 proc default_link { board objects destfile flags } {
@@ -713,17 +713,17 @@ proc default_link { board objects destfile flags } {
     }
 
     if [info exists LD_FOR_TARGET] {
-	set LD "$LD_FOR_TARGET";
+	set LD "$LD_FOR_TARGET"
     } else {
 	if ![board_info target exists linker] {
-	    set LD [find_ld];
+	    set LD [find_ld]
 	} else {
-	    set LD [board_info target linker];
+	    set LD [board_info target linker]
 	}
     }
 
     if [info exists LDFLAGS_FOR_TARGET] {
-	append flags " $LDFLAGS_FOR_TARGET";
+	append flags " $LDFLAGS_FOR_TARGET"
     }
 
     # `ldflags' consists of arguments to gcc (that are then
@@ -744,24 +744,24 @@ proc default_link { board objects destfile flags } {
 
     if [is_remote host] {
 	foreach x $objects {
-	    set nobjects "$nobjects [remote_download host $x]";
+	    set nobjects "$nobjects [remote_download host $x]"
 	}
-	set objects "$nobjects";
-	set dest "a.out";
+	set objects "$nobjects"
+	set dest "a.out"
     } else {
-	set dest $destfile;
+	set dest $destfile
     }
     set status [remote_exec host "$LD $objects $flags -o $dest"]
     if [is_remote host] {
-	remote_upload host $dest $destfile;
+	remote_upload host $dest $destfile
     }
 
-    set comp_output [prune_warnings [lindex $status 1]];
+    set comp_output [prune_warnings [lindex $status 1]]
     if { [lindex $status 0] != 0 } {
-	verbose -log "linker exited with status [lindex $status 0]";
+	verbose -log "linker exited with status [lindex $status 0]"
     }
     if { [lindex $status 1] != "" } {
-	verbose -log "linker output is:\n[lindex $status 1]" 2;
+	verbose -log "linker output is:\n[lindex $status 1]" 2
     }
-    return ${comp_output};
+    return ${comp_output}
 }

@@ -42,7 +42,7 @@ proc set_host_info { entry value } {
 
     set machine host
     if [info exists target_info($machine,name)] {
-        set machine $target_info($machine,name);
+        set machine $target_info($machine,name)
     }
     set board_info($machine,$entry) $value
 }

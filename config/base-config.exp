@@ -23,26 +23,26 @@
 #
 proc reboot_via_x10 { dest } {
     if [board_info $dest exists name] {
-	set dest [board_info $dest name];
+	set dest [board_info $dest name]
     }
 
     if [board_info $dest exists x10] {
-	set x10 [board_info $dest x10];
+	set x10 [board_info $dest x10]
 	verbose "rebooting x10 unit $x10" 1
 	rsh_exec rtl "/usr/unsupported/bin/x10-hellcab unit $x10 off"
 	sleep 2
 	rsh_exec rtl "/usr/unsupported/bin/x10-hellcab unit $x10 on"
 	sleep 2
-	return 1;
+	return 1
     }
-    return 0;
+    return 0
 }
 
 proc ${board}_reboot { args } {
     if { [llength $args] > 0} {
-	set dest [lindex $args 0];
+	set dest [lindex $args 0]
     } else {
-	set dest target;
+	set dest target
     }
-    return [reboot_via_x10 $dest];
+    return [reboot_via_x10 $dest]
 }

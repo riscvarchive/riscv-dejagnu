@@ -1,14 +1,14 @@
 # gdbserver running over ssh.
 
-load_generic_config "gdbserver";
+load_generic_config "gdbserver"
 
-process_multilib_options "";
+process_multilib_options ""
 
 # The default compiler for this target.
-set_board_info compiler  "[find_gcc]";
+set_board_info compiler  "[find_gcc]"
 
-#set_board_info compiler  "/opt/src/gcc/install-30/bin/gcc";
-#set_board_info c++compiler  "/opt/src/gcc/install-30/bin/g++";
+#set_board_info compiler  "/opt/src/gcc/install-30/bin/gcc"
+#set_board_info c++compiler  "/opt/src/gcc/install-30/bin/g++"
 
 set_board_info rsh_prog /usr/bin/ssh
 set_board_info rcp_prog /usr/bin/scp
@@ -30,10 +30,10 @@ set_board_info sockethost "voltaire:"
 # set_board_info gdb,socketport "4004"
 
 # Use techniques appropriate to a stub
-set_board_info use_gdb_stub 1;
+set_board_info use_gdb_stub 1
 
 # This gdbserver can only run a process once per session.
-set_board_info gdb,do_reload_on_run 1;
+set_board_info gdb,do_reload_on_run 1
 
 # There's no support for argument-passing (yet).
 set_board_info noargs 1
@@ -42,5 +42,5 @@ set_board_info noargs 1
 set_board_info gdb,noinferiorio 1
 
 # Can't do hardware watchpoints, in general
-set_board_info gdb,no_hardware_watchpoints 1;
+set_board_info gdb,no_hardware_watchpoints 1
 

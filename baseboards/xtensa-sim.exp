@@ -5,7 +5,7 @@ load_generic_config "sim"
 load_base_board_description "basic-sim"
 # Command to invoke the simulator
 set_board_info sim xt-run  
-setup_sim xtensa;
+setup_sim xtensa
 # No multilib flags needed by default.
 process_multilib_options ""
 # The compiler used to build for this board. This has *nothing* to do
@@ -15,7 +15,7 @@ set_board_info cflags         "[libgloss_include_flags]
 [newlib_include_flags]"
 set_board_info ldflags        "[libgloss_link_flags] [newlib_link_flags]"
 # This board doesn't use a linker script.
-set_board_info ldscript "";
+set_board_info ldscript ""
 # The simulator doesn't return exit statuses and we need to indicate this.
 set_board_info needs_status_wrapper  1
 # No support for signals on this target.

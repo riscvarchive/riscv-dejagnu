@@ -19,6 +19,6 @@
 
 # For MIPS/IDT we use gdb to load and execute programs.
 
-load_generic_config "gdb-comm";
+load_generic_config "gdb-comm"
 
-set_board_info gdb_init_command "set syn-garbage-limit 0";
+set_board_info gdb_init_command "set syn-garbage-limit 0"

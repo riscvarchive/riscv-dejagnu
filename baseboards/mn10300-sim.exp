@@ -38,4 +38,4 @@ set_board_info gdb,noinferiorio  1
 
 # Used by a few gcc.c-torture testcases to delimit how large the stack can
 # be.
-set_board_info gcc,stack_size  4096;
+set_board_info gcc,stack_size  4096

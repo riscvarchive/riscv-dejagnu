@@ -17,6 +17,6 @@
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@gnu.org
 
-load_generic_config "gdb-comm";
+load_generic_config "gdb-comm"
 
-set_board_info send_initial_cr 1;
+set_board_info send_initial_cr 1

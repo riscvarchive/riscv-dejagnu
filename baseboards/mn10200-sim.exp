@@ -42,4 +42,4 @@ set_board_info no_double  1
 
 # Used by a few gcc.c-torture testcases to delimit how large the stack can
 # be.
-set_board_info gcc,stack_size  4096;
+set_board_info gcc,stack_size  4096

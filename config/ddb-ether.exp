@@ -21,166 +21,166 @@
 
 # Reset the prompt to what GDB needs.
 proc ${board}_init { dest } {
-    global doing_ddb_init;
+    global doing_ddb_init
 
     if ![info exists doing_ddb_init] {
-	set doing_ddb_init 1;
+	set doing_ddb_init 1
 
-	remote_close $dest;
+	remote_close $dest
 	for { set x 0; } { $x < 3 } { incr x; } {
-	    set shell_id [remote_open $dest];
+	    set shell_id [remote_open $dest]
 	    if { $shell_id == "" || $shell_id < 0 } {
-		remote_reboot $dest;
+		remote_reboot $dest
 	    } else {
-		break;
+		break
 	    }
 	}
 
-	set shell_prompt [board_info $dest shell_prompt];
+	set shell_prompt [board_info $dest shell_prompt]
 
-	remote_send $dest "\n";
+	remote_send $dest "\n"
 	remote_expect $dest 10 {
 	    -re ".*PMON> $" {
-		remote_send $dest "set prompt \"$shell_prompt\"\n";
-		exp_continue;
+		remote_send $dest "set prompt \"$shell_prompt\"\n"
+		exp_continue
 	    }
 	    -re ".*${shell_prompt}$" { }
 	}
-	remote_close $dest;
-	unset doing_ddb_init;
+	remote_close $dest
+	unset doing_ddb_init
     } else {
-	return;
+	return
     }
 }
 
 proc ddb_ether_load { dest prog args } {
     for { set x 0; } { $x < 3 } { incr x } {
-	set result [eval remote_spawn \{$dest\} \{$prog\} $args];
+	set result [eval remote_spawn \{$dest\} \{$prog\} $args]
 	if { $result < 0 } {
-	    remote_reboot $dest;
+	    remote_reboot $dest
 	} else {
-	    set result [remote_wait $dest 300];
-	    set status [lindex $result 0];
-	    set output [lindex $result 1];
+	    set result [remote_wait $dest 300]
+	    set status [lindex $result 0]
+	    set output [lindex $result 1]
 	    if { $status >= 0 } {
 		if { $status > 0 } {
-		    return [list "fail" $output];
+		    return [list "fail" $output]
 		} else {
-		    return [list "pass" $output];
+		    return [list "pass" $output]
 		}
 	    }
 	}
     }
-    return [list "fail" ""];
+    return [list "fail" ""]
 }
 
 proc ddb_ether_ld { dest prog } {
     if ![board_info $dest exists tftpdir] {
-	perror "Must set_board_info tftpdir for [board_info $dest name]";
-	return "fail";
+	perror "Must set_board_info tftpdir for [board_info $dest name]"
+	return "fail"
     }
 
     if ![board_info $dest exists fileid] {
-	set spawn_id [remote_open $dest];
+	set spawn_id [remote_open $dest]
 	if { $spawn_id == "" || $spawn_id < 0 } {
-	    return "retry";
+	    return "retry"
 	}
-	remote_binary $dest;
+	remote_binary $dest
     }
 
-    set shell_prompt [board_info $dest shell_prompt];
+    set shell_prompt [board_info $dest shell_prompt]
 
-    remote_send $dest "\n";
+    remote_send $dest "\n"
     remote_expect $dest 10 {
 	 -re ".*${shell_prompt}$" { }
 	 default {
-	    return "retry";
+	    return "retry"
 	}
     }
-    set basename "a.out.[pid]";
-    set file "[board_info $dest tftpdir]/$basename";
-    set file [remote_download build $prog $file];
+    set basename "a.out.[pid]"
+    set file "[board_info $dest tftpdir]/$basename"
+    set file [remote_download build $prog $file]
     if { $file == "" } {
-	perror "download to tftp area failed";
-	return "fail";
+	perror "download to tftp area failed"
+	return "fail"
     }
-    set state "pass";
+    set state "pass"
 
-    remote_send $dest "boot /$basename\n";
-    set tries 0;
+    remote_send $dest "boot /$basename\n"
+    set tries 0
     remote_expect $dest 30 {
 	-re "Loading.*Entry address is.*${shell_prompt}$" { }
 	-re "invalid executable.*${shell_prompt}$" {
-	    incr tries;
+	    incr tries
 	    if { $tries < 3 } {
-		sleep 2;
-		remote_send $dest "boot /$basename\n";
-		exp_continue;
+		sleep 2
+		remote_send $dest "boot /$basename\n"
+		exp_continue
 	    }
 	}
 	-re ".*${shell_prompt}$" { 
-	    set state "fail";
+	    set state "fail"
 	}
 	default {
-	    set state "fail";
+	    set state "fail"
 	}
     }
-    remote_file build delete $file;
+    remote_file build delete $file
     if { $state == "fail" } {
-	return $state;
+	return $state
     }
-    return "pass";
+    return "pass"
 }
     
 proc ddb_ether_spawn { dest prog args } {
-    set state [ddb_ether_ld $dest $prog];
+    set state [ddb_ether_ld $dest $prog]
 
     if { $state != "pass" } {
-	return -1;
+	return -1
     }
-    remote_send $dest "g\n";
+    remote_send $dest "g\n"
     remote_expect $dest 5 {
 	-re "g\[\r\n\]\[\r\n\]?" { }
 	default { }
     }
 
-    return [board_info $dest fileid];
+    return [board_info $dest fileid]
 }
 
 proc ddb_ether_wait { dest timeout } {
-    set output "";
-    set shell_prompt [board_info $dest shell_prompt];
+    set output ""
+    set shell_prompt [board_info $dest shell_prompt]
 
     remote_expect $dest $timeout {
 	-re "^g\[\r\n\]\[\r\n\]?" {
 	    if { $output != "" } {
-		append output $expect_out(buffer);
+		append output $expect_out(buffer)
 	    }
-	    exp_continue;
+	    exp_continue
 	}
 	-re "(.*)$shell_prompt" {
-	    append output $expect_out(1,string);
-	    set status [check_for_board_status output];
+	    append output $expect_out(1,string)
+	    set status [check_for_board_status output]
 	    if { $status > 0 } {
-		return [list $status $output];
+		return [list $status $output]
 	    } else {
 		if [regexp "Exception Cause=" $output] {
-		    remote_reboot $dest;
-		    return [list -1 $output];
+		    remote_reboot $dest
+		    return [list -1 $output]
 		}
-		return [list 0 $output];
+		return [list 0 $output]
 	    }
 	}
 	-re "\[\r\n\]+" {
-	    append output $expect_out(buffer);
+	    append output $expect_out(buffer)
 	    if { [string length $output] < 512000 } {
-		exp_continue;
+		exp_continue
 	    } else {
-		return [list -1 ""];
+		return [list -1 ""]
 	    }
 	}
 	default {
-	    return [list -1 ""];
+	    return [list -1 ""]
 	}
     }
 }

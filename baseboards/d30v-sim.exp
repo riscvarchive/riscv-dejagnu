@@ -3,7 +3,7 @@ set_board_info target_install  {d30v-elf}
 
 # Load the generic configuration for this board. This will define any
 # routines needed to communicate with the board.
-load_generic_config "sim";
+load_generic_config "sim"
 
 # basic-sim.exp is a basic description for the standard Cygnus simulator.
 load_base_board_description "basic-sim"
@@ -21,7 +21,7 @@ set_board_info compiler  "[find_gcc]"
 set_board_info cflags  "[libgloss_include_flags] [newlib_include_flags] -Wa,-C"
 set_board_info ldflags  "[libgloss_link_flags] [newlib_link_flags] -mextmem -Wl,--defsym,__stack=0x80800000"
 # No linker script needed.
-set_board_info ldscript "";
+set_board_info ldscript ""
 
 # Can't pass arguments to programs on this target..
 set_board_info noargs  1

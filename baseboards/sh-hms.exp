@@ -44,4 +44,4 @@ set_board_info gcc,stack_size  16384
 set_board_info exit_statuses_bad 1
 
 # Need to pass -mieee in order to for the compiler to be IEEE-fp compliant.
-set_board_info ieee_multilib_flags "-mieee";
+set_board_info ieee_multilib_flags "-mieee"

@@ -210,7 +210,7 @@ proc transform { name } {
     global target_triplet
     global target_alias
     global host_triplet
-    global board;
+    global board
 
     if [string match $target_triplet $host_triplet] {
 	return $name
@@ -226,23 +226,23 @@ proc transform { name } {
     } else {
 	if [info exists board] {
 	    if [board_info $board exists target_install] {
-		set target_install [board_info $board target_install];
+		set target_install [board_info $board target_install]
 	    }
 	}
 	if [target_info exists target_install] {
-	    set target_install [target_info target_install];
+	    set target_install [target_info target_install]
 	}
 	if [info exists target_alias] {
-	    set tmp ${target_alias}-${name};
+	    set tmp ${target_alias}-${name}
 	} elseif [info exists target_install] {
 	    if { [lsearch -exact $target_install $target_alias] >= 0 } {
-		set tmp ${target_alias}-${name};
+		set tmp ${target_alias}-${name}
 	    } else {
-		set tmp "[lindex $target_install 0]-${name}";
+		set tmp "[lindex $target_install 0]-${name}"
 	    }
 	}
-	verbose "Transforming $name to $tmp";
-	return $tmp;
+	verbose "Transforming $name to $tmp"
+	return $tmp
     }
 }
 
@@ -335,7 +335,7 @@ proc load_file { args } {
 # TYPE is used when displaying error and progress messages.
 #
 proc search_and_load_file { type filelist dirlist } {
-    set found 0;
+    set found 0
 
     foreach dir $dirlist {
 	foreach initfile $filelist {
@@ -363,14 +363,14 @@ proc search_and_load_file { type filelist dirlist } {
 	    break
 	}
     }
-    return $found;
+    return $found
 }
 
 #
 # Give a usage statement.
 #
 proc usage { } {
-    global tool;
+    global tool
 
     send_user "USAGE: runtest \[options...\]\n"
     send_user "\t--all (-a)\t\tPrint all test output to screen\n"
@@ -400,7 +400,7 @@ proc usage { } {
     send_user "\tscript.exp\[=arg(s)\]\tRun these tests only\n"
     if { [info exists tool] } {
 	if { [info proc ${tool}_option_help] != "" } {
-	    ${tool}_option_help;
+	    ${tool}_option_help
 	}
     }
 }
@@ -482,8 +482,8 @@ for { set i 0 } { $i < $argc } { incr i } {
 	}
 	
 	"--target_bo*" {
-	    set target_list $optarg;
-	    continue;
+	    set target_list $optarg
+	    continue
 	}
 
 	"--ta*" {			# (--target) the target configuration
@@ -503,12 +503,12 @@ for { set i 0 } { $i < $argc } { incr i } {
 
 	"--tool_ro*" {
 	    set tool_root_dir $optarg
-	    continue;
+	    continue
 	}
 
 	"--to*" {			# (--tool) specify tool name
 	    set tool $optarg
-	    set comm_line_tool $optarg;
+	    set comm_line_tool $optarg
 	    continue
         }
 
@@ -574,9 +574,9 @@ proc lookfor_file { dir name } {
     foreach x ".. ../.. ../../.. ../../../.." {
 	verbose "$dir/$name" 2
 	if [file exists $dir/$name] {
-	    return $dir/$name;
+	    return $dir/$name
 	}
-	set dir [remote_file build dirname $dir];
+	set dir [remote_file build dirname $dir]
     }
     return ""
 }
@@ -593,10 +593,10 @@ proc load_lib { file } {
     global loaded_libs
 
     if [info exists loaded_libs($file)] {
-	return;
+	return
     }
 
-    set loaded_libs($file) "";
+    set loaded_libs($file) ""
 
     if { [search_and_load_file "library file" $file [list ../lib $libdir $libdir/lib [file dirname [file dirname $srcdir]]/dejagnu/lib $srcdir/lib $execpath/lib . [file dirname [file dirname [file dirname $srcdir]]]/dejagnu/lib]] == 0 } {
 	send_error "ERROR: Couldn't find library file $file.\n"
@@ -637,9 +637,9 @@ if [expr [string match "." $objdir] || [string match $srcdir $objdir]] {
 
 # Well, this just demonstrates the real problem...
 if ![info exists tool_root_dir] {
-    set tool_root_dir [file dirname $objdir];
+    set tool_root_dir [file dirname $objdir]
     if [file exists "$tool_root_dir/testsuite"] {
-	set tool_root_dir [file dirname $tool_root_dir];
+	set tool_root_dir [file dirname $tool_root_dir]
     }
 }
 
@@ -734,10 +734,10 @@ proc get_local_hostname { } {
     if [catch "info hostname" hb] {
 	set hb ""
     } else {
-	regsub "\\..*$" $hb "" hb;
+	regsub "\\..*$" $hb "" hb
     }
-    verbose "hostname=$hb" 3;
-    return $hb;
+    verbose "hostname=$hb" 3
+    return $hb
 }
 
 #
@@ -749,41 +749,41 @@ proc get_local_hostname { } {
 # variable $board set to the name of the current target being defined.
 #
 proc setup_target_hook { whole_name name } {
-    global board;
-    global host_board;
+    global board
+    global host_board
 
     if [info exists host_board] {
-	set hb $host_board;
+	set hb $host_board
     } else {
-	set hb [get_local_hostname];
+	set hb [get_local_hostname]
     }
 
-    set board $whole_name;
+    set board $whole_name
 
-    global board_type;
-    set board_type "target";
+    global board_type
+    set board_type "target"
 
-    load_config base-config.exp;
+    load_config base-config.exp
     if ![load_board_description ${name} ${whole_name} ${hb}] {
 	if { $name != "unix" } {
-	    perror "couldn't load description file for ${name}";
-	    exit 1;
+	    perror "couldn't load description file for ${name}"
+	    exit 1
 	} else {
 	    load_generic_config "unix"
 	}
     }
 
     if [board_info $board exists generic_name] {
-	load_tool_target_config [board_info $board generic_name];
+	load_tool_target_config [board_info $board generic_name]
     }
 
-    unset board;
-    unset board_type;
+    unset board
+    unset board_type
 
-    push_target $whole_name;
+    push_target $whole_name
 
     if { [info procs ${whole_name}_init] != "" } {
-	${whole_name}_init $whole_name;
+	${whole_name}_init $whole_name
     }
 
     if { ![isnative] && ![is_remote target] } {
@@ -798,52 +798,52 @@ proc setup_target_hook { whole_name name } {
 # Clean things up afterwards.
 #
 proc cleanup_target_hook { name } {
-    global tool;
+    global tool
     # Clean up the target board.
     if { [info procs "${name}_exit"] != "" } {
-	${name}_exit;
+	${name}_exit
     }
     # We also call the tool exit routine here.
     if [info exists tool] {
 	if { [info procs "${tool}_exit"] != "" } {
-	    ${tool}_exit;
+	    ${tool}_exit
 	}
     }
-    remote_close target;
-    pop_target;
+    remote_close target
+    pop_target
 }
 
 proc setup_host_hook { name } {
-    global board;
-    global board_info;
-    global board_type;
+    global board
+    global board_info
+    global board_type
 
-    set board $name;
-    set board_type "host";
+    set board $name
+    set board_type "host"
 
-    load_board_description $name;
-    unset board;
-    unset board_type;
-    push_host $name;
+    load_board_description $name
+    unset board
+    unset board_type
+    push_host $name
     if { [info proc ${name}_init] != "" } {
-	${name}_init $name;
+	${name}_init $name
     }
 }
 
 proc setup_build_hook { name } {
-    global board;
-    global board_info;
-    global board_type;
+    global board
+    global board_info
+    global board_type
 
-    set board $name;
-    set board_type "build";
+    set board $name
+    set board_type "build"
 
-    load_board_description $name;
-    unset board;
-    unset board_type;
-    push_build $name;
+    load_board_description $name
+    unset board
+    unset board_type
+    push_build $name
     if { [info proc ${name}_init] != "" } {
-	${name}_init $name;
+	${name}_init $name
     }
 }
 
@@ -871,7 +871,7 @@ if [info exists env(DEJAGNU)] {
 	send_error "WARNING: global config file $env(DEJAGNU) not found.\n"
     }
     if ![info exists boards_dir] {
-	set boards_dir "[file dirname $env(DEJAGNU)]/boards";
+	set boards_dir "[file dirname $env(DEJAGNU)]/boards"
     }
 }
 
@@ -928,10 +928,10 @@ proc load_tool_init { file } {
     global loaded_libs
 
     if [info exists loaded_libs($file)] {
-	return;
+	return
     }
 
-    set loaded_libs($file) "";
+    set loaded_libs($file) ""
 
     if [file exists ${srcdir}/lib/$file] {
 	verbose "Loading library file ${srcdir}/lib/$file"
@@ -960,8 +960,8 @@ load_lib targetdb.exp
 load_lib libgloss.exp
 
 # Initialize the test counters and reset them to 0.
-init_testcounts;
-reset_vars;
+init_testcounts
+reset_vars
 
 #
 # Parse the command line arguments.
@@ -970,11 +970,11 @@ reset_vars;
 # Load the tool initialization file. Allow the --tool option to override
 # what's set in the site.exp file.
 if [info exists comm_line_tool] {
-    set tool $comm_line_tool;
+    set tool $comm_line_tool
 }
 
 if [info exists tool] {
-    load_tool_init ${tool}.exp;
+    load_tool_init ${tool}.exp
 }
 
 set argc [ llength $argv ]
@@ -1038,8 +1038,8 @@ for { set i 0 } { $i < $argc } { incr i } {
 
 	"--target_bo*" {
 	    # Set it again, father knows best.
-	    set target_list $optarg;
-	    continue;
+	    set target_list $optarg
+	    continue
 	}
 	
 	"--ta*" {			# (--target) the target configuration
@@ -1157,7 +1157,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 
 	"--tool_ro*" {
 	    set tool_root_dir $optarg
-	    continue;
+	    continue
 	}
 
 	"--to*" {			# (--tool) specify tool name
@@ -1173,7 +1173,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 	}
 
 	"--he*" {			# (--help) help text
-	    usage;
+	    usage
 	    exit 0	
 	}
 
@@ -1185,7 +1185,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    if [info exists tool] {
 		if { [info proc ${tool}_option_proc] != "" } {
 		    if [${tool}_option_proc $option] {
-			continue;
+			continue
 		    }
 		}
 	    }
@@ -1246,43 +1246,43 @@ clone_output "\n\t\t=== $tool tests ===\n"
 #
 
 proc load_generic_config { name } {
-    global srcdir;
-    global configfile;
-    global libdir;
-    global env;
-    global board;
-    global board_info;
-    global boards_dir;
-    global board_type;
+    global srcdir
+    global configfile
+    global libdir
+    global env
+    global board
+    global board_info
+    global boards_dir
+    global board_type
 
     if [info exists board] {
 	if ![info exists board_info($board,generic_name)] {
-	    set board_info($board,generic_name) $name;
+	    set board_info($board,generic_name) $name
 	}
     }
 
     if [info exists board_type] {
-	set type "for $board_type";
+	set type "for $board_type"
     } else {
 	set type ""
     }
 
-    set dirlist [concat ${libdir}/config [file dirname $libdir]/config $boards_dir];
-    set result [search_and_load_file "generic interface file $type" ${name}.exp $dirlist];
+    set dirlist [concat ${libdir}/config [file dirname $libdir]/config $boards_dir]
+    set result [search_and_load_file "generic interface file $type" ${name}.exp $dirlist]
 
-    return $result;
+    return $result
 }
 
 #
 # Load the tool-specific target description.
 #
 proc load_config { args } {
-    global srcdir;
-    global board_type;
+    global srcdir
+    global board_type
 
-    set found 0;
+    set found 0
 
-    return [search_and_load_file "tool-and-target-specific interface file" $args [list ${srcdir}/config ${srcdir}/../config ${srcdir}/../../config ${srcdir}/../../../config]];
+    return [search_and_load_file "tool-and-target-specific interface file" $args [list ${srcdir}/config ${srcdir}/../config ${srcdir}/../../config ${srcdir}/../../../config]]
 }
 
 #
@@ -1304,7 +1304,7 @@ proc load_config { args } {
 proc load_tool_target_config { name } {
     global target_os libdir srcdir
 
-    set found [load_config "${name}.exp" "${target_os}.exp" "default.exp" "unknown.exp"];
+    set found [load_config "${name}.exp" "${target_os}.exp" "default.exp" "unknown.exp"]
 
     if { $found == 0 } {
 	send_error "WARNING: Couldn't find tool config file for $name, using default.\n"
@@ -1322,67 +1322,67 @@ proc load_tool_target_config { name } {
 #
 
 proc load_board_description { board_name args } {
-    global srcdir;
-    global configfile;
-    global libdir;
-    global env;
-    global board;
+    global srcdir
+    global configfile
+    global libdir
+    global env
+    global board
     global board_info
-    global boards_dir;
-    global board_type;
+    global boards_dir
+    global board_type
 
     set dejagnu ""
 
     if { [llength $args] > 0 } {
-	set whole_name [lindex $args 0];
+	set whole_name [lindex $args 0]
     } else {
-	set whole_name $board_name;
+	set whole_name $board_name
     }
 
-    set board_info($whole_name,name) $whole_name;
+    set board_info($whole_name,name) $whole_name
     if ![info exists board] {
-	set board $whole_name;
-	set board_set 1;
+	set board $whole_name
+	set board_set 1
     } else {
-	set board_set 0;
+	set board_set 0
     }
 
-    set dirlist {};
+    set dirlist {}
     if { [llength $args] > 1 } {
-	set suffix [lindex $args 1];
+	set suffix [lindex $args 1]
 	if { ${suffix} != "" } {
 	    foreach x ${boards_dir} {
 		lappend dirlist ${x}/${suffix}
 	    }
-	    lappend dirlist ${libdir}/baseboards/${suffix};
+	    lappend dirlist ${libdir}/baseboards/${suffix}
 	}
     }
-    set dirlist [concat $dirlist $boards_dir];
-    lappend dirlist ${libdir}/baseboards;
+    set dirlist [concat $dirlist $boards_dir]
+    lappend dirlist ${libdir}/baseboards
     verbose "dirlist is $dirlist"
     if [info exists board_type] {
-	set type "for $board_type";
+	set type "for $board_type"
     } else {
-	set type "";
+	set type ""
     }
     if ![info exists board_info($whole_name,isremote)] {
-	set board_info($whole_name,isremote) 1;
+	set board_info($whole_name,isremote) 1
 	if [info exists board_type] {
 	    if { $board_type == "build" } {
-		set board_info($whole_name,isremote) 0;
+		set board_info($whole_name,isremote) 0
 	    }
 	}
 	if { ${board_name} == [get_local_hostname] } {
-	    set board_info($whole_name,isremote) 0;
+	    set board_info($whole_name,isremote) 0
 	}
     }
-    search_and_load_file "standard board description file $type" standard.exp $dirlist;
-    set found [search_and_load_file "board description file $type" ${board_name}.exp $dirlist];
+    search_and_load_file "standard board description file $type" standard.exp $dirlist
+    set found [search_and_load_file "board description file $type" ${board_name}.exp $dirlist]
     if { $board_set != 0 } {
-	unset board;
+	unset board
     }
 
-    return $found;
+    return $found
 }
 
 #
@@ -1391,43 +1391,43 @@ proc load_board_description { board_name args } {
 #
 
 proc load_base_board_description { board_name } {
-    global srcdir;
-    global configfile;
-    global libdir;
-    global env;
-    global board;
+    global srcdir
+    global configfile
+    global libdir
+    global env
+    global board
     global board_info
-    global board_type;
+    global board_type
 
-    set board_set 0;
-    set board_info($board_name,name) $board_name;
+    set board_set 0
+    set board_info($board_name,name) $board_name
     if ![info exists board] {
-	set board $board_name;
-	set board_set 1;
+	set board $board_name
+	set board_set 1
     }
     if [info exists board_type] {
-	set type "for $board_type";
+	set type "for $board_type"
     } else {
 	set type ""
-    };
+    }
     if ![info exists board_info($board_name,isremote)] {
-	set board_info($board_name,isremote) 1;
+	set board_info($board_name,isremote) 1
 	if [info exists board_type] {
 	    if { $board_type == "build" } {
-		set board_info($board_name,isremote) 0;
+		set board_info($board_name,isremote) 0
 	    }
 	}
     }
 
     if { ${board_name} == [get_local_hostname] } {
-	set board_info($board_name,isremote) 0;
+	set board_info($board_name,isremote) 0
     }
-    set found [search_and_load_file "board description file $type" ${board_name}.exp ${libdir}/baseboards];
+    set found [search_and_load_file "board description file $type" ${board_name}.exp ${libdir}/baseboards]
     if { $board_set != 0 } {
-	unset board;
+	unset board
     }
 
-    return $found;
+    return $found
 }
 
 #
@@ -1448,11 +1448,11 @@ proc runtest { test_file_name } {
     set test_result ""
 
     if [file exists $test_file_name] {
-	set timestart [timestamp];
+	set timestart [timestamp]
 
 	if [info exists tool] {
 	    if { [info procs "${tool}_init"] != "" } {
-		${tool}_init $test_file_name;
+		${tool}_init $test_file_name
 	    }
 	}
 
@@ -1477,11 +1477,11 @@ proc runtest { test_file_name } {
 
 	if [info exists tool] {
 	    if { [info procs "${tool}_finish"] != "" } {
-		${tool}_finish;
+		${tool}_finish
 	    }
 	}
-	set timeend [timestamp];
-	set timediff [expr $timeend - $timestart];
+	set timeend [timestamp]
+	set timediff [expr $timeend - $timestart]
 	verbose -log "testcase $test_file_name completed in $timediff seconds" 4
     } else {
 	# This should never happen, but maybe if the file got removed
@@ -1505,50 +1505,50 @@ if ![exp_debug] {
              {SIGINT  {interrupted by user}} \
              {SIGQUIT {interrupted by user}} \
              {SIGSEGV {segmentation violation}}" {
-	 set signal [lindex $sig 0];
-	 set str [lindex $sig 1];
-	 trap "send_error \"got a \[trap -name\] signal, $str \\n\"; log_and_exit;" $signal;
+	 set signal [lindex $sig 0]
+	 set str [lindex $sig 1]
+	 trap "send_error \"got a \[trap -name\] signal, $str \\n\"; log_and_exit;" $signal
 	 verbose "setting trap for $signal to $str" 1
     }
-    unset signal str sig;
+    unset signal str sig
 }
 
 #
 # Given a list of targets, process any iterative lists.
 # 
 proc process_target_variants { target_list } {
-    set result {};
+    set result {}
     foreach x $target_list {
 	if [regexp "\\(" $x] {
-	    regsub "^.*\\((\[^()\]*)\\)$" "$x" "\\1" variant_list;
-	    regsub "\\(\[^(\]*$" "$x" "" x;
-	    set list [process_target_variants $x];
+	    regsub "^.*\\((\[^()\]*)\\)$" "$x" "\\1" variant_list
+	    regsub "\\(\[^(\]*$" "$x" "" x
+	    set list [process_target_variants $x]
 	    set result {}
 	    foreach x $list {
-		set result [concat $result [iterate_target_variants $x [split $variant_list ","]]];
+		set result [concat $result [iterate_target_variants $x [split $variant_list ","]]]
 	    }
 	} elseif [regexp "\{" $x] {
-	    regsub "^.*\{(\[^\{\}\]*)\}$" "$x" "\\1" variant_list;
-	    regsub "\{\[^\{\]*$" "$x" "" x;
-	    set list [process_target_variants $x];
+	    regsub "^.*\{(\[^\{\}\]*)\}$" "$x" "\\1" variant_list
+	    regsub "\{\[^\{\]*$" "$x" "" x
+	    set list [process_target_variants $x]
 	    foreach x $list {
 		foreach i [split $variant_list ","] {
-		    set name $x;
+		    set name $x
 		    if { $i != "" } {
-			append name "/" $i;
+			append name "/" $i
 		    }
-		    lappend result $name;
+		    lappend result $name
 		}
 	    }
 	} else {
-	    lappend result "$x";
+	    lappend result "$x"
 	}
     }
-    return $result;
+    return $result
 }
 
 proc iterate_target_variants { target variants } {
-    return [iterate_target_variants_two $target $target $variants];
+    return [iterate_target_variants_two $target $target $variants]
 }
 
 #
@@ -1557,34 +1557,34 @@ proc iterate_target_variants { target variants } {
 proc iterate_target_variants_two { orig_target target variants } {
 
     if { [llength $variants] == 0 } {
-	return [list $target];
+	return [list $target]
     } else {
 	if { [llength $variants] > 1 } {
-	    set result [iterate_target_variants_two $orig_target $target [lrange $variants 1 end]];
+	    set result [iterate_target_variants_two $orig_target $target [lrange $variants 1 end]]
 	} else {
 	    if { $target != $orig_target } {
-		set result [list $target];
+		set result [list $target]
 	    } else {
-		set result {};
+		set result {}
 	    }
 	}
 	if { [lindex $variants 0] != "" } {
-	    append target "/" [lindex $variants 0];
-	    return [concat $result [iterate_target_variants_two $orig_target $target [lrange $variants 1 end]]];
+	    append target "/" [lindex $variants 0]
+	    return [concat $result [iterate_target_variants_two $orig_target $target [lrange $variants 1 end]]]
 	} else {
-	    return [concat $result $target];
+	    return [concat $result $target]
 	}
     }
 }
 
-setup_build_hook [get_local_hostname];
+setup_build_hook [get_local_hostname]
 
 if [info exists host_board] {
-    setup_host_hook $host_board;
+    setup_host_hook $host_board
 } else {
-    set hb [get_local_hostname];
+    set hb [get_local_hostname]
     if { $hb != "" } {
-	setup_host_hook $hb;
+	setup_host_hook $hb
     }
 }
 
@@ -1609,9 +1609,9 @@ if ![info exists target_list] {
 #
 # Iterate through the list of targets.
 #
-global current_target;
+global current_target
 
-set target_list [process_target_variants $target_list];
+set target_list [process_target_variants $target_list]
 
 set target_count [llength $target_list]
 
@@ -1623,17 +1623,17 @@ clone_output ""
 
 
 foreach current_target $target_list {
-    verbose "target is $current_target";
-    set current_target_name $current_target;
-    set tlist [split $current_target /];
-    set current_target [lindex $tlist 0];
-    set board_variant_list [lrange $tlist 1 end];
+    verbose "target is $current_target"
+    set current_target_name $current_target
+    set tlist [split $current_target /]
+    set current_target [lindex $tlist 0]
+    set board_variant_list [lrange $tlist 1 end]
 
     # Set the counts for this target to 0.
-    reset_vars;
+    reset_vars
     clone_output "Running target $current_target_name"
 
-    setup_target_hook $current_target_name $current_target;
+    setup_target_hook $current_target_name $current_target
 
 # If multiple passes requested, set them up.  Otherwise prepare just one.
 # The format of `MULTIPASS' is a list of elements containing
@@ -1665,7 +1665,7 @@ foreach current_target $target_list {
 		set multipass_name [lindex $multipass_elem 0]
 		if {$p == $multipass_name} {
 	    	    lappend passes $multipass_elem
-		    break;
+		    break
 		}
 	    }
 	}
@@ -1709,7 +1709,7 @@ foreach current_target $target_list {
 	    # DejaGNU's notion of test tree and test files is very
 	    # general:
 	    # given ${srcdir} and ${tool}, any subdirectory (at any
-	    # level deep) with the "${tool}" prefix starts a test tree;
+	    # level deep) with the "${tool}" prefix starts a test tree
 	    # given a test tree, any *.exp file underneath (at any
 	    # level deep) is a test file.
 	    #
@@ -1749,13 +1749,13 @@ foreach current_target $target_list {
 	    set test_top_dirs ${temp_top_dirs}
 	}
 	verbose "Top level testsuite dirs are ${test_top_dirs}" 2
-	set testlist "";
+	set testlist ""
 	if [info exists all_runtests] {
 	    foreach x [array names all_runtests] {
 		verbose "trying to glob ${srcdir}/${x}" 2
-		set s [glob -nocomplain ${srcdir}/$x];
+		set s [glob -nocomplain ${srcdir}/$x]
 		if { $s != "" } {
-		    set testlist [concat $testlist $s];
+		    set testlist [concat $testlist $s]
 		}
 	    }
 	}
@@ -1779,14 +1779,14 @@ foreach current_target $target_list {
 		    incr p -1
 		}
 		if {[string range $subdir 0 $p] == $srcdir} {
-		    set subdir [string range $subdir [expr $p+1] end];
+		    set subdir [string range $subdir [expr $p+1] end]
 		    regsub "^/" $subdir "" subdir
 		}
 
 		# XXX not the right thing to do.
 		set runtests [list [file tail $test_name] ""]
 
-		runtest $test_name;
+		runtest $test_name
 	    }
 	} else {
 	    #
@@ -1866,9 +1866,9 @@ foreach current_target $target_list {
 			# characters? We lose. Instead...
 			set first [string first $srcdir $subdir]
 			if { $first >= 0 } {
-			    set first [expr $first + [string length $srcdir]];
-			    set subdir [string range $subdir $first end];
-			    regsub "^/" "$subdir" "" subdir;
+			    set first [expr $first + [string length $srcdir]]
+			    set subdir [string range $subdir $first end]
+			    regsub "^/" "$subdir" "" subdir
 			}
 			if { "$srcdir" == "$subdir" || "$srcdir" == "$subdir/" } {
 			    set subdir ""
@@ -1887,26 +1887,26 @@ foreach current_target $target_list {
 			} else {
 			    set runtests [list [file tail $test_name] ""]
 			}
-			runtest $test_name;
+			runtest $test_name
 		    }
 		}
 	    }
 	    # Restore the variables set by this pass.
 	    foreach varval $restore {
 		if { [llength $varval] > 1 } {
-		    verbose "Restoring [lindex $varval 0] to [lindex $varval 1]" 4;
-		    set [lindex $varval 0] [lindex $varval 1];
+		    verbose "Restoring [lindex $varval 0] to [lindex $varval 1]" 4
+		    set [lindex $varval 0] [lindex $varval 1]
 		} else {
-		    verbose "Restoring [lindex $varval 0] to `unset'" 4;
-		    unset [lindex $varval 0];
+		    verbose "Restoring [lindex $varval 0] to `unset'" 4
+		    unset [lindex $varval 0]
 		}
 	    }
 	}
     }
-    cleanup_target_hook $current_target;
+    cleanup_target_hook $current_target
     if { $target_count > 1 } {
-	log_summary;
+	log_summary
     }
 }
 
-log_and_exit;
+log_and_exit

@@ -24,17 +24,17 @@
 
 proc ${tool}_load { program args } {
     if { [llength $args] > 0 } {
-	set program_args [lindex $args 0];
+	set program_args [lindex $args 0]
     } else {
 	set program_args ""
     }
 
     if { [llength $args] > 1 } {
-	set input_file [lindex $args 1];
+	set input_file [lindex $args 1]
     } else {
-	set input_file "";
+	set input_file ""
     }
-    return [remote_load target $program $program_args $input_file];
+    return [remote_load target $program $program_args $input_file]
 }
 
 proc ${tool}_compile { srcfile destfile compile_type options } {

@@ -33,7 +33,7 @@ load_lib remote.exp
 #
 
 proc vrtx_load { dest prog args } {
-    remote_open $dest;
+    remote_open $dest
 
     switch -- [remote_download $dest $prog] {
 	0 { return "pass" }

@@ -5,4 +5,4 @@ add_multilib_option ""
 set_board_info ldscript "-Wl,-Tdve.ld"
 
 # Otherwise we're the same as the standard MIPS simulator.
-load_base_board_description "mips-sim";
+load_base_board_description "mips-sim"

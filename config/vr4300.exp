@@ -18,4 +18,4 @@
 # bug-dejagnu@gnu.org
 
 # We're using a ddb monitor.
-load_generic_config "ddb";
+load_generic_config "ddb"

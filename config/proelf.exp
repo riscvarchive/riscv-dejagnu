@@ -17,9 +17,9 @@
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@gnu.org
 
-load_generic_config "base68k";
+load_generic_config "base68k"
 set_board_info shell_prompt "#"
-set_board_info download_command "r 0\n";
+set_board_info download_command "r 0\n"
 set_board_info go_command "g"
 set_board_info startaddr "40000"
 

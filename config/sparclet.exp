@@ -19,8 +19,8 @@
 
 # This file was written by Michael Snyder <msnyder@cygnus.com>.
 
-load_generic_config "gdb_stub";
+load_generic_config "gdb_stub"
 
 # This is the old GDB prompt for the toolchain.
 # Uncomment for old tests
-#set_board_info gdb_prompt "\\(gdbslet\\)";
+#set_board_info gdb_prompt "\\(gdbslet\\)"

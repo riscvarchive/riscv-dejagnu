@@ -19,7 +19,7 @@
 
 # This file was written by Bob Manson (manson@cygnus.com).
 
-load_generic_config "base68k";
+load_generic_config "base68k"
 
 set_board_info shell_prompt "\[0-9\]+Bug>"
 set_board_info download_command "lo 0\r"

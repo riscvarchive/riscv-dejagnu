@@ -17,7 +17,7 @@ set_board_info ldflags "[newlib_link_flags]"
 # The GDB protocol used with this board.
 set_board_info gdb_protocol "remote"
 # It's running a GDB stub in ROM.
-set_board_info use_gdb_stub 1;
+set_board_info use_gdb_stub 1
 
 # There's no support for argument-passing.
 set_board_info noargs 1
@@ -45,8 +45,8 @@ set_board_info gdb,short_int 1
 set linker_script "h8300.ld"
 
 foreach x $board_variant_list {
-    regsub -all "^\[ \t\]*" "$x" "" x;
-    regsub -all "\[ \t\]*$" "$x" "" x;
+    regsub -all "^\[ \t\]*" "$x" "" x
+    regsub -all "\[ \t\]*$" "$x" "" x
 
     case $x in {
 	{ h -mh } {

@@ -29,28 +29,28 @@ proc xsh_open { hostname } {
     global board_info
 
     if [board_info $hostname exists fileid] {
-	unset board_info($hostname,fileid);
+	unset board_info($hostname,fileid)
     }
 
     if ![board_info $hostname exists spectra] {
-	perror "No spectra directory for $hostname";
-	return -1;
+	perror "No spectra directory for $hostname"
+	return -1
     } else {
-	set spectra [board_info $hostname spectra];
+	set spectra [board_info $hostname spectra]
     }
 
     if ![board_info $hostname exists xsh_shell_prompt] {
 	set xsh_shell_prompt ".*> "
     } else {
-	set xsh_shell_prompt [board_info $hostname shell_prompt];
+	set xsh_shell_prompt [board_info $hostname shell_prompt]
     }
 
     set retries 0
     set result  0
     if ![board_info $hostname exists xsh_prog] {
-	set xsh xsh;
+	set xsh xsh
     } else {
-	set xsh [board_info $hostname xsh_prog];
+	set xsh [board_info $hostname xsh_prog]
     }
 
     if {[which $xsh] != 0} {
@@ -121,7 +121,7 @@ proc xsh_open { hostname } {
 	}
     }
 
-    set board_info($hostname,fileid) $spawn_id;
+    set board_info($hostname,fileid) $spawn_id
     # load to operating system
     set timeout 20
     set retries 0
@@ -164,7 +164,7 @@ proc xsh_open { hostname } {
 	perror "Couldn't connect after $retries retries.\n"
 	return -1
     } else {
-	set board_info($hostname,fileid) $spawn_id;
+	set board_info($hostname,fileid) $spawn_id
 	return $spawn_id
     }
 }
@@ -187,7 +187,7 @@ proc xsh_download { dest file destfile args } {
 
     set result 1
     set retries 0
-    set shell_id [board_info $dest fileid];
+    set shell_id [board_info $dest fileid]
 
     if { [llength $args] > 1 } {
 	set opts [lindex $args 1]
@@ -310,12 +310,12 @@ proc xsh_close { hostname } {
     global board_info
 
     if ![board_info $hostname exists fileid] {
-	return;
+	return
     }
 
-    set shell_id [board_info ${hostname} fileid];
+    set shell_id [board_info ${hostname} fileid]
     send -i $shell_id "exit\n"
-    unset board_info(${hostname},fileid);
+    unset board_info(${hostname},fileid)
 
     verbose "Exiting shell."
     return 0

@@ -7,12 +7,12 @@ load_generic_config "i386-bozo"
 process_multilib_options ""
 
 # Default to COFF.
-set add_flags "";
+set add_flags ""
 if { [board_info $board obj_format] == "a.out" } {
     set_board_info support_libs "${prefix_dir}/i386-aout/"
-    set_board_info gdb_load_offset "0x41000000";
-    set_board_info gdb_sect_offset "0x41000000";
-    set add_flags "-N ";
+    set_board_info gdb_load_offset "0x41000000"
+    set_board_info gdb_sect_offset "0x41000000"
+    set add_flags "-N "
 } elseif { [board_info $board obj_format] == "elf" } {
     set_board_info support_libs "${prefix_dir}/i386-elf/"
 } else {
@@ -32,7 +32,7 @@ set_board_info ldscript "-Tbozo.ld"
 # The GDB protocol used with this board.
 set_board_info gdb_protocol "remote"
 # It's running a GDB stub in ROM.
-set_board_info use_gdb_stub 1;
+set_board_info use_gdb_stub 1
 
 # There's no support for argument-passing.
 set_board_info noargs 1
@@ -48,4 +48,4 @@ set_board_info gcc,stack_size 16384
 set_board_info needs_status_wrapper 1
 
 # This is the start symbol in crt0.o.
-set_board_info gdb,start_symbol "_start";
+set_board_info gdb,start_symbol "_start"

@@ -3,7 +3,7 @@ set_board_info target_install  {m6811-elf}
 
 # Load the generic configuration for this board. This will define any
 # routines needed to communicate with the board.
-load_generic_config "sim";
+load_generic_config "sim"
 
 # basic-sim.exp is a basic description for the standard Cygnus simulator.
 load_base_board_description "basic-sim"
@@ -17,15 +17,15 @@ set_board_info compiler  "[find_gcc]"
 
 # We only support newlib on this target. We assume that all multilib
 # options have been specified before we get here.
-set_board_info cflags "[libgloss_include_flags] [newlib_include_flags]";
+set_board_info cflags "[libgloss_include_flags] [newlib_include_flags]"
 
 # The GCC testsuite programs create quite large executables for the 68HC11.
 # We have to give enough room for the text section and we must make sure
 # that the data section does not overlay the 68HC11 IO registers. We could
 # relocate the IO registers but this would add some complexity to the crt0.
-set_board_info ldflags "[libgloss_link_flags] [newlib_link_flags] -Wl,-Ttext,0x2000 -Wl,-Tdata,0x1100";
+set_board_info ldflags "[libgloss_link_flags] [newlib_link_flags] -Wl,-Ttext,0x2000 -Wl,-Tdata,0x1100"
 # No linker script needed.
-set_board_info ldscript "-Wl,--script,sim-valid.x";
+set_board_info ldscript "-Wl,--script,sim-valid.x"
 
 # Can't pass arguments to programs on this target..
 set_board_info noargs  1

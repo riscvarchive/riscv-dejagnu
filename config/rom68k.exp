@@ -20,11 +20,11 @@
 # This file was written by Bob Manson (manson@cygnus.com)
 # based on earlier work by J.T. Conklin (jtc@cygnus.com)
 
-load_generic_config "base68k";
+load_generic_config "base68k"
 
 set_board_info shell_prompt "ROM68K :-> "
-set_board_info download_command "DC\n";
-set_board_info download_response "Waiting for S-records from host... ";
+set_board_info download_command "DC\n"
+set_board_info download_response "Waiting for S-records from host... "
 set_board_info go_command "GO"
 set_board_info startaddr "10000"
 set_board_info hex_startaddr "0x10000"

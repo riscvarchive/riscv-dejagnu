@@ -135,35 +135,35 @@ proc isbuild { pattern } {
 # Is $board remote? Return a non-zero value if so.
 #
 proc is_remote { board } {
-    global host_board;
-    global target_list;
+    global host_board
+    global target_list
 
-    verbose "calling is_remote $board" 3;
+    verbose "calling is_remote $board" 3
     # Remove any target variant specifications from the name.
-    set board [lindex [split $board "/"] 0];
+    set board [lindex [split $board "/"] 0]
 
     # Map the host or build back into their short form.
     if { [board_info build name] == $board } {
-	set board "build";
+	set board "build"
     } elseif { [board_info host name] == $board } {
-	set board "host";
+	set board "host"
     }
 
     # We're on the "build". The check for the empty string is just for
     # paranoia's sake--we shouldn't ever get one. "unix" is a magic
     # string that should really go away someday.
     if { $board == "build" || $board == "unix" || $board == "" } {
-	verbose "board is $board, not remote" 3;
-	return 0;
+	verbose "board is $board, not remote" 3
+	return 0
     }
 
     if { $board == "host" } {
 	if { [info exists host_board] && $host_board != "" } {
-	    verbose "board is $board, is remote" 3;
-	    return 1;
+	    verbose "board is $board, is remote" 3
+	    return 1
 	} else {
-	    verbose "board is $board, host is local" 3;
-	    return 0;
+	    verbose "board is $board, host is local" 3
+	    return 0
 	}
     }
 
@@ -173,16 +173,16 @@ proc is_remote { board } {
 	if [info exists current_target_name] {
 	    # This shouldn't happen, but we'll be paranoid anyway.
 	    if { $current_target_name != "target" } {
-		return [is_remote $current_target_name];
+		return [is_remote $current_target_name]
 	    }
 	}
-	return 0;
+	return 0
     }
     if [board_info $board exists isremote] {
-	verbose "board is $board, isremote is [board_info $board isremote]" 3;
-	return [board_info $board isremote];
+	verbose "board is $board, isremote is [board_info $board isremote]" 3
+	return [board_info $board isremote]
     }
-    return 1;
+    return 1
 }
 #
 # If this is a canadian (3 way) cross. This means the tools are
@@ -285,8 +285,8 @@ proc unknown { args } {
         send_error "The info on the error is:\n$errorInfo\n"
     }
 
-    set exit_status 1;
-    log_and_exit;
+    set exit_status 1
+    log_and_exit
 }
 
 #
@@ -307,7 +307,7 @@ proc clone_output { message } {
 	puts $sum_file "$message"
     }
 
-    regsub "^\[ \t\]*(\[^ \t\]+).*$" "$message" "\\1" firstword;
+    regsub "^\[ \t\]*(\[^ \t\]+).*$" "$message" "\\1" firstword
     case "$firstword" in {
 	{"PASS:" "XFAIL:" "KFAIL:" "UNRESOLVED:" "UNSUPPORTED:" "UNTESTED:"} {
 	    if $all_flag {
@@ -332,20 +332,20 @@ proc clone_output { message } {
 # Reset a few counters.
 #
 proc reset_vars {} {
-    global test_names test_counts;
-    global warncnt errcnt;
+    global test_names test_counts
+    global warncnt errcnt
 
     # other miscellaneous variables
     global prms_id
     global bug_id
     
     # reset them all
-    set prms_id	0;
-    set bug_id	0;
-    set warncnt 0;
-    set errcnt  0;
+    set prms_id	0
+    set bug_id	0
+    set warncnt 0
+    set errcnt  0
     foreach x $test_names {
-	set test_counts($x,count) 0;
+	set test_counts($x,count) 0
     }
 
     # Variables local to this file.
@@ -355,10 +355,10 @@ proc reset_vars {} {
 }
 
 proc log_and_exit {} {
-    global exit_status;
-    global tool mail_logs outdir mailing_list;
+    global exit_status
+    global tool mail_logs outdir mailing_list
 
-    log_summary total;
+    log_summary total
     # extract version number
     if {[info procs ${tool}_version] != ""} {
 	if {[catch "${tool}_version" output]} {
@@ -396,13 +396,13 @@ proc log_summary { args } {
     global outdir
     global mailing_list
     global current_target_name
-    global test_counts;
-    global testcnt;
+    global test_counts
+    global testcnt
 
     if { [llength $args] == 0 } {
-	set which "count";
+	set which "count"
     } else {
-	set which [lindex $args 0];
+	set which [lindex $args 0]
     }
 
     if { [llength $args] == 0 } {
@@ -417,12 +417,12 @@ proc log_summary { args } {
     # so it's not clear how often this will be used.
     if [info exists testcnt] {
 	if { $testcnt > 0 } {
-	    set totlcnt 0;
+	    set totlcnt 0
 	    # total all the testcases reported
 	    foreach x { FAIL PASS XFAIL KFAIL XPASS KPASS UNTESTED UNRESOLVED UNSUPPORTED } {
-		incr totlcnt test_counts($x,$which);
+		incr totlcnt test_counts($x,$which)
 	    }
-	    set testcnt test_counts(total,$which);
+	    set testcnt test_counts(total,$which)
 	    
 	    if { $testcnt>$totlcnt || $testcnt<$totlcnt } {
 		if { $testcnt > $totlcnt } {
@@ -444,9 +444,9 @@ proc log_summary { args } {
 	}
     }
     foreach x { PASS FAIL XPASS XFAIL KPASS KFAIL UNRESOLVED UNTESTED UNSUPPORTED } {
-	set val $test_counts($x,$which);
+	set val $test_counts($x,$which)
 	if { $val > 0 } {
-	    set mess "# of $test_counts($x,name)";
+	    set mess "# of $test_counts($x,name)"
             if { $xml } {
                 xml_output "  <summary>"
                 xml_output "    <result>$x</result>"
@@ -455,9 +455,9 @@ proc log_summary { args } {
                 xml_output "  </summary>"
             }
 	    if { [string length $mess] < 24 } {
-		append mess "\t";
+		append mess "\t"
 	    }
-	    clone_output "$mess\t$val";
+	    clone_output "$mess\t$val"
 	}
     }
 }
@@ -698,12 +698,12 @@ proc record_test { type message args } {
     global pf_prefix
 
     if { [llength $args] > 0 } {
-	set count [lindex $args 0];
+	set count [lindex $args 0]
     } else {
-	set count 1;
+	set count 1
     }
     if [info exists pf_prefix] {
-	set message [concat $pf_prefix " " $message];
+	set message [concat $pf_prefix " " $message]
     }
 
     # If we have too many warnings or errors,
@@ -715,7 +715,7 @@ proc record_test { type message args } {
         set type UNRESOLVED
     }
 
-    incr_count $type;
+    incr_count $type
 
     if { $xml } {
 	global errorInfo
@@ -1033,7 +1033,7 @@ proc unsupported { message } {
 # Set up the values in the test_counts array (name and initial totals).
 #
 proc init_testcounts { } {
-    global test_counts test_names;
+    global test_counts test_names
     set test_counts(TOTAL,name) "testcases run"
     set test_counts(PASS,name) "expected passes"
     set test_counts(FAIL,name) "unexpected failures"
@@ -1046,16 +1046,16 @@ proc init_testcounts { } {
     set test_counts(UNSUPPORTED,name) "unsupported tests"
     set test_counts(UNRESOLVED,name) "unresolved testcases"
     set test_counts(UNTESTED,name) "untested testcases"
-    set j "";
+    set j ""
 
     foreach i [lsort [array names test_counts]] {
-	regsub ",.*$" "$i" "" i;
+	regsub ",.*$" "$i" "" i
 	if { $i == $j } {
-	    continue;
+	    continue
 	}
-	set test_counts($i,total) 0;
-	lappend test_names $i;
-	set j $i;
+	set test_counts($i,total) 0
+	lappend test_names $i
+	set j $i
     }
 }
 
@@ -1064,16 +1064,16 @@ proc init_testcounts { } {
 # is optional (defaults to 1).
 #
 proc incr_count { name args } {
-    global test_counts;
+    global test_counts
 
     if { [llength $args] == 0 } {
-	set count 1;
+	set count 1
     } else {
-	set count [lindex $args 0];
+	set count [lindex $args 0]
     }
     if [info exists test_counts($name,count)] {
-	incr test_counts($name,count) $count;
-	incr test_counts($name,total) $count;
+	incr test_counts($name,count) $count
+	incr test_counts($name,total) $count
     } else {
 	perror "$name doesn't exist in incr_count"
     }

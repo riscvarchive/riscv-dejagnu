@@ -193,7 +193,7 @@ proc print { var } {
 }
 
 proc quit { } {
-    log_and_exit;
+    log_and_exit
 }
 
 proc bt { } {

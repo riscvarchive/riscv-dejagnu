@@ -3,7 +3,7 @@ set_board_info target_install  {d10v-elf}
 
 # Load the generic configuration for this board. This will define any
 # routines needed to communicate with the board.
-load_generic_config "sim";
+load_generic_config "sim"
 
 # basic-sim.exp is a basic description for the standard Cygnus simulator.
 load_base_board_description "basic-sim"
@@ -12,7 +12,7 @@ load_base_board_description "basic-sim"
 setup_sim d10v
 
 # No multilib options needed by default.
-process_multilib_options "";
+process_multilib_options ""
 
 # The compiler used to build for this board. This has *nothing* to do
 # with what compiler is tested if we're testing gcc.
@@ -23,7 +23,7 @@ set_board_info compiler  "[find_gcc]"
 set_board_info cflags  "[newlib_include_flags]"
 set_board_info ldflags  "[libgloss_link_flags] [newlib_link_flags]"
 # No linker script needed.
-set_board_info ldscript "";
+set_board_info ldscript ""
 
 # Can't pass arguments to programs on this target..
 set_board_info noargs  1

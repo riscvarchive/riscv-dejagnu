@@ -29,5 +29,5 @@ set board_info($board,ldscript) "-Wl,-Tidt.ld"
 # the standard GCC wrapper will work with this target.
 set board_info($board,needs_status_wrapper) 1
 set board_info($board,gdb,noargs) 1
-set_board_info gdb,nosignals 1;
-set_board_info noargs 1;
+set_board_info gdb,nosignals 1
+set_board_info noargs 1

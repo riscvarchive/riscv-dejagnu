@@ -21,7 +21,7 @@ if { [board_info $board obj_format] == "pe" } {
 load_base_board_description "basic-sim"
 
 # The name of the directory in the build tree where the simulator lives.
-setup_sim arm;
+setup_sim arm
 
 # The compiler used to build for this board. This has *nothing* to do
 # with what compiler is tested if we're testing gcc.
@@ -31,7 +31,7 @@ set_board_info compiler 	"[find_gcc]"
 set_board_info cflags 	"[libgloss_include_flags] [newlib_include_flags]"
 set_board_info ldflags 	"[libgloss_link_flags] [newlib_link_flags] $additional_options"
 # This board doesn't use a linker script.
-set_board_info ldscript "";
+set_board_info ldscript ""
 # The simulator doesn't return exit statuses and we need to indicate this.
 set_board_info needs_status_wrapper  1
 
@@ -46,4 +46,4 @@ set_board_info gdb,nosignals 1
 set_board_info gcc,timeout 800
 
 # Make this variable go away, we don't need it.
-unset additional_options;
+unset additional_options

@@ -33,7 +33,7 @@ proc rsh_open { hostname } {
 	    set RSH rsh
 	}
     } else {
-	set RSH [board_info $hostname rsh_prog];
+	set RSH [board_info $hostname rsh_prog]
     }
 
     if [board_info $hostname exists username] {
@@ -44,7 +44,7 @@ proc rsh_open { hostname } {
 
     # get the hostname and port number from the config array
     if [board_info $hostname exists name] {
-	set hostname [board_info $hostname name];
+	set hostname [board_info $hostname name]
     }
     set hostname [lindex [split [board_info ${hostname} netport] ":"] 0]
     if [board_info ${hostname} exists shell_prompt] {
@@ -54,7 +54,7 @@ proc rsh_open { hostname } {
     }
 
     if [board_info $hostname exists fileid] {
-	unset board_info($hostname,fileid);
+	unset board_info($hostname,fileid)
     }
  
     spawn $RSH $rsh_useropts $hostname
@@ -152,13 +152,13 @@ proc rsh_open { hostname } {
 proc rsh_download {desthost srcfile destfile} {
     # must be done before desthost is rewritten
     if [board_info $desthost exists rcp_prog] {
-	set RCP [board_info $desthost rcp_prog];
+	set RCP [board_info $desthost rcp_prog]
     } else {
         set RCP rcp
     }
 
     if [board_info $desthost exists rsh_prog] {
-	set RSH [board_info $desthost rsh_prog];
+	set RSH [board_info $desthost rsh_prog]
     } else {
 	if { [which remsh] != 0 } {
 	    set RSH remsh
@@ -176,18 +176,18 @@ proc rsh_download {desthost srcfile destfile} {
     }
 
     if [board_info $desthost exists name] {
-	set desthost [board_info $desthost name];
+	set desthost [board_info $desthost name]
     }
 
     if [board_info $desthost exists hostname] {
-	set desthost [board_info $desthost hostname];
+	set desthost [board_info $desthost hostname]
     }
 
     set status [catch "exec $RSH $rsh_useropts $desthost rm -f $destfile |& cat" output]
     set status [catch "exec $RCP $srcfile $rcp_user$desthost:$destfile |& cat" output]
     if { $status == 0 } {
 	verbose "Copied $srcfile to $desthost:$destfile" 2
-	return $destfile;
+	return $destfile
     } else {
 	verbose "Download to $desthost failed, $output."
 	return ""
@@ -196,7 +196,7 @@ proc rsh_download {desthost srcfile destfile} {
 
 proc rsh_upload {desthost srcfile destfile} {
     if [board_info $desthost exists rcp_prog] {
-	set RCP [board_info $desthost rcp_prog];
+	set RCP [board_info $desthost rcp_prog]
     } else {
         set RCP rcp
     }
@@ -208,17 +208,17 @@ proc rsh_upload {desthost srcfile destfile} {
     }
 
     if [board_info $desthost exists name] {
-	set desthost [board_info $desthost name];
+	set desthost [board_info $desthost name]
     }
 
     if [board_info $desthost exists hostname] {
-	set desthost [board_info $desthost hostname];
+	set desthost [board_info $desthost hostname]
     }
 
-    set status [catch "exec $RCP $rcp_user$desthost:$srcfile $destfile" output];
+    set status [catch "exec $RCP $rcp_user$desthost:$srcfile $destfile" output]
     if { $status == 0 } {
 	verbose "Copied $desthost:$srcfile to $destfile" 2
-	return $destfile;
+	return $destfile
     } else {
 	verbose "Upload from $desthost failed, $output."
 	return ""
@@ -230,11 +230,11 @@ proc rsh_upload {desthost srcfile destfile} {
 # 
 proc rsh_exec { boardname cmd args } {
     if { [llength $args] > 0 } {
-	set pargs [lindex $args 0];
+	set pargs [lindex $args 0]
 	if { [llength $args] > 1 } {
-	    set inp [lindex $args 1];
+	    set inp [lindex $args 1]
 	} else {
-	    set inp "";
+	    set inp ""
 	}
     } else {
 	set pargs ""
@@ -250,7 +250,7 @@ proc rsh_exec { boardname cmd args } {
 	    set RSH rsh
 	}
     } else {
-	set RSH [board_info $boardname rsh_prog];
+	set RSH [board_info $boardname rsh_prog]
     }
  
     if [board_info $boardname exists username] {
@@ -260,13 +260,13 @@ proc rsh_exec { boardname cmd args } {
     }
 
     if [board_info $boardname exists name] {
-	set boardname [board_info $boardname name];
+	set boardname [board_info $boardname name]
     }
 
     if [board_info $boardname exists hostname] {
-	set hostname [board_info $boardname hostname];
+	set hostname [board_info $boardname hostname]
     } else {
-	set hostname $boardname;
+	set hostname $boardname
     }
 
 

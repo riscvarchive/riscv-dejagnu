@@ -18,4 +18,4 @@
 # bug-dejagnu@gnu.org
 
 # We're using a ddb monitor, but we want to use the ethernet to load files.
-load_generic_config "ddb-ether";
+load_generic_config "ddb-ether"

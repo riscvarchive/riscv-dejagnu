@@ -29,17 +29,17 @@ proc kermit_open { dest args } {
     global board_info
 
     if [board_info $dest exists name] {
-	set dest [board_info $dest name];
+	set dest [board_info $dest name]
     }
     if [board_info ${dest} exists serial] {
-	set port [board_info ${dest} serial];
+	set port [board_info ${dest} serial]
 	set device "-l [board_info ${dest} serial]"
 	if [board_info ${dest} exists baud] {
 	    append device " -b [board_info ${dest} baud]"
 	}
     } else {
-	set port [board_info ${dest} netport];
-	set device "-j [board_info ${dest} netport]";
+	set port [board_info ${dest} netport]
+	set device "-j [board_info ${dest} netport]"
     }
  
     set tries 0
@@ -91,7 +91,7 @@ proc kermit_open { dest args } {
     if { $result < 0 } {
 	perror "Couldn't connect after $tries tries."
 	if [info exists board_info($dest,fileid)] {
-	    unset board_info($dest,fileid);
+	    unset board_info($dest,fileid)
 	}
 	return -1
     } else {
@@ -110,43 +110,43 @@ proc kermit_open { dest args } {
 #
 proc kermit_command { dest args } {
     if [board_info $dest exists name] {
-	set dest [board_info $dest name];
+	set dest [board_info $dest name]
     }
-    set shell_id [board_info $dest fileid];
+    set shell_id [board_info $dest fileid]
     # Sometimes we have to send multiple ^\c sequences. Don't know
     # why.
-    set timeout 2;
+    set timeout 2
     for { set i 1; } {$i<=5} {incr i} {
-	send -i $shell_id "c";
+	send -i $shell_id "c"
 	expect {
 	    -i $shell_id -re ".*Back at.*ermit.*>.*$" { set i 10;}
 	    -i $shell_id timeout {
 		if { $i > 2 } {
-		    warning "Unable to get prompt from kermit.";
+		    warning "Unable to get prompt from kermit."
 		}
 	    }
 	}
     }
     foreach command $args {
 	set timeout 120
-	send -i $shell_id "${command}\r";
+	send -i $shell_id "${command}\r"
 	expect {
 	    -i $shell_id -re ".*ermit.*>.*$" { }
 	    -i $shell_id timeout {
-		perror "Response failed from kermit.";
-		return -1;
+		perror "Response failed from kermit."
+		return -1
 	    }
 	}
     }
-    send -i $shell_id "c\r";
+    send -i $shell_id "c\r"
     expect {
 	-i $shell_id -re ".*other options.\[\r\n\]+" { }
 	-i $shell_id timeout {
-	    perror "Unable to resume kermit connection.";
-	    return -1;
+	    perror "Unable to resume kermit connection."
+	    return -1
 	}
     }
-    return 0;
+    return 0
 }
 
 
@@ -155,14 +155,14 @@ proc kermit_command { dest args } {
 #
 proc kermit_send { dest string args } {
     if [board_info $dest exists transmit_pause] {
-	set f [open "/tmp/fff" "w"];
-	puts -nonewline $f "$string";
-	close $f;
-	set result [remote_transmit $dest /tmp/fff];
-	remote_file build delete "/tmp/fff";
-	return "$result";
+	set f [open "/tmp/fff" "w"]
+	puts -nonewline $f "$string"
+	close $f
+	set result [remote_transmit $dest /tmp/fff]
+	remote_file build delete "/tmp/fff"
+	return "$result"
     } else {
-	return [standard_send $dest $string];
+	return [standard_send $dest $string]
     }
 }
 
@@ -172,9 +172,9 @@ proc kermit_send { dest string args } {
 #
 proc kermit_transmit { dest file args } {
     if [board_info $dest exists transmit_pause] {
-	kermit_command $dest "transmit $file";
-	return "";
+	kermit_command $dest "transmit $file"
+	return ""
     } else {
-	return [standard_transmit $dest $file];
+	return [standard_transmit $dest $file]
     }
 }

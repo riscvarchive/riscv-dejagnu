@@ -719,10 +719,10 @@ proc dg-test { args } {
     # No intention is made (at this point) to preserve upward compatibility
     # (though at some point we'll have to).
 
-    set results [${tool}-dg-test $prog [lindex ${dg-do-what} 0] "$tool_flags ${dg-extra-tool-flags}"];
+    set results [${tool}-dg-test $prog [lindex ${dg-do-what} 0] "$tool_flags ${dg-extra-tool-flags}"]
 
-    set comp_output [lindex $results 0];
-    set output_file [lindex $results 1];
+    set comp_output [lindex $results 0]
+    set output_file [lindex $results 1]
 
     #send_user "\nold_dejagnu.exp: comp_output1 = :$comp_output:\n\n"
     #send_user "\nold_dejagnu.exp: message = :$message:\n\n"
@@ -836,8 +836,8 @@ proc dg-test { args } {
 	} else {
 	    set status -1
 	    set result [${tool}_load $output_file]
-	    set status [lindex $result 0];
-	    set output [lindex $result 1];
+	    set status [lindex $result 0]
+	    set output [lindex $result 1]
 	    #send_user "After exec, status: $status\n"
 	    if { [lindex ${dg-do-what} 2] == "F" } {
 		setup_xfail "*-*-*"

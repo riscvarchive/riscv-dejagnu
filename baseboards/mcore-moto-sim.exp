@@ -20,7 +20,7 @@ set_board_info cflags    "[libgloss_include_flags] [newlib_include_flags]"
 set_board_info ldflags   "[libgloss_link_flags] [newlib_link_flags]"
 
 # No linker script needed.
-set_board_info ldscript "";
+set_board_info ldscript ""
 
 # The simulator doesn't return exit statuses and we need to indicate this;
 # the standard GCC wrapper will work with this target.
@@ -55,11 +55,11 @@ proc sim_spawn { dest cmdline args } {
     puts $handle "quit"
     close $handle
     
-    return [eval remote_spawn host \{ $sim $simflags "-sdoit" \} $args];
+    return [eval remote_spawn host \{ $sim $simflags "-sdoit" \} $args]
 }
 
 proc sim_wait { dest timeout } {
-    return [remote_wait host $timeout];
+    return [remote_wait host $timeout]
 }
 
 proc sim_load { dest prog args } {
@@ -67,25 +67,25 @@ proc sim_load { dest prog args } {
     if ![file exists $prog] then {
 	perror "sim.exp: $prog to be downloaded does not exist."
 	verbose -log "$prog to be downloaded does not exist." 3
-	return [list "untested" ""];
+	return [list "untested" ""]
     }
 
     set sim_time_limit 240
 
-    set output "";
+    set output ""
 
-    set res [remote_spawn target "${prog}"];
+    set res [remote_spawn target "${prog}"]
 
     if { $res <= 0 } {
-	return [list "fail" "remote_spawn failed"];
+	return [list "fail" "remote_spawn failed"]
     }
 
-    set state [remote_wait target $sim_time_limit];
-    set status [lindex $state 0];
-    set output [lindex $state 1];
-    verbose "Output is $output";
+    set state [remote_wait target $sim_time_limit]
+    set status [lindex $state 0]
+    set output [lindex $state 1]
+    verbose "Output is $output"
 
-    set status2 [check_for_board_status output];
+    set status2 [check_for_board_status output]
     if { $status2 >= 0 } {
 	set status $status2
     }
@@ -99,10 +99,10 @@ proc sim_load { dest prog args } {
     } else {
 	set result "fail"
     }
-    return [list $result $output];
+    return [list $result $output]
 }
 
-set_board_info protocol  "sim";
+set_board_info protocol  "sim"
 
 # By default, assume the simulator is slow.  This causes some tests
 # to either be simplified or skipped completely.
@@ -119,7 +119,7 @@ proc find_sim { target_alias sim_dir sim_name } {
     ## XXX - fixme - this should not be hardcoded.
     ## XXX - fixme - this should vary depending upon endianism selected.
     
-    return "/home/nickc/bin/linux/sim-be";
+    return "/home/nickc/bin/linux/sim-be"
 }
 
-set_board_info is_simulator 1;
+set_board_info is_simulator 1

@@ -30,11 +30,11 @@ proc telnet_open { hostname args } {
     global timeout
     global board_info
 
-    set raw 0;
+    set raw 0
 
     if { [llength $args] > 0 } {
 	if { [lindex $args 0] == "raw" } {
-	    set raw 1;
+	    set raw 1
 	}
     }
 
@@ -46,19 +46,19 @@ proc telnet_open { hostname args } {
     }
 
     if [board_info $connhost exists hostname] {
-	set hostname [board_info $connhost hostname];
+	set hostname [board_info $connhost hostname]
     }
 
     if [file exists /usr/kerberos/bin/telnet] {
-	set telnet /usr/kerberos/bin/telnet;
+	set telnet /usr/kerberos/bin/telnet
     } else {
-	set telnet telnet;
+	set telnet telnet
     }
 
     # Instead of unsetting it, let's return it. One connection at a
     # time, please.
     if [board_info $connhost exists fileid] {
-	return [board_info $connhost fileid];
+	return [board_info $connhost fileid]
     }
     # get the hostname and port number from the config array
     if [board_info $connhost exists netport] {
@@ -81,16 +81,16 @@ proc telnet_open { hostname args } {
  
     set tries 0
     set result -1
-    set need_respawn 1;
+    set need_respawn 1
     verbose "Starting a telnet connection to $hostname:$port $shell_prompt" 2
     while { $result < 0 && $tries <= 3 } {
 	if { $need_respawn } {
-	    set need_respawn 0;
-	    spawn $telnet $hostname $port;
+	    set need_respawn 0
+	    spawn $telnet $hostname $port
 	}
 	expect {
 	    "Trying " {
-		exp_continue;
+		exp_continue
 	    }
 	    -re "$shell_prompt.*$" {
 		verbose "Got prompt\n"
@@ -98,35 +98,35 @@ proc telnet_open { hostname args } {
 	    }
 	    -re "nt Name:|ogin:" {
 		if [board_info $connhost exists telnet_username] {
-		    exp_send "[board_info $connhost telnet_username]\n";
-		    exp_continue;
+		    exp_send "[board_info $connhost telnet_username]\n"
+		    exp_continue
 		}
 		if [board_info $connhost exists username] {
-		    exp_send "[board_info $connhost username]\n";
-		    exp_continue;
+		    exp_send "[board_info $connhost username]\n"
+		    exp_continue
 		}
 		perror "telnet: need to login"
 		break
 	    }
 	    "assword:" {
 		if [board_info $connhost exists telnet_password] {
-		    exp_send "[board_info $connhost telnet_password]\n";
-		    exp_continue;
+		    exp_send "[board_info $connhost telnet_password]\n"
+		    exp_continue
 		}
 		if [board_info $connhost exists password] {
-		    exp_send "[board_info $connhost password]\n";
-		    exp_continue;
+		    exp_send "[board_info $connhost password]\n"
+		    exp_continue
 		}
 		perror "telnet: need a password"
 		break
 	    }
 	    -re "advance.*y/n.*\\?" {
-		exp_send "n\n";
-		exp_continue;
+		exp_send "n\n"
+		exp_continue
 	    }
 	    -re {([Aa]dvanced|[Ss]imple) or ([Ss]imple|[Aa]dvanced)} {
-		exp_send "simple\n";
-		exp_continue;
+		exp_send "simple\n"
+		exp_continue
 	    }
 	    "Connected to" {
 		exp_continue
@@ -137,13 +137,13 @@ proc telnet_open { hostname args } {
 		break
 	    }
 	    "VxWorks Boot" {
-		exp_send "@\n";
-		sleep 20;
-		exp_continue;
+		exp_send "@\n"
+		sleep 20
+		exp_continue
 	    }
 	    -re "Escape character is.*\\.\[\r\n\]" {
 		if { $raw || [board_info $connhost exists dont_wait_for_prompt] } {
-		    set result 0;
+		    set result 0
 		} else {
 		    if [board_info $connhost exists send_initial_cr] {
 			exp_send "\n"
@@ -159,8 +159,8 @@ proc telnet_open { hostname args } {
 		break
 	    }
 	    -re "Connection refused.*$" {
-		catch "exp_send \"\003\"" foo;
-		sleep 5;
+		catch "exp_send \"\003\"" foo
+		sleep 5
 		warning "telnet: connection refused."
 	    }
 	    -re "Sorry, this system is engaged.*" {
@@ -179,10 +179,10 @@ proc telnet_open { hostname args } {
 	    }
 	    eof {
 		warning "telnet: got unexpected EOF from telnet."
-		catch close;
-		catch wait;
-		set need_respawn 1;
-		sleep 5;
+		catch close
+		catch wait
+		set need_respawn 1
+		sleep 5
 	    }
 	}
 	incr tries
@@ -211,7 +211,7 @@ proc telnet_open { hostname args } {
 #
 proc telnet_binary { hostname } {
     if [board_info $hostname exists fileid] {
-	remote_send $hostname "";
+	remote_send $hostname ""
 	remote_expect $hostname 5 {
 	    -re "telnet> *$" {}
 	    default {}
@@ -219,16 +219,16 @@ proc telnet_binary { hostname } {
 	remote_send $hostname "set binary\n"
 	remote_expect $hostname 5 {
 	    -re "Format is .*telnet> *$" {
-		remote_send $hostname "toggle binary\n";
-		exp_continue;
+		remote_send $hostname "toggle binary\n"
+		exp_continue
 	    }
 	    -re "Negotiating network ascii.*telnet> *$" {
-		remote_send $hostname "toggle binary\n";
-		exp_continue;
+		remote_send $hostname "toggle binary\n"
+		exp_continue
 	    }
 	    -re "Negotiating binary.*\[\r\n\].*$" { }
 	    -re "binary.*unknown argument.*telnet> *$" {
-		remote_send $hostname "mode character\n";
+		remote_send $hostname "mode character\n"
 	    }
 	    -re "Already operating in binary.*\[\r\n\].*$" { }
 	    timeout {
@@ -239,5 +239,5 @@ proc telnet_binary { hostname } {
 }
 
 proc telnet_transmit { dest file args } {
-    return [standard_transmit $dest $file];
+    return [standard_transmit $dest $file]
 }

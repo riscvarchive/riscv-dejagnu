@@ -76,21 +76,21 @@ proc host_compile {compline} {
 
     # execute the compiler
     verbose "Compiling for the host using: $CC $INCLUDES $LIBS $compline" 2
-    set status [catch "exec $CC $INCLUDES $LIBS $compline" comp_output];
+    set status [catch "exec $CC $INCLUDES $LIBS $compline" comp_output]
     verbose "Compiler returned $comp_output" 2
     
     # prune common warnings and other stuff we can safely ignore
-    set comp_output [prune_warnings $comp_output];
+    set comp_output [prune_warnings $comp_output]
 
     # Trim multiple CR/LF pairs out to keep things consistant
-    regsub "^\[\r\n\]+" $comp_output "" comp_output;
+    regsub "^\[\r\n\]+" $comp_output "" comp_output
 
     # if we got a compiler error, log it
     if { [lindex $status 0] != 0 } {
-	verbose -log "compiler exited with status [lindex $status 0]";
+	verbose -log "compiler exited with status [lindex $status 0]"
     }
     if { [lindex $status 1] != "" } {
-	verbose -log "output is:\n[lindex $status 1]" 2;
+	verbose -log "output is:\n[lindex $status 1]" 2
     }
 
     # return the filtered output

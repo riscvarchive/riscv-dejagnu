@@ -19,4 +19,4 @@
 
 # For Densan MIPS boards we use gdb to load and execute programs.
 
-load_generic_config "gdb-comm";
+load_generic_config "gdb-comm"

@@ -3,7 +3,7 @@ set_board_info target_install {sparclet-aout}
 
 # Load the generic configuration for this board. This will define any
 # routines needed by the tool to communicate with the board,.
-load_generic_config "sparclet";
+load_generic_config "sparclet"
 
 # It needs broken-saverestore by default.
 process_multilib_options "-mbroken-saverestore"
@@ -31,18 +31,18 @@ set_board_info gdb_load_offset "0x12020000"
 # And the place in memory where we load the stub.
 set_board_info gdb_stub_offset "0x12010000"
 # No mathlib.
-set_board_info mathlib "";
+set_board_info mathlib ""
 # We can't do I/O in GDB.
-set_board_info gdb,noinferiorio 1;
+set_board_info gdb,noinferiorio 1
 # Or pass arguments.
-set_board_info noargs 1;
+set_board_info noargs 1
 
 set_board_info gcc,no_varargs 1
 set_board_info gcc,no_label_values 1
 
 # This is the old GDB prompt for the toolchain.
 # Uncomment for old tests
-set_board_info gdb_prompt "\\(gdb\\)";
+set_board_info gdb_prompt "\\(gdb\\)"
 
 # We always have to set a breakpoint at exit(), instead of just _exit().
-set_board_info always_break_exit 1;
+set_board_info always_break_exit 1

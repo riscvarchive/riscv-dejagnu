@@ -29,7 +29,7 @@ proc rlogin_open { arg } {
     set result -1
 
     if [board_info $arg exists fileid] {
-	return [board_info $arg fileid];
+	return [board_info $arg fileid]
     }
 
     # get the hostname and port number from the config array
@@ -47,13 +47,13 @@ proc rlogin_open { arg } {
     }
  
     if [board_info $arg exists fileid] {
-	unset board_info($arg,fileid);
+	unset board_info($arg,fileid)
     }
     # get the right version of rlogin
     if ![board_info $arg exists rlogin_prog] {
 	set RLOGIN rlogin
     } else {
-	set RLOGIN [board_info $arg rlogin_prog];
+	set RLOGIN [board_info $arg rlogin_prog]
     }
     
     # start connection and store the spawn_id
@@ -136,38 +136,38 @@ proc rlogin_open { arg } {
 #
 proc rlogin_spawn { dest cmdline } {
     if ![board_info $dest exists shell_prompt] {
-	set shell_prompt "(^|\[\r\n\])\[^\r\n\]*>";
+	set shell_prompt "(^|\[\r\n\])\[^\r\n\]*>"
     } else {
-	set shell_prompt [board_info $dest shell_prompt];
+	set shell_prompt [board_info $dest shell_prompt]
     }
     set prefix ""
-    set ok 0;
+    set ok 0
     for {set i 0;} {$i <= 2 && ! $ok} {incr i;} {
-	set shell_id [remote_open $dest];
+	set shell_id [remote_open $dest]
 	if { $shell_id != "" && $shell_id > 0 } {
-	    remote_send $dest "echo k\r";
+	    remote_send $dest "echo k\r"
 	    remote_expect $dest 20 {
 		-re "\\(gdb\\)" {
-		    set shell_prompt "\\(gdb\\)";
+		    set shell_prompt "\\(gdb\\)"
 		    # gdb uses 'shell command'.
-		    set prefix "shell ";
-		    set ok 1;
+		    set prefix "shell "
+		    set ok 1
 		}
 		-re ".*$shell_prompt" { 
-		    set ok 1; 
+		    set ok 1
 		}
 		default { }
 	    }
 	}
 	if { ! $ok } {
-	    remote_close $dest;
-	    remote_reboot $dest;
+	    remote_close $dest
+	    remote_reboot $dest
 	}
     }
     if { ! $ok } {
 	return "unable to start command"
     } else {
-	remote_send $dest "${prefix}${cmdline}\n";
-	return [board_info $dest fileid];
+	remote_send $dest "${prefix}${cmdline}\n"
+	return [board_info $dest fileid]
     }
 }

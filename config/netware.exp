@@ -37,11 +37,11 @@ proc ${board}_init { args } {
     }
 
     set shell_prompt "Password:"
-    set shell_id [remote_open target];
+    set shell_id [remote_open target]
     if [target_info exists passwd] {
-	set passwd [target_info passwd];
+	set passwd [target_info passwd]
     } else {
-	set passwd "";
+	set passwd ""
     }
     if $shell_id<0 then {
 	warning "Couldn't connect to target"
@@ -95,9 +95,9 @@ proc ${board}_load { dest prog args } {
     global errorCode
 
     if [board_info $dest exists fileid] {
-	set shell_id [board_info $dest fileid];
+	set shell_id [board_info $dest fileid]
     } else {
-	set shell_id -1;
+	set shell_id -1
     }
 
     set output ""
@@ -210,5 +210,5 @@ proc ${board}_load { dest prog args } {
 #
 
 proc ${board}_exit {} {
-    remote_close target;
+    remote_close target
 }

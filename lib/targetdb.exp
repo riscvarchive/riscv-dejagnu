@@ -28,50 +28,50 @@ proc board_info { machine op args } {
     verbose "board_info $machine $op $args" 3
 
     if [info exists target_info($machine,name)] {
-	set machine $target_info($machine,name);
+	set machine $target_info($machine,name)
     }
     if { $op == "exists" } {
 	if { [llength $args] == 0 } {
 	    if [info exists board_info($machine,name)] {
-		return 1;
+		return 1
 	    } else {
-		return 0;
+		return 0
 	    }
 	} else {
 	    if [info exists "board_info($machine,[lindex $args 0])"] {
-		return 1;
+		return 1
 	    } else {
-		return 0;
+		return 0
 	    }
 	}
     }
     if { [llength $args] == 0 } {
 	verbose "getting $machine $op" 3
 	if [info exists board_info($machine,$op)] {
-	    return $board_info($machine,$op);
+	    return $board_info($machine,$op)
 	} else {
 	    return ""
 	}
     }
-    return "";
+    return ""
 }
 
 proc target_info { op args } {
-    return [eval "board_info target \"$op\" $args"];
+    return [eval "board_info target \"$op\" $args"]
 }
 
 proc host_info { op args } {
-    return [eval "board_info host \"$op\" $args"];
+    return [eval "board_info host \"$op\" $args"]
 }
 
 #
 # Fill in ENTRY with VALUE for the current board being defined.
 #
 proc set_board_info { entry value } {
-    global board_info board;
+    global board_info board
 
     if ![info exists board_info($board,$entry)] {
-	set board_info($board,$entry) $value;
+	set board_info($board,$entry) $value
     }
 }
 
@@ -79,12 +79,12 @@ proc set_board_info { entry value } {
 # Fill in ENTRY with VALUE for the current target.
 #
 proc set_currtarget_info { entry value } {
-    global board_info;
+    global board_info
 
-    set board [target_info name];
+    set board [target_info name]
 
     if ![info exists board_info($board,$entry)] {
-	set board_info($board,$entry) $value;
+	set board_info($board,$entry) $value
     }
 }
 
@@ -92,10 +92,10 @@ proc set_currtarget_info { entry value } {
 # Unset ENTRY for the current board being defined.
 #
 proc unset_board_info { entry } {
-    global board_info board;
+    global board_info board
 
     if [info exists board_info($board,$entry)] {
-	unset board_info($board,$entry);
+	unset board_info($board,$entry)
     }
 }
 
@@ -103,11 +103,11 @@ proc unset_board_info { entry } {
 # Unset ENTRY for the current board being defined.
 #
 proc unset_currtarget_info { entry } {
-    global board_info;
+    global board_info
 
-    set board [target_info name];
+    set board [target_info name]
 
     if [info exists board_info($board,$entry)] {
-	unset board_info($board,$entry);
+	unset board_info($board,$entry)
     }
 }

@@ -16,4 +16,4 @@ set_board_info nullstone,ticks_per_sec 3782018
 set_board_info gdb_protocol "ddb"
 
 # Otherwise, we're the same as a generic vr4300 board.
-load_base_board_description "vr4300";
+load_base_board_description "vr4300"

@@ -30,7 +30,7 @@ proc tip_open { hostname } {
     set result -1
 
     if [board_info $hostname exists name] {
-	set hostname [board_info ${hostname} name];
+	set hostname [board_info ${hostname} name]
     }
     set port [board_info ${hostname} tipname]
     if [board_info ${hostname} exists shell_prompt] {
@@ -40,7 +40,7 @@ proc tip_open { hostname } {
     }
  
     if [board_info ${hostname} exists fileid] {
-	unset board_info(${hostname},fileid);
+	unset board_info(${hostname},fileid)
     }
     spawn tip -v $port
     if { $spawn_id < 0 } {
@@ -130,7 +130,7 @@ proc tip_download { dest file args } {
     global expect_out
 
     if [board_info $dest exists shell_prompt] {
-	set shell_prompt [board_info $dest shell_prompt];
+	set shell_prompt [board_info $dest shell_prompt]
     } else {
 	set shell_prompt ".*>"
     }
@@ -138,9 +138,9 @@ proc tip_download { dest file args } {
     set result ""
     if ![board_info $dest exists fileid] {
 	perror "tip_download: no connection to $dest."
-	return $result;
+	return $result
     }
-    set shell_id [board_info $dest fileid];
+    set shell_id [board_info $dest fileid]
 
     if ![file exists $file] {
 	perror "$file doesn't exist."
@@ -159,7 +159,7 @@ proc tip_download { dest file args } {
 		}
 		-i $shell_id -re ".*lines transferred in.*minute.*seconds.*$shell_prompt.*$" {
 		    verbose "Download $file successfully" 1
-		    set result $file;
+		    set result $file
 		}
 		-i $shell_id -re ".*Invalid command.*$shell_prompt$" {
 		    warning "Got an invalid command to the remote shell."

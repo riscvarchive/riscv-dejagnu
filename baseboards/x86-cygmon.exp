@@ -1,4 +1,4 @@
-load_base_board_description "cygmon";
+load_base_board_description "cygmon"
 
 # Default to ELF.
 if { [board_info $board obj_format] == "a.out" } {

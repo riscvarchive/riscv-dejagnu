@@ -22,7 +22,7 @@ set_board_info cflags  "[libgloss_include_flags] [newlib_include_flags]"
 set_board_info ldflags  "-msim [libgloss_link_flags] [newlib_link_flags]"
 
 # No support for signals on this target.
-set_board_info gdb,nosignals 1;
+set_board_info gdb,nosignals 1
 
 # Can't call functions from GDB.
 set_board_info gdb,cannot_call_functions 1

@@ -96,7 +96,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 
     switch -glob -- $option {
 	"--he*" {			# (--help) help text
-	    usage;
+	    usage
 	    exit 0	
 	}
 

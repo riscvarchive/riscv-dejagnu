@@ -1,6 +1,6 @@
 # Load the generic configuration for this board. This will define any
 # routines needed by the tool to communicate with the board.
-load_generic_config "m68k-emc";
+load_generic_config "m68k-emc"
 
 # No multilib options by default.
 process_multilib_options ""
@@ -9,18 +9,18 @@ process_multilib_options ""
 # with what compiler is tested when testing gcc.
 set_board_info compiler "[find_gcc]"
 
-set_board_info cflags "[newlib_include_flags] [libgloss_include_flags]";
+set_board_info cflags "[newlib_include_flags] [libgloss_include_flags]"
 
 set_board_info ldflags "-nostdlib [libgloss_link_flags] [newlib_link_flags]"
 
 # No linker script.
-set_board_info ldscript "";
+set_board_info ldscript ""
 # The idt interface can't return exit statuses, so gcc (ctorture et
 # al) needs to do what it can to get them.
-set_board_info needs_status_wrapper 1;
+set_board_info needs_status_wrapper 1
 
 # GDB needs to use "target remote" to talk to the board.
-set_board_info gdb_protocol  "remote";
+set_board_info gdb_protocol  "remote"
 
 # Can't pass arguments to the program under test.
 set_board_info noargs 1
