@@ -1,5 +1,31 @@
 2004-01-30  Ben Elliston  <bje@wasabisystems.com>
 
+	Import orphaned patches from sources.redhat.com:
+
+	2002-05-02  Fernando Nasser  <fnasser@redhat.com>
+	* doc/dejagnu.texi: Document KFAIL and KPASS.
+
+	2002-02-20  Richard Henderson  <rth@redhat.com>
+	* lib/target.exp (prune_warnings): Revert early "In function" strip,
+	as this breaks g++.dg tests.  Match dangerous regexp without the
+	"In function" header.
+
+	2002-02-09  Richard Henderson  <rth@redhat.com>
+	* lib/target.exp (prune_warnings): Strip "In function" etc early.
+	Adjust "dangerous" regexp for glibc's tmpnam warning.
+
+	2001-09-10  Jim Blandy  <jimb@redhat.com>
+	* baseboards/rom68k-idp.exp: Use -Tidpgdb.ld as the linker script,
+	so we get the version of the `outbyte' function that does console
+	output in a way that GDB's rom68k target recognizes.  Note that
+	the board can now do output.
+
+	2000-04-25  Felix Lee  <flee@cygnus.com>
+	* baseboards/tx39-sim.exp: Use idt, not dve linker script.  Delete
+ 	misleading comments and null statements.
+	
+2004-01-30  Ben Elliston  <bje@wasabisystems.com>
+
 	* DejaGnu 1.4.4 released.
 
 2004-01-27  Ben Elliston  <bje@wasabisystems.com>

@@ -138,7 +138,7 @@ Wed Jun  5 14:52:15 PDT 2002   Joey Ekstrom <joey@ekstrom.org>
 
         * added documentation on xml capabilities
 
-2002-05-02  Fernando Nasser  <fnasser@localhost.localdomain>
+2002-05-02  Fernando Nasser  <fnasser@redhat.com>
 
         * runtest.exp: Add kfail_flag and kfail_prms variable
         initializations.

@@ -1194,7 +1194,6 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    exit 1
 	}
     }
-
 }
 
 #

@@ -683,6 +683,14 @@ A pleasant kind of failure: a test was known to fail, but succeeded.
 This may indicate progress; inspect the test case to determine whether
 you should amend it to stop expecting failure.
 
+@item KPASS
+@kindex KPASS
+@cindex successful test, unexpected
+@cindex unexpected success
+A pleasant kind of failure: a test was known to fail, but succeeded.
+This may indicate progress; inspect the test case to determine whether
+you should amend it to stop expecting failure.
+
 @item FAIL
 @kindex FAIL
 @cindex failing test, unexpected
@@ -2058,6 +2066,15 @@ for a particular set of configurations.  The @var{config} argument is a
 list of configuration target names.  It is only necessary to call
 @code{clear_xfail} if a test case ends without calling either
 @code{pass} or @code{fail}, after calling @code{setup_xfail}.
+
+@item clear_kfail @var{config}
+@cindex cancelling known failure
+@cindex known failure, cancelling
+Cancel a known failure (previously declared with @code{setup_kfail})
+for a particular set of configurations.  The @var{config} argument is a
+list of configuration target names.  It is only necessary to call
+@code{clear_kfail} if a test case ends without calling either
+@code{pass} or @code{fail}, after calling @code{setup_kfail}.
 
 @item clear_kfail @var{config}
 @cindex cancelling known failure

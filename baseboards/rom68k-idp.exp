@@ -63,8 +63,9 @@ if ![board_info $board exists output_format] {
     unset tempfil
 }
 
-# IDP linker script.
-set_board_info ldscript "-Wl,-Tidp.ld"
+# IDP linker script, with special console output routine for GDB.
+set_board_info ldscript "-Wl,-Tidpgdb.ld"
+
 # The idt interface can't return exit statuses, so gcc (ctorture et
 # al) needs to do what it can to get them.
 set_board_info needs_status_wrapper 1
@@ -74,9 +75,6 @@ set_board_info gdb_protocol  "rom68k"
 
 # Can't pass arguments to the program under test.
 set_board_info noargs 1
-
-# Nor can it do I/O in GDB.
-set_board_info gdb,noinferiorio 1
 
 # It has no signals.
 set_board_info gdb,nosignals 1

@@ -17,11 +17,6 @@
 # along with DejaGnu; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
-# We need mips16.
-add_multilib_option ""
-
-# And we use the lsi linker script.
-set_board_info ldscript "-Wl,-Tdve.ld"
-
-# Otherwise we're the same as the standard MIPS simulator.
-load_base_board_description "mips-sim"
+# This file is unnecessary, but we'll keep it for now.
+# We're the same as the standard MIPS simulator.
+load_base_board_description "mips-sim";
