@@ -1,5 +1,5 @@
-# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003 Free Software
-# Foundation, Inc.
+# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004
+# Free Software Foundation, Inc.
 #
 # This file is part of DejaGnu.
 #
@@ -27,7 +27,7 @@ load_generic_config "sim"
 # basic-sim.exp is a basic description for the standard Cygnus simulator.
 load_base_board_description "basic-sim"
 
-# "frv" is the name of the sim subdir in devo/sim.
+# "frv" is the name of the sim subdirectory.
 setup_sim frv
 
 # No multilib options needed by default.
