@@ -512,6 +512,11 @@ proc call_remote { type proc dest args } {
 	set dest [board_info $dest name]
     }
 
+    if { $proc == "reboot" } {
+	regsub {/.*} "$dest" "" dest
+	verbose "Changed dest to $dest"
+    }
+
     if { $dest != "host" && $dest != "build" && $dest != "target" } {
 	if { ![board_info $dest exists name] } {
 	    global board
@@ -520,6 +525,10 @@ proc call_remote { type proc dest args } {
 		blooie
 	    }
 	    load_board_description $dest
+	    if { $proc == "reboot" } {
+		regsub {/.*} "$dest" "" dest
+		verbose "Changed dest to $dest"
+	    }
 	}
     }
 
