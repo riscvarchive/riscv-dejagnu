@@ -126,7 +126,7 @@
         for <command>GDB</command>. When we replaced it with the
         Expect-based framework, it was like DejaGnu all over again.
         More importantly, it was also named after my daughter, <ulink
-        url="mailto:deja@welcomehome.org">Deja Snow Savoye</ulink>
+        url="http://www.welcomehome.org/deja/">Deja Snow Savoye</ulink>
         (now 14 years old as of Feb 2004), who was a toddler
         during DejaGnu's beginnings.</para>
 
@@ -194,7 +194,7 @@
           with the correct linker flags. Currently this only works with
           <productname>GCC</productname> as the cross compiler,
 	  preferably with a target supported by
-	  xref linkend="libgloss"/>.
+	  <xref linkend="libgloss"/>.
         </para>
       </listitem>
 
@@ -205,10 +205,8 @@
       <productname>Automake</productname> for Makefile
       configuration.</para></listitem>
 
-      <listitem><para>Updated documentation, now in SGML
-	(using the <ulink
-	url="http://nis-www.lanl.gov/~rosalia/mydocs/docbook-intro.html">free
-	GNU DocBook tools</ulink>) format.</para></listitem>
+      <listitem><para>Updated documentation, now in DocBook XML.
+      </para></listitem>
 	
       <listitem><para>Windows support. There is beta level support for
       Windows that is still a work in progress. This requires the

@@ -48,7 +48,7 @@ pdf: force
 	docbook2pdf $(srcdir)/dejagnu.xml
 
 ps: force
-	docbook2ps $(srcdir)/dejagu.xml
+	docbook2ps $(srcdir)/dejagnu.xml
 
 rtf: force
 	docbook2rtf $(srcdir)/dejagnu.xml
