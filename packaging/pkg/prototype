@@ -76,7 +76,7 @@ f none /opt/dejagnu/share/dejagnu/baseboards/powerpc-bug1.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/baseboards/powerpc-sim.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/baseboards/powerpcle-sim.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/baseboards/rom68k-idp.exp 0644 nobody nobody
-f none /opt/dejagnu/share/dejagnu/baseboards/sh-hms-sim.exp 0644 nobody nobody
+f none /opt/dejagnu/share/dejagnu/baseboards/sh-sim.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/baseboards/sh-hms.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/baseboards/sh-sid.exp 0644 nobody nobody
 f none /opt/dejagnu/share/dejagnu/baseboards/sparc64-sim.exp 0644 nobody nobody
