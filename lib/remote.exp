@@ -1067,16 +1067,16 @@ proc standard_wait { dest timeout } {
 
 proc check_for_board_status  { variable } {
     upvar $variable output;
-
-     # If all programs of this board have a wrapper that always outputs a
-     # status message, then the absence of it means that the program
-     # crashed, regardless of status found elsewhere (e.g. simulator exit
-     # code).
-     if { [target_info needs_status_wrapper] != "" } then {  
+    
+    # If all programs of this board have a wrapper that always outputs a
+    # status message, then the absence of it means that the program
+    # crashed, regardless of status found elsewhere (e.g. simulator exit
+    # code).
+    if { [target_info needs_status_wrapper] != "" } then {  
        set nomatch_return 2  
-     } else {
+    } else {
        set nomatch_return -1
-     }
+    }
 
     if [regexp "(^|\[\r\n\])\\*\\*\\* EXIT code" $output] {
 	regsub "^.*\\*\\*\\* EXIT code " $output "" result;
@@ -1087,9 +1087,9 @@ proc check_for_board_status  { variable } {
 	verbose "got board status $result" 3
 	verbose "output is $output" 3
 	if { $result == "" } {
-	    return $nomatch_return;
+	    return $nomatch_return
 	} else {
-	    return [expr $result];
+	    return [expr $result]
 	}
     } else {
 	return $nomatch_return;
