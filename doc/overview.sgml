@@ -1,5 +1,13 @@
 <!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook V3.1//EN" [
 
+<!-- ATTENTION writers: conventions to be followed are:
+
+ + use "&dj" to print "DejaGnu" correctly;
+ + use "testsuite", not "test suite";
+ + refer to Tcl, Tk and Expect using the <productname> tag.
+
+-->
+
 <!-- Begin Document Specific Declarations -->
 
 <?Fm: Validation Off>
