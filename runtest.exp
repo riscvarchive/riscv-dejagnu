@@ -20,7 +20,7 @@
 
 # This file was written by Rob Savoye. (rob@welcomehome.org)
 
-set frame_version	1.4.2
+set frame_version	1.4.2.x
 if ![info exists argv0] {
     send_error "Must use a version of Expect greater than 5.0\n"
     exit 1
@@ -1164,6 +1164,10 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    exit 0	
 	}
 
+       "[A-Z0-9_-.]*=*" { # skip makefile style args like CC=gcc, etc... (processed in first pass)
+               continue
+       }
+  
 	default {
 	    if [info exists tool] {
 		if { [info proc ${tool}_option_proc] != "" } {

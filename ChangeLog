@@ -1,3 +1,8 @@
+2001-10-06  Gwenole Beauchesne <gbeauchesne@mandrakesoft.com>
+
+	* Check for Makefile style arguments in the second pass, but
+	ignore them, so they don't become invalid arguments.
+
 2001-10-02  Nick Clifton  <nickc@cambridge.redhat.com>
 
         * lib/remote.exp (proc file_on_host): Fix typo in construction
