@@ -1,3 +1,8 @@
+2004-11-04  Ben Elliston  <bje@gnu.org>
+
+	* lib/dg.exp (dg-test): If a `dg-do run' test fails to compile,
+	mark the test as unresolved, rather than warning.
+
 2004-10-27  Nick Clifton  <nickc@redhat.com>
 
 	* baseboards/iq2000-sim.exp: New file.

@@ -1,6 +1,6 @@
 # `dg' general purpose testcase driver.
 # Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000,
-# 2001, 2002, 2003 Free Software Foundation, Inc.
+# 2001, 2002, 2003, 2004 Free Software Foundation, Inc.
 #
 # This file is part of DejaGnu.
 #
@@ -832,7 +832,7 @@ proc dg-test { args } {
     # the `keyword' argument of dg-do.  This could be cleaned up.
     if { [lindex ${dg-do-what} 0] == "run" } {
 	if ![file exists $output_file] {
-	    warning "$name compilation failed to produce executable"
+	    unresolved "$name compilation failed to produce executable"
 	} else {
 	    set status -1
 	    set result [${tool}_load $output_file]
