@@ -8,7 +8,6 @@ Copyright: GPL
 Source: ftp://ftp.gnu.org/gnu/dejagnu/snapshots/dejagnu-%{version}.tar.gz
 
 #Patch0: dejagnu-1.4.3-rth.patch
-#Patch1: dejagnu-1.4.3-glibc21.patch
 Group: Development/Tools
 # Since we're building this on a debian system, we can't require these.
 Requires: tcl >= 8.0, expect >= 5.21

@@ -1,5 +1,5 @@
 # Test Framework Driver
-# Copyright (C) 1992 - 2001 Free Software Foundation, Inc.
+# Copyright (C) 1992 - 2002 Free Software Foundation, Inc.
 
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 
 # This file was written by Rob Savoye. (rob@welcomehome.org)
 
-set frame_version	1.4.3.x
+set frame_version	1.4.3pre
 if ![info exists argv0] {
     send_error "Must use a version of Expect greater than 5.0\n"
     exit 1

@@ -1,16 +1,41 @@
+2002-08-30  Rob Savoye  <rob@welcomehome.org>
+
+	* configure.in: Add AC_NO_EXECUTABLES, so things configure without
+	building C++ executables. 
+	* example/hello/hello.c: New C version of the example.
+	* example/hello/Makefile.am: Build C based example.
+	* example/hello/configure.in: Add AC_NO_EXECUTABLES, so things
+	configure without building C++ executables.
+
+2002-08-30  Nick Clifton  <nickc@redhat.com>
+
+        * acinclude.m4: Provide alternative definition of AC_PROG_CXX
+        which does not call AC_PROG_CXX_WORKS.  This allows dejagnu to
+        be configured and built without a working C++ compiler.
+
 2002-08-29  Rob Savoye  <rob@welcomehome.org>
 
+	* debian/changelog: Update version number to 1.4.3.
+	* redhat/dejagnu.spec: Update version number to 1.4.3.
 	* dejagnu.h: Use __STDC_HOSTED__, rather than our own autoconf
 	test to determine libstdc++ 2.x or 3.x.
 	* testsuite/libdejagnu/unit.cc: Use __STDC_HOSTED__, rather than
 	our own autoconf test to determine libstdc++ 2.x or 3.x.
+
+2002-06-18  Dave Brolley  <brolley@redhat.com>
+
+        From Catherine Moore, Michael Meissner, Mark Salter, Jim Blandy:
+        * baseboards/frv-elf.exp: New board description.
+        * baseboards/frv-sim.exp: New board description.
+        * baseboards/frv-tiger.exp: New board description.
+        * baseboards/frv-tomcat.exp: New board description.
 
 2001-01-15  Ben Elliston  <bje@redhat.com>
 
         * lib/framework.exp (record_test): Invoke a user-defined procedure
         if one is named in local_record_procs($type).
 
-2002-08-28  Nick Clifton  <nickc@redhat.com>
+2002-08-28  Catherine Moore  <clm@redhat.com>
 
         * baseboards/v850-sim.exp (target_install): Add v850e-elf.
 

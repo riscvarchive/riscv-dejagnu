@@ -84,7 +84,7 @@ deb: overview.html overview.ps overview.pdf
 	src=$(srcdir); \
 	dir=`(cd $${src}; pwd)`; \
 	(cd dejagnu-${VERSION} ; $${dir}/Clean.tcl);
-	-mkdir -p doc/overview;
+	-mkdir -p doc/html;
 	-cp -fr $(srcdir)/debian dejagnu-${VERSION}/;
 	-cp -fr doc/overview dejagnu-${VERSION}/doc/;
 	-cp -fr doc/overview.ps dejagnu-${VERSION}/doc/;
@@ -102,7 +102,7 @@ dist-hook: rpmspec overview.html overview.ps overview.pdf
 	-rm -fr $(distdir)
 	cp -fpr $(srcdir) $(distdir)
 	(cd $(distdir) ; $(TCLSH) $(srcdir)/Clean.tcl)
-	-cp -fr doc/overview $(distdir)/doc/
+	-cp -fr doc/html $(distdir)/doc/
 	-cp -fr doc/overview.ps $(distdir)/doc/
 	-cp -fr doc/overview.pdf $(distdir)/doc/
 

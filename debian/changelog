@@ -1,7 +1,7 @@
 dejagnu (1.4-3) stable; urgency=low
   * Update version number for new minor release.
 
--- Rob Savoye <rob@welcomehome.org>  Thu,  29 Sept 2002 04:20:00 -0800
+ -- Rob Savoye <rob@welcomehome.org>  Tue,  12 Sept 2001 04:20:00 -0800
 
 dejagnu (1.4-2) stable; urgency=low
   * Update version number for new minor release.

@@ -1,6 +1,6 @@
 ## Process this file with automake to produce Makefile.in
 
-# Copyright (c) 2001 Clifton Labs, Inc
+# Copyright (c) 2001, 2002 Clifton Labs, Inc
 # All rights reserved.
 
 # CLIFTON LABS MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE
@@ -25,6 +25,6 @@
 # ------------------------------------------------------------------------
 
 bin_PROGRAMS = hello
-hello_SOURCES = hello.cc
+hello_SOURCES = hello.c
 
 SUBDIRS=testsuite

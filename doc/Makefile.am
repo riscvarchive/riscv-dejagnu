@@ -51,15 +51,14 @@ docs: $(TARGETS)
 # now for some extra dependencies that the automatic rules will not
 # catch:
 
-html rtf overview.pdf overview.ps overview.dvi overview.rtf overview.html: overview.sgml ref.sgml user.sgml
+html rtf overview.pdf overview.ps overview.dvi overview.rtf overview.html: overview.sgml ref.sgml user.sgml 
 
 clean realclean distclean:
 	rm -fr $(TARGETS) DBHTOHTML* html dejagnu.info* overview.junk overview overview.{aux,dvi,log,ps,pdf,tex}
 
 install-doc: $(TARGETS)
 	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/html $(DESTDIR)$(pkgdatadir)/html/stylesheet-images
-	$(INSTALL_DATA) overview/*.html $(DESTDIR)$(pkgdatadir)/html
-	$(INSTALL_DATA) overview/stylesheet-images/*.png $(DESTDIR)$(pkgdatadir)/html/stylesheet-images
+	$(INSTALL_DATA)	html/*.html $(DESTDIR)$(pkgdatadir)/html
 	$(INSTALL_DATA) overview.rtf $(DESTDIR)$(pkgdatadir)/dejagnu.rtf
 	$(INSTALL_DATA) overview.ps $(DESTDIR)$(pkgdatadir)/dejagnu.ps
 	$(INSTALL_DATA) overview.pdf $(DESTDIR)$(pkgdatadir)/dejagnu.pdf

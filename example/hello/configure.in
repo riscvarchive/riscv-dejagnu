@@ -1,6 +1,6 @@
 # Process this file with autoconf to produce a configure script.
 
-# Copyright (c) 2001 Clifton Labs, Inc
+# Copyright (c) 2001, 2002 Clifton Labs, Inc
 # All rights reserved.
 
 # CLIFTON LABS MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE
@@ -31,7 +31,8 @@ AM_INIT_AUTOMAKE(helloworld, demo-version)
 #AC_CONFIG_HEADER([config.h])
 
 # Checks for programs.
-AC_PROG_CXX
+AC_NO_EXECUTABLES
+AC_PROG_CC
 
 # Checks for libraries.
 

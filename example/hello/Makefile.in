@@ -13,7 +13,7 @@
 
 @SET_MAKE@
 
-# Copyright (c) 2001 Clifton Labs, Inc
+# Copyright (c) 2001, 2002 Clifton Labs, Inc
 # All rights reserved.
 
 # CLIFTON LABS MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE
@@ -81,19 +81,22 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 AMTAR = @AMTAR@
 AWK = @AWK@
-CXX = @CXX@
+CC = @CC@
 DEPDIR = @DEPDIR@
+DOCBOOK = @DOCBOOK@
 EXEEXT = @EXEEXT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 OBJEXT = @OBJEXT@
 PACKAGE = @PACKAGE@
+TCLSH = @TCLSH@
 VERSION = @VERSION@
 am__include = @am__include@
 am__quote = @am__quote@
 install_sh = @install_sh@
+tclsh = @tclsh@
 
 bin_PROGRAMS = hello
-hello_SOURCES = hello.cc
+hello_SOURCES = hello.c
 
 SUBDIRS = testsuite
 subdir = .
@@ -116,12 +119,11 @@ LDFLAGS = @LDFLAGS@
 LIBS = @LIBS@
 depcomp = $(SHELL) $(top_srcdir)/depcomp
 @AMDEP_TRUE@DEP_FILES = $(DEPDIR)/hello.Po
-CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
-	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
-CXXLD = $(CXX)
-CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
-	-o $@
-CXXFLAGS = @CXXFLAGS@
+COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
+	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
+CCLD = $(CC)
+LINK = $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
+CFLAGS = @CFLAGS@
 DIST_SOURCES = $(hello_SOURCES)
 
 RECURSIVE_TARGETS = info-recursive dvi-recursive install-info-recursive \
@@ -129,15 +131,15 @@ RECURSIVE_TARGETS = info-recursive dvi-recursive install-info-recursive \
 	install-exec-recursive installdirs-recursive install-recursive \
 	uninstall-recursive check-recursive installcheck-recursive
 DIST_COMMON = README AUTHORS COPYING ChangeLog INSTALL Makefile.am \
-	Makefile.in NEWS aclocal.m4 configure configure.in depcomp \
-	install-sh missing mkinstalldirs
+	Makefile.in NEWS acinclude.m4 aclocal.m4 configure configure.in \
+	depcomp install-sh missing mkinstalldirs
 DIST_SUBDIRS = $(SUBDIRS)
 SOURCES = $(hello_SOURCES)
 
 all: all-recursive
 
 .SUFFIXES:
-.SUFFIXES: .cc .o .obj
+.SUFFIXES: .c .o .obj
 $(srcdir)/Makefile.in:  Makefile.am  $(top_srcdir)/configure.in $(ACLOCAL_M4)
 	cd $(top_srcdir) && \
 	  $(AUTOMAKE) --gnu  Makefile
@@ -151,7 +153,7 @@ $(top_builddir)/config.status: $(srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 $(srcdir)/configure:  $(srcdir)/configure.in $(ACLOCAL_M4) $(CONFIGURE_DEPENDENCIES)
 	cd $(srcdir) && $(AUTOCONF)
 
-$(ACLOCAL_M4):  configure.in 
+$(ACLOCAL_M4):  configure.in acinclude.m4
 	cd $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 install-binPROGRAMS: $(bin_PROGRAMS)
 	@$(NORMAL_INSTALL)
@@ -178,7 +180,7 @@ clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
 hello$(EXEEXT): $(hello_OBJECTS) $(hello_DEPENDENCIES) 
 	@rm -f hello$(EXEEXT)
-	$(CXXLINK) $(hello_LDFLAGS) $(hello_OBJECTS) $(hello_LDADD) $(LIBS)
+	$(LINK) $(hello_LDFLAGS) $(hello_OBJECTS) $(hello_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT) core *.core
@@ -191,18 +193,18 @@ distclean-compile:
 distclean-depend:
 	-rm -rf $(DEPDIR)
 
-.cc.o:
+.c.o:
 @AMDEP_TRUE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@	depfile='$(DEPDIR)/$*.Po' tmpdepfile='$(DEPDIR)/$*.TPo' @AMDEPBACKSLASH@
-@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-	$(CXXCOMPILE) -c -o $@ `test -f $< || echo '$(srcdir)/'`$<
+@AMDEP_TRUE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(COMPILE) -c `test -f $< || echo '$(srcdir)/'`$<
 
-.cc.obj:
+.c.obj:
 @AMDEP_TRUE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@	depfile='$(DEPDIR)/$*.Po' tmpdepfile='$(DEPDIR)/$*.TPo' @AMDEPBACKSLASH@
-@AMDEP_TRUE@	$(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-	$(CXXCOMPILE) -c -o $@ `cygpath -w $<`
-CXXDEPMODE = @CXXDEPMODE@
+@AMDEP_TRUE@	$(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+	$(COMPILE) -c `cygpath -w $<`
+CCDEPMODE = @CCDEPMODE@
 uninstall-info-am:
 
 # This directory's subdirectories are mostly independent; you can cd
