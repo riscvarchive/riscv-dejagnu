@@ -1,0 +1,9 @@
+#! /bin/sh
+
+set -i
+
+install-info --quiet --section "Development" "Development" \
+ /usr/info/dejagnu.info.gz
+
+echo "Edit the master configuration file, /etc/dejagnu/site.exp,"
+echo "if needed"
