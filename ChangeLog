@@ -1,3 +1,8 @@
+2001-10-02  Nick Clifton  <nickc@cambridge.redhat.com>
+
+        * lib/remote.exp (proc file_on_host): Fix typo in construction
+        of file argument.
+
 2001-09-12  Rob Savoye  <rob@peggyo.welcomehome.org>
 
 	* Makefile.am: Add a clean-local target, and nuke example and
