@@ -17,6 +17,29 @@
 	* baseboards/powerpc-sim.exp: Don't disable inferior
         function calls.
 
+2002-04-19  Nick Clifton  <nickc@cambridge.redhat.com>
+
+        * Import files from sourceware dejagnu repository:
+
+        2002-03-15  Chris Demetriou  <cgd@broadcom.com>
+        * baseboards/mips-sim-idt32.exp: New file.
+        2002-01-21  Ben Elliston  <bje@redhat.com>
+        * baseboards/sh-sid.exp: New file.
+        2001-11-26  Thomas Fitzsimmons  <fitzsim@redhat.com>
+        * baseboards/i386-sid.exp: New file.
+        2001-10-10  Frank Ch. Eigler  <fche@redhat.com>
+        * config/sid.exp (set_host_info): New proc.  Call it to set
+        gdb,nointerrupt flag to work around framework problems.
+        2001-08-24  Frank Ch. Eigler  <fche@redhat.com>
+        * baseboards/basic-sid.exp (find_sid_conf): Tolerate not
+        finding path to pregen configuration file.
+        2001-02-22  Ben Elliston  <bje@redhat.com>
+        * config/sid.exp: New file.
+        * baseboards/basic-sid.exp: Likewise.
+        * baseboards/arm-sid.exp: Likewise.
+        * baseboards/m32r-sid.exp: Likewise.
+        * baseboards/m68k-sid.exp: Likewise.
+
 2002-03-31  Hans-Peter Nilsson  <hp@bitrange.com>
 
         * lib/remote.exp (check_for_board_status): Also strip a \r before

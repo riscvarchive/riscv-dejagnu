@@ -124,14 +124,11 @@ install-data-local:
 	for f in $(lib_files); do \
 	  test ! -f "$$f" || $(INSTALL_DATA) $$f $(lib_dest); \
 	done
-	#
 	$(mkinstalldirs) $(baseboards_dest)
 	for f in $(baseboards_files); do \
 	  test ! -f "$$f" || $(INSTALL_DATA) $$f $(baseboards_dest); \
 	done
-	#
 	$(INSTALL_DATA) $(srcdir)/dejagnu.h $(includedir); \
-	#
 	$(mkinstalldirs) $(config_dest)
 	for f in $(config_files); do \
 	  test ! -f "$$f" || $(INSTALL_DATA) $$f $(config_dest); \
