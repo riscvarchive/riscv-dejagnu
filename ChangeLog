@@ -1,3 +1,17 @@
+2002-11-12  Peter Breitenlohner <peb@mppmu.mpg.de>
+
+	* Makefile.am: Add support for DESTDIR.
+	* Makefile.in: Regenerated.
+
+2002-10-21  Matt Bemis  <bemis@iol.unh.edu>
+       * added input/output to xml_output in lib/framework.exp
+       * removed the log feature replaced by input/output_xml
+
+2002-09-24  Richard Earnshaw  <rearnsha@arm.com>
+
+        * lib/libgloss.exp (build_wrapper): Use a tool-specific filename on
+        the host for the testglue.
+
 2002-09-04  Rob Savoye  <rob@welcomehome.org>
 
 	* Clean.tcl (cleanfiles): Add more patterns to remove.

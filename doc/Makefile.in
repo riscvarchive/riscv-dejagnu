@@ -293,7 +293,9 @@ docs: $(TARGETS)
 # now for some extra dependencies that the automatic rules will not
 # catch:
 
-html rtf overview.pdf overview.ps overview.dvi overview.rtf overview.html: overview.sgml ref.sgml user.sgml 
+html/book1.html rtf overview.pdf overview.ps overview.dvi overview.rtf overview.html: overview.sgml ref.sgml user.sgml 
+
+html/book1.html: overview.sgml ref.sgml user.sgml 
 
 clean realclean distclean:
 	rm -fr $(TARGETS) DBHTOHTML* html dejagnu.info* overview.junk overview overview.{aux,dvi,log,ps,pdf,tex}

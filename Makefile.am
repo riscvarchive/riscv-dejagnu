@@ -158,11 +158,13 @@ lib_files = $(srcdir)/*.c $(srcdir)/lib/*.exp
 baseboards_dest = $(DESTDIR)$(pkgdatadir)/baseboards
 baseboards_files = $(srcdir)/baseboards/README $(srcdir)/baseboards/*.exp
 
+
+include_dest = $(DESTDIR)$(includedir)
 config_dest = $(DESTDIR)$(pkgdatadir)/config
 config_files = $(srcdir)/config/README $(srcdir)/config/*.exp
 
 install-data-local:
-	$(mkinstalldirs) $(lib_dest) $(includedir)
+	$(mkinstalldirs) $(lib_dest) $(include_dest)
 	for f in $(lib_files); do \
 	  test ! -f "$$f" || $(INSTALL_DATA) $$f $(lib_dest); \
 	done
@@ -170,7 +172,7 @@ install-data-local:
 	for f in $(baseboards_files); do \
 	  test ! -f "$$f" || $(INSTALL_DATA) $$f $(baseboards_dest); \
 	done
-	$(INSTALL_DATA) $(srcdir)/dejagnu.h $(includedir); \
+	$(INSTALL_DATA) $(srcdir)/dejagnu.h $(include_dest); \
 	$(mkinstalldirs) $(config_dest)
 	for f in $(config_files); do \
 	  test ! -f "$$f" || $(INSTALL_DATA) $$f $(config_dest); \
@@ -190,7 +192,7 @@ uninstall-local:
 	for f in $(baseboards_files); do \
 	  test ! -f "$$f" || rm -f $(baseboards_dest)/`basename "$$f"`; \
 	done
-	rm -f $(includedir)/dejagnu.h;
+	rm -f $(include_dest)/dejagnu.h;
 
 site.exp: Makefile
 	@echo 'Making a new site.exp file...'
