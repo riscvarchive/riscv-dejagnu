@@ -857,7 +857,6 @@ proc build_wrapper { gluefile } {
 	set flags ""
 	if [target_info exists is_vxworks] {
 	    set flags "additional_flags=-DVXWORKS"
-	    set result "-Wl,-wrap,exit -Wl,-wrap,main -Wl,-wrap,abort"
 	    set result "-Wl,-wrap,exit -Wl,-wrap,_exit -Wl,-wrap,main -Wl,-wrap,abort"
 	} else {
 	    set result "-Wl,-wrap,exit -Wl,-wrap,_exit -Wl,-wrap,main -Wl,-wrap,abort"

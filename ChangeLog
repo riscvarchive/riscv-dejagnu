@@ -1,3 +1,7 @@
+2004-06-07  Ben Elliston  <bje@gnu.org>
+
+	* lib/libgloss.exp (build_wrapper): Remove redundant set command.
+
 2004-03-29  Joel Brobecker  <brobecker@gnat.com>
 
 	* lib/libgloss.exp (find_gnatmake): New procedure.
