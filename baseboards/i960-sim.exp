@@ -1,4 +1,4 @@
-# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003 Free Software
+# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004 Free Software
 # Foundation, Inc.
 #
 # This file is part of DejaGnu.
@@ -39,7 +39,7 @@ set_board_info cflags "-mka [libgloss_include_flags] [newlib_include_flags]"
 set_board_info ldflags "[libgloss_link_flags] [newlib_link_flags]"
 
 # Use mon960.
-set_board_info ldscript "-Wl,-Tmon960.ld"
+set_board_info ldscript "-Tmon960.ld"
 
 # And, it can't do arguments, and doesn't have real signals.
 # ??? Unknown if this is right.

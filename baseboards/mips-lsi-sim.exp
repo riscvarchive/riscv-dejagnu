@@ -1,4 +1,4 @@
-# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003 Free Software
+# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004 Free Software
 # Foundation, Inc.
 #
 # This file is part of DejaGnu.
@@ -21,7 +21,7 @@
 add_multilib_option "-mips16"
 
 # And we use the lsi linker script.
-set_board_info ldscript "-Wl,-Tlsi.ld"
+set_board_info ldscript "-Tlsi.ld"
 
 # Otherwise we're the same as the standard MIPS simulator.
 load_base_board_description "mips-sim"

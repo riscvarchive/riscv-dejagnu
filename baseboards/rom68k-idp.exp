@@ -1,4 +1,4 @@
-# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003 Free Software
+# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004 Free Software
 # Foundation, Inc.
 #
 # This file is part of DejaGnu.
@@ -64,7 +64,7 @@ if ![board_info $board exists output_format] {
 }
 
 # IDP linker script, with special console output routine for GDB.
-set_board_info ldscript "-Wl,-Tidpgdb.ld"
+set_board_info ldscript "-Tidpgdb.ld"
 
 # The idt interface can't return exit statuses, so gcc (ctorture et
 # al) needs to do what it can to get them.

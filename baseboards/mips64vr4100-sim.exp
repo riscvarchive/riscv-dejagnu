@@ -1,4 +1,4 @@
-# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003 Free Software
+# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004 Free Software
 # Foundation, Inc.
 #
 # This file is part of DejaGnu.
@@ -42,7 +42,7 @@ set board_info($board,compiler) "[find_gcc]"
 set board_info($board,cflags) "[libgloss_include_flags] [newlib_include_flags] [libio_include_flags]"
 set board_info($board,ldflags) "[libgloss_link_flags] [newlib_link_flags] [libio_link_flags]"
 # IDT linker script.
-set board_info($board,ldscript) "-Wl,-Tidt.ld"
+set board_info($board,ldscript) "-Tidt.ld"
 
 # The simulator doesn't return exit statuses and we need to indicate this;
 # the standard GCC wrapper will work with this target.

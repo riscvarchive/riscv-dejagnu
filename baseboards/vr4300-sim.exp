@@ -1,4 +1,4 @@
-# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003 Free Software
+# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004 Free Software
 # Foundation, Inc.
 #
 # This file is part of DejaGnu.
@@ -19,9 +19,9 @@
 
 # DDB linker script.
 if { [board_info $board obj_format] == "ecoff" } {
-    set_board_info ldscript "-Wl,-Tddbecoff.ld"
+    set_board_info ldscript "-Tddbecoff.ld"
 } else {
-    set_board_info ldscript "-Wl,-Tddb.ld"
+    set_board_info ldscript "-Tddb.ld"
 }
 
 # And the simulator doesn't reliably return exit statuses.

@@ -1,4 +1,4 @@
-# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003 Free Software
+# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004 Free Software
 # Foundation, Inc.
 #
 # This file is part of DejaGnu.
@@ -37,7 +37,7 @@ set_board_info compiler "[find_gcc]"
 set_board_info cflags "[libgloss_include_flags] [newlib_include_flags]"
 set_board_info ldflags "[libgloss_link_flags] [newlib_link_flags]"
 # DDB linker script.
-set_board_info ldscript "-Wl,-Tdve.ld"
+set_board_info ldscript "-Tdve.ld"
 
 # GDB doesn't return exit statuses and we need to indicate this;
 # the standard GCC wrapper will work with this target.

@@ -1,4 +1,4 @@
-# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003 Free Software
+# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004 Free Software
 # Foundation, Inc.
 #
 # This file is part of DejaGnu.
@@ -41,7 +41,7 @@ set_board_info compiler  "[find_gcc]"
 set_board_info cflags  "[newlib_include_flags] [libgloss_include_flags]"
 set_board_info ldflags  "[libgloss_link_flags] [newlib_link_flags]"
 # It's an op50n board.
-set_board_info ldscript  "-Wl,-Top50n.ld"
+set_board_info ldscript  "-Top50n.ld"
 # The proelf interface has no way to return status information, so we
 # need to indicate this.
 set_board_info needs_status_wrapper  1

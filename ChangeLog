@@ -1,3 +1,18 @@
+2004-02-08  Daniel Jacobowitz  <drow@mvista.com>
+
+	* baseboards/cf.exp: Use -T instead of -Wl,-T for ldscript.
+	* baseboards/fr30-elf.exp, baseboards/frv-elf.exp,
+	baseboards/h8300.exp, baseboards/i960-cyclone.exp,
+	baseboards/i960-sim.exp, baseboards/m32r-elf.exp,
+	baseboards/mips-idt.exp, baseboards/mips-lnews-sim.exp,
+	baseboards/mips-lsi-sim.exp, baseboards/mips64vr4100-sim.exp,
+	baseboards/op50n.exp, baseboards/rom68k-idp.exp,
+	baseboards/sh-hms.exp, baseboards/tx39-dve.exp,
+	baseboards/vr4100-ddb.exp, baseboards/vr4100-sim.exp,
+	baseboards/vr4111-sim.exp, baseboards/vr4300-ddb.exp,
+	baseboards/vr4300-sim.exp, baseboards/vr4300.exp,
+	baseboards/vr5000-ddb.exp: Likewise.
+
 2004-02-08  Ben Elliston  <bje@wasabisystems.com>
 
 	* runtest: Terminate with an error if expect cannot be found.

@@ -1,4 +1,4 @@
-# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003 Free Software
+# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003, 2004 Free Software
 # Foundation, Inc.
 #
 # This file is part of DejaGnu.
@@ -37,7 +37,7 @@ if { $is_gdb_remote } {
 set_board_info compiler  "[find_gcc]"
 set_board_info cflags    "[libgloss_include_flags] [newlib_include_flags]"
 set_board_info ldflags   "[libgloss_link_flags] [newlib_link_flags]"
-set_board_info ldscript  "-Wl,-Teva.ld"
+set_board_info ldscript  "-Teva.ld"
 set_board_info gdb,start_symbol "_start"
 
 set_board_info needs_status_wrapper 1
@@ -48,7 +48,7 @@ if { ! $is_gdb_remote } {
 } else {
     set_board_info gdb_protocol  "fr30"
     set_board_info use_gdb_stub 1
-    set_board_info gdb_stub_ldscript "-Wl,-Teva-stub.ld"
+    set_board_info gdb_stub_ldscript "-Teva-stub.ld"
 }
 
 # Doesn't pass arguments or signals, can't return results, and doesn't
