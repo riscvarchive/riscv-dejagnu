@@ -17,8 +17,7 @@
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@prep.ai.mit.edu
 
-# This file was written by Rob Savoye. (rob@cygnus.com)
-#	(now rob@welcomehome.org)
+# This file was written by Rob Savoye. (rob@welcomehome.org)
 
 # this contains a list of gcc options and their respective directories.
 
