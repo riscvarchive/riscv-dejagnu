@@ -2,7 +2,8 @@
 
 # AUTOMAKE_OPTIONS =
 
-CFLAGS = -I$(top_srcdir)
+CFLAGS = -I$(top_srcdir) -g
+CXXFLAGS = -I$(top_srcdir) -g
 
 noinst_PROGRAMS = unit
 

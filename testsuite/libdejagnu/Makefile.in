@@ -72,7 +72,8 @@ TCLSH = @TCLSH@
 VERSION = @VERSION@
 tclsh = @tclsh@
 
-CFLAGS = -I$(top_srcdir)
+CFLAGS = -I$(top_srcdir) -g
+CXXFLAGS = -I$(top_srcdir) -g
 
 noinst_PROGRAMS = unit
 
@@ -91,7 +92,6 @@ unit_OBJECTS =  unit.o
 unit_LDADD = $(LDADD)
 unit_DEPENDENCIES = 
 unit_LDFLAGS = 
-CXXFLAGS = @CXXFLAGS@
 CXXCOMPILE = $(CXX) $(DEFS) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 CXXLD = $(CXX)
 CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(LDFLAGS) -o $@

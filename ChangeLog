@@ -1,7 +1,16 @@
+2001-05-09  Rob Savoye  <rob@peggyo.welcomehome.org>
+
+	* runtest.exp: Add new command line option, --status (or -st) to
+	toggle whether Tcl script bugs in test drivers should be
+	propogated as an error to the shell.
+
 2001-05-08  Rob Savoye  <rob@peggyo.welcomehome.org>
 
 	* lib/dejagnu.exp: Trim off test state part of the message, so we
 	don't duplicate it.
+	* runtest.exp: Set the exit status when their are Tcl script bugs,
+	so make notices the errors. (contributed by Martin Muenstermann
+	<muenstermann@trustcenter.de>)
 
 2001-05-06  Rob Savoye  <rob@blackpeter.welcomehome.org>
 

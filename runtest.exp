@@ -20,7 +20,7 @@
 
 # This file was written by Rob Savoye. (rob@welcomehome.org)
 
-set frame_version	1.4.0
+set frame_version	1.4.1.x
 if ![info exists argv0] {
     send_error "Must use a version of Expect greater than 5.0\n"
     exit 1
@@ -64,6 +64,8 @@ set reboot      0
 set configfile  site.exp	;# (local to this file)
 set multipass   ""		;# list of passes and var settings
 set errno	"";		;# 
+set exit_error  0		;# Toggle for whether to set the exit status
+				;# on Tcl bugs in test case drivers.
 #
 # These describe the host and target environments.
 #
@@ -370,6 +372,7 @@ proc usage { } {
     send_user "\t--host \[string\]\t\tThe canonical config name of the host machine\n"
     send_user "\t--host_board \[name\]\tThe host board to use\n"
     send_user "\t--target \[string\]\tThe canonical config name of the target board\n"
+    send_user "\t--status (-st)\t\tSet the exit status to fail on Tcl errors\n"
     send_user "\t--debug (-de)\t\tSet expect debugging ON\n"
     send_user "\t--help (-he)\t\tPrint help text\n"
     send_user "\t--mail \[name(s)\]\tWhom to mail the results to\n"
@@ -466,6 +469,11 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    continue
 	}
 
+	"--st*" {
+	    set exit_error 1
+	    continue
+	}
+	
 	"--sr*" {			# (--srcdir) where the testsuite source code lives
 	    set srcdir $optarg
 	    continue
@@ -575,7 +583,7 @@ proc load_lib { file } {
 
     set loaded_libs($file) "";
 
-    if { [search_and_load_file "library file" $file [list $libdir $libdir/lib [file dirname [file dirname $srcdir]]/dejagnu/lib $srcdir/lib . [file dirname [file dirname [file dirname $srcdir]]]/dejagnu/lib]] == 0 } {
+    if { [search_and_load_file "library file" $file [list ../lib $libdir $libdir/lib [file dirname [file dirname $srcdir]]/dejagnu/lib $srcdir/lib $execpath/lib . [file dirname [file dirname [file dirname $srcdir]]]/dejagnu/lib]] == 0 } {
 	send_error "ERROR: Couldn't find library file $file.\n"
 	exit 1
     }
@@ -661,7 +669,7 @@ unset arg_host_triplet arg_build_triplet
 
 if [expr  { $build_triplet == ""  &&  $host_triplet == ""} ] {
     # find config.guess
-    foreach dir "$libdir $libdir/libexec $libdir/.. $srcdir/.. $srcdir/../.." {
+    foreach dir "$libdir $libdir/libexec $libdir/.. $execpath $srcdir $srcdir/.. $srcdir/../.." {
 	verbose "Looking for ${dir}/config.guess" 2
 	if [file exists ${dir}/config.guess] {
 	    set config_guess ${dir}/config.guess
@@ -1430,6 +1438,11 @@ proc runtest { test_file_name } {
 	}
 
 	if { [catch "uplevel #0 source $test_file_name"] == 1 } {
+	    # If we have a Tcl error, propogate the exit status do make
+	    # notices the error.
+	    global exit_status exit_error
+	    # exit error is set by a command line option
+	    set exit_status $exit_error
 	    # We can't call `perror' here, it resets `errorInfo'
 	    # before we want to look at it.  Also remember that perror
 	    # increments `errcnt'.  If we do call perror we'd have to

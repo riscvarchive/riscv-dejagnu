@@ -1,11 +1,7 @@
 load_lib "dejagnu.exp"
 
-# If tracing has been enabled at the top level, then turn it on here
-# too.
-if $tracelevel {
-    strace $tracelevel
-}
-
+# Uncomment these for debugging help
+#strace $tracelevel
 # exp_internal -f dbg.log 1
 
 # Execute everything in the test subdir so all the output files go there.

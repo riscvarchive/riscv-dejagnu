@@ -21,7 +21,7 @@ TLCSH = @TCLSH@
 RUNTESTDEFAULTFLAGS = --srcdir $(srcdir)/testsuite RUNTEST=$(RUNTEST)
 RUNTEST = ` \
   if [ -f ${srcdir}/runtest$(EXEEXT) ] ; then \
-    echo ${srcdir}/runtest$(EXEEXT) ; \
+    echo ${srcdir}/runtest$(EXEEXT); \
   else echo "ERROR: runtest not found" ; exit 1; fi`
 
 CLEANFILES = x.log x.sum site.bak setval.tmp
