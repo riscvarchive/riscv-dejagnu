@@ -1,5 +1,16 @@
 2004-02-07  Ben Elliston  <bje@wasabisystems.com>
 
+	* Makefile.am (rpmspec): Remove.
+	(rpm): Additionally depend on dejagnu.spec.
+	($(PKGDIR)/dejagnu): New target that installs DejaGnu into this
+	directory.  This saves duplicated code in the solpkg and hpdepot
+	targets.
+	(solpkg): Depend on $(PKGDIR)/dejagnu.
+	(hpdepot): Likewise.
+	* Makefile.in: Regenerate.
+
+2004-02-07  Ben Elliston  <bje@wasabisystems.com>
+
 	* Makefile.am (RUNTEST, RUNTESTDEFAULTFLAGS): Remove.
 	* Makefile.in: Regenerate.
 	* testsuite/Makefile.am (CLEANFILES): Remove.

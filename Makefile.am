@@ -175,32 +175,31 @@ PACKAGING_METAFILES = packaging/depot/dejagnu.psf \
 	packaging/deb/preinst packaging/deb/rules packaging/pkg/pkginfo \
 	packaging/pkg/prototype packaging/rpm/dejagnu.spec
 
-rpmspec: $(srcdir)/packaging/rpm/dejagnu.spec
-	cp -f $(srcdir)/packaging/rpm/dejagnu.spec /usr/src/redhat/SPECS/
-
 # Build an RPM package
-rpm: rpmspec dist
+rpm: dist $(srcdir)/packaging/rpm/dejagnu.spec
+	cp -f $(srcdir)/packaging/rpm/dejagnu.spec /usr/src/redhat/SPECS/
 	cp -f dejagnu-${VERSION}.tar.gz /usr/src/redhat/SOURCES/
 	rpm -ba /usr/src/redhat/SPECS/dejagnu.spec
 
 # Build a Debian GNU/Linux package
 deb: dist
-	-rm -fr dejagnu-${VERSION}
+	-rm -rf dejagnu-${VERSION}
 	tar xfz dejagnu-${VERSION}.tar.gz
 	cp -fr $(srcdir)/packaging/deb dejagnu-${VERSION}/
 	(cd dejagnu-${VERSION}; dpkg-buildpackage)
 
+# Most proprietary Unices use /opt for optional packages.
 PKGDIR = /opt
 
+$(PKGDIR)/dejagnu:
+	rm -rf dejagnu-${VERSION}
+	mkdir dejagnu-${VERSION}
+	cd dejagnu-${VERSION}
+	$(srcdir)/configure -v --prefix $@
+	make install
+
 # Build a Solaris package
-solpkg: $(srcdir)/packaging/pkg/prototype
-	if test ! -d $(PKGDIR)/dejagnu; then \
-	  rm -fr dejagnu-${VERSION}; \
-	  mkdir dejagnu-${VERSION}; \
-	  cd dejagnu-${VERSION}; \
-	  $(srcdir)/configure -v --prefix $(PKGDIR)/dejagnu; \
-	  make install ; \
-	fi
+solpkg: $(PKGDIR)/dejagnu
 	cp $(srcdir)/packaging/pkg/prototype /tmp
 	cp $(srcdir)/packaging/pkg/pkginfo /tmp
 	here=`pwd`; \
@@ -208,20 +207,13 @@ solpkg: $(srcdir)/packaging/pkg/prototype
 	  pkgmk -o -r / -d /tmp; \
 	  tar cf $$here/dejagnu-${VERSION}.SPARC.2.8.pkg.tar DejaGnu; \
 	  gzip -9fv  $$here/dejagnu-${VERSION}.SPARC.2.8.pkg.tar
-	rm -fr /tmp/prototype /tmp/pkginfo /tmp/DejaGnu
+	rm -rf /tmp/prototype /tmp/pkginfo /tmp/DejaGnu
 
 # Build a HP depot package
-hpdepot:
-	if test ! -d $(PKGDIR)/dejagnu; then \
-	  rm -fr dejagnu-${VERSION}; \
-	  mkdir dejagnu-${VERSION}; \
-	  cd dejagnu-${VERSION}; \
-	  $(srcdir)/configure -v --prefix $(PKGDIR)/dejagnu; \
-	  make install ; \
-	fi
+hpdepot: $(PKGDIR)/dejagnu
 	swpackage -s $(srcdir)/packaging/depot/dejagnu.psf -x target_type=directory -d /tmp
 	here=`pwd`; \
 	  cd /tmp; \
 	  tar cf $$here/dejagnu-${VERSION}.hpux11.depot dejagnu; \
 	  gzip -9fv  $$here/dejagnu-${VERSION}.hpux11.depot; \
-	  rm -fr /tmp/dejagnu
+	  rm -rf /tmp/dejagnu
