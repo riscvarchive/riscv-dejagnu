@@ -1,3 +1,8 @@
+2004-02-16  Ben Elliston  <bje@wasabisystems.com>
+
+	* configure.ac: Update AC_INIT and AM_INIT_AUTOMAKE invocations.
+	* configure: Regenerate.
+
 2004-02-09  Ben Elliston  <bje@wasabisystems.com>
 
 	* doc/runtest.1: Improve some wording. Update last revision date.
