@@ -225,8 +225,8 @@ proc prune_warnings { text } {
     regsub -all "(^|\n)(cc1plus: warning: -g is only supported when using GAS on this processor\[^\n\]*\ncc1plus: warning:\[^\n\]*\n?)+" $text "\\1" text
 
     # This happens when testing across NFS.
-    regsub -all "(^|\n)(NFS server \[^\n\]* not responding still trying\[^\n\]*\n?)+" $text "\\1" text
-    regsub -all "(^|\n)(NFS server \[^\n\]* ok\[^\n\]*\n?)+" $text "\\1" text
+    regsub -all "(^|\n)((NFS|nfs) server \[^\n\]* not responding\[^\n\]*\n?)+" $text "\\1" text
+    regsub -all "(^|\n)((NFS|nfs) server \[^\n\]* (ok|is alive again)\[^\n\]*\n?)+" $text "\\1" text
 
     # This happens when testing across NFS on osf4.
     regsub -all "(^|\n)(NFS3 server \[^\n\]* not responding still trying\[^\n\]*\n?)+" $text "\\1" text
