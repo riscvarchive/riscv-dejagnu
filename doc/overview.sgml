@@ -283,9 +283,9 @@ into another language, under the above conditions for modified versions.
       computers.</para></listitem>
       <listitem><para>supported cross-development
       testing.</para></listitem>
-      <listitem><para>permited testing interactive programs, like
+      <listitem><para>permitted testing interactive programs, like
       <command>GDB</command>; and </para></listitem>
-      <listitem><para>permited testing batch oriented programs, like
+      <listitem><para>permitted testing batch oriented programs, like
       <command>GCC</command>.</para></listitem>
     </itemizedlist>
 
