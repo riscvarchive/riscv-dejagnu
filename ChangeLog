@@ -1,3 +1,12 @@
+2001-04-06  Rob Savoye  <rob@slipknot.welcomehome.org>
+
+	* Makefile.am: Add an empty check-DEJAGNU target, cause we only
+	want to run the testsuite once.
+	* example/Makefile.am: Don't run "calc" as part of check target,
+	cause calc is just an example.
+	* testsuite/Makefile.am: Use the runtest in the source tree, or
+	refuse to run.
+
 2001-04-03  David Billinghurst <David.Billinghurst@riotinto.com>
 
 	* baseboards/unix.exp: Don't link with -lm on cygwin.

@@ -22,7 +22,11 @@ RUNTESTDEFAULTFLAGS = --tool runtest --srcdir $(srcdir)/testsuite RUNTEST=$(RUNT
 RUNTEST = ` \
   if [ -f ${srcdir}/runtest$(EXEEXT) ] ; then \
     echo ${srcdir}/runtest$(EXEEXT) ; \
-  else echo runtest ;  fi`
+  else echo "ERROR: runtest not found" ; exit 1; fi`
+
+CLEANFILES = x.log x.sum site.bak setval.tmp
+check-DEJAGNU:
+	@echo "Do nothing here, cause we don't want to run the tests twice"
 
 # Set ourselves up to build a RedHat package
 dist2: rpmspec overview.html
@@ -32,9 +36,9 @@ dist2: rpmspec overview.html
 	(cd dejagnu-${VERSION}.0 ; $(srcdir)/Clean.tcl)
 	-mkdir -p doc/overview
 	-cp -fr doc/overview dejagnu-${VERSION}.0/doc/
-	tar cvf ../dejagnu-${VERSION}.tar dejagnu-${VERSION}.0
-	gzip -9fv ../dejagnu-${VERSION}.tar
-	cp -f ../dejagnu-${VERSION}.tar.gz /usr/src/redhat/SOURCES/
+	tar cvf ../dejagnu-${VERSION}.0.tar dejagnu-${VERSION}.0
+	gzip -9fv ../dejagnu-${VERSION}.0.tar
+	cp -f ../dejagnu-${VERSION}.0.tar.gz /usr/src/redhat/SOURCES/
 	cp -f $(srcdir)/redhat/dejagnu.spec /usr/src/redhat/SPECS/
 
 rpmspec:
@@ -96,4 +100,15 @@ uninstall-local:
 	for f in $(baseboards_files); do \
 	  test ! -f "$$f" || rm -f $(baseboards_dest)/`basename "$$f"`; \
 	done
+
+
+
+
+
+
+
+
+
+
+
 

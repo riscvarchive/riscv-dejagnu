@@ -87,8 +87,10 @@ libexec_SCRIPTS = config.guess
 TLCSH = @TCLSH@
 
 RUNTESTDEFAULTFLAGS = --tool runtest --srcdir $(srcdir)/testsuite RUNTEST=$(RUNTEST)
-RUNTEST = `   if [ -f ${srcdir}/runtest$(EXEEXT) ] ; then     echo ${srcdir}/runtest$(EXEEXT) ;   else echo runtest ;  fi`
+RUNTEST = `   if [ -f ${srcdir}/runtest$(EXEEXT) ] ; then     echo ${srcdir}/runtest$(EXEEXT) ;   else echo "ERROR: runtest not found" ; exit 1; fi`
 
+
+CLEANFILES = x.log x.sum site.bak setval.tmp
 
 # Below, host-independent data files that need to get installed.
 # We do it this way so we can use globbing.
@@ -347,15 +349,6 @@ distdir: $(DISTFILES)
 RUNTESTFLAGS =
 
 DEJATOOL = $(PACKAGE)
-
-check-DEJAGNU: site.exp
-	srcdir=`cd $(srcdir) && pwd`; export srcdir; \
-	EXPECT=$(EXPECT); export EXPECT; \
-	runtest=$(RUNTEST); \
-	if $(SHELL) -c "$$runtest --version" > /dev/null 2>&1; then \
-	  $$runtest $(RUNTESTDEFAULTFLAGS) $(RUNTESTFLAGS); \
-	else echo "WARNING: could not find \`runtest'" 1>&2; :;\
-	fi
 site.exp: Makefile
 	@echo 'Making a new site.exp file...'
 	@test ! -f site.bak || rm -f site.bak
@@ -403,6 +396,7 @@ installdirs-am:
 mostlyclean-generic:
 
 clean-generic:
+	-test -z "$(CLEANFILES)" || rm -f $(CLEANFILES)
 
 distclean-generic:
 	-rm -f Makefile $(CONFIG_CLEAN_FILES)
@@ -445,6 +439,8 @@ all-redirect all-am all installdirs-am installdirs mostlyclean-generic \
 distclean-generic clean-generic maintainer-clean-generic clean \
 mostlyclean distclean maintainer-clean
 
+check-DEJAGNU:
+	@echo "Do nothing here, cause we don't want to run the tests twice"
 
 # Set ourselves up to build a RedHat package
 dist2: rpmspec overview.html
@@ -454,9 +450,9 @@ dist2: rpmspec overview.html
 	(cd dejagnu-${VERSION}.0 ; $(srcdir)/Clean.tcl)
 	-mkdir -p doc/overview
 	-cp -fr doc/overview dejagnu-${VERSION}.0/doc/
-	tar cvf ../dejagnu-${VERSION}.tar dejagnu-${VERSION}.0
-	gzip -9fv ../dejagnu-${VERSION}.tar
-	cp -f ../dejagnu-${VERSION}.tar.gz /usr/src/redhat/SOURCES/
+	tar cvf ../dejagnu-${VERSION}.0.tar dejagnu-${VERSION}.0
+	gzip -9fv ../dejagnu-${VERSION}.0.tar
+	cp -f ../dejagnu-${VERSION}.0.tar.gz /usr/src/redhat/SOURCES/
 	cp -f $(srcdir)/redhat/dejagnu.spec /usr/src/redhat/SPECS/
 
 rpmspec:
