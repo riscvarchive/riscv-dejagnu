@@ -1,11 +1,9 @@
 ## Process this file with automake to generate Makefile.in
 
-# AUTOMAKE_OPTIONS =
+AUTOMAKE_OPTIONS = dejagnu
 
+EXTRA_DIST = tunit.exp
 CFLAGS = -I$(top_srcdir) -g
 AM_CXXFLAGS = -I$(top_srcdir) -g
-
-noinst_PROGRAMS = unit
-
+check_PROGRAMS = unit
 unit_SOURCES = unit.cc
-

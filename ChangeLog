@@ -1,5 +1,70 @@
 2004-02-07  Ben Elliston  <bje@wasabisystems.com>
 
+	* Clean.tcl: Remove.
+
+	* Makefile.am (SUBDIRS): Add testsuite, example directories.
+	(EXTRA_DIST): Define.
+	(pkgdata_SCRIPTS): Add lib/*.exp files.
+	(DATE, TCLSH): Remove.
+	(configdir, config_DATA, config_SCRIPTS): Define.
+	(baseboarddir, baseboard_DATA, baseboard_SCRIPTS): Likewise.
+	(pkgdata_DATA): Likewise.
+	(djlibexecdir, djlibexec_SCRIPTS): Likewise.
+	(PKGING, PACKAGING_METAFILES): New macros.
+	(clean-local): Remove.
+	(rpm): Depend on dist.
+	(deb): Likewise.
+	(dist-hook): Remove.
+	(lib_dest, lib_files): Likewise.
+	(baseboard_dest, baseboard_files): Likewise.
+	(include_dest, config_dest, config_files): Likewise.
+	(install-data-local): Likewise.
+	(uninstall-local): Likewise.
+	(site.exp): Likewise.
+	* Makefile.in: Regenerate.
+	
+	* testsuite/Makefile.am (all, all-am, etcetera): Remove.
+	(force): Likewise.
+	(EXTRA_DIST): Define.
+	(site.exp): Remove target.
+	* testsuite/Makefile.in: Regenerate.
+	* testsuite/libdejagnu/Makefile.am (EXTRA_DIST): Define.
+	(noinst_PROGRAMS): Rename from this ..
+	(check_PROGRAMS): .. to this.
+	* testsuite/libdejagnu/Makefile.in: Regenerate.
+
+	* doc/Makefile.am (man_MANS): Rename from this ..
+	(dist_man_MANS): .. to this.
+	(info_TEXINFOS): Define.
+	(TARGETS): Remove overview.rtf.
+	(EXTRA_DIST): Define.
+	(%.rtf: %.sgml): Remove rule.
+	(%.gif: %.fig): Likewise.
+	(%.epsi: %.eps): Likewise.
+	(%.eps: %.fig): Likewise.
+	(clean, realclean, distclean): Remove.
+	(install-docs): Don't install overview.rtf.
+	* doc/Makefile.in: Regenerate.
+	* doc/texinfo.tex: New file.
+
+	* example/calc/Makefile.am (noinst_PROGRAMS): Rename from this ..
+	(check_PROGRAMS): .. to this.
+	(EXTRA_DIST): Add test cases and calc.1 man page.
+	* example/calc/Makefile.in: Regenerate.
+	* example/calc/aclocal.m4: Likewise.
+	* example/calc/configure: Likewise.
+	* example/calc/stamp-h.in: Remove.
+	* example/hello/Makefile.am (bin_PROGRAMS): Rename from this ..
+	(check_PROGRAMS): .. to this.
+	(EXTRA_DIST): Define.
+	* example/hello/Makefile.in: Regenerate.
+	* example/hello/aclocal.m4: Likewise.
+	* example/hello/configure: Likewise.
+	* example/hello/testsuite/Makefile.am (EXTRA_DIST): Define.
+	* example/hello/testsuite/Makefile.in: Regenerate.
+
+2004-02-07  Ben Elliston  <bje@wasabisystems.com>
+
 	* configure.ac: Remove commented out code.
 	* configure: Regenerate.
 

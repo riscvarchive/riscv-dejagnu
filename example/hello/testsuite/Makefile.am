@@ -27,6 +27,31 @@
 AUTOMAKE_OPTIONS = dejagnu
 RUNTESTDEFAULTFLAGS = -v -v
 
+EXTRA_DIST = \
+	config/base-config.exp \
+	config/default.exp \
+	config/gnu.exp \
+	config/helloworld-driver.exp \
+	config/helloworld-lib.exp \
+	config/helloworld-torture.exp \
+	config/unix.exp \
+	helloworld.test1/helloworld.test1-1/test1-1.exp \
+	helloworld.test1/test1.exp \
+	helloworld.test2/test2.exp \
+	helloworld.test2/test3.exp \
+	helloworld.test3/config/config.exp \
+	helloworld.test3/lib/lib.exp \
+	helloworld.test3/non_compliant_dir_name/non_compliant.exp \
+	lib/default.exp \
+	lib/gnu.exp \
+	lib/helloworld-driver.exp \
+	lib/helloworld-lib.exp \
+	lib/helloworld-torture.exp \
+	lib/helloworld.exp \
+	lib/unix.exp \
+	testsuite.exp \
+	site.exp
+
 # hello_AUTOMAKE_OPTIONS = dejagnu
 # hello_RUNTESTDEFAULTFLAGS = --srcdir $$srcdir/testsuite testsuite.exp
 

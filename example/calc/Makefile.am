@@ -17,7 +17,8 @@
 
 AUTOMAKE_OPTIONS = dejagnu
 
-noinst_PROGRAMS = calc
+check_PROGRAMS = calc
 calc_SOURCES = calc.c
 
+EXTRA_DIST = testsuite/calc.test/calc.exp testsuite/config/unix.exp calc.1
 RUNTESTDEFAULTFLAGS = --tool calc CALC=`pwd`/calc --srcdir $$srcdir/testsuite

@@ -24,7 +24,17 @@
 
 # ------------------------------------------------------------------------
 
-bin_PROGRAMS = hello
+check_PROGRAMS = hello
 hello_SOURCES = hello.c
 
-SUBDIRS=testsuite
+EXTRA_DIST = \
+	lib/default.exp \
+	lib/gnu.exp \
+	lib/helloworld-driver.exp \
+	lib/helloworld-lib.exp \
+	lib/helloworld-torture.exp \
+	lib/helloworld.exp \
+	lib/site.exp \
+	lib/unix.exp
+
+SUBDIRS = testsuite
