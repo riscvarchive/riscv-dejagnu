@@ -1,5 +1,5 @@
 # Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000,
-# 2001, 2002, 2003 Free Software Foundation, Inc.
+# 2001, 2002, 2003, 2004 Free Software Foundation, Inc.
 #
 # This file is part of DejaGnu.
 #
@@ -158,6 +158,12 @@ proc newlib_include_flags { args } {
 	if { ${newlib_dir} != "" } {
 	    set newlib_dir [file dirname ${newlib_dir}]
 	}
+	# Note - we use -isystem rather than -I because newlib contains
+	# system header files.  This is especially important for the
+	# limits.h header which makes use of the #include_next directive.
+	# #include_next will generate error messages from GCC if compiling
+	# in strict ANSI mode or if another limits.h header cannot be found.
+	# When it is included via -isystem these things do not happen.
 	return " -isystem $gccpath/newlib/targ-include -isystem ${newlib_dir}"
     } else {
 	verbose "No newlib support for this target"
@@ -190,7 +196,12 @@ proc libio_include_flags { args } {
     if { $libio_bin_dir != "" && $libio_src_dir != "" } {
 	set libio_src_dir [file dirname ${libio_src_dir}]
 	set libio_bin_dir [file dirname ${libio_bin_dir}]
-	return " -isystem ${libio_src_dir} -isystem ${libio_bin_dir}"
+	# Note - unlike the newlib_include_flags proc above we use the -I
+	# switch to specify the include paths.  This is because these headers
+	# are not system headers, and if -isystem were to be used GCC would
+	# generate an implicit extern "C" { ... } surrounding them.  This
+	# will break targets which do not define NO_IMPLICIT_EXTERN_C.
+	return " -I${libio_src_dir} -I${libio_bin_dir}"
     } else {
 	return ""
     }
@@ -225,23 +236,24 @@ proc g++_include_flags { args } {
 
     set dir [lookfor_file ${srcdir} libg++]
     if { ${dir} != "" } {
-	append flags " -isystem ${dir} -isystem ${dir}/src"
+	# See comment in libio_include_flags about using -I.
+	append flags " -I${dir} -I${dir}/src"
     }
 
     set dir [lookfor_file ${srcdir} libstdc++-v3]
     if { ${dir} != "" } {
-	append flags " -isystem ${dir}/include -isystem ${dir}/include/std"
-	append flags " -isystem ${dir}/include/c_std -isystem ${dir}/libsupc++"
+	append flags " -I${dir}/include -I${dir}/include/std"
+	append flags " -I${dir}/include/c_std -I${dir}/libsupc++"
     }
 
     set dir [lookfor_file ${gccpath} libstdc++-v3]
     if { ${dir} != "" } {
-	append flags " -isystem ${dir}/include -isystem ${dir}/include/${target_alias}"
+	append flags " -I${dir}/include -I${dir}/include/${target_alias}"
     }
 
     set dir [lookfor_file ${srcdir} libstdc++]
     if { ${dir} != "" } {
-	append flags " -isystem ${dir} -isystem ${dir}/stl"
+	append flags " -I${dir} -I${dir}/stl"
     }
 
     return "$flags"
@@ -317,20 +329,21 @@ proc libstdc++_include_flags { args } {
 
     set dir [lookfor_file ${srcdir} libstdc++-v3]
     if { ${dir} != "" } {
-	append flags " -isystem ${dir}/include -isystem ${dir}/include/std"
-	append flags " -isystem ${dir}/include/c_std -isystem ${dir}/libsupc++"
+	# See comment in libio_include_flags about using -I.
+	append flags " -I${dir}/include -I${dir}/include/std"
+	append flags " -I${dir}/include/c_std -I${dir}/libsupc++"
     }
 
     set gccpath [get_multilibs]
 
     set dir [lookfor_file ${gccpath} libstdc++-v3]
     if { ${dir} != "" } {
-	append flags " -isystem ${dir}/include -isystem ${dir}/include/${target_alias}"
+	append flags " -I${dir}/include -I${dir}/include/${target_alias}"
     }
 
     set dir [lookfor_file ${srcdir} libstdc++]
     if { ${dir} != "" } {
-	append flags " -isystem ${dir} -isystem ${dir}/stl"
+	append flags " -I${dir} -I${dir}/stl"
     }
 
     return "$flags"
