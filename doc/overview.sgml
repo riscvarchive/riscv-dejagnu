@@ -54,7 +54,7 @@ into another language, under the above conditions for modified versions.
   <bookinfo>
     <title>&dj;</title>
     <subtitle>The GNU Testing Framework</subtitle>
-    <date>2002 July 16</date>
+    <date>2002 Sept 04</date>
     <edition> &version</edition>
     <releaseinfo> New release</releaseinfo>
     <authorgroup>
@@ -207,8 +207,8 @@ into another language, under the above conditions for modified versions.
     <command>GDB</command>. When we replaced it with the Expect-based
     framework, it was like DejaGnu all over again... But more importantly, it
     was also named after my daughter,<ulink
-    URL="mailto:deja@welcomehome.org">Deja Snow Savoye</ulink> (now 9
-    years old in Dec of 1998), who was a toddler during DejaGnu's
+    URL="mailto:deja@welcomehome.org">Deja Snow Savoye</ulink> (now 12
+    years old in Sept of 2002), who was a toddler during DejaGnu's
     creation.</para>
 
   </sect1>

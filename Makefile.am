@@ -49,14 +49,15 @@ tarball: overview.html overview.ps overview.pdf
 	src=$(srcdir); \
 	dir=`(cd $${src}; pwd)`; \
 	(cd dejagnu-${VERSION} ; $${dir}/Clean.tcl); \
-	-mkdir -p doc/overview; \
-	-cp -fr doc/overview dejagnu-${VERSION}/doc/; \
-	-cp -fr doc/overview.ps dejagnu-${VERSION}/doc/; \
-	-cp -fr doc/overview.pdf dejagnu-${VERSION}/doc/; \
-	tar cvf ../dejagnu-${VERSION}.tar dejagnu-${VERSION}; \
-	gzip -9fv ../dejagnu-${VERSION}.tar; \
-	cp -f ../dejagnu-${VERSION}.tar.gz /usr/src/redhat/SOURCES/; \
-	cp -f $${dir}/redhat/dejagnu.spec /usr/src/redhat/SPECS/
+	  mkdir -p doc/html; \
+	  cp -fr doc/html dejagnu-${VERSION}/doc/; \
+	  cp -fr doc/overview.ps dejagnu-${VERSION}/doc/; \
+	  cp -fr doc/overview.pdf dejagnu-${VERSION}/doc/; \
+	  cp -fr doc/overview.rtf dejagnu-${VERSION}/doc/; \
+	  tar cvf ../dejagnu-${VERSION}.tar dejagnu-${VERSION}; \
+	  gzip -9fv ../dejagnu-${VERSION}.tar; \
+	  cp -f ../dejagnu-${VERSION}.tar.gz /usr/src/redhat/SOURCES/; \
+	  cp -f $${dir}/redhat/dejagnu.spec /usr/src/redhat/SPECS/
 
 # this builds a date stamped tarball of the current sources
 snapshot:
@@ -66,10 +67,11 @@ snapshot:
 	src=$(srcdir); \
 	dir=`(cd $${src}; pwd)`; \
 	(cd dejagnu-${DATE} ; $${dir}/Clean.tcl);
-	-mkdir -p doc/overview
-	-cp -fr doc/overview dejagnu-${DATE}/doc/
+	-mkdir -p doc/html
+	-cp -fr doc/html dejagnu-${DATE}/doc/
 	-cp -fr doc/overview.ps dejagnu-${DATE}/doc/
 	-cp -fr doc/overview.pdf dejagnu-${DATE}/doc/
+	-cp -fr doc/overview.rtf dejagnu-${DATE}/doc/
 	tar cf ../dejagnu-${DATE}.tar dejagnu-${DATE}
 	gzip -9fv ../dejagnu-${DATE}.tar
 
@@ -90,10 +92,11 @@ deb: overview.html overview.ps overview.pdf
 	dir=`(cd $${src}; pwd)`; \
 	(cd dejagnu-${VERSION} ; $${dir}/Clean.tcl);
 	-mkdir -p doc/html;
-	-cp -fr $(srcdir)/debian dejagnu-${VERSION}/;
-	-cp -fr doc/overview dejagnu-${VERSION}/doc/;
+	-cp -fr $(srcdir)/debian dejagnu-${VERSION}/
+	-cp -fr doc/html dejagnu-${VERSION}/doc/;
 	-cp -fr doc/overview.ps dejagnu-${VERSION}/doc/;
 	-cp -fr doc/overview.pdf dejagnu-${VERSION}/doc/;
+	-cp -fr doc/overview.rtf dejagnu-${VERSION}/doc/;
 	(cd dejagnu-${VERSION}; dpkg-buildpackage)
 
 # this builds a Solaris style pkg package.

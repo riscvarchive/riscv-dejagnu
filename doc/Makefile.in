@@ -96,7 +96,7 @@ DIST_SOURCES =
 
 NROFF = nroff
 MANS = $(man_MANS)
-DIST_COMMON = README Makefile.am Makefile.in
+DIST_COMMON = Makefile.am Makefile.in
 all: all-am
 
 .SUFFIXES:

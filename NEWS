@@ -1,3 +1,12 @@
+			Changes from 1.4.2
+	1. New XML output option, so test results can be loaded into a
+	database.
+	2. Support for the KFAIL/KPASS (known failures). This is
+	mostly oriented towards GDB testing.
+	3. New "Hello World" example.
+	4. New tutorial chapter.
+	5. Test cases build with either GCC 2.x or 3.x.
+
 			Changes from 1.4.1
 	1. Various patches for bugs reported from net users.
 	2. Test case builds with either libstdc++-v3 (as used by

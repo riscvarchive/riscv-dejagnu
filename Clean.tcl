@@ -5,7 +5,7 @@
 #	directory not in the .clean file list. This should only
 #	be used by maintainers when producing a release.
 
-# Copyright (C) 2000, 2001 Free Software Foundation, Inc.
+# Copyright (C) 2000, 2001, 2002 Free Software Foundation, Inc.
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -122,8 +122,18 @@ proc cleanfiles { directory } {
     if ![info exists cleanfile] {
 	verbose "WARNING: no .clean file in $directory, removing the default set of \"*! core CVS RCS\"" 3
 	set allfiles [glob -nocomplain "$directory/*~"]
-	append allfiles " [glob -nocomplain "$directory/core"]"
+	append allfiles " [glob -nocomplain "$directory/core*"]"
 	append allfiles " [glob -nocomplain "$directory/CVS"]"
+	append allfiles " [glob -nocomplain "$directory/Cvs.*"]"
+	append allfiles " [glob -nocomplain "$directory/*.out"]"
+	append allfiles " [glob -nocomplain "$directory/*.dvi"]"
+	append allfiles " [glob -nocomplain "$directory/*.rej"]"
+	append allfiles " [glob -nocomplain "$directory/*.orig"]"
+	append allfiles " [glob -nocomplain "$directory/*.log"]"
+	append allfiles " [glob -nocomplain "$directory/*.cvsignore"]"
+	append allfiles " [glob -nocomplain "$directory/*.tgz"]"
+	append allfiles " [glob -nocomplain "$directory/*.tar.gz"]"
+	append allfiles " [glob -nocomplain "$directory/autom4te.cache"]"
 	append allfiles " [glob -nocomplain "$directory/RCS"]"
 	append allfiles " [glob -nocomplain "$directory/.\#*"]"
     } else {

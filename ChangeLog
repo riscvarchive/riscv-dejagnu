@@ -1,3 +1,9 @@
+2002-09-04  Rob Savoye  <rob@welcomehome.org>
+
+	* Clean.tcl (cleanfiles): Add more patterns to remove.
+	* Makefile.am: Fix tarball target to clean up the source tree
+	better.
+
 2002-09-03  Rob Savoye  <rob@welcomehome.org>
 
 	* Makefile.am: Add support to build Solaris and HPUX packages.
@@ -15,6 +21,7 @@
 	* example/hello/Makefile.am: Build C based example.
 	* example/hello/configure.in: Add AC_NO_EXECUTABLES, so things
 	configure without building C++ executables.
+	* configure: Regenerated.
 
 2002-08-30  Nick Clifton  <nickc@redhat.com>
 
@@ -48,7 +55,7 @@
 
         * baseboards/v850-sim.exp (target_install): Add v850e-elf.
 
-2002-07-16    <rob@direwolf.welcomehome.org>
+2002-07-16  Rob Savoye  <rob@direwolf.welcomehome.org>
 
 	* doc/user.sgml: Add new tutorial by Niklaus Giger as a new
 	chapter.
