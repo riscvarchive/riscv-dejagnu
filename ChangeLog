@@ -18,8 +18,21 @@
 
 2004-06-08  Alexandre Oliva  <aoliva@redhat.com>
 
-	* baseboards/mn10300-sim.exp: Set needs_status_wrapper and
-	noresults to zero.
+	* testglue.c: Prototype abort and exit.
+
+from  Alexandre Oliva  <aoliva@redhat.com>
+        * baseboards/mn10300-sim.exp: Set needs_status_wrapper to empty
+        string.
+                                                                                
+Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
+
+        * lib/remote.exp (call_remote): Remove multilibs from the board
+	name when rebooting a board.
+
+2004-0603  Alexandre Oliva  <aoliva@redhat.com>
+
+       * baseboards/mn10300-sim.exp: Set needs_status_wrapper and
+       noresults to zero.
 
 2004-06-07  Ben Elliston  <bje@gnu.org>
 
