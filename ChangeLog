@@ -1,7 +1,24 @@
+2001-09-07  Will Cohen  <wcohen@redhat.com>
+
+        * lib/target.exp: Ignore ld's warning about alternative functions
+        to use.
+
+Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
+
+        * baseboards/h8300-sim.exp: set_board_info uses_underscores 1
+        set_board_info gcc,text_size 60000
+
 2001-07-30  Paul A. Houghton <houghton@wcomnet.com>
 
 	* dejagnu.h, testsuite/libdejagnu/unit.cc: Make the oustate array
 	be a const to work with Sun's compiler.
+	* runtest.exp: Move the command line variable instantiation to the
+	first block of command line option tests, so command line
+	variables can be used in tool init scripts.
+
+2001-07-25  Will Cohen  <wcohen@redhat.com>
+
+        * runtest.exp: Removed puts statement.
 
 2001-07-17  Jason Merrill  <jason_merrill@redhat.com>
 

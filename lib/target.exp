@@ -268,7 +268,10 @@ proc prune_warnings { text } {
     # GNU ld warns about functions marked as dangerous in GNU libc.
     regsub -all "(^|\n)\[^\n\]*: In function\[^\n\]*\n\[^\n\]\[^\n\]*function is dangerous\[^\n\]*" $text "" text
 
-    # Libgloss libnosys defines functions that warn when linked in
+     # GNU ld warns about functions marked as dangerous in GNU libc.   
+     regsub -all "(^|\n)\[^\n\]*: In function\[^\n\]*\n\[^\n\]\[^\n\]*the use of \[^\n\]* is dangerous, better use \[^\n\]*" $text "" text
+
+     # Libgloss libnosys defines functions that warn when linked in
     regsub -all "(^|\n)\[^\n\]*: In function\[^\n\]*\n\[^\n\]\[^\n\]*is not implemented and will always fail\[^\n\]*" $text "" text
 
     # Cygwin cc1 warns about -fpic and -fPIC
