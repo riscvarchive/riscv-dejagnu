@@ -1,6 +1,13 @@
 2002-11-13 Matt Bemis <bemis@iol.unh.edu>
 	* Fixed input/output to check for empty.
 
+2002-11-12  Hans-Peter Nilsson  <hp@bitrange.com>
+        * lib/libgloss.exp (newlib_include_flags): Use -isystem, not -I.
+        (libio_include_flags, g++_include_flags, libstdc++_include_flags,
+        winsup_include_flags): Ditto.
+        * doc/user.sgml (Local Config File): Use -isystem, not -I, in
+        example.
+
 2002-11-12  Peter Breitenlohner <peb@mppmu.mpg.de>
 2002-10-29  Maciej W. Rozycki  <macro@ds2.pg.gda.pl>
 	* Makefile.am: Add support for DESTDIR.

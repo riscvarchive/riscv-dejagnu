@@ -1588,7 +1588,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       set target_triplet i586-pc-linux-gnulibc1
       set target_alias i586-pc-linux-gnulibc1
       set CFLAGS ""
-      set CXXFLAGS "-I/build/devo-builds/i586-pc-linux-gnulibc1/gcc/../libio -I$srcdir/../libg++/src -I$srcdir/../libio -I$srcdir/../libstdc++ -I$srcdir/../libstdc++/stl -L/build/devo-builds/i586-pc-linux-gnulibc1/gcc/../libg++ -L/build/devo-builds/i586-pc-linux-gnulibc1/gcc/../libstdc++"
+      set CXXFLAGS "-isystem /build/devo-builds/i586-pc-linux-gnulibc1/gcc/../libio -isystem $srcdir/../libg++/src -isystem $srcdir/../libio -isystem $srcdir/../libstdc++ -isystem $srcdir/../libstdc++/stl -L/build/devo-builds/i586-pc-linux-gnulibc1/gcc/../libg++ -L/build/devo-builds/i586-pc-linux-gnulibc1/gcc/../libstdc++"
       append LDFLAGS " -L/build/devo-builds/i586-pc-linux-gnulibc1/gcc/../ld"
       set tmpdir /build/devo-builds/i586-pc-linux-gnulibc1/gcc/testsuite
       set srcdir "${srcdir}/testsuite"
