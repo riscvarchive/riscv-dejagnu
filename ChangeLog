@@ -1,3 +1,8 @@
+2004-02-05  Ben Elliston  <bje@wasabisystems.com>
+
+	* config.guess: Update to current revision.
+	* config.sub: Likewise.
+
 2004-02-04  Ben Elliston  <bje@wasabisystems.com>
 
 	* configure.in (AC_NO_EXECUTABLES): Remove.
