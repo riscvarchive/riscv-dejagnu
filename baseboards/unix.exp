@@ -12,7 +12,7 @@ set_board_info bmk,use_alarm 1
 #set_board_info host_library_path "[file dirname [file dirname [file dirname [file dirname [file dirname [exec [find_gcc] --print-prog-name=cc1]]]]]]/lib"
 
 # Do not use -lm on Cygwin
-if { [istarget "*-*-cygwin*"] } { 
+if { [istarget "*-*-cygwin*"] } {
   set_board_info mathlib ""
 }
 

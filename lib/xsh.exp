@@ -4,15 +4,15 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@gnu.org
@@ -64,11 +64,11 @@ proc xsh_open { hostname } {
 
     # start the shell
     expect {
-	"*Spectra Cross-Development Shell version*$xsh_shell_prompt" { 
+	"*Spectra Cross-Development Shell version*$xsh_shell_prompt" {
 	    verbose "Got prompt"
 	    set result 0
 	}
-	timeout			{ 
+	timeout			{
 	    warning "Timed out trying to connect."
 	    set result -1
 	    incr retries
@@ -92,7 +92,7 @@ proc xsh_open { hostname } {
 	}
 	-re ".* reset on target.*$" {
 	    send_user "Spectra was reset\n"
-	    exp_continue 
+	    exp_continue
 	}
 	-re "\[0-9A-Fa-f\]+\[ 0x\]+\[0-9A-Fa-f\]+.*$" {
 	    exp_continue
@@ -105,7 +105,7 @@ proc xsh_open { hostname } {
 	    set result -1
 	    incr retries
 	    if { $retries <= 2 } {
-		exp_continue	    
+		exp_continue
 	    }
 	}
     }
@@ -141,7 +141,7 @@ proc xsh_open { hostname } {
 	}
 	-re ".*reset on target.*$" {
 	    verbose "Spectra was reset"
-	    exp_continue 
+	    exp_continue
 	}
 	-re "\[0-9A-Fa-f\]+\[ 0x\]+\[0-9A-Fa-f\]+.*$" {
 	    #send "\n"
@@ -232,7 +232,7 @@ proc xsh_download { dest file destfile args } {
 	}
 	-i $shell_id "Warm reset on target*\n" {
 	    verbose "Spectra did a warm reset"
-	    exp_continue 
+	    exp_continue
 	}
 	-i $shell_id "Cold reset on target*\n" {
 	    verbose "Spectra did a cold reset"
@@ -279,7 +279,7 @@ proc xsh_download { dest file destfile args } {
         }
 	-i $shell_id "$xsh_shell_prompt" {
 	    set result 0
-	    exp_continue 
+	    exp_continue
 	}
 	-i $shell_id "load: no default target" {
 	    perror "default target isn't set"

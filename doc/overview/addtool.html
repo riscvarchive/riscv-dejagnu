@@ -244,13 +244,13 @@ CLASS="PROGRAMLISTING"
 	# The flags to pass to runtest
 	RUNTESTFLAGS =
 
-	# Execute the tests 
+	# Execute the tests
 	check: site.exp all
         $(RUNTEST) $(RUNTESTFLAGS) \
             --tool <SPAN
 CLASS="SYMBOL"
 >${example}</SPAN
-> --srcdir $(srcdir) 
+> --srcdir $(srcdir)
 
 	# Make the local config file
 	site.exp: ./config.status Makefile
@@ -355,7 +355,7 @@ WIDTH="90%"
 ><TD
 ><PRE
 CLASS="PROGRAMLISTING"
->	  
+>
 	  proc foo_exit {} {}
 	  proc foo_version {} {}
 

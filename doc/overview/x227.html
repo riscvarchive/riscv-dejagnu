@@ -75,7 +75,7 @@ NAME="AEN227"
 >Create a minimal project, e.g. calc</A
 ></H1
 ><P
->In this section you will to start a small project, 
+>In this section you will to start a small project,
 using the sample application calc, which is part of your DejaGnu distribution</P
 ><DIV
 CLASS="SECT2"
@@ -97,8 +97,8 @@ WIDTH="100%"
 ><TD
 ><PRE
 CLASS="PROGRAMLISTING"
->set tool calc 
-set srcdir . 
+>set tool calc
+set srcdir .
 set objdir /home/dgt/dejagnu.test</PRE
 ></TD
 ></TR
@@ -146,7 +146,7 @@ CLASS="PROGRAMLISTING"
 ></TR
 ></TABLE
 ><P
->autoconf is another part of the auto-tools. 
+>autoconf is another part of the auto-tools.
 Run it to generate configure based on information contained in configure.in.</P
 ><TABLE
 BORDER="0"
@@ -161,7 +161,7 @@ CLASS="PROGRAMLISTING"
 ></TR
 ></TABLE
 ><P
->autoheader is another part of the auto-tools. 
+>autoheader is another part of the auto-tools.
 Run it to generate calc.h.in. </P
 ><TABLE
 BORDER="0"
@@ -176,13 +176,13 @@ CLASS="PROGRAMLISTING"
 ></TR
 ></TABLE
 ><P
->The Makefile.am of this example was developed as port of the DejaGnu 
-distribution. 
-Adapt Makefile.am for this test. Replace the line 
-&#8220;#noinst_PROGRAMS = calc&#8221; to 
-&#8220;bin_PROGRAMS = calc&#8221;. 
+>The Makefile.am of this example was developed as port of the DejaGnu
+distribution.
+Adapt Makefile.am for this test. Replace the line
+&#8220;#noinst_PROGRAMS = calc&#8221; to
+&#8220;bin_PROGRAMS = calc&#8221;.
 Change the RUNTESTDEFAULTFLAGS from
-&#8220;$$srcdir/testsuite&#8221; to 
+&#8220;$$srcdir/testsuite&#8221; to
 &#8220;./testsuite&#8221;.</P
 ><P
 >Running automake at this point contains a series of warning in its output as shown in the following example:</P
@@ -204,24 +204,24 @@ WIDTH="100%"
 ><PRE
 CLASS="PROGRAMLISTING"
 >dgt:~/dejagnu.test$ automake --add-missing
-automake: configure.in: installing `./install-sh' 
-automake: configure.in: installing `./mkinstalldirs' 
-automake: configure.in: installing `./missing' 
-automake: Makefile.am: installing `./INSTALL' 
-automake: Makefile.am: required file `./NEWS' not found 
-automake: Makefile.am: required file `./README' not found 
-automake: Makefile.am: installing `./COPYING' 
-automake: Makefile.am: required file `./AUTHORS' not found 
-automake: Makefile.am: required file `./ChangeLog' not found 
-configure.in: 4: required file `./calc.h.in' not found 
+automake: configure.in: installing `./install-sh'
+automake: configure.in: installing `./mkinstalldirs'
+automake: configure.in: installing `./missing'
+automake: Makefile.am: installing `./INSTALL'
+automake: Makefile.am: required file `./NEWS' not found
+automake: Makefile.am: required file `./README' not found
+automake: Makefile.am: installing `./COPYING'
+automake: Makefile.am: required file `./AUTHORS' not found
+automake: Makefile.am: required file `./ChangeLog' not found
+configure.in: 4: required file `./calc.h.in' not found
 Makefile.am:6: required directory ./doc does not exist</PRE
 ></TD
 ></TR
 ></TABLE
 ></DIV
 ><P
->Create a empty directory doc and empty files 
-INSTALL, NEWS, README, AUTHORS, ChangeLog and COPYING. 
+>Create a empty directory doc and empty files
+INSTALL, NEWS, README, AUTHORS, ChangeLog and COPYING.
 The default COPYING will point to the GNU Public License (GPL).
 In a real project it would be time to add some meaningfull text in each file.</P
 ><P
@@ -243,35 +243,35 @@ WIDTH="100%"
 ><TD
 ><PRE
 CLASS="PROGRAMLISTING"
->dgt:~/dejagnu.test$ ./configure 
-creating cache ./config.cache 
-checking whether to enable maintainer-specific portions of Makefiles... no 
-checking for a BSD compatible install... /usr/bin/install -c 
-checking whether build environment is sane... yes 
-checking whether make sets ${MAKE}... yes 
-checking for working aclocal... found 
-checking for working autoconf... found 
-checking for working automake... found 
-checking for working autoheader... found 
-checking for working makeinfo... found 
-checking for gcc... gcc checking whether the C compiler (gcc ) works... yes 
-checking whether the C compiler (gcc ) is a cross-compiler... no 
+>dgt:~/dejagnu.test$ ./configure
+creating cache ./config.cache
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking for a BSD compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking whether make sets ${MAKE}... yes
+checking for working aclocal... found
+checking for working autoconf... found
+checking for working automake... found
+checking for working autoheader... found
+checking for working makeinfo... found
+checking for gcc... gcc checking whether the C compiler (gcc ) works... yes
+checking whether the C compiler (gcc ) is a cross-compiler... no
 checking whether we are using GNU C... yes
-checking whether gcc accepts -g... yes 
-checking for a BSD compatible install... /usr/bin/install -c 
-checking how to run the C preprocessor... gcc -E 
-checking for stdlib.h... yes 
-checking for strcmp... yes 
-updating cache ./config.cache 
-creating ./config.status 
+checking whether gcc accepts -g... yes
+checking for a BSD compatible install... /usr/bin/install -c
+checking how to run the C preprocessor... gcc -E
+checking for stdlib.h... yes
+checking for strcmp... yes
+updating cache ./config.cache
+creating ./config.status
 creating Makefile creating calc.h</PRE
 ></TD
 ></TR
 ></TABLE
 ></DIV
 ><P
->If you are familiar with GNU software, 
-this output should not contain any surprise to you. 
+>If you are familiar with GNU software,
+this output should not contain any surprise to you.
 Any errors should be easy to fix for such a simple program.</P
 ><P
 >Build the calc executable:</P
@@ -292,15 +292,15 @@ WIDTH="100%"
 ><TD
 ><PRE
 CLASS="PROGRAMLISTING"
->dgt:~/dejagnu.test$ make 
-gcc -DHAVE_CONFIG_H -I. -I. -I. -g -O2 -c calc.c 
+>dgt:~/dejagnu.test$ make
+gcc -DHAVE_CONFIG_H -I. -I. -I. -g -O2 -c calc.c
 gcc -g -O2 -o calc calc.o</PRE
 ></TD
 ></TR
 ></TABLE
 ></DIV
 ><P
->You prepared a few files and then called some commands. 
+>You prepared a few files and then called some commands.
 Respecting the right order assures a automatic and correctly compiled calc program. The following example resumes the correct order.</P
 ><DIV
 CLASS="EXAMPLE"
@@ -340,24 +340,24 @@ WIDTH="100%"
 ><TD
 ><PRE
 CLASS="PROGRAMLISTING"
->dgt:~/dejagnu.test$ ./calc 
-calc: version 
-Version: 1.1 
+>dgt:~/dejagnu.test$ ./calc
+calc: version
+Version: 1.1
 calc:<I
 CLASS="EMPHASIS"
 > </I
->add 3 4 
-7 
+>add 3 4
+7
 calc: multiply 3 4<I
 CLASS="EMPHASIS"
 > </I
 >
-12 
+12
 calc: multiply 2 4<I
 CLASS="EMPHASIS"
 > </I
 >
-12 
+12
 calc: quit&#13;</PRE
 ></TD
 ></TR
@@ -365,8 +365,8 @@ calc: quit&#13;</PRE
 ><P
 >Look at the intentional bug that 2 times 4 equals 12.</P
 ><P
->The tests run by DejaGnu need a file called site.exp, 
-which is automatically generated if we call &#8220;make site.exp&#8221;. 
+>The tests run by DejaGnu need a file called site.exp,
+which is automatically generated if we call &#8220;make site.exp&#8221;.
 This was the purpose of the &#8220;AUTOMAKE_OPTIONS = dejagnu&#8221; in Makefile.am.</P
 ><DIV
 CLASS="EXAMPLE"
@@ -385,8 +385,8 @@ WIDTH="100%"
 ><TD
 ><PRE
 CLASS="PROGRAMLISTING"
->dgt: make site.exp 
-dgt:~/dejagnu.test$ make site.exp 
+>dgt: make site.exp
+dgt:~/dejagnu.test$ make site.exp
 Making a new site.exp file...</PRE
 ></TD
 ></TR

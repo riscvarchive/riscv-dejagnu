@@ -7,9 +7,9 @@ runtest \- the DejaGnu test driver program
 .SH DESCRIPTION
 .I DejaGnu
 is a framework for running test suites on GNU tools. It is written in
-expect, which uses Tcl (Tool command language).  
+expect, which uses Tcl (Tool command language).
 .B runtest
-is the test driver program; use it to control what tests to run, 
+is the test driver program; use it to control what tests to run,
 and variations on how to run them.
 
 You can find a comprehensive description of DejaGnu and \fBruntest\fR in
@@ -20,7 +20,7 @@ or its Info version,
 .SH OPTIONS
 .TP
 .B --all
-Print all test output to screen. By default, only unexpected results are 
+Print all test output to screen. By default, only unexpected results are
 displayed.
 .TP
 .BI --baud \ rate
@@ -29,11 +29,11 @@ programs (like \fBtip\fR) don't use this value but instead use a separate
 initialization file.
 .TP
 .BI --connect \ type
-The type of connection to use.  The choices are 
-.BR rlogin , 
+The type of connection to use.  The choices are
+.BR rlogin ,
 .BR telnet ,
-.BR rsh , 
-.BR kermit , 
+.BR rsh ,
+.BR kermit ,
 .BR tip
 and
 .BR mondfe .
@@ -56,7 +56,7 @@ Do not run the specified tests.
 .TP
 .BI --mail \ \'name1\ name2\ ...\'
 Electronic mail addresses to receive test results.
-.TP 
+.TP
 .BI --name \ hostname
 The network hostname of the target board.
 .TP
@@ -77,16 +77,16 @@ Reboot the target board when \fBruntest\fR initializes
 Turns on
 .B expect
 internal tracing to \fIN\fR levels deep.
-.TP 
+.TP
 .BI --target \ type
 The configuration string for the target.
-.TP 
+.TP
 .BI --tool \ toolname
-Specify the tool to be tested.  \fItoolname\fR controls the test suite 
+Specify the tool to be tested.  \fItoolname\fR controls the test suite
 applied, and the associated initialization module.
 .TP
 .B --verbose,\ -v
-Turns on more debugging output from test cases and DejaGnu utility code. 
+Turns on more debugging output from test cases and DejaGnu utility code.
 Use more than once to increase output further.
 .TP
 .B --version,\ -V

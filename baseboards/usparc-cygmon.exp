@@ -13,7 +13,7 @@ proc ${board}_init { dest } {
 	if { $usparc_init_count == 3 } {
 	    return -1
 	}
-	    
+
     }
     remote_close $dest
     set shell_id [remote_open $dest]

@@ -4,15 +4,15 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.  
+# Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@gnu.org
@@ -81,7 +81,7 @@ proc i960_ld { dest prog } {
     remote_binary $dest
     remote_send $dest "\n"
     remote_expect $dest 5 {
-	-re $shell_prompt { } 
+	-re $shell_prompt { }
     }
     remote_send $dest "do\n"
     remote_expect $dest 5 {
@@ -117,7 +117,7 @@ proc i960_ld { dest prog } {
     set result 1
     remote_send $dest "\n"
     remote_expect $dest 1 {
-	-re "$shell_prompt" { 
+	-re "$shell_prompt" {
 	    set result 0
 	    exp_continue
 	}
@@ -160,14 +160,14 @@ proc i960_wait { dest timeout } {
 	    set status $expect_out(3,string)
 	    exp_continue
 	}
-	-re "(.*)$shell_prompt" { 
+	-re "(.*)$shell_prompt" {
 	    append output $expect_out(1,string)
 	    set bstatus [check_for_board_status output]
 	    if { $bstatus >= 0 } {
 		set status $bstatus
 	    }
 	}
-	-re "\[\r\n\]+" { 
+	-re "\[\r\n\]+" {
 	    # Sometimes the board goes wacky in the head, and we have
 	    # to shoot it.
 	    append output $expect_out(buffer)

@@ -29,7 +29,7 @@ set_board_info noargs 1
 set_board_info gdb,nosignals 1
 set_board_info gdb,noresults 1
 
-# More time is needed 
+# More time is needed
 set_board_info gcc,timeout 800
 set_board_info gdb,timeout 60
 

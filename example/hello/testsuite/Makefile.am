@@ -25,7 +25,7 @@
 # ------------------------------------------------------------------------
 
 AUTOMAKE_OPTIONS = dejagnu
-RUNTESTDEFAULTFLAGS = -v -v 
+RUNTESTDEFAULTFLAGS = -v -v
 
 # hello_AUTOMAKE_OPTIONS = dejagnu
 # hello_RUNTESTDEFAULTFLAGS = --srcdir $$srcdir/testsuite testsuite.exp

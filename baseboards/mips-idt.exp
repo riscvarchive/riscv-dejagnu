@@ -20,7 +20,7 @@ if { [board_info $board obj_format] == "ecoff" } {
 }
 
 # The idt interface can't return exit statuses, so gcc (ctorture et
-# al) needs to do what it can to get them.  
+# al) needs to do what it can to get them.
 set_board_info needs_status_wrapper 1
 
 # GDB needs to use "target mips" to talk to the board.

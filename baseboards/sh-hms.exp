@@ -30,7 +30,7 @@ set_board_info gdb_protocol "remote"
 # Jumping to start is how we get the program started in GDB.
 set_board_info gdb_run_command  "jump start"
 # The remote target uses a GDB stub.
-set_board_info use_gdb_stub 1 
+set_board_info use_gdb_stub 1
 # We can't do I/O.
 set_board_info gdb,noinferiorio  1
 # Or signals.

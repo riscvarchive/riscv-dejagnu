@@ -1,11 +1,11 @@
   <chapter id=gettingup>
     <title>Getting DejaGnu up and running</title>
-<para>This chapter was originally written by Niklaus Giger (ngiger@mus.ch) because he lost a week to figure out how DejaGnu works and how to write a first test.</para> 
+<para>This chapter was originally written by Niklaus Giger (ngiger@mus.ch) because he lost a week to figure out how DejaGnu works and how to write a first test.</para>
 
 <para>Follow these instructions as closely a possible in order get a good insight into how DejaGnu works, else you might run into a lot of subtle problems. You have been warned.</para>
 <para>It should be no big problems installing DejaGnu using your package manager or from the source code. Under a Debian/GNU/Linux systems just type (as root) <programlisting>apt-get dejagnu</programlisting>. These examples were run on a primary machine with a AMD K6 and a Mac Powerbook G3 serving as a remote target.</para>
 
-<para> The tests for Windows were run under Windows NT using the actual Cygwin version (1.3.x as of October 2001). It's target system was a PPC embedded system running vxWorks. 
+<para> The tests for Windows were run under Windows NT using the actual Cygwin version (1.3.x as of October 2001). It's target system was a PPC embedded system running vxWorks.
 </para>
 
 <sect1>
@@ -25,20 +25,20 @@ dgt:~$ cd ~/dejagnu.test
 </title>
 
 <programlisting>
-dgt:~/dejagnu.test$ runtest 
-WARNING: Couldn't find the global config file. 
-WARNING: No tool specified Test 
+dgt:~/dejagnu.test$ runtest
+WARNING: Couldn't find the global config file.
+WARNING: No tool specified Test
 Run By dgt on Sun Nov 25 17:07:03 2001 Native configuration is i586-pc-linux-gnu
 === tests ===
 Schedule of variations: unix
-Running target unix Using /usr/share/dejagnu/baseboards/unix.exp as board description file for target. 
-Using /usr/share/dejagnu/config/unix.exp as generic interface file for target. 
+Running target unix Using /usr/share/dejagnu/baseboards/unix.exp as board description file for target.
+Using /usr/share/dejagnu/config/unix.exp as generic interface file for target.
 ERROR: Couldn't find tool config file for unix.
 === Summary ===</programlisting>
 
 <para>We will show you later how to get rid of all the WARNING- and ERROR-messages. The files testrun.sum and testrun.log have been created, which do not interest us at this point. Let's remove them.</para>
 
-<programlisting>:~/dejagnu.test$ rm testrun.sum testrun.log 
+<programlisting>:~/dejagnu.test$ rm testrun.sum testrun.log
 </programlisting>
 </example>
 
@@ -53,8 +53,8 @@ ERROR: Couldn't find tool config file for unix.
 <sect2>
 <title>Getting the source code for the calc example</title>
 
-<para>If you are running a Debian distribution you can find the examples under /usr/share/doc/dejagnu/examples. 
-These examples seem to be missing in Red Hat's RPM. 
+<para>If you are running a Debian distribution you can find the examples under /usr/share/doc/dejagnu/examples.
+These examples seem to be missing in Red Hat's RPM.
 In this case download the sources of DejaGnu and adjust the pathes to the DejaGnu examples accordingly.</para>
 </sect2>
 </sect1>
@@ -62,7 +62,7 @@ In this case download the sources of DejaGnu and adjust the pathes to the DejaGn
 <sect1>
 <title>Create a minimal project, e.g. calc</title>
 
-<para>In this section you will to start a small project, 
+<para>In this section you will to start a small project,
 using the sample application calc, which is part of your DejaGnu distribution</para>
 
 <sect2><title>A simple project without the GNU autotools</title>
@@ -71,8 +71,8 @@ using the sample application calc, which is part of your DejaGnu distribution</p
 
 <para>The generated site.exp should like like:</para>
 <programlisting>
-set tool calc 
-set srcdir . 
+set tool calc
+set srcdir .
 set objdir /home/dgt/dejagnu.test
 </programlisting></sect2>
 
@@ -96,27 +96,27 @@ dgt:~/dejagnu.test$ cp -r /usr/share/doc/dejagnu/examples/calc/\
 dgt:~/dejagnu.test$ aclocal
 </programlisting>
 
-<para>autoconf is another part of the auto-tools. 
+<para>autoconf is another part of the auto-tools.
 Run it to generate configure based on information contained in configure.in.</para>
 
 <programlisting>
 dgt:~/dejagnu.test$ autoconf
 </programlisting>
 
-<para>autoheader is another part of the auto-tools. 
+<para>autoheader is another part of the auto-tools.
 Run it to generate calc.h.in. </para>
 
 <programlisting>
 dgt:~/dejagnu.test$ autoheader
 </programlisting>
 
-<para>The Makefile.am of this example was developed as port of the DejaGnu 
-distribution. 
-Adapt Makefile.am for this test. Replace the line 
-&ldquo;&num;noinst_PROGRAMS = calc&rdquo; to 
-&ldquo;bin_PROGRAMS = calc&rdquo;. 
+<para>The Makefile.am of this example was developed as port of the DejaGnu
+distribution.
+Adapt Makefile.am for this test. Replace the line
+&ldquo;&num;noinst_PROGRAMS = calc&rdquo; to
+&ldquo;bin_PROGRAMS = calc&rdquo;.
 Change the RUNTESTDEFAULTFLAGS from
-&ldquo;&dollar;&dollar;srcdir/testsuite&rdquo; to 
+&ldquo;&dollar;&dollar;srcdir/testsuite&rdquo; to
 &ldquo;./testsuite&rdquo;.</para>
 
 <para>Running automake at this point contains a series of warning in its output as shown in the following example:</para>
@@ -125,22 +125,22 @@ Change the RUNTESTDEFAULTFLAGS from
 <title>Sample output of automake with missing files</title>
 <programlisting>
 dgt:~/dejagnu.test$ automake --add-missing
-automake: configure.in: installing `./install-sh' 
-automake: configure.in: installing `./mkinstalldirs' 
-automake: configure.in: installing `./missing' 
-automake: Makefile.am: installing `./INSTALL' 
-automake: Makefile.am: required file `./NEWS' not found 
-automake: Makefile.am: required file `./README' not found 
-automake: Makefile.am: installing `./COPYING' 
-automake: Makefile.am: required file `./AUTHORS' not found 
-automake: Makefile.am: required file `./ChangeLog' not found 
-configure.in: 4: required file `./calc.h.in' not found 
+automake: configure.in: installing `./install-sh'
+automake: configure.in: installing `./mkinstalldirs'
+automake: configure.in: installing `./missing'
+automake: Makefile.am: installing `./INSTALL'
+automake: Makefile.am: required file `./NEWS' not found
+automake: Makefile.am: required file `./README' not found
+automake: Makefile.am: installing `./COPYING'
+automake: Makefile.am: required file `./AUTHORS' not found
+automake: Makefile.am: required file `./ChangeLog' not found
+configure.in: 4: required file `./calc.h.in' not found
 Makefile.am:6: required directory ./doc does not exist
 </programlisting>
 </example>
 
-<para>Create a empty directory doc and empty files 
-INSTALL, NEWS, README, AUTHORS, ChangeLog and COPYING. 
+<para>Create a empty directory doc and empty files
+INSTALL, NEWS, README, AUTHORS, ChangeLog and COPYING.
 The default COPYING will point to the GNU Public License (GPL).
 In a real project it would be time to add some meaningfull text in each file.
 </para>
@@ -150,33 +150,33 @@ In a real project it would be time to add some meaningfull text in each file.
 <title>Sample output of configure
 </title>
 <programlisting>
-dgt:~/dejagnu.test$ ./configure 
-creating cache ./config.cache 
-checking whether to enable maintainer-specific portions of Makefiles... no 
-checking for a BSD compatible install... /usr/bin/install -c 
-checking whether build environment is sane... yes 
-checking whether make sets ${MAKE}... yes 
-checking for working aclocal... found 
-checking for working autoconf... found 
-checking for working automake... found 
-checking for working autoheader... found 
-checking for working makeinfo... found 
-checking for gcc... gcc checking whether the C compiler (gcc ) works... yes 
-checking whether the C compiler (gcc ) is a cross-compiler... no 
+dgt:~/dejagnu.test$ ./configure
+creating cache ./config.cache
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking for a BSD compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking whether make sets ${MAKE}... yes
+checking for working aclocal... found
+checking for working autoconf... found
+checking for working automake... found
+checking for working autoheader... found
+checking for working makeinfo... found
+checking for gcc... gcc checking whether the C compiler (gcc ) works... yes
+checking whether the C compiler (gcc ) is a cross-compiler... no
 checking whether we are using GNU C... yes
-checking whether gcc accepts -g... yes 
-checking for a BSD compatible install... /usr/bin/install -c 
-checking how to run the C preprocessor... gcc -E 
-checking for stdlib.h... yes 
-checking for strcmp... yes 
-updating cache ./config.cache 
-creating ./config.status 
+checking whether gcc accepts -g... yes
+checking for a BSD compatible install... /usr/bin/install -c
+checking how to run the C preprocessor... gcc -E
+checking for stdlib.h... yes
+checking for strcmp... yes
+updating cache ./config.cache
+creating ./config.status
 creating Makefile creating calc.h
 </programlisting>
 </example>
 
-<para>If you are familiar with GNU software, 
-this output should not contain any surprise to you. 
+<para>If you are familiar with GNU software,
+this output should not contain any surprise to you.
 Any errors should be easy to fix for such a simple program.</para>
 
 <para>Build the calc executable:</para>
@@ -185,13 +185,13 @@ Any errors should be easy to fix for such a simple program.</para>
 <title>Sample output building calc
 </title>
 <programlisting>
-dgt:~/dejagnu.test$ make 
-gcc -DHAVE_CONFIG_H -I. -I. -I. -g -O2 -c calc.c 
+dgt:~/dejagnu.test$ make
+gcc -DHAVE_CONFIG_H -I. -I. -I. -g -O2 -c calc.c
 gcc -g -O2 -o calc calc.o
 </programlisting>
 </example>
 
-<para>You prepared a few files and then called some commands. 
+<para>You prepared a few files and then called some commands.
 Respecting the right order assures a automatic and correctly compiled calc program. The following example resumes the correct order.</para>
 
 <example>
@@ -211,29 +211,29 @@ dgt:~/dejagnu.test$ make
 A sample session might look like this:</para>
 
 <programlisting>
-dgt:~/dejagnu.test$ ./calc 
-calc: version 
-Version: 1.1 
-calc:<emphasis> </emphasis>add 3 4 
-7 
+dgt:~/dejagnu.test$ ./calc
+calc: version
+Version: 1.1
+calc:<emphasis> </emphasis>add 3 4
+7
 calc: multiply 3 4<emphasis> </emphasis>
-12 
+12
 calc: multiply 2 4<emphasis> </emphasis>
-12 
+12
 calc: quit
 
 </programlisting>
 
 <para>Look at the intentional bug that 2 times 4 equals 12.</para>
-<para>The tests run by DejaGnu need a file called site.exp, 
-which is automatically generated if we call &ldquo;make site.exp&rdquo;. 
+<para>The tests run by DejaGnu need a file called site.exp,
+which is automatically generated if we call &ldquo;make site.exp&rdquo;.
 This was the purpose of the &ldquo;AUTOMAKE_OPTIONS = dejagnu&rdquo; in Makefile.am.</para>
 
 <example>
 <title>Sample output generating a site.exp</title>
 <programlisting>
-dgt: make site.exp 
-dgt:~/dejagnu.test$ make site.exp 
+dgt: make site.exp
+dgt:~/dejagnu.test$ make site.exp
 Making a new site.exp file...
 </programlisting>
 </example>
@@ -252,48 +252,48 @@ Making a new site.exp file...
 <title>Sample output of runtest in a configured directory</title>
 
 <programlisting>
-dgt:~/dejagnu.test$ make check 
-make check-DEJAGNU 
-make[1]: Entering directory `/home/dgt/dejagnu.test' srcdir=`cd . && pwd`; export srcdir; \ 
-EXPECT=expect; export EXPECT; \ runtest=runtest; \ 
+dgt:~/dejagnu.test$ make check
+make check-DEJAGNU
+make[1]: Entering directory `/home/dgt/dejagnu.test' srcdir=`cd . && pwd`; export srcdir; \
+EXPECT=expect; export EXPECT; \ runtest=runtest; \
 if /bin/sh -c "$runtest --version" > /dev/null 2>&1; then \
-$runtest --tool calc CALC=`pwd`/calc --srcdir ./testsuite ; \ 
-else echo "WARNING: could not find \`runtest'" 1>&2; :;\ 
-fi 
-WARNING: Couldn't find the global config file. 
-WARNING: Couldn't find tool init file 
-Test Run By dgt on Sun Nov 25 21:42:21 2001 
+$runtest --tool calc CALC=`pwd`/calc --srcdir ./testsuite ; \
+else echo "WARNING: could not find \`runtest'" 1>&2; :;\
+fi
+WARNING: Couldn't find the global config file.
+WARNING: Couldn't find tool init file
+Test Run By dgt on Sun Nov 25 21:42:21 2001
 Native configuration is i586-pc-linux-gnu
 
        === calc tests ===
 
-Schedule of variations: 
+Schedule of variations:
    unix
 
-Running target unix 
-Using /usr/share/dejagnu/baseboards/unix.exp as board description file for target. 
-Using /usr/share/dejagnu/config/unix.exp as generic interface file for target. 
+Running target unix
+Using /usr/share/dejagnu/baseboards/unix.exp as board description file for target.
+Using /usr/share/dejagnu/config/unix.exp as generic interface file for target.
 Using ./testsuite/config/unix.exp as tool-and-target-specific interface file.
-Running ./testsuite/calc.test/calc.exp ... 
+Running ./testsuite/calc.test/calc.exp ...
 FAIL: multiply2 (bad match)
 
 === calc Summary ===
 
-# of expected passes 5 
-# of unexpected failures 1 
+# of expected passes 5
+# of unexpected failures 1
 /home/Dgt/dejagnu.test/calc version Version: 1.1
-make[1]: *** [check-DEJAGNU] Fehler 1 
+make[1]: *** [check-DEJAGNU] Fehler 1
 make[1]: Leaving directory `/home/Dgt/dejagnu.test' make: *** [check-am] Fehler 2
 </programlisting>
 </example>
 
 <para>Did you see the  line &ldquo;FAIL:&ldquo;? The test cases for calc catch the bug in the calc.c file. Fix the error in calc.c later as the following examples assume a unchanged calc.c.</para>
 
-<para>Examine the output files calc.sum and calc.log. 
+<para>Examine the output files calc.sum and calc.log.
 Try to understand the testcases written in ~/dejagnu.test/testsuite/calc.test/calc.exp.
 To understand Expect you might take a look at the book &quot;Exploring Expect&quot;,
-which is an excellent resource for learning and using Expect. (Pub: O'Reilly, ISBN 1-56592-090-2) 
-The book contains hundreds of examples and also includes a tutorial on Tcl. 
+which is an excellent resource for learning and using Expect. (Pub: O'Reilly, ISBN 1-56592-090-2)
+The book contains hundreds of examples and also includes a tutorial on Tcl.
 Exploring Expect is 602 pages long.&nbsp;</para>
 </sect2>
 
@@ -306,7 +306,7 @@ Exploring Expect is 602 pages long.&nbsp;</para>
 puts "I am ~/.dejagnurc"
 </programlisting>
 
-<para>Rerun make check. Test whether the output contains "I am ~/.dejagnurc". 
+<para>Rerun make check. Test whether the output contains "I am ~/.dejagnurc".
 Create ~/my_dejagnu.exp and insert the following line:</para>
 
 <programlisting>
@@ -319,16 +319,16 @@ puts "I am ~/my_dejagnu.exp"
 dgt:~/dejagnu.test$ export DEJAGNU=~/my_dejagnu.exp
 </programlisting>
 
-<para>Run &ldquo;make check&rdquo; again. The output should not contain 
-&ldquo;WARNING: Couldn't find the global config file.&rdquo;. 
+<para>Run &ldquo;make check&rdquo; again. The output should not contain
+&ldquo;WARNING: Couldn't find the global config file.&rdquo;.
 Create the sub-directory lib. Create the file &ldquo;calc.exp&rdquo; in it and insert the following line:</para>
 
 <programlisting>
 puts "I am lib/calc.exp"
 </programlisting>
 
-<para>The last warning &ldquo;WARNING: Couldn't find tool init file&rdquo; 
-should not be part of the output of make check. 
+<para>The last warning &ldquo;WARNING: Couldn't find tool init file&rdquo;
+should not be part of the output of make check.
 Create the directory &tilde;/boards. Create the file &tilde;/boards/standard.exp and insert the following line:</para>
 
 <programlisting>
@@ -340,39 +340,39 @@ puts "I am boards/standard.exp"
 <example>
 <title>Sample output of runtest with the usual configuration files</title>
 <programlisting>
-dgt:~/dejagnu.test$ make check 
+dgt:~/dejagnu.test$ make check
 <...>
-fi 
-I am ~/.dejagnurc 
-I am ~/my_dejagnu.exp 
-I am lib/calc.exp 
-Test Run By dgt on Sun Nov 25 22:19:14 2001 
+fi
+I am ~/.dejagnurc
+I am ~/my_dejagnu.exp
+I am lib/calc.exp
+Test Run By dgt on Sun Nov 25 22:19:14 2001
 Native configuration is i586-pc-linux-gnu
 
      === calc tests ===
 Using /home/Dgt/boards/standard.exp as standard board description\
-file for build. 
-I am ~/boards/standard.exp 
+file for build.
+I am ~/boards/standard.exp
 Using /home/Dgt/boards/standard.exp as standard board description\
- file for host. 
-I am ~/boards/standard.exp 
+ file for host.
+I am ~/boards/standard.exp
 
-Schedule of variations: 
+Schedule of variations:
   unix
 
-Running target unix 
+Running target unix
 Using /home/Dgt/boards/standard.exp as standard board description\
- file for target. 
-I am ~/boards/standard.exp 
+ file for target.
+I am ~/boards/standard.exp
 Using /usr/share/dejagnu/baseboards/unix.exp as board description file\
-for target. 
+for target.
 <...>
 </programlisting>
 </example>
 
 <para>It is up to you to decide when and where to use any of the above
-mentioned config files for customizing. 
-This chapters showed you where and in which order the different config 
+mentioned config files for customizing.
+This chapters showed you where and in which order the different config
 files are run.</para>
 </sect2>
 
@@ -402,17 +402,17 @@ set verbose 9
 <title>Testing &ldquo;Hello world&rdquo; locally</title>
 
 <para>This test checks, whether the built-in shell command &ldquo;echo Hello world&rdquo;
- will really write &ldquo;Hello world&rdquo; on the console. 
-Create the file ~/dejagnu.test/testsuite/calc.test/local_echo.exp. 
+ will really write &ldquo;Hello world&rdquo; on the console.
+Create the file ~/dejagnu.test/testsuite/calc.test/local_echo.exp.
 It should contain the following lines</para>
 
 <example>
 <title>A first (local) test case</title>
 <programlisting>
-set test "Local Hello World" 
-send "echo Hello World" 
-expect { 
-   -re "Hello World"  { pass "$test" } 
+set test "Local Hello World"
+send "echo Hello World"
+expect {
+   -re "Hello World"  { pass "$test" }
 }
 </programlisting>
 </example>
@@ -426,26 +426,26 @@ expect {
 
 <para>Testing remote targets is a lot trickier especially if you are using an
  embedded target
-which has no built in support for things like a compiler, ftp server or a Bash-shell. 
+which has no built in support for things like a compiler, ftp server or a Bash-shell.
 Before you can test calc on a remote target you have to acquire a few basics skills.</para>
 
 <sect2>
 <title>Setup telnet to your own host</title>
-<para>The easiest remote host is usually the host you are working on. 
-In this example we will use telnet to login in your own workstation. 
-For security reason you should never have a telnet deamon running on 
+<para>The easiest remote host is usually the host you are working on.
+In this example we will use telnet to login in your own workstation.
+For security reason you should never have a telnet deamon running on
 machine connected on the internet, as password and usernames are transmitted
- in clear text. 
+ in clear text.
 We assume you know how to setup your machine for a telnet daemon.</para>
 
-<para>Next try whether you may login in your own host by issuing the 
-command &ldquo;telnet localhost.1&rdquo;. In order to be able to 
+<para>Next try whether you may login in your own host by issuing the
+command &ldquo;telnet localhost.1&rdquo;. In order to be able to
 distinguish between a normal session an a telnet login add the following lines to /home/dgt/.bashrc.</para>
 
 <programlisting>
 if [ "$REMOTEHOST" ]
-then 
-   PS1='remote:\w\$ ' 
+then
+   PS1='remote:\w\$ '
 fi
 </programlisting>
 
@@ -455,17 +455,17 @@ fi
 <title>Sample log of a telnet login to localhost</title>
 <programlisting>
 dgt:~/dejagnu.test$ telnet localhost
-Trying 127.0.0.1... 
-Connected to 127.0.0.1. 
-Escape character is '^]'. 
-Debian GNU/Linux testing/unstable Linux 
+Trying 127.0.0.1...
+Connected to 127.0.0.1.
+Escape character is '^]'.
+Debian GNU/Linux testing/unstable Linux
 K6Linux login: dgt
-Password: 
-Last login: Sun Nov 25 22:46:34 2001 from localhost on pts/4 
-Linux K6Linux 2.4.14 #1 Fre Nov 16 19:28:25 CET 2001 i586 unknown 
-No mail. 
+Password:
+Last login: Sun Nov 25 22:46:34 2001 from localhost on pts/4
+Linux K6Linux 2.4.14 #1 Fre Nov 16 19:28:25 CET 2001 i586 unknown
+No mail.
 remote:~$ exit
-logout 
+logout
 Connection closed by foreign host.
 </programlisting>
 </example>
@@ -473,23 +473,23 @@ Connection closed by foreign host.
 
 <sect2>
 <title>A test case for login via telnet</title>
-<para>In order to define a correct setup we have add a line containing 
-&ldquo;set target unix&rdquo; either to ~/.dejagnurc or to ~/my_dejagnu.exp. 
+<para>In order to define a correct setup we have add a line containing
+&ldquo;set target unix&rdquo; either to ~/.dejagnurc or to ~/my_dejagnu.exp.
 In ~/boards/standard.exp add the following four lines to define a few patterns for the DejaGnu telnet login procedure.</para>
 
 <example>
 <title>Defining a remote target board</title>
 <programlisting>
-set_board_info shell_prompt    "remote:" 
-set_board_info telnet_username "dgt" 
-set_board_info telnet_password "top_secret" 
+set_board_info shell_prompt    "remote:"
+set_board_info telnet_username "dgt"
+set_board_info telnet_password "top_secret"
 set_board_info hostname        "localhost"
 
 </programlisting>
 </example>
 
-<para>As DejaGnu will be parsing the telnet session output for some well 
-known pattern the output there are a lot of things that can go wrong. 
+<para>As DejaGnu will be parsing the telnet session output for some well
+known pattern the output there are a lot of things that can go wrong.
 If you have any problems verify your setup:</para>
 <itemizedlist>
 
@@ -506,24 +506,24 @@ If you have any problems verify your setup:</para>
 <para>The LANG environment variable must be either empty or set to &ldquo;C&rdquo;. </para></listitem>
 
 </itemizedlist>
-<para>To test the login via telnet write a sample test case. 
-Create the file ~/dejagnu.test/testsuite/calc.test/remote_echo.exp and 
+<para>To test the login via telnet write a sample test case.
+Create the file ~/dejagnu.test/testsuite/calc.test/remote_echo.exp and
 add the following few lines:</para>
 
 <example>
 <title>DejaGnu script for logging in into a remote target</title>
 <programlisting>
 puts "this is remote_echo.exp target for $target "
-target_info $target 
-#set verbose 9 
-set shell_id [remote_open $target] 
-set test "Remote login to $target" 
+target_info $target
+#set verbose 9
+set shell_id [remote_open $target]
+set test "Remote login to $target"
 #set verbose 0
 puts "Spawn id for remote shell is $shell_id"
-if { $shell_id > 0 } { 
-   pass "$test" 
-} else { 
-   fail "Remote open to $target" 
+if { $shell_id > 0 } {
+   pass "$test"
+} else {
+   fail "Remote open to $target"
 }
 </programlisting>
 </example>
@@ -531,9 +531,9 @@ if { $shell_id > 0 } {
 <para>In the runtest output you should find something like:</para>
 
 <programlisting>
-Running ./testsuite/calc.test/local_echo.exp ... 
-Running ./testsuite/calc.test/remote_echoo.exp ... 
-this is remote_echo.exp target is unix 
+Running ./testsuite/calc.test/local_echo.exp ...
+Running ./testsuite/calc.test/remote_echoo.exp ...
+this is remote_echo.exp target is unix
 Spawn id for remote shell is exp7
 </programlisting>
 
@@ -543,19 +543,19 @@ parse the input. </para></sect2>
 <sect2>
 <title>Remote testing &ldquo;Hello world&rdquo;</title>
 
-<para>Next you will transform the above &ldquo;hello world&rdquo; example to 
-its remote equivalent. 
+<para>Next you will transform the above &ldquo;hello world&rdquo; example to
+its remote equivalent.
 This can be done by adding the following lines to our file remote_echo.exp.</para>
 
 <example>
 <title>A first (local) remote "Hello world" test</title>
 <programlisting>
-set test "Remote_send Hello World" 
+set test "Remote_send Hello World"
 set status [remote_send $target "echo \"Hello\" \"World\"\n" ]
 pass "$test"
-set test "Remote_expect Hello World" 
-remote_expect $target 5 { 
-   -re "Hello World"  { pass "$test" } 
+set test "Remote_expect Hello World"
+remote_expect $target 5 {
+   -re "Hello World"  { pass "$test" }
 }
 </programlisting>
 </example>
@@ -565,12 +565,12 @@ remote_expect $target 5 {
 
 <para>Have a look at the procedures in /usr/share/dejagnu/remote.exp to have an overview of the offered procedures and their features. </para>
 
-<para>Now setup a real target. 
-In the following example we assume as target a PowerBook running Debian. 
-As above add a test user "dgt", install telnet and FTP servers. 
-In order to distinguish it from the host add the line 
-<programlisting>PS1='test:>'</programlisting> to /home/dgt/.bash_profile. 
-Also add a corresponding entry "powerbook" to /etc/hosts and verify that you 
+<para>Now setup a real target.
+In the following example we assume as target a PowerBook running Debian.
+As above add a test user "dgt", install telnet and FTP servers.
+In order to distinguish it from the host add the line
+<programlisting>PS1='test:>'</programlisting> to /home/dgt/.bash_profile.
+Also add a corresponding entry "powerbook" to /etc/hosts and verify that you
 are able to ping, telnet and ftp to the target "powerbook".</para>
 
 <para>In order to let runtest run its test on the "powerbook" target change the following lines in ~/boards/standard.exp:</para>
@@ -615,11 +615,11 @@ puts "status of remote_download ist $status"
 </programlisting>
 </example>
 
-<para>After running runtest again, check whether the file dejagnu2 exists on the target. 
+<para>After running runtest again, check whether the file dejagnu2 exists on the target.
 
 This example will only work if the rcp command works with your target.
 
-If you have a working FTP-server on the target you can use it by adding the 
+If you have a working FTP-server on the target you can use it by adding the
 following lines to ~/boards/standard.exp:</para>
 
 <example>
@@ -637,8 +637,8 @@ set_board_info ftp_password    "1234"
 <title>Preparing for crosscompilation</title>
 
 <para>For crosscompiling you need working binutils, gcc and a base library like
-libc or glib for your target. 
-It is beyond the scope of this document to describe how to get it working. 
+libc or glib for your target.
+It is beyond the scope of this document to describe how to get it working.
 The following examples assume a cross compiler for PowerPC which is called linux-powerpc-gcc.
 </para>
 
@@ -646,12 +646,12 @@ The following examples assume a cross compiler for PowerPC which is called linux
 
 <programlisting>
 AM_CONFIG_HEADER(calc.h)
-AC_CANONICAL_TARGET([]) 
+AC_CANONICAL_TARGET([])
 AM_INIT_AUTOMAKE(calc, 1.1)
 </programlisting>
 
-<para>You need to run automake 2.5 or later. 
-Depending on your installation calling autoconf2.5 instead of autoconf is not needed. 
+<para>You need to run automake 2.5 or later.
+Depending on your installation calling autoconf2.5 instead of autoconf is not needed.
 The sequence to regenerate all files is:</para>
 
 <example>
@@ -660,13 +660,13 @@ The sequence to regenerate all files is:</para>
 $ autoconf2.5
 $ autoheader
 $ automake
-$ ./configure --host=powerpc-linux --target=powerpc-linux 
+$ ./configure --host=powerpc-linux --target=powerpc-linux
 configure: WARNING: If you wanted to set the --build type, don't use --host.
     If a cross compiler is detected then cross compile mode will be used.
 checking build system type... ./config.guess: ./config.guess: No such file or directory
 configure: error: cannot guess build type; you must specify one
 $ cp /usr/share/automake/config.guess .
-$ ./configure --host=powerpc-linux --target=powerpc-linux 
+$ ./configure --host=powerpc-linux --target=powerpc-linux
 configure: WARNING: If you wanted to set the --build type, don't use --host.
 If a cross compiler is detected then cross compile mode will be used. \
 checking build system type... i586-pc-linux-gnu
@@ -685,7 +685,7 @@ C Compiler flags: -g -O2
 <para>Everything should be ready to recompile for the target:</para>
 
 <programlisting>$ make
-powerpc-linux-gcc -DHAVE_CONFIG_H -I. -I. -I. -g -O2 -c calc.c 
+powerpc-linux-gcc -DHAVE_CONFIG_H -I. -I. -I. -g -O2 -c calc.c
 powerpc-linux-gcc -g -O2 -o calc calc.o
 
 </programlisting>
@@ -755,7 +755,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       <filename>Makefile</filename>.</para>
 
     </sect1>
-    
+
     <sect1 id=runtest xreflabel="Runtest">
       <title>Runtest</title>
 
@@ -792,14 +792,14 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
           case to determine whether you should amend it to stop expecting
           failure.</para></listitem>
 	</varlistentry>
- 
+
 	<varlistentry>
 	  <term>FAIL</term>
           <listitem><para>A test failed, although it was expected to succeed.
           This may indicate regress; inspect the test case and the failing
           software to ocate the bug.</para></listitem>
 	</varlistentry>
- 
+
 	<varlistentry>
 	  <term>XFAIL</term>
           <listitem><para>A test failed, but it was expected to fail.  This
@@ -808,7 +808,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
           by the test, the outcome is <emphasis>UNSUPPORTED</emphasis>
           instead.</para></listitem>
 	</varlistentry>
- 
+
 	<varlistentry>
 	  <term>UNRESOLVED</term>
           <listitem><para>Output from a test requires manual inspection; the
@@ -816,7 +816,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
           example, your tests can report this outcome is when a test does not
           complete as expected.</para></listitem>
 	</varlistentry>
- 
+
 	<varlistentry>
 	  <term>UNTESTED</term>
           <listitem><para>A test case is not yet complete, and in particular
@@ -825,7 +825,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
           ``tests'' that note explicitly the absence of a real test case for a
           particular property.</para></listitem>
 	</varlistentry>
- 
+
 	<varlistentry>
 	  <term>UNSUPPORTED</term>
           <listitem><para>A test depends on a conditionally available feature
@@ -1061,7 +1061,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  test. Executable tool names (and paths) are recorded in
 	  <filename>site.exp</filename> and you can override them by specifying
 	  Tcl variables on the command line.</para>
-	  
+
 	  <para>For example, including "<option>--tool</option> gcc" on the
 	  <emphasis>runtest</emphasis> command line runs tests from all test
 	  subdirectories whose names match <filename>gcc.*</filename>, and uses
@@ -1072,7 +1072,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  <emphasis>GCC=binname</emphasis> on the <emphasis>runtest</emphasis>
 	  command line.</para></listitem>
 	</varlistentry>
-        
+
 	<varlistentry>
           <term><option>--tool_exec [name]</option></term>
 	  <listitem><para>The path to the tool executable to
@@ -1095,7 +1095,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
           file, but not in the summary (<filename>*.sum</filename>) log
           file.</para></listitem>
 	</varlistentry>
-        
+
 	<varlistentry>
           <term><option>--version</option> (-V)</term>
 	  <listitem><para>Prints out the version numbers of DejaGnu,
@@ -1130,7 +1130,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	</varlistentry>
 
 	<varlistentry>
-          <term><filename>testfile</filename>.exp="testfile1 ..."</term> 
+          <term><filename>testfile</filename>.exp="testfile1 ..."</term>
 	  <listitem><para>Specify a subset of tests in a suite to run. For
 	  compiler or assembler tests, which often use a single
 	  <emphasis>.exp</emphasis> script covering many different source
@@ -1185,7 +1185,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 		/usr/latest/bin/gdb version 4.14.4 -nx
 	</screen>
 
-	<para>You can use the option <emphasis>--srcdir</emphasis> to point to 
+	<para>You can use the option <emphasis>--srcdir</emphasis> to point to
 	some other directory containing a collection of tests:</para>
 
 	<screen>
@@ -1211,7 +1211,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	<filename>gdb.sum</filename> and
 	<filename>gdb.log</filename>.)</para>
       </sect2>
-    </sect1>  
+    </sect1>
 
     <sect1 id=outputfiles xreflabel="Output Files">
 
@@ -1270,7 +1270,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	FAIL:   help run "r" abbreviation
 	Running ./gdb.t10/crossload.exp ...
 	PASS:   m68k-elf (elf-big) explicit format; loaded
-	XFAIL:  mips-ecoff (ecoff-bigmips) "ptype v_signed_char" signed C types 
+	XFAIL:  mips-ecoff (ecoff-bigmips) "ptype v_signed_char" signed C types
                 === gdb Summary ===
 	# of expected passes 5
 	# of expected failures 1
@@ -1394,7 +1394,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	{command}? no
 	break gdbme.c:34
 	Breakpoint 8 at 0x23d8: file gdbme.c, line 34.
-	(gdb) expect: does {break gdbme.c:34\r\nBreakpoint 8 at 0x23d8: 
+	(gdb) expect: does {break gdbme.c:34\r\nBreakpoint 8 at 0x23d8:
 	file gdbme.c, line 34.\r\n(gdb) } (spawn_id 6) match pattern
 	{Breakpoint.*at.* file gdbme.c, line 34.*\(gdb\) $}? yes
 	expect: set expect_out(0,start) {18}
@@ -1417,7 +1417,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	<listitem><para>Empty output for the first attempted match.  The
 	first set of attempted matches shown ran against the output
 	<emphasis>{}</emphasis> --- that is, no
-	output. <productname>Expect</productname> begins 
+	output. <productname>Expect</productname> begins
 	attempting to match the patterns supplied immediately; often,
 	the first pass is against incomplete output (or completely
 	before all output, as in this case).</para></listitem>
@@ -1456,10 +1456,10 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     </sect2>
    </sect1>
   </chapter>
-  
+
   <chapter id=Customizing xreflabel="Customizing DejaGnu">
     <title>Customizing DejaGnu</title>
-    
+
     <para>The site configuration file, <filename>site.exp</filename>,
     captures configuration-dependent values and propagates them to the
     DejaGnu test environment using Tcl variables.  This ties the
@@ -1494,7 +1494,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     either rely on and use, or override, any of the global values from
     the global <filename>site.exp</filename> file.</para>
 
-    <para>You can usually generate or update the testsuite's local 
+    <para>You can usually generate or update the testsuite's local
     <filename>site.exp</filename> by typing <command>make
     site.exp</command> in the testsuite directory, after the test
     suite is configured.</para>
@@ -1513,7 +1513,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     <sect1 id=local xreflabel="Local Config File">
       <title>Local Config File</title>
-    
+
       <para>It is usually more convenient to keep these <emphasis>manual
       overrides</emphasis> in the <filename>site.exp</filename>
       local to each test directory, rather than in the global
@@ -1579,7 +1579,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       <example>
         <title>Local Config File</title>
 
-      <programlisting>  
+      <programlisting>
       ## these variables are automatically generated by make ##
       # Do not edit here. If you wish to override these values
       # add them to the last section
@@ -1594,8 +1594,8 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       set tmpdir /build/devo-builds/i586-pc-linux-gnulibc1/gcc/testsuite
       set srcdir "${srcdir}/testsuite"
       ## All variables above are generated by configure. Do Not Edit ##
-    
-      </programlisting>  
+
+      </programlisting>
     </example>
 
     <para>This file defines the required fields for a local config
@@ -1608,7 +1608,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     </sect1>
      <sect1 id=global xreflabel="Global Config File">
       <title>Global Config File</title>
-    
+
       <para>The master config file is where all the target specific
       config variables for a whole site get set. The idea is
       that for a centralized testing lab where people have to share a
@@ -1686,7 +1686,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     <sect1 id=boardconfig xreflabel="Board Config File">
       <title>Board Config File</title>
-   
+
       <para>The board config file is where board specfic config data
       is stored. A board config file contains all the higher-level
       configuration settings. There is a rough inheritance scheme, where it is
@@ -1896,7 +1896,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     <sect1 id=configfile xreflabel="Config File Values">
       <title>Config File Values</title>
-    
+
       <para>DejaGnu uses a named array in Tcl to hold all the info for
       each machine. In the case of a canadian cross, this means host
       information as well as target information. The named array is
@@ -1911,7 +1911,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	variables captured in the first section, but also specify
 	default values for all on the <command>runtest</command>
 	command line options.  Save for <option>--debug</option>,
-	<option>--help</option>, and <option>--version</option>, each 
+	<option>--help</option>, and <option>--version</option>, each
 	command line option has an associated Tcl variable.  Use the
 	Tcl <command>set</command> command to specify a new default
 	value (as for the configuration variables).  The following
@@ -2032,7 +2032,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     <sect2 id=personal xreflabel="Personal Config File">
       <title>Personal Config File</title>
-    
+
       <para>The personal config file is used to customize
       <command>runtest's</command> behaviour for each person. It's
       typically used to set the user prefered setting for verbosity,
@@ -2063,13 +2063,13 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     </sect1>
 
   </chapter>
-  
+
   <chapter id=Extending xreflabel="Extending DejaGnu">
     <title>Extending DejaGnu</title>
-    
+
     <sect1 id=addsuite  xreflabel="Adding a new Testsuite">
       <title>Adding A New Testsuite</title>
-    
+
       <para>The testsuite for a new tool should always be located in that tools
       source directory. DejaGnu require the directory be named
       <filename>testsuite</filename>. Under this directory, the test cases go
@@ -2081,7 +2081,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     <sect1 id=addtool xreflabel="Adding A New Tool">
       <title>Adding A New Tool</title>
-    
+
       <para>In general, the best way to learn how to write (code or even prose)
       is to read something similar.  This principle applies to test cases and
       to testsuites.  Unfortunately, well-established testsuites have a way
@@ -2109,11 +2109,11 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       steps to begin building a testsuite for a program example.</para>
 
       <itemizedlist mark=bullet>
-      
+
       <listitem><para>Create or select a directory to contain your new
       collection of tests. Change into that directory (shown here as
       <filename>testsuite</filename>):</para>
-              
+
       <para>Create a <filename>configure.in</filename> file in this directory,
       to control configuration-dependent choices for your tests.  So far as
       DejaGnu is concerned, the important thing is to set a value for the
@@ -2164,10 +2164,10 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	# The flags to pass to runtest
 	RUNTESTFLAGS =
 
-	# Execute the tests 
+	# Execute the tests
 	check: site.exp all
         $(RUNTEST) $(RUNTESTFLAGS) \
-            --tool <symbol>${example}</symbol> --srcdir $(srcdir) 
+            --tool <symbol>${example}</symbol> --srcdir $(srcdir)
 
 	# Make the local config file
 	site.exp: ./config.status Makefile
@@ -2206,7 +2206,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	    </programlisting>
 	    </example>
 	  </listitem>
-	  
+
 	  <listitem><para>Create a directory (in <filename>testsuite</filename>)
 	  called <filename>config</filename>. Make a <emphasis>Tool Init
 	  File</emphasis> in this directory. Its name must start with the
@@ -2223,9 +2223,9 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
 	  <example>
 	    <title>Simple Batch Program Tool Init File</title>
-	  
+
 	  <programlisting>
-	  
+
 	  proc foo_exit {} {}
 	  proc foo_version {} {}
 
@@ -2321,7 +2321,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     <sect1 id=addtarget xreflabel="Adding A New Target">
       <title>Adding A New Target</title>
-    
+
       <para>DejaGnu has some additional requirements for target support, beyond
       the general-purpose provisions of configure. DejaGnu must actively
       communicate with the target, rather than simply generating or managing
@@ -2365,7 +2365,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     <sect1 id=addboard xreflabel="Adding A New Board">
       <title>Adding A New Board</title>
-    
+
       <para>Adding a new board consists of creating a new board config
       file. Examples are in
       <filename>dejagnu/baseboards</filename>. Usually to make a new
@@ -2386,7 +2386,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       contains other procedures used for a certain class of target. The
       board description file is where the board specfic settings go. Commonly
       there are similar target environments with just different
-      processors.</para> 
+      processors.</para>
 
       <example>
       <title>Testing a New Board Config File</title>
@@ -2403,7 +2403,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       testing in the build tree, because the executables to be tested
       are in the same tree as the new dejagnu files. The helper
       procedures are the ones in square braces
-      <emphasis>[]</emphasis>, which is the Tcl execution characters.</para> 
+      <emphasis>[]</emphasis>, which is the Tcl execution characters.</para>
 
       <example>
       <title>Example Board Config File</title>
@@ -2784,7 +2784,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     <sect1 id=writing xreflabel="Writing A Test Case">
       <title>Writing A Test Case</title>
-    
+
       <para>The easiest way to prepare a new test case is to base it
       on an existing one for a similar situation.  There are two major
       categories of tests: batch or interactive.  Batch oriented tests
@@ -2842,7 +2842,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     <sect1 id=debugging xreflabel="Debugging A Test Case">
       <title>Debugging A Test Case</title>
-    
+
       <para>These are the kinds of debugging information available
       from DejaGnu:</para>
 
@@ -2899,7 +2899,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     <sect1 id=adding xreflabel="Adding A Test Case To A Testsuite">
       <title>Adding A Test Case To A Testsuite.</title>
-    
+
       <para>There are two slightly different ways to add a test
       case. One is to add the test case to an existing directory. The
       other is to create a new directory to hold your test. The
@@ -2948,14 +2948,14 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       <listitem><para>To add support in the new directory for
       configure and make, you must also create a
       <filename>Makefile.in</filename> and a
-      <filename>configure.in</filename>.</para></listitem> 
+      <filename>configure.in</filename>.</para></listitem>
       </itemizedlist>
 
     </sect1>
 
     <sect1 id=hints xreflabel="Hints On Writing A Test Case">
       <title>Hints On Writing A Test Case</title>
-    
+
       <para>It is safest to write patterns that match all the output
       generated by the tested program; this is called closure.
       If a pattern does not match the entire output, any output that
@@ -3014,7 +3014,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     <sect1 id=tvariables xreflabel="Test Case Variables">
       <title>Special variables used by test cases.</title>
-    
+
       <para>There are special variables used by test cases. These contain
       other information from DejaGnu. Your test cases can use these variables,
       with conventional meanings (as well as the variables saved in
@@ -3063,20 +3063,20 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	    <function>${tool}_start</function> command.  This is conventionally
 	    used for batch oriented programs, like GCC and GAS, that may
 	    produce interesting output (warnings, errors) without further
-	    interaction.</para></listitem> 
+	    interaction.</para></listitem>
           </varlistentry>
         </variablelist>
 
     </sect1>
-   
+
 </chapter>
 
   <chapter id=unit xreflabel="Unit Testing">
     <title>Unit Testing</title>
-    
+
     <sect1 id=unittest  xreflabel="What Is Unit Testing ?">
       <title>What Is Unit Testing ?</title>
-    
+
       <para>Most regression testing as done by DejaGnu is system
       testing. This is the complete application is tested all at
       once. Unit testing is for testing single files, or small
@@ -3095,7 +3095,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     <sect1 id=djh xreflabel="The dejagnu.h Header File">
       <title>The dejagnu.h Header File</title>
-    
+
       <para>DejaGnu uses a single header file to assist in unit
       testing. As this file also produces it's one test state output,
       it can be run standalone, which is very useful for testing on
@@ -3107,7 +3107,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       messages, and then merge them into DejaGnu's.</para>
 
      </sect1>
- 
+
 </chapter>
 
 <!-- Keep this comment at the end of the file

@@ -4,7 +4,7 @@ load_generic_config "sim"
 # basic-sim.exp is a basic description for the standard Cygnus simulator.
 load_base_board_description "basic-sim"
 # Command to invoke the simulator
-set_board_info sim xt-run  
+set_board_info sim xt-run
 setup_sim xtensa
 # No multilib flags needed by default.
 process_multilib_options ""

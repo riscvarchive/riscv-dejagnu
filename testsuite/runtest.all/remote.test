@@ -13,7 +13,7 @@ if [ file exists $srcdir/$subdir/default_procs.tcl ] {
     puts "ERROR: $srcdir/$subdir/default_procs.tcl doesn't exist"
 }
 
-set file $srcdir/../lib/remote.exp    
+set file $srcdir/../lib/remote.exp
 if [ file exists $file] {
     source $file
 } else {
@@ -128,7 +128,7 @@ catch "wait -i $spawn_id"
 
 #
 # Connect to the configured target
-# 
+#
 set target_info(target,netport) $target_info(idp,netport)
 set target_info(target,target)  localhost
 set target_info(target,connect) rlogin
@@ -165,7 +165,7 @@ catch "wait -i $spawn_id"
 
 #
 # Connect to the configured host
-# 
+#
 set target_info(host,connect) rlogin
 set target_info(host,netport) $target_info(idp,netport)
 set target_info(host,target)  localhost

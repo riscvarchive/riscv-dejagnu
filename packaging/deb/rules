@@ -32,7 +32,7 @@ build:
 	./configure --prefix=/usr
 	$(MAKE) CC="$(CC)" CFLAGS="$(CFLAGS)" LDFLAGS="$(LDFLAGS)" \
 	  libexecdir=/usr/lib/locate localstatedir=/var/lib/locate all
-#	$(MAKE) 
+#	$(MAKE)
 	touch build
 
 clean:

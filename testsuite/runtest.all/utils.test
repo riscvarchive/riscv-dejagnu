@@ -13,7 +13,7 @@ if [ file exists $srcdir/$subdir/default_procs.tcl ] {
     puts "ERROR: $srcdir$subdir/default_procs.tcl doesn't exist"
 }
 
-set file $srcdir/../lib/utils.exp    
+set file $srcdir/../lib/utils.exp
 if [ file exists $file] {
     source $file
 } else {
@@ -73,7 +73,7 @@ if [info exists env(TESTRUN)] {
     if { $env(TESTRUN) == "FooBar" } {
         pass "setenv, set an environment variable"
     } else {
-        fail "setenv, set an environment variable       
+        fail "setenv, set an environment variable
     }
 } else {
     fail "setenv, set an environment variable"

@@ -96,7 +96,7 @@ install_sh = @install_sh@
 tclsh = @tclsh@
 
 AUTOMAKE_OPTIONS = dejagnu
-RUNTESTDEFAULTFLAGS = -v -v 
+RUNTESTDEFAULTFLAGS = -v -v
 subdir = testsuite
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =

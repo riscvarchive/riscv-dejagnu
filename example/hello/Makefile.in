@@ -178,7 +178,7 @@ uninstall-binPROGRAMS:
 
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
-hello$(EXEEXT): $(hello_OBJECTS) $(hello_DEPENDENCIES) 
+hello$(EXEEXT): $(hello_OBJECTS) $(hello_DEPENDENCIES)
 	@rm -f hello$(EXEEXT)
 	$(LINK) $(hello_LDFLAGS) $(hello_OBJECTS) $(hello_LDADD) $(LIBS)
 

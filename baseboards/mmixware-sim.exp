@@ -32,7 +32,7 @@ set_board_info is_simulator 1
 # It isn't visible in the target triple, so we set it explicitly.  The
 # *linked* format is currently mmo, but those cases where this matters we
 # can deal with separately.
-set_board_info obj_format "elf"   
+set_board_info obj_format "elf"
 
 # The compiler used to build for this board. This has *nothing* to do
 # with what compiler is tested if we're testing gcc.
@@ -46,7 +46,7 @@ set_board_info cflags  "[newlib_include_flags]"
 # simulator does not allow code to be executed in the "normal" documented
 # data and stack segments.  Use a somewhat magic number, so stack addresses
 # are easily recognized when debugging.
-set_board_info ldflags "[newlib_link_flags] -Wl,--defsym,__Stack_start=0x1680a00000000000"   
+set_board_info ldflags "[newlib_link_flags] -Wl,--defsym,__Stack_start=0x1680a00000000000"
 
 # No linker script needed - the simulator is the main environment for this
 # target.

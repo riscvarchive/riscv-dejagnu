@@ -13,21 +13,21 @@ if [ file exists $srcdir/$subdir/default_procs.tcl ] {
     puts "ERROR: $srcdir/$subdir/default_procs.tcl doesn't exist"
 }
 
-set file $srcdir/../lib/target.exp    
+set file $srcdir/../lib/target.exp
 if [ file exists $file] {
     source $file
 } else {
     puts "ERROR: $file doesn't exist"
 }
 # we load framework so we can use stuff like is3way
-set file $srcdir/../lib/framework.exp    
+set file $srcdir/../lib/framework.exp
 if [ file exists $file] {
     source $file
 } else {
     puts "ERROR: $file doesn't exist"
 }
 # we load the remote stuff so we can test execute_anywhere
-set file $srcdir/../lib/remote.exp    
+set file $srcdir/../lib/remote.exp
 if [ file exists $file] {
     source $file
 } else {

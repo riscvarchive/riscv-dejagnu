@@ -17,7 +17,7 @@ proc lib_pat_test { cmd arg pattern } {
     }
 }
 	
-# this tests a proc for a returned value 
+# this tests a proc for a returned value
 proc lib_ret_test { cmd arg val } {
     catch "$cmd \"$arg\"" result
 #    catch "set result [$cmd $arg]" output

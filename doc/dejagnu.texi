@@ -13,7 +13,7 @@
 @c FIXME---MAIN TODO LIST!
 @c
 @c * Revisit organization.
-@c 
+@c
 @c * discuss Tcl/expect basics---enough to get started (see seminar notes).
 @c   Maybe this would permit abbreviating appendices.
 
@@ -527,7 +527,7 @@ all test suites, and these procedures are already known to conform to
 procedures (see below), and you must be careful to return
 @code{UNRESOLVED} where appropriate, as described in the
 @code{UNRESOLVED} section above.
-  
+
 Besides the @sc{posix} messages, DejaGnu provides for variations of the
 PASS and FAIL messages that can be helpful for the tool maintainers.
 It must be noted, however, that this feature is not @sc{posix} 1003.3
@@ -551,9 +551,9 @@ than @code{XFAIL} even if a failure was expected.
 
 @item KFAIL
 A test is known to fail in some environment(s) due to a known bug
-in the tool being tested (identified by a bug id string).  This 
+in the tool being tested (identified by a bug id string).  This
 exists so that, after a bug is identified and properly registered
-in a bug tracking database (Gnats, for instance), the count of 
+in a bug tracking database (Gnats, for instance), the count of
 failures can be kept as zero.  Having zero as a baseline in all
 platforms allow the tool developers to immediately detect regressions
 caused by changes (which may affect some platforms and not others).
@@ -587,7 +587,7 @@ must also be checked.
 returned for test cases which were expected to fail and did not,
 if @sc{posix} 1003.3 compliance is required.
 This means that @code{PASS} is in some sense more ambiguous than if
-@code{XPASS} and @code{KPASS} are also used.  
+@code{XPASS} and @code{KPASS} are also used.
 
 @end ftable
 
@@ -624,7 +624,7 @@ Tcl was introduced in a paper by John K. Ousterhout at the 1990 Winter
 Usenix conference, @cite{Tcl: An Embeddable Command Language}.  That
 paper is included in PostScript form in the @file{doc} subdirectory of
 the Tcl distribution. The version of Tcl included in DejaGnu at this time is
-Tcl 7.4p3. 
+Tcl 7.4p3.
 
 @cindex @code{expect} scripting language
 @cindex Libes, Don
@@ -647,7 +647,7 @@ is expect 5.18.0.
 @code{runtest} is the executable test driver for DejaGnu.  You can
 specify two kinds of things on the @code{runtest} command line: command
 line options, and Tcl variables for the test scripts.  The options are
-listed alphabetically below.  
+listed alphabetically below.
 
 @cindex exit code from @code{runtest}
 @cindex @code{runtest} exit code
@@ -1136,7 +1136,7 @@ DejaGnu uses a named array in Tcl to hold all the info for each
 machine. In the case of a canadian cross, this means host information as
 well as target information. The named array is called
 @code{target_info}, and it has two indices. The following fields are
-part of the array. 
+part of the array.
 
 @table @code
 @item name
@@ -1146,10 +1146,10 @@ It should also be the same as the linker script so we
 can find them dynamically. This should be the same as the argument used
 for @code{push_target@{@}}.
 
-@item ldflags 
+@item ldflags
 This is the linker flags required to produce a fully linked
 executable. For @code{libgloss} supported targets this is usually just
-the name of the linker script. 
+the name of the linker script.
 
 @item config
 The target canonical for this target. This is used by some init files to
@@ -1165,7 +1165,7 @@ serial connections. Typically this is either @code{telnet},
 
 @item target
 This is the hostname of the target. This is for TCP/IP based connections,
-and is also used for version of tip that use /etc/remote. 
+and is also used for version of tip that use /etc/remote.
 
 @item serial
 This is the serial port. This is typically /dev/tty? or com?:.
@@ -1175,12 +1175,12 @@ This is the IP port. This is commonly used for telneting to target
 boards that are connected to a terminal server. In that case the IP port
 specifies the which serial port to use.
 
-@item baud 
+@item baud
 This is the baud rate for a serial port connection.
 
 @item x10
 This is the parameters for an x10 controller. These are simple devices
-that let us power cycle or reset a target board remotely. 
+that let us power cycle or reset a target board remotely.
 
 @item fileid
 This is the fileid or spawn id of of the connection.
@@ -1202,7 +1202,7 @@ The first index into the array is the same value as used in the
 target board. For an example, here's the settings I use for  my
 @code{Motorola's} @code{IDP} board and my @code{Motorola} 6U VME
 @code{MVME135-1} board. (both m68k targets)
-       
+
 @cartouche
 @smallexample
 # IDP board
@@ -1290,7 +1290,7 @@ explanations of the command-line options.
 
 @ifinfo
 @display
-runtest      Tcl   
+runtest      Tcl
 option     variable     description
 __________ ________     ___________________________________________
 
@@ -1298,7 +1298,7 @@ __________ ________     ___________________________________________
 
 --baud     baud         set the default baud rate to something other
                         than 9600.
---connect  connectmode  @samp{rlogin}, @samp{telnet}, @samp{rsh}, 
+--connect  connectmode  @samp{rlogin}, @samp{telnet}, @samp{rsh},
                         @samp{kermit}, @samp{tip}, or @samp{mondfe}
 
 --outdir   outdir       directory for @file{@var{tool}.sum} and @file{@var{tool}.log}
@@ -1361,7 +1361,7 @@ do not reboot if set to @code{"0"} (the default)\cr
 The master config file is where all the target specific config variables
 get set for a whole site get set. The idea is that for a centralized
 testing lab where people have to share a target between multiple
-developers. There are settings for both remote targets and remote hosts. 
+developers. There are settings for both remote targets and remote hosts.
 Here's an example of a Master Config File (also called the Global config
 file) for a @emph{canadian cross}. A canadian cross is when you build
 and test a cross compiler on a machine other than the one it's to be
@@ -1479,7 +1479,7 @@ The first section starts with:
 @end cartouche
 
 In the second section, you can override any default values (locally to
-DejaGnu) for all the variables.  The 
+DejaGnu) for all the variables.  The
 second section can also contain your preferred defaults for all the
 command line options to @code{runtest}. This allows you to easily
 customize @code{runtest} for your preferences in each configured
@@ -1525,7 +1525,7 @@ Here I set @code{all_flag} so I see all the test cases that PASS along
 with the ones that FAIL. I also set @var{RLOGIN} and @code{RSH} to the
 BSD version. I have @code{kerberos} installed, and when I rlogin to a
 target board, it usually isn't supported. So I use the non secure
-versions of these programs rather than the default that's in my path. 
+versions of these programs rather than the default that's in my path.
 
 @node Internals
 @chapter The DejaGnu Implementation
@@ -1690,7 +1690,7 @@ if ![info exists CFLAGS] then @{
 @}
 @end smallexample
 @end cartouche
- 
+
 It is always a good idea to first check the variable, and only set it if
 it has not yet been defined.  Often the proper value of @code{AR} is set
 on the command line that invokes @file{runtest}.
@@ -1813,14 +1813,14 @@ the verbosity level use @code{note}.
 
 @item pass "@var{string}"
 @cindex test case, declaring success
-Declares a test to have passed.  @code{pass} writes in the 
+Declares a test to have passed.  @code{pass} writes in the
 log files a message beginning with @samp{PASS}
 (or @code{XPASS}/@code{KPASS}, if failure was expected),
 appending the argument @var{string}.
 
 @item fail "@var{string}"
 @cindex test case, declaring failure
-Declares a test to have failed.  @code{fail} writes in the 
+Declares a test to have failed.  @code{fail} writes in the
 log files a message beginning with @samp{FAIL} (or @code{XFAIL}, if
 failure was expected), appending the argument @var{string}.
 
@@ -1877,7 +1877,7 @@ configured host matches the argument string, the result is @code{1};
 otherwise the result is @code{0}.  @var{host} must be a full three-part
 @code{configure} host name; in particular, you may not use the shorter
 nicknames supported by @code{configure} (but you can use wildcard
-characters, using shell syntax, to specify sets of names). 
+characters, using shell syntax, to specify sets of names).
 
 @item istarget "@var{target}"
 @cindex target configuration test
@@ -1923,7 +1923,7 @@ DejaGnu directly from a source directory, without first running
 either case, it then looks in the current directory for a directory
 called @code{lib}.  If there are duplicate definitions, the last one
 loaded takes precedence over the earlier ones.
- 
+
 @item setup_xfail "@var{config}  @r{[}@var{bugid}@r{]}"
 @c two spaces above to make it absolutely clear there's whitespace---a
 @c crude sort of italic correction!
@@ -1940,7 +1940,7 @@ output; use it as a link to a bug-tracking system such as @sc{gnats}
 (@pxref{Overview,, Overview, gnats.info, Tracking Bugs With GNATS}).
 
 See notes under setup_kfail (below).
- 
+
 @item setup_kfail "@var{config}  @r{[}@var{bugid}@r{]}"
 @c two spaces above to make it absolutely clear there's whitespace---a
 @c crude sort of italic correction!
@@ -1972,7 +1972,7 @@ the @samp{XFAIL} ones this will hopefuly ensure the test result is not
 overlooked.
 
 @emph{Warning:} you must clear the expected/known failure after using
-@code{setup_xfail} or @code{setup_kfail} in a test case.  Any call to 
+@code{setup_xfail} or @code{setup_kfail} in a test case.  Any call to
 @code{pass} or @code{fail} clears the expectedknown failure implicitly;
 if the test has some other outcome, e.g. an error, you can call
 @code{clear_xfail} to clear the expected failure or @code{clear_kfail}
@@ -2038,11 +2038,11 @@ set compiler_conditional_xfail_data @{@ \
         "sparc*-sun*-* *-pc-*-*" \
         @{@"-Wall -v" "-O3"@}@ \
         @{@"-O1" "-Map" @}@ \
-        @}@         
+        @}@
 @end smallexample
 @end cartouche
 
-  What this does is it matches only for these two targets if "-Wall -v" or 
+  What this does is it matches only for these two targets if "-Wall -v" or
 "-O3" is set, but neither "-O1" or "-Map" is set.
 
   For a set to match, the options specified are searched for independantly of
@@ -2300,7 +2300,7 @@ otherwise it returns @code{NULL}.
 Search @var{runtests} for @var{testcase} and return 1 if found, 0 if not.
 @var{runtests} is a list of two elements.  The first is a copy of what was
 on the right side of the @code{=} if @samp{foo.exp="@dots{}"} was specified,
-or an empty string if no such argument is present.  The second is the 
+or an empty string if no such argument is present.  The second is the
 pathname of the current testcase under consideration.
 This is used by tools like compilers where each testcase is a file.
 
@@ -2420,7 +2420,7 @@ the watchpoints. It is abbreviated as @code{dw}.
 @c FIXME: finish these when the code is fixed.
 @c @item watcharray @emph{element} @emph{type}
 @c @cindex Set a watchpoint on an array
-@c This sets an watchpoint of the @emph{element-type} on the 
+@c This sets an watchpoint of the @emph{element-type} on the
 @c @item watchvar v null type
 @c @cindex Set a watchpoint on a variable
 
@@ -2779,7 +2779,7 @@ FAIL:   help run "r" abbreviation
 Running ./gdb.t10/crossload.exp ...
 PASS:   m68k-elf (elf-big) explicit format; loaded
 XFAIL:  mips-ecoff (ecoff-bigmips) "ptype v_signed_char" signed
-C types 
+C types
                 === gdb Summary ===
 # of expected passes 5
 # of expected failures 1
@@ -2865,7 +2865,7 @@ expect: does @{@var{tool output}@} (spawn_id @var{n}) match pattern
 For every unsuccessful match, @code{expect} issues a @samp{no} after
 this message; if other patterns are specified for the same
 @code{expect} command, they are reflected also, but without the first
-part of the message (@samp{expect@dots{}match pattern}).  
+part of the message (@samp{expect@dots{}match pattern}).
 
 When @code{expect} finds a match, the log for the successful match ends
 with @samp{yes}, followed by a record of the @code{expect} variables set
@@ -2889,7 +2889,7 @@ expect: does @{@} (spawn_id 0) match pattern @{<return>@}? no
 @{command@}? no
 break gdbme.c:34
 Breakpoint 8 at 0x23d8: file gdbme.c, line 34.
-(gdb) expect: does @{break gdbme.c:34\r\nBreakpoint 8 at 0x23d8: 
+(gdb) expect: does @{break gdbme.c:34\r\nBreakpoint 8 at 0x23d8:
 file gdbme.c, line 34.\r\n(gdb) @} (spawn_id 6) match pattern
 @{Breakpoint.*at.* file gdbme.c, line 34.*\(gdb\) $@}? yes
 expect: set expect_out(0,start) @{18@}
@@ -2919,7 +2919,7 @@ completely before all output, as in this case).
 Interspersed tool output.  The beginning of the log entry for the second
 attempted match may be hard to spot: this is because the prompt
 @samp{(gdb) } appears on the same line, just before the @samp{expect:}
-that marks the beginning of the log entry.  
+that marks the beginning of the log entry.
 
 @item
 Fail-safe patterns.  Many of the patterns tested are fail-safe patterns
@@ -2978,7 +2978,7 @@ coded almost purely in Tcl.
 Writing the complete suite of C tests, then, consisted of these steps:
 
 @enumerate
-@item 
+@item
 @cindex Granlund, Torbjorn
 @cindex C torture test
 Copying all the C code into the test directory.  These tests were based on
@@ -3102,7 +3102,7 @@ Add the new directory name to the @samp{configdirs} definition in the
 @code{make} and @code{configure} next run, they include the new directory.
 
 @item
-Add the new test case to the directory, as above. 
+Add the new test case to the directory, as above.
 
 @item
 To add support in the new directory for configure and make, you must
@@ -3150,7 +3150,7 @@ characters after close-quote}.
 
 If you have trouble understanding why a pattern does not match the
 program output, try using the @samp{--debug} option to @code{runtest},
-and examine the debug log carefully.  @xref{Debug,,Debug Log}.  
+and examine the debug log carefully.  @xref{Debug,,Debug Log}.
 
 Be careful not to neglect output generated by setup rather than by the
 interesting parts of a test case.  For example, while testing @sc{gdb},
@@ -3209,7 +3209,7 @@ tests.}
 @item expect_out(buffer)
 @cindex last command output
 The output from the last command. This is an internal variable set by
-@code{expect}. 
+@code{expect}.
 
 @item exec_output
 This is the output from a @code{@var{tool}_load} command. This only
@@ -3224,7 +3224,7 @@ further interaction.
 @end ftable
 
 @node Extending
-@chapter New Tools, Targets, or Hosts 
+@chapter New Tools, Targets, or Hosts
 
 The most common ways to extend the DejaGnu framework are: adding a suite
 of tests for a new tool to be tested; adding support for testing on a
@@ -3378,7 +3378,7 @@ configuration-dependent values.  The @code{check} target must run
 @smallexample
 check: site.exp all
         $(RUNTEST) $(RUNTESTFLAGS) $(FLAGS_TO_PASS) \
-            --tool @var{example} --srcdir $(srcdir) 
+            --tool @var{example} --srcdir $(srcdir)
 @end smallexample
 @end cartouche
 
@@ -3431,7 +3431,7 @@ eg$ mkdir config
 
 @item
 Make an init file in this directory; its name must start with the
-@code{target_abbrev} value, so call it @file{config/unix.exp}.  
+@code{target_abbrev} value, so call it @file{config/unix.exp}.
 This is the file that contains the target-dependent procedures;
 fortunately, most of them do not have to do very much in order for
 @code{runtest} to run.
@@ -3547,7 +3547,7 @@ Builtins, DejaGnu procedures}).
 Most of the work is in getting the communications right. Communications
 code (for several situations involving IP networks or serial lines) is
 available in a DejaGnu library file, @file{lib/remote.exp}.
-@xref{DejaGnu Builtins,,DejaGnu Builtins}. 
+@xref{DejaGnu Builtins,,DejaGnu Builtins}.
 
 @c FIXME!  Say something about Tcl debugger here.
 If you suspect a communication problem, try running the connection

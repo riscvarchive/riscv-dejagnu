@@ -57,12 +57,12 @@ main (int argc, char *argv[]) {
 #endif
 
     testClass1.tname = "testType1";
-    testClass1.tnum = 1;  
+    testClass1.tnum = 1;
     testClass2.tname = "testType2";
-    testClass2.tnum = 2;  
+    testClass2.tnum = 2;
     testClass3.tname = "testType3";
-    testClass3.tnum = 3;  
-    
+    testClass3.tnum = 3;
+
     // Test the pass message
     test.pass ("bogus pass message for testing");
     outstate = os2;

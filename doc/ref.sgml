@@ -14,7 +14,7 @@
 
   <sect1 id=installation xreflabel="Installation">
     <title>Installation</title>
-    
+
     <para>Once you have the DejaGnu source unpacked and available, you must
     first configure the software to specify where it is to run (and the
     associated defaults); then you can proceed to installing it.</para>
@@ -60,7 +60,7 @@
       suites.</para>
 
     </sect2>
-    
+
     <sect2 id=installing  xreflabel="Installing DejaGnu">
       <title>Installing DejaGnu</title>
 
@@ -132,7 +132,7 @@
 
 	<para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>open_logs</function></funcdef>
 	    <paramdef><parameter></parameter</paramdef>
         </funcsynopsis>
@@ -143,7 +143,7 @@
 
 	  <para></para>	
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>close_logs</function></funcdef>
 	    <paramdef><parameter></parameter</paramdef>
         </funcsynopsis>
@@ -162,7 +162,7 @@
 	  passed a NULL string, then it returns the name of the build canonical
 	  configuration.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>isbuild</function></funcdef>
 	    <paramdef><parameter>pattern</parameter</paramdef>
         </funcsynopsis>
@@ -179,7 +179,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>is_remote</function></funcdef>
 	    <paramdef><parameter>board</parameter</paramdef>
         </funcsynopsis>
@@ -199,7 +199,7 @@
 	  the result is <emphasis>1</emphasis>; otherwise the result is
 	  <emphasis>0</emphasis>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>is3way</function></funcdef>
 	    <paramdef><parameter></parameter</paramdef>
         </funcsynopsis>
@@ -216,7 +216,7 @@
 	  shorter nicknames supported by configure (but you can use wildcard
 	  characters, using shell syntax, to specify sets of names).</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>ishost</function></funcdef>
 	    <paramdef><parameter>pattern</parameter></paramdef>
 	</funcsynopsis>
@@ -241,7 +241,7 @@
 	  <emphasis>NULL</emphasis> string, then it returns the name of the
 	  build canonical configuration.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>istarget</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -261,7 +261,7 @@
 	  a <emphasis>1</emphasis>; otherwise it returns a
 	  <emphasis>0</emphasis>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>isnative</function></funcdef>
 	    <paramdef><parameter></parameter</paramdef>
         </funcsynopsis>
@@ -272,7 +272,7 @@
 
 	  <para></para>	
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>unknown</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -289,7 +289,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>clone_output</function></funcdef>
 	    <paramdef><parameter>message</parameter></paramdef>
         </funcsynopsis>
@@ -306,7 +306,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>reset_vars</function></funcdef>
 	    <paramdef><parameter></parameter</paramdef>
         </funcsynopsis>
@@ -317,7 +317,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>log_and_exit</function></funcdef>
 	    <paramdef><parameter></parameter</paramdef>
         </funcsynopsis>
@@ -328,7 +328,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
           <funcdef><function>log_summary</function></funcdef>
 	    <paramdef><parameter>args</parameter</paramdef>
         </funcsynopsis>
@@ -345,7 +345,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>cleanup</function></funcdef>
 	    <paramdef><parameter></parameter</paramdef>
         </funcsynopsis>
@@ -379,7 +379,7 @@
 	  applies to whatever test runs next, leading to surprising
 	  results.</para></warning>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>setup_xfail</function></funcdef>
 	    <paramdef><parameter>config</parameter>
 	    <parameter>bugid</parameter></paramdef>
@@ -403,7 +403,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>record_test</function></funcdef>
 	    <paramdef><parameter>type</parameter>
 		<parameter>message</parameter>
@@ -434,7 +434,7 @@
 	  was expected), appending the argument
 	  <parameter>string</parameter>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>pass</function></funcdef>
 	    <paramdef><parameter>string</parameter></paramdef>
         </funcsynopsis>
@@ -454,9 +454,9 @@
 	  writes in the log files a message beginning with
 	  <emphasis>FAIL</emphasis> (or <emphasis>XFAIL</emphasis>, if failure
 	  was expected), appending the argument
-	  <parameter>string</parameter>.</para> 
+	  <parameter>string</parameter>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>fail</function></funcdef>
 	    <paramdef><parameter>string</parameter></paramdef>
         </funcsynopsis>
@@ -479,7 +479,7 @@
 	  was expected), appending the argument
 	  <parameter>string</parameter>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>xpass</function></funcdef>
 	    <paramdef><parameter>string</parameter></paramdef>
         </funcsynopsis>
@@ -496,13 +496,13 @@
           <title>Xfail Procedure</title>
 
 	  <para>Declares a test to have expectably
-	  failed. <function>xfail</function> 
+	  failed. <function>xfail</function>
 	  writes in the log files a message beginning with
 	  <emphasis>XFAIL</emphasis> (or <emphasis>PASS</emphasis>, if success
 	  was expected), appending the argument
 	  <parameter>string</parameter>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>xpass</function></funcdef>
 	    <paramdef><parameter>string</parameter></paramdef>
         </funcsynopsis>
@@ -524,7 +524,7 @@
 	  <emphasis>PASS</emphasis> or <emphasis>FAIL</emphasis> into an
 	  <emphasis>UNRESOLVED</emphasis>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>set_warning_threshold</function></funcdef>
 	    <paramdef><parameter>threshold</parameter></paramdef>
         </funcsynopsis>
@@ -545,7 +545,7 @@
 	  value controls how many <function>warning</function> procedures can
 	  be called before becoming <emphasis>UNRESOLVED</emphasis>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>get_warning_threshold</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
@@ -573,9 +573,9 @@
 	is <emphasis>0</emphasis>, then there are no further side effects to
 	calling this function, and the following test outcome doesn't become
 	<emphasis>UNRESOLVED</emphasis>. This can be used for errors with no
-	known side effects.</para> 
+	known side effects.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>warning</function></funcdef>
 	    <paramdef><parameter>string</parameter>
 	    <parameter>number</parameter>
@@ -615,7 +615,7 @@
 	doesn't become <emphasis>UNRESOLVED</emphasis>. This can be used for
 	errors with no known side effects.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>perror</function></funcdef>
 	    <paramdef><parameter>string</parameter>
 	    <parameter>number</parameter>
@@ -648,7 +648,7 @@
 	such messages, but in cases where a message is needed in the log file
 	regardless of the verbosity level use <function>note</function>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>note</function></funcdef>
 	    <paramdef><parameter>string</parameter></paramdef>
         </funcsynopsis>
@@ -669,7 +669,7 @@
 	might use this in a dummy test whose only role is to record that a test
 	does not yet exist for some feature.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>untested</function></funcdef>
 	    <paramdef><parameter>string</parameter></paramdef>
         </funcsynopsis>
@@ -692,7 +692,7 @@
 	not execute as expected, and a human being must go over results to
 	determine if it passed or failed (and to improve the test case).</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>unresolved</function></funcdef>
 	    <paramdef><parameter>string</parameter></paramdef>
         </funcsynopsis>
@@ -713,7 +713,7 @@
 	writes in the log file a message beginning with
 	<emphasis>UNSUPPORTED</emphasis>, appending the argument string.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>unsupported</function></funcdef>
 	    <paramdef><parameter>string</parameter></paramdef>
         </funcsynopsis>
@@ -731,7 +731,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>init_testcounts</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
@@ -742,7 +742,7 @@
 
 	  <para></para>	
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>incr_count</function></funcdef>
 	    <paramdef><parameter>name</parameter>
 		<parameter>args</parameter></paramdef>
@@ -768,9 +768,9 @@
 	  tools are installed using the same naming conventions: For example,
 	  for a cross compiler supporting the <emphasis>m68k-vxworks</emphasis>
 	  configuration, the result of transform <command>gcc</command> is
-	  <command>m68k-vxworks-gcc</command>.</para> 
+	  <command>m68k-vxworks-gcc</command>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>transform</function></funcdef>
 	    <paramdef><parameter>toolname</parameter></paramdef>
         </funcsynopsis>
@@ -778,7 +778,7 @@
           <varlistentry>
 	    <term><parameter>toolname</parameter></term>
 	    <listitem><para>The name of the cross-development program to
-	    transform.</para></listitem> 
+	    transform.</para></listitem>
           </varlistentry>
 	</variablelist>
 	</sect3>
@@ -804,7 +804,7 @@
 	  conditional is true, or <emphasis>0</emphasis> if the conditional is
 	  false.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>check_conditional_xfail</function></funcdef>
 	    <paramdef><parameter>message</parameter>
 	    <parameter>targets</parameter>
@@ -836,7 +836,7 @@
 	    <listitem><para>This is a list of sets of options to search for in
 	    the compiler options to activate this conditional. If any set of
 	    the options matches, (regardless of whether any of the include sets
-	    match) then this conditional is de-activated.</para></listitem> 
+	    match) then this conditional is de-activated.</para></listitem>
           </varlistentry>
 	</variablelist>
 
@@ -872,9 +872,9 @@
 	  of configuration target names.  It is only necessary to call
 	  <command>clear_xfail</command> if a test case ends without calling
 	  either <command>pass</command> or <command>fail</command>, after
-	  calling <command>setup_xfail</command>.</para> 
+	  calling <command>setup_xfail</command>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>clear_xfail</function></funcdef>
 	    <paramdef><parameter>config</parameter></paramdef>
         </funcsynopsis>
@@ -902,7 +902,7 @@
           to print string without a trailing newline.  Use the optional
           <option>--</option> argument if string begins with "-".</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>verbose</function></funcdef>
 	    <paramdef><parameter>-log</parameter>
             <parameter>-x</parameter>
@@ -952,7 +952,7 @@
 	  duplicate definitions, the last one loaded takes precedence over the
 	  earlier ones.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>load_lib</function></funcdef>
 	    <paramdef><parameter>filespec</parameter></paramdef>
         </funcsynopsis>
@@ -994,7 +994,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>call_remote</function></funcdef>
 	    <paramdef><parameter>type</parameter>
 		<parameter>proc</parameter>
@@ -1023,7 +1023,7 @@
 
 	   <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>check_for_board_status</function></funcdef>
 	    <paramdef><parameter>variable</parameter></paramdef>
         </funcsynopsis>
@@ -1040,7 +1040,7 @@
 
 	   <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>file_on_build</function></funcdef>
 	    <paramdef><parameter>op</parameter>
 		<parameter>file</parameter>
@@ -1067,7 +1067,7 @@
 
 	   <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>file_on_host</function></funcdef>
 	    <paramdef><parameter>op</parameter>
 		<parameter>file</parameter>
@@ -1094,7 +1094,7 @@
 
 	   <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>local_exec</function></funcdef>
 	    <paramdef><parameter>commandline</parameter>
 		<parameter>inp</parameter>
@@ -1122,7 +1122,7 @@
 
 	   <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_binary</function></funcdef>
 	    <paramdef><parameter>host</parameter></paramdef>
         </funcsynopsis>
@@ -1139,7 +1139,7 @@
 
 	   <para></para>	
 
-	  <funcsynopsis role="tcl"> 
+	  <funcsynopsis role="tcl">
             <funcdef><function>remote_close</function></funcdef>
 	    <paramdef><parameter>shellid</parameter></paramdef>
           </funcsynopsis>
@@ -1161,7 +1161,7 @@
 
 	   <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
           <funcdef><function>remote_download</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>file</parameter>
@@ -1188,7 +1188,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_exec</function></funcdef>
 	    <paramdef><parameter>hostname</parameter>
 		<parameter>program</parameter>
@@ -1215,7 +1215,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_expect</function></funcdef>
 	    <paramdef><parameter>board</parameter>
 		<parameter>timeout</parameter>
@@ -1242,7 +1242,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_file</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>args</parameter</paramdef>
@@ -1264,7 +1264,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_ld</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>prog</parameter></paramdef>
@@ -1286,7 +1286,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_load</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>prog</parameter>
@@ -1313,7 +1313,7 @@
 
 	  <para></para>
 
-	  <funcsynopsis role="tcl"> 
+	  <funcsynopsis role="tcl">
             <funcdef><function>remote_open</function></funcdef>
 	      <paramdef><parameter>type</parameter></paramdef>
             </funcsynopsis>
@@ -1342,7 +1342,7 @@
 
 	   <para></para>	
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_pop_conn</function></funcdef>
 	    <paramdef><parameter>host</parameter></paramdef>
         </funcsynopsis>
@@ -1359,7 +1359,7 @@
 
 	  <para></para>	
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_push_conn</function></funcdef>
 	    <paramdef><parameter>host</parameter></paramdef>
         </funcsynopsis>
@@ -1376,7 +1376,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_raw_binary</function></funcdef>
 	    <paramdef><parameter>host</parameter></paramdef>
         </funcsynopsis>
@@ -1393,7 +1393,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_raw_close</function></funcdef>
 	    <paramdef><parameter>host</parameter></paramdef>
         </funcsynopsis>
@@ -1410,7 +1410,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_raw_file</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>args</parameter></paramdef>
@@ -1432,7 +1432,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_raw_ld</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>prog</parameter></paramdef>
@@ -1454,7 +1454,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_raw_load</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>prog</parameter>
@@ -1481,7 +1481,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_raw_open</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -1498,7 +1498,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_raw_send</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>string</parameter></paramdef>
@@ -1520,7 +1520,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_raw_spawn</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>commandline</parameter></paramdef>
@@ -1543,7 +1543,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_raw_transmit</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>file</parameter></paramdef>
@@ -1565,7 +1565,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_raw_wait</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>timeout</parameter></paramdef>
@@ -1587,7 +1587,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_reboot</function></funcdef>
 	    <paramdef><parameter>host</parameter></paramdef>
         </funcsynopsis>
@@ -1604,7 +1604,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_send</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>string</parameter></paramdef>
@@ -1626,7 +1626,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_spawn</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>commandline</parameter>
@@ -1653,7 +1653,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_swap_conn</function></funcdef>
 	    <paramdef><parameter>host</parameter></paramdef>
         </funcsynopsis>
@@ -1670,7 +1670,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_transmit</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>file</parameter></paramdef>
@@ -1692,7 +1692,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_upload</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>srcfile</parameter>
@@ -1719,7 +1719,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>remote_wait</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>timeout</parameter></paramdef>
@@ -1741,7 +1741,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>standard_close</function></funcdef>
 	    <paramdef><parameter>host</parameter></paramdef>
         </funcsynopsis>
@@ -1758,7 +1758,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>standard_download</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>file</parameter>
@@ -1785,7 +1785,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>standard_exec</function></funcdef>
 	    <paramdef><parameter>hostname</parameter>
 		<parameter>args</parameter></paramdef>
@@ -1807,7 +1807,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>standard_file</function></funcdef>
 	    <paramdef><parameter>dest</parameter
 		<parameter>op</parameter
@@ -1826,7 +1826,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>standard_load</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>prog</parameter>
@@ -1853,7 +1853,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>standard_reboot</function></funcdef>
 	    <paramdef><parameter>host</parameter></paramdef>
         </funcsynopsis>
@@ -1870,7 +1870,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>standard_send</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>string</parameter></paramdef>
@@ -1892,7 +1892,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>standard_spawn</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>commandline</parameter></paramdef>
@@ -1914,7 +1914,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>standard_transmit</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>file</parameter></paramdef>
@@ -1936,7 +1936,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>standard_upload</function></funcdef>
 	    <paramdef><parameter>dest srcfile destfile</parameter></paramdef>
         </funcsynopsis>
@@ -1961,7 +1961,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>standard_wait</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>timeout</parameter></paramdef>
@@ -1984,7 +1984,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>unix_clean_filename</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>file</parameter></paramdef>
@@ -2007,7 +2007,7 @@
 
 	  <para></para>
 
-          <funcsynopsis role="tcl"> 
+          <funcsynopsis role="tcl">
             <funcdef><function>exit_remote_shell</function></funcdef>
               <paramdef><parameter>spawnid</parameter></paramdef>
             </funcsynopsis>
@@ -2024,7 +2024,7 @@
 -->
 
     </sect2>
- 
+
     <sect2 id=connprocs xreflabel="connprocs">
       <title>Procedures For Using Utilities to Connect</title>
 
@@ -2146,7 +2146,7 @@
 
 	   <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>kermit_open</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>args</parameter></paramdef>
@@ -2168,7 +2168,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>kermit_command</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>args</parameter></paramdef>
@@ -2190,7 +2190,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>kermit_send</function></funcdef>
 	    <paramdef><parameter>dest string args</parameter></paramdef>
         </funcsynopsis>
@@ -2215,7 +2215,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>kermit_transmit</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>file</parameter>
@@ -2242,7 +2242,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>telnet_open</function></funcdef>
 	    <paramdef><parameter>hostname</parameter>
 		<parameter>args</parameter></paramdef>
@@ -2264,7 +2264,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>telnet_binary</function></funcdef>
 	    <paramdef><parameter>hostname</parameter></paramdef>
         </funcsynopsis>
@@ -2281,7 +2281,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>telnet_transmit</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>file</parameter>
@@ -2308,7 +2308,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>tip_open</function></funcdef>
 	    <paramdef><parameter>hostname</parameter></paramdef>
         </funcsynopsis>
@@ -2325,7 +2325,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>rlogin_open</function></funcdef>
 	    <paramdef><parameter>arg</parameter></paramdef>
         </funcsynopsis>
@@ -2342,7 +2342,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>rlogin_spawn</function></funcdef>
 	    <paramdef><parameter>dest</parameter>
 		<parameter>cmdline</parameter></paramdef>
@@ -2364,7 +2364,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>rsh_open</function></funcdef>
 	    <paramdef><parameter>hostname</parameter></paramdef>
         </funcsynopsis>
@@ -2381,7 +2381,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>rsh_download</function></funcdef>
 	    <paramdef><parameter>desthost</parameter>
 		<parameter>srcfile</parameter>
@@ -2408,7 +2408,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>rsh_upload</function></funcdef>
 	    <paramdef><parameter>desthost</parameter>
 		<parameter>srcfile</parameter>
@@ -2435,7 +2435,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>rsh_exec</function></funcdef>
 	    <paramdef><parameter>boardname</parameter>
 		<parameter>cmd</parameter>
@@ -2462,7 +2462,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>ftp_open</function></funcdef>
 	    <paramdef><parameter>host</parameter></paramdef>
         </funcsynopsis>
@@ -2479,7 +2479,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>ftp_upload</function></funcdef>
 	    <paramdef><parameter>host</parameter>
 		<parameter>remotefile</parameter>
@@ -2506,7 +2506,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>ftp_download</function></funcdef>
 	    <paramdef><parameter>host</parameter>
 		<parameter>localfile</parameter>
@@ -2533,7 +2533,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>ftp_close</function></funcdef>
 	    <paramdef><parameter>host</parameter></paramdef>
         </funcsynopsis>
@@ -2550,7 +2550,7 @@
 
 	  <para></para>
 
-          <funcsynopsis role="tcl"> 
+          <funcsynopsis role="tcl">
             <funcdef><function>tip_download</function></funcdef>
               <paramdef><parameter>spawnid</parameter>
               <parameter>file</parameter></paramdef>
@@ -2587,7 +2587,7 @@
 
 	<para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>default_link</function></funcdef>
 	    <paramdef><parameter>board</parameter>
 	    <parameter>objects</parameter>
@@ -2620,7 +2620,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>default_target_assemble</function></funcdef>
 	    <paramdef><parameter>source</parameter>
 	    <parameter>destfile</parameter>
@@ -2648,7 +2648,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>default_target_compile</function></funcdef>
 	    <paramdef><parameter>source</parameter>
 	    <parameter>destfile</parameter>
@@ -2680,7 +2680,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>pop_config</function></funcdef>
 	    <paramdef><parameter>type</parameter></paramdef>
         </funcsynopsis>
@@ -2697,7 +2697,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>prune_warnings</function></funcdef>
 	    <paramdef><parameter>text</parameter></paramdef>
         </funcsynopsis>
@@ -2714,7 +2714,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>push_build</function></funcdef>
 	    <paramdef><parameter>name</parameter></paramdef>
         </funcsynopsis>
@@ -2731,7 +2731,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>push_config</function></funcdef>
 	    <paramdef><parameter>type</parameter>
 	    <parameter>name</parameter></paramdef>
@@ -2753,7 +2753,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>reboot_target</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
@@ -2764,7 +2764,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>target_assemble</function></funcdef>
 	    <paramdef><parameter>source destfile flags</parameter></paramdef>
         </funcsynopsis>
@@ -2789,7 +2789,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>target_compile</function></funcdef>
 	    <paramdef><parameter>source</parameter>
 	    <parameter>destfile</parameter>
@@ -2825,7 +2825,7 @@
 
 	    <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>board_info</function></funcdef>
 	    <paramdef><parameter>machine</parameter>
 	    <parameter>op</parameter>
@@ -2852,7 +2852,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>host_info</function></funcdef>
 	    <paramdef><parameter>op</parameter>
 	    <parameter>args</parameter></paramdef>
@@ -2874,7 +2874,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>set_board_info</function></funcdef>
 	    <paramdef><parameter>entry</parameter>
 	    <parameter>value</parameter></paramdef>
@@ -2897,7 +2897,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>set_currtarget_info</function></funcdef>
 	    <paramdef><parameter>entry</parameter>
 	    <parameter>value</parameter></paramdef>
@@ -2919,7 +2919,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>target_info</function></funcdef>
 	    <paramdef><parameter>op</parameter>
 	    <parameter>args</parameter></paramdef>
@@ -2941,7 +2941,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>unset_board_info</function></funcdef>
 	    <paramdef><parameter>entry</parameter></paramdef>
         </funcsynopsis>
@@ -2959,7 +2959,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>unset_currtarget_info</function></funcdef>
 	    <paramdef><parameter>entry</parameter></paramdef>
         </funcsynopsis>
@@ -2979,7 +2979,7 @@
 	  an index into the <symbol>target_info</symbol> array and is set in
 	  the global config file.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>push_target</function></funcdef>
 	    <paramdef><parameter>name</parameter></paramdef>
         </funcsynopsis>
@@ -2997,7 +2997,7 @@
 
 	  <para>This unsets the current target connection.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>pop_target</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
@@ -3009,7 +3009,7 @@
 	  <para>This lists all the supported targets for this
 	  architecture.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>list_targets</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
@@ -3024,7 +3024,7 @@
 	  <symbol>target_info</symbol> array and is set in the global config
 	  file.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>push_host</function></funcdef>
 	    <paramdef><parameter>name</parameter></paramdef>
         </funcsynopsis>
@@ -3041,7 +3041,7 @@
 
 	  <para>This unsets the current host connection.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>pop_host</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
 	 </funcsynopsis>
@@ -3050,7 +3050,7 @@
 	<sect3 id=compile xreflabel="compile procedure">
 	  <title>Compile Procedure</title>
 
-	  <para>This invokes the compiler as set by CC to compile the 
+	  <para>This invokes the compiler as set by CC to compile the
 	  file <filename>file</filename>. The default options for many cross
 	  compilation targets are <emphasis>guessed</emphasis> by DejaGnu, and
 	  these options can be added to by passing in more parameters as
@@ -3060,7 +3060,7 @@
 	  then compiler is run on the remote host using
 	  <command>execute_anywhere</command>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>compile</function></funcdef>
 	    <paramdef><parameter>file</parameter></paramdef>
         </funcsynopsis>
@@ -3082,7 +3082,7 @@
 	  host is not the same as the build machines, then then archiver is run
 	  on the remote host using <command>execute_anywhere</command>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>archive</function></funcdef>
 	    <paramdef><parameter>file</parameter></paramdef>
         </funcsynopsis>
@@ -3101,7 +3101,7 @@
 	  aren't POSIX yet. Any parameters passed to <command>ranlib</command>
 	  are used in for the flags.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>ranlib</function></funcdef>
 	    <paramdef><parameter>file</parameter></paramdef>
         </funcsynopsis>
@@ -3128,7 +3128,7 @@
 	  output produced when the command was executed. This is used for
 	  running the tool to be tested, not a test case.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>execute_anywhere</function></funcdef>
 	    <paramdef><parameter>cmdline</parameter></paramdef>
         </funcsynopsis>
@@ -3193,7 +3193,7 @@
 	  <function>${tool}_start</function> (or makes other
 	  arrangements to run the tool).</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>${tool}_start</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
@@ -3219,7 +3219,7 @@
 	  downloading. Test scripts call
 	  <function>${tool}_load</function>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>${tool}_load</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
@@ -3233,9 +3233,9 @@
 	  session.  You can also use <function>${tool}_exit</function>
 	  to remove any temporary files left over from the
 	  tests. <command>runtest</command> calls
-	  <function>${tool}_exit</function>.</para> 
+	  <function>${tool}_exit</function>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>${tool}_exit</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
@@ -3250,7 +3250,7 @@
 	  should consist of the full path name used for the tested
 	  tool, and its version number.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>${tool}_version</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
@@ -3268,7 +3268,7 @@
 	directory a single directory that match an optional
 	pattern. </para>
 	
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>getdirs</function></funcdef>
 	    <paramdef><parameter>rootdir</parameter>
 		<parameter>pattern</parameter></paramdef>
@@ -3302,7 +3302,7 @@
 	result include all intervening subdirectory names. If no files match
 	the pattern, then a NULL string is returned.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>find</function></funcdef>
 	    <paramdef><parameter>rootdir</parameter>
 	    <parameter>pattern</parameter></paramdef>
@@ -3330,9 +3330,9 @@
 	<emphasis>PATH</emphasis>. It returns <emphasis>0</emphasis> if the
 	binary is not in the path, or if there is no <emphasis>PATH</emphasis>
 	environment variable. If <command>binary</command> is in the path, it
-	returns the full path to <command>binary</command>.</para> 
+	returns the full path to <command>binary</command>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>which</function></funcdef>
 	    <paramdef><parameter>file</parameter></paramdef>
 	</funcsynopsis>
@@ -3353,14 +3353,14 @@
 	<emphasis>regexp</emphasis>. The result is a list of all the lines that
 	match.  If no lines match, the result is an empty string.  Specify
 	<emphasis>regexp</emphasis> using the standard regular expression style
-	used by the Unix utility program grep.</para> 
+	used by the Unix utility program grep.</para>
 
 	<para>Use the optional third argument <emphasis>line</emphasis> to
 	start lines in the result with the line number in
 	<filename>filename</filename>.  (This argument is simply an option
 	flag; type it just as shown <option>--line</option>.)</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>grep</function></funcdef>
 	    <paramdef><parameter>filename</parameter>
 	    <parameter>regexp</parameter>
@@ -3375,12 +3375,12 @@
 	    <term><parameter>regexp</parameter></term>
 	    <listitem><para>The Unix style regular expression (as used by the
 	    <command>grep</command> Unix utility) to search
-	    for.</para></listitem> 
+	    for.</para></listitem>
           </varlistentry>
           <varlistentry>
 	    <term><parameter>--line</parameter></term>
 	    <listitem><para>Prefix the line number to each line where the
-	    regexp matches.</para></listitem> 
+	    regexp matches.</para></listitem>
           </varlistentry>
 	</variablelist>
 	</sect3>
@@ -3392,9 +3392,9 @@
 	  Elements are fields delimited by spaces.  The result is a copy of
 	  list, without any elements that match <emphasis>pattern</emphasis>.
 	  You can use the common shell wildcard characters to specify the
-	  pattern.</para> 
+	  pattern.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>prune</function></funcdef>
 	    <paramdef><parameter>list</parameter>
   	    <parameter>pattern</parameter></paramdef>
@@ -3423,7 +3423,7 @@
 	  under Windows if you have Cygwin or another Unix subsystem for Windows
 	  installed.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>slay</function></funcdef>
 	    <paramdef><parameter>name</parameter></paramdef>
 	</funcsynopsis>
@@ -3442,7 +3442,7 @@
 	  <para>This procedure takes the relative <emphasis>path</emphasis>,
 	  and converts it to an absolute path.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>absolute</function></funcdef>
 	    <paramdef><parameter>path</parameter></paramdef>
 	</funcsynopsis>
@@ -3462,7 +3462,7 @@
 	  error it returns a <emphasis>1</emphasis>, otherwise it returns a
 	  <emphasis>0</emphasis>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>psource</function></funcdef>
 	    <paramdef><parameter>file</parameter></paramdef>
 	</funcsynopsis>
@@ -3488,7 +3488,7 @@
 	  pathname of the current testcase under consideration. This is used
 	  by tools like compilers where each testcase is a file.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>runtest_file_p</function></funcdef>
 	    <paramdef><parameter>runtests</parameter>
 	    <parameter>testcase</parameter></paramdef>
@@ -3497,7 +3497,7 @@
           <varlistentry>
 	    <term><parameter>runtests</parameter></term>
 	    <listitem><para>The list of patterns to compare against.
-              </para></listitem> 
+              </para></listitem>
           </varlistentry>
           <varlistentry>
 	    <term><parameter>testcase</parameter></term>
@@ -3514,7 +3514,7 @@
 	  <symbol>verbose</symbol> is set, then it'll print the differences to
 	  the screen.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>diff</function></funcdef>
 	    <paramdef><parameter>file_1</parameter>
 	    <parameter>file_2</parameter></paramdef>
@@ -3537,7 +3537,7 @@
 	  <para>Sets the environment variable <emphasis>var</emphasis> to the
 	  value <emphasis>val</emphasis>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>setenv</function></funcdef>
 	    <paramdef><parameter>var</parameter>
    	    <parameter>val</parameter></paramdef>
@@ -3560,7 +3560,7 @@
 	  <para>Unsets the environment variable
 	  <emphasis>var</emphasis>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>unsetenv</function></funcdef>
 	    <paramdef><parameter>var</parameter></paramdef>
 	</funcsynopsis>
@@ -3579,7 +3579,7 @@
 	  <para>Returns the value of <emphasis>var</emphasis> in the
 	  environment if it exists, otherwise it returns NULL.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>getenv</function></funcdef>
 	    <paramdef><parameter>var</parameter></paramdef>
 	</funcsynopsis>
@@ -3601,7 +3601,7 @@
 	  is the message that is printed if a shared library is out of
 	  date.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>prune_system_crud</function></funcdef>
 	    <paramdef><parameter>system</parameter>
 	    <parameter>test</parameter></paramdef>
@@ -3634,7 +3634,7 @@
 
 	<para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>libgloss_link_flags</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -3652,7 +3652,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>libgloss_include_flags</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -3669,7 +3669,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>newlib_link_flags</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -3687,7 +3687,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>newlib_include_flags</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -3705,7 +3705,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>libio_include_flags</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -3722,7 +3722,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>libio_link_flags</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -3739,7 +3739,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>g++_include_flags</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -3756,7 +3756,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>g++_link_flags</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -3774,7 +3774,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>libstdc++_include_flags</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -3792,7 +3792,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>libstdc++_link_flags</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -3809,7 +3809,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>get_multilibs</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -3826,7 +3826,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>find_binutils_prog</function></funcdef>
 	    <paramdef><parameter>name</parameter></paramdef>
         </funcsynopsis>
@@ -3843,7 +3843,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>find_gcc</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
@@ -3854,7 +3854,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>find_gcj</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
@@ -3865,7 +3865,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>find_g++</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
@@ -3876,7 +3876,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>find_g77</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
@@ -3888,7 +3888,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>process_multilib_options</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -3906,7 +3906,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>add_multilib_option</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -3923,7 +3923,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>find_gas</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
@@ -3934,7 +3934,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>find_ld</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
@@ -3945,7 +3945,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>build_wrapper</function></funcdef>
 	    <paramdef><parameter>gluefile</parameter></paramdef>
         </funcsynopsis>
@@ -3963,7 +3963,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>winsup_include_flags</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -3980,7 +3980,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>winsup_link_flags</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
         </funcsynopsis>
@@ -4006,7 +4006,7 @@
 	the values of the global variable names that match.  It is abbreviated
 	as <emphasis>dv</emphasis>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>dumpvars</function></funcdef>
 	    <paramdef><parameter>vars</parameter></paramdef>
 	        </funcsynopsis>
@@ -4025,7 +4025,7 @@
 	  prints the values of the local variable names that match. It is
 	  abbreviated as <emphasis>dl</emphasis>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>dumplocals</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
 	        </funcsynopsis>
@@ -4044,7 +4044,7 @@
 	  prints the body of all procs that match. It is abbreviated as
 	  <emphasis>dp</emphasis>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>dumprocs</function></funcdef>
 	    <paramdef><parameter>pattern</parameter></paramdef>
 	        </funcsynopsis>
@@ -4064,7 +4064,7 @@
 	  prints all the watchpoints. It is abbreviated as
 	  <emphasis>dw</emphasis>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>dumpwatch</function></funcdef>
 	    <paramdef><parameter>pattern</parameter></paramdef>
 	        </funcsynopsis>
@@ -4082,7 +4082,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>watcharray</function></funcdef>
 	    <paramdef><parameter>element</parameter>
 		<parameter>type</parameter></paramdef>
@@ -4101,7 +4101,7 @@
 
 	  <para></para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>watchvar</function></funcdef>
 	    <paramdef><parameter>var</parameter>
 		<parameter>type</parameter></paramdef>
@@ -4121,7 +4121,7 @@
 	  <symbol>var</symbol> is unset. It is abbreviated as
 	  <emphasis>wu</emphasis>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>watchunset</function></funcdef>
 	    <paramdef><parameter>arg</parameter></paramdef>
 	        </funcsynopsis>
@@ -4138,9 +4138,9 @@
 
 	  <para>This breaks program execution when the variable
 	  <symbol>var</symbol> is written. It is abbreviated as
-	  <emphasis>ww</emphasis>.</para> 
+	  <emphasis>ww</emphasis>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>watchwrite</function></funcdef>
 	    <paramdef><parameter>var</parameter></paramdef>
 	        </funcsynopsis>
@@ -4159,7 +4159,7 @@
 	  <symbol>var</symbol> is read. It is abbreviated as
 	  <emphasis>wr</emphasis>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>watchread</function></funcdef>
 	    <paramdef><parameter>var</parameter></paramdef>
 	        </funcsynopsis>
@@ -4177,7 +4177,7 @@
 	  <para>This deletes a the watchpoint from the watch list. It is
 	  abbreviated as <emphasis>wd</emphasis>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>watchdel</function></funcdef>
 	    <paramdef><parameter>args</parameter></paramdef>
 	        </funcsynopsis>
@@ -4196,7 +4196,7 @@
 	  <parameter>var</parameter>. It is abbreviated as
 	  <emphasis>p</emphasis>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>print</function></funcdef>
 	    <paramdef><parameter>var</parameter></paramdef>
 	        </funcsynopsis>
@@ -4214,7 +4214,7 @@
 	  <para>This makes runtest exit. It is abbreviated as
 	  <emphasis>q</emphasis>.</para>
 
-	<funcsynopsis role="tcl"> 
+	<funcsynopsis role="tcl">
             <funcdef><function>quit</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
 	        </funcsynopsis>
@@ -4272,7 +4272,7 @@
 
     <sect1 id=cunit xreflabel="C Unit Testing API">
     <title>C Unit Testing API</title>
-    
+
     <para>All of the functions that take a
     <parameter>msg</parameter> parameter use a C char * that is
     the message to be dislayed. There currently is no support for
@@ -4281,11 +4281,11 @@
 
     <sect2 id=passfunc xreflabel="pass function">
     <title>Pass Function</title>
-	  
+
 	  <para>This prints a message for a successful test
 	  completion.</para>
 
-	  <funcsynopsis role="C"> 
+	  <funcsynopsis role="C">
 	  <funcdef><function>pass</function></funcdef>
 	  <paramdef><parameter>msg</parameter></paramdef>
 	  </funcsynopsis>
@@ -4294,11 +4294,11 @@
 
     <sect2 id=failfunc xreflabel="fail function">
     <title>Fail Function</title>
-	  
+
 	  <para>This prints a message for an unsuccessful test
 	  completion.</para>
 
-	  <funcsynopsis role="C"> 
+	  <funcsynopsis role="C">
 	  <funcdef><function>fail</function></funcdef>
 	  <paramdef><parameter>msg</parameter></paramdef>
 	  </funcsynopsis>
@@ -4311,7 +4311,7 @@
 	  <para>This prints a message for an test case that isn't run
 	  for some technical reason.</para>
 
-	<funcsynopsis role="C"> 
+	<funcsynopsis role="C">
             <funcdef><function>untested</function></funcdef>
 	    <paramdef><parameter>msg</parameter></paramdef>
 	        </funcsynopsis>
@@ -4325,7 +4325,7 @@
 	  human to look over the results to determine what happened.
 	  </para>
 
-	<funcsynopsis role="C"> 
+	<funcsynopsis role="C">
             <funcdef><function>unresolved</function></funcdef>
 	    <paramdef><parameter>msg</parameter></paramdef>
 	        </funcsynopsis>
@@ -4337,7 +4337,7 @@
 	  <para>This prints out the total numbers of all the test
 	  state outputs.</para>
 
-	<funcsynopsis role="C"> 
+	<funcsynopsis role="C">
             <funcdef><function>totals</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>
@@ -4347,20 +4347,20 @@
 
     <sect1 id=cppunit xreflabel="C++ Unit Testing API">
 	   <title>C++ Unit Testing API</title>
-	   
+
 	   <para>All of the methods that take a
 	   	  <parameter>msg</parameter> parameter use a C char *
 		  or STL string, that is the message to be
 	   	  dislayed. There currently is no support for variable
 	   	  length arguments.</para>
-	  
+
 	   <sect2 id=passmeth xreflabel="pass method">
 	   <title>Pass Method</title>
 
 	  <para>This prints a message for a successful test
 	  completion.</para>
 
-	<funcsynopsis role="C++"> 
+	<funcsynopsis role="C++">
             <funcdef><function>TestState::pass</function></funcdef>
 	    <paramdef><parameter>msg</parameter></paramdef>
 	</funcsynopsis>
@@ -4372,7 +4372,7 @@
 	  <para>This prints a message for an unsuccessful test
 	  completion.</para>
 
-	<funcsynopsis role="C++"> 
+	<funcsynopsis role="C++">
             <funcdef><function>TestState::fail</function></funcdef>
 	    <paramdef><parameter>msg</parameter></paramdef>
 	</funcsynopsis>
@@ -4384,7 +4384,7 @@
 	  <para>This prints a message for an test case that isn't run
 	  for some technical reason.</para>
 
-	<funcsynopsis role="C++"> 
+	<funcsynopsis role="C++">
             <funcdef><function>TestState::untested</function></funcdef>
 	    <paramdef><parameter>msg</parameter></paramdef>
 	</funcsynopsis>
@@ -4398,7 +4398,7 @@
 	  human to look over the results to determine what happened.
 	  </para>
 
-	<funcsynopsis role="C++"> 
+	<funcsynopsis role="C++">
             <funcdef><function>TestState::unresolved</function></funcdef>
 	    <paramdef><parameter>msg</parameter></paramdef>
 	</funcsynopsis>
@@ -4410,7 +4410,7 @@
 	  <para>This prints out the total numbers of all the test
 	  state outputs.</para>
 
-	<funcsynopsis role="C++"> 
+	<funcsynopsis role="C++">
             <funcdef><function>TestState::totals</function></funcdef>
 	    <paramdef><parameter></parameter></paramdef>
         </funcsynopsis>

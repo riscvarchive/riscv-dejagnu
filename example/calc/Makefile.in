@@ -148,7 +148,7 @@ $(top_builddir)/config.status: $(srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
 $(srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(srcdir)/configure.in $(ACLOCAL_M4) $(CONFIGURE_DEPENDENCIES)
 	cd $(srcdir) && $(AUTOCONF)
 
-$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ configure.in 
+$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ configure.in
 	cd $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
 
 calc.h: stamp-h1
@@ -161,7 +161,7 @@ stamp-h1: $(srcdir)/calc.h.in $(top_builddir)/config.status
 	@rm -f stamp-h1
 	cd $(top_builddir) && $(SHELL) ./config.status calc.h
 
-$(srcdir)/calc.h.in: @MAINTAINER_MODE_TRUE@ $(top_srcdir)/configure.in $(ACLOCAL_M4) 
+$(srcdir)/calc.h.in: @MAINTAINER_MODE_TRUE@ $(top_srcdir)/configure.in $(ACLOCAL_M4)
 	cd $(top_srcdir) && $(AUTOHEADER)
 	touch $(srcdir)/calc.h.in
 
@@ -170,7 +170,7 @@ distclean-hdr:
 
 clean-noinstPROGRAMS:
 	-test -z "$(noinst_PROGRAMS)" || rm -f $(noinst_PROGRAMS)
-calc$(EXEEXT): $(calc_OBJECTS) $(calc_DEPENDENCIES) 
+calc$(EXEEXT): $(calc_OBJECTS) $(calc_DEPENDENCIES)
 	@rm -f calc$(EXEEXT)
 	$(LINK) $(calc_LDFLAGS) $(calc_OBJECTS) $(calc_LDADD) $(LIBS)
 

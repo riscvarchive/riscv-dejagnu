@@ -4,15 +4,15 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-# 
+#
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.  
+# Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 
 # Please email any bugs, comments, and/or additions to this file to:
 # bug-dejagnu@gnu.org
@@ -155,13 +155,13 @@ proc dos_prep_command { dest cmdline } {
     return $result
 }
 
-# 
+#
 # Run CMDLINE on DESTHOST. We handle two cases; one is where we're at
 # a DOS prompt, and the other is where we're in GDB.
 # We run CMDLINE by creating a batchfile, downloading it, and then
 # executing it; this handles the case where the commandline is too
 # long for command.com to deal with.
-# 
+#
 
 proc dos_exec { dest program pargs inp outp } {
     set cmdline "$program $pargs"
@@ -212,7 +212,7 @@ proc dos_exec { dest program pargs inp outp } {
     return [list -1 "program execution failed"]
 }
 
-# 
+#
 # Start CMDLINE executing on DEST.
 # There are two cases that we handle, one where we're at a DOS prompt
 # and the other is when the remote machine is running GDB.
@@ -233,7 +233,7 @@ proc dos_start_command { cmdline dest } {
 		    set prefix "shell "
 		    set ok 1
 		}
-		-re "$shell_prompt" { 
+		-re "$shell_prompt" {
 		    set ok 1
 		}
 		default { }
@@ -278,7 +278,7 @@ proc dos_send { dest string } {
     }
 }
 
-# 
+#
 # Spawn PROGRAM on DEST, and return the spawn_id associated with the
 # connection; we can only spawn one command at a time.
 #
@@ -414,7 +414,7 @@ proc dos_file { dest op args } {
 		remote_exec $dest "del" "$x"
 	    }
 	    return
-	    
+
 	}
 	default {
 	    return [eval standard_file \{$dest\} \{$op\} $args]
