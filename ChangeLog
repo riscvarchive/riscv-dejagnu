@@ -1,5 +1,21 @@
 2004-02-08  Ben Elliston  <bje@wasabisystems.com>
 
+	* configure.ac: Use AC_PATH_PROG to find expect(1).
+	(DJ_AC_PATH_TCLSH): Remove unneeded invocation.
+	* acinclude.m4 (DJ_AC_PATH_TCLSH): Remove.
+	(DJ_AC_STL): Likewise.
+	* configure: Regenerate.
+	* aclocal.m4: Likewise.
+	* configure: Likewise.
+	* Makefile.in: Likewise.
+	* doc/Makefile.in: Likewise.
+	* example/Makefile.in: Likewise.
+	* testsuite/Makefile.in: Likewise.
+	* testsuite/libdejagnu/Makefile.in: Likewise.
+	* TODO: Update.
+
+2004-02-08  Ben Elliston  <bje@wasabisystems.com>
+
 	* runtest.1: Remove any mention of mondfe.
 	
 2004-02-08  Ben Elliston  <bje@wasabisystems.com>

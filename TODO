@@ -1,11 +1,20 @@
-Mon Aug 18 09:58:25 EST 2003
+Last updated Sun Feb  8 12:57:16 EST 2004
+
+Bigger items
+============
 
 * Transfer timeouts should be dependent on file size and link speed.
-* Add more support for target boards and realtime OS's.
+* Add more support for target boards and RTOSes.
 * Use the new expect terminal support for an "escape codes" API.
-* Use expectk and write a GUI testing API, complete with
-  record/playback.
+* Use expectk and write a GUI testing API, complete with record/playback.
+
+Configure/build
+===============
+
+* Add a configure test to make sure the right version of Tcl is installed.
+* Add better error message to runtest when expect can't be found.
+
+Documentation
+=============
+
 * Add a "testing methodologies" section to the manual.
-* Add a configure test to make sure Tcl and expect are installed.
-* Add support to runtest to produce a better error message when expect
-  can't be found.

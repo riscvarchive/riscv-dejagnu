@@ -10,14 +10,15 @@ AC_PROG_CC
 AC_PROG_CXX
 AC_PROG_INSTALL
 AC_EXEEXT
-
 AC_PROG_YACC
+
+AC_PATH_PROG(EXPECT, expect)
+if test -z $ac_cv_path_EXPECT ; then
+   AC_MSG_ERROR([unable to locate expect])
+fi
 
 dnl we need the path to Docbook so we can build packages.
 DJ_AC_PATH_DOCBOOK
-
-dnl we need the path to the tcl shell to build a release
-DJ_AC_PATH_TCLSH
 
 dnl Level of indirection for automake macro (baseboards:boards_DATA)
 BOARDS='$(boards)'
