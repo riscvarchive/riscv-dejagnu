@@ -1,5 +1,5 @@
 2002-11-12  Peter Breitenlohner <peb@mppmu.mpg.de>
-
+2002-10-29  Maciej W. Rozycki  <macro@ds2.pg.gda.pl>
 	* Makefile.am: Add support for DESTDIR.
 	* Makefile.in: Regenerated.
 
