@@ -1,9 +1,9 @@
-2001-11-12  Andrew Cagney  <ac131313@redhat.com>
+2003-02-19  Andrew Cagney  <ac131313@redhat.com>
 
-         * lib/remote.exp (local_exec, standard_close): Use SHELL
-         background instead of tcl background to background the kill
+         * lib/remote.exp (local_exec, standard_close): Use shell
+         background instead of Tcl background to background the kill
          processes.  Work around problem found by Nick Duffek in older
-         CYGWINs. (migrated from Redhat's sources kind late, sorry)
+         Cygwins.
 
 2003-02-19  DJ Delorie  <dj@redhat.com>
 
@@ -515,7 +515,7 @@ Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
 
 2001-01-31  Rob Savoye  <rob@slipknot.welcomehome.org>
 
-	* Merge in latest snapshot from RedHat.
+	* Merge in latest snapshot from Red Hat.
 	* example/calc/Makefile.am: New automake support.
 	* example/calc/Makefile.in: Generated.
 	* example/Makefile.am: Recursion support for make.
