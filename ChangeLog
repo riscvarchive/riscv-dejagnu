@@ -1,3 +1,8 @@
+2005-04-28  Mark Kettenis  <kettenis@gnu.org>
+
+	* lib/target.exp (prune_warnings): Add a few more linker
+	warning patterns for OpenBSD.
+
 2005-03-20  Mark Kettenis  <kettenis@gnu.org>
 
 	* lib/target.exp (prune_warnings): Add linker warning patterns for
