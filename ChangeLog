@@ -1,3 +1,8 @@
+2005-06-22  Ben Elliston  <bje@gnu.org>
+
+	* config.guess: Update to most recent version.
+	* config.sub: Likewise.
+
 2005-04-28  Mark Kettenis  <kettenis@gnu.org>
 
 	* lib/target.exp (prune_warnings): Add a few more linker
@@ -8,11 +13,12 @@
 	* lib/target.exp (prune_warnings): Add linker warning patterns for
 	OpenBSD.
 
-
 2005-01-29  Hans-Peter Nilsson  <hp@axis.com>
+
 	* baseboards/cris-sim.exp: New file.
 
 2004-11-19  Nick Clifton  <nickc@redhat.com>
+
 	* lib/libgloss.exp (newlib_include_flags): Document why -isystem
 	is used instead of -I.
 	(libio_include_flags): Use -I instead of -isystem and
