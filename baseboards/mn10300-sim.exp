@@ -1,4 +1,4 @@
-# Copyright (C) 1997 - 2003, 2004 Free Software
+# Copyright (C) 1997, 1998, 1999, 2000, 2001, 2002, 2003 Free Software
 # Foundation, Inc.
 #
 # This file is part of DejaGnu.
@@ -46,7 +46,7 @@ set_board_info ldflags  "[libgloss_link_flags] [newlib_link_flags]"
 set_board_info ldscript "-Tsim.ld"
 
 # The simulator doesn't return exit statuses and we need to indicate this.
-set_board_info needs_status_wrapper ""
+set_board_info needs_status_wrapper "" 
 
 # We can't pass args to the simulator or get exit status back from the
 # simulator, nor does the simulator support real signals.

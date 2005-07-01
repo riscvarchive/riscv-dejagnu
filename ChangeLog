@@ -1,3 +1,17 @@
+2005-07-01  Ben Elliston  <bje@gnu.org>
+
+	Unify some changes with the 1.4 branch:
+
+	2004-10-28  Nick Clifton  <nickc@redhat.com>
+	* baseboards/iq2000-sim.exp: New file.
+
+	2004-06-08  Alexandre Oliva  <aoliva@redhat.com>
+	* baseboards/mn10300-sim.exp: Set needs_status_wrapper and
+	noresults to zero.
+
+	2004-05-13  Kazuhiro Inaoka  <inaoka.kazuhiro@renesas.com>
+	* baseboards/m32r-linux-sim.exp: Add New file.
+
 2005-06-24  Ben Elliston  <bje@gnu.org>
 
 	* MAINTAINERS: Update my email address.
@@ -65,7 +79,8 @@
 
 	* testglue.c: Prototype abort and exit.
 
-from  Alexandre Oliva  <aoliva@redhat.com>
+2004-06-08  Alexandre Oliva  <aoliva@redhat.com>
+	
         * baseboards/mn10300-sim.exp: Set needs_status_wrapper to empty
         string.
                                                                                 
@@ -74,7 +89,7 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
         * lib/remote.exp (call_remote): Remove multilibs from the board
 	name when rebooting a board.
 
-2004-0603  Alexandre Oliva  <aoliva@redhat.com>
+2004-06-03  Alexandre Oliva  <aoliva@redhat.com>
 
        * baseboards/mn10300-sim.exp: Set needs_status_wrapper and
        noresults to zero.
