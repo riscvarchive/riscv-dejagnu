@@ -1,3 +1,7 @@
+2005-07-06  Aldy Hernandez  <aldyh@redhat.com>
+
+	* baseboards/ms1-sid.exp: New.
+
 2005-07-01  Ben Elliston  <bje@gnu.org>
 
 	Unify some changes with the 1.4 branch:

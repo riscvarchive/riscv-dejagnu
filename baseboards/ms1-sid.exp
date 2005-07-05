@@ -1,0 +1,38 @@
+# This is a list of toolchains that are supported on this board.
+set_board_info target_install {ms1-elf}
+
+# Load a baseboard description for SID simulators.
+load_base_board_description "basic-sid"
+
+set_board_info ldflags "-msim [libgloss_link_flags] [newlib_link_flags]"
+
+verbose "Using simulator [board_info $board sim]\n"
+set_board_info sim [find_rawsid]
+if { ${tool} == "gdb" } {
+    set_board_info sim,options "-f [find_sid_conf ms1-gdb]"
+} else {
+    set_board_info sim,options "-f [find_sid_conf ms1-gloss]"
+}
+
+# Used by a few gcc.c-torture testcases when trampolines are used.
+set_board_info gcc,no_trampolines  1
+
+# Used by a few gcc.c-torture testcases when labels as values are used.
+set_board_info gcc,no_label_values  1
+
+# Not needed by SID anymore, but needed to suppress warning in
+# gdb/testsuite/config/sid.exp.
+set_board_info sim,defaultendian "-EB"
+
+#verbose "Using simulator [board_info $board sim]\n"
+#set_board_info sim [find_sid "ms1-elf"]
+
+# Load the generic configuration for this board. This will define a basic set
+# of routines needed by the tool to communicate with the board.
+load_generic_config "sid"
+
+# Tells the test harness to use pre-generated sid configurations.
+set_board_info sim,protocol "sid";
+
+# This is the name of our entry point symbol.
+set_board_info gdb,start_symbol _start
