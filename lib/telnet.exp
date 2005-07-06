@@ -17,12 +17,11 @@
 # along with DejaGnu; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.
 
-#
-# Connect using telnet. This takes two arguments. The first one is the
-# hostname, and the second is the optional port number. This sets
-# the fileid field in the config array, and returns -1 for error, or the
-# spawn id.
-#
+
+# Connect to HOSTNAME using Telnet.  ARGS is a list of options.
+# Currently the only supported option is "raw".  Sets the fileid field
+# in the config array and returns -1 for error or the spawn id.
+
 proc telnet_open { hostname args } {
     global verbose
     global connectmode
@@ -31,10 +30,9 @@ proc telnet_open { hostname args } {
     global board_info
 
     set raw 0
-
-    if { [llength $args] > 0 } {
-	if { [lindex $args 0] == "raw" } {
-	    set raw 1
+    foreach arg $args {
+	switch $arg {
+	    "raw" { set raw 1 }
 	}
     }
 
@@ -187,8 +185,10 @@ proc telnet_open { hostname args } {
 	}
 	incr tries
     }
-    # we look for this here again cause it means something went wrong, and
-    # it doesn't always show up in the expect in buffer till the server times out.
+
+    # We look for this here again cause it means something went wrong,
+    # and it doesn't always show up in the expect in buffer till the
+    # server times out.
     if [info exists expect_out(buffer)] {
 	if [regexp "assword:|ogin:" $expect_out(buffer)] {
 	    perror "telnet: need to supply a login and password."
@@ -206,8 +206,7 @@ proc telnet_open { hostname args } {
     return $spawn_id
 }
 
-#
-# Put the telnet connection into binary mode.
+# Put the Telnet connection to HOSTNAME into binary mode.
 #
 proc telnet_binary { hostname } {
     if [board_info $hostname exists fileid] {

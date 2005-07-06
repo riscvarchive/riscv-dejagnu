@@ -1,5 +1,10 @@
 2005-07-06  Ben Elliston  <bje@gnu.org>
 
+	* lib/telnet.exp (telnet_open): Improve option handling.  Clarify
+	documentation for each proc.
+
+2005-07-06  Ben Elliston  <bje@gnu.org>
+
 	* aclocal.m4: Regenerate with aclocal 1.9.
 	* configure: Regenerate with autoconf 2.59.
 	* doc/C/Makefile.am: Remove stray include.
