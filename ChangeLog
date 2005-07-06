@@ -1,5 +1,14 @@
 2005-07-06  Ben Elliston  <bje@gnu.org>
 
+	* aclocal.m4: Regenerate with aclocal 1.9.
+	* configure: Regenerate with autoconf 2.59.
+	* doc/C/Makefile.am: Remove stray include.
+	* Makefile.in, doc/Makefile.in, doc/C/Makefile.in,
+	example/Makefile.in, testsuite/Makefile.in,
+	testsuite/libdejagnu/Makefile.in: Regenerate with automake 1.9.
+
+2005-07-06  Ben Elliston  <bje@gnu.org>
+
 	Import some missing hunks from this patch on sourceware:
 
 	2004-11-11  Nick Clifton  <nickc@redhat.com>

@@ -5,7 +5,6 @@ lang = C
 omffile = dejagnu.omf
 
 entities = $(srcdir)/legal.xml
-include $(top_srcdir)/doc/xmldocs.make
 dist-hook: app-dist-hook
 gnuae_helpdir = $(datadir)/gnome/help/$(docname)/C
 
