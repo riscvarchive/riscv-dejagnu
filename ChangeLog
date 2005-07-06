@@ -1,5 +1,10 @@
 2005-07-06  Ben Elliston  <bje@gnu.org>
 
+	* lib/tip.exp (tip_open): Improve comments.
+	(tip_download): Likewise.
+
+2005-07-06  Ben Elliston  <bje@gnu.org>
+
 	* lib/telnet.exp (telnet_open): Improve option handling.  Clarify
 	documentation for each proc.
 

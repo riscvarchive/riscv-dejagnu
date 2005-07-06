@@ -1,5 +1,5 @@
 # Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000,
-# 2001, 2002, 2003 Free Software Foundation, Inc.
+# 2001, 2002, 2003, 2005 Free Software Foundation, Inc.
 #
 # This file is part of DejaGnu.
 #
@@ -17,10 +17,9 @@
 # along with DejaGnu; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.
 
-#
-# Connect via tip as part of remote_open.
-# returns -1 if it failed, the spawn_id if it worked; also sets
-# [board_info ${hostname} fileid] with the spawn_id on success.
+# Connect to HOSTNAME using tip(1).  Sets the board's fileid field
+# with the spawn_id on success and returns the spawn id, otherwise
+# returns -1.
 #
 proc tip_open { hostname } {
     global verbose
@@ -36,7 +35,8 @@ proc tip_open { hostname } {
     if [board_info ${hostname} exists shell_prompt] {
 	set shell_prompt [board_info ${hostname} shell_prompt]
     } else {
-	set shell_prompt ".*> " # Pick something reasonably generic.
+	# Pick something reasonably generic.
+	set shell_prompt ".*> "
     }
 
     if [board_info ${hostname} exists fileid] {
@@ -119,10 +119,8 @@ proc tip_open { hostname } {
     }
 }
 
-#
-# Downloads using the ~put command under tip
-#     arg - is a full path name to the file to download
-#     returns -1 if an error occured, otherwise it returns 0.
+# Download FILE to DEST using the ~put command in tip(1).
+# Returns -1 if an error occurred, otherwise returns 0.
 #
 proc tip_download { dest file args } {
     global verbose
