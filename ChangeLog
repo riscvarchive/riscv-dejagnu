@@ -650,7 +650,7 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 	* config.sub: Ditto.
 	* AUTHORS: Add self to list of maintainers.
 
-2003-07-25  Jim Dein  <jdein@deinji5.apple.com>
+2003-07-25  Jim Dein  <jdein@deinji5.apple.com> (RIP)
 
 	* lib/utils.exp (find): Fix double recursion bug.
 
