@@ -58,7 +58,8 @@ proc telnet_open { hostname args } {
     if [board_info $connhost exists fileid] {
 	return [board_info $connhost fileid]
     }
-    # get the hostname and port number from the config array
+
+    # Get the hostname and port number from the config array.
     if [board_info $connhost exists netport] {
 	set type $hostname
 	set hosttmp [split [board_info $connhost netport] ":"]
@@ -70,6 +71,7 @@ proc telnet_open { hostname args } {
     } else {
 	set type target
     }
+
     if [board_info $connhost exists shell_prompt] {
         set shell_prompt [board_info $connhost shell_prompt]
     }
@@ -203,6 +205,7 @@ proc telnet_open { hostname args } {
 	verbose "setting board_info($connhost,fileid) to $spawn_id" 3
 	set board_info($connhost,fileid) $spawn_id
     }
+
     return $spawn_id
 }
 
@@ -235,8 +238,4 @@ proc telnet_binary { hostname } {
 	    }
 	}
     }
-}
-
-proc telnet_transmit { dest file args } {
-    return [standard_transmit $dest $file]
 }

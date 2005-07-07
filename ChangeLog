@@ -1,5 +1,9 @@
 2005-07-07  Ben Elliston  <bje@gnu.org>
 
+	* lib/telnet.exp (telnet_transmit): Remove; use standard method.
+
+2005-07-07  Ben Elliston  <bje@gnu.org>
+
 	* Makefile.am (baseboard_SCRIPTS): Add ms1-sid.exp.
 	* Makefile.in: Regenerate.
 
