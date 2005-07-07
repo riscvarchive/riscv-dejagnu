@@ -1,3 +1,8 @@
+2005-07-07  Ben Elliston  <bje@gnu.org>
+
+	* Makefile.am (baseboard_SCRIPTS): Add ms1-sid.exp.
+	* Makefile.in: Regenerate.
+
 2005-07-06  Ben Elliston  <bje@gnu.org>
 
 	* lib/tip.exp (tip_open): Improve comments.
