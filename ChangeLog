@@ -1,5 +1,7 @@
 2005-09-24  Ben Elliston  <bje@gnu.org>
 
+	* packaging/pkg/pkginfo (EMAIL): Update mail address.
+
 	* lib/rsh.exp: Tidy comments.
 
 2005-07-07  Ben Elliston  <bje@gnu.org>
