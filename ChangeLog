@@ -1,3 +1,7 @@
+2005-09-24  Ben Elliston  <bje@gnu.org>
+
+	* lib/rsh.exp: Tidy comments.
+
 2005-07-07  Ben Elliston  <bje@gnu.org>
 
 	* lib/telnet.exp (telnet_transmit): Remove; use standard method.

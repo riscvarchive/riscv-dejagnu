@@ -1,5 +1,5 @@
 # Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000,
-# 2001, 2002, 2003 Free Software Foundation, Inc.
+# 2001, 2002, 2003, 2005 Free Software Foundation, Inc.
 #
 # This file is part of DejaGnu.
 #
@@ -17,8 +17,7 @@
 # along with DejaGnu; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.
 
-#
-# Connect to hostname using rlogin
+# Connect to HOSTNAME using rlogin(1).
 #
 proc rsh_open { hostname } {
     global spawn_id
@@ -42,7 +41,7 @@ proc rsh_open { hostname } {
 	set rsh_useropts ""
     }
 
-    # get the hostname and port number from the config array
+    # Get the hostname and port number from the config array.
     if [board_info $hostname exists name] {
 	set hostname [board_info $hostname name]
     }
@@ -135,7 +134,6 @@ proc rsh_open { hostname } {
     }
 
     if { $result < 0 } {
-	#	perror "$RSH: couldn't connect after $tries tries."
 	close -i $spawn_id
 	set spawn_id -1
     } else {
@@ -145,10 +143,8 @@ proc rsh_open { hostname } {
     return $spawn_id
 }
 
+# Download SRCFILE to DESTFILE on DESTHOST.
 #
-# Download $srcfile to $destfile on $desthost.
-#
-
 proc rsh_download {desthost srcfile destfile} {
     # must be done before desthost is rewritten
     if [board_info $desthost exists rcp_prog] {
@@ -225,8 +221,7 @@ proc rsh_upload {desthost srcfile destfile} {
     }
 }
 
-#
-# Execute "$cmd $args[0]" on $boardname.
+# Execute CMD on BOARDNAME.
 #
 proc rsh_exec { boardname cmd args } {
     if { [llength $args] > 0 } {
@@ -269,10 +264,9 @@ proc rsh_exec { boardname cmd args } {
 	set hostname $boardname
     }
 
-
-    # If CMD sends any output to stderr, exec will think it failed.  More often
-    # than not that will be true, but it doesn't catch the case where there is
-    # no output but the exit code is non-zero.
+    # If CMD sends any output to stderr, exec will think it failed.
+    # More often than not that will be true, but it doesn't catch the
+    # case where there is no output but the exit code is non-zero.
     if { $inp == "" } {
 	set inp "/dev/null"
     }
