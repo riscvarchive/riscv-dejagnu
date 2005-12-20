@@ -1,5 +1,23 @@
 2005-12-20  Ben Elliston  <bje@gnu.org>
 
+	* Makefile.am (SUBDIRS): Remove testsuite, example.
+	(EXTRA_DIST): Add $(TESTSUITE_FILES).
+	(TESTSUITE_FILES): New.
+	(RUNTEST, RUNTESTDEFAULTFLAGS): New.
+	(AM_CXXFLAGS): Set.
+	(check_PROGRAMS): New.
+	(unit_SOURCES): New.
+	* Makefile.in: Regenerate.
+	* configure.ac (AC_OUTPUT): Don't output example/Makefile,
+	testsuite/Makefile or testsuite/libdejagnu/Makefile.
+	* configure: Regenerate.
+	* testsuite/Makefile.am: Remove.
+	* testsuite/Makefile.in: Likewise.
+	* testsuite/libdejagnu/Makefile.am: Likewise.
+	* testsuite/libdejagnu/Makefile.in: Likewise.
+
+2005-12-20  Ben Elliston  <bje@gnu.org>
+
 	* Makefile.am (baseboard_SCRIPTS): Rename ms1->mt.
 	* Makefile.in: Regenerate.
 

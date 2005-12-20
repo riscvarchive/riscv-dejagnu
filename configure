@@ -3612,7 +3612,7 @@ fi
 subdirs="$subdirs example/calc example/hello example/mathhelper"
 
 
-                                                            ac_config_files="$ac_config_files Makefile doc/Makefile doc/C/Makefile example/Makefile testsuite/Makefile testsuite/libdejagnu/Makefile"
+                              ac_config_files="$ac_config_files Makefile doc/Makefile doc/C/Makefile"
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
 # tests run on this system so they can be shared between configure
@@ -4205,9 +4205,6 @@ do
   "Makefile" ) CONFIG_FILES="$CONFIG_FILES Makefile" ;;
   "doc/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/Makefile" ;;
   "doc/C/Makefile" ) CONFIG_FILES="$CONFIG_FILES doc/C/Makefile" ;;
-  "example/Makefile" ) CONFIG_FILES="$CONFIG_FILES example/Makefile" ;;
-  "testsuite/Makefile" ) CONFIG_FILES="$CONFIG_FILES testsuite/Makefile" ;;
-  "testsuite/libdejagnu/Makefile" ) CONFIG_FILES="$CONFIG_FILES testsuite/libdejagnu/Makefile" ;;
   "depfiles" ) CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}

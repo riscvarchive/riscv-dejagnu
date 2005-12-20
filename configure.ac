@@ -37,10 +37,4 @@ fi
 
 AC_CONFIG_SUBDIRS([example/calc example/hello example/mathhelper])
 
-AC_OUTPUT([Makefile \
-	doc/Makefile \
-	doc/C/Makefile 
-	example/Makefile
-	testsuite/Makefile \
-        testsuite/libdejagnu/Makefile
-	])
+AC_OUTPUT([Makefile doc/Makefile doc/C/Makefile])

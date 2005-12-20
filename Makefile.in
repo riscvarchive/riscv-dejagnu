@@ -38,6 +38,7 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
+check_PROGRAMS = unit$(EXEEXT)
 subdir = .
 DIST_COMMON = README $(am__configure_deps) $(include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
@@ -52,6 +53,9 @@ am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno configure.status.lineno
 mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
 CONFIG_CLEAN_FILES =
+am_unit_OBJECTS = unit.$(OBJEXT)
+unit_OBJECTS = $(am_unit_OBJECTS)
+unit_LDADD = $(LDADD)
 am__installdirs = "$(DESTDIR)$(baseboarddir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(configdir)" "$(DESTDIR)$(djlibexecdir)" \
 	"$(DESTDIR)$(pkgdatadir)" "$(DESTDIR)$(baseboarddir)" \
@@ -64,8 +68,16 @@ djlibexecSCRIPT_INSTALL = $(INSTALL_SCRIPT)
 pkgdataSCRIPT_INSTALL = $(INSTALL_SCRIPT)
 SCRIPTS = $(baseboard_SCRIPTS) $(bin_SCRIPTS) $(config_SCRIPTS) \
 	$(djlibexec_SCRIPTS) $(pkgdata_SCRIPTS)
-SOURCES =
-DIST_SOURCES =
+DEFAULT_INCLUDES = -I. -I$(srcdir)
+depcomp = $(SHELL) $(top_srcdir)/depcomp
+am__depfiles_maybe = depfiles
+CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
+CXXLD = $(CXX)
+CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
+	-o $@
+SOURCES = $(unit_SOURCES)
+DIST_SOURCES = $(unit_SOURCES)
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	html-recursive info-recursive install-data-recursive \
 	install-exec-recursive install-info-recursive \
@@ -87,8 +99,6 @@ HEADERS = $(include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
 DEJATOOL = $(PACKAGE)
-RUNTESTDEFAULTFLAGS = --tool $$tool --srcdir $$srcdir
-RUNTEST = runtest
 DIST_SUBDIRS = $(SUBDIRS)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 distdir = $(PACKAGE)-$(VERSION)
@@ -185,7 +195,7 @@ subdirs = @subdirs@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 AUTOMAKE_OPTIONS = dejagnu
-SUBDIRS = doc testsuite example
+SUBDIRS = doc
 EXTRA_DIST = ChangeLog.0 MAINTAINERS runtest site.tmpl \
 	$(pkgdata_DATA) $(pkgdata_SCRIPTS) \
 	$(config_DATA) $(config_SCRIPTS) \
@@ -346,6 +356,26 @@ baseboard_SCRIPTS = \
 pkgdata_DATA = stub-loader.c testglue.c
 djlibexecdir = $(pkgdatadir)/libexec
 djlibexec_SCRIPTS = config.guess
+TESTSUITE_FILES = \
+	testsuite/runtest.all/topdir/subdir1/subsubdir1/subsubfile1 \
+	testsuite/runtest.all/topdir/subdir1/subfile1 \
+	testsuite/runtest.all/topdir/subdir1/subfile2 \
+	testsuite/runtest.all/topdir/subdir2/subfile2 \
+	testsuite/runtest.all/libs.exp \
+	testsuite/runtest.all/options.exp \
+	testsuite/runtest.all/remote.test \
+	testsuite/runtest.all/stats-sub.exp \
+	testsuite/runtest.all/stats.exp \
+	testsuite/runtest.all/target.test \
+	testsuite/runtest.all/utils.test \
+	testsuite/runtest.all/clone_output.test \
+	testsuite/runtest.all/config.test \
+	testsuite/runtest.all/default_procs.tcl \
+	testsuite/config/default.exp \
+	testsuite/lib/libsup.exp \
+	testsuite/lib/util-defs.exp \
+	testsuite/libdejagnu/tunit.exp
+
 PACKAGING_METAFILES = packaging/depot/dejagnu.psf \
 	packaging/deb/site.exp packaging/deb/changelog packaging/deb/conffiles \
 	packaging/deb/control packaging/deb/copyright packaging/deb/postinst \
@@ -355,9 +385,17 @@ PACKAGING_METAFILES = packaging/depot/dejagnu.psf \
 
 # Most proprietary Unices use /opt for optional packages.
 PKGDIR = /opt
+RUNTEST = `if [ -f ${top_srcdir}/runtest$(EXEEXT) ] ; then \
+    echo ${top_srcdir}/runtest$(EXEEXT); \
+  else echo "ERROR: runtest not found" ; exit 1; fi`
+
+RUNTESTDEFAULTFLAGS = --tool runtest --srcdir $(srcdir)/testsuite RUNTEST=$(RUNTEST)
+AM_CXXFLAGS = -I$(top_srcdir) -g
+unit_SOURCES = testsuite/libdejagnu/unit.cc
 all: all-recursive
 
 .SUFFIXES:
+.SUFFIXES: .cc .o .obj
 am--refresh:
 	@:
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
@@ -391,6 +429,12 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 	cd $(srcdir) && $(AUTOCONF)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
+
+clean-checkPROGRAMS:
+	-test -z "$(check_PROGRAMS)" || rm -f $(check_PROGRAMS)
+unit$(EXEEXT): $(unit_OBJECTS) $(unit_DEPENDENCIES) 
+	@rm -f unit$(EXEEXT)
+	$(CXXLINK) $(unit_LDFLAGS) $(unit_OBJECTS) $(unit_LDADD) $(LIBS)
 install-baseboardSCRIPTS: $(baseboard_SCRIPTS)
 	@$(NORMAL_INSTALL)
 	test -z "$(baseboarddir)" || $(mkdir_p) "$(DESTDIR)$(baseboarddir)"
@@ -486,6 +530,42 @@ uninstall-pkgdataSCRIPTS:
 	  echo " rm -f '$(DESTDIR)$(pkgdatadir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(pkgdatadir)/$$f"; \
 	done
+
+mostlyclean-compile:
+	-rm -f *.$(OBJEXT)
+
+distclean-compile:
+	-rm -f *.tab.c
+
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/unit.Po@am__quote@
+
+.cc.o:
+@am__fastdepCXX_TRUE@	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ $<; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/$*.Tpo" "$(DEPDIR)/$*.Po"; else rm -f "$(DEPDIR)/$*.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ $<
+
+.cc.obj:
+@am__fastdepCXX_TRUE@	if $(CXXCOMPILE) -MT $@ -MD -MP -MF "$(DEPDIR)/$*.Tpo" -c -o $@ `$(CYGPATH_W) '$<'`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/$*.Tpo" "$(DEPDIR)/$*.Po"; else rm -f "$(DEPDIR)/$*.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+unit.o: testsuite/libdejagnu/unit.cc
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT unit.o -MD -MP -MF "$(DEPDIR)/unit.Tpo" -c -o unit.o `test -f 'testsuite/libdejagnu/unit.cc' || echo '$(srcdir)/'`testsuite/libdejagnu/unit.cc; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/unit.Tpo" "$(DEPDIR)/unit.Po"; else rm -f "$(DEPDIR)/unit.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='testsuite/libdejagnu/unit.cc' object='unit.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o unit.o `test -f 'testsuite/libdejagnu/unit.cc' || echo '$(srcdir)/'`testsuite/libdejagnu/unit.cc
+
+unit.obj: testsuite/libdejagnu/unit.cc
+@am__fastdepCXX_TRUE@	if $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT unit.obj -MD -MP -MF "$(DEPDIR)/unit.Tpo" -c -o unit.obj `if test -f 'testsuite/libdejagnu/unit.cc'; then $(CYGPATH_W) 'testsuite/libdejagnu/unit.cc'; else $(CYGPATH_W) '$(srcdir)/testsuite/libdejagnu/unit.cc'; fi`; \
+@am__fastdepCXX_TRUE@	then mv -f "$(DEPDIR)/unit.Tpo" "$(DEPDIR)/unit.Po"; else rm -f "$(DEPDIR)/unit.Tpo"; exit 1; fi
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='testsuite/libdejagnu/unit.cc' object='unit.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o unit.obj `if test -f 'testsuite/libdejagnu/unit.cc'; then $(CYGPATH_W) 'testsuite/libdejagnu/unit.cc'; else $(CYGPATH_W) '$(srcdir)/testsuite/libdejagnu/unit.cc'; fi`
 uninstall-info-am:
 install-baseboardDATA: $(baseboard_DATA)
 	@$(NORMAL_INSTALL)
@@ -861,6 +941,7 @@ distcleancheck: distclean
 	       $(distcleancheck_listfiles) ; \
 	       exit 1; } >&2
 check-am: all-am
+	$(MAKE) $(AM_MAKEFLAGS) $(check_PROGRAMS)
 	$(MAKE) $(AM_MAKEFLAGS) check-DEJAGNU
 check: check-recursive
 all-am: Makefile $(SCRIPTS) $(DATA) $(HEADERS)
@@ -895,13 +976,14 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-recursive
 
-clean-am: clean-generic mostlyclean-am
+clean-am: clean-checkPROGRAMS clean-generic mostlyclean-am
 
 distclean: distclean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
-distclean-am: clean-am distclean-DEJAGNU distclean-generic \
-	distclean-tags
+distclean-am: clean-am distclean-DEJAGNU distclean-compile \
+	distclean-generic distclean-tags
 
 dvi: dvi-recursive
 
@@ -929,12 +1011,13 @@ installcheck-am:
 maintainer-clean: maintainer-clean-recursive
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
 mostlyclean: mostlyclean-recursive
 
-mostlyclean-am: mostlyclean-generic
+mostlyclean-am: mostlyclean-compile mostlyclean-generic
 
 pdf: pdf-recursive
 
@@ -953,28 +1036,30 @@ uninstall-am: uninstall-baseboardDATA uninstall-baseboardSCRIPTS \
 uninstall-info: uninstall-info-recursive
 
 .PHONY: $(RECURSIVE_TARGETS) CTAGS GTAGS all all-am am--refresh check \
-	check-DEJAGNU check-am clean clean-generic clean-recursive \
-	ctags ctags-recursive dist dist-all dist-bzip2 dist-gzip \
-	dist-shar dist-tarZ dist-zip distcheck distclean \
-	distclean-DEJAGNU distclean-generic distclean-recursive \
-	distclean-tags distcleancheck distdir distuninstallcheck dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-baseboardDATA install-baseboardSCRIPTS \
-	install-binSCRIPTS install-configDATA install-configSCRIPTS \
-	install-data install-data-am install-djlibexecSCRIPTS \
-	install-exec install-exec-am install-includeHEADERS \
-	install-info install-info-am install-man install-pkgdataDATA \
-	install-pkgdataSCRIPTS install-strip installcheck \
-	installcheck-am installdirs installdirs-am maintainer-clean \
-	maintainer-clean-generic maintainer-clean-recursive \
-	mostlyclean mostlyclean-generic mostlyclean-recursive pdf \
-	pdf-am ps ps-am tags tags-recursive uninstall uninstall-am \
+	check-DEJAGNU check-am clean clean-checkPROGRAMS clean-generic \
+	clean-recursive ctags ctags-recursive dist dist-all dist-bzip2 \
+	dist-gzip dist-shar dist-tarZ dist-zip distcheck distclean \
+	distclean-DEJAGNU distclean-compile distclean-generic \
+	distclean-recursive distclean-tags distcleancheck distdir \
+	distuninstallcheck dvi dvi-am html html-am info info-am \
+	install install-am install-baseboardDATA \
+	install-baseboardSCRIPTS install-binSCRIPTS install-configDATA \
+	install-configSCRIPTS install-data install-data-am \
+	install-djlibexecSCRIPTS install-exec install-exec-am \
+	install-includeHEADERS install-info install-info-am \
+	install-man install-pkgdataDATA install-pkgdataSCRIPTS \
+	install-strip installcheck installcheck-am installdirs \
+	installdirs-am maintainer-clean maintainer-clean-generic \
+	maintainer-clean-recursive mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-recursive pdf pdf-am ps ps-am \
+	tags tags-recursive uninstall uninstall-am \
 	uninstall-baseboardDATA uninstall-baseboardSCRIPTS \
 	uninstall-binSCRIPTS uninstall-configDATA \
 	uninstall-configSCRIPTS uninstall-djlibexecSCRIPTS \
 	uninstall-includeHEADERS uninstall-info-am \
 	uninstall-pkgdataDATA uninstall-pkgdataSCRIPTS
 
+	$(TESTSUITE_FILES)
 
 # Build an RPM package
 rpm: dist $(srcdir)/packaging/rpm/dejagnu.spec

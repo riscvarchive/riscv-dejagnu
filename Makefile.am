@@ -1,13 +1,14 @@
 # Process this file with automake to generate Makefile.in
 
 AUTOMAKE_OPTIONS = dejagnu
-SUBDIRS = doc testsuite example
+SUBDIRS = doc
 
 EXTRA_DIST = ChangeLog.0 MAINTAINERS runtest site.tmpl \
 	$(pkgdata_DATA) $(pkgdata_SCRIPTS) \
 	$(config_DATA) $(config_SCRIPTS) \
 	$(baseboard_DATA) $(baseboard_SCRIPTS) \
 	$(PACKAGING_METAFILES)
+	$(TESTSUITE_FILES)
 
 bin_SCRIPTS = runtest
 include_HEADERS = dejagnu.h
@@ -166,6 +167,26 @@ pkgdata_DATA = stub-loader.c testglue.c
 djlibexecdir = $(pkgdatadir)/libexec
 djlibexec_SCRIPTS = config.guess
 
+TESTSUITE_FILES = \
+	testsuite/runtest.all/topdir/subdir1/subsubdir1/subsubfile1 \
+	testsuite/runtest.all/topdir/subdir1/subfile1 \
+	testsuite/runtest.all/topdir/subdir1/subfile2 \
+	testsuite/runtest.all/topdir/subdir2/subfile2 \
+	testsuite/runtest.all/libs.exp \
+	testsuite/runtest.all/options.exp \
+	testsuite/runtest.all/remote.test \
+	testsuite/runtest.all/stats-sub.exp \
+	testsuite/runtest.all/stats.exp \
+	testsuite/runtest.all/target.test \
+	testsuite/runtest.all/utils.test \
+	testsuite/runtest.all/clone_output.test \
+	testsuite/runtest.all/config.test \
+	testsuite/runtest.all/default_procs.tcl \
+	testsuite/config/default.exp \
+	testsuite/lib/libsup.exp \
+	testsuite/lib/util-defs.exp \
+	testsuite/libdejagnu/tunit.exp
+
 PACKAGING_METAFILES = packaging/depot/dejagnu.psf \
 	packaging/deb/site.exp packaging/deb/changelog packaging/deb/conffiles \
 	packaging/deb/control packaging/deb/copyright packaging/deb/postinst \
@@ -214,3 +235,12 @@ hpdepot: $(PKGDIR)/dejagnu
 	  tar cf $$here/dejagnu-${VERSION}.hpux11.depot dejagnu; \
 	  gzip -9fv  $$here/dejagnu-${VERSION}.hpux11.depot; \
 	  rm -rf /tmp/dejagnu
+
+RUNTEST = `if [ -f ${top_srcdir}/runtest$(EXEEXT) ] ; then \
+    echo ${top_srcdir}/runtest$(EXEEXT); \
+  else echo "ERROR: runtest not found" ; exit 1; fi`
+
+RUNTESTDEFAULTFLAGS = --tool runtest --srcdir $(srcdir)/testsuite RUNTEST=$(RUNTEST)
+AM_CXXFLAGS = -I$(top_srcdir) -g
+check_PROGRAMS = unit
+unit_SOURCES = testsuite/libdejagnu/unit.cc
