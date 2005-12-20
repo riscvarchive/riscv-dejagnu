@@ -1,3 +1,8 @@
+2005-12-20  Nathan Sidwell  <nathan@codesourcery.com>
+
+	* baseboards/ms1-sid.exp: Rename from this ..
+	* baseboards/mt1-sid.exp: .. to this. Update ms1->mt within.
+
 2005-12-20  Ben Elliston  <bje@gnu.org>
 
 	* config.guess: Update to most recent version.
