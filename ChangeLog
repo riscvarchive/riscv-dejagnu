@@ -1,5 +1,10 @@
 2005-12-20  Ben Elliston  <bje@gnu.org>
 
+	* Makefile.am (baseboard_SCRIPTS): Rename ms1->mt.
+	* Makefile.in: Regenerate.
+
+2005-12-20  Ben Elliston  <bje@gnu.org>
+
 	* configure: Regenerate with autoconf 2.59.
 	* aclocal.m4: Regenerate with aclocal 1.9.6.
 	* Makefile.in: Regenerate with automake 1.9.6.

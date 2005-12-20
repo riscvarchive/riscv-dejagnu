@@ -122,7 +122,7 @@ baseboard_SCRIPTS = \
 	baseboards/mn10300-cygmon.exp \
 	baseboards/mn10300-sim.exp \
 	baseboards/msparc-cygmon.exp \
-	baseboards/ms1-sid.exp \
+	baseboards/mt-sid.exp \
 	baseboards/op50n.exp \
 	baseboards/powerpc-bug.exp \
 	baseboards/powerpc-bug1.exp \
