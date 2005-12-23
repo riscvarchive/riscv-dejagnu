@@ -1,7 +1,6 @@
 # Process this file with automake to generate Makefile.in
 
 AUTOMAKE_OPTIONS = dejagnu
-SUBDIRS = doc
 
 EXTRA_DIST = ChangeLog.0 MAINTAINERS runtest site.tmpl \
 	$(pkgdata_DATA) $(pkgdata_SCRIPTS) \
@@ -9,6 +8,7 @@ EXTRA_DIST = ChangeLog.0 MAINTAINERS runtest site.tmpl \
 	$(baseboard_DATA) $(baseboard_SCRIPTS) \
 	$(PACKAGING_METAFILES)
 	$(TESTSUITE_FILES)
+	$(XML)
 
 bin_SCRIPTS = runtest
 include_HEADERS = dejagnu.h
@@ -167,6 +167,8 @@ pkgdata_DATA = stub-loader.c testglue.c
 djlibexecdir = $(pkgdatadir)/libexec
 djlibexec_SCRIPTS = config.guess
 
+# Testsuite.
+
 TESTSUITE_FILES = \
 	testsuite/runtest.all/topdir/subdir1/subsubdir1/subsubfile1 \
 	testsuite/runtest.all/topdir/subdir1/subfile1 \
@@ -187,19 +189,55 @@ TESTSUITE_FILES = \
 	testsuite/lib/util-defs.exp \
 	testsuite/libdejagnu/tunit.exp
 
+RUNTEST = `if [ -f ${top_srcdir}/runtest$(EXEEXT) ] ; then \
+    echo ${top_srcdir}/runtest$(EXEEXT); \
+  else echo "ERROR: runtest not found" ; exit 1; fi`
+
+RUNTESTDEFAULTFLAGS = --tool runtest --srcdir $(srcdir)/testsuite RUNTEST=$(RUNTEST)
+AM_CXXFLAGS = -I$(top_srcdir) -g
+check_PROGRAMS = unit
+unit_SOURCES = testsuite/libdejagnu/unit.cc
+
+# Documentation.
+
+dist_man_MANS = doc/runtest.1
+info_TEXINFOS = doc/dejagnu.texi
+
+XML = doc/dejagnu.xml doc/legal.xml doc/ref.xml doc/user.xml
+
+dejagnu.pdf: $(XML)
+	docbook2pdf $(srcdir)/doc/dejagnu.xml
+
+dejagnu.ps: $(XML)
+	docbook2ps $(srcdir)/doc/dejagnu.xml
+
+dejagnu.rtf: $(XML)
+	docbook2rtf $(srcdir)/doc/dejagnu.xml
+
+html:
+	docbook2html -o html $(srcdir)/doc/dejagnu.xml
+
+doc/dejagnu.texi: $(XML)
+	db2x_xsltproc -s texi $(srcdir)/doc/dejagnu.xml -o dejagnu.txml
+	db2x_texixml dejagnu.txml
+	mv dejagnu.texi $(srcdir)/doc
+	rm dejagnu.txml
+
+# Packaging.
+
 PACKAGING_METAFILES = packaging/depot/dejagnu.psf \
 	packaging/deb/site.exp packaging/deb/changelog packaging/deb/conffiles \
 	packaging/deb/control packaging/deb/copyright packaging/deb/postinst \
 	packaging/deb/preinst packaging/deb/rules packaging/pkg/pkginfo \
 	packaging/pkg/prototype packaging/rpm/dejagnu.spec
 
-# Build an RPM package
+# RPM
 rpm: dist $(srcdir)/packaging/rpm/dejagnu.spec
 	cp -f $(srcdir)/packaging/rpm/dejagnu.spec /usr/src/redhat/SPECS/
 	cp -f dejagnu-${VERSION}.tar.gz /usr/src/redhat/SOURCES/
 	rpm -ba /usr/src/redhat/SPECS/dejagnu.spec
 
-# Build a Debian GNU/Linux package
+# Debian GNU/Linux package
 deb: dist
 	rm -rf dejagnu-${VERSION}
 	tar xfz dejagnu-${VERSION}.tar.gz
@@ -216,7 +254,7 @@ $(PKGDIR)/dejagnu:
 	$(srcdir)/configure -v --prefix $@
 	make install
 
-# Build a Solaris package
+# Solaris package
 solpkg: $(PKGDIR)/dejagnu
 	cp $(srcdir)/packaging/pkg/prototype /tmp
 	cp $(srcdir)/packaging/pkg/pkginfo /tmp
@@ -227,7 +265,7 @@ solpkg: $(PKGDIR)/dejagnu
 	  gzip -9fv  $$here/dejagnu-${VERSION}.SPARC.2.8.pkg.tar
 	rm -rf /tmp/prototype /tmp/pkginfo /tmp/DejaGnu
 
-# Build a HP depot package
+# HP depot package
 hpdepot: $(PKGDIR)/dejagnu
 	swpackage -s $(srcdir)/packaging/depot/dejagnu.psf -x target_type=directory -d /tmp
 	here=`pwd`; \
@@ -235,12 +273,3 @@ hpdepot: $(PKGDIR)/dejagnu
 	  tar cf $$here/dejagnu-${VERSION}.hpux11.depot dejagnu; \
 	  gzip -9fv  $$here/dejagnu-${VERSION}.hpux11.depot; \
 	  rm -rf /tmp/dejagnu
-
-RUNTEST = `if [ -f ${top_srcdir}/runtest$(EXEEXT) ] ; then \
-    echo ${top_srcdir}/runtest$(EXEEXT); \
-  else echo "ERROR: runtest not found" ; exit 1; fi`
-
-RUNTESTDEFAULTFLAGS = --tool runtest --srcdir $(srcdir)/testsuite RUNTEST=$(RUNTEST)
-AM_CXXFLAGS = -I$(top_srcdir) -g
-check_PROGRAMS = unit
-unit_SOURCES = testsuite/libdejagnu/unit.cc

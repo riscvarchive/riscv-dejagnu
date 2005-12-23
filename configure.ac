@@ -12,9 +12,10 @@ AC_PROG_INSTALL
 AC_EXEEXT
 
 dnl Search for the Docbook utilities.
-AC_PATH_PROG([DOCBOOK2DVI], [docbook2dvi], [false])
-AC_PATH_PROG([DOCBOOK2PDF], [docbook2pdf], [false])
 AC_PATH_PROG([DOCBOOK2HTML], [docbook2html], [false])
+AC_PATH_PROG([DOCBOOK2RTF], [docbook2rtf], [false])
+AC_PATH_PROG([DOCBOOK2PDF], [docbook2pdf], [false])
+AC_PATH_PROG([DOCBOOK2PS], [docbook2ps], [false])
 
 dnl Search for expect.
 AC_PATH_PROG([EXPECT], [expect])
@@ -36,5 +37,4 @@ else
 fi
 
 AC_CONFIG_SUBDIRS([example/calc example/hello example/mathhelper])
-
-AC_OUTPUT([Makefile doc/Makefile doc/C/Makefile])
+AC_OUTPUT([Makefile])
