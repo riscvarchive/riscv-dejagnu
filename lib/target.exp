@@ -122,7 +122,10 @@ proc pop_host { } {
 }
 
 #
-# Remove extraneous warnings we don't care about
+# Remove extraneous warnings from TEXT.
+#
+# An example is:
+# ld.so: warning: /usr/lib/libc.so.1.8.1 has older revision than expected 9
 #
 proc prune_warnings { text } {
     global host_triplet

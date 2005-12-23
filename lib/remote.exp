@@ -28,7 +28,6 @@ load_lib "tip.exp"
 load_lib "rsh.exp"
 load_lib "ftp.exp"
 
-#
 # Open a connection to a remote host or target. This requires the target_info
 # array be filled in with the proper info to work.
 #
@@ -333,7 +332,6 @@ proc standard_close { host } {
     return 0
 }
 
-#
 # Set the connection into "binary" mode, a.k.a. no processing of input
 # characters.
 #
@@ -501,12 +499,10 @@ proc standard_upload { dest srcfile destfile } {
     return [rsh_upload $dest $srcfile $destfile]
 }
 
-#
 # A standard procedure to call the appropriate function. It first looks
 # for a board-specific version, then a version specific to the protocol,
 # and then finally it will call standard_$proc.
 #
-
 proc call_remote { type proc dest args } {
     if [board_info $dest exists name] {
 	set dest [board_info $dest name]
@@ -583,7 +579,6 @@ proc call_remote { type proc dest args } {
     return -1
 }
 
-#
 # Send FILE through the existing session established to DEST.
 #
 proc remote_transmit { dest file } {
@@ -594,7 +589,6 @@ proc remote_raw_transmit { dest file } {
     return [call_remote raw transmit "$dest" "$file"]
 }
 
-#
 # The default transmit procedure if no other exists. This feeds the
 # supplied file directly into the connection.
 #
@@ -674,10 +668,8 @@ proc remote_raw_file { dest args } {
     return [eval call_remote raw file \"$dest\" $args]
 }
 
-#
 # Perform the specified file op on a remote Unix board.
 #
-
 proc standard_file { dest op args } {
     set file [lindex $args 0]
     verbose "dest in proc standard_file is $dest" 3
@@ -745,7 +737,6 @@ proc standard_file { dest op args } {
     }
 }
 
-#
 # Return an absolute version of the filename in $file, with . and ..
 # removed.
 #

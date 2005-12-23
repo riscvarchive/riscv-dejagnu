@@ -17,7 +17,6 @@
 # along with DejaGnu; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.
 
-#
 # Searches in the appropriate place (the board_info array) for the specified
 # information.
 #
@@ -64,7 +63,6 @@ proc host_info { op args } {
     return [eval "board_info host \"$op\" $args"]
 }
 
-#
 # Fill in ENTRY with VALUE for the current board being defined.
 #
 proc set_board_info { entry value } {
@@ -75,7 +73,6 @@ proc set_board_info { entry value } {
     }
 }
 
-#
 # Fill in ENTRY with VALUE for the current target.
 #
 proc set_currtarget_info { entry value } {
@@ -88,7 +85,6 @@ proc set_currtarget_info { entry value } {
     }
 }
 
-#
 # Unset ENTRY for the current board being defined.
 #
 proc unset_board_info { entry } {
@@ -99,7 +95,6 @@ proc unset_board_info { entry } {
     }
 }
 
-#
 # Unset ENTRY for the current board being defined.
 #
 proc unset_currtarget_info { entry } {

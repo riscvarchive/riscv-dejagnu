@@ -1,5 +1,5 @@
 # Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000,
-# 2001, 2002, 2003 Free Software Foundation, Inc.
+# 2001, 2002, 2003, 2005 Free Software Foundation, Inc.
 #
 # This file is part of DejaGnu.
 #
@@ -19,12 +19,10 @@
 
 # This file was written by Rob Savoye. (rob@welcomehome.org)
 
-#
-# Most of the procedures found here mimic their unix counter-part.
-# This file is sourced by runtest.exp, so they are usable by any test case.
-#
+# Most of the procedures found here mimic their UNIX counterpart.
+# This file is sourced by runtest.exp, so they are usable by any test
+# script.
 
-#
 # Gets the directories in a directory, or in a directory tree.
 #     args: the first is the dir to look in, the next
 #         is the pattern to match. It
@@ -86,7 +84,6 @@ proc getdirs { args } {
     }
 }
 
-#
 # Finds paths of all non-directory files, recursively, whose names match
 # a pattern.  Certain directory name are not searched (see proc getdirs).
 #     rootdir - search in this directory and its subdirectories, recursively.
@@ -116,12 +113,11 @@ proc find { rootdir pattern } {
     return $files
 }
 
-#
-# Search the path for a file. This is basically a version
-# of the BSD-unix which utility. This procedure depends on
-# the shell environment variable $PATH. It returns 0 if $PATH
-# does not exist or the binary is not in the path. If the
-# binary is in the path, it returns the full path to the binary.
+# Search the path for a file. This is basically a version of the BSD
+# Unix which(1) utility. This procedure depends on the shell
+# environment variable $PATH. It returns 0 if $PATH does not exist or
+# the binary is not in the path. If the binary is in the path, it
+# returns the full path to the binary.
 #
 proc which { file } {
     global env
@@ -154,8 +150,7 @@ proc which { file } {
     return 0
 }
 
-#
-# Looks for a string in a file.
+# Looks for occurrences of a string in a file.
 #     return:list of lines that matched or NULL if none match.
 #     args:  first arg is the filename,
 #            second is the pattern,

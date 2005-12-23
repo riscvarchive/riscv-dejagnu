@@ -17,9 +17,9 @@
 # along with DejaGnu; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.
 
-# This file was written by Rob Savoye. (rob@welcomehome.org)
+# This file was written by Rob Savoye (rob@welcomehome.org).
 
-# a hairy pattern to recognize text
+# A hairy pattern to recognize text.
 set text "\[- A-Za-z0-9\.\;\"\_\:\'\`\(\)\!\#\=\+\?\&\*]"
 
 set SIZE size
@@ -27,7 +27,7 @@ if { [which $SIZE] == 0 } {
     perror "Can't find $SIZE."
 }
 
-# Get the size of the various section in an object file
+# Get the size of the various section in OBJECT.
 proc exe_size {object} {
     global SIZE
 
@@ -69,6 +69,7 @@ proc exe_size {object} {
 #    Returns:
 #	A "" (empty) string if everything worked, or the
 #       output if there was a problem.
+#
 proc host_compile {compline} {
     global INCLUDES
     global LIBS
