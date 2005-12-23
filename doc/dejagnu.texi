@@ -25,7 +25,7 @@
 Overview
 
 * What is DejaGnu ?::
-* What_s New In This Release: Release Notes.
+* New In This Release: Release Notes.
 * Design Goals::
 * A POSIX conforming test framework: A POSIX Conforming Test Framework.
 
@@ -108,7 +108,7 @@ application.
 
 @menu
 * What is DejaGnu ?::
-* What_s New In This Release: Release Notes.
+* New In This Release: Release Notes.
 * Design Goals::
 * A POSIX conforming test framework: A POSIX Conforming Test Framework.
 @end menu
@@ -180,7 +180,7 @@ driver is in the file
 runtest.exp.)
 
 @node Release Notes, Design Goals, What is DejaGnu ?, Overview
-@section What's New In This Release
+@section New In This Release
 
 This release has a number of substantial changes over version
 1.3. The most visible change is that the version of Expect and Tcl

@@ -176,7 +176,7 @@
   </sect2>
 
   <sect2 id="new" xreflabel="Release Notes">
-    <title>What's New In This Release</title>
+    <title>New In This Release</title>
 
     <para>This release has a number of substantial changes over version
     1.3. The most visible change is that the version of Expect and Tcl
