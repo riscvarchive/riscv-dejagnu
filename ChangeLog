@@ -1,5 +1,10 @@
 2005-12-24  Ben Elliston  <bje@gnu.org>
 
+	* Makefile.am (XML): Include $(srcdir) in filenames.
+	* Makefile.in: Regenerate.
+
+2005-12-24  Ben Elliston  <bje@gnu.org>
+
 	* doc/C/Makefile.am: Remove.
 	* doc/C/Makefile.in: Likewise.
 

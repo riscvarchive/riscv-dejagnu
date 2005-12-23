@@ -203,7 +203,8 @@ unit_SOURCES = testsuite/libdejagnu/unit.cc
 dist_man_MANS = doc/runtest.1
 info_TEXINFOS = doc/dejagnu.texi
 
-XML = doc/dejagnu.xml doc/legal.xml doc/ref.xml doc/user.xml
+XML = $(srcdir)/doc/dejagnu.xml $(srcdir)/doc/legal.xml $(srcdir)/doc/ref.xml \
+	$(srcdir)/doc/user.xml
 
 dejagnu.pdf: $(XML)
 	docbook2pdf $(srcdir)/doc/dejagnu.xml

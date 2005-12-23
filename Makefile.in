@@ -399,7 +399,9 @@ unit_SOURCES = testsuite/libdejagnu/unit.cc
 # Documentation.
 dist_man_MANS = doc/runtest.1
 info_TEXINFOS = doc/dejagnu.texi
-XML = doc/dejagnu.xml doc/legal.xml doc/ref.xml doc/user.xml
+XML = $(srcdir)/doc/dejagnu.xml $(srcdir)/doc/legal.xml $(srcdir)/doc/ref.xml \
+	$(srcdir)/doc/user.xml
+
 
 # Packaging.
 PACKAGING_METAFILES = packaging/depot/dejagnu.psf \
@@ -676,10 +678,11 @@ dist-info: $(INFO_DEPS)
 	done
 
 mostlyclean-aminfo:
-	-rm -rf dejagnu.aux dejagnu.cp dejagnu.cps dejagnu.fn dejagnu.ky dejagnu.log \
-	  dejagnu.pg dejagnu.pgs dejagnu.tmp dejagnu.toc dejagnu.tp \
-	  dejagnu.tps dejagnu.vr dejagnu.vrs doc/dejagnu.dvi \
-	  doc/dejagnu.pdf doc/dejagnu.ps doc/dejagnu.html
+	-rm -rf dejagnu.aux dejagnu.cp dejagnu.cps dejagnu.fn dejagnu.fns dejagnu.ky \
+	  dejagnu.kys dejagnu.log dejagnu.pg dejagnu.pgs dejagnu.tmp \
+	  dejagnu.toc dejagnu.tp dejagnu.tps dejagnu.vr dejagnu.vrs \
+	  doc/dejagnu.dvi doc/dejagnu.pdf doc/dejagnu.ps \
+	  doc/dejagnu.html
 
 maintainer-clean-aminfo:
 	@list='$(INFO_DEPS)'; for i in $$list; do \
@@ -1174,7 +1177,7 @@ dejagnu.rtf: $(XML)
 html:
 	docbook2html -o html $(srcdir)/doc/dejagnu.xml
 
-dejagnu.texi: $(XML)
+doc/dejagnu.texi: $(XML)
 	db2x_xsltproc -s texi $(srcdir)/doc/dejagnu.xml -o dejagnu.txml
 	db2x_texixml dejagnu.txml
 	mv dejagnu.texi $(srcdir)/doc
