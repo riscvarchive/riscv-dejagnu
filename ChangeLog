@@ -1,3 +1,10 @@
+2005-12-23  Ben Elliston  <bje@gnu.org>
+
+	* doc/overview.sgml: Remove in favour of XML versions.
+	* doc/ref.sgml: Ditto.
+	* doc/user.sgml: Ditto.
+	* doc/texinfo.tex: Import new version.
+
 2005-12-20  Ben Elliston  <bje@gnu.org>
 
 	* Makefile.am (SUBDIRS): Remove testsuite, example.
