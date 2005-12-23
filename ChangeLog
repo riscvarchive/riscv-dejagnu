@@ -1,5 +1,9 @@
 2005-12-24  Ben Elliston  <bje@gnu.org>
 
+	* configure: Regenerate.
+
+2005-12-24  Ben Elliston  <bje@gnu.org>
+
 	* lib/remote.exp: Tidy.
 	* lib/targetdb.exp: Likewise.
 	* lib/target.exp (prune_warnings): Improve comments.
