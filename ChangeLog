@@ -1,5 +1,9 @@
 2005-12-24  Ben Elliston  <bje@gnu.org>
 
+	* NEWS: Update.
+
+2005-12-24  Ben Elliston  <bje@gnu.org>
+
 	* doc/dejagnu.xml: Don't use apostrophes in section titles.
 	* doc/dejagnu.texi: Regenerate.
 
