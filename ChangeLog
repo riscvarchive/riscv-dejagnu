@@ -1,3 +1,39 @@
+2005-12-24  Ben Elliston  <bje@gnu.org>
+
+	* doc/C/Makefile.am: Remove.
+	* doc/C/Makefile.in: Likewise.
+
+	* Makefile.am (SUBDIRS): Remove.
+	(EXTRA_DIST): Append $(XML).
+	(dist_man_MANS): Define.
+	(info_TEXINFOS): Likewise.
+	(XML): List XML source files.
+	(dejagnu.pdf): New target.
+	(dejagnu.ps): Likewise.
+	(dejagnu.rtf): Likewise.
+	(html): Likewise.
+	(dejagnu.texi): Special rule to build Texinfo source.
+	* Makefile.in: Regenerate.
+	* configure.ac: Don't search for docbook2dvi.
+	Search for docbook2rtf and docbook2pdf.
+	Don't output doc/Makefile or doc/C/Makefile.
+	* configure: Regenerate.
+	* doc/texinfo.tex: Move from here ..
+	* texinfo.tex: .. to here.
+	* doc/Makefile.am: Remove.
+	* doc/Makefile.in: Likewise.
+	* doc/C/dejagnu.omf: Likewise.
+	* doc/C/topic.dat: Likewise.
+	* doc/C/dejagnu.xml: Move from here ..
+	* doc/dejagnu.xml: .. to here.
+	* doc/C/legal.xml: Move from here ..
+	* doc/legal.xml: .. to here.
+	* doc/C/ref.xml: Move from here ..
+	* doc/ref.xml: .. to here.
+	* doc/C/user.xml: Move from here ..
+	* doc/user.xml: .. to here.
+	* doc/dejagnu.texi: Rebuild from XML source.
+
 2005-12-23  Ben Elliston  <bje@gnu.org>
 
 	* doc/runtest.1: Update manual page.
