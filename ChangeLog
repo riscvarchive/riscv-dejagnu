@@ -1,5 +1,9 @@
 2005-12-23  Ben Elliston  <bje@gnu.org>
 
+	* doc/runtest.1: Update manual page.
+
+2005-12-23  Ben Elliston  <bje@gnu.org>
+
 	* doc/overview.sgml: Remove in favour of XML versions.
 	* doc/ref.sgml: Ditto.
 	* doc/user.sgml: Ditto.
