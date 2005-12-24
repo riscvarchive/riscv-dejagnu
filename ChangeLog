@@ -1,5 +1,9 @@
 2005-12-24  Ben Elliston  <bje@gnu.org>
 
+	* COPYING: Update.
+
+2005-12-24  Ben Elliston  <bje@gnu.org>
+
 	* testsuite/libdejagnu/tunit.exp: Don't change to a non-existent
 	subdirectory.
 
