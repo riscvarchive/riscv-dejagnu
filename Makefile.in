@@ -210,7 +210,7 @@ EXTRA_DIST = ChangeLog.0 MAINTAINERS runtest site.tmpl \
 	$(pkgdata_DATA) $(pkgdata_SCRIPTS) \
 	$(config_DATA) $(config_SCRIPTS) \
 	$(baseboard_DATA) $(baseboard_SCRIPTS) \
-	$(PACKAGING_METAFILES)
+	$(TESTSUITE_FILES) $(XML)
 
 bin_SCRIPTS = runtest
 include_HEADERS = dejagnu.h
@@ -388,7 +388,7 @@ TESTSUITE_FILES = \
 	testsuite/lib/util-defs.exp \
 	testsuite/libdejagnu/tunit.exp
 
-RUNTEST = ${top_srcdir}/runtest$(EXEEXT)
+RUNTEST = ${top_srcdir}/runtest
 RUNTESTDEFAULTFLAGS = --srcdir $(srcdir)/testsuite
 AM_CXXFLAGS = -I$(top_srcdir) -g
 unit_SOURCES = testsuite/libdejagnu/unit.cc
@@ -396,17 +396,7 @@ unit_SOURCES = testsuite/libdejagnu/unit.cc
 # Documentation.
 dist_man_MANS = doc/runtest.1
 info_TEXINFOS = doc/dejagnu.texi
-XML = $(srcdir)/doc/dejagnu.xml $(srcdir)/doc/legal.xml $(srcdir)/doc/ref.xml \
-	$(srcdir)/doc/user.xml
-
-
-# Packaging.
-PACKAGING_METAFILES = packaging/depot/dejagnu.psf \
-	packaging/deb/site.exp packaging/deb/changelog packaging/deb/conffiles \
-	packaging/deb/control packaging/deb/copyright packaging/deb/postinst \
-	packaging/deb/preinst packaging/deb/rules packaging/pkg/pkginfo \
-	packaging/pkg/prototype packaging/rpm/dejagnu.spec
-
+XML = doc/dejagnu.xml doc/legal.xml doc/ref.xml doc/user.xml
 
 # Most proprietary Unices use /opt for optional packages.
 PKGDIR = /opt
@@ -882,7 +872,7 @@ distclean-DEJAGNU:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/baseboards $(distdir)/config $(distdir)/doc $(distdir)/lib $(distdir)/packaging/deb $(distdir)/packaging/depot $(distdir)/packaging/pkg $(distdir)/packaging/rpm
+	$(mkdir_p) $(distdir)/baseboards $(distdir)/config $(distdir)/doc $(distdir)/lib $(distdir)/testsuite/config $(distdir)/testsuite/lib $(distdir)/testsuite/libdejagnu $(distdir)/testsuite/runtest.all $(distdir)/testsuite/runtest.all/topdir/subdir1 $(distdir)/testsuite/runtest.all/topdir/subdir1/subsubdir1 $(distdir)/testsuite/runtest.all/topdir/subdir2
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \
@@ -1159,8 +1149,6 @@ uninstall-man: uninstall-man1
 	uninstall-includeHEADERS uninstall-info-am uninstall-man \
 	uninstall-man1 uninstall-pkgdataDATA uninstall-pkgdataSCRIPTS
 
-	$(TESTSUITE_FILES)
-	$(XML)
 
 dejagnu.pdf: $(XML)
 	docbook2pdf $(srcdir)/doc/dejagnu.xml
@@ -1179,6 +1167,8 @@ doc/dejagnu.texi: $(XML)
 	db2x_texixml dejagnu.txml
 	mv dejagnu.texi $(srcdir)/doc
 	rm dejagnu.txml
+
+# Packaging.
 
 # RPM
 rpm: dist $(srcdir)/packaging/rpm/dejagnu.spec

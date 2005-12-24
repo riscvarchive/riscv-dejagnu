@@ -1,5 +1,12 @@
 2005-12-24  Ben Elliston  <bje@gnu.org>
 
+	* Makefile.am (EXTRA_DIST): Remove $(PACKAGING_FILES).
+	(XML): Remove $(srcdir) from each filename; VPATH suffices.
+	(PACKAGING_METAFILES): Remove.
+	* Makefile.in: Regenerate.
+
+2005-12-24  Ben Elliston  <bje@gnu.org>
+
 	* README: Rewrite.
 
 2005-12-24  Ben Elliston  <bje@gnu.org>

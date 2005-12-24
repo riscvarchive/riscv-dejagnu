@@ -6,9 +6,7 @@ EXTRA_DIST = ChangeLog.0 MAINTAINERS runtest site.tmpl \
 	$(pkgdata_DATA) $(pkgdata_SCRIPTS) \
 	$(config_DATA) $(config_SCRIPTS) \
 	$(baseboard_DATA) $(baseboard_SCRIPTS) \
-	$(PACKAGING_METAFILES)
-	$(TESTSUITE_FILES)
-	$(XML)
+	$(TESTSUITE_FILES) $(XML)
 
 bin_SCRIPTS = runtest
 include_HEADERS = dejagnu.h
@@ -201,8 +199,7 @@ unit_SOURCES = testsuite/libdejagnu/unit.cc
 dist_man_MANS = doc/runtest.1
 info_TEXINFOS = doc/dejagnu.texi
 
-XML = $(srcdir)/doc/dejagnu.xml $(srcdir)/doc/legal.xml $(srcdir)/doc/ref.xml \
-	$(srcdir)/doc/user.xml
+XML = doc/dejagnu.xml doc/legal.xml doc/ref.xml doc/user.xml
 
 dejagnu.pdf: $(XML)
 	docbook2pdf $(srcdir)/doc/dejagnu.xml
@@ -223,12 +220,6 @@ doc/dejagnu.texi: $(XML)
 	rm dejagnu.txml
 
 # Packaging.
-
-PACKAGING_METAFILES = packaging/depot/dejagnu.psf \
-	packaging/deb/site.exp packaging/deb/changelog packaging/deb/conffiles \
-	packaging/deb/control packaging/deb/copyright packaging/deb/postinst \
-	packaging/deb/preinst packaging/deb/rules packaging/pkg/pkginfo \
-	packaging/pkg/prototype packaging/rpm/dejagnu.spec
 
 # RPM
 rpm: dist $(srcdir)/packaging/rpm/dejagnu.spec
