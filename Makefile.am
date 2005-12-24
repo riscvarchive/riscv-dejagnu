@@ -220,7 +220,8 @@ html:
 	$(DOCBOOK2HTML) -o html $(srcdir)/doc/dejagnu.xml
 
 doc/dejagnu.texi: $(XML)
-	$(DOCBOOK2X_TEXI) $(srcdir)/doc/dejagnu.xml --to-stdout > $(srcdir)/$@
+	$(DOCBOOK2X_TEXI) $(srcdir)/doc/dejagnu.xml
+	mv untitled.texi $(srcdir)/$@
 
 # Packaging.
 

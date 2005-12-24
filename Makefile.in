@@ -80,7 +80,7 @@ CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 SOURCES = $(unit_SOURCES)
 DIST_SOURCES = $(unit_SOURCES)
 am__dirstamp = $(am__leading_dot)dirstamp
-INFO_DEPS = $(srcdir)/doc/untitled.info
+INFO_DEPS = $(srcdir)/doc/dejagnu.info
 am__TEXINFO_TEX_DIR = $(srcdir)
 DVIS = doc/dejagnu.dvi
 PDFS = doc/dejagnu.pdf
@@ -579,7 +579,7 @@ doc/$(am__dirstamp):
 	@$(mkdir_p) doc
 	@: > doc/$(am__dirstamp)
 
-$(srcdir)/doc/untitled.info: doc/dejagnu.texi 
+$(srcdir)/doc/dejagnu.info: doc/dejagnu.texi 
 	restore=: && backupdir="$(am__leading_dot)am$$$$" && \
 	am__cwd=`pwd` && cd $(srcdir) && \
 	rm -rf $$backupdir && mkdir $$backupdir && \
@@ -601,17 +601,17 @@ $(srcdir)/doc/untitled.info: doc/dejagnu.texi
 	fi; \
 	rm -rf $$backupdir; exit $$rc
 
-doc/untitled.dvi: doc/dejagnu.texi  doc/$(am__dirstamp)
+doc/dejagnu.dvi: doc/dejagnu.texi  doc/$(am__dirstamp)
 	TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \
 	MAKEINFO='$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I doc -I $(srcdir)/doc' \
 	$(TEXI2DVI) -o $@ `test -f 'doc/dejagnu.texi' || echo '$(srcdir)/'`doc/dejagnu.texi
 
-doc/untitled.pdf: doc/dejagnu.texi  doc/$(am__dirstamp)
+doc/dejagnu.pdf: doc/dejagnu.texi  doc/$(am__dirstamp)
 	TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \
 	MAKEINFO='$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I doc -I $(srcdir)/doc' \
 	$(TEXI2PDF) -o $@ `test -f 'doc/dejagnu.texi' || echo '$(srcdir)/'`doc/dejagnu.texi
 
-doc/untitled.html: doc/dejagnu.texi  doc/$(am__dirstamp)
+doc/dejagnu.html: doc/dejagnu.texi  doc/$(am__dirstamp)
 	rm -rf $(@:.html=.htp)
 	if $(MAKEINFOHTML) $(AM_MAKEINFOHTMLFLAGS) $(MAKEINFOFLAGS) -I doc -I $(srcdir)/doc \
 	 -o $(@:.html=.htp) `test -f 'doc/dejagnu.texi' || echo '$(srcdir)/'`doc/dejagnu.texi; \
@@ -669,8 +669,8 @@ mostlyclean-aminfo:
 	-rm -rf dejagnu.aux dejagnu.cp dejagnu.cps dejagnu.fn dejagnu.fns dejagnu.ky \
 	  dejagnu.kys dejagnu.log dejagnu.pg dejagnu.pgs dejagnu.tmp \
 	  dejagnu.toc dejagnu.tp dejagnu.tps dejagnu.vr dejagnu.vrs \
-	  doc/untitled.dvi doc/untitled.pdf doc/untitled.ps \
-	  doc/untitled.html
+	  doc/dejagnu.dvi doc/dejagnu.pdf doc/dejagnu.ps \
+	  doc/dejagnu.html
 
 maintainer-clean-aminfo:
 	@list='$(INFO_DEPS)'; for i in $$list; do \
@@ -1164,7 +1164,8 @@ html:
 	$(DOCBOOK2HTML) -o html $(srcdir)/doc/dejagnu.xml
 
 doc/dejagnu.texi: $(XML)
-	$(DOCBOOK2X_TEXI) $(srcdir)/doc/dejagnu.xml --to-stdout > $(srcdir)/$@
+	$(DOCBOOK2X_TEXI) $(srcdir)/doc/dejagnu.xml
+	mv untitled.texi $(srcdir)/$@
 
 # Packaging.
 

@@ -1,5 +1,12 @@
 2005-12-24  Ben Elliston  <bje@gnu.org>
 
+	* Makefile.am (doc/dejagnu.texi): Don't use shell redirection, in
+	case the command fails and zeroes the Texinfo source file.  Move
+	the output (if successful) by its default filename using mv(1).
+	* Makefile.in: Regenerate.
+
+2005-12-24  Ben Elliston  <bje@gnu.org>
+
 	* configure.ac (DOCBOOK2X_TEXI): Add search for this program.
 	* configure: Regenerate.
 	* Makefile.am (DOCBOOK2PDF, DOCBOOK2RTF, DOCBOOK2PS): New.
