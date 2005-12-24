@@ -1,5 +1,10 @@
 2005-12-24  Ben Elliston  <bje@gnu.org>
 
+	* testsuite/libdejagnu/tunit.exp: Don't change to a non-existent
+	subdirectory.
+
+2005-12-24  Ben Elliston  <bje@gnu.org>
+
 	* Makefile.am (RUNTEST): Simplify, as Automake already generates
 	similar logic in Makefile.in.
 	* Makefile.in: Regenerate.
