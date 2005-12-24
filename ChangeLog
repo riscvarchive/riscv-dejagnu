@@ -1,5 +1,11 @@
 2005-12-24  Ben Elliston  <bje@gnu.org>
 
+	* Makefile.am (RUNTEST): Simplify, as Automake already generates
+	similar logic in Makefile.in.
+	* Makefile.in: Regenerate.
+	
+2005-12-24  Ben Elliston  <bje@gnu.org>
+
 	* Makefile.am (RUNTESTDEFAULTFLAGS): Omit --tool so that
 	libdejagnu tests are run too.
 	* Makefile.in: Regenerate.

@@ -189,11 +189,9 @@ TESTSUITE_FILES = \
 	testsuite/lib/util-defs.exp \
 	testsuite/libdejagnu/tunit.exp
 
-RUNTEST = `if [ -f ${top_srcdir}/runtest$(EXEEXT) ] ; then \
-    echo ${top_srcdir}/runtest$(EXEEXT); \
-  else echo "ERROR: runtest not found" ; exit 1; fi`
-
+RUNTEST = ${top_srcdir}/runtest
 RUNTESTDEFAULTFLAGS = --srcdir $(srcdir)/testsuite
+
 AM_CXXFLAGS = -I$(top_srcdir) -g
 check_PROGRAMS = unit
 unit_SOURCES = testsuite/libdejagnu/unit.cc
