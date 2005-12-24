@@ -1,6 +1,6 @@
 2005-12-24  Ben Elliston  <bje@gnu.org>
 
-	* Makefile.am (EXTRA_DIST): Remove $(PACKAGING_FILES).
+	* Makefile.am (EXTRA_DIST): Remove $(PACKAGING_METAFILES).
 	(XML): Remove $(srcdir) from each filename; VPATH suffices.
 	(PACKAGING_METAFILES): Remove.
 	* Makefile.in: Regenerate.
