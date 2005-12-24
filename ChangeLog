@@ -1,16 +1,18 @@
 2005-12-24  Ben Elliston  <bje@gnu.org>
 
-	* configure: Regenerate.
+	* Makefile.am (RUNTESTDEFAULTFLAGS): Omit --tool so that
+	libdejagnu tests are run too.
+	* Makefile.in: Regenerate.
 
 2005-12-24  Ben Elliston  <bje@gnu.org>
+
+	* configure: Regenerate.
 
 	* lib/remote.exp: Tidy.
 	* lib/targetdb.exp: Likewise.
 	* lib/target.exp (prune_warnings): Improve comments.
 	* lib/dejagnu.exp: Likewise.
 	* lib/utils.exp: Likewise.
-
-2005-12-24  Ben Elliston  <bje@gnu.org>
 
 	* NEWS: Update.
 
