@@ -199,25 +199,28 @@ unit_SOURCES = testsuite/libdejagnu/unit.cc
 dist_man_MANS = doc/runtest.1
 info_TEXINFOS = doc/dejagnu.texi
 
+DOCBOOK2PDF = @DOCBOOK2PDF@
+DOCBOOK2RTF= = @DOCBOOK2RTF@
+DOCBOOK2PS = @DOCBOOK2PS@
+DOCBOOK2HTML = @DOCBOOK2HTML@
+DOCBOOK2X_TEXI = @DOCBOOK2X_TEXI@
+
 XML = doc/dejagnu.xml doc/legal.xml doc/ref.xml doc/user.xml
 
 dejagnu.pdf: $(XML)
-	docbook2pdf $(srcdir)/doc/dejagnu.xml
+	$(DOCBOOK2PDF) $(srcdir)/doc/dejagnu.xml
 
 dejagnu.ps: $(XML)
-	docbook2ps $(srcdir)/doc/dejagnu.xml
+	$(DOCBOOK2PS) $(srcdir)/doc/dejagnu.xml
 
 dejagnu.rtf: $(XML)
-	docbook2rtf $(srcdir)/doc/dejagnu.xml
+	$(DOCBOOK2RTF) $(srcdir)/doc/dejagnu.xml
 
 html:
-	docbook2html -o html $(srcdir)/doc/dejagnu.xml
+	$(DOCBOOK2HTML) -o html $(srcdir)/doc/dejagnu.xml
 
 doc/dejagnu.texi: $(XML)
-	db2x_xsltproc -s texi $(srcdir)/doc/dejagnu.xml -o dejagnu.txml
-	db2x_texixml dejagnu.txml
-	mv dejagnu.texi $(srcdir)/doc
-	rm dejagnu.txml
+	$(DOCBOOK2X_TEXI) $(srcdir)/doc/dejagnu.xml --to-stdout > $(srcdir)/$@
 
 # Packaging.
 

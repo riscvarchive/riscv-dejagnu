@@ -16,6 +16,7 @@ AC_PATH_PROG([DOCBOOK2HTML], [docbook2html], [false])
 AC_PATH_PROG([DOCBOOK2RTF], [docbook2rtf], [false])
 AC_PATH_PROG([DOCBOOK2PDF], [docbook2pdf], [false])
 AC_PATH_PROG([DOCBOOK2PS], [docbook2ps], [false])
+AC_PATH_PROG([DOCBOOK2X_TEXI], [docbook2x-texi], [false])
 
 dnl Search for expect.
 AC_PATH_PROG([EXPECT], [expect])

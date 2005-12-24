@@ -80,7 +80,7 @@ CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 SOURCES = $(unit_SOURCES)
 DIST_SOURCES = $(unit_SOURCES)
 am__dirstamp = $(am__leading_dot)dirstamp
-INFO_DEPS = $(srcdir)/doc/dejagnu.info
+INFO_DEPS = $(srcdir)/doc/untitled.info
 am__TEXINFO_TEX_DIR = $(srcdir)
 DVIS = doc/dejagnu.dvi
 PDFS = doc/dejagnu.pdf
@@ -142,7 +142,8 @@ DEPDIR = @DEPDIR@
 DOCBOOK2HTML = @DOCBOOK2HTML@
 DOCBOOK2PDF = @DOCBOOK2PDF@
 DOCBOOK2PS = @DOCBOOK2PS@
-DOCBOOK2RTF = @DOCBOOK2RTF@
+DOCBOOK2RTF = = @DOCBOOK2RTF@
+DOCBOOK2X_TEXI = @DOCBOOK2X_TEXI@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
@@ -578,7 +579,7 @@ doc/$(am__dirstamp):
 	@$(mkdir_p) doc
 	@: > doc/$(am__dirstamp)
 
-$(srcdir)/doc/dejagnu.info: doc/dejagnu.texi 
+$(srcdir)/doc/untitled.info: doc/dejagnu.texi 
 	restore=: && backupdir="$(am__leading_dot)am$$$$" && \
 	am__cwd=`pwd` && cd $(srcdir) && \
 	rm -rf $$backupdir && mkdir $$backupdir && \
@@ -600,17 +601,17 @@ $(srcdir)/doc/dejagnu.info: doc/dejagnu.texi
 	fi; \
 	rm -rf $$backupdir; exit $$rc
 
-doc/dejagnu.dvi: doc/dejagnu.texi  doc/$(am__dirstamp)
+doc/untitled.dvi: doc/dejagnu.texi  doc/$(am__dirstamp)
 	TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \
 	MAKEINFO='$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I doc -I $(srcdir)/doc' \
 	$(TEXI2DVI) -o $@ `test -f 'doc/dejagnu.texi' || echo '$(srcdir)/'`doc/dejagnu.texi
 
-doc/dejagnu.pdf: doc/dejagnu.texi  doc/$(am__dirstamp)
+doc/untitled.pdf: doc/dejagnu.texi  doc/$(am__dirstamp)
 	TEXINPUTS="$(am__TEXINFO_TEX_DIR)$(PATH_SEPARATOR)$$TEXINPUTS" \
 	MAKEINFO='$(MAKEINFO) $(AM_MAKEINFOFLAGS) $(MAKEINFOFLAGS) -I doc -I $(srcdir)/doc' \
 	$(TEXI2PDF) -o $@ `test -f 'doc/dejagnu.texi' || echo '$(srcdir)/'`doc/dejagnu.texi
 
-doc/dejagnu.html: doc/dejagnu.texi  doc/$(am__dirstamp)
+doc/untitled.html: doc/dejagnu.texi  doc/$(am__dirstamp)
 	rm -rf $(@:.html=.htp)
 	if $(MAKEINFOHTML) $(AM_MAKEINFOHTMLFLAGS) $(MAKEINFOFLAGS) -I doc -I $(srcdir)/doc \
 	 -o $(@:.html=.htp) `test -f 'doc/dejagnu.texi' || echo '$(srcdir)/'`doc/dejagnu.texi; \
@@ -668,8 +669,8 @@ mostlyclean-aminfo:
 	-rm -rf dejagnu.aux dejagnu.cp dejagnu.cps dejagnu.fn dejagnu.fns dejagnu.ky \
 	  dejagnu.kys dejagnu.log dejagnu.pg dejagnu.pgs dejagnu.tmp \
 	  dejagnu.toc dejagnu.tp dejagnu.tps dejagnu.vr dejagnu.vrs \
-	  doc/dejagnu.dvi doc/dejagnu.pdf doc/dejagnu.ps \
-	  doc/dejagnu.html
+	  doc/untitled.dvi doc/untitled.pdf doc/untitled.ps \
+	  doc/untitled.html
 
 maintainer-clean-aminfo:
 	@list='$(INFO_DEPS)'; for i in $$list; do \
@@ -1151,22 +1152,19 @@ uninstall-man: uninstall-man1
 
 
 dejagnu.pdf: $(XML)
-	docbook2pdf $(srcdir)/doc/dejagnu.xml
+	$(DOCBOOK2PDF) $(srcdir)/doc/dejagnu.xml
 
 dejagnu.ps: $(XML)
-	docbook2ps $(srcdir)/doc/dejagnu.xml
+	$(DOCBOOK2PS) $(srcdir)/doc/dejagnu.xml
 
 dejagnu.rtf: $(XML)
-	docbook2rtf $(srcdir)/doc/dejagnu.xml
+	$(DOCBOOK2RTF) $(srcdir)/doc/dejagnu.xml
 
 html:
-	docbook2html -o html $(srcdir)/doc/dejagnu.xml
+	$(DOCBOOK2HTML) -o html $(srcdir)/doc/dejagnu.xml
 
 doc/dejagnu.texi: $(XML)
-	db2x_xsltproc -s texi $(srcdir)/doc/dejagnu.xml -o dejagnu.txml
-	db2x_texixml dejagnu.txml
-	mv dejagnu.texi $(srcdir)/doc
-	rm dejagnu.txml
+	$(DOCBOOK2X_TEXI) $(srcdir)/doc/dejagnu.xml --to-stdout > $(srcdir)/$@
 
 # Packaging.
 

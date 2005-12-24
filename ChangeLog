@@ -1,5 +1,19 @@
 2005-12-24  Ben Elliston  <bje@gnu.org>
 
+	* configure.ac (DOCBOOK2X_TEXI): Add search for this program.
+	* configure: Regenerate.
+	* Makefile.am (DOCBOOK2PDF, DOCBOOK2RTF, DOCBOOK2PS): New.
+	(DOCBOOK2HTML, DOCBOOK2X_TEXI): Likewise.
+	(dejagnu.pdf): Use $(DOCBOOK2PDF).
+	(dejagnu.ps): Likewise, use $(DOCBOOK2PS).
+	(dejagnu.rtf): Likewise, use $(DOCBOOK2RTF).
+	(html): Likewise, use $(DOCBOOK2HTML).
+	(doc/dejagnu.texi): Produce using the docbook2x-texi wrapper,
+	which is much simpler. Likewise, use $(DOCBOOK2X_TEXI).
+	* Makefile.in: Regenerate.
+
+2005-12-24  Ben Elliston  <bje@gnu.org>
+
 	* Makefile.am (EXTRA_DIST): Remove $(PACKAGING_METAFILES).
 	(XML): Remove $(srcdir) from each filename; VPATH suffices.
 	(PACKAGING_METAFILES): Remove.
