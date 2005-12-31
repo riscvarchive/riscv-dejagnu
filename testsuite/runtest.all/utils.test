@@ -100,8 +100,4 @@ if [info exists env(TESTRUN)] {
 
 # which file
 # grep args
-# prune list pattern
-# slay name
-# absolute path
-# psource file
 # diff file_1 file_2

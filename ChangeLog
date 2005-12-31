@@ -1,5 +1,10 @@
 2005-12-31  Ben Elliston  <bje@gnu.org>
 
+	* testsuite/runtest.all/utils.test: Don't bother mentioning
+	absolute, psource, prune and slay as untested procedures.
+
+2005-12-31  Ben Elliston  <bje@gnu.org>
+
 	* doc/ref.xml (Utility Procedures): Note that the following
 	procedures are deprecated: absolute, psource, prune, slay.
 	* NEWS: Likewise.
