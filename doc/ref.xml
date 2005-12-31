@@ -3665,100 +3665,34 @@
 
 	<sect4 id="prune" xreflabel="prune procedure">
 	  <title>Prune Procedure</title>
-
-	  <para>Remove elements of the Tcl list <emphasis>list</emphasis>.
-	  Elements are fields delimited by spaces.  The result is a copy of
-	  list, without any elements that match <emphasis>pattern</emphasis>.
-	  You can use the common shell wildcard characters to specify the
-	  pattern.</para>
-
-	<funcsynopsis role="tcl">
-          <funcprototype>
-            <funcdef><function>prune</function></funcdef>
-	    <paramdef><parameter>list</parameter>
-  	    <parameter>pattern</parameter></paramdef>
-           </funcprototype>
-	</funcsynopsis>
-	<variablelist>
-          <varlistentry>
-	    <term><parameter>list</parameter></term>
-	    <listitem><para>A Tcl list containing the original data. Commonly
-	    this is the output of a batch executed command, like running a
-	    compiler.</para></listitem>
-          </varlistentry>
-          <varlistentry>
-	    <term><parameter>pattern</parameter></term>
-	    <listitem><para>The csh shell "glob" style pattern to search
-	    for.</para></listitem>
-          </varlistentry>
-	</variablelist>
-
+	  <para>This procedure is deprecated and will be removed in
+	  the next release of DejaGnu.  If a testsuite uses this
+	  procedure, a copy of the procedure should be made and placed
+	  in the lib directory of the testsuite.</para>
 	</sect4>
 
 	<sect4 id="slay" xreflabel="slay procedure">
 	  <title>Slay Procedure</title>
-
-	  <para>This look in the process table for <emphasis>name</emphasis>
-	  and send it a unix SIGINT, killing the process. This will only work
-	  under Windows if you have Cygwin or another Unix subsystem for Windows
-	  installed.</para>
-
-	<funcsynopsis role="tcl">
-          <funcprototype>
-            <funcdef><function>slay</function></funcdef>
-	    <paramdef><parameter>name</parameter></paramdef>
-           </funcprototype>
-	</funcsynopsis>
-	<variablelist>
-          <varlistentry>
-	    <term><parameter>name</parameter></term>
-	    <listitem><para>The name of the program to kill.</para></listitem>
-          </varlistentry>
-	</variablelist>
-
+	  <para>This procedure is deprecated and will be removed in
+	  the next release of DejaGnu.  If a testsuite uses this
+	  procedure, a copy of the procedure should be made and placed
+	  in the lib directory of the testsuite.</para>
 	</sect4>
 
 	<sect4 id="absolute" xreflabel="absolute procedure">
 	  <title>Absolute Procedure</title>
-
-	  <para>This procedure takes the relative <emphasis>path</emphasis>,
-	  and converts it to an absolute path.</para>
-
-	<funcsynopsis role="tcl">
-          <funcprototype>
-            <funcdef><function>absolute</function></funcdef>
-	    <paramdef><parameter>path</parameter></paramdef>
-           </funcprototype>
-	</funcsynopsis>
-	<variablelist>
-          <varlistentry>
-	    <term><parameter>path</parameter></term>
-	    <listitem><para>The path to convert.</para></listitem>
-          </varlistentry>
-	</variablelist>
+	  <para>This procedure is deprecated and will be removed in
+	  the next release of DejaGnu.  If a testsuite uses this
+	  procedure, a copy of the procedure should be made and placed
+	  in the lib directory of the testsuite.</para>
 	</sect4>
 
 	<sect4 id="psource" xreflabel="psource procedure">
 	  <title>Psource Procedure</title>
-
-	  <para>This sources the file <emphasis>filename</emphasis>, and traps
-	  all errors. It also ignores all extraneous output. If there was an
-	  error it returns a <emphasis>1</emphasis>, otherwise it returns a
-	  <emphasis>0</emphasis>.</para>
-
-	<funcsynopsis role="tcl">
-          <funcprototype>
-            <funcdef><function>psource</function></funcdef>
-	    <paramdef><parameter>file</parameter></paramdef>
-           </funcprototype>
-	</funcsynopsis>
-	<variablelist>
-          <varlistentry>
-	    <term><parameter>filename</parameter></term>
-	    <listitem><para>The filename to Tcl script to
-	    source.</para></listitem>
-          </varlistentry>
-	</variablelist>
+	  <para>This procedure is deprecated and will be removed in
+	  the next release of DejaGnu.  If a testsuite uses this
+	  procedure, a copy of the procedure should be made and placed
+	  in the lib directory of the testsuite.</para>
 	</sect4>
 
 	<sect4 id="runtestfilep" xreflabel="runtest_file_p procedure">

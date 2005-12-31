@@ -1,5 +1,5 @@
 \input texinfo
-@setfilename dejagnu.info
+@setfilename untitled.info
 @documentencoding us-ascii
 @direntry
 * DejaGnu: .                    ??? 
@@ -6353,85 +6353,34 @@ regexp matches.
 @node prune procedure, slay procedure, grep procedure, Utility Procedures
 @subsubsection Prune Procedure
 
-Remove elements of the Tcl list @i{list}.
-Elements are fields delimited by spaces. The result is a copy of
-list, without any elements that match @i{pattern}.
-You can use the common shell wildcard characters to specify the
-pattern.
-
-@quotation
-
-@t{@b{prune}(@i{list}
-@i{pattern});}
-@end quotation
-
-@table @asis
-
-@item @code{list}
-A Tcl list containing the original data. Commonly
-this is the output of a batch executed command, like running a
-compiler.
-
-@item @code{pattern}
-The csh shell "glob" style pattern to search
-for.
-@end table
+This procedure is deprecated and will be removed in
+the next release of DejaGnu. If a testsuite uses this
+procedure, a copy of the procedure should be made and placed
+in the lib directory of the testsuite.
 
 @node slay procedure, absolute procedure, prune procedure, Utility Procedures
 @subsubsection Slay Procedure
 
-This look in the process table for @i{name}
-and send it a unix SIGINT, killing the process. This will only work
-under Windows if you have Cygwin or another Unix subsystem for Windows
-installed.
-
-@quotation
-
-@t{@b{slay}(@i{name});}
-@end quotation
-
-@table @asis
-
-@item @code{name}
-The name of the program to kill.
-@end table
+This procedure is deprecated and will be removed in
+the next release of DejaGnu. If a testsuite uses this
+procedure, a copy of the procedure should be made and placed
+in the lib directory of the testsuite.
 
 @node absolute procedure, psource procedure, slay procedure, Utility Procedures
 @subsubsection Absolute Procedure
 
-This procedure takes the relative @i{path},
-and converts it to an absolute path.
-
-@quotation
-
-@t{@b{absolute}(@i{path});}
-@end quotation
-
-@table @asis
-
-@item @code{path}
-The path to convert.
-@end table
+This procedure is deprecated and will be removed in
+the next release of DejaGnu. If a testsuite uses this
+procedure, a copy of the procedure should be made and placed
+in the lib directory of the testsuite.
 
 @node psource procedure, runtest_file_p procedure, absolute procedure, Utility Procedures
 @subsubsection Psource Procedure
 
-This sources the file @i{filename}, and traps
-all errors. It also ignores all extraneous output. If there was an
-error it returns a @i{1}, otherwise it returns a
-@i{0}.
-
-@quotation
-
-@t{@b{psource}(@i{file});}
-@end quotation
-
-@table @asis
-
-@item @code{filename}
-The filename to Tcl script to
-source.
-@end table
+This procedure is deprecated and will be removed in
+the next release of DejaGnu. If a testsuite uses this
+procedure, a copy of the procedure should be made and placed
+in the lib directory of the testsuite.
 
 @node runtest_file_p procedure, diff procedure, psource procedure, Utility Procedures
 @subsubsection Runtest_file_p Procedure

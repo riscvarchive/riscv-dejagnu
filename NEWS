@@ -17,6 +17,11 @@ Changes since 1.4.4:
 6. The runtest program now gracefully handles the possibility of the
    expect binary vanishing after DejaGnu has been installed (for
    example, by the user altering their PATH).
+7. The user-visible utility procedures `absolute', `prune', `psource'
+   and `slay' are deprecated and will be removed in the next release.
+   If a testsuite uses any of these procedures, a copy of the
+   procedure should be made and placed in the lib directory of the
+   testsuite.
 
 Changes since 1.4.2:
 
