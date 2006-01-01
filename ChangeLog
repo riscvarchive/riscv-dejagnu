@@ -1,3 +1,18 @@
+2006-01-01  Ben Elliston  <bje@gnu.org>
+
+	* config/default.exp, config/unix.exp, config/vxworks.exp,
+	lib/debugger.exp, lib/dejagnu.exp, lib/framework.exp,
+	lib/libgloss.exp, lib/remote.exp, testsuite/lib/util-defs.exp:
+	Formatting fixes.
+	* dejagnu.h, testsuite/config/default.exp,
+	testsuite/lib/libsup.exp, testsuite/libdejagnu/tunit.exp,
+	testsuite/libdejagnu/unit.cc, testsuite/runtest.all/libs.exp,
+	testsuite/runtest.all/options.exp,
+	testsuite/runtest.all/stats-sub.exp,
+	testsuite/runtest.all/stats.exp: Update copyright notice and FSF
+	office address. Remove bug reporting address, as it is now
+	maintained centrally in the README file.
+
 2005-12-31  Ben Elliston  <bje@gnu.org>
 
 	* testsuite/runtest.all/utils.test: Don't bother mentioning
