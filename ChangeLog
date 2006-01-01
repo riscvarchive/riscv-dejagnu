@@ -1,5 +1,11 @@
 2006-01-01  Ben Elliston  <bje@gnu.org>
 
+	* dejagnu.h: Update copyright notice.  Use C-style /* .. */
+	comments for portability with ISO C compilers.
+	* testsuite/libdejagnu/unit.cc: Likewise, update copyright notice.
+
+2006-01-01  Ben Elliston  <bje@gnu.org>
+
 	* runtest.exp: Update copyright notice.
 	* example/calc/testsuite/calc.test/calc.exp: Likewise.
 	* example/calc/testsuite/config/unix.exp: Likewise.

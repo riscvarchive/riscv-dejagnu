@@ -1,22 +1,21 @@
-// unit.cc -- This is a test case for the Dejagnu.h classes.
+// unit.cc -- This is a test case for the dejagnu.h classes.
 // Copyright 2001, 2002, 2003, 2004 Free Software Foundation, Inc.
 
-// This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
+// This file is part of DejaGnu.
+
+// DejaGnu is free software; you can redistribute it and/or modify it
+// under the terms of the GNU General Public License as published by
 // the Free Software Foundation; either version 2 of the License, or
 // (at your option) any later version.
 
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU General Public License for more details.
+// DejaGnu is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// General Public License for more details.
 
 // You should have received a copy of the GNU General Public License
 // along with DejaGnu; if not, write to the Free Software Foundation,
 // Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.
-
-// Please email any bugs, comments, and/or additions to this file to:
-// bug-dejagnu@gnu.org
 
 #include <sys/types.h>
 #include <iostream>
