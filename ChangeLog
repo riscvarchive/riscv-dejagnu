@@ -1,5 +1,16 @@
 2006-01-01  Ben Elliston  <bje@gnu.org>
 
+	* runtest.exp: Update copyright notice.
+	* example/calc/testsuite/calc.test/calc.exp: Likewise.
+	* example/calc/testsuite/config/unix.exp: Likewise.
+	* testsuite/libdejagnu/tunit.exp: Likewise.
+	* testsuite/runtest.all/libs.exp: Likewise.
+	* testsuite/runtest.all/options.exp: Likewise.
+	* testsuite/runtest.all/stats-sub.exp: Likewise.
+	* testsuite/runtest.all/stats.exp: Likewise.
+
+2006-01-01  Ben Elliston  <bje@gnu.org>
+
 	* config/default.exp, config/unix.exp, config/vxworks.exp,
 	lib/debugger.exp, lib/dejagnu.exp, lib/framework.exp,
 	lib/libgloss.exp, lib/remote.exp, testsuite/lib/util-defs.exp:
