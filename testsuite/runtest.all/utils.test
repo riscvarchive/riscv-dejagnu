@@ -1,3 +1,5 @@
+# Test procedures in lib/utils.exp.
+
 set srcdir [lindex $argv 0]
 set subdir [lindex $argv 1]
 set objdir [lindex $argv 2]
@@ -20,8 +22,7 @@ if [ file exists $file] {
     puts "ERROR: $file doesn't exist"
 }
 
-#
-# getdirs tests
+# Test getdirs:
 #
 if [lib_pat_test "getdirs" "${srcdir}/runtest.all" "runtest.all/topdir" ] {
     puts "FAILED: getdirs toplevel, no arguments"
@@ -41,8 +42,7 @@ if [lib_pat_test "getdirs" "${srcdir}/runtest.all/topdir" "subdir1*subdir2" ] {
     puts "PASSED: getdirs toplevel, two subdirs"
 }
 
-#
-# find tests
+# Test find:
 #
 if [string match "*/subdir2/subfile2" "[find ${srcdir}/runtest.all/topdir/subdir2 sub*]"] {
     puts "PASSED: find, only one level deep"
@@ -56,15 +56,15 @@ if [regexp ".*/subdir1/subsubdir1/subsubfile1( |$)" "[find ${srcdir}/runtest.all
     puts "FAILED: find, two  levels deep"
 }
 
-#
-# environment varible utility tests
+# Environment varible utility tests.
 #
 
 if [info exists env(TESTRUN)] {
     unset env(TESTRUN)
 }
 
-# test setenv
+# Test setenv:
+#
 setenv TESTRUN FooBar
 if [info exists env(TESTRUN)] {
     if { $env(TESTRUN) == "FooBar" } {
@@ -75,7 +75,9 @@ if [info exists env(TESTRUN)] {
 } else {
     fail "setenv, set an environment variable"
 }
-# test getenv
+
+# Test getenv:
+#
 if [info exists env(TESTRUN)] {
     if { [getenv TESTRUN] == "FooBar" } {
         pass "getenv, get an environment variable"
@@ -86,7 +88,8 @@ if [info exists env(TESTRUN)] {
     untested "getenv, get an environment variable"
 }
 
-# test unsetenv
+# Test unsetenv:
+#
 if [info exists env(TESTRUN)] {
     unsetenv TESTRUN
     if [info exists env(TESTRUN)] {
@@ -101,3 +104,4 @@ if [info exists env(TESTRUN)] {
 # which file
 # grep args
 # diff file_1 file_2
+# runtest_file_p

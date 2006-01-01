@@ -1,5 +1,9 @@
 2006-01-01  Ben Elliston  <bje@gnu.org>
 
+	* testsuite/runtest.all/utils.test: Add runtest_file_p.
+
+2006-01-01  Ben Elliston  <bje@gnu.org>
+
 	* runtest.exp (frame_version): Set to 1.4.99.
 
 2006-01-01  Ben Elliston  <bje@gnu.org>
