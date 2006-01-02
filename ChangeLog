@@ -1,3 +1,8 @@
+2006-01-02  Ben Elliston  <bje@gnu.org>
+
+	* configure.ac (AC_INIT): Set version to 1.4.99.
+	* configure: Regenerate.
+
 2006-01-01  Ben Elliston  <bje@gnu.org>
 
 	* testsuite/runtest.all/utils.test: Add runtest_file_p.

@@ -1,7 +1,7 @@
 dnl Process this file with autoconf to produce a configure script.
 
 AC_PREREQ(2.50)
-AC_INIT([GNU DejaGnu], 1.4.4, [bug-dejagnu@gnu.org])
+AC_INIT([GNU DejaGnu], 1.4.99, [bug-dejagnu@gnu.org])
 AM_INIT_AUTOMAKE
 AM_MAINTAINER_MODE
 AC_PROG_MAKE_SET
