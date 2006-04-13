@@ -1,3 +1,9 @@
+2006-04-03  Ben Elliston  <bje@gnu.org>
+
+	* lib/debugger.exp, lib/dejagnu.exp, lib/dg.exp,
+	lib/framework.exp, lib/libgloss.exp, lib/remote.exp,
+	lib/rlogin.exp, lib/target.exp, lib/telnet.exp: Formatting.
+
 2006-01-02  Ben Elliston  <bje@gnu.org>
 
 	* configure.ac (AC_INIT): Set version to 1.4.99.

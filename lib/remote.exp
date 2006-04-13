@@ -35,7 +35,6 @@ load_lib "ftp.exp"
 # into the board_info array. The default is target if no name is supplied.
 # It returns the spawn id of the process that is the connection.
 #
-
 proc remote_open { args } {
     global reboot
 
@@ -271,12 +270,10 @@ proc standard_exec { hostname args } {
     return [eval rsh_exec \"$hostname\" $args]
 }
 
-#
 # Close the remote connection.
 #	arg - This is the name of the machine whose connection we're closing,
 #	      or target, host or build.
 #
-
 proc remote_close { host } {
     while { 1 } {
 	set result [call_remote "" close "$host"]
@@ -402,10 +399,8 @@ proc remote_download { dest file args } {
     return [call_remote "" download $dest $file $destfile]
 }
 
-#
 # The default download procedure. Uses rcp to download to $dest.
 #
-
 proc standard_download {dest file destfile} {
     set orig_destfile $destfile
 
@@ -844,7 +839,6 @@ proc remote_raw_spawn { dest commandline } {
     return [call_remote raw spawn "$dest" "$commandline"]
 }
 
-#
 # The default spawn procedure. Uses rsh to connect to $dest.
 #
 proc standard_spawn { dest commandline } {
@@ -876,12 +870,11 @@ proc standard_spawn { dest commandline } {
     return $spawn_id
 }
 
-#
 # Run PROG on DEST, with optional arguments, input and output files.
-# It returns a list of two items. The first is ether "pass" if the program
-# loaded, ran and exited with a zero exit status, or "fail" otherwise.
-# The second argument is any output produced by the program while it was
-# running.
+# It returns a list of two items. The first is ether "pass" if the
+# program loaded, ran and exited with a zero exit status, or "fail"
+# otherwise.  The second argument is any output produced by the
+# program while it was running.
 #
 proc remote_load { dest prog args } {
     global tool
@@ -981,11 +974,9 @@ proc remote_raw_load { dest prog args } {
     return [eval call_remote raw load \"$dest\" \"$prog\" $args ]
 }
 
-#
 # The default load procedure if no other exists for $dest. It uses
 # remote_download and remote_exec to load and execute the program.
 #
-
 proc standard_load { dest prog args } {
     if { [llength $args] > 0 } {
 	set pargs [lindex $args 0]
@@ -1043,7 +1034,6 @@ proc standard_load { dest prog args } {
     }
 }
 
-#
 # Loads PROG into DEST.
 #
 proc remote_ld { dest prog } {
@@ -1058,7 +1048,7 @@ proc remote_raw_ld { dest prog } {
 # complete. A list of two values is returned; the first is the exit
 # status (-1 if the program timed out), and the second is any output
 # produced by the command.
-
+#
 proc remote_wait { dest timeout } {
     return [eval call_remote \"\" wait \"$dest\" $timeout]
 }
@@ -1069,6 +1059,7 @@ proc remote_raw_wait { dest timeout } {
 
 # The standard wait procedure, used for commands spawned on the local
 # machine.
+#
 proc standard_wait { dest timeout } {
     set output ""
     set status -1
@@ -1131,7 +1122,7 @@ proc standard_wait { dest timeout } {
 # the calling procedure for output from the status wrapper and returns
 # a non-negative value if it exists; otherwise, it returns -1. The
 # output from the wrapper is removed from the variable.
-
+#
 proc check_for_board_status  { variable } {
     upvar $variable output
 
@@ -1163,13 +1154,11 @@ proc check_for_board_status  { variable } {
     }
 }
 
-#
 # remote_expect works basically the same as standard expect, but it
 # also takes care of getting the file descriptor from the specified
 # host and also calling the timeout/eof/default section if there is an
 # error on the expect call.
 #
-
 proc remote_expect { board timeout args } {
     global errorInfo errorCode
     global remote_suppress_flag
@@ -1278,6 +1267,7 @@ proc remote_expect { board timeout args } {
 }
 
 # Push the current connection to HOST onto a stack.
+#
 proc remote_push_conn { host } {
     global board_info
 
@@ -1306,6 +1296,7 @@ proc remote_push_conn { host } {
 
 # Pop a previously-pushed connection from a stack. You should have closed the
 # current connection before doing this.
+#
 proc remote_pop_conn { host } {
     global board_info
 
@@ -1327,7 +1318,6 @@ proc remote_pop_conn { host } {
     return "pass"
 }
 
-#
 # Swap the current connection with the topmost one on the stack.
 #
 proc remote_swap_conn { host } {

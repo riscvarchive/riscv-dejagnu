@@ -21,7 +21,6 @@
 
 # this contains a list of gcc options and their respective directories.
 
-#
 # Find the pieces of libgloss for testing the GNU development tools
 # needed to link a set of object files into an executable.
 # This usually means setting the -L and -B paths correctly.
@@ -97,12 +96,11 @@ proc libgloss_link_flags { args } {
 }
 
 # There aren't any, but we'll be orthogonal here.
-
+#
 proc libgloss_include_flags { args } {
     return ""
 }
 
-#
 # Find the newlib libraries in the current source tree.
 #
 proc newlib_link_flags { args } {
@@ -386,12 +384,10 @@ proc libstdc++_link_flags { args } {
     return "$flags"
 }
 
-#
 # Get the list of directories and -m options for gcc. This is kinda bogus that
 # generic testing software needs support for gcc hardwired in, but to make
 # testing the GNU tools work right, there didn't seem to be any other way.
 #
-
 proc get_multilibs { args } {
     global target_alias
     global board
@@ -911,7 +907,7 @@ proc winsup_include_flags { args } {
     verbose "No winsup support for this target"
 
 }
-#
+
 # Find the winsup libraries in the current source tree.
 #
 proc winsup_link_flags { args } {

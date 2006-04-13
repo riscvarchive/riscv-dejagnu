@@ -21,7 +21,7 @@
 # Connect to HOSTNAME using Telnet.  ARGS is a list of options.
 # Currently the only supported option is "raw".  Sets the fileid field
 # in the config array and returns -1 for error or the spawn id.
-
+#
 proc telnet_open { hostname args } {
     global verbose
     global connectmode

@@ -17,11 +17,9 @@
 # along with DejaGnu; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.
 
-#
 # Connect to ARG using rlogin. This is for systems using rlogin to
 # braindead targets. It returns either the spawn_id or a -1.
 #
-
 proc rlogin_open { arg } {
     global board_info
 
@@ -130,7 +128,6 @@ proc rlogin_open { arg } {
     return $spawn_id
 }
 
-#
 # Start CMDLINE running on DEST. Return the shell_id associated with
 # the command.
 #

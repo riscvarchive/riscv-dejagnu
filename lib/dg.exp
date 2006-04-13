@@ -258,7 +258,7 @@ proc dg-process-target { selector } {
 # The line number is always the first element.
 # Note that each of these are varargs procs (they have an `args' argument).
 # Tests for optional arguments are coded with ">=" to simplify adding new ones.
-
+#
 proc dg-prms-id { args } {
     global prms_id	;# this is a testing framework variable
 
@@ -270,7 +270,6 @@ proc dg-prms-id { args } {
     set prms_id [lindex $args 1]
 }
 
-#
 # Set tool options
 #
 # Different options can be used for different targets by having multiple
@@ -278,7 +277,6 @@ proc dg-prms-id { args } {
 # processed in order, put the default value first.  Subsequent occurrences
 # will override previous ones.
 #
-
 proc dg-options { args } {
     upvar dg-extra-tool-flags extra-tool-flags
 
@@ -299,7 +297,6 @@ proc dg-options { args } {
     }
 }
 
-#
 # Record what to do (compile/run/etc.)
 #
 # Multiple instances are supported (since we don't support target and xfail
@@ -500,8 +497,7 @@ proc dg-excess-errors { args } {
     }
 }
 
-#
-# Indicate expected program output
+# Indicate expected program output.
 #
 # We support multiple occurrences, but we do not implicitly insert newlines
 # between them.
@@ -556,13 +552,12 @@ proc dg-final { args } {
     append final-code "[lindex $args 1]\n"
 }
 
-#
 # Set up our environment
 #
 # There currently isn't much to do, but always calling it allows us to add
 # enhancements without having to update our callers.
 # It must be run before calling `dg-test'.
-
+#
 proc dg-init { } {
 }
 
@@ -591,7 +586,7 @@ proc dg-runtest { testcases flags default-extra-flags } {
 # Syntax: dg-trim-dirname dir_name file_name
 # We need to go through this contorsion in order to properly support
 # directory-names which might have embedded regexp special characters.
-
+#
 proc dg-trim-dirname { dir_name file_name } {
     set special_character "\[\?\+\-\.\(\)\$\|\]"
     regsub -all $special_character $dir_name "\\\\&" dir_name
@@ -902,9 +897,7 @@ proc dg-test { args } {
     }
 }
 
-#
-# Do any necessary cleanups
-#
+# Do any necessary cleanups.
 # This is called at the end to undo anything dg-init did (that needs undoing).
 #
 proc dg-finish { } {

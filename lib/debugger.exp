@@ -19,9 +19,8 @@
 
 # This file was written by Rob Savoye <rob@welcomehome.org>.
 
+# Dump the values of a shell expression representing variable names.
 #
-# Dump the values of a shell expression representing variable
-# names.
 proc dumpvars { args } {
     uplevel 1 [list foreach i [uplevel 1 "info vars $args"] {
 	if { [catch "array names $i" names ] } {
@@ -35,9 +34,8 @@ proc dumpvars { args } {
 	      ]
 }
 
+# Dump the values of a shell expression representing variable names.
 #
-# dump the values of a shell expression representing variable
-# names.
 proc dumplocals { args } {
     uplevel 1 [list foreach i [uplevel 1 "info locals $args"] {
 	if { [catch "array names $i" names ] } {
@@ -50,7 +48,7 @@ proc dumplocals { args } {
     }
 	      ]
 }
-#
+
 # Dump the body of procedures specified by a regexp.
 #
 proc dumprocs { args } {
@@ -59,8 +57,7 @@ proc dumprocs { args } {
     }
 }
 
-#
-# Dump all the current watchpoints
+# Dump all the current watchpoints.
 #
 proc dumpwatch { args } {
     foreach i [uplevel 1 "info vars $args"] {
@@ -81,8 +78,7 @@ proc dumpwatch { args } {
     }
 }
 
-#
-# Trap a watchpoint for an array
+# Trap a watchpoint for an array.
 #
 proc watcharray { element type} {
     upvar [set array]($element) avar
@@ -102,8 +98,7 @@ proc watchvar { v type } {
     }
 }
 
-#
-# Watch when a variable is written
+# Watch when a variable is written.
 #
 proc watchunset { arg } {
     if { [catch "uplevel 1 array name $arg" names ] } {
@@ -123,8 +118,7 @@ proc watchunset { arg } {
     }
 }
 
-#
-# Watch when a variable is written
+# Watch when a variable is written.
 #
 proc watchwrite { arg } {
     if { [catch "uplevel 1 array name $arg" names ] } {
@@ -144,8 +138,7 @@ proc watchwrite { arg } {
     }
 }
 
-#
-# Watch when a variable is read
+# Watch when a variable is read.
 #
 proc watchread { arg } {
     if { [catch "uplevel 1 array name $arg" names ] } {
@@ -165,8 +158,7 @@ proc watchread { arg } {
     }
 }
 
-#
-# Delete a watch point
+# Delete a watchpoint.
 #
 proc watchdel { args } {
     foreach i [uplevel 1 "info vars $args"] {
@@ -185,7 +177,6 @@ proc watchdel { args } {
     }
 }
 
-#
 # This file creates GDB style commands for the Tcl debugger
 #
 proc print { var } {
@@ -200,8 +191,7 @@ proc bt { } {
     puts "[w]"
 }
 
-#
-# create some stub procedures since we can't alias the command names
+# Create some stub procedures since we can't alias the command names.
 #
 proc dp { args } {
     uplevel 1 dumprocs $args

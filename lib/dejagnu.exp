@@ -103,6 +103,7 @@ proc host_compile {compline} {
 #    Returns:
 #	A "" (empty) string if everything worked, or an error message
 #	if there was a problem.
+#
 proc host_execute {args} {
     global text
 
