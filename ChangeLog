@@ -1,5 +1,10 @@
 2006-05-22  Ben Elliston  <bje@gnu.org>
 
+	* lib/debugger.exp (watcharray): Add `array' parameter.  Rename
+	`type' parameter to `op' and update all uses in the proc.
+	(watchvar): Add `ignore' parameter for scalar variables.
+	Likewise, rename `type' to `op' and update throughout the proc.
+	
 	* runtest.exp: Use switch, not case.
 	* lib/framework.exp (clone_output): Likewise.
 	(clear_xfail): Likewise.

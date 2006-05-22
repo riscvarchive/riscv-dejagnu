@@ -80,18 +80,18 @@ proc dumpwatch { args } {
 
 # Trap a watchpoint for an array.
 #
-proc watcharray { element type} {
+proc watcharray { array element op } {
     upvar [set array]($element) avar
-    switch $type {
+    switch $op {
 	"w" { puts "New value of [set array]($element) is $avar" }
 	"r" { puts "[set array]($element) (= $avar) was just read" }
 	"u" { puts "[set array]($element) (= $avar) was just unset" }
     }
 }
 
-proc watchvar { v type } {
+proc watchvar { v ignored op } {
     upvar $v var
-    switch $type {
+    switch $op {
 	"w" { puts "New value of $v is $var" }
 	"r" { puts "$v (=$var) was just read" }
 	"u" { puts "$v (=$var) was just unset" }
