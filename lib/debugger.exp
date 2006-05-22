@@ -64,13 +64,13 @@ proc dumpwatch { args } {
 	set tmp ""
 	if { [catch "uplevel 1 array name $i" names] } {
 	    set tmp [uplevel 1 trace vinfo $i]
-	    if ![string match "" $tmp] {
+	    if {![string match "" $tmp]} {
 		puts "$i $tmp"
 	    }
 	} else {
 	    foreach k $names {
 		set tmp [uplevel 1 trace vinfo [set i]($k)]
-		if ![string match "" $tmp] {
+		if {![string match "" $tmp]} {
 		    puts "[set i]($k) = $tmp"
 		}
 	    }
@@ -102,14 +102,14 @@ proc watchvar { v ignored op } {
 #
 proc watchunset { arg } {
     if { [catch "uplevel 1 array name $arg" names ] } {
-	if ![uplevel 1 info exists $arg] {
+	if {![uplevel 1 info exists $arg]} {
 	    puts stderr "$arg does not exist"
 	    return
 	}
 	uplevel 1 trace variable $arg u watchvar
     } else {
 	foreach k $names {
-	    if ![uplevel 1 info exists $arg] {
+	    if {![uplevel 1 info exists $arg]} {
 		puts stderr "$arg does not exist"
 		return
 	    }
@@ -122,14 +122,14 @@ proc watchunset { arg } {
 #
 proc watchwrite { arg } {
     if { [catch "uplevel 1 array name $arg" names ] } {
-	if ![uplevel 1 info exists $arg] {
+	if {![uplevel 1 info exists $arg]} {
 	    puts stderr "$arg does not exist"
 	    return
 	}
 	uplevel 1 trace variable $arg w watchvar
     } else {
 	foreach k $names {
-	    if ![uplevel 1 info exists $arg] {
+	    if {![uplevel 1 info exists $arg]} {
 		puts stderr "$arg does not exist"
 		return
 	    }
@@ -142,14 +142,14 @@ proc watchwrite { arg } {
 #
 proc watchread { arg } {
     if { [catch "uplevel 1 array name $arg" names ] } {
-	if ![uplevel 1 info exists $arg] {
+	if {![uplevel 1 info exists $arg]} {
 	    puts stderr "$arg does not exist"
 	    return
 	}
 	uplevel 1 trace variable $arg r watchvar
     } else {
 	foreach k $names {
-	    if ![uplevel 1 info exists $arg] {
+	    if {![uplevel 1 info exists $arg]} {
 		puts stderr "$arg does not exist"
 		return
 	    }

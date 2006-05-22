@@ -22,11 +22,11 @@
 # success, 0 otherwise.
 #
 proc reboot_via_x10 { dest } {
-    if [board_info $dest exists name] {
+    if {[board_info $dest exists name]} {
 	set dest [board_info $dest name]
     }
 
-    if [board_info $dest exists x10] {
+    if {[board_info $dest exists x10]} {
 	set x10 [board_info $dest x10]
 	verbose "rebooting x10 unit $x10" 1
 	rsh_exec rtl "/usr/unsupported/bin/x10-hellcab unit $x10 off"

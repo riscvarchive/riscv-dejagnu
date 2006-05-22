@@ -21,7 +21,7 @@
 # This file was written by Rob Savoye <rob@welcomehome.org>.
 
 set frame_version	1.4.99
-if ![info exists argv0] {
+if {![info exists argv0]} {
     send_error "Must use a version of Expect greater than 5.0\n"
     exit 1
 }
@@ -91,10 +91,10 @@ set compiler_flags ""		;# the flags used by the compiler
 #
 # some convenience abbreviations
 #
-if ![info exists hex] {
+if {![info exists hex]} {
     set hex "0x\[0-9A-Fa-f\]+"
 }
-if ![info exists decimal] {
+if {![info exists decimal]} {
     set decimal "\[0-9\]+"
 }
 
@@ -108,28 +108,28 @@ set base_dir [pwd]
 # tested here instead of the init module so they can be overridden by command
 # line options.
 #
-if ![info exists all_flag] {
+if {![info exists all_flag]} {
     set all_flag 0
 }
-if ![info exists binpath] {
+if {![info exists binpath]} {
     set binpath ""
 }
-if ![info exists debug] {
+if {![info exists debug]} {
     set debug 0
 }
-if ![info exists options] {
+if {![info exists options]} {
     set options ""
 }
-if ![info exists outdir] {
+if {![info exists outdir]} {
     set outdir "."
 }
-if ![info exists reboot] {
+if {![info exists reboot]} {
     set reboot 1
 }
-if ![info exists tracelevel] {
+if {![info exists tracelevel]} {
     set tracelevel 0
 }
-if ![info exists verbose] {
+if {![info exists verbose]} {
     set verbose 0
 }
 
@@ -212,29 +212,29 @@ proc transform { name } {
     global host_triplet
     global board
 
-    if [string match $target_triplet $host_triplet] {
+    if {[string match $target_triplet $host_triplet]} {
 	return $name
     }
-    if [string match "native" $target_triplet] {
+    if {[string match "native" $target_triplet]} {
 	return $name
     }
-    if [board_info host exists no_transform_name] {
+    if {[board_info host exists no_transform_name]} {
 	return $name
     }
-    if [string match "" $target_triplet] {
+    if {[string match "" $target_triplet]} {
 	return $name
     } else {
-	if [info exists board] {
-	    if [board_info $board exists target_install] {
+	if {[info exists board]} {
+	    if {[board_info $board exists target_install]} {
 		set target_install [board_info $board target_install]
 	    }
 	}
-	if [target_info exists target_install] {
+	if {[target_info exists target_install]} {
 	    set target_install [target_info target_install]
 	}
-	if [info exists target_alias] {
+	if {[info exists target_alias]} {
 	    set tmp ${target_alias}-${name}
-	} elseif [info exists target_install] {
+	} elseif {[info exists target_install]} {
 	    if { [lsearch -exact $target_install $target_alias] >= 0 } {
 		set tmp ${target_alias}-${name}
 	    } else {
@@ -263,7 +263,7 @@ proc transform { name } {
 proc findfile { args } {
     # look for the file
     verbose "Seeing if [lindex $args 0] exists." 2
-    if [file exists [lindex $args 0]] {
+    if {[file exists [lindex $args 0]]} {
 	if { [llength $args] > 1 } {
 	    verbose "Found file, returning [lindex $args 1]"
 	    return [lindex $args 1]
@@ -317,7 +317,7 @@ proc load_file { args } {
 	    if { [catch "uplevel #0 source $file"] == 1 } {
 		send_error "ERROR: tcl error sourcing $file.\n"
 		global errorInfo
-		if [info exists errorInfo] {
+		if {[info exists errorInfo]} {
 		    send_error "$errorInfo\n"
 		}
 		exit 1
@@ -340,7 +340,7 @@ proc search_and_load_file { type filelist dirlist } {
     foreach dir $dirlist {
 	foreach initfile $filelist {
 	    verbose "Looking for $type ${dir}/${initfile}" 2
-	    if [file exists [file join ${dir} ${initfile}]] {
+	    if {[file exists [file join ${dir} ${initfile}]]} {
 		set found 1
 		set error ""
 		if { ${type} != "library file" } {
@@ -348,10 +348,10 @@ proc search_and_load_file { type filelist dirlist } {
 		} else {
 		    verbose "Loading ${dir}/${initfile}"
 		}
-		if [catch "uplevel #0 source ${dir}/${initfile}" error]==1 {
+		if {[catch "uplevel #0 source ${dir}/${initfile}" error] == 1} {
 		    global errorInfo
 		    send_error "ERROR: tcl error sourcing ${type} ${dir}/${initfile}.\n${error}\n"
-		    if [info exists errorInfo] {
+		    if {[info exists errorInfo]} {
 			send_error "$errorInfo\n"
 		    }
 		    exit 1
@@ -524,7 +524,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 	}
 
 	"[A-Z0-9_-.]*=*" { # process makefile style args like CC=gcc, etc...
-	    if [regexp "^(\[A-Z0-9_-\]+)=(.*)$" $option junk var val] {
+	    if {[regexp "^(\[A-Z0-9_-\]+)=(.*)$" $option junk var val]} {
 		set $var $val
 		verbose "$var is now $val"
 		append makevars "set $var $val;" ;# FIXME: Used anywhere?
@@ -543,20 +543,20 @@ verbose "Verbose level is $verbose"
 #
 # get the users login name
 #
-if [string match "" $logname] {
-    if [info exists env(USER)] {
+if {[string match "" $logname]} {
+    if {[info exists env(USER)]} {
 	set logname $env(USER)
     } else {
-	if [info exists env(LOGNAME)] {
+	if {[info exists env(LOGNAME)]} {
 	    set logname $env(LOGNAME)
 	} else {
 	    # try getting it with whoami
 	    catch "set logname [exec whoami]" tmp
-	    if [string match "*couldn't find*to execute*" $tmp] {
+	    if {[string match "*couldn't find*to execute*" $tmp]} {
 		# try getting it with who am i
 		unset tmp
 		catch "set logname [exec who am i]" tmp
-		if [string match "*Command not found*" $tmp] {	
+		if {[string match "*Command not found*" $tmp]} {	
 		    send_user "ERROR: couldn't get the users login name\n"
 		    set logname "Unknown"
 		} else {
@@ -573,7 +573,7 @@ if [string match "" $logname] {
 proc lookfor_file { dir name } {
     foreach x ".. ../.. ../../.. ../../../.." {
 	verbose "$dir/$name" 2
-	if [file exists [file join $dir $name]] {
+	if {[file exists [file join $dir $name]]} {
 	    return [file join $dir $name]
 	}
 	set dir [remote_file build dirname $dir]
@@ -592,7 +592,7 @@ proc load_lib { file } {
     global verbose libdir srcdir base_dir execpath tool
     global loaded_libs
 
-    if [info exists loaded_libs($file)] {
+    if {[info exists loaded_libs($file)]} {
 	return
     }
 
@@ -629,16 +629,16 @@ load_file ~/.dejagnurc $base_dir/$configfile
 # exist and objdir was given on the command line.
 #
 
-if [expr [string match "." $objdir] || [string match $srcdir $objdir]] {
+if {[expr [string match "." $objdir] || [string match $srcdir $objdir]]} {
     set objdir $base_dir
 } else {
     load_file $objdir/$configfile
 }
 
 # Well, this just demonstrates the real problem...
-if ![info exists tool_root_dir] {
+if {![info exists tool_root_dir]} {
     set tool_root_dir [file dirname $objdir]
-    if [file exists [file join $tool_root_dir testsuite]] {
+    if {[file exists [file join $tool_root_dir testsuite]]} {
 	set tool_root_dir [file dirname $tool_root_dir]
     }
 }
@@ -649,7 +649,7 @@ verbose "Tool root directory is $tool_root_dir"
 
 set execpath [file dirname $argv0]
 set libdir   [file dirname $execpath]/dejagnu
-if [info exists env(DEJAGNULIBS)] {
+if {[info exists env(DEJAGNULIBS)]} {
     set libdir $env(DEJAGNULIBS)
 }
 
@@ -669,11 +669,11 @@ if { $arg_build_triplet != "" } {
 
 # if we only specify --host, then that must be the build machne too, and we're
 # stuck using the old functionality of a simple cross test
-if [expr { $build_triplet == ""  &&  $host_triplet != "" } ] {
+if {[expr { $build_triplet == ""  &&  $host_triplet != "" } ]} {
     set build_triplet $host_triplet
 }
 # if we only specify --build, then we'll use that as the host too
-if [expr { $build_triplet != "" && $host_triplet == "" } ] {
+if {[expr { $build_triplet != "" && $host_triplet == "" } ]} {
     set host_triplet $build_triplet
 }
 unset arg_host_triplet arg_build_triplet
@@ -682,11 +682,11 @@ unset arg_host_triplet arg_build_triplet
 # If the build machine type hasn't been specified by now, use config.guess.
 #
 
-if [expr  { $build_triplet == ""  &&  $host_triplet == ""} ] {
+if {[expr  { $build_triplet == ""  &&  $host_triplet == ""} ]} {
     # find config.guess
     foreach dir "$libdir $libdir/libexec $libdir/.. $execpath $srcdir $srcdir/.. $srcdir/../.." {
 	verbose "Looking for ${dir}/config.guess" 2
-	if [file exists [file join ${dir} config.guess]] {
+	if {[file exists [file join ${dir} config.guess]]} {
 	    set config_guess [file join [${dir} config.guess]]
 	    verbose "Found [file join ${dir} config.guess]"
 	    break
@@ -694,7 +694,7 @@ if [expr  { $build_triplet == ""  &&  $host_triplet == ""} ] {
     }
 
     # get the canonical config name
-    if ![info exists config_guess] {
+    if {![info exists config_guess]} {
 	send_error "ERROR: Couldn't find config.guess program.\n"
 	exit 1
     }
@@ -726,12 +726,12 @@ unset arg_target_triplet
 #
 # Default target_alias to target_triplet.
 #
-if ![info exists target_alias] {
+if {![info exists target_alias]} {
     set target_alias $target_triplet
 }
 
 proc get_local_hostname { } {
-    if [catch "info hostname" hb] {
+    if {[catch "info hostname" hb]} {
 	set hb ""
     } else {
 	regsub "\\..*$" $hb "" hb
@@ -752,7 +752,7 @@ proc setup_target_hook { whole_name name } {
     global board
     global host_board
 
-    if [info exists host_board] {
+    if {[info exists host_board]} {
 	set hb $host_board
     } else {
 	set hb [get_local_hostname]
@@ -764,7 +764,7 @@ proc setup_target_hook { whole_name name } {
     set board_type "target"
 
     load_config base-config.exp
-    if ![load_board_description ${name} ${whole_name} ${hb}] {
+    if {![load_board_description ${name} ${whole_name} ${hb}]} {
 	if { $name != "unix" } {
 	    perror "couldn't load description file for ${name}"
 	    exit 1
@@ -773,7 +773,7 @@ proc setup_target_hook { whole_name name } {
 	}
     }
 
-    if [board_info $board exists generic_name] {
+    if {[board_info $board exists generic_name]} {
 	load_tool_target_config [board_info $board generic_name]
     }
 
@@ -804,7 +804,7 @@ proc cleanup_target_hook { name } {
 	${name}_exit
     }
     # We also call the tool exit routine here.
-    if [info exists tool] {
+    if {[info exists tool]} {
 	if { [info procs "${tool}_exit"] != "" } {
 	    ${tool}_exit
 	}
@@ -862,7 +862,7 @@ if { [load_file -- $libdir/$configfile] == 0 } {
     }
 }
 
-if [info exists env(DEJAGNU)] {
+if {[info exists env(DEJAGNU)]} {
     if { [load_file -- $env(DEJAGNU)] == 0 } {
 	# It may seem odd to only issue a warning if there isn't a global
 	# config file, but issue an error if $DEJAGNU is erroneously defined.
@@ -870,12 +870,12 @@ if [info exists env(DEJAGNU)] {
 	# so the current behaviour seems reasonable.
 	send_error "WARNING: global config file $env(DEJAGNU) not found.\n"
     }
-    if ![info exists boards_dir] {
+    if {![info exists boards_dir]} {
 	set boards_dir "[file dirname $env(DEJAGNU)]/boards"
     }
 }
 
-if ![info exists boards_dir] {
+if {![info exists boards_dir]} {
     set boards_dir ""
 }
 
@@ -927,18 +927,18 @@ proc load_tool_init { file } {
     global srcdir
     global loaded_libs
 
-    if [info exists loaded_libs($file)] {
+    if {[info exists loaded_libs($file)]} {
 	return
     }
 
     set loaded_libs($file) ""
 
-    if [file exists [file join ${srcdir} lib $file]] {
+    if {[file exists [file join ${srcdir} lib $file]]} {
 	verbose "Loading library file ${srcdir}/lib/$file"
 	if { [catch "uplevel #0 source ${srcdir}/lib/$file"] == 1 } {
 	    send_error "ERROR: tcl error sourcing library file ${srcdir}/lib/$file.\n"
 	    global errorInfo
-	    if [info exists errorInfo] {
+	    if {[info exists errorInfo]} {
 		send_error "$errorInfo\n"
 	    }
 	    exit 1
@@ -969,11 +969,11 @@ reset_vars
 
 # Load the tool initialization file. Allow the --tool option to override
 # what's set in the site.exp file.
-if [info exists comm_line_tool] {
+if {[info exists comm_line_tool]} {
     set tool $comm_line_tool
 }
 
-if [info exists tool] {
+if {[info exists tool]} {
     load_tool_init ${tool}.exp
 }
 
@@ -1061,7 +1061,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 
 	
 	"--de*" {			# (--debug) expect internal debugging
-	    if [file exists ./dbg.log] {
+	    if {[file exists ./dbg.log]} {
 		catch "exec rm -f ./dbg.log"
 	    }
 	    if { $verbose > 2 } {
@@ -1182,9 +1182,9 @@ for { set i 0 } { $i < $argc } { incr i } {
 	}
 
 	default {
-	    if [info exists tool] {
+	    if {[info exists tool]} {
 		if { [info proc ${tool}_option_proc] != "" } {
-		    if [${tool}_option_proc $option] {
+		    if {[${tool}_option_proc $option]} {
 			continue
 		    }
 		}
@@ -1199,7 +1199,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 #
 # check for a few crucial variables
 #
-if ![info exists tool] {
+if {![info exists tool]} {
     send_error "WARNING: No tool specified\n"
     set tool ""
 }
@@ -1224,12 +1224,12 @@ open_logs
 
 # print the config info
 clone_output "Test Run By $logname on [timestamp -format %c]"
-if [is3way]  {
+if {[is3way]} {
     clone_output "Target is $target_triplet"
     clone_output "Host   is $host_triplet"
     clone_output "Build  is $build_triplet"
 } else {
-    if [isnative] {
+    if {[isnative]} {
 	clone_output "Native configuration is $target_triplet"
     } else {
 	clone_output "Target is $target_triplet"
@@ -1254,13 +1254,13 @@ proc load_generic_config { name } {
     global boards_dir
     global board_type
 
-    if [info exists board] {
-	if ![info exists board_info($board,generic_name)] {
+    if {[info exists board]} {
+	if {![info exists board_info($board,generic_name)]} {
 	    set board_info($board,generic_name) $name
 	}
     }
 
-    if [info exists board_type] {
+    if {[info exists board_type]} {
 	set type "for $board_type"
     } else {
 	set type ""
@@ -1339,7 +1339,7 @@ proc load_board_description { board_name args } {
     }
 
     set board_info($whole_name,name) $whole_name
-    if ![info exists board] {
+    if {![info exists board]} {
 	set board $whole_name
 	set board_set 1
     } else {
@@ -1359,14 +1359,14 @@ proc load_board_description { board_name args } {
     set dirlist [concat $dirlist $boards_dir]
     lappend dirlist ${libdir}/baseboards
     verbose "dirlist is $dirlist"
-    if [info exists board_type] {
+    if {[info exists board_type]} {
 	set type "for $board_type"
     } else {
 	set type ""
     }
-    if ![info exists board_info($whole_name,isremote)] {
+    if {![info exists board_info($whole_name,isremote)]} {
 	set board_info($whole_name,isremote) 1
-	if [info exists board_type] {
+	if {[info exists board_type]} {
 	    if { $board_type == "build" } {
 		set board_info($whole_name,isremote) 0
 	    }
@@ -1400,18 +1400,18 @@ proc load_base_board_description { board_name } {
 
     set board_set 0
     set board_info($board_name,name) $board_name
-    if ![info exists board] {
+    if {![info exists board]} {
 	set board $board_name
 	set board_set 1
     }
-    if [info exists board_type] {
+    if {[info exists board_type]} {
 	set type "for $board_type"
     } else {
 	set type ""
     }
-    if ![info exists board_info($board_name,isremote)] {
+    if {![info exists board_info($board_name,isremote)]} {
 	set board_info($board_name,isremote) 1
-	if [info exists board_type] {
+	if {[info exists board_type]} {
 	    if { $board_type == "build" } {
 		set board_info($board_name,isremote) 0
 	    }
@@ -1446,10 +1446,10 @@ proc runtest { test_file_name } {
     set bug_id	0
     set test_result ""
 
-    if [file exists $test_file_name] {
+    if {[file exists $test_file_name]} {
 	set timestart [timestamp]
 
-	if [info exists tool] {
+	if {[info exists tool]} {
 	    if { [info procs "${tool}_init"] != "" } {
 		${tool}_init $test_file_name
 	    }
@@ -1468,13 +1468,13 @@ proc runtest { test_file_name } {
 	    # increments `errcnt'.  If we do call perror we'd have to
 	    # reset errcnt afterwards.
 	    clone_output "ERROR: tcl error sourcing $test_file_name."
-	    if [info exists errorInfo] {
+	    if {[info exists errorInfo]} {
 		clone_output "ERROR: $errorInfo"
 		unset errorInfo
 	    }
 	}
 
-	if [info exists tool] {
+	if {[info exists tool]} {
 	    if { [info procs "${tool}_finish"] != "" } {
 		${tool}_finish
 	    }
@@ -1499,7 +1499,7 @@ proc runtest { test_file_name } {
 # Trap some signals so we know what's happening.  These replace the previous
 # ones because we've now loaded the library stuff.
 #
-if ![exp_debug] {
+if {![exp_debug]} {
     foreach sig "{SIGTERM {terminated}} \
              {SIGINT  {interrupted by user}} \
              {SIGQUIT {interrupted by user}}" {
@@ -1517,7 +1517,7 @@ if ![exp_debug] {
 proc process_target_variants { target_list } {
     set result {}
     foreach x $target_list {
-	if [regexp "\\(" $x] {
+	if {[regexp "\\(" $x]} {
 	    regsub "^.*\\((\[^()\]*)\\)$" "$x" "\\1" variant_list
 	    regsub "\\(\[^(\]*$" "$x" "" x
 	    set list [process_target_variants $x]
@@ -1525,7 +1525,7 @@ proc process_target_variants { target_list } {
 	    foreach x $list {
 		set result [concat $result [iterate_target_variants $x [split $variant_list ","]]]
 	    }
-	} elseif [regexp "\{" $x] {
+	} elseif {[regexp "\{" $x]} {
 	    regsub "^.*\{(\[^\{\}\]*)\}$" "$x" "\\1" variant_list
 	    regsub "\{\[^\{\]*$" "$x" "" x
 	    set list [process_target_variants $x]
@@ -1577,7 +1577,7 @@ proc iterate_target_variants_two { orig_target target variants } {
 
 setup_build_hook [get_local_hostname]
 
-if [info exists host_board] {
+if {[info exists host_board]} {
     setup_host_hook $host_board
 } else {
     set hb [get_local_hostname]
@@ -1590,13 +1590,13 @@ if [info exists host_board] {
 # main test execution loop
 #
 
-if [info exists errorInfo] {
+if {[info exists errorInfo]} {
     unset errorInfo
 }
 # make sure we have only single path delimiters
 regsub -all "\(\[^/\]\)//*" $srcdir "\\1/" srcdir
 
-if ![info exists target_list] {
+if {![info exists target_list]} {
     # Make sure there is at least one target machine. It's probably a Unix box,
     # but that's just a guess.
     set target_list { "unix" }
@@ -1650,7 +1650,7 @@ foreach current_target $target_list {
     # If PASS is specified, we want to run only the tests specified.
     # Its value should be a number or a list of numbers that specify
     # the passes that we want to run.
-    if [info exists PASS] {
+    if {[info exists PASS]} {
 	set pass $PASS
     } else {
 	set pass ""
@@ -1684,7 +1684,7 @@ foreach current_target $target_list {
 	    set tmp [string first "=" $varval]
 	    set var [string range $varval 0 [expr $tmp - 1]]
 	    # Save previous value.
-	    if [info exists $var] {
+	    if {[info exists $var]} {
 		lappend restore "$var [list [eval concat \$$var]]"
 	    } else {
 		lappend restore "$var"
@@ -1748,7 +1748,7 @@ foreach current_target $target_list {
 	}
 	verbose "Top level testsuite dirs are ${test_top_dirs}" 2
 	set testlist ""
-	if [info exists all_runtests] {
+	if {[info exists all_runtests]} {
 	    foreach x [array names all_runtests] {
 		verbose "trying to glob ${srcdir}/${x}" 2
 		set s [glob -nocomplain ${srcdir}/$x]
@@ -1797,7 +1797,7 @@ foreach current_target $target_list {
 		    if {[info exists ignoredirs] && $ignoredirs != ""} {
 			set found 0
 			foreach directory $ignoredirs {
-			    if [string match "*${directory}*" $dir] {
+			    if {[string match "*${directory}*" $dir]} {
 				set found 1
 				break
 			    }
@@ -1815,7 +1815,7 @@ foreach current_target $target_list {
 			# of directories.  Look for match on each item.
 			set found 0
 			foreach directory $dir_to_run {
-			    if [string match "*${directory}*" $dir] {
+			    if {[string match "*${directory}*" $dir]} {
 				set found 1
 				break
 			    }
@@ -1834,7 +1834,7 @@ foreach current_target $target_list {
 			# list of directories.  Look for match on each item.
 			set found 0
 			foreach directory $cmdline_dir_to_run {
-			    if [string match "*${directory}*" $dir] {
+			    if {[string match "*${directory}*" $dir]} {
 				set found 1
 				break
 			    }
@@ -1874,7 +1874,7 @@ foreach current_target $target_list {
 			# Check to see if the range of tests is limited,
 			# set `runtests' to a list of two elements: the script name
 			# and any arguments ("" if none).
-			if [info exists all_runtests] {
+			if {[info exists all_runtests]} {
 			    verbose "searching for $test_name in [array names all_runtests]"
 			    if { 0 > [lsearch [array names all_runtests] [file tail $test_name]]} {
 				if { 0 > [lsearch [array names all_runtests] $test_name] } {

@@ -84,7 +84,7 @@ proc push_config { type name } {
     global target_info
 
     verbose "pushing config for $type, name is $name"
-    if [info exists target_info($type,name)] {
+    if {[info exists target_info($type,name)]} {
 	if { $target_info($type,name) == $name } {
 	    error "pushing config for $type, '$name' twice"
 	}
@@ -97,7 +97,7 @@ proc push_config { type name } {
 proc pop_config { type  } {
     global target_info
 
-    if [info exists target_info(${type},name)] {
+    if {[info exists target_info(${type},name)]} {
 	unset target_info(${type},name)
     }
 }
@@ -128,15 +128,15 @@ proc prune_warnings { text } {
 
     # This is from sun4's.  Do it for all machines for now.
     # The "\\1" is to try to preserve a "\n" but only if necessary.
-    if [ishost "sparc-*-sunos*"] {
+    if {[ishost "sparc-*-sunos*"]} {
 	regsub -all "(^|\n)(ld.so: warning:\[^\n\]*\n?)+" $text "\\1" text
     }
 
     # See Brendan for the raison d'etre of this one.
-    if [ishost "alpha*-*-*"] {
+    if {[ishost "alpha*-*-*"]} {
         regsub -all "(^|\n)(/usr/(ucb|bin)/ld.*without exceptions was\[^\n\]+\n?)" $text "\\1" text
     }
-    if [ishost "hppa*-*-hpux*"] {
+    if {[ishost "hppa*-*-hpux*"]} {
        # Ignore the compiler's warnings about PA incompatibility.
        regsub -all "(^|\n)\[^\n\]*PA 2.0 object file \[^\n\]* was detected. The linked output may not run on a PA 1.x system." $text "" text
 
@@ -244,7 +244,7 @@ proc prune_warnings { text } {
     regsub -all "(^|\n)(ld.so: warning:\[^\n\]*\n?)+" $text "\\1" text
 
     # See Brendan for the raison d'etre of this one.
-    if [string match "alpha*-*-*" $host_triplet] {
+    if {[string match "alpha*-*-*" $host_triplet]} {
         regsub -all "(^|\n)(/usr/(ucb|bin)/ld.*without exceptions was\[^\n\]+\n?)" $text "\\1" text
     }
 
@@ -318,11 +318,11 @@ proc default_target_compile {source destfile type options} {
     set ldflags ""
     set dest [target_info name]
 
-    if [info exists CFLAGS_FOR_TARGET] {
+    if {[info exists CFLAGS_FOR_TARGET]} {
 	append add_flags " $CFLAGS_FOR_TARGET"
     }
 
-    if [info exists target_info(host,name)] {
+    if {[info exists target_info(host,name)]} {
 	set host [host_info name]
     } else {
 	set host "unix"
@@ -332,10 +332,10 @@ proc default_target_compile {source destfile type options} {
 
 	if { $i == "ada" } {
 	    set compiler_type "ada"
-	    if [board_info $dest exists adaflags] {
+	    if {[board_info $dest exists adaflags]} {
 		append add_flags " [target_info adaflags]"
 	    }
-	    if [board_info $dest exists gnatmake] {
+	    if {[board_info $dest exists gnatmake]} {
 		set compiler [target_info gnatmake];
 	    } else {
 		set compiler [find_gnatmake];
@@ -344,11 +344,11 @@ proc default_target_compile {source destfile type options} {
 	
 	if { $i == "c++" } {
 	    set compiler_type "c++"
-	    if [board_info $dest exists cxxflags] {
+	    if {[board_info $dest exists cxxflags]} {
 		append add_flags " [target_info cxxflags]"
 	    }
 	    append add_flags " [g++_include_flags]"
-	    if [board_info $dest exists c++compiler] {
+	    if {[board_info $dest exists c++compiler]} {
 		set compiler [target_info c++compiler]
 	    } else {
 		set compiler [find_g++]
@@ -357,63 +357,63 @@ proc default_target_compile {source destfile type options} {
 
 	if { $i == "f77" } {
 	    set compiler_type "f77"
-	    if [board_info $dest exists f77flags] {
+	    if {[board_info $dest exists f77flags]} {
 		append add_flags " [target_info f77flags]"
 	    }
-	    if [board_info $dest exists f77compiler] {
+	    if {[board_info $dest exists f77compiler]} {
 		set compiler [target_info f77compiler]
 	    } else {
 		set compiler [find_g77]
 	    }
 	}
 
-	if [regexp "^dest=" $i] {
+	if {[regexp "^dest=" $i]} {
 	    regsub "^dest=" $i "" tmp
-	    if [board_info $tmp exists name] {
+	    if {[board_info $tmp exists name]} {
 		set dest [board_info $tmp name]
 	    } else {
 		set dest $tmp
 	    }
 	}
-	if [regexp "^compiler=" $i] {
+	if {[regexp "^compiler=" $i]} {
 	    regsub "^compiler=" $i "" tmp
 	    set compiler $tmp
 	}
-	if [regexp "^additional_flags=" $i] {
+	if {[regexp "^additional_flags=" $i]} {
 	    regsub "^additional_flags=" $i "" tmp
 	    append add_flags " $tmp"
 	}
-	if [regexp "^ldflags=" $i] {
+	if {[regexp "^ldflags=" $i]} {
 	    regsub "^ldflags=" $i "" tmp
 	    append ldflags " $tmp"
 	}
-	if [regexp "^libs=" $i] {
+	if {[regexp "^libs=" $i]} {
 	    regsub "^libs=" $i "" tmp
 	    append libs " $tmp"
 	}
-	if [regexp "^incdir=" $i] {
+	if {[regexp "^incdir=" $i]} {
 	    regsub "^incdir=" $i "-I" tmp
 	    append add_flags " $tmp"
 	}
-	if [regexp "^libdir=" $i] {
+	if {[regexp "^libdir=" $i]} {
 	    regsub "^libdir=" $i "-L" tmp
 	    append add_flags " $tmp"
 	}
-	if [regexp "^ldscript=" $i] {
+	if {[regexp "^ldscript=" $i]} {
 	    regsub "^ldscript=" $i "" ldscript
 	}
- 	if [regexp "^redirect=" $i] {
+ 	if {[regexp "^redirect=" $i]} {
  	    regsub "^redirect=" $i "" redirect
  	}
- 	if [regexp "^optimize=" $i] {
+ 	if {[regexp "^optimize=" $i]} {
  	    regsub "^optimize=" $i "" optimize
  	}
- 	if [regexp "^timeout=" $i] {
+ 	if {[regexp "^timeout=" $i]} {
  	    regsub "^timeout=" $i "" timeout
  	}
     }
 
-    if [board_info $host exists cflags_for_target] {
+    if {[board_info $host exists cflags_for_target]} {
 	append add_flags " [board_info $host cflags_for_target]"
     }
 
@@ -422,25 +422,25 @@ proc default_target_compile {source destfile type options} {
     global F77_FOR_TARGET
     global GNATMAKE_FOR_TARGET
 
-    if [info exists GNATMAKE_FOR_TARGET] {
+    if {[info exists GNATMAKE_FOR_TARGET]} {
 	if { $compiler_type == "ada" } {
 	    set compiler $GNATMAKE_FOR_TARGET
 	}
     }
 
-    if [info exists CC_FOR_TARGET] {
+    if {[info exists CC_FOR_TARGET]} {
 	if { $compiler == "" } {
 	    set compiler $CC_FOR_TARGET
 	}
     }
 
-    if [info exists CXX_FOR_TARGET] {
+    if {[info exists CXX_FOR_TARGET]} {
 	if { $compiler_type == "c++" } {
 	    set compiler $CXX_FOR_TARGET
 	}
     }
 
-    if [info exists F77_FOR_TARGET] {
+    if {[info exists F77_FOR_TARGET]} {
 	if { $compiler_type == "f77" } {
 	    set compiler $F77_FOR_TARGET
 	}
@@ -453,7 +453,7 @@ proc default_target_compile {source destfile type options} {
 	}
     }
 
-    if ![is_remote host] {
+    if {![is_remote host]} {
 	if { [which $compiler] == 0 } {
 	    return "default_target_compile: Can't find $compiler."
 	}
@@ -471,28 +471,28 @@ proc default_target_compile {source destfile type options} {
 	append add_flags " -S"
     }
 
-    if [board_info $dest exists cflags] {
+    if {[board_info $dest exists cflags]} {
 	append add_flags " [board_info $dest cflags]"
     }
 
     if { $type == "executable" } {
-	if [board_info $dest exists ldflags] {
+	if {[board_info $dest exists ldflags]} {
 	    append add_flags " [board_info $dest ldflags]"
 	}
 	if { $compiler_type == "c++" } {
 	    append add_flags " [g++_link_flags]"
 	}
-	if [isnative] {
+	if {[isnative]} {
 	    # This is a lose.
 	    catch "glob -nocomplain $tool_root_dir/libstdc++/libstdc++.so* $tool_root_dir/libstdc++/libstdc++.sl" tmp
 	    if { ${tmp} != "" } {
-		if [regexp ".*solaris2.*" $target_triplet] {
+		if {[regexp ".*solaris2.*" $target_triplet]} {
 		    # Solaris 2
 		    append add_flags " -R$tool_root_dir/libstdc++"
-		} elseif [regexp ".*(osf|irix5|linux).*" $target_triplet] {
+		} elseif {[regexp ".*(osf|irix5|linux).*" $target_triplet]} {
 		    # OSF/1 or IRIX 5
 		    append add_flags " -Wl,-rpath,$tool_root_dir/libstdc++"
-		} elseif [regexp ".*hppa.*" $target_triplet] {
+		} elseif {[regexp ".*hppa.*" $target_triplet]} {
 		    # HP-UX
 		    append add_flags " -Wl,-a,shared_archive"
 		}
@@ -500,13 +500,13 @@ proc default_target_compile {source destfile type options} {
 	}
     }
 
-    if ![info exists ldscript] {
+    if {![info exists ldscript]} {
 	set ldscript [board_info $dest ldscript]
     }
 
     foreach i $options {
 	if { $i == "debug" } {
-	    if [board_info $dest exists debug_flags] {
+	    if {[board_info $dest exists debug_flags]} {
 		append add_flags " [board_info $dest debug_flags]"
 	    } else {
 		append add_flags " -g"
@@ -514,21 +514,21 @@ proc default_target_compile {source destfile type options} {
 	}
     }
 
-    if [info exists optimize] {
+    if {[info exists optimize]} {
 	append add_flags " $optimize"
     }
 
     if { $type == "executable" } {
 	append add_flags " $ldflags"
 	foreach x $libs {
-	    if [file exists $x] {
+	    if {[file exists $x]} {
 		append source " $x"
 	    } else {
 		append add_flags " $x"
 	    }
 	}
 
-	if [board_info $dest exists libs] {
+	if {[board_info $dest exists libs]} {
 	    append add_flags " [board_info $dest libs]"
 	}
 
@@ -537,7 +537,7 @@ proc default_target_compile {source destfile type options} {
 	# The math library must be linked in before the C library.  The C
 	# library is linked in by the linker script, so this must be before
 	# the linker script.
-	if [board_info $dest exists mathlib] {
+	if {[board_info $dest exists mathlib]} {
 	    append add_flags " [board_info $dest mathlib]"
 	} else {
 	    append add_flags " -lm"
@@ -546,23 +546,23 @@ proc default_target_compile {source destfile type options} {
 	# This must be added here.
 	append add_flags " $ldscript"
 
-	if [board_info $dest exists remote_link] {
+	if {[board_info $dest exists remote_link]} {
 	    # Relink option.
 	    append add_flags " -Wl,-r"
 	}
-	if [board_info $dest exists output_format] {
+	if {[board_info $dest exists output_format]} {
 	    append add_flags " -Wl,-oformat,[board_info $dest output_format]"
 	}
     }
 
-    if [board_info $dest exists multilib_flags] {
+    if {[board_info $dest exists multilib_flags]} {
 	append add_flags " [board_info $dest multilib_flags]"
     }
 
     verbose "doing compile"
 
     set sources ""
-    if [is_remote host] {
+    if {[is_remote host]} {
 	foreach x $source {
 	    set file [remote_download host $x]
 	    if { $file == "" } {
@@ -576,7 +576,7 @@ proc default_target_compile {source destfile type options} {
 	set sources $source
     }
 
-    if [is_remote host] {
+    if {[is_remote host]} {
 	append add_flags " -o a.out"
 	remote_file host delete a.out
     } else {
@@ -594,8 +594,8 @@ proc default_target_compile {source destfile type options} {
         set opts "$sources $add_flags"
     }
 
-    if [is_remote host] {
-	if [host_info exists use_at] {
+    if {[is_remote host]} {
+	if {[host_info exists use_at]} {
 	    set fid [open "atfile" "w"]
 	    puts $fid "$opts"
 	    close $fid
@@ -606,11 +606,11 @@ proc default_target_compile {source destfile type options} {
 
     verbose "Invoking the compiler as $compiler $opts" 2
 
-    if [info exists redirect] {
+    if {[info exists redirect]} {
 	verbose "Redirecting output to $redirect" 2
 	set status [remote_exec host "$compiler $opts" "" "" $redirect]
     } else {
-	if [info exists timeout] {
+	if {[info exists timeout]} {
 	    verbose "Setting timeout to $timeout" 2
 	    set status [remote_exec host "$compiler $opts" "" "" "" $timeout]
 	} else {
@@ -619,7 +619,7 @@ proc default_target_compile {source destfile type options} {
     }
 
     set compiler_flags $opts
-    if [is_remote host] {
+    if {[is_remote host]} {
 	remote_upload host a.out $destfile
 	remote_file host delete a.out
     }
@@ -655,28 +655,28 @@ proc default_target_assemble { source destfile flags } {
     global AS_FOR_TARGET
     global ASFLAGS_FOR_TARGET
 
-    if [info exists AS_FOR_TARGET] {
+    if {[info exists AS_FOR_TARGET]} {
 	set AS "$AS_FOR_TARGET"
     } else {
-	if ![board_info target exists assembler] {
+	if {![board_info target exists assembler]} {
 	    set AS [find_gas]
 	} else {
 	    set AS [board_info target assembler]
 	}
     }
 
-    if [info exists ASFLAGS_FOR_TARGET] {
+    if {[info exists ASFLAGS_FOR_TARGET]} {
 	append flags " $ASFLAGS_FOR_TARGET"
     }
 
-    if [is_remote host] {
+    if {[is_remote host]} {
 	set source [remote_download host $source]
 	set dest "a.out"
     } else {
 	set dest $destfile
     }
     set status [remote_exec host "$AS $source $flags -o $dest"]
-    if [is_remote host] {
+    if {[is_remote host]} {
 	remote_upload host $dest $destfile
     }
 
@@ -712,7 +712,7 @@ proc default_link { board objects destfile flags } {
 	    # to an option.
 	    set arg [lindex $ldflags $i]
 	    regsub "^-Wl," $arg "" arg
-	    if [regexp "^-L" $arg] {
+	    if {[regexp "^-L" $arg]} {
 		# Is the directory in the next arg, or part of this one?
 		if { "$arg" == "-L" } {
 		    if { $i + 1 < $len } {
@@ -727,37 +727,37 @@ proc default_link { board objects destfile flags } {
 	return $result
     }
 
-    if [info exists LD_FOR_TARGET] {
+    if {[info exists LD_FOR_TARGET]} {
 	set LD "$LD_FOR_TARGET"
     } else {
-	if ![board_info target exists linker] {
+	if {![board_info target exists linker]} {
 	    set LD [find_ld]
 	} else {
 	    set LD [board_info target linker]
 	}
     }
 
-    if [info exists LDFLAGS_FOR_TARGET] {
+    if {[info exists LDFLAGS_FOR_TARGET]} {
 	append flags " $LDFLAGS_FOR_TARGET"
     }
 
     # `ldflags' consists of arguments to gcc (that are then
     # passed to ld), not arguments to ld directly.
     # We need the -L's.
-    if [board_info $board exists ldflags] {
+    if {[board_info $board exists ldflags]} {
 	set ldflags [board_info $board ldflags]
 	set ldflags [only--Ls $ldflags]
 	append flags " $ldflags"
     }
 
-    if [board_info $board exists ldscript] {
+    if {[board_info $board exists ldscript]} {
 	# strip leading -Wl, if present
 	set ldscript [board_info $board ldscript]
 	regsub "^-Wl," $ldscript "" ldscript
 	append flags " $ldscript"
     }
 
-    if [is_remote host] {
+    if {[is_remote host]} {
 	foreach x $objects {
 	    set nobjects "$nobjects [remote_download host $x]"
 	}
@@ -767,7 +767,7 @@ proc default_link { board objects destfile flags } {
 	set dest $destfile
     }
     set status [remote_exec host "$LD $objects $flags -o $dest"]
-    if [is_remote host] {
+    if {[is_remote host]} {
 	remote_upload host $dest $destfile
     }
 

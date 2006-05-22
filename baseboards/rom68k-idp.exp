@@ -53,7 +53,7 @@ unset extra_m68k_ld_flags
 
 
 # If no output format is specified, use objcopy.
-if ![board_info $board exists output_format] {
+if {![board_info $board exists output_format]} {
     set tempfil [lookfor_file $tool_root_dir binutils/objcopy]
     if { $tempfil != "" } {
 	set_board_info objcopy $tempfil

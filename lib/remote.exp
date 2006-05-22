@@ -138,7 +138,7 @@ proc local_exec { commandline inp outp timeout } {
     verbose "pid is $pid $pgid"
     if { $result != 0 || $result2 != 0 } {
 	# This shouldn't happen.
-	if [info exists errorInfo] {
+	if {[info exists errorInfo]} {
 	    set foo $errorInfo
 	} else {
 	    set foo ""
@@ -290,12 +290,12 @@ proc remote_raw_close { host } {
 proc standard_close { host } {
     global board_info
 
-    if [board_info ${host} exists fileid] {
+    if {[board_info ${host} exists fileid]} {
 	set shell_id [board_info ${host} fileid]
 	set pid -1
 
 	verbose "Closing the remote shell $shell_id" 2
-	if [board_info ${host} exists fileid_origid] {
+	if {[board_info ${host} exists fileid_origid]} {
 	    set oid [board_info ${host} fileid_origid]
 	    set pid [pid $oid]
 	    unset board_info(${host},fileid_origid)
@@ -318,7 +318,7 @@ proc standard_close { host } {
 	}
 	verbose "pid is $pid"
 	catch "close -i $shell_id"
-	if [info exists oid] {
+	if {[info exists oid]} {
 	    catch "close $oid"
 	}
 	catch "wait -i $shell_id"
@@ -347,7 +347,7 @@ proc remote_reboot { host } {
     # procedures will fail.
     # remote_close $host
     set status [call_remote "" reboot "$host"]
-    if [board_info $host exists name] {
+    if {[board_info $host exists name]} {
 	set host [board_info $host name]
     }
     if { [info proc ${host}_init] != "" } {
@@ -378,7 +378,7 @@ proc remote_download { dest file args } {
 	    return $file
 	} else {
 	    set result [catch "exec cp -p $file $destfile" output]
-	    if [regexp "same file|are identical" $output] {
+	    if {[regexp "same file|are identical" $output]} {
 		set result 0
 		set output ""
 	    } else {
@@ -403,9 +403,9 @@ proc remote_download { dest file args } {
 proc standard_download {dest file destfile} {
     set orig_destfile $destfile
 
-    if [board_info $dest exists nfsdir] {
+    if {[board_info $dest exists nfsdir]} {
 	set destdir [board_info $dest nfsdir]
-	if [board_info $dest exists nfsroot_server] {
+	if {[board_info $dest exists nfsroot_server]} {
 	    set dest [board_info $dest nfsroot_server]
 	} else {
 	    set dest ""
@@ -423,7 +423,7 @@ proc standard_download {dest file destfile} {
     }
 
     set result [catch "exec cp -p $file $destfile" output]
-    if [regexp "same file|are identical" $output] {
+    if {[regexp "same file|are identical" $output]} {
 	set result 0
 	set output ""
     } else {
@@ -460,9 +460,9 @@ proc remote_upload {dest srcfile args} {
 proc standard_upload { dest srcfile destfile } {
     set orig_srcfile $srcfile
 
-    if [board_info $dest exists nfsdir] {
+    if {[board_info $dest exists nfsdir]} {
 	set destdir [board_info $dest nfsdir]
-	if [board_info $dest exists nfsroot_server] {
+	if {[board_info $dest exists nfsroot_server]} {
 	    set dest [board_info $dest nfsroot_server]
 	} else {
 	    set dest ""
@@ -475,7 +475,7 @@ proc standard_upload { dest srcfile destfile } {
     }
 
     set result [catch "exec cp -p $srcfile $destfile" output]
-    if [regexp "same file|are identical" $output] {
+    if {[regexp "same file|are identical" $output]} {
 	set result 0
 	set output ""
     } else {
@@ -498,7 +498,7 @@ proc standard_upload { dest srcfile destfile } {
 # and then finally it will call standard_$proc.
 #
 proc call_remote { type proc dest args } {
-    if [board_info $dest exists name] {
+    if {[board_info $dest exists name]} {
 	set dest [board_info $dest name]
     }
 
@@ -511,7 +511,7 @@ proc call_remote { type proc dest args } {
 	if { ![board_info $dest exists name] } {
 	    global board
 
-	    if [info exists board] {
+	    if {[info exists board]} {
 		blooie
 	    }
 	    load_board_description $dest
@@ -524,7 +524,7 @@ proc call_remote { type proc dest args } {
 
     set high_prot ""
     if { $type != "raw" } {
-	if [board_info $dest exists protocol] {
+	if {[board_info $dest exists protocol]} {
 	    set high_prot "${dest} [board_info $dest protocol]"
 	} else {
 	    set high_prot "${dest} [board_info $dest generic_name]"
@@ -548,8 +548,8 @@ proc call_remote { type proc dest args } {
 	    verbose "calling ${ft}_${proc} $dest $args" 3
 	    set result2 [eval ${ft}_${proc} \"$dest\" $args]
 	}
-	if ![info exists result] {
-	    if [info exists result2] {
+	if {![info exists result]} {
+	    if {[info exists result2]} {
 		set result $result2
 	    } else {
 		set result ""
@@ -587,10 +587,10 @@ proc remote_raw_transmit { dest file } {
 # supplied file directly into the connection.
 #
 proc standard_transmit {dest file} {
-    if [board_info ${dest} exists name] {
+    if {[board_info ${dest} exists name]} {
 	set dest [board_info ${dest} name]
     }
-    if [board_info ${dest} exists baud] {
+    if {[board_info ${dest} exists baud]} {
 	set baud [board_info ${dest} baud]
     } else {
 	set baud 9600
@@ -603,7 +603,7 @@ proc standard_transmit {dest file} {
     while { [gets $fd cur_line] >= 0 } {
         set errmess ""
         catch "send -i $shell_id \"$cur_line\r\"" errmess
-        if [string match "write\(spawn_id=\[0-9\]+\):" $errmess] {
+        if {[string match "write\(spawn_id=\[0-9\]+\):" $errmess]} {
             perror "sent \"$cur_line\" got expect error \"$errmess\""
             catch "close $fd"
             return -1
@@ -631,14 +631,14 @@ proc remote_raw_send { dest string } {
 }
 
 proc standard_send { dest string } {
-    if ![board_info $dest exists fileid] {
+    if {![board_info $dest exists fileid]} {
 	perror "no fileid for $dest"
 	return "no fileid for $dest"
     } else {
 	set shell_id [board_info $dest fileid]
 	verbose "shell_id in standard_send is $shell_id" 3
         verbose "send -i [board_info $dest fileid] -- {$string}" 3
-	if [catch "send -i [board_info $dest fileid] -- {$string}" errorInfo] {
+	if {[catch "send -i [board_info $dest fileid] -- {$string}" errorInfo]} {
 	    return "$errorInfo"
 	} else {
 	    return ""
@@ -772,12 +772,12 @@ proc unix_clean_filename { dest file } {
 proc remote_spawn { dest commandline args } {
     global board_info
 
-    if ![is_remote $dest] {
-	if [info exists board_info($dest,fileid)] {
+    if {![is_remote $dest]} {
+	if {[info exists board_info($dest,fileid)]} {
 	    unset board_info($dest,fileid)
 	}
 	verbose "remote_spawn is local" 3
-	if [board_info $dest exists name] {
+	if {[board_info $dest exists name]} {
 	    set dest [board_info $dest name]
 	}
 
@@ -804,7 +804,7 @@ proc remote_spawn { dest commandline args } {
 	    } else {
 		# This shouldn't happen.
 		global errorInfo
-		if [info exists errorInfo] {
+		if {[info exists errorInfo]} {
 		    set foo $errorInfo
 		} else {
 		    set foo ""
@@ -843,7 +843,7 @@ proc remote_raw_spawn { dest commandline } {
 proc standard_spawn { dest commandline } {
     global board_info
 
-    if ![board_info $dest exists rsh_prog] {
+    if {![board_info $dest exists rsh_prog]} {
         if { [which remsh] != 0 } {
             set RSH remsh
         } else {
@@ -853,13 +853,13 @@ proc standard_spawn { dest commandline } {
         set RSH [board_info $dest rsh_prog]
     }
 
-    if [board_info $dest exists hostname] {
+    if {[board_info $dest exists hostname]} {
 	set remote [board_info $dest hostname]
     } else {
 	set remote $dest
     }
 
-    if ![board_info $dest exists username] {
+    if {![board_info $dest exists username]} {
         spawn $RSH $remote $commandline
     } else {
         spawn $RSH -l [board_info $dest username] $remote $commandline
@@ -894,17 +894,17 @@ proc remote_load { dest prog args } {
     if $empty {
 	global sum_program
 
-	if [info exists sum_program] {
-	    if ![target_info exists objcopy] {
+	if {[info exists sum_program]} {
+	    if {![target_info exists objcopy]} {
 		set_currtarget_info objcopy [find_binutils_prog objcopy]
 	    }
-	    if [is_remote host] {
+	    if {[is_remote host]} {
 		set dprog [remote_download host $prog "a.out"]
 	    } else {
 		set dprog $prog
 	    }
 	    set status [remote_exec host "[target_info objcopy]" "-O srec $dprog ${dprog}.sum"]
-	    if [is_remote host] {
+	    if {[is_remote host]} {
 		remote_file upload ${dprog}.sum ${prog}.sum
 	    }
 	    if { [lindex $status 0] == 0 } {
@@ -918,9 +918,9 @@ proc remote_load { dest prog args } {
 	    }
 	    remote_file build delete ${prog}.sum
 	}
-	if [file exists $cache] {
+	if {[file exists $cache]} {
 	    set same 0
-	    if [info exists sum_program] {
+	    if {[info exists sum_program]} {
 		set id [open $cache "r"]
 		set oldsum [read $id]
 		close $id
@@ -940,18 +940,18 @@ proc remote_load { dest prog args } {
 	    }
 	}
     }
-    if ![info exists result] {
+    if {![info exists result]} {
 	set result [eval call_remote \"\" load \"$dname\" \"$prog\" $args]
 	# Not quite happy about the "pass" condition, but it makes sense if
 	# you think about it for a while-- *why* did the test not pass?
 	if { $empty && [lindex $result 0] == "pass" } {
 	    if { [getenv LOAD_REMOTECACHE] != "" } {
 		set dir "[getenv REMOTELOAD_CACHE]/$tool/$dname"
-		if ![file exists $dir] {
+		if {![file exists $dir]} {
 		    file mkdir $dir
 		}
-		if [file exists $dir] {
-		    if [info exists sum_program] {
+		if {[file exists $dir]} {
+		    if {[info exists sum_program]} {
 			set id [open $cache "w"]
 			puts -nonewline $id "$sum"
 			close $id
@@ -989,22 +989,22 @@ proc standard_load { dest prog args } {
 	set inp ""
     }
 
-    if ![file exists $prog] then {
+    if {![file exists $prog]} then {
 	# We call both here because this should never happen.
 	perror "$prog does not exist in standard_load."
 	verbose -log "$prog does not exist." 3
 	return "untested"
     }
 
-    if [is_remote $dest] {
+    if {[is_remote $dest]} {
 	set remotefile "/tmp/[file tail $prog].[pid]"
 	set remotefile [remote_download $dest $prog $remotefile]
 	if { $remotefile == "" } {
 	    verbose -log "Download of $prog to [board_info $dest name] failed." 3
 	    return "unresolved"
 	}
-	if [board_info $dest exists remote_link] {
-	    if [[board_info $dest remote_link] $remotefile] {
+	if {[board_info $dest exists remote_link]} {
+	    if {[[board_info $dest remote_link] $remotefile]} {
 		verbose -log "Couldn't do remote link"
 		remote_file target delete $remotefile
 		return "unresolved"
@@ -1023,7 +1023,7 @@ proc standard_load { dest prog args } {
     set status [lindex $status 0]
 
     verbose -log "Executed $prog, status $status" 2
-    if ![string match "" $output] {
+    if {![string match "" $output]} {
 	verbose -log -- "$output" 2
     }
     if { $status == 0 } {
@@ -1063,7 +1063,7 @@ proc standard_wait { dest timeout } {
     set output ""
     set status -1
 
-    if [info exists exp_close_result] {
+    if {[info exists exp_close_result]} {
 	unset exp_close_result
     }
     remote_expect $dest $timeout {
@@ -1080,7 +1080,7 @@ proc standard_wait { dest timeout } {
 	    warning "program timed out."
 	}
 	eof {
-	    if [board_info $dest exists fileid_origid] {
+	    if {[board_info $dest exists fileid_origid]} {
 		global board_info
 
 		set id [board_info $dest fileid]
@@ -1135,7 +1135,7 @@ proc check_for_board_status  { variable } {
 	set nomatch_return -1
     }
 
-    if [regexp "(^|\[\r\n\])\\*\\*\\* EXIT code" $output] {
+    if {[regexp "(^|\[\r\n\])\\*\\*\\* EXIT code" $output]} {
 	regsub "^.*\\*\\*\\* EXIT code " $output "" result
 	regsub "\[\r\n\].*$" $result "" result
         regsub -all "(^|\[\r\n\]|\r\n)\\*\\*\\* EXIT code \[^\r\n\]*(\[\r\n\]\[\r\n\]?|$)" $output "" output
@@ -1232,12 +1232,12 @@ proc remote_expect { board timeout args } {
 	}
     }
 
-    if [info exists remote_suppress_flag] {
+    if {[info exists remote_suppress_flag]} {
 	if { $remote_suppress_flag } {
 	    set code 1
 	}
     }
-    if ![info exists code] {
+    if {![info exists code]} {
 	set res "\n-timeout $timeout $res"
 	set body "expect \{\n-i $spawn_id -timeout $timeout $orig\}"
 	set code [catch {uplevel $body} string]
@@ -1276,18 +1276,18 @@ proc remote_push_conn { host } {
 	return "fail"
     }
 
-    if ![board_info $host exists fileid] {
+    if {![board_info $host exists fileid]} {
 	return "fail"
     }
 
     set fileid [board_info $host fileid]
     set conninfo [board_info $host conninfo]
-    if ![info exists board_info($name,fileid_stack)] {
+    if {![info exists board_info($name,fileid_stack)]} {
 	set board_info($name,fileid_stack) {}
     }
     set board_info($name,fileid_stack) [list $fileid $conninfo $board_info($name,fileid_stack)]
     unset board_info($name,fileid)
-    if [info exists board_info($name,conninfo)] {
+    if {[info exists board_info($name,conninfo)]} {
 	unset board_info($name,conninfo)
     }
     return "pass"
@@ -1304,7 +1304,7 @@ proc remote_pop_conn { host } {
     if { $name == "" } {
 	return "fail"
     }
-    if ![info exists board_info($name,fileid_stack)] {
+    if {![info exists board_info($name,fileid_stack)]} {
 	return "fail"
     }
     set stack $board_info($name,fileid_stack)
@@ -1323,12 +1323,12 @@ proc remote_swap_conn { host } {
     global board_info
     set name [board_info $host name]
 
-    if ![info exists board_info($name,fileid)] {
+    if {![info exists board_info($name,fileid)]} {
 	return "fail"
     }
 
     set fileid $board_info($name,fileid)
-    if [info exists board_info($name,conninfo)] {
+    if {[info exists board_info($name,conninfo)]} {
 	set conninfo $board_info($name,conninfo)
     } else {
 	set conninfo {}

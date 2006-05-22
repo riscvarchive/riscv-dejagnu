@@ -26,12 +26,12 @@ proc find_sim { target_alias sim_dir sim_name } {
     global tool_root_dir
     global SIM
 
-    if [info exists SIM] {
+    if {[info exists SIM]} {
 	return $SIM
     }
 
-    if [is_remote host] {
-	if ![board_info host exists no_transform_name] {
+    if {[is_remote host]} {
+	if {![board_info host exists no_transform_name]} {
 	    return ${target_alias}-${sim_name}
 	} else {
 	    return ${sim_name}
@@ -52,15 +52,15 @@ proc setup_sim { subdir_name } {
     global tool_root_dir
     global board
 
-    if [info exists target_alias] {
+    if {[info exists target_alias]} {
 	set tmp $target_alias
     } else {
-	if [board_info $board exists target_install] {
+	if {[board_info $board exists target_install]} {
 	    set tmp [lindex [board_info $board target_install] 0]
 	}
     }
 
-    if ![board_info $board exists sim] {
+    if {![board_info $board exists sim]} {
 	set_board_info sim [find_sim $tmp $subdir_name run]
     }
 

@@ -19,7 +19,7 @@
 
 # This file was written by Rob Savoye <rob@welcomehome.org>.
 
-if ![info exists board] {
+if {![info exists board]} {
     error "must set $board before loading unix.exp"
 }
 
@@ -50,21 +50,21 @@ proc unix_load { dest prog args } {
 	set inp ""
     }
 
-    if ![file exists $prog] then {
+    if {![file exists $prog]} then {
 	# We call both here because this should never happen.
 	perror "$prog does not exist in unix_load."
 	verbose -log "$prog does not exist." 3
 	return "untested"
     }
     verbose "loading to $dest" 2
-    if ![is_remote $dest] {
+    if {![is_remote $dest]} {
 	if { "$inp" != "" } {
 	    set command "$prog $parg < $inp"
 	} else {
 	    set command "$prog $parg"
 	}
 
-        if ![info exists ld_library_path] {
+        if {![info exists ld_library_path]} {
 	    set ld_library_path ""
         }
 
@@ -86,7 +86,7 @@ proc unix_load { dest prog args } {
 	# non-testcase executable. (Setting LD_LIBRARY_PATH is the wrong
 	# fix in the first place; this just tries to minimize the resulting
 	# crap.)
-	if [info exists ld_library_path] {
+	if {[info exists ld_library_path]} {
 	    setenv LD_LIBRARY_PATH $orig_ld_library_path
 	    setenv SHLIB_PATH $orig_ld_library_path
 	}
@@ -97,8 +97,8 @@ proc unix_load { dest prog args } {
 	    verbose -log "Download of $prog to [board_info $dest name] failed." 3
 	    return [list "unresolved" ""]
 	}
-	if [board_info $dest exists remote_link] {
-	    if [[board_info $dest remote_link] $remotefile] {
+	if {[board_info $dest exists remote_link]} {
+	    if {[[board_info $dest remote_link] $remotefile]} {
 		verbose -log "Couldn't do remote link"
 		remote_exec $dest "\\rm -f $remotefile"
 		return [list "unresolved" ""]
@@ -128,7 +128,7 @@ proc unix_load { dest prog args } {
     setenv SHLIB_PATH $orig_ld_library_path
 
     verbose "Executed $prog, status $status" 2
-    if ![string match "" $output] {
+    if {![string match "" $output]} {
 	verbose -- "$output" 2
     }
     if { $status == 0 } {

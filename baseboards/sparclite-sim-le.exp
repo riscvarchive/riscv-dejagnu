@@ -28,7 +28,7 @@ load_generic_config "sim"
 # basic-sim.exp is a basic description for the standard Cygnus simulator.
 load_base_board_description "basic-sim"
 
-if ![info exists board_info($board,multilib_flags)] {
+if {![info exists board_info($board,multilib_flags)]} {
     set board_info($board,multilib_flags) "-mlittle-endian-data"
 }
 

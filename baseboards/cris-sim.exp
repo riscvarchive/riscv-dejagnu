@@ -20,7 +20,7 @@ process_multilib_options ""
 set cris_ldopt "-sim3"
 set cris_simopt ""
 
-if [istarget *-*-linux*] {
+if {[istarget *-*-linux*]} {
     set cris_ldopt "-static"
 }
 

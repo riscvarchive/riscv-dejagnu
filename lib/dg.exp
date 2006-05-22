@@ -187,7 +187,7 @@ proc dg-get-options { prog } {
     set result ""
 
     set tmp [grep $prog "{\[ \t\]\+dg-\[-a-z\]\+\[ \t\]\+.*\[ \t\]\+}" line]
-    if ![string match "" $tmp] {
+    if {![string match "" $tmp]} {
 	foreach i $tmp {
 	    #send_user "Found: $i\n"
 	    # FIXME: When to use "+" and "\+" isn't clear.
@@ -221,9 +221,9 @@ proc dg-process-target { selector } {
     #send_user "dg-process-target: $selector\n"
 
     set selector [string trim $selector]
-    if [regexp "^xfail " $selector] {
+    if {[regexp "^xfail " $selector]} {
 	set what xfail
-    } elseif [regexp "^target " $selector] {
+    } elseif {[regexp "^target " $selector]} {
 	set what target
     } else {
 	# The use of error here and in other dg-xxx utilities is intentional.
@@ -233,11 +233,11 @@ proc dg-process-target { selector } {
 
     # ??? This should work but it doesn't.  tcl bug?
     #if [regexp "^${what}(( \[^ \]+-\[^ \]+-\[^ \]+)|( native))+$" $selector tmp selector]
-    if [regexp "^${what}( \[^ \]+-\[^ \]+-\[^ \]+| native)+$" $selector] {
+    if {[regexp "^${what}( \[^ \]+-\[^ \]+-\[^ \]+| native)+$" $selector]} {
 	regsub "^${what} " $selector "" selector
 	#send_user "selector: $selector\n"
 	foreach triplet $selector {
-	    if [string match $triplet $target_triplet] {
+	    if {[string match $triplet $target_triplet]} {
 		set triplet_match 1
 	    } elseif { $isnative && $triplet == "native" } {
 		set triplet_match 1
@@ -573,7 +573,7 @@ proc dg-runtest { testcases flags default-extra-flags } {
 
     foreach testcase $testcases {
 	# If we're only testing specific files and this isn't one of them, skip it.
-	if ![runtest_file_p $runtests $testcase] {
+	if {![runtest_file_p $runtests $testcase]} {
 	    continue
 	}
 	verbose "Testing [file tail [file dirname $testcase]]/[file tail $testcase]"
@@ -644,7 +644,7 @@ proc dg-test { args } {
     # The point is to reduce the unnecessary noise in the logs.  Don't strip
     # out too much because different testcases with the same name can confuse
     # `test-tool'.
-    if [string match "/*" $name] {
+    if {[string match "/*" $name]} {
 	set name "[file tail [file dirname $prog]]/[file tail $prog]"
     }
 
@@ -732,7 +732,7 @@ proc dg-test { args } {
 	set pattern [lindex $i 2]
 	set comment [lindex $i 3]
 	#send_user "Before:\n$comp_output\n"
-	if [regsub -all "(^|\n)(\[^\n\]+$line\[^\n\]*($pattern)\[^\n\]*\n?)+" $comp_output "\n" comp_output] {
+	if {[regsub -all "(^|\n)(\[^\n\]+$line\[^\n\]*($pattern)\[^\n\]*\n?)+" $comp_output "\n" comp_output]} {
             set comp_output [string trimleft $comp_output]
 	    set ok pass
 	    set uhoh fail
@@ -814,7 +814,7 @@ proc dg-test { args } {
 	if ${dg-excess-errors-flag} {
 	    setup_xfail "*-*-*"
 	}
-	if ![string match "" $comp_output] {
+	if {![string match "" $comp_output]} {
 	    fail "$name (test for excess errors)"
 	    send_log "Excess errors:\n$comp_output\n"
 	} else {
@@ -826,7 +826,7 @@ proc dg-test { args } {
     # FIXME: This is the only place where we assume a standard meaning to
     # the `keyword' argument of dg-do.  This could be cleaned up.
     if { [lindex ${dg-do-what} 0] == "run" } {
-	if ![file exists $output_file] {
+	if {![file exists $output_file]} {
 	    unresolved "$name compilation failed to produce executable"
 	} else {
 	    set status -1
@@ -857,7 +857,7 @@ proc dg-test { args } {
 		}
 	    } elseif { "$status" == "fail" } {
 		# It would be nice to get some info out of errorCode.
-		if [info exists errorCode] {
+		if {[info exists errorCode]} {
 		    verbose "Exec failed, errorCode: $errorCode" 3
 		} else {
 		    verbose "Exec failed, errorCode not defined!" 3
@@ -874,13 +874,13 @@ proc dg-test { args } {
     # of the program can be delayed until here.  Ditto for other situations.
     # It would be a bit cumbersome though.
 
-    if ![string match ${dg-final-code} ""] {
+    if {![string match ${dg-final-code} ""]} {
 	regsub -all "\\\\(\[{}\])" ${dg-final-code} "\\1" dg-final-code
 	# Note that the use of `args' here makes this a varargs proc.
 	proc dg-final-proc { args } ${dg-final-code}
 	verbose "Running dg-final tests." 3
 	verbose "dg-final-proc:\n[info body dg-final-proc]" 4
-	if [catch "dg-final-proc $prog" errmsg] {
+	if {[catch "dg-final-proc $prog" errmsg]} {
 	    perror "$name: error executing dg-final: $errmsg"
 	    # ??? The call to unresolved here is necessary to clear `errcnt'.
 	    # What we really need is a proc like perror that doesn't set errcnt.
@@ -907,7 +907,7 @@ proc dg-finish { } {
 
     # The framework doesn't like to see any error remnants, so remove them.
     global errorInfo
-    if [info exists errorInfo] {
+    if {[info exists errorInfo]} {
 	unset errorInfo
     }
 
@@ -915,7 +915,7 @@ proc dg-finish { } {
     # There may be a bit of duplication (eg: resetting prms_id), leave it.
     # Let's keep these procs robust.
     global tool
-    if ![string match "" [info procs ${tool}_finish]] {
+    if {![string match "" [info procs ${tool}_finish]]} {
 	${tool}_finish
     }
 }

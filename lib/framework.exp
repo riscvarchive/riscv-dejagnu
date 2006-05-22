@@ -26,7 +26,7 @@ set warning_threshold 3
 set perror_threshold 1
 
 proc mail_file { file to subject } {
-    if [file readable $file] {
+    if {[file readable $file]} {
 	catch "exec mail -s \"$subject\" $to < $file"
     }
 }
@@ -109,15 +109,15 @@ proc isbuild { pattern } {
     global build_triplet
     global host_triplet
 
-    if ![info exists build_triplet] {
+    if {![info exists build_triplet]} {
 	set build_triplet ${host_triplet}
     }
-    if [string match "" $pattern] {
+    if {[string match "" $pattern]} {
 	return $build_triplet
     }
     verbose "Checking pattern \"$pattern\" with $build_triplet" 2
 
-    if [string match "$pattern" $build_triplet] {
+    if {[string match "$pattern" $build_triplet]} {
 	return 1
     } else {
 	return 0
@@ -162,7 +162,7 @@ proc is_remote { board } {
     if { $board == "target" } {
 	global current_target_name
 
-	if [info exists current_target_name] {
+	if {[info exists current_target_name]} {
 	    # This shouldn't happen, but we'll be paranoid anyway.
 	    if { $current_target_name != "target" } {
 		return [is_remote $current_target_name]
@@ -170,7 +170,7 @@ proc is_remote { board } {
 	}
 	return 0
     }
-    if [board_info $board exists isremote] {
+    if {[board_info $board exists isremote]} {
 	verbose "board is $board, isremote is [board_info $board isremote]" 3
 	return [board_info $board isremote]
     }
@@ -184,7 +184,7 @@ proc is3way {} {
     global host_triplet
     global build_triplet
 
-    if ![info exists build_triplet] {
+    if {![info exists build_triplet]} {
 	set build_triplet ${host_triplet}
     }
     verbose "Checking $host_triplet against $build_triplet" 2
@@ -200,12 +200,12 @@ proc is3way {} {
 proc ishost { pattern } {
     global host_triplet
 
-    if [string match "" $pattern] {
+    if {[string match "" $pattern]} {
 	return $host_triplet
     }
     verbose "Checking pattern \"$pattern\" with $host_triplet" 2
 
-    if [string match "$pattern" $host_triplet] {
+    if {[string match "$pattern" $host_triplet]} {
 	return 1
     } else {
 	return 0
@@ -221,8 +221,8 @@ proc istarget { args } {
     global target_triplet
 
     # if no arg, return the config string
-    if [string match "" $args] {
-	if [info exists target_triplet] {
+    if {[string match "" $args]} {
+	if {[info exists target_triplet]} {
 	    return $target_triplet
 	} else {
 	    perror "No target configuration names found."
@@ -232,9 +232,9 @@ proc istarget { args } {
     set triplet [lindex $args 0]
 
     # now check against the cannonical name
-    if [info exists target_triplet] {
+    if {[info exists target_triplet]} {
 	verbose "Checking \"$triplet\" against \"$target_triplet\"" 2
-	if [string match $triplet $target_triplet] {
+	if {[string match $triplet $target_triplet]} {
 	    return 1
 	}
     }
@@ -250,7 +250,7 @@ proc isnative { } {
     global target_triplet
     global build_triplet
 
-    if [string match $build_triplet $target_triplet] {
+    if {[string match $build_triplet $target_triplet]} {
 	return 1
     }
     return 0
@@ -264,10 +264,10 @@ proc unknown { args } {
     global exit_status
 
     clone_output "ERROR: (DejaGnu) proc \"$args\" does not exist."
-    if [info exists errorCode] {
+    if {[info exists errorCode]} {
         send_error "The error code is $errorCode\n"
     }
-    if [info exists errorInfo] {
+    if {[info exists errorInfo]} {
         send_error "The info on the error is:\n$errorInfo\n"
     }
 
@@ -398,7 +398,7 @@ proc log_summary { args } {
     # total count, so compare the reported number of testcases with the
     # expected number.  Maintaining an accurate count in `testcnt' isn't easy
     # so it's not clear how often this will be used.
-    if [info exists testcnt] {
+    if {[info exists testcnt]} {
 	if { $testcnt > 0 } {
 	    set totlcnt 0
 	    # total all the testcases reported
@@ -418,7 +418,7 @@ proc log_summary { args } {
 		verbose "# of testcases run         $testcnt"
 	    }
 
-	    if [info exists mismatch] {
+	    if {[info exists mismatch]} {
 		clone_output "### ERROR: totals do not equal number of testcases run"
 		clone_output "### ERROR: # of testcases expected    $testcnt"
 		clone_output "### ERROR: # of testcases reported    $totlcnt"
@@ -472,11 +472,11 @@ proc setup_xfail { args } {
     for { set i 0 } { $i < $argc } { incr i } {
 	set sub_arg [ lindex $args $i ]
 	# is a prms number. we assume this is a string with no '-' characters
-	if [regexp "^\[^\-\]+$" $sub_arg] {
+	if {[regexp "^\[^\-\]+$" $sub_arg]} {
 	    set xfail_prms $sub_arg
 	    continue
 	}
-	if [istarget $sub_arg] {
+	if {[istarget $sub_arg]} {
 	    set xfail_flag 1
 	    continue
 	}
@@ -502,11 +502,11 @@ proc setup_kfail { args } {
     for { set i 0 } { $i < $argc } { incr i } {
 	set sub_arg [ lindex $args $i ]
 	# is a prms number. we assume this is a string with no '-' characters
-	if [regexp "^\[^\-\]+$" $sub_arg] {
+	if {[regexp "^\[^\-\]+$" $sub_arg]} {
 	    set kfail_prms $sub_arg
 	    continue
 	}
-	if [istarget $sub_arg] {
+	if {[istarget $sub_arg]} {
 	    set kfail_flag 1
 	    continue
 	}
@@ -548,7 +548,7 @@ proc check_conditional_xfail { args } {
     set incl_hit 0
     set excl_hit 0
     foreach targ $target_list {
-	if [istarget $targ] {
+	if {[istarget $targ]} {
 	    # look through the compiler options for flags we want to see
 	    # this is really messy cause each set of options to look for
 	    # may also be a list. We also want to find each element of the
@@ -565,7 +565,7 @@ proc check_conditional_xfail { args } {
 		set opt [lindex $includes $i]
 		verbose "Looking for $opt to include in the compiler flags" 2
 		foreach j "$opt" {
-		    if [string match "* $j *" $compiler_flags] {
+		    if {[string match "* $j *" $compiler_flags]} {
 			verbose "Found $j to include in the compiler flags" 2
 			incr incl_hit
 		    }
@@ -585,7 +585,7 @@ proc check_conditional_xfail { args } {
 		set opt [lindex $excludes $i]
 		verbose "Looking for $opt to exclude in the compiler flags" 2
 		foreach j "$opt" {
-		    if [string match "* $j *" $compiler_flags] {
+		    if {[string match "* $j *" $compiler_flags]} {
 			verbose "Found $j to exclude in the compiler flags" 2
 			incr excl_hit
 		    }
@@ -625,7 +625,7 @@ proc clear_xfail { args } {
 	set sub_arg [ lindex $args $i ]
 	switch $sub_arg {
 	    "*-*-*" {			# is a configuration triplet
-		if [istarget $sub_arg] {
+		if {[istarget $sub_arg]} {
 		    set xfail_flag 0
 		    set xfail_prms 0
 		}
@@ -646,7 +646,7 @@ proc clear_kfail { args } {
 	set sub_arg [ lindex $args $i ]
 	switch $sub_arg {
 	    "*-*-*" {			# is a configuration triplet
-		if [istarget $sub_arg] {
+		if {[istarget $sub_arg]} {
 		    set kfail_flag 0
 		    set kfail_prms 0
 		}
@@ -674,7 +674,7 @@ proc record_test { type message args } {
     } else {
 	set count 1
     }
-    if [info exists pf_prefix] {
+    if {[info exists pf_prefix]} {
 	set message [concat $pf_prefix " " $message]
     }
 
@@ -692,7 +692,7 @@ proc record_test { type message args } {
     if { $xml } {
 	global errorInfo
         set error ""
-        if [info exists errorInfo] {
+        if {[info exists errorInfo]} {
 	    set error $errorInfo
         }
         global expect_out
@@ -826,8 +826,8 @@ proc pass { message } {
     global xfail_flag kfail_flag compiler_conditional_xfail_data
 
     # if we have a conditional xfail setup, then see if our compiler flags match
-    if [ info exists compiler_conditional_xfail_data ] {
-	if [check_conditional_xfail $compiler_conditional_xfail_data] {
+    if {[ info exists compiler_conditional_xfail_data ]} {
+	if {[check_conditional_xfail $compiler_conditional_xfail_data]} {
 	    set xfail_flag 1
 	}
 	unset compiler_conditional_xfail_data
@@ -848,8 +848,8 @@ proc fail { message } {
     global xfail_flag kfail_flag compiler_conditional_xfail_data
 
     # if we have a conditional xfail setup, then see if our compiler flags match
-    if [ info exists compiler_conditional_xfail_data ] {
-	if [check_conditional_xfail $compiler_conditional_xfail_data] {
+    if {[ info exists compiler_conditional_xfail_data ]} {
+	if {[check_conditional_xfail $compiler_conditional_xfail_data]} {
 	    set xfail_flag 1
 	}
 	unset compiler_conditional_xfail_data
@@ -926,7 +926,7 @@ proc warning { args } {
     clone_output "WARNING: $message"
 
     global errorInfo
-    if [info exists errorInfo] {
+    if {[info exists errorInfo]} {
 	unset errorInfo
     }
 }
@@ -949,7 +949,7 @@ proc perror { args } {
     clone_output "ERROR: $message"
 
     global errorInfo
-    if [info exists errorInfo] {
+    if {[info exists errorInfo]} {
 	unset errorInfo
     }
 }
@@ -1031,7 +1031,7 @@ proc incr_count { name args } {
     } else {
 	set count [lindex $args 0]
     }
-    if [info exists test_counts($name,count)] {
+    if {[info exists test_counts($name,count)]} {
 	incr test_counts($name,count) $count
 	incr test_counts($name,total) $count
     } else {
@@ -1043,7 +1043,7 @@ proc incr_count { name args } {
 # For compatibility with old versions.
 #
 global argv0
-if ![info exists argv0] {
+if {![info exists argv0]} {
     proc exp_continue { } {
 	continue -expect
     }

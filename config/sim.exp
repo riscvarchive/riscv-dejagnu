@@ -24,27 +24,27 @@
 #
 
 proc sim_spawn { dest cmdline args } {
-    if ![board_info $dest exists sim] {
+    if {![board_info $dest exists sim]} {
 	perror "no simulator defined for [board_info $dest name]"
 	exit 1
     } else {
 	set sim [board_info $dest sim]
     }
 
-    if [board_info $dest exists sim,options] {
+    if {[board_info $dest exists sim,options]} {
 	set simflags [board_info $dest sim,options]
     } else {
         set simflags ""
     }
 
-    if ![is_remote host] {
+    if {![is_remote host]} {
 	if { [which $sim] == 0 } {
 	    verbose -log "Simulator $sim missing." 3
 	    return -1
 	}
     }
 
-    if [is_remote host] {
+    if {[is_remote host]} {
 	# download the program to remote.
 	# we're assuming the program is the first word in the command.
 	# FIXME: "prog < infile" won't work until we download infile.
@@ -68,13 +68,13 @@ proc sim_load { dest prog args } {
 	}
     }
 
-    if ![file exists $prog] then {
+    if {![file exists $prog]} then {
 	perror "sim.exp: $prog to be downloaded does not exist."
 	verbose -log "$prog to be downloaded does not exist." 3
 	return [list "untested" ""]
     }
 
-    if [board_info $dest exists sim_time_limit] {
+    if {[board_info $dest exists sim_time_limit]} {
 	set sim_time_limit [board_info $dest sim_time_limit]
     } else {
 	set sim_time_limit 240

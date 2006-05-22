@@ -23,15 +23,15 @@ proc ftp_open {host} {
     set prompt "ftp>"
     global board_info
 
-    if [board_info $host exists name] {
+    if {[board_info $host exists name]} {
 	set host [board_info $host name]
     }
 
-    if [board_info $host exists ftp_fileid] {
+    if {[board_info $host exists ftp_fileid]} {
 	return [board_info $host ftp_fileid]
     }
 
-    if [board_info $host exists hostname] {
+    if {[board_info $host exists hostname]} {
 	set remotehost [board_info $host hostname]
     } else {
 	set remotehost $host
@@ -62,8 +62,8 @@ proc ftp_open {host} {
 	return -1
     }
     set board_info($host,ftp_fileid) $spawn_id
-    if [board_info $host exists ftp_username] {
-	if [board_info $host exists ftp_password] {
+    if {[board_info $host exists ftp_username]} {
+	if {[board_info $host exists ftp_password]} {
 	    set command "user [board_info $host ftp_username] [board_info $host ftp_password]\n"
 	} else {
 	    set command "user [board_info $host ftp_username]\n"
@@ -88,7 +88,7 @@ proc ftp_open {host} {
 	    return -1
 	}
     }
-    if [board_info $host exists ftp_directory] {
+    if {[board_info $host exists ftp_directory]} {
 	send "cd [board_info $host ftp_directory]\n"
 	expect {
 	    -i $spawn_id -re "250.*$prompt" { }
@@ -100,7 +100,7 @@ proc ftp_open {host} {
 	}
     }
 
-    if [board_info $host exists ftp_no_passive] {
+    if {[board_info $host exists ftp_no_passive]} {
 	send "passive\n"
 	expect {
 	    -i $spawn_id -re "Passive mode off.*$prompt" { }
@@ -165,7 +165,7 @@ proc ftp_download {host localfile remotefile} {
 
     verbose "putting $localfile $remotefile"
 
-    if [board_info $host exists hostname] {
+    if {[board_info $host exists hostname]} {
 	set remotehost [board_info $host hostname]
     } else {
 	set remotehost $host
@@ -220,11 +220,11 @@ proc ftp_download {host localfile remotefile} {
 proc ftp_close {host} {
     global board_info
 
-    if [board_info $host exists name] {
+    if {[board_info $host exists name]} {
 	set host [board_info $host name]
     }
 
-    if ![board_info $host exists ftp_fileid] {
+    if {![board_info $host exists ftp_fileid]} {
 	return ""
     }
 

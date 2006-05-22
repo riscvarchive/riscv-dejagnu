@@ -28,18 +28,18 @@ proc tip_open { hostname } {
     set tries 0
     set result -1
 
-    if [board_info $hostname exists name] {
+    if {[board_info $hostname exists name]} {
 	set hostname [board_info ${hostname} name]
     }
     set port [board_info ${hostname} tipname]
-    if [board_info ${hostname} exists shell_prompt] {
+    if {[board_info ${hostname} exists shell_prompt]} {
 	set shell_prompt [board_info ${hostname} shell_prompt]
     } else {
 	# Pick something reasonably generic.
 	set shell_prompt ".*> "
     }
 
-    if [board_info ${hostname} exists fileid] {
+    if {[board_info ${hostname} exists fileid]} {
 	unset board_info(${hostname},fileid)
     }
     spawn tip -v $port
@@ -127,20 +127,20 @@ proc tip_download { dest file args } {
     global decimal
     global expect_out
 
-    if [board_info $dest exists shell_prompt] {
+    if {[board_info $dest exists shell_prompt]} {
 	set shell_prompt [board_info $dest shell_prompt]
     } else {
 	set shell_prompt ".*>"
     }
 
     set result ""
-    if ![board_info $dest exists fileid] {
+    if {![board_info $dest exists fileid]} {
 	perror "tip_download: no connection to $dest."
 	return $result
     }
     set shell_id [board_info $dest fileid]
 
-    if ![file exists $file] {
+    if {![file exists $file]} {
 	perror "$file doesn't exist."
 	return $result
     }
@@ -163,7 +163,7 @@ proc tip_download { dest file args } {
 		    warning "Got an invalid command to the remote shell."
 		}
 		-i $shell_id -re ".*$decimal\r" {
-		    if [info exists expect_out(buffer)] {
+		    if {[info exists expect_out(buffer)]} {
 			verbose "$expect_out(buffer)"
 			exp_continue
 		    }

@@ -25,7 +25,7 @@
 proc dos_open { dest args } {
     global destbat_num
 
-    if ![info exists destbat_num] {
+    if {![info exists destbat_num]} {
 	set destbat_num [pid]
     }
     if { [board_info $dest conninfo] == "" } {
@@ -36,7 +36,7 @@ proc dos_open { dest args } {
 	incr destbat_num
     }
 
-    if [board_info $dest exists fileid] {
+    if {[board_info $dest exists fileid]} {
 	return [board_info $dest fileid]
     }
 
@@ -50,7 +50,7 @@ proc dos_open { dest args } {
 	return -1
     }
 
-    if [board_info $dest exists init_command] {
+    if {[board_info $dest exists init_command]} {
 	remote_send $dest "[board_info $dest init_command]\n"
 	remote_expect $dest 10 {
 	    -re "$shell_prompt" { }
@@ -61,7 +61,7 @@ proc dos_open { dest args } {
 	}
     }
 
-    if [board_info $dest exists ftp_directory] {
+    if {[board_info $dest exists ftp_directory]} {
 	set dir [board_info $dest ftp_directory]
 	regsub -all "/" "$dir" "\\" dir
 	remote_send $dest "cd $dir\n"
@@ -74,7 +74,7 @@ proc dos_open { dest args } {
 	}
     }
 
-    if [board_info $dest exists dos_dir] {
+    if {[board_info $dest exists dos_dir]} {
 	set dos_dir [board_info $dest dos_dir]
 	regsub -all "^(\[a-zA-Z]:).*$" "$dos_dir" "\\1" drive
 	regsub -all "^\[a-zA-Z]:" "$dos_dir" "" dos_dir
@@ -97,21 +97,21 @@ proc dos_open { dest args } {
     }
 
     global target_alias
-    if [info exists target_alias] {
+    if {[info exists target_alias]} {
 	set talias $target_alias
     } else {
 	set talias "foo-bar"
     }
 
     global board_info
-    if [board_info $dest exists name] {
+    if {[board_info $dest exists name]} {
 	set n [board_info $dest name]
     } else {
 	set n $dest
     }
     set board_info($n,fileid) $shell_id
 
-    if [board_info $dest exists init_script] {
+    if {[board_info $dest exists init_script]} {
 	remote_exec $dest "[board_info $dest init_script] $talias"
     }
 
@@ -124,7 +124,7 @@ proc dos_open { dest args } {
 # need to exit the connection first (ataman telnetd gets confused otherwise).
 #
 proc dos_close { dest args } {
-    if [board_info $dest exists fileid] {
+    if {[board_info $dest exists fileid]} {
 	if { [board_info $dest connect] == "telnet" } {
 	    remote_send $dest "exit\n"
 	    sleep 2
@@ -366,21 +366,21 @@ proc dos_load { dest prog args } {
     if { [llength $args] > 1 } {
 	set inpfile [lindex $args 1]
     }
-    if ![info exists dos_dll_loaded] {
-	if ![is_remote host] {
+    if {![info exists dos_dll_loaded]} {
+	if {![is_remote host]} {
 	    global target_alias
 
 	    set comp [get_multilibs]
-	    if [file exists "${comp}/winsup/new-cygwin1.dll"] {
+	    if {[file exists "${comp}/winsup/new-cygwin1.dll"]} {
 		set dll "${comp}/winsup/new-cygwin1.dll"
 		set dll_name "cygwin1.dll"
-	    } elseif [file exists "${comp}/winsup/new-cygwin.dll"] {
+	    } elseif {[file exists "${comp}/winsup/new-cygwin.dll"]} {
 		set dll "${comp}/winsup/new-cygwin.dll"
 		set dll_name "cygwin.dll"
-	    } elseif [file exists ${comp}/lib/cygwin1.dll] {
+	    } elseif {[file exists ${comp}/lib/cygwin1.dll]} {
 		set dll "${comp}/lib/cygwin1.dll"
 		set dll_name "cygwin1.dll"
-	    } elseif [file exists ${comp}/lib/cygwin.dll] {
+	    } elseif {[file exists ${comp}/lib/cygwin.dll]} {
 		set dll "${comp}/lib/cygwin.dll"
 		set dll_name "cygwin.dll"
 	    } else {
@@ -448,7 +448,7 @@ proc dos_interrupt_job { host } {
 
 proc dos_copy_download { host localfile remotefile } {
     remote_file build delete "[board_info $host local_dir]/$remotefile"
-    if [remote_file build exists $localfile] {
+    if {[remote_file build exists $localfile]} {
 	set result [remote_download build $localfile "[board_info $host local_dir]/$remotefile"]
 	if { $result != "" } {
 	    remote_exec build "chmod" "a+rw $result"
@@ -461,7 +461,7 @@ proc dos_copy_download { host localfile remotefile } {
 
 proc dos_copy_upload { host remotefile localfile } {
     remote_file build delete $localfile
-    if [file exists "[board_info $host local_dir]/$remotefile"] {
+    if {[file exists "[board_info $host local_dir]/$remotefile"]} {
 	set result [remote_download build "[board_info $host local_dir]/$remotefile" $localfile]
     } else {
 	set result ""

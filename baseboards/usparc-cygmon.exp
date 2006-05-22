@@ -25,7 +25,7 @@ proc ${board}_init { dest } {
     global usparc_init_count
     set shell_prompt [board_info $dest shell_prompt]
 
-    if ![info exists usparc_init_count] {
+    if {![info exists usparc_init_count]} {
 	set usparc_init_count 0
     } else {
 	incr usparc_init_count

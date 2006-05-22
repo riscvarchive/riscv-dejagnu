@@ -83,7 +83,7 @@ proc sim_wait { dest timeout } {
 
 proc sim_load { dest prog args } {
 
-    if ![file exists $prog] then {
+    if {![file exists $prog]} then {
 	perror "sim.exp: $prog to be downloaded does not exist."
 	verbose -log "$prog to be downloaded does not exist." 3
 	return [list "untested" ""]

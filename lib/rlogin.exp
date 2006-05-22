@@ -26,29 +26,29 @@ proc rlogin_open { arg } {
     set tries 0
     set result -1
 
-    if [board_info $arg exists fileid] {
+    if {[board_info $arg exists fileid]} {
 	return [board_info $arg fileid]
     }
 
     # get the hostname and port number from the config array
-    if [board_info $arg exists netport] {
+    if {[board_info $arg exists netport]} {
 	set hostname [lindex [split [board_info $arg netport] ":"] 0]
     } else {
 	set hostname $arg
     }
 
-    if ![board_info $arg exists shell_prompt] {
+    if {![board_info $arg exists shell_prompt]} {
 	# if no prompt, then set it to something generic
 	set shell_prompt ".*> "
     } else {
 	set shell_prompt [board_info $arg shell_prompt]
     }
 
-    if [board_info $arg exists fileid] {
+    if {[board_info $arg exists fileid]} {
 	unset board_info($arg,fileid)
     }
     # get the right version of rlogin
-    if ![board_info $arg exists rlogin_prog] {
+    if {![board_info $arg exists rlogin_prog]} {
 	set RLOGIN rlogin
     } else {
 	set RLOGIN [board_info $arg rlogin_prog]
@@ -132,7 +132,7 @@ proc rlogin_open { arg } {
 # the command.
 #
 proc rlogin_spawn { dest cmdline } {
-    if ![board_info $dest exists shell_prompt] {
+    if {![board_info $dest exists shell_prompt]} {
 	set shell_prompt "(^|\[\r\n\])\[^\r\n\]*>"
     } else {
 	set shell_prompt [board_info $dest shell_prompt]

@@ -124,7 +124,7 @@ proc host_execute {args} {
     }
 
     verbose "The executable is $executable" 2
-    if ![file exists ${executable}] {
+    if {![file exists ${executable}]} {
 	perror "The executable, \"$executable\" is missing" 0
 	return "No source file found"
     }

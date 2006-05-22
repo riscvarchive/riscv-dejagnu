@@ -79,7 +79,7 @@ proc ${board}_init { dest } {
 	}
 	-re "$boot_mon_prompt" { }
     }
-    if ![info exists curr_file] {
+    if {![info exists curr_file]} {
 	remote_close $dest
 	remote_reboot $dest
 	return
@@ -112,7 +112,7 @@ proc ${board}_init { dest } {
 }
 
 proc vxworks_final_init { dest } {
-    if [board_info $dest exists preload_obj] {
+    if {[board_info $dest exists preload_obj]} {
 	if { [target_compile [board_info $dest preload_obj] foo.out object [board_info $dest preload_obj_flags]] == "" } {
 	    vxworks_ld $dest foo.out
 	}
@@ -167,7 +167,7 @@ proc vxworks_exec { dest program pargs inp outp } {
 }
 
 proc vxworks_download { dest localfile remotefile } {
-    if [board_info $dest exists vxworks_homedir] {
+    if {[board_info $dest exists vxworks_homedir]} {
 	set rfile "[board_info $dest vxworks_homedir]/$remotefile"
 	remote_download build $localfile $rfile
 	return $rfile
@@ -177,7 +177,7 @@ proc vxworks_download { dest localfile remotefile } {
 
 proc vxworks_file { dest op args } {
     set file [lindex $args 0]
-    if [board_info $dest exists vxworks_homedir] {
+    if {[board_info $dest exists vxworks_homedir]} {
 	set dir "[board_info $dest vxworks_homedir]"
 	switch $op {
 	    exists {
@@ -206,7 +206,7 @@ proc vxworks_send { dest string } {
 }
 
 proc vxworks_open { dest args } {
-    if [board_info $dest exists fileid] {
+    if {[board_info $dest exists fileid]} {
 	return [board_info $dest fileid]
     }
 
@@ -218,9 +218,9 @@ proc vxworks_open { dest args } {
 	return -1
     }
 
-    if [board_info $dest exists logname] {
+    if {[board_info $dest exists logname]} {
 	set logname [board_info $dest logname]
-	if [board_info $dest exists password] {
+	if {[board_info $dest exists password]} {
 	    remote_send $dest "iam \"$logname\",\"[board_info $dest passwd]\"\r"
 	} else {
 	    remote_send $dest "iam \"$logname\"\r"
@@ -241,15 +241,15 @@ proc vxworks_open { dest args } {
     }
 
     set dir ""
-    if [board_info $dest exists ftp_directory] {
+    if {[board_info $dest exists ftp_directory]} {
 	set dir [board_info $dest ftp_directory]
     }
-    if [board_info $dest exists vxworks_homedir] {
+    if {[board_info $dest exists vxworks_homedir]} {
 	set dir [board_info $dest vxworks_homedir]
     }
     if { $dir != "" } {
 	set status [remote_exec $dest "cd" "\"$dir\""]
-	if [lindex $status 0] {
+	if {[lindex $status 0]} {
 	    perror "Error in cd to $dir--[lindex $status 1]"
 	    return 1
 	}
@@ -427,7 +427,7 @@ proc vxworks_run { dest function pargs inp outp } {
 proc vxworks_unld { dest } {
     global board_info
 
-    if [board_info $dest exists vx_module] {
+    if {[board_info $dest exists vx_module]} {
 	# Vxworks5.0 does not have the unld command.
 	if { [board_info $dest os] != "vxworks5.0" } {
 	    remote_exec $dest "unld" "[board_info $dest vx_module]"

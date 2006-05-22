@@ -27,13 +27,13 @@ proc kermit_open {dest args} {
     global spawn_id
     global board_info
 
-    if [board_info $dest exists name] {
+    if {[board_info $dest exists name]} {
 	set dest [board_info $dest name]
     }
-    if [board_info ${dest} exists serial] {
+    if {[board_info ${dest} exists serial]} {
 	set port [board_info ${dest} serial]
 	set device "-l [board_info ${dest} serial]"
-	if [board_info ${dest} exists baud] {
+	if {[board_info ${dest} exists baud]} {
 	    append device " -b [board_info ${dest} baud]"
 	}
     } else {
@@ -89,7 +89,7 @@ proc kermit_open {dest args} {
 
     if {$result < 0} {
 	perror "Couldn't connect after $tries tries."
-	if [info exists board_info($dest,fileid)] {
+	if {[info exists board_info($dest,fileid)]} {
 	    unset board_info($dest,fileid)
 	}
 	return -1
@@ -97,7 +97,7 @@ proc kermit_open {dest args} {
 	verbose "Kermit connection established with spawn_id $spawn_id."
 	set board_info($dest,fileid) $spawn_id
 	kermit_command $dest "set file type binary" "set transfer display none"
-	if [board_info $dest exists transmit_pause] {
+	if {[board_info $dest exists transmit_pause]} {
 	    kermit_command $dest "set transmit pause [board_info $dest transmit_pause]"
 	}
 	return $spawn_id
@@ -107,7 +107,7 @@ proc kermit_open {dest args} {
 # Send a list of commands to the Kermit session connected to DEST.
 #
 proc kermit_command {dest args} {
-    if [board_info $dest exists name] {
+    if {[board_info $dest exists name]} {
 	set dest [board_info $dest name]
     }
     set shell_id [board_info $dest fileid]
@@ -151,7 +151,7 @@ proc kermit_command {dest args} {
 # Send STRING to DEST.
 #
 proc kermit_send {dest string args} {
-    if [board_info $dest exists transmit_pause] {
+    if {[board_info $dest exists transmit_pause]} {
 	set f [open "/tmp/fff" "w"]
 	puts -nonewline $f "$string"
 	close $f
@@ -167,7 +167,7 @@ proc kermit_send {dest string args} {
 # No translation is performed.
 #
 proc kermit_transmit {dest file args} {
-    if [board_info $dest exists transmit_pause] {
+    if {[board_info $dest exists transmit_pause]} {
 	kermit_command $dest "transmit $file"
 	return ""
     } else {

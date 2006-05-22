@@ -23,7 +23,7 @@
 proc ${board}_init { dest } {
     global doing_ddb_init
 
-    if ![info exists doing_ddb_init] {
+    if {![info exists doing_ddb_init]} {
 	set doing_ddb_init 1
 
 	remote_close $dest
@@ -75,12 +75,12 @@ proc ddb_ether_load { dest prog args } {
 }
 
 proc ddb_ether_ld { dest prog } {
-    if ![board_info $dest exists tftpdir] {
+    if {![board_info $dest exists tftpdir]} {
 	perror "Must set_board_info tftpdir for [board_info $dest name]"
 	return "fail"
     }
 
-    if ![board_info $dest exists fileid] {
+    if {![board_info $dest exists fileid]} {
 	set spawn_id [remote_open $dest]
 	if { $spawn_id == "" || $spawn_id < 0 } {
 	    return "retry"
@@ -164,7 +164,7 @@ proc ddb_ether_wait { dest timeout } {
 	    if { $status > 0 } {
 		return [list $status $output]
 	    } else {
-		if [regexp "Exception Cause=" $output] {
+		if {[regexp "Exception Cause=" $output]} {
 		    remote_reboot $dest
 		    return [list -1 $output]
 		}

@@ -29,7 +29,7 @@ load_lib "libgloss.exp"
 # We need this for find_gcc and *_include_flags/*_link_flags.
 load_board_description "basic-sim"
 
-if ![info exists board_info($board,multilib_flags)] {
+if {![info exists board_info($board,multilib_flags)]} {
     set board_info($board,multilib_flags) "-mips16"
 }
 

@@ -28,17 +28,17 @@ load_lib remote.exp
 
 proc ${board}_init { args } {
     global NLMCONV
-    if ![info exists NLMCONV] then {
+    if {![info exists NLMCONV]} then {
 	set NLMCONV [findfile "$rootme/../binutils/nlmconv"]
     }
     global LD
-    if ![info exists LD] then {
+    if {![info exists LD]} then {
 	set LD [findfile "$rootme/../ld/ld-new" "$rootme/../ld/ld-new" [transform "ld"]]
     }
 
     set shell_prompt "Password:"
     set shell_id [remote_open target]
-    if [target_info exists passwd] {
+    if {[target_info exists passwd]} {
 	set passwd [target_info passwd]
     } else {
 	set passwd ""
@@ -48,7 +48,7 @@ proc ${board}_init { args } {
 	return -1
     }
 
-    if [string match "" $passwd] then {
+    if {[string match "" $passwd]} then {
 	stty -echo
 	send_user "Password: "
 	expect_user -re "(.*)\n"
@@ -94,7 +94,7 @@ proc ${board}_load { dest prog args } {
     global tmpdir
     global errorCode
 
-    if [board_info $dest exists fileid] {
+    if {[board_info $dest exists fileid]} {
 	set shell_id [board_info $dest fileid]
     } else {
 	set shell_id -1
@@ -132,10 +132,10 @@ proc ${board}_load { dest prog args } {
     # run nlmconv
     verbose "Executing: $NLMCONV -l$LD -T$lnk" 1
     catch "exec $NLMCONV -l$LD -T$lnk" output
-    if ![string match "" $output] then {
+    if {![string match "" $output]} then {
 	verbose $output 1
     }
-    if ![string match "NONE" $errorCode] {
+    if {![string match "NONE" $errorCode]} {
 	verbose -log "Can't link $prog" 3
 	return "fail"
     }
@@ -143,7 +143,7 @@ proc ${board}_load { dest prog args } {
     # download
     verbose "Downloading $nlm" 1
     catch "exec cp $nlm /.NetWare/[board_info $dest name].nws/sys.nwv/tmp/x.nlm" output
-    if ![string match "" $output] then {
+    if {![string match "" $output]} then {
 	verbose $output 1
 	verbose -log "cp failed for $nlm" 3
 	return "unresolved"

@@ -20,7 +20,7 @@
 proc ${board}_init { dest } {
     global doing_emc_init
 
-    if [info exists doing_emc_init] {
+    if {[info exists doing_emc_init]} {
 	return
     }
     set doing_emc_init 1

@@ -30,13 +30,13 @@ proc libgloss_link_flags { args } {
     global srcdir
 
     # libgloss doesn't work native
-    if [isnative] {
+    if {[isnative]} {
 	return ""
     }
 
     # if we're on a remote host, we can't search for the file, so we can only
     # use an installed compiler, so we don't add any paths here.
-    if [is_remote host] {
+    if {[is_remote host]} {
 	return ""
     }
 
@@ -86,7 +86,7 @@ proc libgloss_link_flags { args } {
     if { $gloss_srcdir == "" } {
 	return ""
     }
-    if [file exists [file join $gccpath libgloss $cpu]] {
+    if {[file exists [file join $gccpath libgloss $cpu]]} {
 	verbose "Libgloss path is $gccpath/libgloss/$cpu" 2
 	return "-B$gccpath/libgloss/$cpu/ -L$gccpath/libgloss/$cpu -L$gloss_srcdir"
     } else {
@@ -107,13 +107,13 @@ proc newlib_link_flags { args } {
     global tool_root_dir
 
     # libgloss doesn't work native
-    if [isnative] {
+    if {[isnative]} {
 	return ""
     }
 
     # if we're on a remote host, we can't search for the file, so we can only
     # use an installed compiler, so we don't add any paths here.
-    if [is_remote host] {
+    if {[is_remote host]} {
 	return ""
     }
 
@@ -127,7 +127,7 @@ proc newlib_link_flags { args } {
     set gccpath "[get_multilibs]"
 
     verbose "Looking for $gccpath/newlib"
-    if [file exists [file join $gccpath newlib]] {
+    if {[file exists [file join $gccpath newlib]]} {
 	verbose "Newlib path is $gccpath/newlib"
 	return "$result -B$gccpath/newlib/ -L$gccpath/newlib"
     } else {
@@ -139,17 +139,17 @@ proc newlib_link_flags { args } {
 proc newlib_include_flags { args } {
     global srcdir
 
-    if [isnative] {
+    if {[isnative]} {
 	return ""
     }
 
-    if [is_remote host] {
+    if {[is_remote host]} {
 	return ""
     }
 
     set gccpath "[get_multilibs]"
 
-    if [file exists [file join $gccpath newlib]] {
+    if {[file exists [file join $gccpath newlib]]} {
 	verbose "Newlib path is $gccpath/newlib"
 
 	set newlib_dir [lookfor_file ${srcdir} newlib/libc/include/assert.h]
@@ -172,7 +172,7 @@ proc libio_include_flags { args } {
     global srcdir
     global tool_root_dir
 
-    if [is_remote host] {
+    if {[is_remote host]} {
 	return ""
     }
 
@@ -206,7 +206,7 @@ proc libio_include_flags { args } {
 }
 
 proc libio_link_flags { args } {
-    if [is_remote host] {
+    if {[is_remote host]} {
 	return ""
     }
 
@@ -224,7 +224,7 @@ proc g++_include_flags { args } {
     global srcdir
     global target_alias
 
-    if [is_remote host] {
+    if {[is_remote host]} {
 	return ""
     }
 
@@ -266,25 +266,25 @@ proc g++_link_flags { args } {
     set ld_library_path "."
 
     if { $gccpath != "" } {
-	if [file exists [file join ${gccpath} lib libstdc++.a]] {
+	if {[file exists [file join ${gccpath} lib libstdc++.a]]} {
 	    append ld_library_path ":${gccpath}/lib"
 	}
-	if [file exists [file join ${gccpath} libg++ libg++.a]] {
+	if {[file exists [file join ${gccpath} libg++ libg++.a]]} {
 	    append flags "-L${gccpath}/libg++ "
 	    append ld_library_path ":${gccpath}/libg++"
 	}
-	if [file exists [file join ${gccpath} libstdc++ libstdc++.a]] {
+	if {[file exists [file join ${gccpath} libstdc++ libstdc++.a]]} {
 	    append flags "-L${gccpath}/libstdc++ "
 	    append ld_library_path ":${gccpath}/libstdc++"
 	}
-	if [file exists [file join ${gccpath} libstdc++-v3 src .libs libstdc++.a]] {
+	if {[file exists [file join ${gccpath} libstdc++-v3 src .libs libstdc++.a]]} {
 	    append flags "-L${gccpath}/libstdc++-v3/src/.libs "
 	    append ld_library_path ":${gccpath}/libstdc++-v3/src/.libs"
 	}
-	if [file exists [file join ${gccpath} libiberty libiberty.a]] {
+	if {[file exists [file join ${gccpath} libiberty libiberty.a]]} {
 	    append flags "-L${gccpath}/libiberty "
 	}
-	if [file exists [file join ${gccpath} librx librx.a]] {
+	if {[file exists [file join ${gccpath} librx librx.a]]} {
 	    append flags "-L${gccpath}/librx "
 	}
     } else {
@@ -316,7 +316,7 @@ proc libstdc++_include_flags { args } {
     global srcdir
     global target_alias
 
-    if [is_remote host] {
+    if {[is_remote host]} {
 	return ""
     }
 
@@ -354,14 +354,14 @@ proc libstdc++_link_flags { args } {
     set flags ""
 
     if { $gccpath != "" } {
-	if [file exists [file join ${gccpath} libstdc++ libstdc++.a]] {
+	if {[file exists [file join ${gccpath} libstdc++ libstdc++.a]]} {
 	    append flags "-L${gccpath}/libstdc++ "
 	    append ld_library_path ":${gccpath}/libstdc++"
 	}
-	if [file exists [file join ${gccpath} libiberty libiberty.a]] {
+	if {[file exists [file join ${gccpath} libiberty libiberty.a]]} {
 	    append flags "-L${gccpath}/libiberty "
 	}
-	if [file exists [file join ${gccpath} librx librx.a]] {
+	if {[file exists [file join ${gccpath} librx librx.a]]} {
 	    append flags "-L${gccpath}/librx "
 	}
     } else {
@@ -395,18 +395,18 @@ proc get_multilibs { args } {
 
     # if we're on a remote host, we can't search for the file, so we can only
     # use an installed compiler, so we don't add any paths here.
-    if [is_remote host] {
+    if {[is_remote host]} {
 	return ""
     }
 
-    if [info exists board] {
+    if {[info exists board]} {
 	set target_board $board
     } else {
 	set target_board [target_info name]
     }
 
     if { [llength $args] == 0 } {
-	if [board_info $target_board exists multitop] {
+	if {[board_info $target_board exists multitop]} {
 	    return "[board_info $target_board multitop]"
 	}
 
@@ -424,7 +424,7 @@ proc get_multilibs { args } {
     }
 
     foreach x "$compiler" {
-	if [regexp "^-B" "$x"] {
+	if {[regexp "^-B" "$x"]} {
 	    regsub "^-B" "$x" "" comp_base_dir
 	    set comp_base_dir [file dirname $comp_base_dir]
 	    break
@@ -490,7 +490,7 @@ proc get_multilibs { args } {
 	}
     }
 
-    if ![info exists comp_base_dir] {
+    if {![info exists comp_base_dir]} {
 	set comp_base_dir [file dirname [file dirname [file dirname [file dirname [file dirname [exec $compiler --print-prog-name=cc1]]]]]]
     }
 
@@ -579,13 +579,13 @@ proc get_multilibs { args } {
 	    }
 	}
     }
-    if ![info exists multitop] {
+    if {![info exists multitop]} {
 	return ""
     }
 
     verbose "gccpath is $gccpath" 3
 
-    if [file exists [file join $multitop $gccpath]] {
+    if {[file exists [file join $multitop $gccpath]]} {
 	verbose "GCC path is $multitop/$gccpath" 3
 	if { [llength $args] == 0 } {
 	    set board_info($target_board,multitop) "$multitop/$gccpath"
@@ -603,7 +603,7 @@ proc get_multilibs { args } {
 proc find_binutils_prog { name } {
     global tool_root_dir
 
-    if ![is_remote host] {
+    if {![is_remote host]} {
 
 	set file [lookfor_file $tool_root_dir $name]
 	if { $file == "" } {
@@ -629,7 +629,7 @@ proc find_binutils_prog { name } {
 proc find_gcc {} {
     global tool_root_dir
 
-    if ![is_remote host] {
+    if {![is_remote host]} {
 	set file [lookfor_file $tool_root_dir xgcc]
 	if { $file == "" } {
 	    set file [lookfor_file $tool_root_dir gcc/xgcc]
@@ -648,7 +648,7 @@ proc find_gcc {} {
 proc find_gcj {} {
     global tool_root_dir
 
-    if ![is_remote host] {
+    if {![is_remote host]} {
 	set file [lookfor_file $tool_root_dir gcj]
 	if { $file == "" } {
 	    set file [lookfor_file $tool_root_dir gcc/gcj]
@@ -667,7 +667,7 @@ proc find_gcj {} {
 proc find_g++ {} {
     global tool_root_dir
 
-    if ![is_remote host] {
+    if {![is_remote host]} {
 	set file [lookfor_file $tool_root_dir g++]
 	if { $file == "" } {
 	    set file [lookfor_file $tool_root_dir gcc/g++]
@@ -686,7 +686,7 @@ proc find_g++ {} {
 proc find_g77 {} {
     global tool_root_dir
 
-    if ![is_remote host] {
+    if {![is_remote host]} {
 	set file [lookfor_file $tool_root_dir g77]
 	if { $file == "" } {
 	    set file [lookfor_file $tool_root_dir gcc/g77]
@@ -708,7 +708,7 @@ proc find_gnatmake {} {
     set root "$tool_root_dir/gcc"
     set GM ""
 
-    if ![is_remote host] {
+    if {![is_remote host]} {
         set file [lookfor_file $root gnatmake]
         if { $file != "" } {
             set GM "$file -I$root/ada/rts --GCC=$root/xgcc --GNATBIND=$root/gnatbind --GNATLINK=$root/gnatlink -cargs -B$root -largs --GCC=$root/xgcc -margs";
@@ -726,7 +726,7 @@ proc find_nm {} {
     global tool_root_dir
 
     set NM ""
-    if ![is_remote host] {
+    if {![is_remote host]} {
 	set NM [lookfor_file $tool_root_dir nm-new]
 	if {$NM == ""} {
  	    set NM [lookfor_file $tool_root_dir binutils/nm-new]
@@ -745,7 +745,7 @@ proc process_multilib_options { args } {
 
     set is_gdb_remote 0
 
-    if [board_info $board exists multilib_flags] {
+    if {[board_info $board exists multilib_flags]} {
 	return
     }
     eval add_multilib_option $args
@@ -809,7 +809,7 @@ proc process_multilib_options { args } {
 proc add_multilib_option { args } {
     global board_variant_list
 
-    if ![info exists board_variant_list] {
+    if {![info exists board_variant_list]} {
 	set board_variant_list ""
     }
     set board_variant_list [concat $args $board_variant_list]
@@ -820,7 +820,7 @@ proc find_gas { } {
 
     set AS ""
 
-    if ![is_remote host] {
+    if {![is_remote host]} {
 	set AS [lookfor_file $tool_root_dir as-new]
 	if { $AS == "" } {
 	    set AS [lookfor_file $tool_root_dir gas/as-new]
@@ -837,7 +837,7 @@ proc find_ld { } {
 
     set LD ""
 
-    if ![is_remote host] {
+    if {![is_remote host]} {
 	set LD [lookfor_file $tool_root_dir ld-new]
 	if { $LD == "" } {
 	    set LD [lookfor_file $tool_root_dir ld/ld-new]
@@ -853,23 +853,23 @@ proc build_wrapper { gluefile } {
     global libdir
     global tool
 
-    if [target_info exists wrap_m68k_aout] {
+    if {[target_info exists wrap_m68k_aout]} {
 	set flags "additional_flags=-DWRAP_M68K_AOUT"
 	set result ""
-    } elseif [target_info exists uses_underscores] {
+    } elseif {[target_info exists uses_underscores]} {
 	set flags "additional_flags=-DUNDERSCORES"
 	set result "-Wl,-wrap,_exit -Wl,-wrap,__exit -Wl,-wrap,_main -Wl,-wrap,_abort"
 
     } else {
 	set flags ""
-	if [target_info exists is_vxworks] {
+	if {[target_info exists is_vxworks]} {
 	    set flags "additional_flags=-DVXWORKS"
 	    set result "-Wl,-wrap,exit -Wl,-wrap,_exit -Wl,-wrap,main -Wl,-wrap,abort"
 	} else {
 	    set result "-Wl,-wrap,exit -Wl,-wrap,_exit -Wl,-wrap,main -Wl,-wrap,abort"
 	}
     }
-    if [target_info exists wrap_compile_flags] {
+    if {[target_info exists wrap_compile_flags]} {
 	lappend flags "additional_flags=[target_info wrap_compile_flags]"
     }
     if { [target_compile ${libdir}/testglue.c ${gluefile} object $flags] == "" } {
@@ -884,17 +884,17 @@ proc build_wrapper { gluefile } {
 proc winsup_include_flags { args } {
     global srcdir
 
-    if [isnative] {
+    if {[isnative]} {
 	return ""
     }
 
-    if [is_remote host] {
+    if {[is_remote host]} {
 	return ""
     }
 
     set gccpath "[get_multilibs]"
 
-    if [file exists [file join $gccpath winsup]] {
+    if {[file exists [file join $gccpath winsup]]} {
 	verbose "Winsup path is $gccpath/winsup"
 
 	set winsup_dir [lookfor_file ${srcdir} winsup/include/windows.h]
@@ -912,20 +912,20 @@ proc winsup_include_flags { args } {
 #
 proc winsup_link_flags { args } {
     # libgloss doesn't work native
-    if [isnative] {
+    if {[isnative]} {
 	return ""
     }
 
     # if we're on a remote host, we can't search for the file, so we can only
     # use an installed compiler, so we don't add any paths here.
-    if [is_remote host] {
+    if {[is_remote host]} {
 	return ""
     }
 
     set gccpath "[get_multilibs]"
 
     verbose "Looking for $gccpath/winsup"
-    if [file exists [file join $gccpath winsup]] {
+    if {[file exists [file join $gccpath winsup]]} {
 	verbose "Winsup path is $gccpath/newlib"
 	return "-B$gccpath/winsup/ -L$gccpath/winsup"
     } else {

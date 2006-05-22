@@ -29,11 +29,11 @@ proc base68k_ld { dest prog } {
 
     set shell_prompt [board_info $dest shell_prompt]
 
-    if ![file exists $prog] then {
+    if {![file exists $prog]} then {
 	verbose -log "$prog does not exist."
 	return "untested"
     }
-    if [is_remote host] {
+    if {[is_remote host]} {
 	set prog [remote_download host $prog]
 	if { $prog == "" } {
 	    verbose -log "Unable to download $prog to host."
@@ -41,11 +41,11 @@ proc base68k_ld { dest prog } {
 	}
     }
 
-    if [board_info $dest exists objcopy] {
+    if {[board_info $dest exists objcopy]} {
 	set OBJCOPY [board_info $dest objcopy]
 	set exec_file "${prog}.srec"
 	set objcopy_args ""
-	if [board_info $dest exists use_vma_offset] {
+	if {[board_info $dest exists use_vma_offset]} {
 	    set objcopy_args "--adjust-vma=[board_info $dest hex_startaddr]"
 	}
 	set status [remote_exec host "$OBJCOPY $objcopy_args -O srec $prog ${prog}.srec"]
@@ -64,7 +64,7 @@ proc base68k_ld { dest prog } {
     }
 
     set value 0
-    if ![board_info $dest exists fileid] {
+    if {![board_info $dest exists fileid]} {
 	while { $value < 2 } {
 	    set rom68k_shell_id [remote_open $dest]
 	    if { $rom68k_shell_id < 0 } {
@@ -79,14 +79,14 @@ proc base68k_ld { dest prog } {
 	}
 	# dbug has problems if we go into binary mode, so this allows us to
 	# disable entry into binary mode.
-	if ![board_info $dest exists no_binary_mode] {
+	if {![board_info $dest exists no_binary_mode]} {
 	    remote_binary $dest
 	}
     }
 
     # if we built the srecord on a remote host, copy it back here so we
     # can load it
-    if [is_remote host] {
+    if {[is_remote host]} {
 	global objdir
 	set exec_file [remote_upload host ${exec_file} "${objdir}/a.out"]
     }
@@ -131,7 +131,7 @@ proc base68k_ld { dest prog } {
 	}
     }
 
-    if [board_info $dest exists download_command] {
+    if {[board_info $dest exists download_command]} {
 	# Load the program.
 	remote_send $dest "\r\n"
 	# dbug has problems sending download command immediately after a
@@ -145,7 +145,7 @@ proc base68k_ld { dest prog } {
 	    }
 	}
 	remote_send $dest [board_info $dest download_command]
-	if [board_info $dest exists download_response] {
+	if {[board_info $dest exists download_response]} {
 	    remote_expect $dest 5 {
 		[board_info $dest download_response] { }
 		timeout {
@@ -201,7 +201,7 @@ proc base68k_spawn { dest prog args } {
 	return [list $result ""]
     }
 
-    if [board_info $dest exists startaddr] {
+    if {[board_info $dest exists startaddr]} {
 	set go_command "[board_info $dest go_command] [board_info $dest startaddr]"
     } else {
 	set go_command "[board_info $dest go_command]"
@@ -246,13 +246,13 @@ proc base68k_wait { dest timeout } {
 	}
     }
 
-    if [board_info $dest exists output_end] {
+    if {[board_info $dest exists output_end]} {
 	regsub "[board_info $dest output_end]" "$output" "\n" output
     }
 
     # There has got to be a better way. (We need to do this in order to remove
     # the echoed "go command".
-    if [board_info $dest exists startaddr] {
+    if {[board_info $dest exists startaddr]} {
 	set go_command "[board_info $dest go_command] [board_info $dest startaddr]"
     } else {
 	set go_command "[board_info $dest go_command]"
@@ -308,7 +308,7 @@ proc base68k_load { dest prog args } {
     } elseif { $status == 0 } {
 	return [list "pass" $output]
     } else {
-	if [info exists base68k_retry] {
+	if {[info exists base68k_retry]} {
 	    return [list "fail" $output]
 	}
 	set base68k_retry 1

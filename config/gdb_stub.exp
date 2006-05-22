@@ -28,14 +28,14 @@ proc gdb_stub_init { dest args } {
     global GDB
     global tool_root_dir
 
-    if ![info exists GDB] then {
+    if {![info exists GDB]} then {
 	set GDB "[lookfor_file ${tool_root_dir} gdb/gdb]"
 	if { $GDB == "" } {
 	    set GDB [transform gdb]
 	}
     }
 
-    if [board_info $dest exists gdb_prompt] {
+    if {[board_info $dest exists gdb_prompt]} {
 	set gdb_prompt [board_info $dest gdb_prompt]
     } else {
 	set gdb_prompt "\\(gdb\\)"
@@ -54,7 +54,7 @@ proc gdb_stub_restart { dest } {
 	remote_close $dest
 	sleep 2
 	set command "$GDB -nw -nx"
-	if [host_info exists gdb_opts] {
+	if {[host_info exists gdb_opts]} {
 	    append command " [host_info gdb_opts]"
 	}
 	set spawn_id [remote_spawn host $command]
@@ -62,7 +62,7 @@ proc gdb_stub_restart { dest } {
 	    -re "$gdb_prompt" { }
 	}
 	if { $spawn_id >= 0 } {
-	    if [board_info $dest exists baud] {
+	    if {[board_info $dest exists baud]} {
 		remote_send host "set remotebaud [board_info $dest baud]\n"
 		remote_expect host 5 {
 		    -re "$gdb_prompt" { }
@@ -97,9 +97,9 @@ proc gdb_stub_restart { dest } {
 proc gdb_stub_remote_check { dest } {
     global gdb_prompt
 
-    if [board_info $dest exists gdb_serial] {
+    if {[board_info $dest exists gdb_serial]} {
 	set serial [board_info $dest gdb_serial]
-    } elseif [board_info $dest exists serial] {
+    } elseif {[board_info $dest exists serial]} {
 	set serial [board_info $dest serial]
     } else {
 	set serial [board_info $dest netport]
@@ -135,11 +135,11 @@ proc gdb_stub_startup { dest } {
 
     set is_running_stub 0
 
-    if [gdb_stub_remote_check $dest] {
+    if {[gdb_stub_remote_check $dest]} {
 	set is_running_stub 1
     }
 
-    if [board_info $dest exists serial] {
+    if {[board_info $dest exists serial]} {
         set serial [board_info $dest serial]
     } else {
 	set serial [board_info $dest netport]
@@ -165,14 +165,14 @@ proc gdb_stub_startup { dest } {
 
 	verbose "building loader"
 	set loader "loader"
-	if ![file exists $loader] {
-	    if [board_info $dest exists gdb_stub_offset] {
+	if {![file exists $loader]} {
+	    if {[board_info $dest exists gdb_stub_offset]} {
 		set result [target_compile "${libdir}/stub-loader.c" $loader executable "libs=-Wl,-Ttext,[board_info $dest gdb_stub_offset]"]
 	    } else {
 		set result [target_compile "${libdir}/stub-loader.c" $loader executable "ldscript=[board_info $dest gdb_stub_ldscript]"]
 	    }
 	    verbose "result is $result"
-	    if [is_remote host] {
+	    if {[is_remote host]} {
 		set loader [remote_download host $loader]
 	    }
 	}
@@ -194,7 +194,7 @@ proc gdb_stub_startup { dest } {
 	    }
 	}
 
-	if [board_info $dest exists serial] {
+	if {[board_info $dest exists serial]} {
 	    set serial [board_info $dest serial]
 	} else {
 	    set serial [board_info $dest netport]
@@ -215,7 +215,7 @@ proc gdb_stub_startup { dest } {
 
 	# We only send the offset if gdb_load_offset is set. Otherwise, we
 	# assume that sending the offset isn't needed.
-	if [board_info $dest exists gdb_load_offset] {
+	if {[board_info $dest exists gdb_load_offset]} {
 	    remote_send host "load $loader [board_info $dest gdb_stub_offset]\n"
 	} else {
 	    remote_send host "load $loader\n"
@@ -362,7 +362,7 @@ proc gdb_stub_start { dest } {
 	-re "$gdb_prompt" { }
     }
     # This is needed for the SparcLite. Whee.
-    if [board_info $dest exists gdb,start_symbol] {
+    if {[board_info $dest exists gdb,start_symbol]} {
 	set start_comm "jump *[board_info $dest gdb,start_symbol]\n"
     } else {
 	set start_comm "jump *start\n"
@@ -494,12 +494,12 @@ proc gdb_stub_load { dest prog args } {
 
     if { $status == 0 } {
 	return [list "pass" $output]
-    } else if { $status > 0 } {
+    } elseif { $status > 0 } {
 	return [list "fail" $output]
     } else {
 	global gdb_stub_retry
 
-	if ![info exists gdb_stub_retry] {
+	if {![info exists gdb_stub_retry]} {
 	    set gdb_stub_retry 1
 
 	    set result [eval gdb_stub_load \{$dest\} \{$prog\} $args]
@@ -521,8 +521,8 @@ proc gdb_stub_ld { dest prog } {
     global gdb_prompt
     global GDB
 
-    if ![board_info $dest exists gdb_is_running] {
-	if ![gdb_stub_restart $dest] {
+    if {![board_info $dest exists gdb_is_running]} {
+	if {![gdb_stub_restart $dest]} {
 	    return 0
 	}
     }
@@ -555,9 +555,9 @@ proc gdb_stub_ld { dest prog } {
     # just in case there are old breakpoints lying around.
     gdb_stub_delete_breakpoints
 
-    if [board_info $dest exists gdb_serial] {
+    if {[board_info $dest exists gdb_serial]} {
 	set serial [board_info $dest gdb_serial]
-    } elseif [board_info $dest exists serial] {
+    } elseif {[board_info $dest exists serial]} {
 	set serial [board_info $dest serial]
     } else {
 	set serial [board_info $dest netport]
@@ -578,7 +578,7 @@ proc gdb_stub_ld { dest prog } {
 	}
     }
 
-    if [board_info $dest exists gdb_load_offset] {
+    if {[board_info $dest exists gdb_load_offset]} {
 	set offset "[board_info $dest gdb_load_offset]"
     } else {
 	set offset ""
@@ -612,7 +612,7 @@ proc gdb_stub_retry_ld { dest prog } {
     global gdb_stub_retry_ld
 
     remote_reboot $dest
-    if [info exists gdb_stub_retry_ld] {
+    if {[info exists gdb_stub_retry_ld]} {
 	unset gdb_stub_retry_ld
 	return 0
     } else {
@@ -620,7 +620,7 @@ proc gdb_stub_retry_ld { dest prog } {
     }
     gdb_stub_restart $dest
     set status [gdb_stub_ld $dest $prog]
-    if [info exists gdb_stub_retry_ld] {
+    if {[info exists gdb_stub_retry_ld]} {
 	unset gdb_stub_retry_ld
     }
     return $status
@@ -629,7 +629,7 @@ proc gdb_stub_retry_ld { dest prog } {
 proc gdb_stub_close { dest } {
     global board_info
     set name [board_info $dest name]
-    if [info exists board_info($name,gdb_is_running)] {
+    if {[info exists board_info($name,gdb_is_running)]} {
 	unset board_info($name,gdb_is_running)
     }
     return [remote_close host]

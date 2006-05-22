@@ -28,7 +28,7 @@ load_generic_config "i960"
 process_multilib_options ""
 
 # We want to strip executables before downloading them via xmodem.
-if ![board_info $board exists strip] {
+if {![board_info $board exists strip]} {
     set tempfil [lookfor_file $tool_root_dir binutils/strip]
     if { $tempfil != "" } {
 	set_board_info strip $tempfil

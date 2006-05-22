@@ -25,7 +25,7 @@ load_generic_config "proelf"
 # GDB needs to use "target op50n" to talk to the board.
 set_board_info gdb_protocol  "op50n"
 
-if ![board_info $board exists output_format] {
+if {![board_info $board exists output_format]} {
     set tempfil [lookfor_file $tool_root_dir binutils/objcopy]
     if { $tempfil != "" } {
 	set_board_info objcopy $tempfil

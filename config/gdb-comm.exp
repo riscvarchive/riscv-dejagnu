@@ -23,7 +23,7 @@
 # Load up some standard junk.
 load_lib remote.exp
 
-if ![info exists board] {
+if {![info exists board]} {
     perror "$board must be set before loading gdb-comm"
 }
 
@@ -69,7 +69,7 @@ proc gdb_comm_file_cmd { arg } {
 
     # The "file" command loads up a new symbol file for gdb, deal with
     # the various messages it might spew out.
-    if [is_remote host] {
+    if {[is_remote host]} {
 	set arg [remote_download host $arg a.out]
     }
     remote_send host "file $arg\n"
@@ -129,7 +129,7 @@ proc gdb_comm_file_cmd { arg } {
 proc gdb_comm_go_idle { } {
     global gdb_prompt
 
-    if ![board_info host exists fileid] {
+    if {![board_info host exists fileid]} {
 	return -1
     }
 
@@ -157,20 +157,20 @@ proc gdb_comm_start { dest } {
 
     # The variable gdb_prompt is a regexp which matches the gdb prompt.  Set it
     # if it is not already set.
-    if ![board_info $dest exists gdb_prompt] then {
+    if {![board_info $dest exists gdb_prompt]} then {
 	set gdb_prompt "\\(gdb\\)"
     } else {
 	set gdb_prompt [board_info $dest gdb_prompt]
     }
     # Similarly for GDB.  Look in the object directory for gdb if we aren't
     # provided with one.
-    if ![info exists GDB] then {
+    if {![info exists GDB]} then {
 	set GDB "[lookfor_file ${tool_root_dir} gdb/gdb]"
 	if { $GDB == "" } {
 	    set GDB [transform gdb]
 	}
     }
-    if [board_info host exists gdb_opts] {
+    if {[board_info host exists gdb_opts]} {
 	set gdb_opts [board_info host gdb_opts]
     } else {
 	set gdb_opts ""
@@ -227,13 +227,13 @@ proc quit_gdb { } {
 	    }
 	}
     }
-    if ![is_remote host] {
+    if {![is_remote host]} {
 	remote_close host
     }
 }
 
 proc gdb_comm_leave { } {
-    if [is_remote host] {
+    if {[is_remote host]} {
 	quit_gdb
     } else {
 	gdb_comm_go_idle
@@ -259,7 +259,7 @@ proc gdb_comm_load { dest prog args } {
 	}
     }
     # Make sure the file we're supposed to load really exists.
-    if ![file exists $prog] then {
+    if {![file exists $prog]} then {
 	perror "$prog does not exist."
         return [list "untested" ""]
     }
@@ -278,7 +278,7 @@ proc gdb_comm_load { dest prog args } {
 	gdb_comm_leave
 	return [gdb_comm_reload $dest $prog $args]
     }
-    if [board_info $dest exists gdb_sect_offset] {
+    if {[board_info $dest exists gdb_sect_offset]} {
 	set textoff [board_info $dest gdb_sect_offset]
 	remote_send host "sect .text $textoff\n"
 	remote_expect host 10 {
@@ -315,18 +315,18 @@ proc gdb_comm_load { dest prog args } {
     gdb_comm_add_breakpoint abort
 
     set protocol [board_info $dest gdb_protocol]
-    if [board_info $dest exists gdb_serial] {
+    if {[board_info $dest exists gdb_serial]} {
 	set targetname [board_info $dest gdb_serial]
-    } elseif [board_info $dest exists netport] {
+    } elseif {[board_info $dest exists netport]} {
 	set targetname [board_info $dest netport]
     } else {
-	if [board_info $dest exists serial] {
+	if {[board_info $dest exists serial]} {
 	    set targetname [board_info $dest serial]
 	} else {
 	    set targetname ""
 	}
     }
-    if [board_info $dest exists baud] {
+    if {[board_info $dest exists baud]} {
 	remote_send host "set remotebaud [board_info $dest baud]\n"
 	remote_expect host 10 {
 	    -re ".*$gdb_prompt $" {}
@@ -369,7 +369,7 @@ proc gdb_comm_load { dest prog args } {
 	}
     }
 
-    if [target_info exists gdb_init_command] {
+    if {[target_info exists gdb_init_command]} {
 	remote_send host "[target_info gdb_init_command]\n"
 	remote_expect host 10 {
 	    -re ".*$gdb_prompt $" { }
@@ -381,7 +381,7 @@ proc gdb_comm_load { dest prog args } {
     }
     # Now download the executable to the target board.  If communications
     # with the target are very slow the timeout might need to be increased.
-    if [board_info $dest exists gdb_load_offset] {
+    if {[board_info $dest exists gdb_load_offset]} {
 	remote_send host "load $prog [board_info $dest gdb_load_offset]\n"
     } else {
 	remote_send host "load\n"
@@ -406,13 +406,13 @@ proc gdb_comm_load { dest prog args } {
     # Now start up the program and look for our magic breakpoints.
     # And a whole lot of other magic stuff too.
 
-    if [board_info $dest exists gdb_run_command] {
+    if {[board_info $dest exists gdb_run_command]} {
 	remote_send host "[board_info $dest gdb_run_command]\n"
     } else {
 	remote_send host "run\n"
     }
     # FIXME: The value 300 below should be a parameter.
-    if [board_info $dest exists testcase_timeout] {
+    if {[board_info $dest exists testcase_timeout]} {
 	set testcase_timeout [board_info $dest testcase_timeout]
     } else {
 	set testcase_timeout 300
@@ -460,7 +460,7 @@ proc gdb_comm_load { dest prog args } {
 	    if { $result == 0 } {
 		return [list "pass" $output]
 	    }
-	    if [board_info $dest exists exit_statuses_bad] {
+	    if {[board_info $dest exists exit_statuses_bad]} {
 		return [list "pass" $output]
 	    }
 	    return [list "fail" $output]
@@ -501,7 +501,7 @@ proc gdb_comm_load { dest prog args } {
 	}
 	default {
 	    gdb_comm_leave
-	    if [board_info $dest exists unreliable] {
+	    if {[board_info $dest exists unreliable]} {
 		if { [board_info $dest unreliable] > 0 } {
 		    global board_info
 		    set name [board_info $dest name]

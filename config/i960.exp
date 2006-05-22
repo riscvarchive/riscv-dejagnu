@@ -28,7 +28,7 @@ proc ${board}_init { dest } {
     set prompt [board_info $dest shell_prompt]
     set done 0
 
-    if ![info exists i960_try_count] {
+    if {![info exists i960_try_count]} {
 	set i960_try_count 1
     }
 
@@ -56,13 +56,13 @@ proc ${board}_init { dest } {
 	    remote_reboot $dest
 	}
     }
-    if [info exists i960_try_count] {
+    if {[info exists i960_try_count]} {
 	unset i960_try_count
     }
 }
 
 proc i960_ld { dest prog } {
-    if ![file exists $prog] {
+    if {![file exists $prog]} {
 	perror "$prog does not exist."
         return "untested"
     }
@@ -105,7 +105,7 @@ proc i960_ld { dest prog } {
     } else {
 	set id2 [exp_open -leaveopen -i $id]
     }
-    if [catch "exec sx -bX a.out <@$id2 >@$id2 2>/dev/null" error] {
+    if {[catch "exec sx -bX a.out <@$id2 >@$id2 2>/dev/null" error]} {
 	perror "exec sx failed: $error"
     }
     if { [board_info $dest connect] == "telnet" } {

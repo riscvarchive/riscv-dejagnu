@@ -34,11 +34,11 @@ set_board_info output_end "\[\r\n\](Exception Cause|\[0-9a-z\]+ \[0-9a-z\]+ brea
 # Reset the prompt to what GDB needs.
 proc ${board}_init { dest } {
     global doing_ddb_init
-    if [is_remote host] {
+    if {[is_remote host]} {
 	return
     }
 
-    if ![info exists doing_ddb_init] {
+    if {![info exists doing_ddb_init]} {
 	set doing_ddb_init 1
 
 	for { set i 1 } { $i <= 3 } { incr i } {
@@ -85,7 +85,7 @@ set_board_info send_initial_cr  1
 set_board_info dont_wait_for_prompt 1
 
 # If no output format is specified, use objcopy.
-if ![board_info $board exists output_format] {
+if {![board_info $board exists output_format]} {
     set tempfil [lookfor_file $tool_root_dir binutils/objcopy]
     if { $tempfil != "" } {
 	set_board_info objcopy $tempfil

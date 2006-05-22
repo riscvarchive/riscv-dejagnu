@@ -1,5 +1,24 @@
 2006-05-22  Ben Elliston  <bje@gnu.org>
 
+	* runtest.exp, baseboards/basic-sim.exp, baseboards/cf.exp,
+	baseboards/cris-sim.exp, baseboards/i960-cyclone.exp,
+	baseboards/mcore-moto-sim.exp, baseboards/mips64vr4100-sim.exp,
+	baseboards/mmixware-sim.exp, baseboards/op50n.exp,
+	baseboards/rom68k-idp.exp, baseboards/sparclite-sim-le.exp,
+	baseboards/usparc-cygmon.exp, config/base-config.exp,
+	config/base68k.exp, config/ddb-ether.exp, config/ddb.exp,
+	config/dos.exp, config/gdb-comm.exp, config/gdb_stub.exp,
+	config/i386-bozo.exp, config/i960.exp, config/m68k-emc.exp,
+	config/netware.exp, config/sid.exp, config/sim.exp,
+	config/tic80.exp, config/unix.exp, config/vxworks.exp,
+	lib/debugger.exp, lib/dejagnu.exp, lib/dg.exp, lib/framework.exp,
+	lib/ftp.exp, lib/kermit.exp, lib/libgloss.exp, lib/remote.exp,
+	lib/rlogin.exp, lib/rsh.exp, lib/target.exp, lib/targetdb.exp,
+	lib/telnet.exp, lib/tip.exp, lib/utils.exp: Put braces around if
+	expressions throughout.
+
+2006-05-22  Ben Elliston  <bje@gnu.org>
+
 	* lib/framework.exp (open_logs): Use file join where applicable.
 	* lib/libgloss.exp (libgloss_link_flags, newlib_link_flags,
 	newlib_include_flags, g++_link_flags, libstdc++_link_flags,

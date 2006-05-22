@@ -37,17 +37,17 @@ proc telnet_open { hostname args } {
     }
 
     set port 23
-    if [board_info $hostname exists name] {
+    if {[board_info $hostname exists name]} {
 	set connhost [board_info $hostname name]
     } else {
 	set connhost $hostname
     }
 
-    if [board_info $connhost exists hostname] {
+    if {[board_info $connhost exists hostname]} {
 	set hostname [board_info $connhost hostname]
     }
 
-    if [file exists /usr/kerberos/bin/telnet] {
+    if {[file exists /usr/kerberos/bin/telnet]} {
 	set telnet /usr/kerberos/bin/telnet
     } else {
 	set telnet telnet
@@ -55,12 +55,12 @@ proc telnet_open { hostname args } {
 
     # Instead of unsetting it, let's return it. One connection at a
     # time, please.
-    if [board_info $connhost exists fileid] {
+    if {[board_info $connhost exists fileid]} {
 	return [board_info $connhost fileid]
     }
 
     # Get the hostname and port number from the config array.
-    if [board_info $connhost exists netport] {
+    if {[board_info $connhost exists netport]} {
 	set type $hostname
 	set hosttmp [split [board_info $connhost netport] ":"]
 	set hostname [lindex $hosttmp 0]
@@ -72,10 +72,11 @@ proc telnet_open { hostname args } {
 	set type target
     }
 
-    if [board_info $connhost exists shell_prompt] {
+    if {[board_info $connhost exists shell_prompt]} {
         set shell_prompt [board_info $connhost shell_prompt]
     }
-    if ![info exists shell_prompt] {	# if no prompt, then set it to something generic
+    if {![info exists shell_prompt]} {
+	# If no prompt, then set it to something generic.
 	set shell_prompt ".*> "
     }
 
@@ -97,11 +98,11 @@ proc telnet_open { hostname args } {
 		set result 0
 	    }
 	    -re "nt Name:|ogin:" {
-		if [board_info $connhost exists telnet_username] {
+		if {[board_info $connhost exists telnet_username]} {
 		    exp_send "[board_info $connhost telnet_username]\n"
 		    exp_continue
 		}
-		if [board_info $connhost exists username] {
+		if {[board_info $connhost exists username]} {
 		    exp_send "[board_info $connhost username]\n"
 		    exp_continue
 		}
@@ -109,11 +110,11 @@ proc telnet_open { hostname args } {
 		break
 	    }
 	    "assword:" {
-		if [board_info $connhost exists telnet_password] {
+		if {[board_info $connhost exists telnet_password]} {
 		    exp_send "[board_info $connhost telnet_password]\n"
 		    exp_continue
 		}
-		if [board_info $connhost exists password] {
+		if {[board_info $connhost exists password]} {
 		    exp_send "[board_info $connhost password]\n"
 		    exp_continue
 		}
@@ -145,7 +146,7 @@ proc telnet_open { hostname args } {
 		if { $raw || [board_info $connhost exists dont_wait_for_prompt] } {
 		    set result 0
 		} else {
-		    if [board_info $connhost exists send_initial_cr] {
+		    if {[board_info $connhost exists send_initial_cr]} {
 			exp_send "\n"
 		    }
 		    exp_continue
@@ -191,8 +192,8 @@ proc telnet_open { hostname args } {
     # We look for this here again cause it means something went wrong,
     # and it doesn't always show up in the expect in buffer till the
     # server times out.
-    if [info exists expect_out(buffer)] {
-	if [regexp "assword:|ogin:" $expect_out(buffer)] {
+    if {[info exists expect_out(buffer)]} {
+	if {[regexp "assword:|ogin:" $expect_out(buffer)]} {
 	    perror "telnet: need to supply a login and password."
 	}
     }
@@ -212,7 +213,7 @@ proc telnet_open { hostname args } {
 # Put the Telnet connection to HOSTNAME into binary mode.
 #
 proc telnet_binary { hostname } {
-    if [board_info $hostname exists fileid] {
+    if {[board_info $hostname exists fileid]} {
 	remote_send $hostname ""
 	remote_expect $hostname 5 {
 	    -re "telnet> *$" {}

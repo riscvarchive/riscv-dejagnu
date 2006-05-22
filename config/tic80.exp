@@ -39,7 +39,7 @@ proc tic80_load { dest prog args } {
     set result [remote_wait $dos_box 300]
     set output [lindex $result 1]
     if { [lindex $result 0] < 0 } {
-	if [board_info $dos_box exists fileid] {
+	if {[board_info $dos_box exists fileid]} {
 	    dos_interrupt_job $dos_box
 	} else {
 	    remote_close $dos_box

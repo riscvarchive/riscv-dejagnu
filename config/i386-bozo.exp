@@ -32,7 +32,7 @@ proc ${board}_init { args } {
 
 proc ${board}_close { board } {
     set linux_box [board_info $board linux_box]
-    if [board_info $linux_box exists fileid] {
+    if {[board_info $linux_box exists fileid]} {
 	remote_send $linux_box "\003"
 	remote_close $linux_box
     }
