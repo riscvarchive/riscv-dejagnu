@@ -293,7 +293,7 @@ proc clone_output { message } {
     }
 
     regsub "^\[ \t\]*(\[^ \t\]+).*$" "$message" "\\1" firstword
-    case "$firstword" in {
+    switch "$firstword" {
 	{"PASS:" "XFAIL:" "KFAIL:" "UNRESOLVED:" "UNSUPPORTED:" "UNTESTED:"} {
 	    if $all_flag {
 		send_user "$message\n"
@@ -623,7 +623,7 @@ proc clear_xfail { args } {
     set argc [ llength $args ]
     for { set i 0 } { $i < $argc } { incr i } {
 	set sub_arg [ lindex $args $i ]
-	case $sub_arg in {
+	switch $sub_arg {
 	    "*-*-*" {			# is a configuration triplet
 		if [istarget $sub_arg] {
 		    set xfail_flag 0
@@ -644,7 +644,7 @@ proc clear_kfail { args } {
     set argc [ llength $args ]
     for { set i 0 } { $i < $argc } { incr i } {
 	set sub_arg [ lindex $args $i ]
-	case $sub_arg in {
+	switch $sub_arg {
 	    "*-*-*" {			# is a configuration triplet
 		if [istarget $sub_arg] {
 		    set kfail_flag 0
@@ -897,12 +897,14 @@ proc kfail { bugid message } {
 # Set warning threshold.
 #
 proc set_warning_threshold { threshold } {
+    global warning_threshold
     set warning_threshold $threshold
 }
 
 # Get warning threshold.
 #
 proc get_warning_threshold { } {
+    global warning_threshold
     return $warning_threshold
 }
 

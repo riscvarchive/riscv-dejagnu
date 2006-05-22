@@ -86,7 +86,8 @@ proc local_exec { commandline inp outp timeout } {
     # doesn't assign process groups correctly and we can't reliably kill
     # programs that bear children. We can't use tcl's exec because it has
     # no way to timeout programs that hang. *sigh*
-    #
+
+    global errorInfo
     if { "$inp" == "" && "$outp" == "" } {
 	set id -1
 	set result [catch "eval spawn \{${commandline}\}" pid]
@@ -126,7 +127,6 @@ proc local_exec { commandline inp outp timeout } {
 	}
 
 	if { $result != 0 } {
-	    global errorInfo
 	    return [list -1 "open of $commandline $inp $outp failed: $errorInfo"]
 	}
 	set pid [pid $id]
@@ -138,7 +138,6 @@ proc local_exec { commandline inp outp timeout } {
     verbose "pid is $pid $pgid"
     if { $result != 0 || $result2 != 0 } {
 	# This shouldn't happen.
-	global errorInfo
 	if [info exists errorInfo] {
 	    set foo $errorInfo
 	} else {
@@ -485,7 +484,7 @@ proc standard_upload { dest srcfile destfile } {
 	catch {exec chmod u+rw $destfile}
     }
     if { $result != 0 || $output != "" } {
-	perror "remote_upload to $dest of $file to $destfile: $output"
+	perror "remote_upload to $dest of $srcfile to $destfile: $output"
 	return ""
     } else {
 	return $destfile

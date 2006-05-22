@@ -759,7 +759,7 @@ proc process_multilib_options { args } {
 	if { $x == "" } {
 	    continue
 	}
-	case $x in {
+	switch $x {
 	    { aout } {
 		set_board_info obj_format "a.out"
 	    }

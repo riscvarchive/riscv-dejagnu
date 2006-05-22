@@ -1,5 +1,18 @@
 2006-05-22  Ben Elliston  <bje@gnu.org>
 
+	* runtest.exp: Use switch, not case.
+	* lib/framework.exp (clone_output): Likewise.
+	(clear_xfail): Likewise.
+	(clear_kfail): Likewise.
+	(set_warning_threshold): Make warning_threshold global.
+	(get_warning_threshold): Likewise.
+	* lib/libgloss.exp (process_multilib_options): Use switch, not
+	case.
+	* lib/remote.exp (local_exec): Only run global errorInfo once.
+	(standard_upload): Fix error in variable use ($file -> $srcfile).
+	* lib/utils.exp (grep): Use switch, not case.
+	(slay): Fix mismatched bracket.
+
 	* lib/debugger.exp (watcharray): Use switch, not case.
 	(watchvar): Likewise.
 	(bt): Add an explanatory comment.

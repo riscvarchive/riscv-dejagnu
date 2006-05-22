@@ -181,7 +181,7 @@ proc grep { args } {
 	if [regexp -- "$pattern" $cur_line match] {
 	    if ![string match "" $options] {
 		foreach opt $options {
-		    case $opt in {
+		    switch $opt {
 			"line" {
 			    lappend grep_out [concat $i $match]
 			}
@@ -229,7 +229,7 @@ proc slay { name } {
 	if ![string match "*expect*slay*" $line] {
 	    if [string match "*$name*" $line] {
 		set pid [lindex $line 0]
-		catch "exec kill -9 $pid]"
+		catch "exec kill -9 $pid"
 		verbose "Killing $name, pid = $pid\n"
 	    }
 	}
