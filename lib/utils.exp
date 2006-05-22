@@ -138,11 +138,11 @@ proc which { file } {
 
     foreach i $path {
 	verbose "Checking against $i" 3
-	if [file exists $i/$file] {
-	    if [file executable $i/$file] {
-		return $i/$file
+	if [file exists [file join $i $file]] {
+	    if [file executable [file join $i $file]] {
+		return [file join $i $file]
 	    } else {
-		warning "$i/$file exists but is not an executable"
+		warning "[file join $i $file] exists but is not an executable"
 	    }
 	}
     }

@@ -340,7 +340,7 @@ proc search_and_load_file { type filelist dirlist } {
     foreach dir $dirlist {
 	foreach initfile $filelist {
 	    verbose "Looking for $type ${dir}/${initfile}" 2
-	    if [file exists ${dir}/${initfile}] {
+	    if [file exists [file join ${dir} ${initfile}]] {
 		set found 1
 		set error ""
 		if { ${type} != "library file" } {
@@ -573,8 +573,8 @@ if [string match "" $logname] {
 proc lookfor_file { dir name } {
     foreach x ".. ../.. ../../.. ../../../.." {
 	verbose "$dir/$name" 2
-	if [file exists $dir/$name] {
-	    return $dir/$name
+	if [file exists [file join $dir $name]] {
+	    return [file join $dir $name]
 	}
 	set dir [remote_file build dirname $dir]
     }
@@ -638,7 +638,7 @@ if [expr [string match "." $objdir] || [string match $srcdir $objdir]] {
 # Well, this just demonstrates the real problem...
 if ![info exists tool_root_dir] {
     set tool_root_dir [file dirname $objdir]
-    if [file exists "$tool_root_dir/testsuite"] {
+    if [file exists [file join $tool_root_dir testsuite]] {
 	set tool_root_dir [file dirname $tool_root_dir]
     }
 }
@@ -686,9 +686,9 @@ if [expr  { $build_triplet == ""  &&  $host_triplet == ""} ] {
     # find config.guess
     foreach dir "$libdir $libdir/libexec $libdir/.. $execpath $srcdir $srcdir/.. $srcdir/../.." {
 	verbose "Looking for ${dir}/config.guess" 2
-	if [file exists ${dir}/config.guess] {
-	    set config_guess ${dir}/config.guess
-	    verbose "Found ${dir}/config.guess"
+	if [file exists [file join ${dir} config.guess]] {
+	    set config_guess [file join [${dir} config.guess]]
+	    verbose "Found [file join ${dir} config.guess]"
 	    break
 	}
     }
@@ -933,7 +933,7 @@ proc load_tool_init { file } {
 
     set loaded_libs($file) ""
 
-    if [file exists ${srcdir}/lib/$file] {
+    if [file exists [file join ${srcdir} lib $file]] {
 	verbose "Loading library file ${srcdir}/lib/$file"
 	if { [catch "uplevel #0 source ${srcdir}/lib/$file"] == 1 } {
 	    send_error "ERROR: tcl error sourcing library file ${srcdir}/lib/$file.\n"

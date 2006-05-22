@@ -86,7 +86,7 @@ proc libgloss_link_flags { args } {
     if { $gloss_srcdir == "" } {
 	return ""
     }
-    if [file exists $gccpath/libgloss/$cpu] {
+    if [file exists [file join $gccpath libgloss $cpu]] {
 	verbose "Libgloss path is $gccpath/libgloss/$cpu" 2
 	return "-B$gccpath/libgloss/$cpu/ -L$gccpath/libgloss/$cpu -L$gloss_srcdir"
     } else {
@@ -127,7 +127,7 @@ proc newlib_link_flags { args } {
     set gccpath "[get_multilibs]"
 
     verbose "Looking for $gccpath/newlib"
-    if [file exists $gccpath/newlib] {
+    if [file exists [file join $gccpath newlib]] {
 	verbose "Newlib path is $gccpath/newlib"
 	return "$result -B$gccpath/newlib/ -L$gccpath/newlib"
     } else {
@@ -149,7 +149,7 @@ proc newlib_include_flags { args } {
 
     set gccpath "[get_multilibs]"
 
-    if [file exists $gccpath/newlib] {
+    if [file exists [file join $gccpath newlib]] {
 	verbose "Newlib path is $gccpath/newlib"
 
 	set newlib_dir [lookfor_file ${srcdir} newlib/libc/include/assert.h]
@@ -266,25 +266,25 @@ proc g++_link_flags { args } {
     set ld_library_path "."
 
     if { $gccpath != "" } {
-	if [file exists "${gccpath}/lib/libstdc++.a"] {
+	if [file exists [file join ${gccpath} lib libstdc++.a]] {
 	    append ld_library_path ":${gccpath}/lib"
 	}
-	if [file exists "${gccpath}/libg++/libg++.a"] {
+	if [file exists [file join ${gccpath} libg++ libg++.a]] {
 	    append flags "-L${gccpath}/libg++ "
 	    append ld_library_path ":${gccpath}/libg++"
 	}
-	if [file exists "${gccpath}/libstdc++/libstdc++.a"] {
+	if [file exists [file join ${gccpath} libstdc++ libstdc++.a]] {
 	    append flags "-L${gccpath}/libstdc++ "
 	    append ld_library_path ":${gccpath}/libstdc++"
 	}
-	if [file exists "${gccpath}/libstdc++-v3/src/.libs/libstdc++.a"] {
+	if [file exists [file join ${gccpath} libstdc++-v3 src .libs libstdc++.a]] {
 	    append flags "-L${gccpath}/libstdc++-v3/src/.libs "
 	    append ld_library_path ":${gccpath}/libstdc++-v3/src/.libs"
 	}
-	if [file exists "${gccpath}/libiberty/libiberty.a"] {
+	if [file exists [file join ${gccpath} libiberty libiberty.a]] {
 	    append flags "-L${gccpath}/libiberty "
 	}
-	if [file exists "${gccpath}/librx/librx.a"] {
+	if [file exists [file join ${gccpath} librx librx.a]] {
 	    append flags "-L${gccpath}/librx "
 	}
     } else {
@@ -354,14 +354,14 @@ proc libstdc++_link_flags { args } {
     set flags ""
 
     if { $gccpath != "" } {
-	if [file exists "${gccpath}/libstdc++/libstdc++.a"] {
+	if [file exists [file join ${gccpath} libstdc++ libstdc++.a]] {
 	    append flags "-L${gccpath}/libstdc++ "
 	    append ld_library_path ":${gccpath}/libstdc++"
 	}
-	if [file exists "${gccpath}/libiberty/libiberty.a"] {
+	if [file exists [file join ${gccpath} libiberty libiberty.a]] {
 	    append flags "-L${gccpath}/libiberty "
 	}
-	if [file exists "${gccpath}/librx/librx.a"] {
+	if [file exists [file join ${gccpath} librx librx.a]] {
 	    append flags "-L${gccpath}/librx "
 	}
     } else {
@@ -585,7 +585,7 @@ proc get_multilibs { args } {
 
     verbose "gccpath is $gccpath" 3
 
-    if [file exists $multitop/$gccpath] {
+    if [file exists [file join $multitop $gccpath]] {
 	verbose "GCC path is $multitop/$gccpath" 3
 	if { [llength $args] == 0 } {
 	    set board_info($target_board,multitop) "$multitop/$gccpath"
@@ -894,7 +894,7 @@ proc winsup_include_flags { args } {
 
     set gccpath "[get_multilibs]"
 
-    if [file exists $gccpath/winsup] {
+    if [file exists [file join $gccpath winsup]] {
 	verbose "Winsup path is $gccpath/winsup"
 
 	set winsup_dir [lookfor_file ${srcdir} winsup/include/windows.h]
@@ -925,7 +925,7 @@ proc winsup_link_flags { args } {
     set gccpath "[get_multilibs]"
 
     verbose "Looking for $gccpath/winsup"
-    if [file exists $gccpath/winsup] {
+    if [file exists [file join $gccpath winsup]] {
 	verbose "Winsup path is $gccpath/newlib"
 	return "-B$gccpath/winsup/ -L$gccpath/winsup"
     } else {

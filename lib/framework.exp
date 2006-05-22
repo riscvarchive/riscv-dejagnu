@@ -71,10 +71,10 @@ proc open_logs { } {
 	set tool testrun
     }
     catch "exec rm -f $outdir/$tool.sum"
-    set sum_file [open "$outdir/$tool.sum" w]
+    set sum_file [open [file join $outdir $tool.sum] w]
     if { $xml } {
 	catch "exec rm -f $outdir/$tool.xml"
-	set xml_file [open "$outdir/$tool.xml" w]
+	set xml_file [open [file join $outdir $tool.xml] w]
         xml_output "<?xml version=\"1.0\"?>"
         insertdtd
         xml_output "<testsuite>"

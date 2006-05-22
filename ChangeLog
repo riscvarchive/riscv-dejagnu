@@ -1,5 +1,13 @@
 2006-05-22  Ben Elliston  <bje@gnu.org>
 
+	* lib/framework.exp (open_logs): Use file join where applicable.
+	* lib/libgloss.exp (libgloss_link_flags, newlib_link_flags,
+	newlib_include_flags, g++_link_flags, libstdc++_link_flags,
+	get_multilibs, winsup_include_flags, winsup_link_flags): Likewise.
+	* lib/utils.exp (which): Likewise.
+	* runtest.exp (search_and_load_file, lookfor_file,
+	load_tool_init): Likewise.
+
 	* lib/debugger.exp (watcharray): Add `array' parameter.  Rename
 	`type' parameter to `op' and update all uses in the proc.
 	(watchvar): Add `ignore' parameter for scalar variables.
