@@ -82,7 +82,7 @@ proc dumpwatch { args } {
 #
 proc watcharray { element type} {
     upvar [set array]($element) avar
-    case $type {
+    switch $type {
 	"w" { puts "New value of [set array]($element) is $avar" }
 	"r" { puts "[set array]($element) (= $avar) was just read" }
 	"u" { puts "[set array]($element) (= $avar) was just unset" }
@@ -91,7 +91,7 @@ proc watcharray { element type} {
 
 proc watchvar { v type } {
     upvar $v var
-    case $type {
+    switch $type {
 	"w" { puts "New value of $v is $var" }
 	"r" { puts "$v (=$var) was just read" }
 	"u" { puts "$v (=$var) was just unset" }
@@ -188,6 +188,7 @@ proc quit { } {
 }
 
 proc bt { } {
+    # The w command is provided by the Tcl debugger.
     puts "[w]"
 }
 

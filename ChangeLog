@@ -1,3 +1,9 @@
+2006-05-22  Ben Elliston  <bje@gnu.org>
+
+	* lib/debugger.exp (watcharray): Use switch, not case.
+	(watchvar): Likewise.
+	(bt): Add an explanatory comment.
+
 2006-04-03  Ben Elliston  <bje@gnu.org>
 
 	* lib/debugger.exp, lib/dejagnu.exp, lib/dg.exp,
