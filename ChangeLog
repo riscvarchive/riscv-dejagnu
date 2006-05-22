@@ -1,5 +1,11 @@
 2006-05-22  Ben Elliston  <bje@gnu.org>
 
+	* baseboards/cris-sim.exp: Use switch, not case.
+	* baseboards/h8300.exp: Likewise.
+	* config/base68k.exp (base68k_ld): Brace an if expression.
+
+2006-05-22  Ben Elliston  <bje@gnu.org>
+
 	* runtest.exp, baseboards/basic-sim.exp, baseboards/cf.exp,
 	baseboards/cris-sim.exp, baseboards/i960-cyclone.exp,
 	baseboards/mcore-moto-sim.exp, baseboards/mips64vr4100-sim.exp,

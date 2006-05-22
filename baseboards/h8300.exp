@@ -67,7 +67,7 @@ foreach x $board_variant_list {
     regsub -all "^\[ \t\]*" "$x" "" x
     regsub -all "\[ \t\]*$" "$x" "" x
 
-    case $x in {
+    switch $x {
 	{ h -mh } {
 	    set linker_script "h8300h.ld"
 	}

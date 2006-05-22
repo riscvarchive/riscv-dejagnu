@@ -105,7 +105,7 @@ proc base68k_ld { dest prog } {
 	    }
 	}
 	if { ! $got_p } {
-	    if $tries<=4 then {
+	    if { $tries <= 4 } then {
 		if { $tries == 3 } then {
 		    remote_reboot $dest
 		} else {
