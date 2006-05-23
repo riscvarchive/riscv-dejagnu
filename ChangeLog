@@ -1,3 +1,16 @@
+2006-05-23  Ben Elliston  <bje@gnu.org>
+
+	* config/gdb-comm.exp (gdb_comm_load): Brace some expressions.
+	* config/i960.exp (i960_spawn): Initialise status.
+	* config/netware.exp (${board}_init): Brace some if expressions.
+	* lib/dg.exp (dg-test): Brace some expressions.
+	* lib/framework.exp (clone_output, log_and_exit, log_summary,
+	record_test, pass, fail): Likewise.
+	* lib/libgloss.exp (get_multilibs): Likewise.
+	* lib/remote.exp (standard_transmit, unix_clean_filename,
+	remote_load, check_for_board_status, remote_expect): Likewise.
+	* lib/rsh.exp (rsh_exec): Likewise.
+
 2006-05-22  Ben Elliston  <bje@gnu.org>
 
 	* baseboards/cris-sim.exp: Use switch, not case.

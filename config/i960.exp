@@ -149,6 +149,7 @@ proc i960_spawn { dest prog args } {
 proc i960_wait { dest timeout } {
     set output ""
     set shell_prompt [board_info $dest shell_prompt]
+    set status -1
 
     remote_expect $dest $timeout {
 	-re " fault at \[0-9a-h\]+, subtype \[0-9a-h\]+" {

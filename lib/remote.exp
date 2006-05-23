@@ -512,6 +512,7 @@ proc call_remote { type proc dest args } {
 	    global board
 
 	    if {[info exists board]} {
+		# FIXME: WTF?
 		blooie
 	    }
 	    load_board_description $dest
@@ -608,7 +609,7 @@ proc standard_transmit {dest file} {
             catch "close $fd"
             return -1
         }
-	set chars [expr $chars + ([string length $cur_line] * 10)]
+	set chars [expr {$chars + ([string length $cur_line] * 10)}]
 	if { $chars > $baud } {
 	    sleep 1
 	    set chars 0
@@ -744,7 +745,7 @@ proc unix_clean_filename { dest file } {
 	    continue
 	}
 	if { $x == ".." } {
-	    set rlen [expr [llength $result] - 2]
+	    set rlen [expr {[llength $result] - 2}]
 	    if { $rlen >= 0 } {
 		set result [lrange $result 0 $rlen]
 	    } else {
@@ -891,7 +892,7 @@ proc remote_load { dest prog args } {
 	    }
 	}
     }
-    if $empty {
+    if {$empty} {
 	global sum_program
 
 	if {[info exists sum_program]} {
@@ -1146,7 +1147,7 @@ proc check_for_board_status  { variable } {
 	if { $result == "" } {
 	    return $nomatch_return
 	} else {
-	    return [expr $result]
+	    return [expr {$result}]
 	}
     } else {
 	return $nomatch_return
@@ -1193,7 +1194,7 @@ proc remote_expect { board timeout args } {
 
 	if { $x == "-i" || $x == "-timeout" || $x == "-ex" } {
 	    append res "$x "
-	    set next [expr ${i}+1]
+	    set next [expr {$i + 1}]
 	    append res "[lrange $args $next $next]"
 	    incr i
 	    continue
@@ -1204,7 +1205,7 @@ proc remote_expect { board timeout args } {
 	}
 	if { $x == "-re" } {
 	    append res "${x} "
-	    set next [expr ${i}+1]
+	    set next [expr {$i + 1}]
 	    set y [lrange $args $next $next]
 	    append res "${y} "
 	    set got_re 1

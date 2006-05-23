@@ -634,8 +634,8 @@ proc dg-test { args } {
 	return
     }
     set prog [lindex $args $i]
-    set tool_flags [lindex $args [expr $i + 1]]
-    set default_extra_tool_flags [lindex $args [expr $i + 2]]
+    set tool_flags [lindex $args [expr {$i + 1}]]
+    set default_extra_tool_flags [lindex $args [expr {$i + 2}]]
 
     set text "\[- A-Za-z0-9\.\;\"\_\:\'\`\(\)\!\#\=\+\?\&\*]*"
 
@@ -811,7 +811,7 @@ proc dg-test { args } {
     # FIXME: why?
     if { ${dg-interpreter-batch-mode} == 0 } {
 	# Catch excess errors (new bugs or incomplete testcases).
-	if ${dg-excess-errors-flag} {
+	if {${dg-excess-errors-flag}} {
 	    setup_xfail "*-*-*"
 	}
 	if {![string match "" $comp_output]} {

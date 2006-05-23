@@ -288,5 +288,5 @@ proc rsh_exec { boardname cmd args } {
     # Delete one trailing \n because that is what `exec' will do and we want
     # to behave identical to it.
     regsub "\n$" $output "" output
-    return [list [expr $status != 0] $output]
+    return [list [expr {$status != 0}] $output]
 }

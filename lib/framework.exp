@@ -295,7 +295,7 @@ proc clone_output { message } {
     regsub "^\[ \t\]*(\[^ \t\]+).*$" "$message" "\\1" firstword
     switch "$firstword" {
 	{"PASS:" "XFAIL:" "KFAIL:" "UNRESOLVED:" "UNSUPPORTED:" "UNTESTED:"} {
-	    if $all_flag {
+	    if {$all_flag} {
 		send_user "$message\n"
 		return "$message"
 	    } else {
@@ -352,7 +352,7 @@ proc log_and_exit {} {
     close_logs
     cleanup
     verbose -log "runtest completed at [timestamp -format %c]"
-    if $mail_logs {
+    if {$mail_logs} {
 	mail_file $outdir/$tool.sum $mailing_list "Dejagnu Summary Log"
     }
     remote_close host
@@ -409,10 +409,10 @@ proc log_summary { args } {
 
 	    if { $testcnt>$totlcnt || $testcnt<$totlcnt } {
 		if { $testcnt > $totlcnt } {
-		    set mismatch "unreported  [expr $testcnt-$totlcnt]"
+		    set mismatch "unreported  [expr {$testcnt - $totlcnt}]"
 		}
 		if { $testcnt < $totlcnt } {
-		    set mismatch "misreported [expr $totlcnt-$testcnt]"
+		    set mismatch "misreported [expr {$totlcnt - $testcnt}]"
 		}
 	    } else {
 		verbose "# of testcases run         $testcnt"
@@ -714,13 +714,13 @@ proc record_test { type message args } {
 
     switch $type {
 	PASS {
-	    if $prms_id {
+	    if {$prms_id} {
 		set message [concat $message "\t(PRMS $prms_id)"]
 	    }
 	}
 	FAIL {
 	    set exit_status 1
-	    if $prms_id {
+	    if {$prms_id} {
 		set message [concat $message "\t(PRMS $prms_id)"]
 	    }
 	}
@@ -753,7 +753,7 @@ proc record_test { type message args } {
 		set message [concat $message "\t(PRMS $kfail_prms)"]
 	    } elseif { $xfail_flag && $xfail_prms != 0 } {
 		set message [concat $message "\t(PRMS $xfail_prms)"]
-	    } elseif $prms_id {
+	    } elseif { $prms_id } {
 		set message [concat $message "\t(PRMS $prms_id)"]
 	    }
 	}
@@ -765,7 +765,7 @@ proc record_test { type message args } {
 		set message [concat $message "\t(PRMS $kfail_prms)"]
 	    } elseif { $xfail_flag && $xfail_prms != 0 } {
 		set message [concat $message "\t(PRMS $xfail_prms)"]
-	    } elseif $prms_id {
+	    } elseif { $prms_id } {
 		set message [concat $message "\t(PRMS $prms_id)"]
 	    }
 	}
@@ -776,7 +776,7 @@ proc record_test { type message args } {
 		set message [concat $message "\t(PRMS $kfail_prms)"]
 	    } elseif { $xfail_flag && $xfail_prms != 0 } {
 		set message [concat $message "\t(PRMS $xfail_prms)"]
-	    } elseif $prms_id {
+	    } elseif { $prms_id } {
 		set message [concat $message "\t(PRMS $prms_id)"]
 	    }
 	}
@@ -787,7 +787,7 @@ proc record_test { type message args } {
 	}
     }
 
-    if $bug_id {
+    if { $bug_id } {
 	set message [concat $message "\t(BUG $bug_id)"]
     }
 
@@ -833,9 +833,9 @@ proc pass { message } {
 	unset compiler_conditional_xfail_data
     }
 
-    if $kfail_flag {
+    if { $kfail_flag } {
 	record_test KPASS $message
-    } elseif $xfail_flag {
+    } elseif { $xfail_flag } {
 	record_test XPASS $message
     } else {
 	record_test PASS $message
@@ -855,9 +855,9 @@ proc fail { message } {
 	unset compiler_conditional_xfail_data
     }
 
-    if $kfail_flag {
+    if { $kfail_flag } {
 	record_test KFAIL $message
-    } elseif $xfail_flag {
+    } elseif { $xfail_flag } {
 	record_test XFAIL $message
     } else {
 	record_test FAIL $message

@@ -292,8 +292,8 @@ proc gdb_comm_load { dest prog args } {
 	    }
 	    -re "$gdb_prompt" { }
 	}
-	set dataoff [format 0x%x [expr $dataoff + $textoff]]
-	set bssoff [format 0x%x [expr $bssoff + $textoff]]
+	set dataoff [format 0x%x [expr {$dataoff + $textoff}]]
+	set bssoff [format 0x%x [expr {$bssoff + $textoff}]]
 	remote_send host "sect .data $dataoff\n"
 	remote_expect host 10 {
 	    -re "$gdb_prompt" { }

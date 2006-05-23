@@ -28,6 +28,8 @@ load_lib remote.exp
 
 proc ${board}_init { args } {
     global NLMCONV
+
+    # FIXME: rootme is undefined.
     if {![info exists NLMCONV]} then {
 	set NLMCONV [findfile "$rootme/../binutils/nlmconv"]
     }
@@ -43,7 +45,7 @@ proc ${board}_init { args } {
     } else {
 	set passwd ""
     }
-    if $shell_id<0 then {
+    if {$shell_id < 0} then {
 	warning "Couldn't connect to target"
 	return -1
     }
@@ -102,7 +104,7 @@ proc ${board}_load { dest prog args } {
 
     set output ""
 
-    if $shell_id<0 then {
+    if {$shell_id < 0} then {
 	verbose -log "$prog not executed because there is no target" 3
 	return "untested"
     }
@@ -112,6 +114,8 @@ proc ${board}_load { dest prog args } {
 
     # We can't blindly append a suffix to the object name, because the
     # result may not be valid on netware's 8.3 filesystem.
+    #
+    # FIXME: tmpdir is undefined.
     set nlm "$tmpdir/x.nlm"
     set lnk "$tmpdir/x.lnk"
 

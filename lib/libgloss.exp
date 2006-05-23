@@ -523,7 +523,7 @@ proc get_multilibs { args } {
     set lines [split [exec $compiler -dumpspecs] "\n"]
     for {set i 0} {$i <= [llength $lines] - 1} {incr i 1} {
 	if {"*multilib_matches:" == "[lindex $lines $i]"} {
-	    set multimatches [lindex $lines [expr $i + 1]]
+	    set multimatches [lindex $lines [expr {$i + 1}]]
 	    break
 	}
     }
