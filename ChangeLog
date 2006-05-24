@@ -1,3 +1,9 @@
+2006-05-24  Ben Elliston  <bje@gnu.org>
+
+	* runtest.exp (verbose): Brace some expressions.
+	(load_file, search_and_load_file): Likewise.
+	(runtest): Likewise.
+
 2006-05-23  Ben Elliston  <bje@gnu.org>
 
 	* config/gdb-comm.exp (gdb_comm_load): Brace some expressions.

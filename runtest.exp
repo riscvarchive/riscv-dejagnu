@@ -179,7 +179,7 @@ proc verbose { args } {
 
     set level 1
     if { [llength $args] > $i + 1 } {
-	set level [lindex $args [expr $i+1]]
+	set level [lindex $args [expr { $i + 1 }]]
     }
     set message [lindex $args $i]
 
@@ -322,7 +322,7 @@ proc load_file { args } {
 		}
 		exit 1
 	    }
-	    if $only_one {
+	    if { $only_one } {
 		break
 	    }
 	}
@@ -359,7 +359,7 @@ proc search_and_load_file { type filelist dirlist } {
 		break
 	    }
 	}
-	if $found {
+	if { $found } {
 	    break
 	}
     }
@@ -629,7 +629,7 @@ load_file ~/.dejagnurc $base_dir/$configfile
 # exist and objdir was given on the command line.
 #
 
-if {[expr [string match "." $objdir] || [string match $srcdir $objdir]]} {
+if {[expr {[string match "." $objdir] || [string match $srcdir $objdir]}]} {
     set objdir $base_dir
 } else {
     load_file $objdir/$configfile
@@ -1480,7 +1480,7 @@ proc runtest { test_file_name } {
 	    }
 	}
 	set timeend [timestamp]
-	set timediff [expr $timeend - $timestart]
+	set timediff [expr {$timeend - $timestart}]
 	verbose -log "testcase $test_file_name completed in $timediff seconds" 4
     } else {
 	# This should never happen, but maybe if the file got removed
@@ -1682,7 +1682,7 @@ foreach current_target $target_list {
 	set restore ""
 	foreach varval [lrange $pass 1 end] {
 	    set tmp [string first "=" $varval]
-	    set var [string range $varval 0 [expr $tmp - 1]]
+	    set var [string range $varval 0 [expr {$tmp - 1}]]
 	    # Save previous value.
 	    if {[info exists $var]} {
 		lappend restore "$var [list [eval concat \$$var]]"
@@ -1691,7 +1691,7 @@ foreach current_target $target_list {
 	    }
 	    # Handle "CFLAGS=$CFLAGS foo".
 	    # FIXME: Do we need to `catch' this?
-	    eval set $var \[string range \"$varval\" [expr $tmp + 1] end\]
+	    eval set $var \[string range \"$varval\" [expr {$tmp + 1}] end\]
 	    verbose "$var is now [eval concat \$$var]"
 	    unset tmp var
 	}
@@ -1772,12 +1772,12 @@ foreach current_target $target_list {
 		# for the driver files that want it.  XXX this is silly.
 		# drivers should get a single var, not "$srcdir/$subdir"
 		set subdir [file dirname $test_name]
-		set p [expr [string length $srcdir]-1]
+		set p [expr {[string length $srcdir] - 1}]
 		while {0 < $p && [string index $srcdir $p] == "/"} {
 		    incr p -1
 		}
 		if {[string range $subdir 0 $p] == $srcdir} {
-		    set subdir [string range $subdir [expr $p+1] end]
+		    set subdir [string range $subdir [expr {$p + 1}] end]
 		    regsub "^/" $subdir "" subdir
 		}
 
@@ -1802,7 +1802,7 @@ foreach current_target $target_list {
 				break
 			    }
 			}
-			if {$found} {
+			if { $found } {
 			    continue
 			}
 		    }
@@ -1864,7 +1864,7 @@ foreach current_target $target_list {
 			# characters? We lose. Instead...
 			set first [string first $srcdir $subdir]
 			if { $first >= 0 } {
-			    set first [expr $first + [string length $srcdir]]
+			    set first [expr {$first + [string length $srcdir]}]
 			    set subdir [string range $subdir $first end]
 			    regsub "^/" "$subdir" "" subdir
 			}
