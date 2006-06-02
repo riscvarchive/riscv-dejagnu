@@ -1,3 +1,7 @@
+2006-06-02  Ben Elliston  <bje@gnu.org>
+
+	* contrib/compare_tests: Import from the GCC contrib directory.
+
 2006-05-24  Ben Elliston  <bje@gnu.org>
 
 	* runtest.exp (verbose): Brace some expressions.
