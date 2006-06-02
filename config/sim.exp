@@ -129,8 +129,8 @@ proc sim_download { dest file args } {
     return [remote_download host $file $args]
 }
 
-proc sim_upload { dest srcfile destfile } {
-    return [remote_upload host $file $args]
+proc sim_upload { dest srcfile args } {
+    return [remote_upload host $srcfile $args]
 }
 
 set_board_info protocol  "sim"

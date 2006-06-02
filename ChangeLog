@@ -1,5 +1,9 @@
 2006-06-02  Ben Elliston  <bje@gnu.org>
 
+	* config/sim.exp (sim_upload): Match up argument names.
+
+2006-06-02  Ben Elliston  <bje@gnu.org>
+
 	* config.guess: Update to most recent version.
 	* config.sub: Likewise.
 
