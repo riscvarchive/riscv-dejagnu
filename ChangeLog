@@ -1,5 +1,10 @@
 2006-06-02  Ben Elliston  <bje@gnu.org>
 
+	* config.guess: Update to most recent version.
+	* config.sub: Likewise.
+
+2006-06-02  Ben Elliston  <bje@gnu.org>
+
 	* config/dos.exp (dos_open): Only run global board_info once at
 	the beginning of the proc; remove duplicates.
 	(dos_load): Use file join to separate path components.
