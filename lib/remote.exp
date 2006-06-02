@@ -512,8 +512,7 @@ proc call_remote { type proc dest args } {
 	    global board
 
 	    if {[info exists board]} {
-		# FIXME: WTF?
-		blooie
+		error "board exists"
 	    }
 	    load_board_description $dest
 	    if { $proc == "reboot" } {

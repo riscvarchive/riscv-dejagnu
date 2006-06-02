@@ -1,5 +1,14 @@
 2006-06-02  Ben Elliston  <bje@gnu.org>
 
+	* config/dos.exp (dos_open): Only run global board_info once at
+	the beginning of the proc; remove duplicates.
+	(dos_load): Use file join to separate path components.
+	(dos_copy_upload): Likewise.
+	* lib/remote.exp (call_remote): Use error, not "blooie" to trigger
+	an error.
+
+2006-06-02  Ben Elliston  <bje@gnu.org>
+
 	* contrib/compare_tests: Import from the GCC contrib directory.
 
 2006-05-24  Ben Elliston  <bje@gnu.org>

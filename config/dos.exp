@@ -24,12 +24,12 @@
 #
 proc dos_open { dest args } {
     global destbat_num
+    global board_info
 
     if {![info exists destbat_num]} {
 	set destbat_num [pid]
     }
     if { [board_info $dest conninfo] == "" } {
-	global board_info
 	set name [board_info $dest name]
 
 	set board_info($name,conninfo) "b${destbat_num}.bat"
@@ -103,7 +103,6 @@ proc dos_open { dest args } {
 	set talias "foo-bar"
     }
 
-    global board_info
     if {[board_info $dest exists name]} {
 	set n [board_info $dest name]
     } else {
@@ -371,16 +370,16 @@ proc dos_load { dest prog args } {
 	    global target_alias
 
 	    set comp [get_multilibs]
-	    if {[file exists "${comp}/winsup/new-cygwin1.dll"]} {
+	    if {[file exists [file join ${comp} winsup new-cygwin1.dll]]} {
 		set dll "${comp}/winsup/new-cygwin1.dll"
 		set dll_name "cygwin1.dll"
-	    } elseif {[file exists "${comp}/winsup/new-cygwin.dll"]} {
+	    } elseif {[file exists [file join ${comp} winsup new-cygwin.dll]]} {
 		set dll "${comp}/winsup/new-cygwin.dll"
 		set dll_name "cygwin.dll"
-	    } elseif {[file exists ${comp}/lib/cygwin1.dll]} {
+	    } elseif {[file exists [file join ${comp} lib cygwin1.dll]]} {
 		set dll "${comp}/lib/cygwin1.dll"
 		set dll_name "cygwin1.dll"
-	    } elseif {[file exists ${comp}/lib/cygwin.dll]} {
+	    } elseif {[file exists [file join ${comp} lib cygwin.dll]]} {
 		set dll "${comp}/lib/cygwin.dll"
 		set dll_name "cygwin.dll"
 	    } else {
@@ -461,7 +460,7 @@ proc dos_copy_download { host localfile remotefile } {
 
 proc dos_copy_upload { host remotefile localfile } {
     remote_file build delete $localfile
-    if {[file exists "[board_info $host local_dir]/$remotefile"]} {
+    if {[file exists [file join [board_info $host local_dir] $remotefile]]} {
 	set result [remote_download build "[board_info $host local_dir]/$remotefile" $localfile]
     } else {
 	set result ""
