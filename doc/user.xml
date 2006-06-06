@@ -1,32 +1,31 @@
 
  <sect1 id="gettingup">
-    <title>Getting DejaGnu up and running</title>
+    <title>Getting &dj; up and running</title>
 
 <para>This chapter was originally written by Niklaus Giger
- (ngiger@mus.ch) because he lost a week to figure out how DejaGnu works
+ (ngiger@mus.ch) because he lost a week to figure out how &dj; works
  and how to write a first test.
 </para> 
 
 <para>Follow these instructions as closely a possible in order get a
-good insight into how DejaGnu works, else you might run into a lot of
+good insight into how &dj; works, else you might run into a lot of
 subtle problems. You have been warned.</para> 
 
-<para>It should be no big problems installing DejaGnu using your
+<para>It should be no big problems installing &dj; using your
 package manager or from the source code. Under a Debian/GNU/Linux
 systems just type (as root) <programlisting>apt-get
 dejagnu</programlisting>. These examples were run on a primary machine
 with a AMD K6 and a Mac Powerbook G3 serving as a remote
 target.</para> 
 
-<para> The tests for Windows were run under Windows NT using the
-actual Cygwin version (1.3.x as of October 2001). It's target system
-was a PPC embedded system running vxWorks. 
-</para>
+<para> The tests for Windows were run under Windows using the actual
+Cygwin version (1.3.x as of October 2001). Its target system was a PPC
+embedded system running vxWorks.  </para>
 
 <sect2>
 <title>Test your installation</title>
 
-<para>Create a new user called "dgt" (DejaGnuTest), which uses bash as
+<para>Create a new user called "dgt" (&dj;Test), which uses bash as
 it login shell. PS1 must be set to '\u:\w\$ ' in its ~/.bashrc. Login
 as this user, create an empty directory and change the working
 directory to it. e.g</para> 
@@ -36,7 +35,7 @@ dgt:~$ mkdir ~/dejagnu.test
 dgt:~$ cd ~/dejagnu.test
 </programlisting>
 
-<para>Now you are ready to test DejaGnu's main program called
+<para>Now you are ready to test &dj;'s main program called
 runtest. The expecteted output is shown</para> 
 
 <example>
@@ -67,10 +66,10 @@ them.</para>
 <sect3>
 <title>Windows</title>
 
-<para>On Windows systems DejaGnu is part of a port of a lot of Unix
+<para>On Windows systems &dj; is part of a port of a lot of Unix
 tools to the Windows OS, called Cygwin. Cygwin may be downloaded and
 installed from a mirror of http://www.cygwin.com/. All examples were
-also run on Windows NT. If nothing is said, you can assume that you
+also run on Windows. If nothing is said, you can assume that you
 should get the same output as on a Unix system.</para> 
 
 <para>You will need a telnet daemon if you want to use a Windows box
@@ -84,7 +83,7 @@ http://www.fictional.net/.</para>
 <para>If you are running a Debian distribution you can find the
 examples under /usr/share/doc/dejagnu/examples. These examples seem to
 be missing in Red Hat's RPM. In this case download the sources of
-DejaGnu and adjust the pathes to the DejaGnu examples
+&dj; and adjust the pathes to the &dj; examples
 accordingly.</para>
 </sect3>
 </sect2>
@@ -93,7 +92,7 @@ accordingly.</para>
 <title>Create a minimal project, e.g. calc</title>
 
 <para>In this section you will to start a small project,
-using the sample application calc, which is part of your DejaGnu
+using the sample application calc, which is part of your &dj;
 distribution</para> 
 
 <sect3><title>A simple project without the GNU autotools</title>
@@ -119,7 +118,7 @@ automake. There is book &quot;GNU autoconf, automake and
 libtool&quot; by Garry V. Vaughan, et al. NewRider, ISBN
 1-57870-190-2 which describes this process thoroughly.</para> 
 
-<para>From the calc example distributed with the DejaGnu documentation
+<para>From the calc example distributed with the &dj; documentation
 you should copy the program file itself (calc.c) and some additional
 files, which you might examine a little bit close to derive their
 meanings.</para> 
@@ -152,7 +151,7 @@ Run it to generate calc.h.in. </para>
 dgt:~/dejagnu.test$ autoheader
 </programlisting>
 
-<para>The Makefile.am of this example was developed as port of the DejaGnu
+<para>The Makefile.am of this example was developed as port of the &dj;
 distribution.
 Adapt Makefile.am for this test. Replace the line
 &quot;#noinst_PROGRAMS = calc&quot; to
@@ -271,7 +270,7 @@ calc: quit
 
 <para>Look at the intentional bug that 2 times 4 equals 12.</para>
 
-<para>The tests run by DejaGnu need a file called site.exp,
+<para>The tests run by &dj; need a file called site.exp,
 which is automatically generated if we call &quot;make
 site.exp&quot;. This was the purpose of the &quot;AUTOMAKE_OPTIONS =
 dejagnu&quot; in Makefile.am.</para>
@@ -350,7 +349,7 @@ long.</para>
 
 <sect3><title>The various config files or how to avoid warnings</title>
 
-<para>DejaGnu may be customized by each user. It first searches for a
+<para>&dj; may be customized by each user. It first searches for a
 file called ~/.dejagnurc. Create the file ~/.dejagnurc and insert the
 following line:</para>
 
@@ -527,7 +526,7 @@ Connection closed by foreign host.
 <title>A test case for login via telnet</title>
 <para>In order to define a correct setup we have add a line containing
 &quot;set target unix&quot; either to ~/.dejagnurc or to ~/my_dejagnu.exp.
-In ~/boards/standard.exp add the following four lines to define a few patterns for the DejaGnu telnet login procedure.</para>
+In ~/boards/standard.exp add the following four lines to define a few patterns for the &dj; telnet login procedure.</para>
 
 <example>
 <title>Defining a remote target board</title>
@@ -540,7 +539,7 @@ set_board_info hostname        "localhost"
 </programlisting>
 </example>
 
-<para>As DejaGnu will be parsing the telnet session output for some well
+<para>As &dj; will be parsing the telnet session output for some well
 known pattern the output there are a lot of things that can go wrong.
 If you have any problems verify your setup:</para>
 <itemizedlist>
@@ -563,7 +562,7 @@ Create the file ~/dejagnu.test/testsuite/calc.test/remote_echo.exp and
 add the following few lines:</para>
 
 <example>
-<title>DejaGnu script for logging in into a remote target</title>
+<title>&dj; script for logging in into a remote target</title>
 <programlisting>
 puts "this is remote_echo.exp target for $target "
 target_info $target
@@ -589,7 +588,7 @@ this is remote_echo.exp target is unix
 Spawn id for remote shell is exp7
 </programlisting>
 
-<para>Have again a look at calc.log to get a feeling how DejaGnu and expect
+<para>Have again a look at calc.log to get a feeling how &dj; and expect
 parse the input. </para></sect3>
 
 <sect3>
@@ -755,7 +754,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
 <para>In order to test the vxWorks as a target I changed boards/standards.exp to reflect my settings (IP, username, password). Then I reconfigured vxWorks to include a FTP and telnet server (using the same username/password combination ad in boards/standard.exp).</para>
 
-<para>With this setup and some minor modification (e.g. replacing echo by printf) in my test cases I could test my vxWorks system. It sure does not seem to be a correct setup by DejaGnu standard. For instance, it still loading /usr/share/dejagnu/baseboards/unix.exp instead of vxWorks. In any case I found that (at least under Windows) I did not find out how the command line would let me override settings in my personal config files.</para>
+<para>With this setup and some minor modification (e.g. replacing echo by printf) in my test cases I could test my vxWorks system. It sure does not seem to be a correct setup by &dj; standard. For instance, it still loading /usr/share/dejagnu/baseboards/unix.exp instead of vxWorks. In any case I found that (at least under Windows) I did not find out how the command line would let me override settings in my personal config files.</para>
 
 </sect3>
 </sect2>
@@ -788,12 +787,12 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       auxiliary programs or other files needed by the tests. The most
       common file the check builds is the
       <emphasis>site.exp</emphasis>. The site.exp file contains
-      various variables that DejaGnu used to dertermine the
+      various variables that &dj; used to dertermine the
       configuration of the program being tested. This is mostly for
       supporting remote testing.</para>
 
       <para>The <emphasis>check</emphasis> target is supported by GNU
-      <productname>Automake</productname>. To have DejaGnu support added to your
+      <productname>Automake</productname>. To have &dj; support added to your
       generated <filename>Makefile.in</filename>, just add the keyword
       dejagnu to the AUTOMAKE_OPTIONS variable in your
       <filename>Makefile.am</filename> file.</para>
@@ -812,7 +811,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       <title>Runtest</title>
 
       <para><command>runtest</command> is the executable test driver
-      for DejaGnu. You can specify two kinds of things on the
+      for &dj;. You can specify two kinds of things on the
       <command>runtest</command> command line: command line options,
       and Tcl variables for the test scripts. The options are listed
       alphabetically below.</para>
@@ -945,7 +944,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
           <term><option>--build [string]</option></term>
 	  <listitem><para><emphasis>string</emphasis> is a full configuration
 	  ``triple'' name as used by <command>configure</command>. This
-	  is the type of machine DejaGnu and the tools to be tested are built
+	  is the type of machine &dj; and the tools to be tested are built
 	  on. For a normal cross this is the same as the host, but for a
 	  canadian cross, they are seperate.</para></listitem>
 	</varlistentry>
@@ -957,7 +956,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  option to override the default string recorded by your
 	  configuration's choice of host.  This choice does not change how
 	  anything is actually configured unless --build is also specified; it
-	  affects <emphasis>only</emphasis> DejaGnu procedures that compare the
+	  affects <emphasis>only</emphasis> &dj; procedures that compare the
 	  host string with particular values.  The procedures
 	  <emphasis>ishost</emphasis>, <emphasis>istarget</emphasis>,
 	  <emphasis>isnative</emphasis>, and <emphasis>setup</emphasis>xfail}
@@ -966,7 +965,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  be run on, which may not be the same as the
 	  <emphasis>build</emphasis> machine. If <emphasis>--build</emphasis>
 	  is also specified, then <emphasis>--host</emphasis> refers to the
-	  machine that the tests wil, be run on, not the machine DejaGnu is run
+	  machine that the tests wil, be run on, not the machine &dj; is run
 	  on.</para></listitem>
 	</varlistentry>
 
@@ -1031,7 +1030,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  <emphasis>runtest</emphasis>. This option affects only the summary
 	  and the detailed log files
 	  <filename>tool.sum</filename> and
-	  <filename>tool.log</filename>. The DejaGnu debug
+	  <filename>tool.log</filename>. The &dj; debug
 	  log <filename>dbg.log</filename> always appears (when requested) in
 	  the local directory.</para></listitem>
 	</varlistentry>
@@ -1078,7 +1077,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  running <emphasis>runtest</emphasis>.  For example, use
 	  <emphasis>--connect</emphasis> to change the program used to connect
 	  to a ``bare board'' boot monitor.  The choices for
-	  <emphasis>type</emphasis> in the DejaGnu 1.4 distribution are
+	  <emphasis>type</emphasis> in the &dj; 1.4 distribution are
 	  <emphasis>rlogin</emphasis>, <emphasis>telnet</emphasis>,
 	  <emphasis>rsh</emphasis>, <emphasis>tip</emphasis>,
 	  <emphasis>kermit</emphasis>, and <emphasis>mondfe</emphasis>.</para>
@@ -1150,7 +1149,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
 	<varlistentry>
           <term><option>--version</option> (-V)</term>
-	  <listitem><para>Prints out the version numbers of DejaGnu,
+	  <listitem><para>Prints out the version numbers of &dj;,
 	  <emphasis>expect</emphasis> and Tcl, and exits without running any
 	  tests.</para></listitem>
 	</varlistentry>
@@ -1164,8 +1163,8 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  <emphasis>expect</emphasis> as the file
 	  <filename>expect/tcl-debug.ps.</filename>. If you specify
 	  <emphasis>-D1</emphasis>, the <emphasis>expect</emphasis> shell stops
-	  at a breakpoint as soon as DejaGnu invokes it. If you specify
-	  <emphasis>-D0</emphasis>, DejaGnu starts as usual, but you can enter
+	  at a breakpoint as soon as &dj; invokes it. If you specify
+	  <emphasis>-D0</emphasis>, &dj; starts as usual, but you can enter
 	  the debugger by sending an interrupt (e.g. by typing
 	  <keycombo><keycap>C</keycap><keycap>c</keycap></keycombo>).
 	  </para></listitem>
@@ -1204,7 +1203,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  <emphasis>gdb.old</emphasis>.</para>
 
 	  <para>The default Tcl variables used for most tools are defined in
-	  the main DejaGnu <emphasis>Makefile</emphasis>; their values are
+	  the main &dj; <emphasis>Makefile</emphasis>; their values are
 	  captured in the <filename>site.exp</filename> file.</para></listitem>
 	</varlistentry>
       </variablelist>
@@ -1219,7 +1218,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	local site.exp file, created by "make site.exp".</para>
 
 	<para>For example, if the directory <filename>gdb/testsuite</filename>
-	contains a collection of DejaGnu tests for GDB, you can run them like
+	contains a collection of &dj; tests for GDB, you can run them like
 	this:</para>
 
         <screen>
@@ -1267,9 +1266,9 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     <sect2 id="outputfiles" xreflabel="Output Files">
 
-    <title>The files DejaGnu produces.</title>
+    <title>The files &dj; produces.</title>
 
-    <para>DejaGnu always writes two kinds of output files: summary
+    <para>&dj; always writes two kinds of output files: summary
     logs and detailed logs.  The contents of both of these are
     determined by your tests.</para>
 
@@ -1281,7 +1280,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     <sect3 id="sum" xreflabel="Summary File">
       <title>Summary File</title>
 
-      <para>DejaGnu always produces a summary output file
+      <para>&dj; always produces a summary output file
       <filename>tool.sum</filename>. This summary shows the names of
       all test files run; for each test file, one line of output from
       each <command>pass</command> command (showing status
@@ -1302,7 +1301,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
       <para>For example, after <command>runtest --tool
       binutils</command>, look for a summary log in
-      <filename>binutils.sum</filename>. Normally, DejaGnu writes this
+      <filename>binutils.sum</filename>. Normally, &dj; writes this
       file in your current working directory; use the
       <option>--outdir</option> option to select a different
       directory.</para>
@@ -1336,11 +1335,11 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     <sect3 id="log" xreflabel="Log File">
       <title>Log File</title>
 
-      <para>DejaGnu also saves a detailed log file
+      <para>&dj; also saves a detailed log file
       <filename>tool.log</filename>, showing any output generated by
       tests as well as the summary output. For example, after
       <command>runtest --tool binutils</command>, look for a detailed
-      log in <filename>binutils.log</filename>. Normally, DejaGnu
+      log in <filename>binutils.log</filename>. Normally, &dj;
       writes this file in your current working directory; use the
       <option>--outdir</option> option to select a different
       directory.</para>
@@ -1462,7 +1461,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
 	<para>This example exhibits three properties of
 	<productname>Expect</productname> and
-	<productname>DejaGnu</productname> that might be surprising at
+	<productname>&dj;</productname> that might be surprising at
 	first glance:</para>
 
 	<itemizedlist mark="bullet">
@@ -1510,19 +1509,19 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
   </sect1>
 
   <sect1 id="Customizing" xreflabel="Customizing DejaGnu">
-    <title>Customizing DejaGnu</title>
+    <title>Customizing &dj;</title>
 
     <para>The site configuration file, <filename>site.exp</filename>,
     captures configuration-dependent values and propagates them to the
-    DejaGnu test environment using Tcl variables.  This ties the
-    DejaGnu test scripts into the <command>configure</command> and
+    &dj; test environment using Tcl variables.  This ties the
+    &dj; test scripts into the <command>configure</command> and
     <command>make</command> programs. If this file is setup correctly,
     it is possible to execute a testsuite merely by typing
     <command>runtest</command>.</para>
 
-    <para>DejaGnu supports two <filename>site.exp</filename>
+    <para>&dj; supports two <filename>site.exp</filename>
     files. The multiple instances of <filename>site.exp</filename> are
-    loaded in a fixed order built into DejaGnu. The first file loaded
+    loaded in a fixed order built into &dj;. The first file loaded
     is the local file <filename>site.exp</filename>, and then the
     optional global <filename>site.exp</filename> file as
     pointed to by the <symbol>DEJAGNU</symbol> environment
@@ -1530,11 +1529,11 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     <para>There is an optional <emphasis>master</emphasis>
     <filename>site.exp</filename>, capturing configuration values that
-    apply to DejaGnu across the board, in each configuration-specific
-    subdirectory of the DejaGnu library directory.
+    apply to &dj; across the board, in each configuration-specific
+    subdirectory of the &dj; library directory.
     <command>runtest</command> loads these values first. The master
     <filename>site.exp</filename> contains the default values for all
-    targets and hosts supported by DejaGnu. This master file is
+    targets and hosts supported by &dj;. This master file is
     identified by setting the environment variable
     <symbol>DEJAGNU</symbol> to the name of the file. This is also
     refered to as the ``global'' config file.</para>
@@ -1569,7 +1568,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       <para>It is usually more convenient to keep these <emphasis>manual
       overrides</emphasis> in the <filename>site.exp</filename>
       local to each test directory, rather than in the global
-      <filename>site.exp</filename> in the installed DejaGnu
+      <filename>site.exp</filename> in the installed &dj;
       library. This file is mostly for supplying tool specific info
       that is required by the testsuite.</para>
 
@@ -1598,7 +1597,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       </example>
 
       <para>In the second section, you can override any default values
-      (locally to DejaGnu) for all the variables.  The second section
+      (locally to &dj;) for all the variables.  The second section
       can also contain your preferred defaults for all the command
       line options to <command>runtest</command>. This allows you to
       easily customize <command>runtest</command> for your preferences
@@ -1654,7 +1653,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     file, namely the three config triplets, and the srcdir. It also
     defines several other Tcl variables that are used exclusivly by
     the GCC testsuite. For most test cases, the CXXFLAGS and LDFLAGS
-    are supplied by DejaGnu itself for cross testing, but to test a
+    are supplied by &dj; itself for cross testing, but to test a
     compiler, GCC needs to manipulate these itself.</para>
 
     </sect2>
@@ -1713,7 +1712,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     <para>In this case, we have support for several cross compilers,
     that all run on this host. For testing on operating systems that
-    don't support Expect, DejaGnu can be run on the local build
+    don't support Expect, &dj; can be run on the local build
     machine, and it can connect to the remote host and run all the
     tests for this cross compiler on that host. All the remote OS
     requires is a working telnetd.</para>
@@ -1816,7 +1815,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       <note><para>Thanks to Dj Delorie for the original paper that
       this section is based on.</para></note>
 
-      <para>DejaGnu also supports running the tests on a remote
+      <para>&dj; also supports running the tests on a remote
       host. To set this up, the remote host needs an ftp server, and a
       telnet server. Currently foreign operating systems used as
       remote hosts are VxWorks, VRTX, DOS/Windows 3.1, MacOS and Windows.</para>
@@ -1949,7 +1948,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     <sect2 id="configfile" xreflabel="Config File Values">
       <title>Config File Values</title>
 
-      <para>DejaGnu uses a named array in Tcl to hold all the info for
+      <para>&dj; uses a named array in Tcl to hold all the info for
       each machine. In the case of a canadian cross, this means host
       information as well as target information. The named array is
       called <symbol>target_info</symbol>, and it has two indices. The
@@ -2086,7 +2085,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       <title>Personal Config File</title>
 
       <para>The personal config file is used to customize
-      <command>runtest's</command> behaviour for each person. It's
+      <command>runtest's</command> behaviour for each person. It is
       typically used to set the user prefered setting for verbosity,
       and any experimental Tcl procedures. My personal
       <filename>~/.dejagnurc</filename> file looks like:</para>
@@ -2117,13 +2116,13 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
   </sect1>
 
   <sect1 id="Extending" xreflabel="Extending DejaGnu">
-    <title>Extending DejaGnu</title>
+    <title>Extending &dj;</title>
 
     <sect2 id="addsuite"  xreflabel="Adding a new Testsuite">
       <title>Adding A New Testsuite</title>
 
       <para>The testsuite for a new tool should always be located in that tools
-      source directory. DejaGnu require the directory be named
+      source directory. &dj; require the directory be named
       <filename>testsuite</filename>. Under this directory, the test cases go
       in a subdirectory whose name begins with the tool name. For example, for
       a tool named <emphasis>flubber</emphasis>, each subdirectory containing
@@ -2138,7 +2137,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       is to read something similar.  This principle applies to test cases and
       to testsuites.  Unfortunately, well-established testsuites have a way
       of developing their own conventions: as test writers become more
-      experienced with DejaGnu and with Tcl, they accumulate more utilities,
+      experienced with &dj; and with Tcl, they accumulate more utilities,
       and take advantage of more and more features of
       <productname>Expect</productname> and <productname>Tcl</productname> in
       general.</para>
@@ -2149,8 +2148,8 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
       <para>There is one testsuite that is guaranteed not to grow more
       elaborate over time: both it and the tool it tests were created expressly
-      to illustrate what it takes to get started with DejaGnu.  The
-      <filename>example/</filename> directory of the DejaGnu distribution
+      to illustrate what it takes to get started with &dj;.  The
+      <filename>example/</filename> directory of the &dj; distribution
       contains both an interactive tool called <command>calc</command>, and a
       testsuite for it.  Reading this testsuite, and experimenting with it,
       is a good way to supplement the information in this section.  (Thanks to
@@ -2168,7 +2167,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
       <para>Create a <filename>configure.in</filename> file in this directory,
       to control configuration-dependent choices for your tests.  So far as
-      DejaGnu is concerned, the important thing is to set a value for the
+      &dj; is concerned, the important thing is to set a value for the
       variable <symbol>target_abbrev</symbol>; this value is the link to the
       init file you will write soon.  (For simplicity, we assume the
       environment is Unix, and use <emphasis>unix</emphasis> as the
@@ -2186,10 +2185,10 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       keyword <emphasis>dejagnu</emphasis> to the
       <emphasis>AUTOMAKE_OPTIONS</emphasis> variable in your
       <filename>Makefile.am</filename> file. This will add all the Makefile
-      support needed to run DejaGnu, and support the <xref linkend="makecheck"/>
+      support needed to run &dj;, and support the <xref linkend="makecheck"/>
       target.</para>
 
-      <para>You also need to include two targets important to DejaGnu:
+      <para>You also need to include two targets important to &dj;:
       <emphasis>check</emphasis>, to run the tests, and
       <emphasis>site.exp</emphasis>, to set up the Tcl copies of
       configuration-dependent values. This is called the <xref linkend="local"/>
@@ -2206,7 +2205,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
         <title>Sample Makefile.in Fragment</title>
 
 	<programlisting>
-	# Look for a local version of DejaGnu, otherwise use one in the path
+	# Look for a local version of &dj;, otherwise use one in the path
 	RUNTEST = `if test -f $(top_srcdir)/../dejagnu/runtest; then \
 	      echo $(top_srcdir) ../dejagnu/runtest; \
 	    else \
@@ -2374,13 +2373,13 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     <sect2 id="addtarget" xreflabel="Adding A New Target">
       <title>Adding A New Target</title>
 
-      <para>DejaGnu has some additional requirements for target support, beyond
-      the general-purpose provisions of configure. DejaGnu must actively
+      <para>&dj; has some additional requirements for target support, beyond
+      the general-purpose provisions of configure. &dj; must actively
       communicate with the target, rather than simply generating or managing
       code for the target architecture.  Therefore, each tool requires an
       initialization module for each target.  For new targets, you must supply
-      a few Tcl procedures to adapt DejaGnu to the target.  This permits
-      DejaGnu itself to remain target independent.</para>
+      a few Tcl procedures to adapt &dj; to the target.  This permits
+      &dj; itself to remain target independent.</para>
 
       <para>Usually the best way to write a new initialization module is to
       edit an existing initialization module; some trial and error will be
@@ -2393,7 +2392,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
       <para>For cross targets, most of the work is in getting the
       communications right. Communications code (for several situations
-      involving IP networks or serial lines) is available in a DejaGnu library
+      involving IP networks or serial lines) is available in a &dj; library
       file.</para>
 
       <para>If you suspect a communication problem, try running the connection
@@ -2428,7 +2427,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       changing the linker script. Once the new baseboard file is done,
       add it to the <symbol>boards_DATA</symbol> list in the
       <filename>dejagnu/baseboards/Makefile.am</filename>, and regenerate the
-      Makefile.in using automake. Then just rebuild and install DejaGnu. You
+      Makefile.in using automake. Then just rebuild and install &dj;. You
       can test it by:</para>
 
       <para>There is a crude inheritance scheme going on with board files, so
@@ -2881,10 +2880,10 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
       <para>However, some interactive programs can be tested in a
       simple fashion reminiscent of batch tests.  For example, prior
-      to the creation of DejaGnu, the GDB distribution already
+      to the creation of &dj;, the GDB distribution already
       included a wide-ranging testing procedure.  This procedure was
       very robust, and had already undergone much more debugging and
-      error checking than many recent DejaGnu test cases.
+      error checking than many recent &dj; test cases.
       Accordingly, the best approach was simply to encapsulate the
       existing GDB tests, for reporting purposes. Thereafter, new GDB
       tests built up a family of Tcl procedures specialized for GDB
@@ -2896,14 +2895,14 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       <title>Debugging A Test Case</title>
 
       <para>These are the kinds of debugging information available
-      from DejaGnu:</para>
+      from &dj;:</para>
 
       <itemizedlist mark="bullet">
 
       <listitem><para>Output controlled by test scripts themselves,
       explicitly allowed for by the test author.  This kind of
       debugging output appears in the detailed output recorded in the
-      DejaGnu log file.  To do the same for new tests, use the
+      &dj; log file.  To do the same for new tests, use the
       <command>verbose</command> procedure (which in turn uses the
       variable also called <emphasis>verbose</emphasis>) to control
       how much output to generate.  This will make it easier for other
@@ -2940,7 +2939,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
        controls the depth of definitions expanded.</para></listitem>
 
        <listitem><para>Finally, if the value of
-       <emphasis>verbose</emphasis> is 3 or greater,DejaGnu turns on
+       <emphasis>verbose</emphasis> is 3 or greater,&dj; turns on
        the expect command <command>log_user</command>.  This command
        prints all expect actions to the expect standard output, to the
        detailed log file, and (if <option>--debug</option> is on) to
@@ -3059,7 +3058,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       take an extreme case, tests that pass even when the tool will
       not spawn are misleading. Ideally, a test in this sort of
       situation should not fail either. Instead, print an error
-      message by calling one of the DejaGnu procedures
+      message by calling one of the &dj; procedures
       <command>error</command> or <command>warning</command>.</para>
 
     </sect2>
@@ -3068,7 +3067,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       <title>Special variables used by test cases.</title>
 
       <para>There are special variables used by test cases. These contain
-      other information from DejaGnu. Your test cases can use these variables,
+      other information from &dj;. Your test cases can use these variables,
       with conventional meanings (as well as the variables saved in
       <filename>site.exp</filename>. You can use the value of these variables,
       but they should never be changed.</para>
@@ -3129,7 +3128,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     <sect2 id="unittest"  xreflabel="What Is Unit Testing ?">
       <title>What Is Unit Testing ?</title>
 
-      <para>Most regression testing as done by DejaGnu is system
+      <para>Most regression testing as done by &dj; is system
       testing. This is the complete application is tested all at
       once. Unit testing is for testing single files, or small
       libraries. In this case, each file is linked with a test case in
@@ -3148,15 +3147,15 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     <sect2 id="djh" xreflabel="The dejagnu.h Header File">
       <title>The dejagnu.h Header File</title>
 
-      <para>DejaGnu uses a single header file to assist in unit
+      <para>&dj; uses a single header file to assist in unit
       testing. As this file also produces it's one test state output,
       it can be run standalone, which is very useful for testing on
       embedded systems. This header file has a C and C++ API for the
       test states, with simple totals, and standardized
-      output. Because the output has been standardized, DejaGnu can be
+      output. Because the output has been standardized, &dj; can be
       made to work with this test case, without writing almost any
       Tcl. The library module, dejagnu.exp, will look for the output
-      messages, and then merge them into DejaGnu's.</para>
+      messages, and then merge them into &dj;'s.</para>
 
      </sect2>
 

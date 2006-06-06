@@ -3,9 +3,9 @@
   <title>Reference</title>
 
   <sect2 id="obtaining" xreflabel="Obtaining DejaGnu">
-    <title>Obtaining DejaGnu</title>
+    <title>Obtaining &dj;</title>
 
-    <para>You can obtain DejaGnu from the DejaGnu web site at the
+    <para>You can obtain &dj; from the &dj; web site at the
     <ulink url="http://www.gnu.org">Free Software Foundation</ulink>,
     which is at <ulink
     url="http://www.gnu.org/software/dejagnu/">www.gnu.org/software/dejagnu/
@@ -16,17 +16,17 @@
   <sect2 id="installation" xreflabel="Installation">
     <title>Installation</title>
 
-    <para>Once you have the DejaGnu source unpacked and available, you must
+    <para>Once you have the &dj; source unpacked and available, you must
     first configure the software to specify where it is to run (and the
     associated defaults); then you can proceed to installing it.</para>
 
     <sect3 id="configuring" xreflabel="Configuring DejaGnu">
-      <title>Configuring DejaGnu</title>
+      <title>Configuring &dj;</title>
 
       <para>It is usually best to configure in a directory separate from the
       source tree, specifying where to find the source with the optional
       <emphasis>--srcdir</emphasis> option to
-      <emphasis>configure</emphasis>. DejaGnu uses the GNU
+      <emphasis>configure</emphasis>. &dj; uses the GNU
       <emphasis>autoconf</emphasis> to configure itself. For more info on using
       autoconf, read the GNU autoconf manual. To configure, execute the
       <filename>configure</filename> program, no other options are
@@ -37,12 +37,12 @@
         ../dejagnu-&version;/configure
       </screen>
 
-      <para>DejaGnu doesn't care at config time if it's for testing a native
+      <para>&dj; doesn't care at config time if it's for testing a native
       system or a cross system. That is determined at runtime by using the
       config files.</para>
 
       <para>You may also want to use the <command>configure</command> option
-      <emphasis>--prefix</emphasis> to specify where you want DejaGnu and its
+      <emphasis>--prefix</emphasis> to specify where you want &dj; and its
       supporting code installed.  By default, installation is in subdirectories
       of <filename>/usr/local</filename>, but you can select any alternate
       directory <symbol>altdir</symbol> by including
@@ -51,10 +51,10 @@
       the Makefile variables <emphasis>prefix</emphasis> and
       <emphasis>exec</emphasis>prefix}.)</para>
 
-      <para>Save for a small number of example tests, the DejaGnu distribution
+      <para>Save for a small number of example tests, the &dj; distribution
       itself does not include any testsuites; these are available
       separately. Testsuites for the GNU development tools are included in
-      those releases. After configuring the top-level DejaGnu directory, unpack
+      those releases. After configuring the top-level &dj; directory, unpack
       and configure the test directories for the tools you want to test; then,
       in each test directory, run <emphasis>make check</emphasis> to build
       auxiliary programs required by some of the tests, and run the test
@@ -63,9 +63,9 @@
     </sect3>
 
     <sect3 id="installing"  xreflabel="Installing DejaGnu">
-      <title>Installing DejaGnu</title>
+      <title>Installing &dj;</title>
 
-      <para>To install DejaGnu in your filesystem (either in
+      <para>To install &dj; in your filesystem (either in
       <filename>/usr/local</filename>, or as specified by your
       <emphasis>--prefix</emphasis> option to <emphasis>configure</emphasis>),
       execute.</para>
@@ -75,7 +75,7 @@
       </screen>
 
       <para><emphasis>make install</emphasis>does thes things for
-      DejaGnu:</para>
+      &dj;:</para>
 
       <itemizedlist mark="bullet">
         <listitem><para>Look in the path specified for executables
@@ -99,7 +99,7 @@
 
 	<listitem><para>Copy <filename>runtest.exp</filename> into
 	<filename>$exec_prefix/lib/dejagnu</filename>. This is the main Tcl
-	code implementing DejaGnu.</para></listitem>
+	code implementing &dj;.</para></listitem>
 
       </itemizedlist>
   </sect3>
@@ -108,7 +108,7 @@
   <sect2 id="builtins" xreflabel="Builtin Procedures">
     <title>Builtin Procedures</title>
 
-    <para>DejaGnu provides these Tcl procedures.</para>
+    <para>&dj; provides these Tcl procedures.</para>
 
     <sect3 id="coreprocs" xreflabel="Core Internal Procedures">
       <title>Core Internal Procedures</title>
@@ -1012,10 +1012,10 @@
 	<sect4 id="loadlib" xreflabel="load_lib procedure">
 	  <title>Load_lib Procedure</title>
 
-	  <para>Loads a DejaGnu library file by searching a fixed path built
-	  into DejaGnu. If DejaGnu has been installed, it looks in a path
+	  <para>Loads a &dj; library file by searching a fixed path built
+	  into &dj;. If &dj; has been installed, it looks in a path
 	  starting with the installed library directory.  If you are running
-	  DejaGnu directly from a source directory, without first running
+	  &dj; directly from a source directory, without first running
 	  <command>make install</command>, this path defaults to the current
 	  directory.  In either case, it then looks in the current directory
 	  for a directory called <filename>lib</filename>.  If there are
@@ -1031,7 +1031,7 @@
 	<variablelist>
           <varlistentry>
 	    <term><parameter>filespec</parameter></term>
- 	    <listitem><para>The name of the DejaGnu library file to
+ 	    <listitem><para>The name of the &dj; library file to
 	    load.</para></listitem>
           </varlistentry>
 	</variablelist>
@@ -3306,7 +3306,7 @@
 
 	  <para>This invokes the compiler as set by CC to compile the
 	  file <filename>file</filename>. The default options for many cross
-	  compilation targets are <emphasis>guessed</emphasis> by DejaGnu, and
+	  compilation targets are <emphasis>guessed</emphasis> by &dj;, and
 	  these options can be added to by passing in more parameters as
 	  arguments to <command>compile</command>. Optionally, this will also
 	  use the value of the <emphasis>cflags</emphasis> field in the target
@@ -3382,7 +3382,7 @@
 	  info to execute this command on the build machine or a remote
 	  host. All config information for the remote host must be setup to
 	  have this command work. If this is a canadian cross, (where we test a
-	  cross compiler that runs on a different host then where DejaGnu is
+	  cross compiler that runs on a different host then where &dj; is
 	  running) then a connection is made to the remote host and the command
 	  is executed there. It returns either REMOTERROR (for an error) or the
 	  output produced when the command was executed. This is used for
@@ -3447,7 +3447,7 @@
 	  An example of this second kind of start function is
 	  <function>gcc_start</function>, the start function for GCC.</para>
 
-	  <para>DejaGnu itself does not call
+	  <para>&dj; itself does not call
 	  <function>${tool}_start</function>.  The initialization
 	  module <function>${tool}_init.exp</function> must call
 	  <function>${tool}_start</function> for interactive tools;
@@ -3478,7 +3478,7 @@
 	  program it runs in a variable called
 	  <symbol>$exec_output</symbol>. Writing
 	  <function>${tool}_load</function> can be the most complex
-	  part of extending DejaGnu to a new tool or a new target, if
+	  part of extending &dj; to a new tool or a new target, if
 	  it requires much communication coding or file
 	  downloading. Test scripts call
 	  <function>${tool}_load</function>.</para>
@@ -3494,7 +3494,7 @@
 	<sect4 id="toolexit" xreflabel="${tool}_exit procedure">
 	  <title>${tool}_exit Procedure</title>
 
-	  <para>Cleans up (if necessary) before DejaGnu exits. For
+	  <para>Cleans up (if necessary) before &dj; exits. For
 	  interactive tools, this usually ends the interactive
 	  session.  You can also use <function>${tool}_exit</function>
 	  to remove any temporary files left over from the
@@ -3513,7 +3513,7 @@
 	  <title>${tool}_version Procedure</title>
 
 	  <para>Prints the version label and number for
-	  <symbol>${tool}</symbol>.  This is called by the DejaGnu
+	  <symbol>${tool}</symbol>.  This is called by the &dj;
 	  procedure that prints the final summary report.  The output
 	  should consist of the full path name used for the tested
 	  tool, and its version number.</para>
@@ -3666,7 +3666,7 @@
 	<sect4 id="prune" xreflabel="prune procedure">
 	  <title>Prune Procedure</title>
 	  <para>This procedure is deprecated and will be removed in
-	  the next release of DejaGnu.  If a testsuite uses this
+	  the next release of &dj;.  If a testsuite uses this
 	  procedure, a copy of the procedure should be made and placed
 	  in the lib directory of the testsuite.</para>
 	</sect4>
@@ -3674,7 +3674,7 @@
 	<sect4 id="slay" xreflabel="slay procedure">
 	  <title>Slay Procedure</title>
 	  <para>This procedure is deprecated and will be removed in
-	  the next release of DejaGnu.  If a testsuite uses this
+	  the next release of &dj;.  If a testsuite uses this
 	  procedure, a copy of the procedure should be made and placed
 	  in the lib directory of the testsuite.</para>
 	</sect4>
@@ -3682,7 +3682,7 @@
 	<sect4 id="absolute" xreflabel="absolute procedure">
 	  <title>Absolute Procedure</title>
 	  <para>This procedure is deprecated and will be removed in
-	  the next release of DejaGnu.  If a testsuite uses this
+	  the next release of &dj;.  If a testsuite uses this
 	  procedure, a copy of the procedure should be made and placed
 	  in the lib directory of the testsuite.</para>
 	</sect4>
@@ -3690,7 +3690,7 @@
 	<sect4 id="psource" xreflabel="psource procedure">
 	  <title>Psource Procedure</title>
 	  <para>This procedure is deprecated and will be removed in
-	  the next release of DejaGnu.  If a testsuite uses this
+	  the next release of &dj;.  If a testsuite uses this
 	  procedure, a copy of the procedure should be made and placed
 	  in the lib directory of the testsuite.</para>
 	</sect4>
@@ -4535,7 +4535,7 @@
    <sect2 id="filemap">
     <title>File Map</title>
 
-    <para>This is a map of the files in DejaGnu.</para>
+    <para>This is a map of the files in &dj;.</para>
 
     <itemizedlist>
       <listitem><para>runtest</para></listitem>

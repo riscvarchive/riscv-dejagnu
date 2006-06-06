@@ -459,9 +459,9 @@ dejagnu
 with a AMD K6 and a Mac Powerbook G3 serving as a remote
 target.
 
-The tests for Windows were run under Windows NT using the
-actual Cygwin version (1.3.x as of October 2001). It's target system
-was a PPC embedded system running vxWorks. 
+The tests for Windows were run under Windows using the actual
+Cygwin version (1.3.x as of October 2001). Its target system was a PPC
+embedded system running vxWorks.  
 
 @menu
 * Test your installation::
@@ -524,7 +524,7 @@ them.
 On Windows systems DejaGnu is part of a port of a lot of Unix
 tools to the Windows OS, called Cygwin. Cygwin may be downloaded and
 installed from a mirror of http://www.cygwin.com/. All examples were
-also run on Windows NT. If nothing is said, you can assume that you
+also run on Windows. If nothing is said, you can assume that you
 should get the same output as on a Unix system.
 
 You will need a telnet daemon if you want to use a Windows box
@@ -2453,7 +2453,7 @@ host.
 @subsection Personal Config File
 
 The personal config file is used to customize
-@code{runtest's} behaviour for each person. It's
+@code{runtest's} behaviour for each person. It is
 typically used to set the user prefered setting for verbosity,
 and any experimental Tcl procedures. My personal
 @file{~/.dejagnurc} file looks like:

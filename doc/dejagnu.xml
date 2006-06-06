@@ -19,60 +19,50 @@
   <articleinfo>
     <title>&dj;</title>
     <subtitle>The GNU Testing Framework</subtitle>
-    <date>2004 Feb 04</date>
+    <date>January 2006</date>
     <authorgroup>
       <author>
-        <firstname>Rob Savoye</firstname>
-        <affiliation>
-          <orgname>Free Software Foundation</orgname></affiliation>
-        <!-- <authorblurb>
-          <title>Rob Savoye</title>
-          <para>
-            His home page is at <ulink>
-            URL="http://www.welcomehome.org/rob.html">this
-            location</ulink>
-            </para>
-        </authorblurb>
-        -->
+        <firstname>Rob</firstname>
+        <surname>Savoye</surname>
+      </author>
+      <author>
+        <firstname>Ben</firstname>
+        <surname>Elliston</surname>
       </author>
     </authorgroup>
-    <address>
-      <email>rob@welcomehome.org</email>
-    </address>
-    <!-- &cygnus-street-address; -->
+
     <copyright>
-       <year>2004</year>
-       <holder>Rob Savoye</holder>
+       <year>2006</year>
+       <holder>Free Software Foundation, Inc.</holder>
     </copyright>
     <!-- <legalnotice>
       <para> -->
         <!-- [FIXME: must put legal notice here] -->
       <!-- </para> -->
-      <!-- &cygnus-legal-notice; -->
     <!-- </legalnotice> -->
     <revhistory>
       <revision>
         <revnumber>0.6.2</revnumber>
-        <date>2002-7-16</date>
-        <authorinitials>rob@welcomehome.org</authorinitials>
+        <date>2002-07-16</date>
+        <authorinitials>rob</authorinitials>
         <revremark>Add new tutorial as a new sect1.</revremark>
       </revision>
       <revision>
         <revnumber>0.6.1</revnumber>
-        <date>2001-2-16</date>
-        <authorinitials>rob@welcomehome.org</authorinitials>
+        <date>2001-02-16</date>
+        <authorinitials>rob</authorinitials>
         <revremark>Add info on the new dejagnu.h file.</revremark>
       </revision>
       <revision>
         <revnumber>0.6</revnumber>
-        <date>2001-2-16</date>
-        <authorinitials>rob@welcomehome.org</authorinitials>
+        <date>2001-02-16</date>
+        <authorinitials>rob</authorinitials>
         <revremark>Updated for new release.</revremark>
       </revision>
       <revision>
         <revnumber>0.5</revnumber>
-        <date>2000-1-24</date>
-        <authorinitials>rob@welcomehome.org</authorinitials>
+        <date>2000-01-24</date>
+        <authorinitials>rob</authorinitials>
         <revremark>Initial version after conversion to DocBook.</revremark>
       </revision>
     </revhistory>
@@ -82,8 +72,8 @@
  <sect1 id="preface">
     <title>Abstract</title>
 
-    <para>This document describes the functionality of DejaGnu, the
-    testing framework of the GNU project. DejaGnu is written in
+  <para>This document describes the functionality of &dj;, the
+    testing framework of the GNU project. &dj; is written in
     <productname>Expect</productname>, which uses
     <productname>Tcl</productname> as a command
     language. <productname>Expect</productname> acts as a very
@@ -95,7 +85,7 @@
     <command>diff</command> or <command>sh</command>, with full
     control over its input and output.</para>
 
-    <para>DejaGnu itself is merely a framework for the creation of
+    <para>&dj; itself is merely a framework for the creation of
     testsuites. Testsuites are distributed with each
     application.</para>
 
@@ -106,14 +96,14 @@
     <sect2 id="whatis" xreflabel="What is &dj; ?">
       <title>What is &dj; ?</title>
 
-    <para><productname>DejaGnu</productname> is a framework for
+    <para><productname>&dj;</productname> is a framework for
 	testing other programs.  Its purpose is to provide a single
 	front end for all tests. Think of it as a custom library of
 	Tcl procedures crafted to support writing a test harness. A
 	<emphasis>Test Harness</emphasis> is the testing
 	infrastructure that is created to support a specific program
 	or tool. Each program can have multiple testsuites, all
-	supported by a single test harness. DejaGnu is written in
+	supported by a single test harness. &dj; is written in
 	<productname>Expect</productname>, which in turn uses
 	<productname>Tcl</productname> -- Tool command
 	language. There is more information on Tcl at the <ulink
@@ -121,43 +111,43 @@
 	Expect web site is at <ulink
 	url="http://expect.nist.gov">NIST</ulink>.</para>
 	
-   <para>Julia Menapace first coined the term ``DejaGnu'' to describe
+   <para>Julia Menapace first coined the term ``&dj;'' to describe
         an earlier testing framework at Cygnus Support she had written
         for <command>GDB</command>. When we replaced it with the
-        Expect-based framework, it was like DejaGnu all over again.
+        Expect-based framework, it was like &dj; all over again.
         More importantly, it was also named after my daughter, <ulink
         url="http://www.welcomehome.org/deja/">Deja Snow Savoye</ulink>
         (now 14 years old as of Feb 2004), who was a toddler
-        during DejaGnu's beginnings.</para>
+        during &dj;'s beginnings.</para>
 
-    <para>DejaGnu offers several advantages for testing:</para>
+    <para>&dj; offers several advantages for testing:</para>
 
     <itemizedlist mark="bullet" spacing="compact">
 
-      <listitem><para>The flexibility and consistency of the DejaGnu
+      <listitem><para>The flexibility and consistency of the &dj;
 	framework make it easy to write tests for any program, with
 	either batch oriented, or interactive programs.</para>
       </listitem>
 
-      <listitem><para>DejaGnu provides a layer of abstraction which
+      <listitem><para>&dj; provides a layer of abstraction which
 	allows you to write tests that are portable to any host or
 	target where a program must be tested. For instance, a test
 	for <command>GDB</command> can run from any supported host
-	system on any supported target system. DejaGnu runs tests on
+	system on any supported target system. &dj; runs tests on
 	many single board computers, whose operating software ranges
 	from a simple boot monitor to a real-time OS.</para>
 	</listitem>
 
       <listitem><para>All tests have the same output format. This
 	makes it easy to integrate testing into other software
-	development processes. DejaGnu's output is designed to be
+	development processes. &dj;'s output is designed to be
 	parsed by other filtering script and it is also human
 	readable.</para>
       </listitem>
 
       <listitem><para>Using Tcl and Expect, it's easy to create wrappers
       for existing testsuites. By incorporating existing tests under
-      DejaGnu, it's easier to have a single set of report analyse
+      &dj;, it's easier to have a single set of report analyse
       programs..</para>
 
       </listitem>
@@ -169,7 +159,7 @@
     a Tcl script to run a testsuite that is not based on
     <productname>Expect</productname>. <productname>Expect</productname>
     script filenames conventionally use <emphasis>.exp</emphasis> as a
-    suffix; for example, the main implementation of the DejaGnu test
+    suffix; for example, the main implementation of the &dj; test
     driver is in the file
     <productname>runtest.exp</productname>.)</para>
 	
@@ -201,7 +191,7 @@
       <listitem><para>Lots of little bug fixes from years of heavy
         use at Cygnus Solutions.</para></listitem>
 
-      <listitem><para>DejaGnu now uses
+      <listitem><para>&dj; now uses
       <productname>Automake</productname> for Makefile
       configuration.</para></listitem>
 
@@ -218,7 +208,7 @@
     <sect3 id="cygwin" xreflabel="Windows Support">
       <title>Windows Support</title>
 
-      <para>To use DejaGnu on Windows, you need to first install the
+      <para>To use &dj; on Windows, you need to first install the
 	<ulink url="http://www.cygwin.com/">Cygwin</ulink>
 	release. This works as of the B20.1 release. Cygwin is a POSIX
 	system for Windows. This covers both utility programs and a library
@@ -238,7 +228,7 @@
   <sect2 id="designgoals" xreflabel="Design Goals">
     <title>Design Goals</title>
 
-    <para>DejaGnu grew out of the internal needs of Cygnus Solutions,
+    <para>&dj; grew out of the internal needs of Cygnus Solutions,
     the company formerly known as Cygnus Support. Cygnus maintained
     and enhanced a variety of free programs in many different
     environments and we needed a testing tool that:</para>
@@ -269,10 +259,10 @@
     environments are customized by each developer.  Even when buying
     packaged boards from vendors there are many differences.  The
     communication interfaces vary from a serial line to Ethernet.
-    DejaGnu was designed with a modular communication setup, so that
+    &dj; was designed with a modular communication setup, so that
     each kind of communication can be added as required and supported
     thereafter.  Once a communication procedure is coded, any test can
-    use it.  Currently DejaGnu can use <command>rsh</command>,
+    use it.  Currently &dj; can use <command>rsh</command>,
     <command>rlogin</command>, <command>telnet</command>,
     <command>tip</command>, <command>kermit</command> and
     <command>mondfe</command> for remote communications.</para>
@@ -282,7 +272,7 @@
     <sect2 id="posix" xreflabel="A POSIX Conforming Test Framework">
       <title>A POSIX conforming test framework</title>
 
-      <para>DejaGnu conforms to the POSIX 1003.3 standard for test
+      <para>&dj; conforms to the POSIX 1003.3 standard for test
       frameworks. Rob Savoye was a member of that committee.</para>
 
       <para>The POSIX standard 1003.3 defines what a testing framework needs to
@@ -307,7 +297,7 @@
       repeatedly reading the standard and experimenting.  One of the main
       things 1003.3 does specify is the set of allowed output messages and
       their definitions.  Four messages are supported for a required feature of
-      POSIX conforming systems and a fifth for a conditional feature. DejaGnu
+      POSIX conforming systems and a fifth for a conditional feature. &dj;
       supports the use of all five output messages.  In this sense a testsuite
       that uses exactly these messages can be considered POSIX conforming.
       These definitions specify the output of a test
@@ -373,7 +363,7 @@
 
 	    <listitem><para>A test does not produce a clear
 	    result. This is usually because there was an
-	    <emphasis>ERROR</emphasis> from DejaGnu while processing
+	    <emphasis>ERROR</emphasis> from &dj; while processing
 	    the test, or because there were three or more
 	    <emphasis>WARNING</emphasis> messages. Any
 	    <emphasis>WARNING</emphasis> or <emphasis>ERROR</emphasis>
@@ -406,7 +396,7 @@
   	    <term>UNSUPPORTED</term>
 	    <listitem><para>There is no support for the tested case.  This may
   	    mean that a conditional feature of an operating system, or of a
-  	    compiler, is not implemented.  DejaGnu also uses this message when
+  	    compiler, is not implemented.  &dj; also uses this message when
   	    a testing environment (often a ``bare board'' target) lacks basic
   	    support for compiling or running the test case.  For example, a
   	    test for the system subroutine <emphasis>gethostname</emphasis>
@@ -415,9 +405,9 @@
 	  </varlistentry>
 	</variablelist>
 
-        <para>DejaGnu uses the same output procedures to produce these messages
+        <para>&dj; uses the same output procedures to produce these messages
 	for all testsuites and these procedures are already known to conform
-	to POSIX 1003.3.  For a DejaGnu testsuite to conform to POSIX 1003.3,
+	to POSIX 1003.3.  For a &dj; testsuite to conform to POSIX 1003.3,
 	you must avoid the <emphasis>setup</emphasis>xfail} procedure as
 	described in the <emphasis>PASS</emphasis> section above and you must
 	be careful to return <emphasis>UNRESOLVED</emphasis> where appropriate,

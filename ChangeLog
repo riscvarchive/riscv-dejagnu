@@ -1,5 +1,10 @@
 2006-06-06  Ben Elliston  <bje@gnu.org>
 
+	* doc/dejagnu.xml, doc/ref.xml, doc/user.xml: Edits.
+	* doc/dejagnu.texi: Regenerate.
+
+2006-06-06  Ben Elliston  <bje@gnu.org>
+
 	Import from GCC tree:
 	2006-06-02  Richard Earnshaw  <rearnsha@arm.com>
 		    Mike Stump  <mrs@apple.com>
