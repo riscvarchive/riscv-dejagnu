@@ -203,7 +203,7 @@ DOCBOOK2PDF = @DOCBOOK2PDF@
 DOCBOOK2RTF= = @DOCBOOK2RTF@
 DOCBOOK2PS = @DOCBOOK2PS@
 DOCBOOK2HTML = @DOCBOOK2HTML@
-DOCBOOK2X_TEXI = @DOCBOOK2X_TEXI@
+DOCBOOK2TEXI = @DOCBOOK2TEXI@
 
 XML = doc/dejagnu.xml doc/legal.xml doc/ref.xml doc/user.xml
 
@@ -220,8 +220,8 @@ html:
 	$(DOCBOOK2HTML) -o html $(srcdir)/doc/dejagnu.xml
 
 doc/dejagnu.texi: $(XML)
-	$(DOCBOOK2X_TEXI) $(srcdir)/doc/dejagnu.xml
-	mv untitled.texi $(srcdir)/$@
+	$(DOCBOOK2TEXI) --string-param directory-description="The GNU testing framework." $(srcdir)/doc/dejagnu.xml
+	mv dejagnu.texi $(srcdir)/doc
 
 # Packaging.
 

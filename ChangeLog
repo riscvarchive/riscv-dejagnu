@@ -1,3 +1,15 @@
+2006-06-06  Ben Elliston  <bje@gnu.org>
+
+	* configure.ac: Check for docbook2texi, not docbook2x-texi.  The
+	wrapper script changed its name again in the latest release.
+	* configure: Regenerate.
+	* Makefile.am (DOCBOOK2X_TEXI): Rename from this ..
+	(DOCBOOK2TEXI): .. to this.
+	(doc/dejagnu.texi): Do not use output-file parameter to deposit
+	the .texi file into the source directory; use mv(1) instead. Set
+	directory-description parameter.
+	* Makefile.in: Likewise.
+
 2006-06-02  Ben Elliston  <bje@gnu.org>
 
 	* config/sim.exp (sim_upload): Match up argument names.

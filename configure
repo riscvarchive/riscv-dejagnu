@@ -274,7 +274,7 @@ PACKAGE_STRING='GNU DejaGnu 1.4.99'
 PACKAGE_BUGREPORT='bug-dejagnu@gnu.org'
 
 ac_subdirs_all="$ac_subdirs_all example/calc example/hello example/mathhelper"
-ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CXX CXXFLAGS ac_ct_CXX CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE DOCBOOK2HTML DOCBOOK2RTF DOCBOOK2PDF DOCBOOK2PS DOCBOOK2X_TEXI EXPECT subdirs LIBOBJS LTLIBOBJS'
+ac_subst_vars='SHELL PATH_SEPARATOR PACKAGE_NAME PACKAGE_TARNAME PACKAGE_VERSION PACKAGE_STRING PACKAGE_BUGREPORT exec_prefix prefix program_transform_name bindir sbindir libexecdir datadir sysconfdir sharedstatedir localstatedir libdir includedir oldincludedir infodir mandir build_alias host_alias target_alias DEFS ECHO_C ECHO_N ECHO_T LIBS INSTALL_PROGRAM INSTALL_SCRIPT INSTALL_DATA CYGPATH_W PACKAGE VERSION ACLOCAL AUTOCONF AUTOMAKE AUTOHEADER MAKEINFO install_sh STRIP ac_ct_STRIP INSTALL_STRIP_PROGRAM mkdir_p AWK SET_MAKE am__leading_dot AMTAR am__tar am__untar MAINTAINER_MODE_TRUE MAINTAINER_MODE_FALSE MAINT CC CFLAGS LDFLAGS CPPFLAGS ac_ct_CC EXEEXT OBJEXT DEPDIR am__include am__quote AMDEP_TRUE AMDEP_FALSE AMDEPBACKSLASH CCDEPMODE am__fastdepCC_TRUE am__fastdepCC_FALSE CXX CXXFLAGS ac_ct_CXX CXXDEPMODE am__fastdepCXX_TRUE am__fastdepCXX_FALSE DOCBOOK2HTML DOCBOOK2RTF DOCBOOK2PDF DOCBOOK2PS DOCBOOK2TEXI EXPECT subdirs LIBOBJS LTLIBOBJS'
 ac_subst_files=''
 
 # Initialize some variables set by options.
@@ -923,7 +923,7 @@ esac
     else
       echo "$as_me: WARNING: no configuration information is in $ac_dir" >&2
     fi
-    cd $ac_popdir
+    cd "$ac_popdir"
   done
 fi
 
@@ -2339,8 +2339,7 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"
-			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -2398,8 +2397,7 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"
-			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -2515,8 +2513,7 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"
-			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -2570,8 +2567,7 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"
-			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -2616,8 +2612,7 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"
-			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -2661,8 +2656,7 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_c_werror_flag"
-			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_c_werror_flag"			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -3020,8 +3014,7 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"
-			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -3079,8 +3072,7 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"
-			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -3151,8 +3143,7 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"
-			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -3196,8 +3187,7 @@ if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   cat conftest.err >&5
   echo "$as_me:$LINENO: \$? = $ac_status" >&5
   (exit $ac_status); } &&
-	 { ac_try='test -z "$ac_cxx_werror_flag"
-			 || test ! -s conftest.err'
+	 { ac_try='test -z "$ac_cxx_werror_flag"			 || test ! -s conftest.err'
   { (eval echo "$as_me:$LINENO: \"$ac_try\"") >&5
   (eval $ac_try) 2>&5
   ac_status=$?
@@ -3580,16 +3570,16 @@ else
 echo "${ECHO_T}no" >&6
 fi
 
-# Extract the first word of "docbook2x-texi", so it can be a program name with args.
-set dummy docbook2x-texi; ac_word=$2
+# Extract the first word of "docbook2texi", so it can be a program name with args.
+set dummy docbook2texi; ac_word=$2
 echo "$as_me:$LINENO: checking for $ac_word" >&5
 echo $ECHO_N "checking for $ac_word... $ECHO_C" >&6
-if test "${ac_cv_path_DOCBOOK2X_TEXI+set}" = set; then
+if test "${ac_cv_path_DOCBOOK2TEXI+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
-  case $DOCBOOK2X_TEXI in
+  case $DOCBOOK2TEXI in
   [\\/]* | ?:[\\/]*)
-  ac_cv_path_DOCBOOK2X_TEXI="$DOCBOOK2X_TEXI" # Let the user override the test with a path.
+  ac_cv_path_DOCBOOK2TEXI="$DOCBOOK2TEXI" # Let the user override the test with a path.
   ;;
   *)
   as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
@@ -3599,22 +3589,22 @@ do
   test -z "$as_dir" && as_dir=.
   for ac_exec_ext in '' $ac_executable_extensions; do
   if $as_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
-    ac_cv_path_DOCBOOK2X_TEXI="$as_dir/$ac_word$ac_exec_ext"
+    ac_cv_path_DOCBOOK2TEXI="$as_dir/$ac_word$ac_exec_ext"
     echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
     break 2
   fi
 done
 done
 
-  test -z "$ac_cv_path_DOCBOOK2X_TEXI" && ac_cv_path_DOCBOOK2X_TEXI="false"
+  test -z "$ac_cv_path_DOCBOOK2TEXI" && ac_cv_path_DOCBOOK2TEXI="false"
   ;;
 esac
 fi
-DOCBOOK2X_TEXI=$ac_cv_path_DOCBOOK2X_TEXI
+DOCBOOK2TEXI=$ac_cv_path_DOCBOOK2TEXI
 
-if test -n "$DOCBOOK2X_TEXI"; then
-  echo "$as_me:$LINENO: result: $DOCBOOK2X_TEXI" >&5
-echo "${ECHO_T}$DOCBOOK2X_TEXI" >&6
+if test -n "$DOCBOOK2TEXI"; then
+  echo "$as_me:$LINENO: result: $DOCBOOK2TEXI" >&5
+echo "${ECHO_T}$DOCBOOK2TEXI" >&6
 else
   echo "$as_me:$LINENO: result: no" >&5
 echo "${ECHO_T}no" >&6
@@ -4418,7 +4408,7 @@ s,@DOCBOOK2HTML@,$DOCBOOK2HTML,;t t
 s,@DOCBOOK2RTF@,$DOCBOOK2RTF,;t t
 s,@DOCBOOK2PDF@,$DOCBOOK2PDF,;t t
 s,@DOCBOOK2PS@,$DOCBOOK2PS,;t t
-s,@DOCBOOK2X_TEXI@,$DOCBOOK2X_TEXI,;t t
+s,@DOCBOOK2TEXI@,$DOCBOOK2TEXI,;t t
 s,@EXPECT@,$EXPECT,;t t
 s,@subdirs@,$subdirs,;t t
 s,@LIBOBJS@,$LIBOBJS,;t t
@@ -4589,11 +4579,6 @@ esac
   *) ac_INSTALL=$ac_top_builddir$INSTALL ;;
   esac
 
-  if test x"$ac_file" != x-; then
-    { echo "$as_me:$LINENO: creating $ac_file" >&5
-echo "$as_me: creating $ac_file" >&6;}
-    rm -f "$ac_file"
-  fi
   # Let's still pretend it is `configure' which instantiates (i.e., don't
   # use $as_me), people would be surprised to read:
   #    /* config.h.  Generated by config.status.  */
@@ -4632,6 +4617,12 @@ echo "$as_me: error: cannot find input file: $f" >&2;}
 	 fi;;
       esac
     done` || { (exit 1); exit 1; }
+
+  if test x"$ac_file" != x-; then
+    { echo "$as_me:$LINENO: creating $ac_file" >&5
+echo "$as_me: creating $ac_file" >&6;}
+    rm -f "$ac_file"
+  fi
 _ACEOF
 cat >>$CONFIG_STATUS <<_ACEOF
   sed "$ac_vpsub
@@ -5066,7 +5057,7 @@ echo "$as_me: error: $ac_sub_configure failed for $ac_dir" >&2;}
    { (exit 1); exit 1; }; }
     fi
 
-    cd $ac_popdir
+    cd "$ac_popdir"
   done
 fi
 
