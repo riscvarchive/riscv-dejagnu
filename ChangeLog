@@ -1,5 +1,13 @@
 2006-06-06  Ben Elliston  <bje@gnu.org>
 
+	Import from GCC tree:
+	2006-06-02  Richard Earnshaw  <rearnsha@arm.com>
+		    Mike Stump  <mrs@apple.com>
+
+	* compare_tests: Handle multilibs better.
+
+2006-06-06  Ben Elliston  <bje@gnu.org>
+
 	* doc/dejagnu.texi: Regnerate using Docbook2X 0.8.7.
 
 	* configure.ac: Check for docbook2texi, not docbook2x-texi.  The
