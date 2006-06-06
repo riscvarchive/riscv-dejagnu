@@ -1,5 +1,16 @@
 2006-06-06  Ben Elliston  <bje@gnu.org>
 
+	* dejagnu.h: Tidy comments.
+	(_BUFFER_SIZE_): Remove to minimise namespace pollution.
+	(wait): Define this function unconditionally.  Conditionally
+	compile the function body if _DEJAGNU_WAIT_ is defined.
+	(buffer): Set the buffer size explicitly.
+	(pass): Use sizeof (buffer).  Call wait() unconditionally.
+	(fail, untested, unresolved, note): Likewise.
+	(enum teststate): Tidy whitespace.
+
+2006-06-06  Ben Elliston  <bje@gnu.org>
+
 	* doc/dejagnu.xml, doc/ref.xml, doc/user.xml: Edits.
 	* doc/dejagnu.texi: Regenerate.
 
