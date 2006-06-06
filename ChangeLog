@@ -1,5 +1,9 @@
 2006-06-06  Ben Elliston  <bje@gnu.org>
 
+	* runtest.exp (load_lib): Typo fix.
+
+2006-06-06  Ben Elliston  <bje@gnu.org>
+
 	* dejagnu.h: Tidy comments.
 	(_BUFFER_SIZE_): Remove to minimise namespace pollution.
 	(wait): Define this function unconditionally.  Conditionally

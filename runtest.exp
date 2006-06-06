@@ -687,7 +687,7 @@ if {[expr  { $build_triplet == ""  &&  $host_triplet == ""} ]} {
     foreach dir "$libdir $libdir/libexec $libdir/.. $execpath $srcdir $srcdir/.. $srcdir/../.." {
 	verbose "Looking for ${dir}/config.guess" 2
 	if {[file exists [file join ${dir} config.guess]]} {
-	    set config_guess [file join [${dir} config.guess]]
+	    set config_guess [file join ${dir} config.guess]
 	    verbose "Found [file join ${dir} config.guess]"
 	    break
 	}
