@@ -211,7 +211,7 @@ EXTRA_DIST = ChangeLog.0 MAINTAINERS runtest site.tmpl \
 	$(pkgdata_DATA) $(pkgdata_SCRIPTS) \
 	$(config_DATA) $(config_SCRIPTS) \
 	$(baseboard_DATA) $(baseboard_SCRIPTS) \
-	$(TESTSUITE_FILES) $(XML)
+	$(TESTSUITE_FILES) $(XML) $(CONTRIB)
 
 bin_SCRIPTS = runtest
 include_HEADERS = dejagnu.h
@@ -367,6 +367,9 @@ baseboard_SCRIPTS = \
 pkgdata_DATA = stub-loader.c testglue.c
 djlibexecdir = $(pkgdatadir)/libexec
 djlibexec_SCRIPTS = config.guess
+
+# Contributed scripts, etc.
+CONTRIB = contrib/compare_tests
 
 # Testsuite.
 TESTSUITE_FILES = \
@@ -873,7 +876,7 @@ distclean-DEJAGNU:
 distdir: $(DISTFILES)
 	$(am__remove_distdir)
 	mkdir $(distdir)
-	$(mkdir_p) $(distdir)/baseboards $(distdir)/config $(distdir)/doc $(distdir)/lib $(distdir)/testsuite/config $(distdir)/testsuite/lib $(distdir)/testsuite/libdejagnu $(distdir)/testsuite/runtest.all $(distdir)/testsuite/runtest.all/topdir/subdir1 $(distdir)/testsuite/runtest.all/topdir/subdir1/subsubdir1 $(distdir)/testsuite/runtest.all/topdir/subdir2
+	$(mkdir_p) $(distdir)/baseboards $(distdir)/config $(distdir)/contrib $(distdir)/doc $(distdir)/lib $(distdir)/testsuite/config $(distdir)/testsuite/lib $(distdir)/testsuite/libdejagnu $(distdir)/testsuite/runtest.all $(distdir)/testsuite/runtest.all/topdir/subdir1 $(distdir)/testsuite/runtest.all/topdir/subdir1/subsubdir1 $(distdir)/testsuite/runtest.all/topdir/subdir2
 	@srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's|.|.|g'`; \
 	list='$(DISTFILES)'; for file in $$list; do \
@@ -1164,10 +1167,8 @@ html:
 	$(DOCBOOK2HTML) -o html $(srcdir)/doc/dejagnu.xml
 
 doc/dejagnu.texi: $(XML)
-	$(DOCBOOK2TEXI) --string-param directory-description="The GNU testing framework." $(srcdir)/doc/dejagnu.xml
+	$(DOCBOOK2TEXI) --string-param directory-description="The GNU testing framework." --string-param directory-category="Programming" $(srcdir)/doc/dejagnu.xml
 	mv dejagnu.texi $(srcdir)/doc
-
-#  -g output-file="$(srcdir)/doc/dejagnu.texi"
 
 # Packaging.
 

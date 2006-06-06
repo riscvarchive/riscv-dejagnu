@@ -1,5 +1,13 @@
 2006-06-06  Ben Elliston  <bje@gnu.org>
 
+	* Makefile.am (CONTRIB): New.
+	(EXTRA_DIST): Add $(CONTRIB).
+	(doc/dejagnu.texi): Set directory-category param to docbook2texi.
+	* Makefile.in: Regenerate.
+	* doc/dejagnu.texi: Likewise.
+
+2006-06-06  Ben Elliston  <bje@gnu.org>
+
 	* runtest.exp (load_lib): Typo fix.
 
 2006-06-06  Ben Elliston  <bje@gnu.org>

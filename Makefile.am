@@ -6,7 +6,7 @@ EXTRA_DIST = ChangeLog.0 MAINTAINERS runtest site.tmpl \
 	$(pkgdata_DATA) $(pkgdata_SCRIPTS) \
 	$(config_DATA) $(config_SCRIPTS) \
 	$(baseboard_DATA) $(baseboard_SCRIPTS) \
-	$(TESTSUITE_FILES) $(XML)
+	$(TESTSUITE_FILES) $(XML) $(CONTRIB)
 
 bin_SCRIPTS = runtest
 include_HEADERS = dejagnu.h
@@ -165,6 +165,10 @@ pkgdata_DATA = stub-loader.c testglue.c
 djlibexecdir = $(pkgdatadir)/libexec
 djlibexec_SCRIPTS = config.guess
 
+# Contributed scripts, etc.
+
+CONTRIB = contrib/compare_tests
+
 # Testsuite.
 
 TESTSUITE_FILES = \
@@ -220,7 +224,7 @@ html:
 	$(DOCBOOK2HTML) -o html $(srcdir)/doc/dejagnu.xml
 
 doc/dejagnu.texi: $(XML)
-	$(DOCBOOK2TEXI) --string-param directory-description="The GNU testing framework." $(srcdir)/doc/dejagnu.xml
+	$(DOCBOOK2TEXI) --string-param directory-description="The GNU testing framework." --string-param directory-category="Programming" $(srcdir)/doc/dejagnu.xml
 	mv dejagnu.texi $(srcdir)/doc
 
 # Packaging.

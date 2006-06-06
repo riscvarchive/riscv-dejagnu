@@ -2,6 +2,7 @@
 @setfilename dejagnu.info
 @documentencoding us-ascii
 @settitle DejaGnu
+@dircategory Programming
 @direntry
 * DejaGnu: (dejagnu).           The GNU testing framework.
 @end direntry
