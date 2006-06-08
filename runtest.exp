@@ -700,7 +700,8 @@ if {[expr  { $build_triplet == ""  &&  $host_triplet == ""} ]} {
     }
     catch "exec $config_guess" build_triplet
     switch $build_triplet {
-	{ "No uname command or uname output not recognized" "Unable to guess system type" } {
+	"No uname command or uname output not recognized" -
+	"Unable to guess system type" {
 	    verbose "WARNING: Uname output not recognized"
 	    set build_triplet unknown
 	}

@@ -38,12 +38,14 @@ foreach x $board_variant_list {
 	# the "common" subset doesn't lose the compatibility.)
 
 	# Mnemonic: "a" is 10.
-	{ arch=common_v10_v32 -march=common_v10_v32 } {
+	"arch=common_v10_v32" -
+	"-march=common_v10_v32" {
 	    set cris_simopt "--architecture cris"
 	}
 
 	# Mnemonic: "c" is... eh... comes after 10!
-	{ cpu=common_v10_v32 -mcpu=common_v10_v32 } {
+	"cpu=common_v10_v32" -
+	"-mcpu=common_v10_v32" {
 	    set cris_simopt "--architecture crisv32"
 	}
     }

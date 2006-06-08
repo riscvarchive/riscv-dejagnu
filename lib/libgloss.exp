@@ -759,43 +759,47 @@ proc process_multilib_options { args } {
 	if { $x == "" } {
 	    continue
 	}
-	switch $x {
-	    { aout } {
+	switch -glob $x {
+	    "aout" {
 		set_board_info obj_format "a.out"
 	    }
-	    { elf } {
+	    "elf" {
 		set_board_info obj_format "elf"
 	    }
-	    { pe } {
+	    "pe" {
 		set_board_info obj_format "pe"
 	    }
-	    { ecoff } {
+	    "ecoff" {
 		set_board_info obj_format "ecoff"
 	    }
-	    { stabs } {
+	    "stabs" {
 		set_board_info debug_flags "-gstabs"
 	    }
-	    { dwarf2 } {
+	    "dwarf2" {
 		set_board_info debug_flags "-gdwarf2"
 	    }
-	    { gdb:*=* } {
+	    "gdb:*=*" {
 		regsub "^gdb:\[^=\]*=(.*)$" "$x" "\\1" value
 		regsub "^gdb:(\[^=\]*)=.*$" "$x" "\\1" variable
 		set_board_info $variable "$value"
 	    }
-	    { gdb*remote } {
+	    "gdb*remote" {
 		set is_gdb_remote 1
 	    }
-	    { little*endian el EL } {
+	    "little*endian" -
+	    "el" -
+	    "EL" {
 		append multilib_flags " -EL"
 	    }
-	    { big*endian eb EB } {
+	    "big*endian" -
+	    "eb" -
+	    "EB" {
 		append multilib_flags " -EB"
 	    }
-	    { "soft*float" } {
+	    "soft*float" {
 		append multilib_flags " -msoft-float"
 	    }
-	    { "-*" } {
+	    "-*" {
 		append multilib_flags " $x"
 	    }
 	    default {

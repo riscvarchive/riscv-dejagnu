@@ -293,8 +293,13 @@ proc clone_output { message } {
     }
 
     regsub "^\[ \t\]*(\[^ \t\]+).*$" "$message" "\\1" firstword
-    switch "$firstword" {
-	{"PASS:" "XFAIL:" "KFAIL:" "UNRESOLVED:" "UNSUPPORTED:" "UNTESTED:"} {
+    switch -glob "$firstword" {
+	"PASS:" -
+	"XFAIL:" -
+	"KFAIL:" -
+	"UNRESOLVED:" -
+	"UNSUPPORTED:" -
+	"UNTESTED:" {
 	    if {$all_flag} {
 		send_user "$message\n"
 		return "$message"
@@ -623,7 +628,7 @@ proc clear_xfail { args } {
     set argc [ llength $args ]
     for { set i 0 } { $i < $argc } { incr i } {
 	set sub_arg [ lindex $args $i ]
-	switch $sub_arg {
+	switch -glob $sub_arg {
 	    "*-*-*" {			# is a configuration triplet
 		if {[istarget $sub_arg]} {
 		    set xfail_flag 0
@@ -644,7 +649,7 @@ proc clear_kfail { args } {
     set argc [ llength $args ]
     for { set i 0 } { $i < $argc } { incr i } {
 	set sub_arg [ lindex $args $i ]
-	switch $sub_arg {
+	switch -glob $sub_arg {
 	    "*-*-*" {			# is a configuration triplet
 		if {[istarget $sub_arg]} {
 		    set kfail_flag 0

@@ -68,12 +68,11 @@ foreach x $board_variant_list {
     regsub -all "\[ \t\]*$" "$x" "" x
 
     switch $x {
-	{ h -mh } {
-	    set linker_script "h8300h.ld"
-	}
-	{ s -ms } {
-	    set linker_script "h8300s.ld"
-	}
+	"h" -
+	"-mh" { set linker_script "h8300h.ld" }
+
+	"s" -
+	"-ms" { set linker_script "h8300s.ld" }
     }
 }
 
