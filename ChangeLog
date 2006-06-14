@@ -1,4 +1,4 @@
-2006-03-30  Daniel Jacobowitz  <dan@debian.org>
+2006-03-30  Daniel Jacobowitz  <dan@codesourcery.com>
 
 	* rsh.exp (rsh_exec): Handle inp and outp arguments.  Use
 	local_exec to run rsh.  Return failure if rsh times out.
