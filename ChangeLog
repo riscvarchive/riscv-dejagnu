@@ -1,3 +1,10 @@
+2006-03-30  Daniel Jacobowitz  <dan@debian.org>
+
+	* rsh.exp (rsh_exec): Handle inp and outp arguments.  Use
+	local_exec to run rsh.  Return failure if rsh times out.
+	* remote.exp (local_exec): Handle "|& cat" we added when deciding
+	whether to return output.
+
 2006-06-09  Ben Elliston  <bje@gnu.org>
 
 	* baseboards/cris-sim.exp: Use Tcl fall-through syntax for

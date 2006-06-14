@@ -208,8 +208,8 @@ proc local_exec { commandline inp outp timeout } {
     } else {
 	set status 0
     }
-    verbose "output is $output"
-    if { $outp == "" } {
+    verbose "output is $output status $status"
+    if { $outp == "" || $outp == "|& cat" } {
         return [list $status $output]
     } else {
         return [list $status ""]

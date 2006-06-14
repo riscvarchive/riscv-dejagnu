@@ -223,20 +223,10 @@ proc rsh_upload {desthost srcfile destfile} {
 
 # Execute CMD on BOARDNAME.
 #
-proc rsh_exec { boardname cmd args } {
-    if { [llength $args] > 0 } {
-	set pargs [lindex $args 0]
-	if { [llength $args] > 1 } {
-	    set inp [lindex $args 1]
-	} else {
-	    set inp ""
-	}
-    } else {
-	set pargs ""
-	set inp ""
-    }
+proc rsh_exec { boardname program pargs inp outp } {
+    global timeout
 
-    verbose "Executing $boardname:$cmd $pargs < $inp"
+    verbose "Executing $boardname:$program $pargs < $inp"
 
     if {![board_info $boardname exists rsh_prog]} {
 	if { [which remsh] != 0 } {
@@ -271,13 +261,20 @@ proc rsh_exec { boardname cmd args } {
 	set inp "/dev/null"
     }
 
-    set status [catch "exec cat $inp | $RSH $rsh_useropts $hostname sh -c '$cmd $pargs \\; echo XYZ\\\${?}ZYX' |& cat" output]
-    verbose "$RSH output is $output"
+    set ret [local_exec "$RSH $rsh_useropts $hostname sh -c '$program $pargs \\; echo XYZ\\\${?}ZYX'" $inp $outp $timeout]
+    set status [lindex $ret 0]
+    set output [lindex $ret 1]
+
+    verbose "$RSH status is $status, output is $output"
+
     # `status' doesn't mean much here other than rsh worked ok.
-    # What we want is whether $cmd ran ok.
+    # What we want is whether $program ran ok.  Return $status;
+    # if the program timed out, status will be 1 indicating that
+    # rsh ran and failed.  If rsh fails, we will get FAIL rather
+    # than UNRESOLVED - this will help the problem be noticed.
     if { $status != 0 } {
 	regsub "XYZ(\[0-9\]*)ZYX\n?" $output "" output
-	return [list -1 "$RSH to $boardname failed for $cmd, $output"]
+	return [list $status "$RSH to $boardname failed for $program, $output"]
     }
     regexp "XYZ(\[0-9\]*)ZYX" $output junk status
     verbose "rsh_exec: status:$status text:$output" 4
