@@ -705,21 +705,21 @@ proc find_g77 {} {
 proc find_gnatmake {} {
     global tool_root_dir
 
-    set root "$tool_root_dir/gcc"
-    set GM ""
-
     if {![is_remote host]} {
-        set file [lookfor_file $root gnatmake]
-        if { $file != "" } {
-            set GM "$file -I$root/ada/rts --GCC=$root/xgcc --GNATBIND=$root/gnatbind --GNATLINK=$root/gnatlink -cargs -B$root -largs --GCC=$root/xgcc -margs";
-        }
+	set file [lookfor_file $tool_root_dir gnatmake]
+	if { $file == "" } {
+	    set file [lookfor_file $tool_root_dir gcc/gnatmake]
+	}
+	if { $file != "" } {
+	    set root [file dirname $file]
+	    set CC "$file -I$root/ada/rts --GCC=$root/xgcc --GNATBIND=$root/gnatbind --GNATLINK=$root/gnatlink -cargs -B$root -largs --GCC=$root/xgcc -B$root -margs"
+	} else {
+	    set CC [transform gnatmake]
+	}
+    } else {
+	set CC [transform gnatmake]
     }
-
-    if {$GM == ""} {
-        set GM [transform gnatmake]
-    }
-
-    return $GM
+    return $CC
 }
 
 proc find_nm {} {
