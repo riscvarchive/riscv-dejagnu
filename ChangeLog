@@ -1,3 +1,10 @@
+2006-07-13  Daniel Jacobowitz  <dan@codesourcery.com>
+
+	* Makefile.am (DOCBOOK2RTF): Fix typo.
+	* Makefile.in: Regenerated.
+	* lib/libgloss.exp (process_multilib_options): Use -- to handle
+	options starting with hyphens.
+
 2006-06-23  Eric Botcazou  <ebotcazou@adacore.com>
 
 	* libgloss.exp (find_gnatmake): Rewrite.
