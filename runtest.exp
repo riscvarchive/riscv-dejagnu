@@ -374,10 +374,10 @@ proc usage { } {
 
     send_user "USAGE: runtest \[options...\]\n"
     send_user "\t--all (-a)\t\tPrint all test output to screen\n"
-    send_user "\t--build \[string\]\tThe canonical config name of the build machine\n"
-    send_user "\t--host \[string\]\t\tThe canonical config name of the host machine\n"
+    send_user "\t--build \[string\]\tThe canonical triplet of the build machine\n"
+    send_user "\t--host \[string\]\t\tThe canonical triplet of the host machine\n"
     send_user "\t--host_board \[name\]\tThe host board to use\n"
-    send_user "\t--target \[string\]\tThe canonical config name of the target board\n"
+    send_user "\t--target \[string\]\tThe canonical triplet of the target board\n"
     send_user "\t--status (-sta)\t\tSet the exit status to fail on Tcl errors\n"
     send_user "\t--debug (-de)\t\tSet expect debugging ON\n"
     send_user "\t--help (-he)\t\tPrint help text\n"
@@ -693,7 +693,7 @@ if {[expr  { $build_triplet == ""  &&  $host_triplet == ""} ]} {
 	}
     }
 
-    # get the canonical config name
+    # get the canonical triplet
     if {![info exists config_guess]} {
 	send_error "ERROR: Couldn't find config.guess program.\n"
 	exit 1

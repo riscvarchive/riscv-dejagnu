@@ -1,3 +1,7 @@
+2006-08-29  Ben Elliston  <bje@gnu.org>
+
+	* runtest.exp (usage): Use "triplet" instead of "config name".
+
 2006-07-13  Daniel Jacobowitz  <dan@codesourcery.com>
 
 	* Makefile.am (DOCBOOK2RTF): Fix typo.
