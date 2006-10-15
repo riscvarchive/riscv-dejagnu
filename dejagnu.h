@@ -40,6 +40,8 @@ static int passed;
 static int failed;
 static int untest;
 static int unresolve;
+static int xfailed;
+static int xpassed;
 
 static char buffer[512];
 
@@ -72,6 +74,19 @@ pass (const char* fmt, ...)
 }
 
 inline void
+xpass (const char* fmt, ...)
+{
+  va_list ap;
+	
+  passed++;
+  va_start (ap, fmt);
+  vsnprintf (buffer, sizeof (buffer), fmt, ap);
+  va_end (ap);
+  printf ("\tXPASSED: %s\n", buffer);
+  wait ();
+}
+
+inline void
 fail (const char* fmt, ...)
 {
   va_list ap;
@@ -81,6 +96,19 @@ fail (const char* fmt, ...)
   vsnprintf (buffer, sizeof (buffer), fmt, ap);
   va_end (ap);
   printf ("\tFAILED: %s\n", buffer);
+  wait ();
+}
+
+inline void
+xfail (const char* fmt, ...)
+{
+  va_list ap;
+  
+  failed++;
+  va_start (ap, fmt);
+  vsnprintf (buffer, sizeof (buffer), fmt, ap);
+  va_end (ap);
+  printf ("\tXFAILED: %s\n", buffer);
   wait ();
 }
 
@@ -127,7 +155,9 @@ totals (void)
 {
   printf ("\nTotals:\n");
   printf ("\t#passed:\t\t%d\n", passed);
-  printf ("\t#failed:\t\t%d\n", failed);
+  printf ("\t#real failed:\t\t%d\n", failed);
+  if (xfail)
+    printf ("\t#expected failures:\t\t%d\n", xfailed);
   if (untest)
     printf ("\t#untested:\t\t%d\n", untest);
   if (unresolve)
@@ -142,12 +172,12 @@ totals (void)
 #include <string>
 
 const char *outstate_list[] = {
-  "FAILED: ", "PASSED: ", "UNTESTED: ", "UNRESOLVED: "
+  "FAILED: ", "PASSED: ", "UNTESTED: ", "UNRESOLVED: ", "XFAILED: ", "XPASSED: "
 };
 
 const char ** outstate = outstate_list;
 
-enum teststate { FAILED, PASSED, UNTESTED, UNRESOLVED} laststate;
+enum teststate { FAILED, PASSED, UNTESTED, UNRESOLVED, XFAILED, XPASSED} laststate;
 
 class TestState {
  private:
@@ -159,6 +189,8 @@ class TestState {
       passed = 0;
       failed = 0;
       untest = 0;
+      xpassed = 0;
+      xfailed = 0;
       unresolve = 0;
     }
 
@@ -186,6 +218,20 @@ class TestState {
         pass (s);
       }
 
+    void xpass (std::string s)
+      {
+        xpassed++;
+        laststate = PASSED;
+        lastmsg = s;
+        std::cout << "\t" << outstate[XPASSED] << s << std::endl;
+      }
+
+    void xpass (const char *c)
+      {
+	std::string s = c;
+        xpass (s);
+      }
+
     void fail (std::string s)
       {
         failed++;
@@ -198,6 +244,20 @@ class TestState {
       {
         std::string s = c;
         fail (s);
+      }
+
+    void xfail (std::string s)
+      {
+        xfailed++;
+        laststate = XFAILED;
+        lastmsg = s;
+        std::cout << "\t" << outstate[XFAILED] << s << std::endl;
+      }
+
+    void xfail (const char *c)
+      {
+        std::string s = c;
+        xfail (s);
       }
 
     void untested (std::string s)
@@ -231,7 +291,11 @@ class TestState {
     void totals (void)
       {
         std::cout << "\t#passed:\t\t" << passed << std::endl;
-        std::cout << "\t#failed:\t\t" << failed << std::endl;
+        std::cout << "\t#real failed:\t\t" << failed << std::endl;
+        if (xfailed)
+	  std::cout << "\t#expected failures:\t\t" << xfailed << std::endl;
+        if (xpassed)
+	  std::cout << "\t#unexpected passes:\t\t" << xpassed << std::endl;
         if (untest)
 	  std::cout << "\t#untested:\t\t" << untest << std::endl;
         if (unresolve)
