@@ -1,3 +1,10 @@
+2007-04-30  Bob Wilson  <bob.wilson@acm.org>
+
+	* baseboards/xtensa-sim.exp: Set target_install.  Stop using
+	basic-sim.exp.  Run the simulator with --turbo option.  Replace
+	needs_status_wrapper with the simulator's --exit_with_target_code
+	option. 
+
 2006-10-15  Rob Savoye  <rob@bertha.welcomehome.org>
 
 	* dejagnu.h: Add support for for expected failures and
