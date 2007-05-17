@@ -13,7 +13,7 @@ subtle problems. You have been warned.</para>
 
 <para>It should be no big problems installing &dj; using your
 package manager or from the source code. Under a Debian/GNU/Linux
-systems just type (as root) <programlisting>apt-get
+systems just type (as root) <programlisting>apt-get install
 dejagnu</programlisting>. These examples were run on a primary machine
 with a AMD K6 and a Mac Powerbook G3 serving as a remote
 target.</para> 

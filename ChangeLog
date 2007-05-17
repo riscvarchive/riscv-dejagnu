@@ -1,3 +1,8 @@
+2007-05-17  Ben Elliston  <bje@gnu.org>
+
+	* doc/user.xml: Correct the syntax for running apt-get on a Debian
+	GNU/Linux system. From Peter Welte <weltepe@gmail.com>.
+
 2007-04-30  Bob Wilson  <bob.wilson@acm.org>
 
 	* baseboards/xtensa-sim.exp: Set target_install.  Stop using
