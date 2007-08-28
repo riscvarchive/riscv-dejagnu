@@ -1,3 +1,7 @@
+2007-08-28  Daniel Jacobowitz  <dan@codesourcery.com>
+
+	* lib/remote.exp (standard_send): Correct quoting.
+
 2007-05-17  Ben Elliston  <bje@gnu.org>
 
 	* doc/user.xml: Correct the syntax for running apt-get on a Debian

@@ -637,8 +637,8 @@ proc standard_send { dest string } {
     } else {
 	set shell_id [board_info $dest fileid]
 	verbose "shell_id in standard_send is $shell_id" 3
-        verbose "send -i [board_info $dest fileid] -- {$string}" 3
-	if {[catch "send -i [board_info $dest fileid] -- {$string}" errorInfo]} {
+        verbose "send -i [board_info $dest fileid] -- $string" 3
+	if {[catch "send -i [board_info $dest fileid] -- \$string" errorInfo]} {
 	    return "$errorInfo"
 	} else {
 	    return ""
