@@ -1,3 +1,8 @@
+2007-09-04  Matt Kraai  <kraai@ftbfs.org>
+
+	* doc/user.xml (Configuration): Fix typos.
+	* doc/dejagnu.texi: Regenerate.
+
 2007-08-28  Daniel Jacobowitz  <dan@codesourcery.com>
 
 	* lib/remote.exp (standard_send): Correct quoting.

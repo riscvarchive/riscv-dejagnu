@@ -612,7 +612,7 @@ remote_expect $target 5 {
 </example>
 
 <para>Call make check. The output should contain
-&quot;# of expected passes 9&quot; and &quot;# of unexcpected failures 1&quot;.</para>
+&quot;# of expected passes 9&quot; and &quot;# of unexpected failures 1&quot;.</para>
 
 <para>Have a look at the procedures in /usr/share/dejagnu/remote.exp to have an overview of the offered procedures and their features. </para>
 
@@ -848,7 +848,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  <term>FAIL</term>
           <listitem><para>A test failed, although it was expected to succeed.
           This may indicate regress; inspect the test case and the failing
-          software to ocate the bug.</para></listitem>
+          software to locate the bug.</para></listitem>
 	</varlistentry>
 
 	<varlistentry>

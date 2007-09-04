@@ -451,7 +451,7 @@ package manager or from the source code. Under a Debian/GNU/Linux
 systems just type (as root) 
 
 @example
-apt-get
+apt-get install
 dejagnu
 @end example
 
@@ -1096,7 +1096,7 @@ remote_expect $target 5 @{
 @end example
 
 Call make check. The output should contain
-"# of expected passes 9" and "# of unexcpected failures 1".
+"# of expected passes 9" and "# of unexpected failures 1".
 
 Have a look at the procedures in /usr/share/dejagnu/remote.exp to have an overview of the offered procedures and their features. 
 
@@ -1337,7 +1337,7 @@ failure.
 @item FAIL
 A test failed, although it was expected to succeed.
 This may indicate regress; inspect the test case and the failing
-software to ocate the bug.
+software to locate the bug.
 
 @item XFAIL
 A test failed, but it was expected to fail.  This
