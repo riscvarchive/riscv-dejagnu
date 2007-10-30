@@ -1,3 +1,7 @@
+2007-10-31  DJ Delorie  <dj@redhat.com>
+
+	* lib/framework.exp (open_logs): Line buffer the .sum file.
+
 2007-09-04  Matt Kraai  <kraai@ftbfs.org>
 
 	* doc/user.xml (Configuration): Fix typos.

@@ -85,6 +85,7 @@ proc open_logs { } {
     if { ${tool} ==  "testrun" } {
 	set tool ""
     }
+    fconfigure $sum_file -buffering line
 }
 
 # Close the output logs.
