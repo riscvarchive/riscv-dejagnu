@@ -282,7 +282,6 @@
 	* NEWS: Likewise.
 	* doc/dejagnu.texi: Regenerate.
 
->>>>>>> 1.203
 2005-12-24  Ben Elliston  <bje@gnu.org>
 
 	* Makefile.am (doc/dejagnu.texi): Don't use shell redirection, in
@@ -449,14 +448,12 @@
 	* config.guess: Update to most recent version.
 	* config.sub: Likewise.
 
->>>>>>> 1.169
 2005-09-24  Ben Elliston  <bje@gnu.org>
 
 	* packaging/pkg/pkginfo (EMAIL): Update mail address.
 
 	* lib/rsh.exp: Tidy comments.
 
->>>>>>> 1.147
 2005-07-07  Ben Elliston  <bje@gnu.org>
 
 	* lib/telnet.exp (telnet_transmit): Remove; use standard method.
@@ -529,7 +526,6 @@
 	* config.guess: Update to most recent version.
 	* config.sub: Likewise.
 
->>>>>>> 1.145
 2005-04-28  Mark Kettenis  <kettenis@gnu.org>
 
 	* lib/target.exp (prune_warnings): Add a few more linker
