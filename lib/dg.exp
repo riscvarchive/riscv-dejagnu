@@ -54,7 +54,7 @@
 #	(the test fails if it doesn't occur)
 #
 # dg-bogus regexp comment [{ target/xfail selector } [{.|0|linenum}]]
-#	indicate a bogus error message <regexp> use to occur here
+#	indicate a bogus error message <regexp> used to occur here
 #	(the test fails if it does occur)
 #
 # dg-build regexp comment [{ target/xfail selector }]

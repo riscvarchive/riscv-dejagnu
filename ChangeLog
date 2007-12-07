@@ -1,3 +1,7 @@
+2007-12-06  Ben Elliston  <bje@gnu.org>
+
+	* lib/dg.exp (dg_bogus): Comment fix.
+
 2007-10-31  DJ Delorie  <dj@redhat.com>
 
 	* lib/framework.exp (open_logs): Line buffer the .sum file.
