@@ -758,6 +758,7 @@ proc default_link { board objects destfile flags } {
     }
 
     if {[is_remote host]} {
+	set nobjects ""
 	foreach x $objects {
 	    set nobjects "$nobjects [remote_download host $x]"
 	}
