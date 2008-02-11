@@ -1,3 +1,9 @@
+2008-02-11  Hans-Peter Nilsson  <hp@axis.com>
+
+	* Makefile.am (baseboard_SCRIPTS): Add scripts cris-sim.exp,
+	iq2000-sim.exp and m32r-linux-sim.exp.
+	* Makefile.in: Regenerate.
+
 2008-02-08  Ben Elliston  <bje@gnu.org>
 
 	* baseboards/cris-sim.exp: Fix MS-DOS line termination.

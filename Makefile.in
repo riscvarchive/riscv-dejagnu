@@ -277,6 +277,7 @@ baseboard_SCRIPTS = \
 	baseboards/basic-sid.exp \
 	baseboards/basic-sim.exp \
 	baseboards/cf.exp \
+	baseboards/cris-sim.exp \
 	baseboards/cygmon.exp \
 	baseboards/cygwin.exp \
 	baseboards/d10v-sim.exp \
@@ -298,10 +299,12 @@ baseboard_SCRIPTS = \
 	baseboards/i386-sid.exp \
 	baseboards/i960-cyclone.exp \
 	baseboards/i960-sim.exp \
+	baseboards/iq2000-sim.exp \
 	baseboards/jmr3904-sim.exp \
 	baseboards/linux-gdbserver.exp \
 	baseboards/linux-libremote.exp \
 	baseboards/m32r-elf.exp \
+	baseboards/m32r-linux-sim.exp \
 	baseboards/m32r-sid.exp \
 	baseboards/m32r-sim.exp \
 	baseboards/m68hc11-sim.exp \
@@ -661,10 +664,13 @@ dist-info: $(INFO_DEPS)
 	    $(srcdir)/*) base=`echo "$$base" | sed "s|^$$srcdirstrip/||"`;; \
 	  esac; \
 	  if test -f $$base; then d=.; else d=$(srcdir); fi; \
-	  for file in $$d/$$base*; do \
-	    relfile=`expr "$$file" : "$$d/\(.*\)"`; \
-	    test -f $(distdir)/$$relfile || \
-	      cp -p $$file $(distdir)/$$relfile; \
+	  base_i=`echo "$$base" | sed 's|\.info$$||;s|$$|.i|'`; \
+	  for file in $$d/$$base $$d/$$base-[0-9] $$d/$$base-[0-9][0-9] $$d/$$base_i[0-9] $$d/$$base_i[0-9][0-9]; do \
+	    if test -f $$file; then \
+	      relfile=`expr "$$file" : "$$d/\(.*\)"`; \
+	      test -f $(distdir)/$$relfile || \
+		cp -p $$file $(distdir)/$$relfile; \
+	    else :; fi; \
 	  done; \
 	done
 

@@ -73,6 +73,7 @@ baseboard_SCRIPTS = \
 	baseboards/basic-sid.exp \
 	baseboards/basic-sim.exp \
 	baseboards/cf.exp \
+	baseboards/cris-sim.exp \
 	baseboards/cygmon.exp \
 	baseboards/cygwin.exp \
 	baseboards/d10v-sim.exp \
@@ -94,10 +95,12 @@ baseboard_SCRIPTS = \
 	baseboards/i386-sid.exp \
 	baseboards/i960-cyclone.exp \
 	baseboards/i960-sim.exp \
+	baseboards/iq2000-sim.exp \
 	baseboards/jmr3904-sim.exp \
 	baseboards/linux-gdbserver.exp \
 	baseboards/linux-libremote.exp \
 	baseboards/m32r-elf.exp \
+	baseboards/m32r-linux-sim.exp \
 	baseboards/m32r-sid.exp \
 	baseboards/m32r-sim.exp \
 	baseboards/m68hc11-sim.exp \
