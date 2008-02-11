@@ -1,5 +1,11 @@
 2008-02-11  Hans-Peter Nilsson  <hp@axis.com>
 
+	* baseboards/h8300.exp: Use -- before switch argument that may
+	begin with "-".
+	* baseboards/cris-sim.exp: Ditto.
+
+2008-02-11  Hans-Peter Nilsson  <hp@axis.com>
+
 	* Makefile.am (baseboard_SCRIPTS): Add scripts cris-sim.exp,
 	iq2000-sim.exp and m32r-linux-sim.exp.
 	* Makefile.in: Regenerate.

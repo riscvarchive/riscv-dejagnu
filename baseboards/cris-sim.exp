@@ -29,7 +29,7 @@ foreach x $board_variant_list {
     regsub -all "^\[ \t\]*" "$x" "" x;
     regsub -all "\[ \t\]*$" "$x" "" x;
 
-    switch $x {
+    switch -- $x {
 	# We force the arch to either pre-v32 (i.e. v10) or v32 for the
 	# "common" compatible subset, by letting the otherwise
 	# functionally equivalent gcc options "-march=..." and
