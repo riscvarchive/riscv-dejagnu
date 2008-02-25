@@ -1,3 +1,7 @@
+2008-02-25  Ben Elliston  <bje@gnu.org>
+
+	* doc/runtest.1: Update date of last revision.
+
 2008-02-11  Hans-Peter Nilsson  <hp@axis.com>
 
 	* baseboards/h8300.exp: Use -- before switch argument that may
