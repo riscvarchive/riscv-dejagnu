@@ -320,6 +320,7 @@ proc diff { file_1 file_2 } {
 
     if {[file exists ${file_1}]} {
         set file_a [open ${file_1} r]
+        fconfigure $file_a -encoding binary
     } else {
         warning "${file_1} doesn't exist"
         return 0
@@ -327,6 +328,7 @@ proc diff { file_1 file_2 } {
 
     if {[file exists ${file_2}]} {
         set file_b [open ${file_2} r]
+        fconfigure $file_b -encoding binary
     } else {
         warning "${file_2} doesn't exist"
         return 0

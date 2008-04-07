@@ -1,3 +1,7 @@
+2008-04-06  Daniel Jacobowitz  <drow@false.org>
+
+	* lib/utils.exp (diff): Open both files as binary.
+
 2008-04-06  Daniel Jacobowitz  <dan@codesourcery.com>
 
 	* dejagnu.h (totals): Correct typos.
