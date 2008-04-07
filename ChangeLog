@@ -1,5 +1,12 @@
 2008-04-06  Daniel Jacobowitz  <drow@false.org>
 
+	* Makefile.am (RUNTESTDEFAULTFLAGS): Add RUNTEST=$(RUNTEST).
+	* Makefile.in: Regenerate.
+	* dejagnu.exp (host_execute): Improve regexp matching.
+	* testsuite/libdejagnu/unit.cc: C++ fixes.
+
+2008-04-06  Daniel Jacobowitz  <drow@false.org>
+
 	* lib/utils.exp (diff): Open both files as binary.
 
 2008-04-06  Daniel Jacobowitz  <dan@codesourcery.com>

@@ -195,7 +195,7 @@ TESTSUITE_FILES = \
 	testsuite/libdejagnu/tunit.exp
 
 RUNTEST = ${top_srcdir}/runtest
-RUNTESTDEFAULTFLAGS = --srcdir $(srcdir)/testsuite
+RUNTESTDEFAULTFLAGS = --srcdir $(srcdir)/testsuite RUNTEST=$(RUNTEST)
 
 AM_CXXFLAGS = -I$(top_srcdir) -g
 check_PROGRAMS = unit

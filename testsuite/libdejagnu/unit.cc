@@ -22,6 +22,7 @@
 #include <regex.h>
 #include <string>
 #include <fstream>
+#include <sstream>
 #include <set>
 #include <dejagnu.h>
 
@@ -56,17 +57,14 @@ main (int argc, char *argv[])
 {
   regex_t regex_pat;
   outstate = os1;
+  stringstream strbuf;
+  streambuf *pbuf;
 
   // Replace the output buffer for cout, so we can examine it to see
   // what was displayed. Otherwise, there is no way we can test the
   // logging functions completely.
-  char buf[5120];
-#ifdef __STDC_HOSTED__
-  cout.rdbuf ()->pubsetbuf (buf, 5120);
-#else
-  cout.rdbuf ()->setbuf (buf, 5120);
-#endif
-  
+  pbuf = cout.rdbuf ();
+
   testClass1.tname = "testType1";
   testClass1.tnum = 1;
   testClass2.tname = "testType2";
@@ -75,55 +73,67 @@ main (int argc, char *argv[])
   testClass3.tnum = 3;
   
   // Test the pass message.
+  cout.rdbuf (strbuf.rdbuf ());
+  strbuf.str ("");
   test.pass ("bogus pass message for testing");
   outstate = os2;
-  if (strncmp (buf, "\tPAS: bogus pass message", 22) == 0)
+  cout.rdbuf (pbuf);
+  if (strncmp (strbuf.str().c_str(), "\tPAS: bogus pass message", 22) == 0)
     runtest.pass ("Pass message");
   else
     runtest.fail ("Pass message");
   
   // Test the fail message.
+  cout.rdbuf (strbuf.rdbuf ());
+  strbuf.str ("");
   outstate = os1;
   test.fail ("bogus fail message for testing");
-  cout.flush ();
+  cout.rdbuf (pbuf);
   outstate = os2;
-  if (strncmp (buf, "\tFAI: bogus fail message", 22) == 0)
+  if (strncmp (strbuf.str().c_str(), "\tFAI: bogus fail message", 22) == 0)
     runtest.pass ("Fail message");
   else
     runtest.fail ("Fail message");
   
   // Test the untested message.
+  cout.rdbuf (strbuf.rdbuf ());
+  strbuf.str ("");
   outstate = os1;
   test.untested ("bogus untested message for testing");
-  cout.flush ();
+  cout.rdbuf (pbuf);
   outstate = os2;
-  if (strncmp (buf, "\tUNT: bogus untested message", 21) == 0) {
+  if (strncmp (strbuf.str().c_str(), "\tUNT: bogus untested message", 21) == 0) {
     runtest.pass ("Untested message");
   } else {
     runtest.fail ("Untested message");
   }
   
   // Test the unresolved message.
+  cout.rdbuf (strbuf.rdbuf ());
+  strbuf.str ("");
   outstate = os1;
   test.unresolved ("bogus unresolved message for testing");
-  cout.flush ();
+  cout.rdbuf (pbuf);
   outstate = os2;
-  if (strncmp (buf, "\tUNR: bogus unresolved message", 21) == 0)
+  if (strncmp (strbuf.str().c_str(), "\tUNR: bogus unresolved message", 21) == 0)
     runtest.pass ("Unresolved message");
   else
     runtest.fail ("Unresolved message");
   
   // Make sure we got everything in the totals.
+  cout.rdbuf (strbuf.rdbuf ());
+  strbuf.str ("");
   regcomp (&regex_pat,
-	   "\r\n\t#passed.*#failed.*#untested.*#unresolved",
-	   REG_NOSUB | REG_NEWLINE);
+	   "\t#passed.*#real failed.*#untested.*#unresolved",
+	   REG_NOSUB);
 
-  if (regexec (&regex_pat, buf, 0, (regmatch_t *) 0, 0))
+  test.totals ();
+  cout.rdbuf (pbuf);
+  if (regexec (&regex_pat, strbuf.str().c_str(), 0, (regmatch_t *) 0, 0) == 0)
     runtest.pass ("Totals message");
   else
     runtest.fail ("Totals message");
 
   return 0;
 }
-
 
