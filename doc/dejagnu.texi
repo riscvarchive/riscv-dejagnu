@@ -2716,7 +2716,7 @@ path, if a suitable configure is not available in your execution
 path.
 
 @item
-e now ready to triumphantly type @code{make
+You are now ready to triumphantly type @code{make
 check} or @code{runtest}.  You should see
 something like this:
 
@@ -2782,7 +2782,7 @@ arguments; or you can run the command @code{interpreter} from
 any Expect procedure.  Use
 @code{return} to get back to the calling procedure (if any),
 or @code{return -tcl} to make the calling procedure itself
-return to its caller; use @code{exi}t or end-of-file to leave
+return to its caller; use @code{exit} or end-of-file to leave
 Expect altogether.)  Run the program whose name is recorded in
 @code{$connectmode}, with the arguments in
 @code{$targetname}, to establish a connection.  You should at

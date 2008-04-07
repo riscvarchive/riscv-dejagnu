@@ -2337,7 +2337,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  path, if a suitable configure is not available in your execution
 	  path.</para></listitem>
 
-	  <listitem><para>e now ready to triumphantly type <command>make
+	  <listitem><para>You are now ready to triumphantly type <command>make
 	  check</command> or <command>runtest</command>.  You should see
 	  something like this:</para>
 
@@ -2405,7 +2405,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       any <productname>Expect</productname> procedure.  Use
       <command>return</command> to get back to the calling procedure (if any),
       or <command>return -tcl</command> to make the calling procedure itself
-      return to its caller; use <command>exi</command>t or end-of-file to leave
+      return to its caller; use <command>exit</command> or end-of-file to leave
       Expect altogether.)  Run the program whose name is recorded in
       <symbol>$connectmode</symbol>, with the arguments in
       <symbol>$targetname</symbol>, to establish a connection.  You should at

@@ -1,3 +1,8 @@
+2008-04-06  Daniel Jacobowitz  <dan@codesourcery.com>
+
+	* doc/user.xml (Adding a New Tool, Adding a New Target): Fix typos.
+	* doc/dejagnu.texi: Regenerate.
+
 2008-02-25  Ben Elliston  <bje@gnu.org>
 
 	* doc/runtest.1: Update date of last revision.
