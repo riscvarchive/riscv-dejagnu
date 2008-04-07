@@ -1,5 +1,9 @@
 2008-04-06  Daniel Jacobowitz  <dan@codesourcery.com>
 
+	* dejagnu.h (totals): Correct typos.
+
+2008-04-06  Daniel Jacobowitz  <dan@codesourcery.com>
+
 	* doc/user.xml (Adding a New Tool, Adding a New Target): Fix typos.
 	* doc/dejagnu.texi: Regenerate.
 

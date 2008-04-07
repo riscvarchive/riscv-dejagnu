@@ -156,12 +156,12 @@ totals (void)
   printf ("\nTotals:\n");
   printf ("\t#passed:\t\t%d\n", passed);
   printf ("\t#real failed:\t\t%d\n", failed);
-  if (xfail)
+  if (xfailed)
     printf ("\t#expected failures:\t\t%d\n", xfailed);
   if (untest)
     printf ("\t#untested:\t\t%d\n", untest);
   if (unresolve)
-    printf ("\t#unresolved:\t\t%d\n", unresolved);
+    printf ("\t#unresolved:\t\t%d\n", unresolve);
 }
 
 #ifdef __cplusplus
