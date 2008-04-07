@@ -1,3 +1,8 @@
+2008-04-07  Ralf Wildenhues  <Ralf.Wildenhues@gmx.de>
+
+	* doc/ref.xml, doc/user.xml: Fix typos.
+	* doc/dejagnu.texi: Regenerate.
+
 2008-04-06  Daniel Jacobowitz  <drow@false.org>
 
 	* Makefile.am (RUNTESTDEFAULTFLAGS): Add RUNTEST=$(RUNTEST).

@@ -486,7 +486,7 @@ dgt:~$ cd ~/dejagnu.test
 @end example
 
 Now you are ready to test DejaGnu's main program called
-runtest. The expecteted output is shown
+runtest. The expected output is shown
 
 @strong{Runtest output in a empty directory
 }
@@ -538,7 +538,7 @@ http://www.fictional.net/.
 If you are running a Debian distribution you can find the
 examples under /usr/share/doc/dejagnu/examples. These examples seem to
 be missing in Red Hat's RPM. In this case download the sources of
-DejaGnu and adjust the pathes to the DejaGnu examples
+DejaGnu and adjust the paths to the DejaGnu examples
 accordingly.
 
 @node Create a minimal project; e_g_ calc, Our first automated tests, Test your installation, Getting DejaGnu up and running
@@ -574,7 +574,7 @@ set objdir /home/dgt/dejagnu.test
 @node Using autoconf/autoheader/automake, , A simple project without the GNU autotools, Create a minimal project; e_g_ calc
 @subsection Using autoconf/autoheader/automake
 
-We have to prepare some input file in order to run autocon and
+We have to prepare some input file in order to run autoconf and
 automake. There is book "GNU autoconf, automake and
 libtool" by Garry V. Vaughan, et al. NewRider, ISBN
 1-57870-190-2 which describes this process thoroughly.
@@ -649,7 +649,7 @@ Makefile.am:6: required directory ./doc does not exist
 Create a empty directory doc and empty files
 INSTALL, NEWS, README, AUTHORS, ChangeLog and COPYING.
 The default COPYING will point to the GNU Public License (GPL).
-In a real project it would be time to add some meaningfull text in each file.
+In a real project it would be time to add some meaningful text in each file.
 
 Adapt calc to your environment by calling configure.
 
@@ -965,14 +965,14 @@ Before you can test calc on a remote target you have to acquire a few basics ski
 
 The easiest remote host is usually the host you are working on.
 In this example we will use telnet to login in your own workstation.
-For security reason you should never have a telnet deamon running on
+For security reasons you should never have a telnet daemon running on
 machine connected on the internet, as password and usernames are transmitted
 in clear text.
 We assume you know how to setup your machine for a telnet daemon.
 
 Next try whether you may login in your own host by issuing the
 command "telnet localhost.1". In order to be able to
-distinguish between a normal session an a telnet login add the following lines to /home/dgt/.bashrc.
+distinguish between a normal session and a telnet login add the following lines to /home/dgt/.bashrc.
 
 @example
 
@@ -1067,7 +1067,7 @@ In the runtest output you should find something like:
 @example
 
 Running ./testsuite/calc.test/local_echo.exp ...
-Running ./testsuite/calc.test/remote_echoo.exp ...
+Running ./testsuite/calc.test/remote_echo.exp ...
 this is remote_echo.exp target is unix
 Spawn id for remote shell is exp7
 @end example
@@ -1248,7 +1248,7 @@ common way is when there is existing support in the
 @file{Makefile}. This support consists of a
 @emph{check} target. The other way is to execute the
 @code{runtest} program directly. To run
-@code{runtest} directcly from the command line requires
+@code{runtest} directly from the command line requires
 either all the correct options, or the @ref{Local Config File} must be setup
 correctly.
 
@@ -1276,7 +1276,7 @@ usually saves you some trouble. For instance, it can set up any
 auxiliary programs or other files needed by the tests. The most
 common file the check builds is the
 @emph{site.exp}. The site.exp file contains
-various variables that DejaGnu used to dertermine the
+various variables that DejaGnu used to determine the
 configuration of the program being tested. This is mostly for
 supporting remote testing.
 
@@ -1417,7 +1417,7 @@ itself).
 ``triple'' name as used by @code{configure}. This
 is the type of machine DejaGnu and the tools to be tested are built
 on. For a normal cross this is the same as the host, but for a
-canadian cross, they are seperate.
+canadian cross, they are separate.
 
 @item @code{--host [string]}
 @code{string} is a full configuration
@@ -1963,7 +1963,7 @@ subdirectory of the DejaGnu library directory.
 targets and hosts supported by DejaGnu. This master file is
 identified by setting the environment variable
 @code{DEJAGNU} to the name of the file. This is also
-refered to as the ``global'' config file.
+referred to as the ``global'' config file.
 
 Any directory containing a configured testsuite also has a
 local @file{site.exp}, capturing configuration values
@@ -2055,7 +2055,7 @@ defined in this config file are related to the configuration of
 the test run. This is the ideal place to set the variables
 @code{host_triplet}, @code{build_triplet},
 @code{target_triplet}. All other variables are tool
-dependant, i.e., for testing a compiler, the value for
+dependent, i.e., for testing a compiler, the value for
 @code{CC} might be set to a freshly built binary, as
 opposed to one in the user's path.
 
@@ -2086,7 +2086,7 @@ GCC/G++ testing.
 
 This file defines the required fields for a local config
 file, namely the three config triplets, and the srcdir. It also
-defines several other Tcl variables that are used exclusivly by
+defines several other Tcl variables that are used exclusively by
 the GCC testsuite. For most test cases, the CXXFLAGS and LDFLAGS
 are supplied by DejaGnu itself for cross testing, but to test a
 compiler, GCC needs to manipulate these itself.
@@ -2105,7 +2105,7 @@ you build and test a cross compiler on a machine other than the
 one it's to be hosted on.
 
 Here we have the config settings for our California
-office. Note that all config values are site dependant. Here we
+office. Note that all config values are site dependent. Here we
 have two sets of values that we use for testing m68k-aout cross
 compilers. As both of these target boards has a different
 debugging protocol, we test on both of them in sequence.
@@ -2170,7 +2170,7 @@ this last feature is mostly compiler specific.
 @node Board Config File, Remote Host Testing, Global Config File, Customizing DejaGnu
 @section Board Config File
 
-The board config file is where board specfic config data
+The board config file is where board specific config data
 is stored. A board config file contains all the higher-level
 configuration settings. There is a rough inheritance scheme, where it is
 possible to base a new board description file on an existing one. There
@@ -2180,10 +2180,10 @@ more information on adding a new board config file, go to the @ref{Adding A New 
 An example board config file for a GNU simulator is as
 follows. @code{set_board_info} is a procedure that sets the
 field name to the specified value. The procedures in square brackets
-@emph{[]} are @emph{helper procedures}. Thes
+@emph{[]} are @emph{helper procedures}. These
 are used to find parts of a tool chain required to build an executable
 image that may reside in various locations. This is mostly of use for
-when the startup code, the standard C lobraries, or the tool chain itself
+when the startup code, the standard C libraries, or the tool chain itself
 is part of your build tree.
 
 @strong{Board Config File}
@@ -2455,7 +2455,7 @@ host.
 
 The personal config file is used to customize
 @code{runtest's} behaviour for each person. It is
-typically used to set the user prefered setting for verbosity,
+typically used to set the user preferred setting for verbosity,
 and any experimental Tcl procedures. My personal
 @file{~/.dejagnurc} file looks like:
 
@@ -2810,7 +2810,7 @@ you can include one board file into another, The two main procedures used
 to do this are @code{load_generic_config} and
 @code{load_base_board_description}. The generic config file
 contains other procedures used for a certain class of target. The
-board description file is where the board specfic settings go. Commonly
+board description file is where the board specific settings go. Commonly
 there are similar target environments with just different
 processors.
 
@@ -3014,7 +3014,7 @@ are usually easier to write.
 
 The GCC tests are a good example of batch oriented tests.
 All GCC tests consist primarily of a call to a single common
-procedure, Since all the tests either have no output, or only
+procedure, since all the tests either have no output, or only
 have a few warning messages when successfully compiled.  Any
 non-warning output is a test failure.  All the C code needed is
 kept in the test directory.  The test driver, written in Tcl,
@@ -3314,7 +3314,7 @@ global variables to see if the function or method worked.
 
 This works particularly well for testing APIs and at level
 where it is easier to debug them, than by needing to trace through
-the entire appication. Also if there is a specification for the
+the entire application. Also if there is a specification for the
 API to be tested, the testcase can also function as a compliance
 test.
 
@@ -3370,7 +3370,7 @@ source tree, specifying where to find the source with the optional
 @emph{autoconf} to configure itself. For more info on using
 autoconf, read the GNU autoconf manual. To configure, execute the
 @file{configure} program, no other options are
-required. For an example, to configure in a seperate tree for objects,
+required. For an example, to configure in a separate tree for objects,
 execute the configure script from the source tree like this:
 
 @example
@@ -3416,7 +3416,7 @@ execute.
       
 @end example
 
-@emph{make install}does thes things for
+@emph{make install}does these things for
 DejaGnu:
 
 @itemize 
@@ -3461,7 +3461,7 @@ DejaGnu provides these Tcl procedures.
 * Procedures For Using Utilities to Connect: connprocs.
 * Procedures For Target Boards::
 * Target Database Procedures: target database library file.
-* Platform Dependant Procedures: platform dependant procedures.
+* Platform Dependent Procedures: platform dependent procedures.
 * Utility Procedures::
 * Libgloss, A Free BSP: Libgloss.
 * Procedures for debugging your Tcl code.: Debugging Procedures.
@@ -3581,7 +3581,7 @@ configuration.
 @subsubsection is3way Procedure
 
 Tests for a canadian cross. This is when the tests will be run
-on a remotly hosted cross compiler. If it is a canadian cross, then
+on a remotely hosted cross compiler. If it is a canadian cross, then
 the result is @emph{1}; otherwise the result is
 @emph{0}.
 
@@ -3741,7 +3741,7 @@ outcomes.
 
 Warning you must clear the expected failure after
 using setup_xfail in a test case.  Any call to @code{pass
-}or @code{fail}l clears the expected failure
+}or @code{fail} clears the expected failure
 implicitly; if the test has some other outcome, e.g. an error, you
 can call @code{clear_xfail} to clear the expected
 failure explicitly.  Otherwise, the expected-failure declaration
@@ -3762,7 +3762,7 @@ The config triplet to trigger whether this is an
 unexpected or expect failure.
 
 @item @code{bugid}
-The optional bugid, used to tie it this test case
+The optional bugid, used to tie this test case
 to a bug tracking system.
 @end table
 
@@ -3942,7 +3942,7 @@ known side effects.
 @item @code{string}
 
 @item @code{number}
-The optional number to set the error counter. Thius
+The optional number to set the error counter. This
 is only used to fake out the counter when using the
 @code{xfail} procedure to control when it flips the
 output over to @emph{UNRESOLVED}
@@ -3979,7 +3979,7 @@ errors with no known side effects.
 @item @code{string}
 
 @item @code{number}
-The optional number to set the error counter. Thius
+The optional number to set the error counter. This
 is only used to fake out the counter when using the
 @code{xfail} procedure to control when it flips the
 output over to @emph{UNRESOLVED}
@@ -4195,9 +4195,9 @@ match) then this conditional is de-activated.
 
 What this does is it matches only for these two targets if
 "-Wall -v" or  "-O3" is set, but neither "-O1" or "-Map" is set. For
-a set to match, the options specified are searched for independantly
+a set to match, the options specified are searched for independently
 of each other, so a "-Wall -v" matches either "-Wall -v" or "-v
--Wall". A space seperates the options in the string. Glob-style
+-Wall". A space separates the options in the string. Glob-style
 regular expressions are also permitted.
 
 @node clear_xfail procedure, verbose procedure, check_conditional_xfail procedure, Core Internal Procedures
@@ -5071,7 +5071,7 @@ the @code{target_info} array.
 
 @item @code{dest}
 
-@item @code{commndline}
+@item @code{commandline}
 @end table
 
 @node standard_transmit procedure, standard_upload procedure, standard_spawn procedure, Procedures For Remote Communication
@@ -5211,7 +5211,7 @@ port number. The value of the
 @code{netport} field in the
 @code{target_info} array is used. (was
 @code{$netport}) This value has two parts,
-the hostname and the port number, seperated by a
+the hostname and the port number, separated by a
 @emph{:}. If host or target is used in
 the @code{hostname} field, than the
 config array is used for all information.
@@ -5611,7 +5611,7 @@ programs in ASCII S-records.  Returns
 
 @item @code{file}
 This is the filename to
-downlaod.
+download.
 @end table
 
 @node Procedures For Target Boards, target database library file, connprocs, Builtin Procedures
@@ -5806,7 +5806,7 @@ downlaod.
 @item @code{options}
 @end table
 
-@node target database library file, platform dependant procedures, Procedures For Target Boards, Builtin Procedures
+@node target database library file, platform dependent procedures, Procedures For Target Boards, Builtin Procedures
 @subsection Target Database Procedures
 
 @menu
@@ -6099,8 +6099,8 @@ running the tool to be tested, not a test case.
 @item @code{cmdline}
 @end table
 
-@node platform dependant procedures, Utility Procedures, target database library file, Builtin Procedures
-@subsection Platform Dependant Procedures
+@node platform dependent procedures, Utility Procedures, target database library file, Builtin Procedures
+@subsection Platform Dependent Procedures
 
 Each combination of target and tool requires some
 target-dependent procedures.  The names of these procedures have
@@ -6134,7 +6134,7 @@ and @emph{-1} if there was a communication error.
 * $@{tool@}_version Procedure: $@{tool@}_version procedure.
 @end menu
 
-@node $@{tool@}_start procedure, $@{tool@}_load procedure, , platform dependant procedures
+@node $@{tool@}_start procedure, $@{tool@}_load procedure, , platform dependent procedures
 @subsubsection $@{tool@}_start Procedure
 
 Starts a particular tool.  For an interactive tool,
@@ -6163,7 +6163,7 @@ arrangements to run the tool).
 @t{@b{$@{tool@}_start}(@i{});}
 @end quotation
 
-@node $@{tool@}_load procedure, $@{tool@}_exit procedure, $@{tool@}_start procedure, platform dependant procedures
+@node $@{tool@}_load procedure, $@{tool@}_exit procedure, $@{tool@}_start procedure, platform dependent procedures
 @subsubsection $@{tool@}_load Procedure
 
 Loads something into a tool. For an interactive tool,
@@ -6188,7 +6188,7 @@ downloading. Test scripts call
 @t{@b{$@{tool@}_load}(@i{});}
 @end quotation
 
-@node $@{tool@}_exit procedure, $@{tool@}_version procedure, $@{tool@}_load procedure, platform dependant procedures
+@node $@{tool@}_exit procedure, $@{tool@}_version procedure, $@{tool@}_load procedure, platform dependent procedures
 @subsubsection $@{tool@}_exit Procedure
 
 Cleans up (if necessary) before DejaGnu exits. For
@@ -6203,7 +6203,7 @@ tests. @code{runtest} calls
 @t{@b{$@{tool@}_exit}(@i{});}
 @end quotation
 
-@node $@{tool@}_version procedure, , $@{tool@}_exit procedure, platform dependant procedures
+@node $@{tool@}_version procedure, , $@{tool@}_exit procedure, platform dependent procedures
 @subsubsection $@{tool@}_version Procedure
 
 Prints the version label and number for
@@ -6217,7 +6217,7 @@ tool, and its version number.
 @t{@b{$@{tool@}_version}(@i{});}
 @end quotation
 
-@node Utility Procedures, Libgloss, platform dependant procedures, Builtin Procedures
+@node Utility Procedures, Libgloss, platform dependent procedures, Builtin Procedures
 @subsection Utility Procedures
 
 @menu
@@ -6261,7 +6261,7 @@ If you do not specify
 @emph{*}. You may use the common shell
 wildcard characters in the pattern. If no directories
 match the pattern, then a NULL string is
-returned
+returned.
 @end table
 
 @node find procedure, which procedure, getdirs procedure, Utility Procedures
@@ -6288,7 +6288,7 @@ The top level directory to search the search
 from.
 
 @item @code{pattern}
-A csh "glob" style regular expression reprsenting
+A csh "glob" style regular expression representing
 the files to find.
 @end table
 
@@ -6296,7 +6296,7 @@ the files to find.
 @subsubsection Which Procedure
 
 Searches the execution path for an executable file
-@emph{binary}, like the the BSD @code{which}
+@emph{binary}, like the BSD @code{which}
 utility.  This procedure uses the shell environment variable
 @emph{PATH}. It returns @emph{0} if the
 binary is not in the path, or if there is no @emph{PATH}
@@ -7031,7 +7031,7 @@ The variable to watch.
 @node watchdel procedure, print procedure, watchread procedure, Debugging Procedures
 @subsubsection Watchdel Procedure
 
-This deletes a the watchpoint from the watch list. It is
+This deletes a watchpoint from the watch list. It is
 abbreviated as @emph{wd}.
 
 @quotation
@@ -7173,7 +7173,7 @@ lib/dejagnu.exp
 
 All of the functions that take a
 @code{msg} parameter use a C char * that is
-the message to be dislayed. There currently is no support for
+the message to be displayed. There currently is no support for
 variable length arguments.
 
 @menu
@@ -7246,7 +7246,7 @@ state outputs.
 All of the methods that take a
 @code{msg} parameter use a C char *
 or STL string, that is the message to be
-dislayed. There currently is no support for variable
+displayed. There currently is no support for variable
 length arguments.
 
 @menu

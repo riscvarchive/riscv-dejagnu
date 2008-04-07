@@ -36,7 +36,7 @@ dgt:~$ cd ~/dejagnu.test
 </programlisting>
 
 <para>Now you are ready to test &dj;'s main program called
-runtest. The expecteted output is shown</para> 
+runtest. The expected output is shown</para>
 
 <example>
 <title>Runtest output in a empty directory
@@ -83,7 +83,7 @@ http://www.fictional.net/.</para>
 <para>If you are running a Debian distribution you can find the
 examples under /usr/share/doc/dejagnu/examples. These examples seem to
 be missing in Red Hat's RPM. In this case download the sources of
-&dj; and adjust the pathes to the &dj; examples
+&dj; and adjust the paths to the &dj; examples
 accordingly.</para>
 </sect3>
 </sect2>
@@ -113,7 +113,7 @@ set objdir /home/dgt/dejagnu.test
 <sect3>
 <title>Using autoconf/autoheader/automake</title>
 
-<para>We have to prepare some input file in order to run autocon and
+<para>We have to prepare some input file in order to run autoconf and
 automake. There is book &quot;GNU autoconf, automake and
 libtool&quot; by Garry V. Vaughan, et al. NewRider, ISBN
 1-57870-190-2 which describes this process thoroughly.</para> 
@@ -184,7 +184,7 @@ Makefile.am:6: required directory ./doc does not exist
 <para>Create a empty directory doc and empty files
 INSTALL, NEWS, README, AUTHORS, ChangeLog and COPYING.
 The default COPYING will point to the GNU Public License (GPL).
-In a real project it would be time to add some meaningfull text in each file.
+In a real project it would be time to add some meaningful text in each file.
 </para>
 
 <para>Adapt calc to your environment by calling configure.</para>
@@ -484,14 +484,14 @@ Before you can test calc on a remote target you have to acquire a few basics ski
 <title>Setup telnet to your own host</title>
 <para>The easiest remote host is usually the host you are working on.
 In this example we will use telnet to login in your own workstation.
-For security reason you should never have a telnet deamon running on
+For security reasons you should never have a telnet daemon running on
 machine connected on the internet, as password and usernames are transmitted
  in clear text.
 We assume you know how to setup your machine for a telnet daemon.</para>
 
 <para>Next try whether you may login in your own host by issuing the
 command &quot;telnet localhost.1&quot;. In order to be able to
-distinguish between a normal session an a telnet login add the following lines to /home/dgt/.bashrc.</para>
+distinguish between a normal session and a telnet login add the following lines to /home/dgt/.bashrc.</para>
 
 <programlisting>
 if [ "$REMOTEHOST" ]
@@ -583,7 +583,7 @@ if { $shell_id > 0 } {
 
 <programlisting>
 Running ./testsuite/calc.test/local_echo.exp ...
-Running ./testsuite/calc.test/remote_echoo.exp ...
+Running ./testsuite/calc.test/remote_echo.exp ...
 this is remote_echo.exp target is unix
 Spawn id for remote shell is exp7
 </programlisting>
@@ -767,7 +767,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     <filename>Makefile</filename>. This support consists of a
     <emphasis>check</emphasis> target. The other way is to execute the
     <command>runtest</command> program directly. To run
-    <command>runtest</command> directcly from the command line requires
+    <command>runtest</command> directly from the command line requires
     either all the correct options, or the <xref linkend="local"/> must be setup
     correctly.</para>
 
@@ -787,7 +787,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       auxiliary programs or other files needed by the tests. The most
       common file the check builds is the
       <emphasis>site.exp</emphasis>. The site.exp file contains
-      various variables that &dj; used to dertermine the
+      various variables that &dj; used to determine the
       configuration of the program being tested. This is mostly for
       supporting remote testing.</para>
 
@@ -946,7 +946,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  ``triple'' name as used by <command>configure</command>. This
 	  is the type of machine &dj; and the tools to be tested are built
 	  on. For a normal cross this is the same as the host, but for a
-	  canadian cross, they are seperate.</para></listitem>
+	  canadian cross, they are separate.</para></listitem>
 	</varlistentry>
 
         <varlistentry>
@@ -1536,7 +1536,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     targets and hosts supported by &dj;. This master file is
     identified by setting the environment variable
     <symbol>DEJAGNU</symbol> to the name of the file. This is also
-    refered to as the ``global'' config file.</para>
+    referred to as the ``global'' config file.</para>
 
     <para>Any directory containing a configured testsuite also has a
     local <filename>site.exp</filename>, capturing configuration values
@@ -1620,7 +1620,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       the test run. This is the ideal place to set the variables
       <symbol>host_triplet</symbol>, <symbol>build_triplet</symbol>,
       <symbol>target_triplet</symbol>. All other variables are tool
-      dependant, i.e., for testing a compiler, the value for
+      dependent, i.e., for testing a compiler, the value for
       <symbol>CC</symbol> might be set to a freshly built binary, as
       opposed to one in the user's path.</para>
 
@@ -1651,7 +1651,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
     <para>This file defines the required fields for a local config
     file, namely the three config triplets, and the srcdir. It also
-    defines several other Tcl variables that are used exclusivly by
+    defines several other Tcl variables that are used exclusively by
     the GCC testsuite. For most test cases, the CXXFLAGS and LDFLAGS
     are supplied by &dj; itself for cross testing, but to test a
     compiler, GCC needs to manipulate these itself.</para>
@@ -1671,7 +1671,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       one it's to be hosted on.</para>
 
       <para>Here we have the config settings for our California
-      office. Note that all config values are site dependant. Here we
+      office. Note that all config values are site dependent. Here we
       have two sets of values that we use for testing m68k-aout cross
       compilers. As both of these target boards has a different
       debugging protocol, we test on both of them in sequence.</para>
@@ -1738,7 +1738,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     <sect2 id="boardconfig" xreflabel="Board Config File">
       <title>Board Config File</title>
 
-      <para>The board config file is where board specfic config data
+      <para>The board config file is where board specific config data
       is stored. A board config file contains all the higher-level
       configuration settings. There is a rough inheritance scheme, where it is
       possible to base a new board description file on an existing one. There
@@ -1749,10 +1749,10 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       <para>An example board config file for a GNU simulator is as
       follows. <function>set_board_info</function> is a procedure that sets the
       field name to the specified value. The procedures in square brackets
-      <emphasis>[]</emphasis> are <emphasis>helper procedures</emphasis>. Thes
+      <emphasis>[]</emphasis> are <emphasis>helper procedures</emphasis>. These
       are used to find parts of a tool chain required to build an executable
       image that may reside in various locations. This is mostly of use for
-      when the startup code, the standard C lobraries, or the tool chain itself
+      when the startup code, the standard C libraries, or the tool chain itself
       is part of your build tree.</para>
 
       <example>
@@ -2086,7 +2086,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
       <para>The personal config file is used to customize
       <command>runtest's</command> behaviour for each person. It is
-      typically used to set the user prefered setting for verbosity,
+      typically used to set the user preferred setting for verbosity,
       and any experimental Tcl procedures. My personal
       <filename>~/.dejagnurc</filename> file looks like:</para>
 
@@ -2435,7 +2435,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       to do this are <function>load_generic_config</function> and
       <function>load_base_board_description</function>. The generic config file
       contains other procedures used for a certain class of target. The
-      board description file is where the board specfic settings go. Commonly
+      board description file is where the board specific settings go. Commonly
       there are similar target environments with just different
       processors.</para>
 
@@ -2843,7 +2843,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
       <para>The GCC tests are a good example of batch oriented tests.
       All GCC tests consist primarily of a call to a single common
-      procedure, Since all the tests either have no output, or only
+      procedure, since all the tests either have no output, or only
       have a few warning messages when successfully compiled.  Any
       non-warning output is a test failure.  All the C code needed is
       kept in the test directory.  The test driver, written in Tcl,
@@ -3138,7 +3138,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
       <para>This works particularly well for testing APIs and at level
       where it is easier to debug them, than by needing to trace through
-      the entire appication. Also if there is a specification for the
+      the entire application. Also if there is a specification for the
       API to be tested, the testcase can also function as a compliance
       test.</para>
 

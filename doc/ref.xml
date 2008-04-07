@@ -30,7 +30,7 @@
       <emphasis>autoconf</emphasis> to configure itself. For more info on using
       autoconf, read the GNU autoconf manual. To configure, execute the
       <filename>configure</filename> program, no other options are
-      required. For an example, to configure in a seperate tree for objects,
+      required. For an example, to configure in a separate tree for objects,
       execute the configure script from the source tree like this:</para>
 
       <screen>
@@ -74,7 +74,7 @@
         eg$ make install
       </screen>
 
-      <para><emphasis>make install</emphasis>does thes things for
+      <para><emphasis>make install</emphasis>does these things for
       &dj;:</para>
 
       <itemizedlist mark="bullet">
@@ -205,7 +205,7 @@
 	  <title>is3way Procedure</title>
 
 	  <para>Tests for a canadian cross. This is when the tests will be run
-	  on a remotly hosted cross compiler. If it is a canadian cross, then
+	  on a remotely hosted cross compiler. If it is a canadian cross, then
 	  the result is <emphasis>1</emphasis>; otherwise the result is
 	  <emphasis>0</emphasis>.</para>
 
@@ -402,7 +402,7 @@
 
 	  <warning><para>Warning you must clear the expected failure after
 	  using setup_xfail in a test case.  Any call to <function>pass
-	  </function>or <function>fail</function>l clears the expected failure
+	  </function>or <function>fail</function> clears the expected failure
 	  implicitly; if the test has some other outcome, e.g. an error, you
 	  can call <function>clear_xfail</function> to clear the expected
 	  failure explicitly.  Otherwise, the expected-failure declaration
@@ -424,7 +424,7 @@
           </varlistentry>
 	  <varlistentry>
 	    <term><parameter>bugid</parameter></term>
-	    <listitem><para>The optional bugid, used to tie it this test case
+	    <listitem><para>The optional bugid, used to tie this test case
 	    to a bug tracking system.</para></listitem>
           </varlistentry>
 	</variablelist>
@@ -636,7 +636,7 @@
           </varlistentry>
           <varlistentry>
 	    <term><parameter>number</parameter></term>
-	    <listitem><para>The optional number to set the error counter. Thius
+	    <listitem><para>The optional number to set the error counter. This
 	    is only used to fake out the counter when using the
 	    <function>xfail</function> procedure to control when it flips the
 	    output over to <emphasis>UNRESOLVED</emphasis>
@@ -678,7 +678,7 @@
           </varlistentry>
           <varlistentry>
 	    <term><parameter>number</parameter></term>
-	    <listitem><para>The optional number to set the error counter. Thius
+	    <listitem><para>The optional number to set the error counter. This
 	    is only used to fake out the counter when using the
 	    <function>xfail</function> procedure to control when it flips the
 	    output over to <emphasis>UNRESOLVED</emphasis>
@@ -922,9 +922,9 @@
 
 	  <para>What this does is it matches only for these two targets if
 	  "-Wall -v" or  "-O3" is set, but neither "-O1" or "-Map" is set. For
-	  a set to match, the options specified are searched for independantly
+	  a set to match, the options specified are searched for independently
 	  of each other, so a "-Wall -v" matches either "-Wall -v" or "-v
-	  -Wall". A space seperates the options in the string. Glob-style
+	  -Wall". A space separates the options in the string. Glob-style
 	  regular expressions are also permitted.</para>
 
 	</sect4>
@@ -2055,7 +2055,7 @@
 	    <listitem><para></para></listitem>
           </varlistentry>
           <varlistentry>
-	    <term><parameter>commndline</parameter></term>
+	    <term><parameter>commandline</parameter></term>
 	    <listitem><para></para></listitem>
           </varlistentry>
 	</variablelist>
@@ -2236,7 +2236,7 @@
 	        <parameter>netport</parameter> field in the
 	        <symbol>target_info</symbol> array is used. (was
 	        <symbol>$netport</symbol>) This value has two parts,
-	        the hostname and the port number, seperated by a
+	        the hostname and the port number, separated by a
 	        <emphasis>:</emphasis>. If host or target is used in
 	        the <symbol>hostname</symbol> field, than the
 	        config array is used for all information.</para></listitem>
@@ -2781,7 +2781,7 @@
               <varlistentry>
                  <term><parameter>file</parameter></term>
                 <listitem><para>This is the filename to
-                downlaod.</para></listitem>
+                download.</para></listitem>
            </varlistentry>
          </variablelist>
        </sect4>
@@ -3403,8 +3403,8 @@
 	</sect4>
 
     </sect3>
-    <sect3 id="platformprocs" xreflabel="platform dependant procedures">
-      <title>Platform Dependant Procedures</title>
+    <sect3 id="platformprocs" xreflabel="platform dependent procedures">
+      <title>Platform Dependent Procedures</title>
 
       <para>Each combination of target and tool requires some
       target-dependent procedures.  The names of these procedures have
@@ -3558,7 +3558,7 @@
 	    <emphasis>*</emphasis>. You may use the common shell
 	    wildcard characters in the pattern. If no directories
 	    match the pattern, then a NULL string is
-	    returned</para></listitem>
+	    returned.</para></listitem>
           </varlistentry>
 	</variablelist>
 	</sect4>
@@ -3589,7 +3589,7 @@
           </varlistentry>
           <varlistentry>
 	    <term><parameter>pattern</parameter></term>
-	    <listitem><para>A csh "glob" style regular expression reprsenting
+	    <listitem><para>A csh "glob" style regular expression representing
 	    the files to find.</para></listitem>
           </varlistentry>
 	</variablelist>
@@ -3599,7 +3599,7 @@
         <title>Which Procedure</title>
 
 	<para>Searches the execution path for an executable file
-	<emphasis>binary</emphasis>, like the the BSD <command>which</command>
+	<emphasis>binary</emphasis>, like the BSD <command>which</command>
 	utility.  This procedure uses the shell environment variable
 	<emphasis>PATH</emphasis>. It returns <emphasis>0</emphasis> if the
 	binary is not in the path, or if there is no <emphasis>PATH</emphasis>
@@ -4470,7 +4470,7 @@
 	<sect4 id="watchdel" xreflabel="watchdel procedure">
 	  <title>Watchdel Procedure</title>
 
-	  <para>This deletes a the watchpoint from the watch list. It is
+	  <para>This deletes a watchpoint from the watch list. It is
 	  abbreviated as <emphasis>wd</emphasis>.</para>
 
 	<funcsynopsis role="tcl">
@@ -4577,7 +4577,7 @@
 
     <para>All of the functions that take a
     <parameter>msg</parameter> parameter use a C char * that is
-    the message to be dislayed. There currently is no support for
+    the message to be displayed. There currently is no support for
     variable length arguments.</para>
 
 
@@ -4663,7 +4663,7 @@
 	   <para>All of the methods that take a
 	   	  <parameter>msg</parameter> parameter use a C char *
 		  or STL string, that is the message to be
-	   	  dislayed. There currently is no support for variable
+		  displayed. There currently is no support for variable
 	   	  length arguments.</para>
 
 	   <sect3 id="passmeth" xreflabel="pass method">
