@@ -200,6 +200,10 @@ proc gdb_comm_add_breakpoint { function } {
 	-re "Breakpoint.*$gdb_prompt $" { return "" }
 	-re "Function.*not defined.*$gdb_prompt $" { return "undef" }
 	-re "No symbol table.*$gdb_prompt $" { return "undef" }
+	-re ".*Make breakpoint pending.*\\\? \\(y or \\\[n\\\]\\) $" {
+	    remote_send host "y\n"
+	    return "maybe"
+	}
 	default {
 	    return "untested"
 	}
