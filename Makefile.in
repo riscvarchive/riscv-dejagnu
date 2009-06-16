@@ -404,9 +404,6 @@ unit_SOURCES = testsuite/libdejagnu/unit.cc
 dist_man_MANS = doc/runtest.1
 info_TEXINFOS = doc/dejagnu.texi
 XML = doc/dejagnu.xml doc/legal.xml doc/ref.xml doc/user.xml
-
-# Most proprietary Unices use /opt for optional packages.
-PKGDIR = /opt
 all: all-am
 
 .SUFFIXES:
@@ -1175,48 +1172,6 @@ html:
 doc/dejagnu.texi: $(XML)
 	$(DOCBOOK2TEXI) --string-param directory-description="The GNU testing framework." --string-param directory-category="Programming" $(srcdir)/doc/dejagnu.xml
 	mv dejagnu.texi $(srcdir)/doc
-
-# Packaging.
-
-# RPM
-rpm: dist $(srcdir)/packaging/rpm/dejagnu.spec
-	cp -f $(srcdir)/packaging/rpm/dejagnu.spec /usr/src/redhat/SPECS/
-	cp -f dejagnu-${VERSION}.tar.gz /usr/src/redhat/SOURCES/
-	rpm -ba /usr/src/redhat/SPECS/dejagnu.spec
-
-# Debian GNU/Linux package
-deb: dist
-	rm -rf dejagnu-${VERSION}
-	tar xfz dejagnu-${VERSION}.tar.gz
-	cp -fr $(srcdir)/packaging/deb dejagnu-${VERSION}/
-	(cd dejagnu-${VERSION}; dpkg-buildpackage)
-
-$(PKGDIR)/dejagnu:
-	rm -rf dejagnu-${VERSION}
-	mkdir dejagnu-${VERSION}
-	cd dejagnu-${VERSION}
-	$(srcdir)/configure -v --prefix $@
-	make install
-
-# Solaris package
-solpkg: $(PKGDIR)/dejagnu
-	cp $(srcdir)/packaging/pkg/prototype /tmp
-	cp $(srcdir)/packaging/pkg/pkginfo /tmp
-	here=`pwd`; \
-	  cd /tmp; \
-	  pkgmk -o -r / -d /tmp; \
-	  tar cf $$here/dejagnu-${VERSION}.SPARC.2.8.pkg.tar DejaGnu; \
-	  gzip -9fv  $$here/dejagnu-${VERSION}.SPARC.2.8.pkg.tar
-	rm -rf /tmp/prototype /tmp/pkginfo /tmp/DejaGnu
-
-# HP depot package
-hpdepot: $(PKGDIR)/dejagnu
-	swpackage -s $(srcdir)/packaging/depot/dejagnu.psf -x target_type=directory -d /tmp
-	here=`pwd`; \
-	  cd /tmp; \
-	  tar cf $$here/dejagnu-${VERSION}.hpux11.depot dejagnu; \
-	  gzip -9fv  $$here/dejagnu-${VERSION}.hpux11.depot; \
-	  rm -rf /tmp/dejagnu
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
