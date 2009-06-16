@@ -1,5 +1,10 @@
 2009-06-16  Ben Elliston  <bje@gnu.org>
 
+	* config.guess: Update to most recent version.
+	* config.sub: Likewise.
+
+2009-06-16  Ben Elliston  <bje@gnu.org>
+
 	* Makefile.am (rpm, deb, solpkg, hpdepot): Remove targets.
 	* Makefile.in: Regenerate.
 	* packaging: Remove directory and its contents.
