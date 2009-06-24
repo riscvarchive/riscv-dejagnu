@@ -1273,4 +1273,4 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
         * lib/remote.exp (standard_download, standard_upload): Support
         nfsdir and nfsroot_server.
 
-See ChangeLog.0 for earlier changes.
+See ChangeLog-1992 for earlier changes.
