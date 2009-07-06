@@ -1,3 +1,8 @@
+2009-07-06  Ben Elliston  <bje@gnu.org>
+
+	From Reuben Thomas  <rrt@sc3d.org>:
+	* doc/runtest.1: Fix some formatting issues.
+
 2009-06-16  Ben Elliston  <bje@gnu.org>
 
 	* config.guess: Update to most recent version.
