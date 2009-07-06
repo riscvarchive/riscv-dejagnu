@@ -1,5 +1,12 @@
 2009-07-06  Ben Elliston  <bje@gnu.org>
 
+	* doc/dejagnu.xml, doc/ref.xml, doc/user.xml: Mark up options with
+	<option> not <emphasis>.  Apply other grammatical fixes from
+	Reuben Thomas.
+	* doc/dejagnu.texi: Regenerate.
+
+2009-07-06  Ben Elliston  <bje@gnu.org>
+
 	* configure.ac: Check for docbook2x-texi.
 	* configure: Regenerate.
 

@@ -25,7 +25,7 @@
 
       <para>It is usually best to configure in a directory separate from the
       source tree, specifying where to find the source with the optional
-      <emphasis>--srcdir</emphasis> option to
+      <option>--srcdir</option> option to
       <emphasis>configure</emphasis>. &dj; uses the GNU
       <emphasis>autoconf</emphasis> to configure itself. For more info on using
       autoconf, read the GNU autoconf manual. To configure, execute the
@@ -42,7 +42,7 @@
       config files.</para>
 
       <para>You may also want to use the <command>configure</command> option
-      <emphasis>--prefix</emphasis> to specify where you want &dj; and its
+      <option>--prefix</option> to specify where you want &dj; and its
       supporting code installed.  By default, installation is in subdirectories
       of <filename>/usr/local</filename>, but you can select any alternate
       directory <symbol>altdir</symbol> by including
@@ -67,7 +67,7 @@
 
       <para>To install &dj; in your filesystem (either in
       <filename>/usr/local</filename>, or as specified by your
-      <emphasis>--prefix</emphasis> option to <emphasis>configure</emphasis>),
+      <option>--prefix</option> option to <emphasis>configure</emphasis>),
       execute.</para>
 
       <screen>

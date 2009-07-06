@@ -173,7 +173,7 @@
     included in the release are up-to-date with the current stable net
     releases. The biggest change is years of modifications to the
     target configuration system, used for cross testing. While this
-    greatly improved cross testing, is has made that subsystem very
+    greatly improved cross testing, it has made that subsystem very
     complicated. The goal is to have this entirely rewritten using
     <productname>iTcl</productname> by the next release. Other changes
     are:</para>

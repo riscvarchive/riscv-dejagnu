@@ -933,7 +933,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  <emphasis>FAIL</emphasis> (unexpected failure),
 	  <emphasis>XPASS</emphasis> (unexpected success), or
 	  <emphasis>ERROR</emphasis> (a severe error in the test case
-	  itself). Specify <emphasis>--all</emphasis> to see output for tests
+	  itself). Specify <option>--all</option> to see output for tests
 	  with status <emphasis>PASS</emphasis> (success, as expected)
 	  <emphasis>XFAIL</emphasis> (failure, as expected), or
 	  <emphasis>WARNING</emphasis> (minor error in the test case
@@ -960,11 +960,11 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  host string with particular values.  The procedures
 	  <emphasis>ishost</emphasis>, <emphasis>istarget</emphasis>,
 	  <emphasis>isnative</emphasis>, and <emphasis>setup</emphasis>xfail}
-	  are affected by <emphasis>--host</emphasis>. In this usage,
+	  are affected by <option>--host</option>. In this usage,
 	  <emphasis>host</emphasis> refers to the machine that the tests are to
 	  be run on, which may not be the same as the
-	  <emphasis>build</emphasis> machine. If <emphasis>--build</emphasis>
-	  is also specified, then <emphasis>--host</emphasis> refers to the
+	  <emphasis>build</emphasis> machine. If <option>--build</option>
+	  is also specified, then <option>--host</option> refers to the
 	  machine that the tests wil, be run on, not the machine &dj; is run
 	  on.</para></listitem>
 	</varlistentry>
@@ -993,10 +993,10 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  <filename>dbg.log</filename>. The extra debugging output does
 	  <emphasis>not</emphasis> appear on standard output, unless the
 	  verbose level is greater than 2 (for instance, to see debug output
-	  immediately, specify <emphasis>--debug</emphasis>-v -v}). The
+	  immediately, specify <option>--debug</option>-v -v}). The
 	  debugging output shows all attempts at matching the test output of
 	  the tool with the scripted patterns describing expected output.  The
-	  output generated with <emphasis>--strace</emphasis> also goes into
+	  output generated with <option>--strace</option> also goes into
 	  <filename>dbg.log</filename>.</para></listitem>
 	</varlistentry>
 
@@ -1049,11 +1049,11 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  <listitem><para>Use <filename>path</filename> as the top directory
 	  for test scripts to run. <emphasis>runtest</emphasis> looks in this
 	  directory for any subdirectory whose name begins with the toolname
-	  (specified with <emphasis>--tool</emphasis>). For instance, with
-	  <emphasis>--tool</emphasis>gdb}, <emphasis>runtest</emphasis> uses
+	  (specified with <option>--tool</option>). For instance, with
+	  <option>--tool</option>gdb}, <emphasis>runtest</emphasis> uses
 	  tests in subdirectories <filename>gdb.*</filename> (with the usual
 	  shell-like filename expansion).  If you do not use
-	  <emphasis>--srcdir</emphasis>, <emphasis>runtest</emphasis> looks for
+	  <option>--srcdir</option>, <emphasis>runtest</emphasis> looks for
 	  test directories under the current working
 	  directory.</para></listitem>
 	</varlistentry>
@@ -1067,7 +1067,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  <emphasis>case</emphasis> or <emphasis>if</emphasis> statements.
 	  Each procedure call or control structure counts as one ``level''. The
 	  output is recorded in the same file, <filename>dbg.log</filename>,
-	  used for output from <emphasis>--debug</emphasis>.</para></listitem>
+	  used for output from <option>--debug</option>.</para></listitem>
 	</varlistentry>
 
         <varlistentry>
@@ -1075,7 +1075,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  <listitem><para>Connect to a target testing environment as specified
 	  by <emphasis>type</emphasis>, if the target is not the computer
 	  running <emphasis>runtest</emphasis>.  For example, use
-	  <emphasis>--connect</emphasis> to change the program used to connect
+	  <option>--connect</option> to change the program used to connect
 	  to a ``bare board'' boot monitor.  The choices for
 	  <emphasis>type</emphasis> in the &dj; 1.4 distribution are
 	  <emphasis>rlogin</emphasis>, <emphasis>telnet</emphasis>,
@@ -1236,7 +1236,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 		/usr/latest/bin/gdb version 4.14.4 -nx
 	</screen>
 
-	<para>You can use the option <emphasis>--srcdir</emphasis> to point to
+	<para>You can use the option <option>--srcdir</option> to point to
 	some other directory containing a collection of tests:</para>
 
 	<screen>
@@ -1247,10 +1247,10 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	names of the tests it runs, output from any tests that have unexpected
 	results, and a summary showing how many tests passed and how many
 	failed.  To display output from all tests (whether or not they behave
-	as expected), use the <emphasis>--all</emphasis> option.  For more
+	as expected), use the <option>--all</option> option.  For more
 	verbose output about processes being run, communication, and so on, use
-	<emphasis>--verbose</emphasis>. To see even more output, use multiple
-	<emphasis>--verbose</emphasis> options. for a more detailed explanation
+	<option>--verbose</option>. To see even more output, use multiple
+	<option>--verbose</option> options. for a more detailed explanation
 	of each <command>runtest</command> option.</para>
 
 	<para>Test output goes into two files in your current directory:
@@ -1258,7 +1258,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	and detailed output in <filename>
 	tool.log</filename>. (<emphasis>tool</emphasis>
 	refers to the collection of tests; for example, after a run with
-	<emphasis>--tool</emphasis> gdb, look for output files
+	<option>--tool</option> gdb, look for output files
 	<filename>gdb.sum</filename> and
 	<filename>gdb.log</filename>.)</para>
       </sect3>
@@ -3148,7 +3148,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       <title>The dejagnu.h Header File</title>
 
       <para>&dj; uses a single header file to assist in unit
-      testing. As this file also produces it's one test state output,
+      testing. As this file also produces its one test state output,
       it can be run standalone, which is very useful for testing on
       embedded systems. This header file has a C and C++ API for the
       test states, with simple totals, and standardized

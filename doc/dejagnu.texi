@@ -189,7 +189,7 @@ This release has a number of substantial changes over version
 included in the release are up-to-date with the current stable net
 releases. The biggest change is years of modifications to the
 target configuration system, used for cross testing. While this
-greatly improved cross testing, is has made that subsystem very
+greatly improved cross testing, it has made that subsystem very
 complicated. The goal is to have this entirely rewritten using
 iTcl by the next release. Other changes
 are:
@@ -1406,7 +1406,7 @@ produce unexpected results; that is, tests with status
 @emph{FAIL} (unexpected failure),
 @emph{XPASS} (unexpected success), or
 @emph{ERROR} (a severe error in the test case
-itself). Specify @emph{--all} to see output for tests
+itself). Specify @code{--all} to see output for tests
 with status @emph{PASS} (success, as expected)
 @emph{XFAIL} (failure, as expected), or
 @emph{WARNING} (minor error in the test case
@@ -1429,11 +1429,11 @@ affects @emph{only} DejaGnu procedures that compare the
 host string with particular values.  The procedures
 @emph{ishost}, @emph{istarget},
 @emph{isnative}, and @emph{setup}xfail@}
-are affected by @emph{--host}. In this usage,
+are affected by @code{--host}. In this usage,
 @emph{host} refers to the machine that the tests are to
 be run on, which may not be the same as the
-@emph{build} machine. If @emph{--build}
-is also specified, then @emph{--host} refers to the
+@emph{build} machine. If @code{--build}
+is also specified, then @code{--host} refers to the
 machine that the tests wil, be run on, not the machine DejaGnu is run
 on.
 
@@ -1456,10 +1456,10 @@ debugging output. Debugging output is displayed as part of the
 @file{dbg.log}. The extra debugging output does
 @emph{not} appear on standard output, unless the
 verbose level is greater than 2 (for instance, to see debug output
-immediately, specify @emph{--debug}-v -v@}). The
+immediately, specify @code{--debug}-v -v@}). The
 debugging output shows all attempts at matching the test output of
 the tool with the scripted patterns describing expected output.  The
-output generated with @emph{--strace} also goes into
+output generated with @code{--strace} also goes into
 @file{dbg.log}.
 
 @item @code{--help} (-he)
@@ -1500,11 +1500,11 @@ rebooting takes a lot of time.
 Use @file{path} as the top directory
 for test scripts to run. @emph{runtest} looks in this
 directory for any subdirectory whose name begins with the toolname
-(specified with @emph{--tool}). For instance, with
-@emph{--tool}gdb@}, @emph{runtest} uses
+(specified with @code{--tool}). For instance, with
+@code{--tool}gdb@}, @emph{runtest} uses
 tests in subdirectories @file{gdb.*} (with the usual
 shell-like filename expansion).  If you do not use
-@emph{--srcdir}, @emph{runtest} looks for
+@code{--srcdir}, @emph{runtest} looks for
 test directories under the current working
 directory.
 
@@ -1516,13 +1516,13 @@ multi-level Tcl statements.  This allows you to ignore some levels of
 @emph{case} or @emph{if} statements.
 Each procedure call or control structure counts as one ``level''. The
 output is recorded in the same file, @file{dbg.log},
-used for output from @emph{--debug}.
+used for output from @code{--debug}.
 
 @item @code{--connect [program]}
 Connect to a target testing environment as specified
 by @emph{type}, if the target is not the computer
 running @emph{runtest}.  For example, use
-@emph{--connect} to change the program used to connect
+@code{--connect} to change the program used to connect
 to a ``bare board'' boot monitor.  The choices for
 @emph{type} in the DejaGnu 1.4 distribution are
 @emph{rlogin}, @emph{telnet},
@@ -1662,7 +1662,7 @@ Test output follows, ending with:
 	
 @end example
 
-You can use the option @emph{--srcdir} to point to
+You can use the option @code{--srcdir} to point to
 some other directory containing a collection of tests:
 
 @example
@@ -1675,10 +1675,10 @@ By default, @code{runtest} prints only the
 names of the tests it runs, output from any tests that have unexpected
 results, and a summary showing how many tests passed and how many
 failed.  To display output from all tests (whether or not they behave
-as expected), use the @emph{--all} option.  For more
+as expected), use the @code{--all} option.  For more
 verbose output about processes being run, communication, and so on, use
-@emph{--verbose}. To see even more output, use multiple
-@emph{--verbose} options. for a more detailed explanation
+@code{--verbose}. To see even more output, use multiple
+@code{--verbose} options. for a more detailed explanation
 of each @code{runtest} option.
 
 Test output goes into two files in your current directory:
@@ -1686,7 +1686,7 @@ summary output in @file{tool.sum},
 and detailed output in @file{
 tool.log}. (@emph{tool}
 refers to the collection of tests; for example, after a run with
-@emph{--tool} gdb, look for output files
+@code{--tool} gdb, look for output files
 @file{gdb.sum} and
 @file{gdb.log}.)
 
@@ -3322,7 +3322,7 @@ test.
 @section The dejagnu.h Header File
 
 DejaGnu uses a single header file to assist in unit
-testing. As this file also produces it's one test state output,
+testing. As this file also produces its one test state output,
 it can be run standalone, which is very useful for testing on
 embedded systems. This header file has a C and C++ API for the
 test states, with simple totals, and standardized
@@ -3365,7 +3365,7 @@ associated defaults); then you can proceed to installing it.
 
 It is usually best to configure in a directory separate from the
 source tree, specifying where to find the source with the optional
-@emph{--srcdir} option to
+@code{--srcdir} option to
 @emph{configure}. DejaGnu uses the GNU
 @emph{autoconf} to configure itself. For more info on using
 autoconf, read the GNU autoconf manual. To configure, execute the
@@ -3384,7 +3384,7 @@ system or a cross system. That is determined at runtime by using the
 config files.
 
 You may also want to use the @code{configure} option
-@emph{--prefix} to specify where you want DejaGnu and its
+@code{--prefix} to specify where you want DejaGnu and its
 supporting code installed.  By default, installation is in subdirectories
 of @file{/usr/local}, but you can select any alternate
 directory @code{altdir} by including
@@ -3407,7 +3407,7 @@ suites.
 
 To install DejaGnu in your filesystem (either in
 @file{/usr/local}, or as specified by your
-@emph{--prefix} option to @emph{configure}),
+@code{--prefix} option to @emph{configure}),
 execute.
 
 @example
