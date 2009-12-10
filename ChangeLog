@@ -1,3 +1,7 @@
+2009-12-10  DJ Delorie  <dj@redhat.com>
+
+	* baseboards/rx-sim.exp: New baseboard.
+
 2009-10-15  Ben Elliston  <bje@gnu.org>
 
 	* MAINTAINERS: Remove refererence to Tom Tromey's Tcl style guide.
