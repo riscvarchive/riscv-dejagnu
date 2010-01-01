@@ -1,5 +1,24 @@
 dnl Process this file with autoconf to produce a configure script.
 
+dnl Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001
+dnl 2002, 2003, 2005, 2006, 2007, 2008, 2009, 2010 Free Software Foundation, Inc.
+dnl
+dnl This file is part of DejaGnu.
+dnl
+dnl DejaGnu is free software; you can redistribute it and/or modify it
+dnl under the terms of the GNU General Public License as published by
+dnl the Free Software Foundation; either version 2 of the License, or
+dnl (at your option) any later version.
+dnl
+dnl DejaGnu is distributed in the hope that it will be useful, but
+dnl WITHOUT ANY WARRANTY; without even the implied warranty of
+dnl MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+dnl General Public License for more details.
+dnl
+dnl You should have received a copy of the GNU General Public License
+dnl along with DejaGnu; if not, write to the Free Software Foundation,
+dnl Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.
+
 AC_PREREQ(2.50)
 AC_INIT([GNU DejaGnu], 1.4.99, [bug-dejagnu@gnu.org])
 AM_INIT_AUTOMAKE
