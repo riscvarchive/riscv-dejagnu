@@ -1,3 +1,7 @@
+2010-01-15  Anthony Green  <green@moxielogic.com>
+
+	* baseboards/moxie-sim.exp: New baseboard.
+
 2009-12-10  DJ Delorie  <dj@redhat.com>
 
 	* baseboards/rx-sim.exp: New baseboard.
