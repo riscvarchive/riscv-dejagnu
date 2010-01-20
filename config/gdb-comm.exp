@@ -308,16 +308,6 @@ proc gdb_comm_load { dest prog args } {
 	}
     }
 
-    # Now set up breakpoints in exit, _exit, and abort.  These
-    # are used to determine if a c-torture test passed or failed.  More
-    # work would be necessary for things like the g++ testsuite which
-    # use printf to indicate pass/fail status.
-
-    if { [gdb_comm_add_breakpoint _exit] != "" } {
-	gdb_comm_add_breakpoint exit
-    }
-    gdb_comm_add_breakpoint abort
-
     set protocol [board_info $dest gdb_protocol]
     if {[board_info $dest exists gdb_serial]} {
 	set targetname [board_info $dest gdb_serial]
@@ -404,6 +394,16 @@ proc gdb_comm_load { dest prog args } {
 	    return [gdb_comm_reload $dest $prog $args]
 	}
     }
+
+    # Now set up breakpoints in exit, _exit, and abort.  These
+    # are used to determine if a c-torture test passed or failed.  More
+    # work would be necessary for things like the g++ testsuite which
+    # use printf to indicate pass/fail status.
+
+    if { [gdb_comm_add_breakpoint _exit] != "" } {
+	gdb_comm_add_breakpoint exit
+    }
+    gdb_comm_add_breakpoint abort
 
     set output ""
     
