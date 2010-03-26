@@ -1,3 +1,8 @@
+2010-03-26  Rainer Orth  <ro@CeBiTec.Uni-Bielefeld.DE>
+
+	* doc/user.xml (Tcl Variables For Command Line Options): Correct
+	column count.
+
 2010-01-21  Jie Zhang  <jie.zhang@analog.com>
 
 	* config/gdb-comm.exp (gdb_comm_load): Set breakpoints after load.
