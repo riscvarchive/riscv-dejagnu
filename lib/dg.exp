@@ -671,10 +671,11 @@ proc dg-test { args } {
 
     # Define our own "special function" `unknown' so we catch spelling errors.
     # But first rename the existing one so we can restore it afterwards.
-    catch {rename dg-save-unknown ""}
-    rename unknown dg-save-unknown
-    proc unknown { args } {
-	return -code error "unknown dg option: $args"
+    if { [info procs dg-save-unknown] == [list] } {
+        rename unknown dg-save-unknown
+        proc unknown { args } {
+	    return -code error "unknown dg option: $args"
+        }
     }
 
     set tmp [dg-get-options $prog]
@@ -698,8 +699,10 @@ proc dg-test { args } {
     }
 
     # Restore normal error handling.
-    rename unknown ""
-    rename dg-save-unknown unknown
+    if { [info procs dg-save-unknown] != [list] } {
+        rename unknown ""
+        rename dg-save-unknown unknown
+    }
 
     # If we're not supposed to try this test on this target, we're done.
     if { [lindex ${dg-do-what} 1] == "N" } {

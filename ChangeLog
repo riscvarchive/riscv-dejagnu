@@ -1,3 +1,7 @@
+2011-03-01  Rainer Orth  <ro@CeBiTec.Uni-Bielefeld.DE>
+
+	* lib/dg.exp (dg-test): Support nested calls.
+
 2010-04-13  Ben Elliston  <bje@gnu.org>
 
 	* testglue.c: Remove duplicated prototypes for abort and exit.
