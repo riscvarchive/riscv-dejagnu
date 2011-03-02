@@ -1,3 +1,10 @@
+2011-03-03  Ben Elliston  <bje@gnu.org>
+
+	* lib/framework.exp (unknown): Rename the native Tcl ::unknown
+	proc to ::tcl_unknown.  If ::tcl_unknown returns a failure result,
+	then fall back to the conventional DejaGnu handling.  Report from
+	David Byron <dbyron@dbyron.com>.
+
 2011-03-03  Maciej W. Rozycki  <macro@codesourcery.com>
 
 	* lib/remote.exp (remote_expect): Pass all exception conditions up

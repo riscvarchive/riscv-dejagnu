@@ -259,21 +259,26 @@ proc isnative { } {
 
 # unknown -- called by expect if a proc is called that doesn't exist
 #
-proc unknown { args } {
-    global errorCode
-    global errorInfo
-    global exit_status
+# Rename unknown to tcl_unknown so that we can wrap tcl_unknown.
+# This allows Tcl package autoloading to work in the modern age.
 
-    clone_output "ERROR: (DejaGnu) proc \"$args\" does not exist."
-    if {[info exists errorCode]} {
-        send_error "The error code is $errorCode\n"
-    }
-    if {[info exists errorInfo]} {
-        send_error "The info on the error is:\n$errorInfo\n"
-    }
+rename ::unknown ::tcl_unknown
+proc unknown args {
+    if {[catch {uplevel 1 ::tcl_unknown $args} msg]} {
+	global errorCode
+	global errorInfo
+	global exit_status
 
-    set exit_status 1
-    log_and_exit
+	clone_output "ERROR: (DejaGnu) proc \"$args\" does not exist."
+	if {[info exists errorCode]} {
+	    send_error "The error code is $errorCode\n"
+	}
+	if {[info exists errorInfo]} {
+	    send_error "The info on the error is:\n$errorInfo\n"
+	}
+	set exit_status 1
+	log_and_exit
+    }
 }
 
 # Print output to stdout (or stderr) and to log file
