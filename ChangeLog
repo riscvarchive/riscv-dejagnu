@@ -1,3 +1,8 @@
+2011-03-03  Maciej W. Rozycki  <macro@codesourcery.com>
+
+	* lib/remote.exp (remote_expect): Pass all exception conditions up
+	to the caller.
+
 2011-03-01  Rainer Orth  <ro@CeBiTec.Uni-Bielefeld.DE>
 
 	* lib/dg.exp (dg-test): Support nested calls.

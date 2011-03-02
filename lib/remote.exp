@@ -1256,11 +1256,7 @@ proc remote_expect { board timeout args } {
 
     if {$code == 1} {
 	return -code error -errorinfo $errorInfo -errorcode $errorCode $string
-    } elseif {$code == 2} {
-	return -code return $string
-    } elseif {$code == 3} {
-	return
-    } elseif {$code > 4} {
+    } else {
 	return -code $code $string
     }
 }
