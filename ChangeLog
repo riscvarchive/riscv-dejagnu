@@ -1,5 +1,10 @@
 2011-03-03  Ben Elliston  <bje@gnu.org>
 
+	* config.guess: Update to most recent version.
+	* config.sub: Likewise.
+
+2011-03-03  Ben Elliston  <bje@gnu.org>
+
 	* lib/framework.exp (unknown): Rename the native Tcl ::unknown
 	proc to ::tcl_unknown.  If ::tcl_unknown returns a failure result,
 	then fall back to the conventional DejaGnu handling.  Report from
