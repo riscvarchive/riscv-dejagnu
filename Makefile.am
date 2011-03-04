@@ -21,7 +21,7 @@
 
 AUTOMAKE_OPTIONS = dejagnu
 
-EXTRA_DIST = ChangeLog.0 MAINTAINERS runtest site.tmpl \
+EXTRA_DIST = ChangeLog-1992 MAINTAINERS runtest site.tmpl \
 	$(pkgdata_DATA) $(pkgdata_SCRIPTS) \
 	$(config_DATA) $(config_SCRIPTS) \
 	$(baseboard_DATA) $(baseboard_SCRIPTS) \

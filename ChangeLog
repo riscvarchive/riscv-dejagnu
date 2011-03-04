@@ -1,3 +1,8 @@
+2011-03-04  Ben Elliston  <bje@gnu.org>
+
+	* Makefile.am (EXTRA_DIST): Correct name of historical ChangeLog.
+	* Makefile.in: Regenerate.
+
 2011-03-03  Ben Elliston  <bje@gnu.org>
 
 	* Makefile.am: Bump to GPL version 3.
