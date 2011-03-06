@@ -20,7 +20,7 @@
 
 # This file was written by Rob Savoye <rob@welcomehome.org>.
 
-set frame_version	1.4.99
+set frame_version	1.5
 if {![info exists argv0]} {
     send_error "Must use a version of Expect greater than 5.0\n"
     exit 1

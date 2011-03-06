@@ -1,3 +1,10 @@
+2011-03-06  Ben Elliston  <bje@gnu.org>
+
+	* configure.ac (AC_INIT): Set version to 1.5.
+	* configure: Regenerate.
+	* runtest.exp (frame_version): Set to 1.5.
+	* doc/dejagnu.texi: Regenerate.
+
 2011-03-04  Ben Elliston  <bje@gnu.org>
 
 	* texinfo.tex: Import latest version from ftp://tug.org/tex.
