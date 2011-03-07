@@ -245,6 +245,8 @@ dejagnu.rtf: $(XML)
 html:
 	$(DOCBOOK2HTML) -o html $(srcdir)/doc/dejagnu.xml
 
+if MAINTAINER_MODE
 doc/dejagnu.texi: $(XML)
 	$(DOCBOOK2TEXI) --string-param directory-description="The GNU testing framework." --string-param directory-category="Programming" $(srcdir)/doc/dejagnu.xml
 	mv dejagnu.texi $(srcdir)/doc
+endif

@@ -1,3 +1,8 @@
+2011-03-07  Ben Elliston  <bje@gnu.org>
+
+	* Makefile.am (doc/dejagnu.texi): Conditional on MAINTAINER_MODE.
+	* Makefile.in: Regenerate.
+
 2011-03-06  Ben Elliston  <bje@gnu.org>
 
 	* configure.ac (AC_INIT): Set version to 1.5.
