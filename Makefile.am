@@ -27,6 +27,8 @@ EXTRA_DIST = ChangeLog-1992 MAINTAINERS runtest site.tmpl \
 	$(baseboard_DATA) $(baseboard_SCRIPTS) \
 	$(TESTSUITE_FILES) $(XML) $(CONTRIB)
 
+DISTCLEANFILES = xXx.log xXx.sum x.log x.sum testrun.log testrun.sum
+
 bin_SCRIPTS = runtest
 include_HEADERS = dejagnu.h
 

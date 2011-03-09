@@ -89,3 +89,6 @@ if [file exists $objdir/x.sum] {
 if [file exists $objdir/xXx.sum] {
     exec rm -f $objdir/xXx.*
 }
+if [file exists dbg.log] {
+    file delete dbg.log
+}

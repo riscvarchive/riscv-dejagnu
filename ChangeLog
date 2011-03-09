@@ -1,3 +1,12 @@
+2011-03-09  Ben Elliston  <bje@gnu.org>
+
+	* Makefile.am (DISTCLEANFILES): Define.
+	* Makefile.in: Regenerate.
+	* testsuite/runtest.all/libs.exp: Clean up temp files on exit.
+	* testsuite/runtest.all/options.exp: Likewise for dbg.log.
+	* testsuite/runtest.all/stats.exp: Likewise for tmpdir. Use "file
+	mkdir" instead of exec'ing mkdir(1).
+
 2011-03-07  Ben Elliston  <bje@gnu.org>
 
 	* Makefile.am (doc/dejagnu.texi): Conditional on MAINTAINER_MODE.

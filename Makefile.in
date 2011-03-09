@@ -248,6 +248,7 @@ EXTRA_DIST = ChangeLog-1992 MAINTAINERS runtest site.tmpl \
 	$(baseboard_DATA) $(baseboard_SCRIPTS) \
 	$(TESTSUITE_FILES) $(XML) $(CONTRIB)
 
+DISTCLEANFILES = xXx.log xXx.sum x.log x.sum testrun.log testrun.sum
 bin_SCRIPTS = runtest
 include_HEADERS = dejagnu.h
 pkgdata_SCRIPTS = \
@@ -1233,6 +1234,7 @@ distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
 	-rm -f doc/$(am__dirstamp)
+	-test -z "$(DISTCLEANFILES)" || rm -f $(DISTCLEANFILES)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"

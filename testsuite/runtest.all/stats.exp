@@ -28,7 +28,7 @@ if ![info exists tmpdir] {
 }
 
 if ![file isdirectory $tmpdir] {
-    catch "exec mkdir $tmpdir"
+    catch "file mkdir $tmpdir"
 }
 
 set tests {
@@ -53,3 +53,5 @@ foreach t $tests {
 	pass [lindex $t 0]
     }
 }
+
+file delete -force $tmpdir
