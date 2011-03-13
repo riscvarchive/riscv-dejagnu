@@ -1,7 +1,7 @@
 2011-03-14  Jan Kratochvil  <jan.kratochvil@redhat.com>
 
 	* runtest.exp (runtest): Call reset_vars at initialisation so that
-	a perror does not affect test results in other test scripts.
+	perror does not affect test results in other test scripts.
 
 2011-03-09  Ben Elliston  <bje@gnu.org>
 
@@ -180,7 +180,7 @@
 
 2007-12-28  Joseph Myers  <joseph@codesourcery.com>
 
-        * lib/target.exp (default_link): Initialize nobjects before use.
+	* lib/target.exp (default_link): Initialize nobjects before use.
 
 2007-12-06  Ben Elliston  <bje@gnu.org>
 
@@ -209,7 +209,7 @@
 	* baseboards/xtensa-sim.exp: Set target_install.  Stop using
 	basic-sim.exp.  Run the simulator with --turbo option.  Replace
 	needs_status_wrapper with the simulator's --exit_with_target_code
-	option. 
+	option.
 
 2006-10-15  Rob Savoye  <rob@bertha.welcomehome.org>
 
@@ -385,7 +385,7 @@
 	`type' parameter to `op' and update all uses in the proc.
 	(watchvar): Add `ignore' parameter for scalar variables.
 	Likewise, rename `type' to `op' and update throughout the proc.
-	
+
 	* runtest.exp: Use switch, not case.
 	* lib/framework.exp (clone_output): Likewise.
 	(clear_xfail): Likewise.
@@ -512,7 +512,7 @@
 	* Makefile.am (RUNTEST): Simplify, as Automake already generates
 	similar logic in Makefile.in.
 	* Makefile.in: Regenerate.
-	
+
 2005-12-24  Ben Elliston  <bje@gnu.org>
 
 	* Makefile.am (RUNTESTDEFAULTFLAGS): Omit --tool so that
@@ -731,7 +731,7 @@
 	(libio_include_flags): Use -I instead of -isystem and
 	document why.
 	(g++_include_flags): Use -I instead of -isystem.
-	(libstdc++_include_flags): Likewise. 
+	(libstdc++_include_flags): Likewise.
 
 2004-11-04  Ben Elliston  <bje@gnu.org>
 
@@ -765,19 +765,19 @@
 	* testglue.c: Prototype abort and exit.
 
 2004-06-08  Alexandre Oliva  <aoliva@redhat.com>
-	
-        * baseboards/mn10300-sim.exp: Set needs_status_wrapper to empty
-        string.
-                                                                                
+
+	* baseboards/mn10300-sim.exp: Set needs_status_wrapper to empty
+	string.
+
 Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 
-        * lib/remote.exp (call_remote): Remove multilibs from the board
+	* lib/remote.exp (call_remote): Remove multilibs from the board
 	name when rebooting a board.
 
 2004-06-03  Alexandre Oliva  <aoliva@redhat.com>
 
-       * baseboards/mn10300-sim.exp: Set needs_status_wrapper and
-       noresults to zero.
+	* baseboards/mn10300-sim.exp: Set needs_status_wrapper and
+	noresults to zero.
 
 2004-06-07  Ben Elliston  <bje@gnu.org>
 
@@ -789,9 +789,9 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 	* lib/target.exp (default_target_compile): Add support for Ada.
 
 2004-04-16  Kazuhiro Inaoka  <inaoka dot kazuhiro at renesas dot com>
-                                                                                
-        * baseboards/m32r-linux-sim.exp: Add New file.
-	
+
+	* baseboards/m32r-linux-sim.exp: Add New file.
+
 2004-04-02  Rob Savoye  <rob@direwolf.welcomehome.org>
 
 	* configure.ac, example/Makefile.am: Add example/mathhelper.
@@ -802,8 +802,8 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 	* example/mathhelper: New example for using the unit testing API.
 
 2004-03-05  Daniel Jacobowitz  <drow@mvista.com>
-                                                                                
-        * lib/remote.exp (standard_spawn): Fix rsh username support.
+
+	* lib/remote.exp (standard_spawn): Fix rsh username support.
 
 2004-03-06  Rob Savoye  <rob@althea.welcomehome.org>
 
@@ -816,7 +816,7 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 	ref.sgml.
 	* doc/C/user.xml: DocBook XML formatted verion of what was
 	user.sgml.
-	
+
 2004-02-17  Ben Elliston  <bje@wasabisystems.com>
 
 	* runtest.exp: Do not trap SIGSEGV.
@@ -901,7 +901,7 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 2004-02-08  Ben Elliston  <bje@wasabisystems.com>
 
 	* runtest.1: Remove any mention of mondfe.
-	
+
 2004-02-08  Ben Elliston  <bje@wasabisystems.com>
 
 	* TODO: Add an item about timeouts.
@@ -932,9 +932,9 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 	* lib/remote.exp: Don't load mondfe.exp or xsh.exp.
 	* packaging/pkg/prototype: Update.
 	* NEWS: Update.
-	
+
 2004-02-07  Ben Elliston  <bje@wasabisystems.com>
-	
+
 	* Makefile.am (rpmspec): Remove.
 	(rpm): Additionally depend on dejagnu.spec.
 	($(PKGDIR)/dejagnu): New target that installs DejaGnu into this
@@ -951,7 +951,7 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 	* testsuite/Makefile.am (CLEANFILES): Remove.
 	(RUNTESTDEFAULTFLATS): Pass --srcdir and RUNTEST=$(RUNTEST).
 	* testsuite/Makefile.in: Regenerate.
-	
+
 2004-02-07  Ben Elliston  <bje@wasabisystems.com>
 
 	* lib/util-defs.exp: Move from here ..
@@ -1008,7 +1008,7 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 	(uninstall-local): Likewise.
 	(site.exp): Likewise.
 	* Makefile.in: Regenerate.
-	
+
 	* testsuite/Makefile.am (all, all-am, etcetera): Remove.
 	(force): Likewise.
 	(EXTRA_DIST): Define.
@@ -1054,7 +1054,7 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 	* configure.ac: Remove commented out code.
 	* configure: Regenerate.
 
-2004-02-06  Ben Elliston  <bje@wasabisystems.com>	
+2004-02-06  Ben Elliston  <bje@wasabisystems.com>
 
 	* site.tmpl: Tidy.
 
@@ -1123,8 +1123,8 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 
 	2000-04-25  Felix Lee  <flee@cygnus.com>
 	* baseboards/tx39-sim.exp: Use idt, not dve linker script.  Delete
- 	misleading comments and null statements.
-	
+	misleading comments and null statements.
+
 2004-01-30  Ben Elliston  <bje@wasabisystems.com>
 
 	* DejaGnu 1.4.4 released.
@@ -1175,10 +1175,10 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 	* packaging/rpm/dejagnu.spec: Update version numbers throughout.
 	* packaging/pkg/pkginfo: Likewise.
 	* packaging/depot/dejagnu.psf: Likewise.
-	
+
 2003-10-25  Ben Elliston  <bje@wasabisystems.com>
 
-	* runtest.exp (frame_version): Bump version.	
+	* runtest.exp (frame_version): Bump version.
 	* configure.in (AM_INIT_AUTOMAKE): Likewise.
 	* configure: Regenerate.
 
@@ -1249,11 +1249,11 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 
 	* doc/Makefile.am (AUTOMAKE_OPTIONS): Remove empty variable.
 	* doc/Makefile.in: Regenerate.
-	
+
 2003-08-16  Ben Elliston  <bje@wasabisystems.com>
 
 	* doc/overview.sgml (overview): Start overhauling chapter.
-	
+
 	* doc/README.Writers: New document on style conventions.
 	* doc/ref.sgml: Replace "test suite" with "testsuite" throughout.
 	* doc/user.sgml: Likewise.
@@ -1324,16 +1324,16 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 
 2002-02-25  Jackie Smith Cashion  <jsmith@redhat.com>
 
-        * baseboards/am33_2.0-libremote.exp: New file.
+	* baseboards/am33_2.0-libremote.exp: New file.
 
 2000-11-21  Drew Moseley  <dmoseley@redhat.com>
 
-        * baseboards/mn10300-cygmon.exp: Use the am33-2 flag for the
-        ASB2303 board.
+	* baseboards/mn10300-cygmon.exp: Use the am33-2 flag for the
+	ASB2303 board.
 
 2000-08-10  Drew Moseley  <dmoseley@cygnus.com>
 
-        * baseboards/mn10300-cygmon.exp: Added support for Cygmon based
+	* baseboards/mn10300-cygmon.exp: Added support for Cygmon based
 	ASB2303 board.
 
 2003-06-13  Phil Edwards <pme@devphil.com>
@@ -1341,7 +1341,7 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 	* baseboards/mips64-sim.exp, baseboards/mips-sim.exp,
 	baseboards/mips-sim-idt32.exp, baseboards/mips-sim-idt64.exp: Use
 	only -T[linker] instead of -Wl,-T[linker].
-	
+
 2003-06-13  Jason Thorpe  <thorpej@wasabisystems.com>
 
 	* lib/target.exp (prune_warnings): Add two more linker
@@ -1350,11 +1350,11 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 
 2003-05-12  H.J. Lu <hongjiu.lu@intel.com>
 
-        * lib/libgloss.exp (build_wrapper): Add -Wl,-wrap,_exit.
+	* lib/libgloss.exp (build_wrapper): Add -Wl,-wrap,_exit.
 
 2003-05-09  H.J. Lu <hongjiu.lu@intel.com>
 
-        * runtest: Fix a typo.
+	* runtest: Fix a typo.
 
 2003-05-03  Nitin Dhavale <nitinpdhavale@indiatimes.com>
 
@@ -1362,14 +1362,14 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 
 2003-03-28 Chris Demetriou <cgd@broadcom.com>
 
-        * lib/framework.exp (check_conditional_xfail): Adjust so that
-        an empty 'includes' list matches all sets of flags.
-        * doc/dejagnu.texi: Document the above.
-        * doc/ref.sgml: Likewise.
+	* lib/framework.exp (check_conditional_xfail): Adjust so that
+	an empty 'includes' list matches all sets of flags.
+	* doc/dejagnu.texi: Document the above.
+	* doc/ref.sgml: Likewise.
 
 2003-03-27  David Heine <dlheine@tensilica.com>
 
-        * baseboards/xtensa-sim.exp: Fix a syntax error.
+	* baseboards/xtensa-sim.exp: Fix a syntax error.
 
 2003-03-16  Rob Savoye  <rob@direwolf.welcomehome.org>
 
@@ -1380,12 +1380,12 @@ Tue Feb 25 05:19:57 UTC 2003  Brendan Conoboy  <blc@@redhat.com>
 
 2003-03-13  Mike Stump  <mrs@apple.com>
 
-        * lib/dg.exp(dg-test): Add compiler flags to testcase name, to
+	* lib/dg.exp(dg-test): Add compiler flags to testcase name, to
 	help ensure uniqueness.
 
 2003-03-05  Alexandre Oliva  <aoliva@redhat.com>
 
-        * lib/remote.exp (standard_download, standard_upload): Support
-        nfsdir and nfsroot_server.
+	* lib/remote.exp (standard_download, standard_upload): Support
+	nfsdir and nfsroot_server.
 
 See ChangeLog-1992 for earlier changes.

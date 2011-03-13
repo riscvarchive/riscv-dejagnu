@@ -1,36 +1,36 @@
 2003-02-19  Andrew Cagney  <ac131313@redhat.com>
 
-         * lib/remote.exp (local_exec, standard_close): Use shell
-         background instead of Tcl background to background the kill
-         processes.  Work around problem found by Nick Duffek in older
-         Cygwins.
+	 * lib/remote.exp (local_exec, standard_close): Use shell
+	 background instead of Tcl background to background the kill
+	 processes.  Work around problem found by Nick Duffek in older
+	 Cygwins.
 
 2003-02-19  DJ Delorie  <dj@redhat.com>
 
-        * config/sim.exp: Support both sid and rawsid protocols.
+	* config/sim.exp: Support both sid and rawsid protocols.
 
 2003-01-31  Kazu Hirata  <kazu@cs.umass.edu>
 
-        * dejagnu/baseboards/h8300-sim.exp: Don't set
+	* dejagnu/baseboards/h8300-sim.exp: Don't set
 	needs_status_wrapper.
 
 2002-11-12  Hans-Peter Nilsson  <hp@bitrange.com>
 
-        * lib/libgloss.exp (newlib_include_flags): Use -isystem, not -I.
-        (libio_include_flags, g++_include_flags, libstdc++_include_flags,
-        winsup_include_flags): Ditto.
-        * doc/user.sgml (Local Config File): Use -isystem, not -I, in
-        example.
+	* lib/libgloss.exp (newlib_include_flags): Use -isystem, not -I.
+	(libio_include_flags, g++_include_flags, libstdc++_include_flags,
+	winsup_include_flags): Ditto.
+	* doc/user.sgml (Local Config File): Use -isystem, not -I, in
+	example.
 
 2002-11-21 Matt Bemis <bemis@iol.unh.edu>
 
 	* modified xml_output to handle null input and output
-		
+
 2002-10-21  Adam Nemet  <anemet@lnxw.com>
 
-        * libgloss.exp (get_multilibs): Don't use the first argument
-        passed to this function as the multilib option unless it is in
-        fact a multilib option.
+	* libgloss.exp (get_multilibs): Don't use the first argument
+	passed to this function as the multilib option unless it is in
+	fact a multilib option.
 
 2002-11-13 Matt Bemis <bemis@iol.unh.edu>
 
@@ -38,11 +38,11 @@
 
 2002-11-12  Hans-Peter Nilsson  <hp@bitrange.com>
 
-        * lib/libgloss.exp (newlib_include_flags): Use -isystem, not -I.
-        (libio_include_flags, g++_include_flags, libstdc++_include_flags,
-        winsup_include_flags): Ditto.
-        * doc/user.sgml (Local Config File): Use -isystem, not -I, in
-        example.
+	* lib/libgloss.exp (newlib_include_flags): Use -isystem, not -I.
+	(libio_include_flags, g++_include_flags, libstdc++_include_flags,
+	winsup_include_flags): Ditto.
+	* doc/user.sgml (Local Config File): Use -isystem, not -I, in
+	example.
 
 2002-10-29  Maciej W. Rozycki  <macro@ds2.pg.gda.pl>
 
@@ -56,8 +56,8 @@
 
 2002-09-24  Richard Earnshaw  <rearnsha@arm.com>
 
-        * lib/libgloss.exp (build_wrapper): Use a tool-specific filename on
-        the host for the testglue.
+	* lib/libgloss.exp (build_wrapper): Use a tool-specific filename on
+	the host for the testglue.
 
 2002-09-04  Rob Savoye  <rob@welcomehome.org>
 
@@ -73,7 +73,7 @@
 	* example/hello/Makefile.in:  Regenerated with automake 1.6.
 	* example/calc/Makefile.in:  Regenerated with automake 1.6.
 	* missing: Update with the one from automake 1.6.
-	
+
 2002-08-30  Rob Savoye  <rob@welcomehome.org>
 
 	* configure.in: Add AC_NO_EXECUTABLES, so things configure without
@@ -86,9 +86,9 @@
 
 2002-08-30  Nick Clifton  <nickc@redhat.com>
 
-        * acinclude.m4: Provide alternative definition of AC_PROG_CXX
-        which does not call AC_PROG_CXX_WORKS.  This allows dejagnu to
-        be configured and built without a working C++ compiler.
+	* acinclude.m4: Provide alternative definition of AC_PROG_CXX
+	which does not call AC_PROG_CXX_WORKS.  This allows dejagnu to
+	be configured and built without a working C++ compiler.
 
 2002-08-29  Rob Savoye  <rob@welcomehome.org>
 
@@ -101,20 +101,20 @@
 
 2002-06-18  Dave Brolley  <brolley@redhat.com>
 
-        From Catherine Moore, Michael Meissner, Mark Salter, Jim Blandy:
-        * baseboards/frv-elf.exp: New board description.
-        * baseboards/frv-sim.exp: New board description.
-        * baseboards/frv-tiger.exp: New board description.
-        * baseboards/frv-tomcat.exp: New board description.
+	From Catherine Moore, Michael Meissner, Mark Salter, Jim Blandy:
+	* baseboards/frv-elf.exp: New board description.
+	* baseboards/frv-sim.exp: New board description.
+	* baseboards/frv-tiger.exp: New board description.
+	* baseboards/frv-tomcat.exp: New board description.
 
 2001-01-15  Ben Elliston  <bje@redhat.com>
 
-        * lib/framework.exp (record_test): Invoke a user-defined procedure
-        if one is named in local_record_procs($type).
+	* lib/framework.exp (record_test): Invoke a user-defined procedure
+	if one is named in local_record_procs($type).
 
 2002-08-28  Catherine Moore  <clm@redhat.com>
 
-        * baseboards/v850-sim.exp (target_install): Add v850e-elf.
+	* baseboards/v850-sim.exp (target_install): Add v850e-elf.
 
 2002-07-16  Rob Savoye  <rob@direwolf.welcomehome.org>
 
@@ -130,37 +130,37 @@
 Wed Jun  5 14:52:15 PDT 2002   Joey Ekstrom <joey@ekstrom.org>
 
 	* dejagnu.h: Modified C functions to behave like printf().
-        * dejagnu.h: Added wait() to fix problem with host_execute() in
-        dejagnu.exp where if skips failed, untested, etc. messages from the
-        executable.
+	* dejagnu.h: Added wait() to fix problem with host_execute() in
+	dejagnu.exp where if skips failed, untested, etc. messages from the
+	executable.
 
 2002-05-01  Matt Bemis <bemis@iol.unh.edu>
 
-        * added documentation on xml capabilities
+	* added documentation on xml capabilities
 
 2002-05-02  Fernando Nasser  <fnasser@redhat.com>
 
-        * runtest.exp: Add kfail_flag and kfail_prms variable
-        initializations.
-        * lib/framework.exp (setup_kfail): New proc. Like setup_xfail, but
-        for known tool bugs already registered in a bug database.
-        (kfail): New proc. Record that a test has failed due to a known bug.
-        (kpass): New proc. Record that a test for a known bug has passed
-        unexpectedly.
-        (clear_kfail): Like clear_xfail, but for known bugs.
-        (record_test): Handle KFAIL and KPASS.
-        (pass, fail): Test for known failures.
-        (clone_output): Add KFAIL to list of message types to be cloned.
-        (log_summary): Add summary for KFAIL and KPASS.
-        (unknown): Update comment.
-        * doc/dejagnu.texi: Document the above.
-        * lib/libsup.exp: Add counters for KFAIL and KPASS.
-        * testsuite/runtest.all/stats-sub.exp: Test kfail and kpass.
-        * testsuite/runtest.all/stats.exp: Ditto.
+	* runtest.exp: Add kfail_flag and kfail_prms variable
+	initializations.
+	* lib/framework.exp (setup_kfail): New proc. Like setup_xfail, but
+	for known tool bugs already registered in a bug database.
+	(kfail): New proc. Record that a test has failed due to a known bug.
+	(kpass): New proc. Record that a test for a known bug has passed
+	unexpectedly.
+	(clear_kfail): Like clear_xfail, but for known bugs.
+	(record_test): Handle KFAIL and KPASS.
+	(pass, fail): Test for known failures.
+	(clone_output): Add KFAIL to list of message types to be cloned.
+	(log_summary): Add summary for KFAIL and KPASS.
+	(unknown): Update comment.
+	* doc/dejagnu.texi: Document the above.
+	* lib/libsup.exp: Add counters for KFAIL and KPASS.
+	* testsuite/runtest.all/stats-sub.exp: Test kfail and kpass.
+	* testsuite/runtest.all/stats.exp: Ditto.
 
 2002-04-30  Ben Elliston  <bje@redhat.com>
 
-        * doc/runtest.1: Fix formatting error for --ignore option.
+	* doc/runtest.1: Fix formatting error for --ignore option.
 
 2002-04-25    <Matthew Bemis <bemis@iol.unh.edu>
 
@@ -171,61 +171,61 @@ Wed Jun  5 14:52:15 PDT 2002   Joey Ekstrom <joey@ekstrom.org>
 
 2002-04-25  Nick Clifton  <nickc@cambridge.redhat.com>
 
-        * example/calc/configure.in (AM_MAINTAINER_MODE): Add invocation.
-        * example/calc/aclocal.m4: Regenerate.
-        * example/calc/configure: Regenerate.
-        * example/calc/Makefile.in: Regenerate.
+	* example/calc/configure.in (AM_MAINTAINER_MODE): Add invocation.
+	* example/calc/aclocal.m4: Regenerate.
+	* example/calc/configure: Regenerate.
+	* example/calc/Makefile.in: Regenerate.
 
 2002-03-22  Elena Zannoni  <ezannoni@redhat.com>
 
 	* baseboards/powerpc-sim.exp: Don't disable inferior
-        function calls.
+	function calls.
 
 2002-04-19  Nick Clifton  <nickc@cambridge.redhat.com>
 
-        * Import files from sourceware dejagnu repository:
+	* Import files from sourceware dejagnu repository:
 
-        2002-03-15  Chris Demetriou  <cgd@broadcom.com>
-        * baseboards/mips-sim-idt32.exp: New file.
-        2002-01-21  Ben Elliston  <bje@redhat.com>
-        * baseboards/sh-sid.exp: New file.
-        2001-11-26  Thomas Fitzsimmons  <fitzsim@redhat.com>
-        * baseboards/i386-sid.exp: New file.
-        2001-10-10  Frank Ch. Eigler  <fche@redhat.com>
-        * config/sid.exp (set_host_info): New proc.  Call it to set
-        gdb,nointerrupt flag to work around framework problems.
-        2001-08-24  Frank Ch. Eigler  <fche@redhat.com>
-        * baseboards/basic-sid.exp (find_sid_conf): Tolerate not
-        finding path to pregen configuration file.
-        2001-02-22  Ben Elliston  <bje@redhat.com>
-        * config/sid.exp: New file.
-        * baseboards/basic-sid.exp: Likewise.
-        * baseboards/arm-sid.exp: Likewise.
-        * baseboards/m32r-sid.exp: Likewise.
-        * baseboards/m68k-sid.exp: Likewise.
+	2002-03-15  Chris Demetriou  <cgd@broadcom.com>
+	* baseboards/mips-sim-idt32.exp: New file.
+	2002-01-21  Ben Elliston  <bje@redhat.com>
+	* baseboards/sh-sid.exp: New file.
+	2001-11-26  Thomas Fitzsimmons  <fitzsim@redhat.com>
+	* baseboards/i386-sid.exp: New file.
+	2001-10-10  Frank Ch. Eigler  <fche@redhat.com>
+	* config/sid.exp (set_host_info): New proc.  Call it to set
+	gdb,nointerrupt flag to work around framework problems.
+	2001-08-24  Frank Ch. Eigler  <fche@redhat.com>
+	* baseboards/basic-sid.exp (find_sid_conf): Tolerate not
+	finding path to pregen configuration file.
+	2001-02-22  Ben Elliston  <bje@redhat.com>
+	* config/sid.exp: New file.
+	* baseboards/basic-sid.exp: Likewise.
+	* baseboards/arm-sid.exp: Likewise.
+	* baseboards/m32r-sid.exp: Likewise.
+	* baseboards/m68k-sid.exp: Likewise.
 
 2002-03-31  Hans-Peter Nilsson  <hp@bitrange.com>
 
-        * lib/remote.exp (check_for_board_status): Also strip a \r before
-        a \n before the exit message.
+	* lib/remote.exp (check_for_board_status): Also strip a \r before
+	a \n before the exit message.
 
 2002-03-26  Hans-Peter Nilsson  <hp@bitrange.com>
 
-        * lib/libgloss.exp (build_wrapper): Wrap _exit too, unless
-        wrap_m68k_aout, uses_underscores or is_vxworks are defined in
-        target_info.
+	* lib/libgloss.exp (build_wrapper): Wrap _exit too, unless
+	wrap_m68k_aout, uses_underscores or is_vxworks are defined in
+	target_info.
 
-        * testglue.c [!VXWORKS && !UNDERSCORES && !WRAP_M68K_AOUT]
-        (REAL__EXIT): Define.
-        [!UNDERSCORES && !WRAP_M68K_AOUT] (ORIG__EXIT): Define.
-        [REAL__EXIT] (REAL__EXIT): Prototype.
-        [ORIG__EXIT] (ORIG__EXIT): New function wrapper.
-        (done_exit_message): New static variable.
-        (ORIG_EXIT): Set done_exit_message.
+	* testglue.c [!VXWORKS && !UNDERSCORES && !WRAP_M68K_AOUT]
+	(REAL__EXIT): Define.
+	[!UNDERSCORES && !WRAP_M68K_AOUT] (ORIG__EXIT): Define.
+	[REAL__EXIT] (REAL__EXIT): Prototype.
+	[ORIG__EXIT] (ORIG__EXIT): New function wrapper.
+	(done_exit_message): New static variable.
+	(ORIG_EXIT): Set done_exit_message.
 
 2002-03-11  Chris Demetriou  <cgd@broadcom.com>
 
-        * baseboards/mips-sim-idt32.exp: New file.
+	* baseboards/mips-sim-idt32.exp: New file.
 
 Wed Nov 21 18:02:49 PST 2001  Brendan Conoboy <blc@redhat.com>
 
@@ -234,43 +234,43 @@ Wed Nov 21 18:02:49 PST 2001  Brendan Conoboy <blc@redhat.com>
 
 2002-02-22  Bob Wilson  <bob.wilson@acm.org>
 
-        * baseboards/xtensa-sim.exp: New file.
+	* baseboards/xtensa-sim.exp: New file.
 
 2001-11-02  Alexandre Oliva  <aoliva@redhat.com>
 
-        * lib/libgloss.exp [get_multilibs]: Compute multitop earlier, and
-        use --print-multi-directory if available.
+	* lib/libgloss.exp [get_multilibs]: Compute multitop earlier, and
+	use --print-multi-directory if available.
 
 2002-02-05  Nick Clifton  <nickc@cambridge.redhat.com>
 
-        * lib/libgloss.exp (g++_include_flags): Add top level
-        libstdc++-v3 build include path, remove duplicate src path.
-        (libstdc++_include_flags): Add top level libstdc++-v3 build
-        include path.
+	* lib/libgloss.exp (g++_include_flags): Add top level
+	libstdc++-v3 build include path, remove duplicate src path.
+	(libstdc++_include_flags): Add top level libstdc++-v3 build
+	include path.
 
 2001-11-10  Hans-Peter Nilsson  <hp@bitrange.com>
 
-        * baseboards/mmixware-sim.exp: New file.
+	* baseboards/mmixware-sim.exp: New file.
 	* lib/remote.exp (check_for_board_status): Return 2 if the board
 	uses a status wrapper and there was no match for the expected
-        pattern.
+	pattern.
 
 2001-11-02  Philip A. Wilsey  <philip.wilsey@cliftonlabs.com>
 
 	* lib/utils.exp: Need to pass -all to getdirs, so it descends
 	through all the subdirectories.
-	
+
 2001-10-08  Gwenole Beauchesne  <gbeauchesne@mandrakesoft.com>
 
-        * runtest.exp: Don't fail at processing Makefile style args in the
-        second command line parsing pass. Actually, skip them in this pass
-        since they are already processed in the first one for possible use
-        by init scripts.
+	* runtest.exp: Don't fail at processing Makefile style args in the
+	second command line parsing pass. Actually, skip them in this pass
+	since they are already processed in the first one for possible use
+	by init scripts.
 
 2001-10-02  Nick Clifton  <nickc@cambridge.redhat.com>
 
-        * lib/remote.exp (proc file_on_host): Fix typo in construction
-        of file argument.
+	* lib/remote.exp (proc file_on_host): Fix typo in construction
+	of file argument.
 
 2001-09-12  Rob Savoye  <rob@peggyo.welcomehome.org>
 
@@ -287,8 +287,8 @@ Wed Nov 21 18:02:49 PST 2001  Brendan Conoboy <blc@redhat.com>
 
 Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
 
-        * baseboards/h8300-sim.exp: set_board_info uses_underscores 1
-        set_board_info gcc,text_size 60000
+	* baseboards/h8300-sim.exp: set_board_info uses_underscores 1
+	set_board_info gcc,text_size 60000
 
 2001-07-30  Paul A. Houghton <houghton@wcomnet.com>
 
@@ -300,36 +300,36 @@ Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
 
 2001-07-25  Will Cohen  <wcohen@redhat.com>
 
-        * runtest.exp: Removed puts statement.
+	* runtest.exp: Removed puts statement.
 
 2001-07-17  Jason Merrill  <jason_merrill@redhat.com>
 
-        * lib/utils.exp (runtest_file_p): An argument can match trailing
-        directories as well as the basename.
+	* lib/utils.exp (runtest_file_p): An argument can match trailing
+	directories as well as the basename.
 
 2001-06-08 John Cotton <john.cotton@nrc.ca>
 
-        * testglue.c:
-        * lib/remote.exp:
-        * lib/standard.exp:
-        * lib/target.exp:
-        * lib/utils.exp:
-        * baseboards/mbx821_001.exp:
-        * baseboards/mbx860_002.exp:
-        * baseboards/mbx8xx.exp:
-        * baseboards/mvme167.exp:
-         Added support for automated testing of RTEMS targets,
-         specifically the mbx821, mbx860 and mvme167.
+	* testglue.c:
+	* lib/remote.exp:
+	* lib/standard.exp:
+	* lib/target.exp:
+	* lib/utils.exp:
+	* baseboards/mbx821_001.exp:
+	* baseboards/mbx860_002.exp:
+	* baseboards/mbx8xx.exp:
+	* baseboards/mvme167.exp:
+	 Added support for automated testing of RTEMS targets,
+	 specifically the mbx821, mbx860 and mvme167.
 
 2001-06-08 John Cotton <john.cotton@nrc.ca>
 
-         */lib/libgloss.exp: fixed regexp bug.
+	 */lib/libgloss.exp: fixed regexp bug.
 
 2001-05-30  Jeffrey Oldham  <oldham@codesourcery.com>
 
-        * doc/dejagnu.texi: Fix typographical errors.
-        * doc/ref.sgml: Likewise.
-        * doc/user.sgml: Likewise.
+	* doc/dejagnu.texi: Fix typographical errors.
+	* doc/ref.sgml: Likewise.
+	* doc/user.sgml: Likewise.
 
 2001-05-30  Rob Savoye  <rob@peggyo.welcomehome.org>
 
@@ -346,9 +346,9 @@ Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
 
 2001-05-27  Jeffrey Oldham  <oldham@codesourcery.com>
 
-        * acinclude.m4(DJ_AC_STL): s/for for/for/.
-        * dejagnu.h: Add conditional support for sstream.
-        (testout): Likewise. Make return type `const'.
+	* acinclude.m4(DJ_AC_STL): s/for for/for/.
+	* dejagnu.h: Add conditional support for sstream.
+	(testout): Likewise. Make return type `const'.
 
 2001-05-25  Rob Savoye  <rob@peggyo.welcomehome.org>
 
@@ -364,8 +364,8 @@ Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
 
 2001-05-20  Stephane Carrez  <Stephane.Carrez@worldnet.fr>
 
-        * baseboards/m68hc11-sim.exp: New file for 68HC11/68HC12 validation.
-        * config/m68hc11.exp: New file.
+	* baseboards/m68hc11-sim.exp: New file for 68HC11/68HC12 validation.
+	* config/m68hc11.exp: New file.
 
 2001-05-16  Rob Savoye  <rob@peggyo.welcomehome.org>
 
@@ -429,7 +429,7 @@ Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
 	site.exp rule, cause we don't want the $tool setting, so we run
 	all the test suites. Don't pass the tool name for "make check".
 	* configure.in: Add testsuite/libdejagnu/Makefile to AC_OUTPUT.
-	
+
 2001-05-02  Rob Savoye  <rob@peggyo.welcomehome.org>
 
 	* Makefile.am: Rename dist2 to tarball target. Fix the version
@@ -444,8 +444,8 @@ Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
 
 2001-05-01  Matt Hiller  <hiller@redhat.com>
 
-        * lib/libgloss.exp (get_multilibs): Correction to Catherine
-        Moore's patch of 2000-06-09.
+	* lib/libgloss.exp (get_multilibs): Correction to Catherine
+	Moore's patch of 2000-06-09.
 
 2001-04-11  Rob Savoye  <rob@slipknot.welcomehome.org>
 
@@ -523,7 +523,7 @@ Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
 	* redhat/dejagnu.spec: New RPM packaging file.
 	* debian/{changelog,conffiles,control,copyright,postinst,preinst,
 	rules,site.exp}: New Debian packaging support.
-	
+
 
 2001-01-20  Ben Elliston  <bje@redhat.com>
 
@@ -534,7 +534,7 @@ Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
 2001-01-19  Andrew Cagney  <cagney@b1.cygnus.com>
 
 	* lib/target.exp (prune_warnings): Avoid ``.*'' in NetBSD warnings
- 	pattern.
+	pattern.
 
 2001-01-18  Gabriel Dos Reis  <gdr@codesourcery.com>
 
@@ -562,8 +562,8 @@ Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
 2000-08-14  Jimmy Guo  <guo@cup.hp.com>
 
 	* runtest.exp: Eliminate from test_top_dirs entries that
-        are subdirectories of other entries, to avoid redundant
-        testing on *.exp files in these subdirectories.
+	are subdirectories of other entries, to avoid redundant
+	testing on *.exp files in these subdirectories.
 
 2000-08-14  Jimmy Guo  <guo@cup.hp.com>
 
@@ -596,13 +596,13 @@ Thu Aug 30 19:31:44 2001  J"orn Rennecke <amylaar@redhat.com>
 	dir_to_run and cmdline_dir_to_run; limit *.exp find to
 	one directory level to avoid foo/bar/baz.exp getting tested
 	twice (when ${dir} is 'foo', and when ${dir} is 'foo/bar').
-	
+
 	* runtest.exp: Cleanup reference to $env(MULTIPASS) and
 	$env(PASS).  These were added by HP but unused since.
 
 	* lib/framework.exp (pass): make compiler_conditional_xfail_data
 	a global, corresponding to a recent change to 'proc fail'.
-	
+
 2000-07-21  Frank Ch. Eigler  <fche@redhat.com>
 
 	* example/Makefile.am (SUBDIRS): Remove to prevent automatic recursion
@@ -614,7 +614,7 @@ Fri Jul 21 16:01:43 2000  Andrew Cagney  <cagney@b1.cygnus.com>
 
 	From 2000-04-25 Felix Lee <flee@cygnus.com>:
 	* baseboards/tx39-sim.exp: Use idt, not dve linker script.  Delete
- 	misleading comments and null statements.
+	misleading comments and null statements.
 
 2000-07-08  Angela Marie Thomas <angela@cygnus.com>
 
@@ -667,7 +667,7 @@ Wed Mar 29 16:13:46 2000  Alexandre Oliva  <oliva@lsd.ic.unicamp.br>
 Thu Feb 17 20:24:21 2000  Andrew Cagney  <cagney@b1.cygnus.com>
 
 	* baseboards/d10v.exp (gdb_init_command): Force register DMAP2 to
- 	0x2000 so that the d10v VM matches the simulator.
+	0x2000 so that the d10v VM matches the simulator.
 
 2000-02-15  Alexandre Oliva  <oliva@lsd.ic.unicamp.br>
 
@@ -693,7 +693,7 @@ Thu Feb 17 20:24:21 2000  Andrew Cagney  <cagney@b1.cygnus.com>
 Tue Oct 12 11:44:53 1999  Andrew Cagney  <cagney@b1.cygnus.com>
 
 	* lib/libgloss.exp (process_multilib_options): Add support for
- 	generic gdb variable option - ``gdb:VARIABLE=VALUE''.
+	generic gdb variable option - ``gdb:VARIABLE=VALUE''.
 
 1999-09-28  Angela Marie Thomas <angela@cygnus.com>
 
@@ -718,10 +718,10 @@ Tue Oct 12 11:44:53 1999  Andrew Cagney  <cagney@b1.cygnus.com>
 
 	* baseboards/strongarm-cygmon.exp: Rename the StrongARM boards as
 	follows:
-	                EBIX-DB           -> SA-IOP
-	                EBSA285           -> EBSA-285
-	                BRUTUS            -> SA1100DP
-	                SA1100-MULTIMEDIA -> SA1100MM
+			EBIX-DB           -> SA-IOP
+			EBSA285           -> EBSA-285
+			BRUTUS            -> SA1100DP
+			SA1100-MULTIMEDIA -> SA1100MM
 
 1999-06-08  Fernando Nasser  <fnasser@totem.to.cygnus.com>
 
@@ -746,16 +746,16 @@ Tue Oct 12 11:44:53 1999  Andrew Cagney  <cagney@b1.cygnus.com>
 Fri May 21 17:36:56 1999  Andrew Cagney  <cagney@b1.cygnus.com>
 
 	* lib/target.exp: Don't import CC_FOR_TARGET, CXX_FOR_TARGET or
- 	F77_FOR_TARGET from environment.
+	F77_FOR_TARGET from environment.
 
 Thu May 20 10:28:23 1999  Andrew Cagney  <cagney@b1.cygnus.com>
 
 	* lib/target.exp: Do not import CFLAGS_FOR_TARGET,
- 	LDFLAGS_FOR_TARGET and ASFLAGS_FOR_TARGET from external
- 	environment.  GNUMAKE in conjunction with the top level Makefile
- 	will set/export these variables according to the needs of the
- 	target libraries.  Such a configuration may not be applicable to
- 	testsuites.
+	LDFLAGS_FOR_TARGET and ASFLAGS_FOR_TARGET from external
+	environment.  GNUMAKE in conjunction with the top level Makefile
+	will set/export these variables according to the needs of the
+	target libraries.  Such a configuration may not be applicable to
+	testsuites.
 
 1999-05-17  Keith Seitz  <keiths@cygnus.com>
 
@@ -773,8 +773,8 @@ Thu May 20 10:28:23 1999  Andrew Cagney  <cagney@b1.cygnus.com>
 
 	From HP's WDB group:
 	* lib/target.exp: Add ability to pick CC_FOR_TARGET,
- 	CFLAGS_FOR_TARGET, etc from env vars, add ability to use HP F77
- 	compiler.
+	CFLAGS_FOR_TARGET, etc from env vars, add ability to use HP F77
+	compiler.
 
 1999-05-05  Stan Shebs  <shebs@andros.cygnus.com>
 
@@ -817,13 +817,13 @@ Mon May  3 11:14:37 1999  Jim Wilson  <wilson@cygnus.com>
 	* lib/Makefile.am: deleted.
 	* configure.in: delete references to the above.
 	* Makefile.am: install things correctly.
-	
+
 	* testsuite/Makefile.am: set DEJATOOL.
 
 	* configure, Makefile.in, */Makefile.in: regenerated.
-	
+
 	* runtest.exp: fix location of config.guess.
-	
+
 1999-04-26  Felix Lee  <flee@cygnus.com>
 
 	* lib/libgloss.exp (libgloss_link_flags): remove bogus -L flag.
@@ -966,8 +966,8 @@ Fri Jan 29 17:16:25 1999  Edith Epstein  <eepstein@sophia.cygnus.com>
 	* baseboards/Makefile.in: Regenerated.
 	* config/Makefile.in: Regenerated.
 	* example/Makefile.in: Regenerated.
-	* lib/Makefile.in: Regenerated.	
-	
+	* lib/Makefile.in: Regenerated.
+
 	* testsuite/aclocal.m4: Deleted obsolete file.
 	* testsuite/configure.in: Deleted obsolete file.
 
@@ -988,13 +988,13 @@ Thu Jan 14 00:10:25 1999  Rainer Orth  <ro@TechFak.Uni-Bielefeld.DE>
 1999-01-07  Felix Lee  <flee@cygnus.com>
 
 	* runtest.exp (setup_target_hook): add missing globals.
-	
+
 1998-12-31  Felix Lee  <flee@cygnus.com>
 
 	* config/dos.exp (dos_spawn): ignore optional args.
 
 	* lib/ftp.exp (ftp_upload): ftp error messages vary.
-	
+
 1998-12-30  Rob Savoye  <rob@chinadoll.welcomehome.org>
 
 	* doc/{overview,user,ref},sgml: New manual in DocBook format. This
@@ -1032,7 +1032,7 @@ Thu Jan 14 00:10:25 1999  Rainer Orth  <ro@TechFak.Uni-Bielefeld.DE>
 Fri Dec 18 21:48:25 1998  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/gdb-comm.exp(quit_gdb): Don't close connection to the
- 	host if it's remote.
+	host if it's remote.
 	(gdb_comm_go_idle): The "No exec file" prompt has mysteriously
 	changed; detect either.
 
@@ -1095,8 +1095,8 @@ Thu Oct 15 16:33:01 1998  Doug Evans  <devans@canuck.cygnus.com>
 Tue Oct 13 21:04:04 1998  Felix Lee  <flee@cygnus.com>
 
 	* config/vxworks.exp: grok preload_obj_flags.  recognize
- 	"Operation Fault" messages from the board.  increase reboot_delay
- 	so we don't interrupt the countdown-to-autoboot
+	"Operation Fault" messages from the board.  increase reboot_delay
+	so we don't interrupt the countdown-to-autoboot
 	* i960glue.c: add missing file.
 
 Mon Oct 12 20:08:06 1998  Mark Alexander  <marka@cygnus.com>
@@ -1200,7 +1200,7 @@ Fri Jun  5 11:29:26 1998  Felix Lee  <flee@cygnus.com>
 Thu Jun  4 14:16:32 1998  Felix Lee  <flee@zog.cygnus.com>
 
 	* config/gdb_stub.exp (gdb_stub_wait): watch for "Program exited",
- 	which may happen on segv or similar.
+	which may happen on segv or similar.
 	(gdb_stub_start,gdb_stub_wait): need to save exit_brnum and
 	abort_brnum.
 	(gdb_stub_ld): delete old breakpoints when loading a new program.
@@ -1222,7 +1222,7 @@ Mon Jun  1 00:15:34 1998  Angela Marie Thomas (angela@cygnus.com)
 Mon Jun  1 01:40:26 1998  Felix Lee  <flee@zog.cygnus.com>
 
 	* runtest.exp(iterate_target_variants_two): concat multiple globs
- 	correctly.
+	correctly.
 
 Tue May 26 17:56:57 1998  Bob Manson  <manson@charmed.cygnus.com>
 
@@ -1235,12 +1235,12 @@ Sun May 17 17:08:46 1998  Bob Manson  <manson@charmed.cygnus.com>
 	command in GDB.
 
 	* baseboards/sparclite-sim.exp: Need to pass "-sparclite" to the
- 	target sim command in GDB.
+	target sim command in GDB.
 
 Thu May 14 12:03:36 1998  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/remote.exp(remote_exec): Add optional timeout
- 	parameter. Move local execution code to...
+	parameter. Move local execution code to...
 	(local_exec): New procedure.
 
 Wed May 13 18:41:23 1998  John Metzler  <jmetzler@cygnus.com>
@@ -1269,7 +1269,7 @@ Tue Apr 14 09:55:37 1998  Bob Manson  <manson@charmed.cygnus.com>
 Mon Apr  6 13:14:52 1998  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/ddb-ether.exp(remote_wait): If we see "Exception Cause"
- 	from the board, reboot it.
+	from the board, reboot it.
 
 Thu Apr  2 18:22:33 1998  Jim Wilson  <wilson@cygnus.com>
 
@@ -1283,23 +1283,23 @@ Thu Apr  2 15:39:38 1998  Felix Lee  <flee@zog.cygnus.com>
 Tue Mar 31 00:31:53 1998  Bob Manson  <manson@charmed.cygnus.com>
 
 	* baseboards/dos.exp: Disable GDB interrupt tests if we're testing
- 	on a DOS host.
+	on a DOS host.
 
 Mon Mar 30 23:44:19 1998  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/dos.exp(dos_send): Don't send string if we've already
- 	sent it once.
+	sent it once.
 
 Thu Mar 26 11:34:18 1998  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/remote.exp(remote_exec): Need to look at the result from
- 	wait if we used spawn.
+	wait if we used spawn.
 
 Wed Mar 25 22:20:25 1998  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/remote.exp(remote_exec): More attempts at working around
- 	tcl/expect's inadequacies in dealing with processes.
-	
+	tcl/expect's inadequacies in dealing with processes.
+
 1998-03-25  Brendan Kehoe  <brendan@cygnus.com>
 
 	* contrib/test-g++: Only do the libg++ tests if the directory exists.
@@ -1312,25 +1312,25 @@ Wed Mar 25 12:24:25 1998  Bob Manson  <manson@charmed.cygnus.com>
 Tue Mar 24 16:07:51 1998  Stu Grossman  <grossman@bhuna.cygnus.co.uk>
 
 	* configure doc/configure example/configure example/calc/configure
- 	testsuite/configure:  Regenerate with autoconf 2.12.1 to fix shell
+	testsuite/configure:  Regenerate with autoconf 2.12.1 to fix shell
 	issues for NT native builds.
-	
+
 Sun Mar 15 23:25:06 1998  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/target.exp(default_target_compile): If the compiler produced
- 	no output and the compiler execution failed, return a string
- 	signifying this. (This is the wrong fix, but...)
+	no output and the compiler execution failed, return a string
+	signifying this. (This is the wrong fix, but...)
 
 	* lib/remote.exp(remote_exec): Don't append arbitary strings to
- 	the output from the program; callers must check the exit status.
-  	Also, when killing a runaway process, try sending a SIGINT before
- 	sending a SIGTERM (may help to terminate gcc properly).
+	the output from the program; callers must check the exit status.
+	Also, when killing a runaway process, try sending a SIGINT before
+	sending a SIGTERM (may help to terminate gcc properly).
 
 Mon Mar  9 01:54:39 1998  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/remote.exp(remote_exec): Use spawn directly, rather than
- 	trying to potentially manage multiple spawn processes on the same
- 	host.
+	trying to potentially manage multiple spawn processes on the same
+	host.
 
 Sun Mar  8 21:40:40 1998  Bob Manson  <manson@charmed.cygnus.com>
 
@@ -1362,7 +1362,7 @@ Mon Mar  2 21:54:30 1998  Bob Manson  <manson@charmed.cygnus.com>
 	what files we match.
 
 	* lib/telnet.exp: Clean up regexps.
-	
+
 	* lib/target.exp(default_target_compile): Use tool_root_dir.
 	(target_link, default_link): New functions.
 
@@ -1371,7 +1371,7 @@ Mon Mar  2 21:54:30 1998  Bob Manson  <manson@charmed.cygnus.com>
 	* lib/framework.exp(cleanup): Remove unused global declaration.
 
 	* config/unix.exp(unix_load): Unset LD_LIBRARY_PATH and
- 	SHLIB_PATH after loading.
+	SHLIB_PATH after loading.
 
 	* config/sim.exp(sim_spawn, sim_wait): New functions.
 
@@ -1384,7 +1384,7 @@ Mon Mar  2 21:54:30 1998  Bob Manson  <manson@charmed.cygnus.com>
 	* config/gdb_stub.exp: Use tool_root_dir.
 	(gdb_stub_spawn, gdb_stub_wait): New functions.
 	(gdb_stub_load): Use spawn and wait.
-	
+
 	* config/dos.exp(dos_send): Send strings one line at a time.
 	(dos_file): Delete files using del instead of rm.
 
@@ -1417,14 +1417,14 @@ Wed Feb 18 15:29:12 1998  Bob Manson  <manson@charmed.cygnus.com>
 Sat Feb 14 15:06:25 1998  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/vxworks.exp(${board}_init): If we don't get useful info
- 	from the 'p' command in the VxWorks boot ROM, reboot the board.
+	from the 'p' command in the VxWorks boot ROM, reboot the board.
 	(vxworks_exec): Check more closely for problems executing the
 	testcase.
 
 Mon Feb  9 16:48:55 1998  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/libgloss.exp(get_multilibs): If the compiler doesn't exist,
- 	return nothing.
+	return nothing.
 	(find_ld): New function.
 
 	* config/powerpc-bug.exp: New file.
@@ -1499,10 +1499,10 @@ Thu Dec 11 12:35:12 1997  Michael Meissner  <meissner@cygnus.com>
 Wed Dec 10 16:11:47 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/gdb-comm.exp(gdb_comm_load): Add more possible error
- 	messages.
+	messages.
 
 	* lib/remote.exp(standard_close): Make sure we close both file
- 	descriptors, if there are two.
+	descriptors, if there are two.
 
 Wed Dec 10 14:35:05 1997  Michael Meissner  <meissner@cygnus.com>
 
@@ -1517,7 +1517,7 @@ Tue Dec  9 21:38:03 1997  Fred Fish  <fnf@cygnus.com>
 Tue Dec  9 10:54:34 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/remote.exp(standard_wait): We have to call wait, even though
- 	it can't possibly work.
+	it can't possibly work.
 
 Mon Dec  8 11:55:33 1997  Bob Manson  <manson@charmed.cygnus.com>
 
@@ -1526,7 +1526,7 @@ Mon Dec  8 11:55:33 1997  Bob Manson  <manson@charmed.cygnus.com>
 	(standard_close): Ditto.
 
 	* lib/libgloss.exp(get_multilibs): Remove bogus tests for board
- 	variable. Only set the board's multitop variable if we didn't
+	variable. Only set the board's multitop variable if we didn't
 	get an explicit list of multilib options to use.
 
 Sun Dec  7 08:29:40 1997  Bob Manson  <manson@charmed.cygnus.com>
@@ -1538,7 +1538,7 @@ Sun Dec  7 08:29:40 1997  Bob Manson  <manson@charmed.cygnus.com>
 Fri Dec  5 14:21:18 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/remote.exp(remote_spawn): If the "spawn -open" command
- 	fails, clean up after the command we just spawned.
+	fails, clean up after the command we just spawned.
 
 Thu Dec  4 11:32:06 1997  Bob Manson  <manson@charmed.cygnus.com>
 
@@ -1583,7 +1583,7 @@ Thu Nov 13 22:51:42 1997  Michael Meissner  <meissner@cygnus.com>
 Wed Nov 12 23:45:48 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/unix.exp(unix_load): Call remote_spawn and remote_wait
- 	instead of using exec.
+	instead of using exec.
 
 	* lib/remote.exp(remote_wait): Use $dest, not host.
 
@@ -1604,10 +1604,10 @@ Sat Oct 25 21:48:36 1997  Bob Manson  <manson@charmed.cygnus.com>
 Fri Oct 24 10:55:17 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/gdb-comm.exp: Add missing -re. If we get an EXIT message
- 	from the remote system, we know that we've exited gdb.
+	from the remote system, we know that we've exited gdb.
 
 	* lib/remote.exp(standard_wait): Keep the timer running even if we
- 	get output from the remote program.
+	get output from the remote program.
 
 	* config/dos.exp(dos_wait): Ditto.
 
@@ -1622,7 +1622,7 @@ Wed Oct 15 21:13:39 1997  Philippe De Muyter  <phdm@macqel.be>
 Mon Oct 13 11:09:09 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/base68k.exp(base68k_load): Don't call exp_continue
- 	outside of an expect statement.
+	outside of an expect statement.
 
 Sun Oct 12 21:29:28 1997  Ian Lance Taylor  <ian@cygnus.com>
 
@@ -1661,7 +1661,7 @@ Sun Sep 28 14:30:52 1997  Bob Manson  <manson@charmed.cygnus.com>
 Sat Sep 27 22:11:45 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/libgloss.exp(get_multilibs): Return the multilib directory
- 	that matches closest to the specified set of options.
+	that matches closest to the specified set of options.
 
 Fri Sep 26 10:20:56 1997  Bob Manson  <manson@charmed.cygnus.com>
 
@@ -1685,15 +1685,15 @@ Wed Sep 24 13:06:47 1997  Bob Manson  <manson@charmed.cygnus.com>
 	is defined.
 
 	* lib/libgloss.exp(build_wrapper): Define VXWORKS if is_vxworks
- 	target feature is set.
+	target feature is set.
 
 	* config/vxworks.exp: Set is_vxworks and gdb,nosignals target
- 	features.
+	features.
 
 Tue Sep 23 17:56:43 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/remote.exp(remote_load): If is_simulator board feature is
- 	set, don't try to cache executables for this target.
+	set, don't try to cache executables for this target.
 
 	* baseboards/basic-sim.exp: Set is_simulator board feature.
 
@@ -1710,11 +1710,11 @@ Thu Sep 18 20:31:57 1997  Jeffrey A Law  (law@cygnus.com)
 Tue Sep 16 22:15:20 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/remote.exp(remote_load): Skip all the caching code if the
- 	REMOTELOAD_CACHE env variable isn't set. Use objdump to get only
- 	the executable contents, so we avoid problems with timestamps in
- 	the executable.
+	REMOTELOAD_CACHE env variable isn't set. Use objdump to get only
+	the executable contents, so we avoid problems with timestamps in
+	the executable.
 	(remote_expect): Check remote_suppress_flag instead of
- 	suppress_flag.
+	suppress_flag.
 
 	* config/tic80.exp: Set gdb,use_breakpoint_for_stub. Don't
 	bother skipping the float tests, as the gdb stub now traps
@@ -1729,7 +1729,7 @@ Tue Sep 16 22:15:20 1997  Bob Manson  <manson@charmed.cygnus.com>
 Fri Sep 12 11:10:42 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* testsuite/runtest.all/options.exp: Commented out failing strace
- 	test--test is probably failing because of a TCL8 interaction.
+	test--test is probably failing because of a TCL8 interaction.
 
 Thu Sep 11 18:13:11 1997  Bob Manson  <manson@charmed.cygnus.com>
 
@@ -1738,8 +1738,8 @@ Thu Sep 11 18:13:11 1997  Bob Manson  <manson@charmed.cygnus.com>
 	* config/dos.exp(dos_exec): Add support for an output file.
 
 	* lib/remote.exp(remote_load): Only cache executables that
- 	pass. Allow use of a checksum program in place of caching the
- 	entire executable.
+	pass. Allow use of a checksum program in place of caching the
+	entire executable.
 
 	* lib/libgloss.exp(find_objdump): New procedure.
 
@@ -1772,7 +1772,7 @@ Fri Sep  5 15:17:38 1997  Jeffrey A Law  (law@cygnus.com)
 Wed Sep  3 16:55:52 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/remote.exp(standard_file): cmp now returns 0 on "files
- 	identical", some other value if the files are different.
+	identical", some other value if the files are different.
 
 	* baseboards/sh-hms-sim.exp: Need to pass -mieee when building
 	testcases that rely on IEEE-compliant behavior.
@@ -1784,9 +1784,9 @@ Wed Sep  3 16:55:52 1997  Bob Manson  <manson@charmed.cygnus.com>
 	files.
 
 	* lib/libgloss.exp: Add dwarf2 target variant.
-	
+
 	* lib/target.exp: Make sure the CC_FOR_TARGET variable overrides
- 	any default compiler.
+	any default compiler.
 
 Tue Sep  2 18:28:53 1997  Bob Manson  <manson@charmed.cygnus.com>
 
@@ -1802,13 +1802,13 @@ Tue Sep  2 16:39:21 1997  Doug Evans  <dje@canuck.cygnus.com>
 Wed Aug 27 13:16:32 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/vxworks.exp: Set the gdb_prompt target feature to be
- 	(vxgdb).
+	(vxgdb).
 
 Fri Aug 22 13:24:58 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/vxworks.exp: Check for negative values from the "value ="
- 	return string. If preload_obj is a target feature, load the
- 	specified object file after a reboot.
+	return string. If preload_obj is a target feature, load the
+	specified object file after a reboot.
 
 Thu Aug 21 18:06:20 1997  Bob Manson  <manson@charmed.cygnus.com>
 
@@ -1822,7 +1822,7 @@ Wed Aug 13 12:57:53 1997  Jason Merrill  <jason@yorick.cygnus.com>
 Tue Aug 12 21:44:58 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/framework.exp(clone_output): Don't use lindex on things that
- 	aren't really lists.
+	aren't really lists.
 
 Mon Aug 11 20:51:08 1997  Bob Manson  <manson@charmed.cygnus.com>
 
@@ -1845,34 +1845,34 @@ Wed Aug  6 00:41:46 1997  Ian Lance Taylor  <ian@cygnus.com>
 Sat Aug  2 20:44:55 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/gdb-comm.exp: Look for "Program exited with" exit status,
- 	even though this should *never* appear (we're setting a breakpoint
- 	in _exit and abort, duh).
+	even though this should *never* appear (we're setting a breakpoint
+	in _exit and abort, duh).
 
 Fri Aug  1 15:56:06 1997  Felix Lee  <flee@yin.cygnus.com>
 
 	* runtest.exp: "runtest gcc.c-torture/execute/execute.exp" didn't
- 	work because expected global vars weren't set.
+	work because expected global vars weren't set.
 
 Wed Jul 30 09:05:41 1997  Felix Lee  <flee@yin.cygnus.com>
 
 	* lib/ftp.exp (ftp_download): and needed an -re flag.  and changed
- 	"Timeout" to "421", to catch other premature disconnects.
+	"Timeout" to "421", to catch other premature disconnects.
 
 Wed Jul 30 00:15:04 1997  Felix Lee  <flee@cygnus.com>
 
 	* lib/ftp.exp (ftp_download): "Timeout ..." pattern wasn't listed
- 	early enough to ever get matched.
+	early enough to ever get matched.
 
 Mon Jul 28 21:20:59 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/libgloss.exp(get_multilibs): Iterate through the list of
- 	compiler-specified options looking for a match, rather than
- 	farting around with regexps.
+	compiler-specified options looking for a match, rather than
+	farting around with regexps.
 
 Mon Jul 28 15:28:09 1997  Felix Lee  <flee@cygnus.com>
 
 	* lib/ftp.exp (ftp_upload): return localfilename, not
- 	remotefilename.
+	remotefilename.
 
 Mon Jul 28 15:28:09 1997  Felix Lee  <flee@cygnus.com>
 
@@ -1898,7 +1898,7 @@ Mon Jul 21 14:30:01 1997  Bob Manson  <manson@charmed.cygnus.com>
 	* lib/libgloss.exp(libgloss_ld): Deleted, not used.
 
 	* config/dos.exp(dos_copy_download): If the local file doesn't
- 	exist, don't try to download it.
+	exist, don't try to download it.
 
 	* runtest.exp: Change tests for setting isremote board feature.
 	We assume the board is remote unless the name is the same as
@@ -1907,18 +1907,18 @@ Mon Jul 21 14:30:01 1997  Bob Manson  <manson@charmed.cygnus.com>
 Wed Jul 16 12:45:30 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/dos.exp(dos_copy_upload): If the remote file doesn't
- 	exist, don't try to upload it.
+	exist, don't try to upload it.
 
 	* baseboards/basic-sim.exp: Don't transform the simulator name
- 	using the target alias if no_transform_name is set on the host.
+	using the target alias if no_transform_name is set on the host.
 
 	* lib/kermit.exp: Don't try to unset the file descriptor if it
- 	isn't set.
+	isn't set.
 
 Mon Jul  7 12:01:54 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* baseboards/m32r-sim.exp(ldflags): Use libgloss_link_flags, not
- 	libgloss_include_flags.
+	libgloss_include_flags.
 	* baseboards/m32r-elf.exp: Ditto.
 
 Sat Jul  5 18:42:52 1997  Bob Manson  <manson@charmed.cygnus.com>
@@ -1936,7 +1936,7 @@ Thu Jul  3 15:34:21 1997  Bob Manson  <manson@charmed.cygnus.com>
 Tue Jul  1 17:48:43 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* runtest.exp: Allow boards_dir to be a list of directories to
- 	search for board descriptions.
+	search for board descriptions.
 
 Mon Jun 30 19:12:14 1997  Stan Shebs  <shebs@andros.cygnus.com>
 
@@ -1959,10 +1959,10 @@ Sun Jun 29 22:12:51 1997  Bob Manson  <manson@charmed.cygnus.com>
 Sat Jun 28 13:37:27 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/gdb_stub.exp: Use gdb_opts feature instead of a random
- 	check if the host is remote.
+	check if the host is remote.
 
 	* runtest.exp: Use the no_transform_name feature instead of
- 	looking for a specific host triplet.
+	looking for a specific host triplet.
 
 	* baseboards/*-sim.exp: Use load_base_board_description, not
 	load_board_description.
@@ -1974,16 +1974,16 @@ Sat Jun 28 13:37:27 1997  Bob Manson  <manson@charmed.cygnus.com>
 Fri Jun 27 15:17:12 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	(load_board_description): Set the board feature isremote if the
- 	board appears to be remote.
+	board appears to be remote.
 	Call setup_build_hook with the local hostname.
 
 	* lib/target.exp(push_build): New procedure.
 
 	* lib/framework.exp(is_remote): Detect if the board name specified
- 	is the name of the build or host, and handle appropriately.
+	is the name of the build or host, and handle appropriately.
 
 	* lib/remote.exp(check_for_board_status): Be a bit more aggressive
- 	about stripping trailing CRLFs.
+	about stripping trailing CRLFs.
 
 	* config/dos.exp(dos_exec): Add support for an input file.
 	(dos_load): Pass program arguments and input file to remote_exec.
@@ -1991,14 +1991,14 @@ Fri Jun 27 15:17:12 1997  Bob Manson  <manson@charmed.cygnus.com>
 Wed Jun 25 20:01:37 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/target.exp(target_compile): Always add the target's cflags
- 	spec. Use find_g++ to find a compiler if we've been asked to use a
- 	C++ compiler.
+	spec. Use find_g++ to find a compiler if we've been asked to use a
+	C++ compiler.
 
 	* lib/remote.exp(remote_spawn): Wrap open and spawn
 	statements with catch.
 
 	* lib/libgloss.exp(g++_link_flags): Add -L options to point to the
- 	correct libiberty and librx directories.
+	correct libiberty and librx directories.
 	(find_g++): New routine.
 
 	* lib/kermit.exp: Loosen up the regexp matching the connect
@@ -2010,8 +2010,8 @@ Wed Jun 25 20:01:37 1997  Bob Manson  <manson@charmed.cygnus.com>
 	* config/sparclet.exp: The gdb prompt is "gdbslet".
 
 	* config/gdb_stub.exp: If running on a remote host, add --command
- 	gdbinit to the gdb command line. Use the gdb_is_running target
- 	feature to keep track of whether or not we started gdb. Replace
+	gdbinit to the gdb command line. Use the gdb_is_running target
+	feature to keep track of whether or not we started gdb. Replace
 	errors with warnings in many cases.
 	(gdb_stub_load): Always set a breakpoint on exit if the
 	target feature always_break_exit is set. Retry the testcase
@@ -2033,19 +2033,19 @@ Wed Jun 25 20:01:37 1997  Bob Manson  <manson@charmed.cygnus.com>
 Mon Jun 23 14:55:13 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/gdb_stub.exp: Clean up a few regexps. Check for either
- 	the breakpoint function name (preferred) or the breakpoint number.
+	the breakpoint function name (preferred) or the breakpoint number.
 
 Sun Jun 22 12:31:02 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/remote.exp(standard_file): Add dirname, join, and absolute
- 	operators.
+	operators.
 	(unix_clean_filename): New procedure.
 
 	* runtest.exp(lookfor_file): Call 'remote_file build dirname'
 	instead of appending "/..".
 
 	* lib/framework.exp(is_remote): Really fix the problem with
- 	"unix/cpu=v8" this time. Minor cleanups.
+	"unix/cpu=v8" this time. Minor cleanups.
 
 Wed Jun 18 21:21:00 1997  Bob Manson  <manson@charmed.cygnus.com>
 
@@ -2059,13 +2059,13 @@ Tue Jun 17 16:18:00 1997  Bob Manson  <manson@charmed.cygnus.com>
 	any (yet). Use -re in front of regular expressions.
 
 	* lib/framework.exp(is_remote): Strip off any variant info from
- 	the board name before determining if the board is remote.
+	the board name before determining if the board is remote.
 
 Tue Jun 17 02:32:07 1997  Bob Manson  <manson@farmer>
 
 	* config/gdb-comm.exp(gdb_comm_load): Check for parameters we don't
- 	support, and return UNSUPPORTED as appropriate. Don't set a
- 	breakpoint in exit if we can set one in _exit.
+	support, and return UNSUPPORTED as appropriate. Don't set a
+	breakpoint in exit if we can set one in _exit.
 	* config/gdb_stub.exp: Ditto.
 
 Mon Jun 16 16:07:32 1997  Bob Manson  <manson@charmed.cygnus.com>
@@ -2103,10 +2103,10 @@ Fri Jun 13 19:54:24 1997  Bob Manson  <manson@charmed.cygnus.com>
 	* config/m32r-stub.exp: New file.
 
 	* config/gdb_stub.exp: Download the loader program to the host
- 	before we try to load it.
+	before we try to load it.
 
 	* config/dos.exp: Move the cygwin exception check to a point
- 	earlier in the expect sequence.
+	earlier in the expect sequence.
 	(dos_copy_upload): New routine.
 
 Thu Jun 12 19:05:21 1997  Bob Manson  <manson@charmed.cygnus.com>
@@ -2134,8 +2134,8 @@ Wed Jun 11 10:07:10 1997  Bob Manson  <manson@charmed.cygnus.com>
 	the start of the compiler output.
 
 	* config/dos.exp: Make sure we can have multiple spawned commands
- 	open to the board without reusing the same batch file name. Use
- 	the new conninfo board feature to hold the name of the batch file
+	open to the board without reusing the same batch file name. Use
+	the new conninfo board feature to hold the name of the batch file
 	being used for the current connection.
 	(dos_interrupt_job): New procedure.
 
@@ -2151,7 +2151,7 @@ Fri Jun  6 14:24:36 1997  Bob Manson  <manson@charmed.cygnus.com>
 	* config/gdb-comm.exp: Fix typo (missing call to list).
 
 	* lib/libgloss.exp(g++_link_flags): Put spaces in appropriate
- 	places. If we don't have a multilib pathname to use, try
+	places. If we don't have a multilib pathname to use, try
 	global $objdir instead.
 	(g++_include_flags): Don't bother checking to see if the libraries
 	are there, just look for the source directories.
@@ -2161,9 +2161,9 @@ Thu Jun  5 18:09:55 1997  Bob Manson  <manson@charmed.cygnus.com>
 	* config/ddb.exp: Fix typo.
 
 	* lib/remote.exp(remote_close): Use nasty ugly shell stuff to kill
- 	the program being closed.
+	the program being closed.
 	(remote_expect): Make sure expect fails if there isn't a
- 	connection open to the requested board.
+	connection open to the requested board.
 
 	* lib/libgloss.exp(winsup_include_flags,winsup_link_flags): New
 	functions.
@@ -2189,11 +2189,11 @@ Tue Jun  3 12:04:15 1997  Bob Manson  <manson@charmed.cygnus.com>
 	* lib/util-defs.exp: Remove expect_before statement.
 
 	* config/gdb-comm.exp(gdb_comm_add_breakpoints): Check for "No
- 	symbol table" message from gdb.
+	symbol table" message from gdb.
 
 	* config/vxworks.exp(*_load): Don't set global exec_output
- 	variable. We return a list of two members, the first containing
- 	the pass/fail string, and the second containing the output
+	variable. We return a list of two members, the first containing
+	the pass/fail string, and the second containing the output
 	from the executable.
 	* lib/dg.exp(dg-test): Ditto.
 
@@ -2209,7 +2209,7 @@ Tue Jun  3 12:04:15 1997  Bob Manson  <manson@charmed.cygnus.com>
 	the board before returning.
 
 	* config/i960.exp: Detect if the board starts spewing nonsense,
- 	and reboot it if it does.
+	and reboot it if it does.
 	* config/base68k.exp: Ditto. Also tighten up the checks for
 	a shell prompt.
 
@@ -2219,7 +2219,7 @@ Tue Jun  3 12:04:15 1997  Bob Manson  <manson@charmed.cygnus.com>
 Mon Jun  2 09:50:33 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/remote.exp(standard_close): Check the return value from
- 	catch. Fix quoting on the after command.
+	catch. Fix quoting on the after command.
 
 	* baseboards/rom68k-idp.exp: Look for a.out object file format.
 
@@ -2233,25 +2233,25 @@ Mon Jun  2 09:50:33 1997  Bob Manson  <manson@charmed.cygnus.com>
 	* baseboards/i960-cyclone.exp: Mark the board as being unreliable.
 
 	* config/i960.exp: Check for a couple of common failure modes and
- 	reboot the board as needed. Also reboot if the testcase fails and
- 	the board is marked as "unreliable".
+	reboot the board as needed. Also reboot if the testcase fails and
+	the board is marked as "unreliable".
 
 Sun Jun  1 16:48:30 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/base68k.exp: Add base68k_ld procedure. Clean up a few
- 	regexps.
+	regexps.
 
 	* baseboards/rom68k-idp-aout.exp: We need to pass the load offset
- 	to gdb's load command.
+	to gdb's load command.
 
 	* baseboards/rom68k-idp.exp: Use -msoft-float by default.
 
 	* lib/telnet.exp: If dont_wait_for_prompt is set, don't bother
- 	trying to get a prompt back before returning.
+	trying to get a prompt back before returning.
 
 	* config/i960.exp(${board}_init): Send several CRs in order to get
- 	a prompt from the board (fun with autobaud). Set
- 	dont_wait_for_prompt. Clear exec_output.
+	a prompt from the board (fun with autobaud). Set
+	dont_wait_for_prompt. Clear exec_output.
 
 Sat May 31 00:29:33 1997  Bob Manson  <manson@charmed.cygnus.com>
 
@@ -2289,7 +2289,7 @@ Thu May 29 19:57:47 1997  Bob Manson  <manson@charmed.cygnus.com>
 	spawned child.
 
 	* config/dos.exp(dos_spawn): Make sure we can return an exit
- 	status from the spawned command.
+	status from the spawned command.
 	(dos_wait): New procedure.
 
 Thu May 29 15:08:07 1997  Bob Manson  <manson@charmed.cygnus.com>
@@ -2304,7 +2304,7 @@ Wed May 28 12:34:28 1997  Bob Manson  <manson@charmed.cygnus.com>
 	* baseboards/vx68k.exp: New file.
 
 	* lib/libgloss.exp(newlib_link_flags): Also look for the linker
- 	script directory that's part of ld, and include it if it
+	script directory that's part of ld, and include it if it
 	exists.
 
 Tue May 27 20:00:01 1997  Bob Manson  <manson@charmed.cygnus.com>
@@ -2326,7 +2326,7 @@ Fri May 23 12:02:29 1997  Bob Manson  <manson@charmed.cygnus.com>
 	board's database name entry if we tried to load it.
 
 	* lib/libgloss.exp(process_multilib_options): Look for aout and
- 	elf board variants, and set is_aout/is_elf as appropriate.
+	elf board variants, and set is_aout/is_elf as appropriate.
 
 	* lib/targetdb.exp(set_currtarget_info,unset_currtarget_info):
 	New functions.
@@ -2367,7 +2367,7 @@ Mon May 19 13:07:01 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* baseboards/i960-cyclone.exp: New file.
 	* config/i960.exp: New file.
-	
+
 Tue May 20 17:55:39 1997  Jeffrey A Law  (law@cygnus.com)
 
 	* config/sim.exp: Set "slow_simulator".
@@ -2386,7 +2386,7 @@ Mon May 19 13:07:01 1997  Bob Manson  <manson@charmed.cygnus.com>
 Sat May 17 21:44:08 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/remote.exp(standard_close): Don't wait forever on close; if
- 	it's a process, give it a SIGTERM after 10 seconds.
+	it's a process, give it a SIGTERM after 10 seconds.
 	(remote_spawn): Make sure stderr and stdout all go to the same
 	place.
 
@@ -2397,7 +2397,7 @@ Sat May 17 19:10:36 1997  Fred Fish  <fnf@cygnus.com>
 Fri May 16 23:30:27 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* baseboards/powerpc-sim.exp: Can't call functions from within
- 	GDB.
+	GDB.
 
 Wed May 14 20:59:11 1997  Bob Manson  <manson@charmed.cygnus.com>
 
@@ -2430,9 +2430,9 @@ Mon May 12 21:48:52 1997  Bob Manson  <manson@charmed.cygnus.com>
 Thu May  8 21:53:03 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* runtest.exp: Add more informative startup messages describing
- 	the various files that are being loaded.
+	the various files that are being loaded.
 	(setup_target_hook): Give a warning if a target board is the local
- 	machine and a "non-native" test is being run; check if the user
+	machine and a "non-native" test is being run; check if the user
 	has set their DEJAGNU variable.
 
 Tue May  6 14:27:11 1997  Bob Manson  <manson@charmed.cygnus.com>
@@ -2445,7 +2445,7 @@ Mon May  5 22:06:14 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/vxworks.exp: Look for [VxWorks Boot] prompt.
 	* lib/telnet.exp: Ditto.
-	
+
 Fri May  2 15:19:00 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/remote.exp(remote_spawn): Add new argument for readonly
@@ -2487,14 +2487,14 @@ Tue Apr 29 12:56:53 1997  Bob Manson  <manson@charmed.cygnus.com>
 Mon Apr 28 12:14:27 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/telnet.exp: Default to /usr/kerberos/bin/telnet if it
- 	exists.
+	exists.
 
 	* lib/target.exp(target_compile): Add use_at target feature, to
- 	support using the @file syntax of GCC on a go32 host.
+	support using the @file syntax of GCC on a go32 host.
 
 	* lib/rlogin.exp(rlogin_open): Don't try to open a connection if
- 	we already have one open. Use hostname and shell_prompt features of
- 	target.  Remove gratuitous $type variable. Don't use $board here.
+	we already have one open. Use hostname and shell_prompt features of
+	target.  Remove gratuitous $type variable. Don't use $board here.
 	Don't die if we get Kerberos login failures; the destination may
 	not support kerberos.
 	(rlogin_spawn): New function.
@@ -2505,8 +2505,8 @@ Mon Apr 28 12:14:27 1997  Bob Manson  <manson@charmed.cygnus.com>
 Fri Apr 25 19:03:55 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/sim.exp(sim_load): Stop using bash/ulimit. If an input
- 	file is supplied, feed it into the simulator using
- 	remote_transmit.
+	file is supplied, feed it into the simulator using
+	remote_transmit.
 
 Thu Apr 24 14:37:01 1997  Bob Manson  <manson@charmed.cygnus.com>
 
@@ -2514,8 +2514,8 @@ Thu Apr 24 14:37:01 1997  Bob Manson  <manson@charmed.cygnus.com>
 	is part of the include path.
 
 	* lib/telnet.exp(telnet_open): Look for "simple or advanced"
- 	prompt from ataman. Use $connhost instead of $hostname
- 	correctly. Check for hostname feature of target machine.
+	prompt from ataman. Use $connhost instead of $hostname
+	correctly. Check for hostname feature of target machine.
 
 Fri Apr 18 16:43:39 1997  Bob Manson  <manson@charmed.cygnus.com>
 
@@ -2534,7 +2534,7 @@ Fri Apr 18 16:43:39 1997  Bob Manson  <manson@charmed.cygnus.com>
 Thu Apr 10 20:04:14 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* baseboards/h8300.exp: The board is unreliable, make sure failing
- 	commands get retried.
+	commands get retried.
 
 	* Makefile.in: Make sure we copy in any .c stub files.
 
@@ -2556,7 +2556,7 @@ Wed Apr  2 19:35:13 1997  Bob Manson  <manson@charmed.cygnus.com>
 Sun Mar 30 00:25:59 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/ddb-ether.exp: Check for "Exception Cause" from the
- 	monitor, and also retry 3 times on "invalid executable" message.
+	monitor, and also retry 3 times on "invalid executable" message.
 
 	* config/ddb.exp: Add timeout section. Reboot the
 	board if we can't get any sort of a prompt.
@@ -2668,13 +2668,13 @@ Mon Mar 17 15:11:03 1997  Bob Manson  <manson@charmed.cygnus.com>
 	* testsuite/runtest.all/stats-sub.exp: Add missing brace.
 
 	* config/sim.exp: If bash isn't in the user's path, then use spawn
- 	and expect to try and catch cases where the simulator has gone
- 	into an infinite loop.
+	and expect to try and catch cases where the simulator has gone
+	into an infinite loop.
 
 Thu Mar 13 11:59:52 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* runtest.exp: If running on multiple targets, output a summary
- 	for each target. Use log_and_exit instead of log_summary.
+	for each target. Use log_and_exit instead of log_summary.
 
 	* lib/framework.exp: Use an array (test_count) instead of
 	separate variables for each pass/fail/xpass/... count.
@@ -2711,7 +2711,7 @@ Tue Mar 11 17:17:43 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* baseboards/vr4100-ddb.exp: Don't link in libio. Do use
 	-msoft-float "just in case".
-	
+
 	* baseboards/sh-hms.exp: We need to pass in the -L options
 	for the libgloss directories so we find the linker scripts.
 
@@ -2727,11 +2727,11 @@ Sat Mar  8 12:01:04 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* baseboards/sh-hms.exp: Include libgloss so we can find
 	the linker scripts.
-	
+
 	* baseboards/sh-hms-sim.exp: Ditto.
-	
+
 	* config/vxworks.exp: Add additional error checking cases. Remove
- 	unused procedure "vxworks_transform_path".
+	unused procedure "vxworks_transform_path".
 
 Fri Mar  7 13:53:35 1997  Bob Manson  <manson@charmed.cygnus.com>
 
@@ -2749,17 +2749,17 @@ Fri Mar  7 13:53:35 1997  Bob Manson  <manson@charmed.cygnus.com>
 	* config/gdb_stub.exp: Use remote_expect.
 
 	* lib/remote.exp(remote_ld, remote_raw_ld, remote_push_conn,
- 	  remote_pop_conn): New routines.
+	  remote_pop_conn): New routines.
 
 Thu Mar  6 09:34:39 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/ddb-ether.exp: Use remote_expect and remote_send.
 	* config/vxworks.exp: Ditto.
-	
+
 	* runtest.exp: Remove --baud and --connect options, no longer
- 	functional.
+	functional.
 	(setup_target_hook): Use the hostname of the local machine when
- 	searching for a board file, if a board wasn't specified with
+	searching for a board file, if a board wasn't specified with
 	--host_board.
 
 Wed Mar  5 09:37:55 1997  Bob Manson  <manson@charmed.cygnus.com>
@@ -2768,7 +2768,7 @@ Wed Mar  5 09:37:55 1997  Bob Manson  <manson@charmed.cygnus.com>
 	and remote_expect.
 
 	* lib/framework.exp(clone_output): If $sum_file is null, don't try
- 	to write to the file.
+	to write to the file.
 
 	* config/ddb-ether.exp(ddb_ether_try): Add -re to regexp pattern.
 
@@ -2778,14 +2778,14 @@ Wed Mar  5 09:37:55 1997  Bob Manson  <manson@charmed.cygnus.com>
 	tool initialization file before the start of the
 	file. Allow the tool to add additional options to runtest.
 	(transform): target_install is now a list kept as part of the
- 	board description. Search the list for the current target alias;
- 	if found, use in preference to the default target_install entry.
+	board description. Search the list for the current target alias;
+	if found, use in preference to the default target_install entry.
 
 	* lib/targetdb.exp(set_board_info,unset_board_info): New procedures.
-	
+
 	* baseboards/*.exp: Use set_board_info instead of setting entries
- 	in the board_info array directly. Also, some general cleanup,
- 	removal of useless entries, etc.
+	in the board_info array directly. Also, some general cleanup,
+	removal of useless entries, etc.
 
 Tue Mar  4 22:58:37 1997  Bob Manson  <manson@charmed.cygnus.com>
 
@@ -2800,11 +2800,11 @@ Mon Mar  3 12:38:28 1997  Bob Manson  <manson@charmed.cygnus.com>
 	* config/base68k.exp(base68k_load): Send an extra CRLF pair.
 
 	* lib/telnet.exp(telnet_binary): Only send a linefeed to telnet
- 	after the command. Don't send an extra CRLF pair after the
- 	command.
+	after the command. Don't send an extra CRLF pair after the
+	command.
 
 	* config/ddb-ether.exp: Minor cleanups.
-	
+
 	* lib/remote.exp(remote_expect): New procedure.
 
 Fri Feb 28 17:04:11 1997  Bob Manson  <manson@charmed.cygnus.com>
@@ -2812,7 +2812,7 @@ Fri Feb 28 17:04:11 1997  Bob Manson  <manson@charmed.cygnus.com>
 	* config/vr5000.exp: Use ddb-ether, as it's faster.
 
 	* baseboards/vr5000-ddb.exp: Use ddb.ld. Add setup info for
- 	nullstone. Mark it as unreliable, as it gets random SIGFPEs.
+	nullstone. Mark it as unreliable, as it gets random SIGFPEs.
 
 	* runtest.exp(setup_target_hook): Call perror instead of error.
 
@@ -2830,10 +2830,10 @@ Thu Feb 27 12:58:01 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* config/gdb-comm.exp(quit_gdb): New procedure.
 	(gdb_comm_load): Use it. Check for board feature
- 	"unreliable". If the testcase times out, try rebooting the board
- 	and reexecuting before deciding that the testcase is going into an
- 	infinite loop.
-	
+	"unreliable". If the testcase times out, try rebooting the board
+	and reexecuting before deciding that the testcase is going into an
+	infinite loop.
+
 	* lib/rsh.exp(rsh_exec): Explicitly call sh.
 
 	* lib/telnet.exp(telnet_open): Make sure we wait for the telnet to
@@ -2848,11 +2848,11 @@ Thu Feb 27 12:58:01 1997  Bob Manson  <manson@charmed.cygnus.com>
 Sun Feb 23 14:32:34 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/telnet.exp(telnet_open): Add "catch" to the exp_send command
- 	after telnet gets a connection refused.
+	after telnet gets a connection refused.
 
 	* lib/framework.exp(record_test): Add global variable pf_prefix,
- 	which contains a string that will be prefixed to every pass/fail
- 	message.
+	which contains a string that will be prefixed to every pass/fail
+	message.
 
 	* runtest.exp(runtest): Pass the name of the expect script to
 	the tool init function.
@@ -2862,7 +2862,7 @@ Sun Feb 23 14:32:34 1997  Bob Manson  <manson@charmed.cygnus.com>
 Sat Feb 22 21:02:01 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/telnet.exp(telnet_binary): Wait for a prompt after sending
- 	the telnet escape character.
+	the telnet escape character.
 
 Fri Feb 21 13:46:45 1997  Bob Manson  <manson@charmed.cygnus.com>
 
@@ -2885,7 +2885,7 @@ Wed Feb 19 16:19:04 1997  Bob Manson  <manson@charmed.cygnus.com>
 	mips.
 
 	* config/gdb-comm.exp: Use warning instead of perror in several
- 	places.
+	places.
 
 Wed Feb 19 09:36:06 1997  Michael Meissner  <meissner@cygnus.com>
 
@@ -2923,9 +2923,9 @@ Tue Feb 11 12:54:17 1997  Bob Manson  <manson@charmed.cygnus.com>
 	* lib/mondfe.exp: Use mondfe,name instead of remote_host.
 
 	* config/gdb_stub.exp: Remove bogus global declaration.
-	
+
 	* lib/target.exp(default_target_compile): Append -lm at the end of
- 	the argument list, so it is linked in as appropriate.
+	the argument list, so it is linked in as appropriate.
 
 Tue Feb 11 11:01:33 1997  Jeffrey A Law  (law@cygnus.com)
 
@@ -2976,7 +2976,7 @@ Sat Feb  8 13:40:38 1997  Bob Manson  <manson@charmed.cygnus.com>
 	code passed to exit().
 
 	* lib/telnet.exp(telnet_open): Don't send the initial cr until
- 	we've seen the "Escape character is..." line from telnet. Also,
+	we've seen the "Escape character is..." line from telnet. Also,
 	if we got an unexpected EOF from telnet, wait 5 seconds before
 	trying again.
 
@@ -2989,7 +2989,7 @@ Fri Feb  7 13:22:43 1997  Bob Manson  <manson@charmed.cygnus.com>
 	random versions of prune_system_crud and prune_warnings.
 	Nuke prune_system_crud without prejudice; replace with calls
 	to prune_warnings.
-	
+
 	* lib/dg.exp: Use prune_warnings instead of prune_system_crud.
 
 Fri Feb  7 09:41:40 1997  Jeffrey A Law  (law@cygnus.com)
@@ -3000,14 +3000,14 @@ Fri Feb  7 09:41:40 1997  Jeffrey A Law  (law@cygnus.com)
 Thu Feb  6 13:08:50 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/remote.exp(remote_download): When copying to a local file,
- 	make sure the copied file has read permissions for other.
+	make sure the copied file has read permissions for other.
 
 	* baseboards/vx960.exp: New file.
-	
+
 	* config/vxworks.exp: Fix.
 
 	* lib/libgloss.exp(get_multilibs): If a list of multilib options
- 	is specified, don't return the cached multilib path.
+	is specified, don't return the cached multilib path.
 
 Wed Feb  5 22:08:03 1997  Jeffrey A Law  (law@cygnus.com)
 
@@ -3054,15 +3054,15 @@ Mon Feb  3 07:54:04 1997  Jeffrey A Law  (law@cygnus.com)
 
 	* baseboards/mn10200-sim.exp: Add -DSTACK_SIZE=4096 to cflags.
 	Set no_long_long for this target.
-	
+
 Sun Feb  2 15:29:09 1997  Bob Manson  <manson@charmed.cygnus.com>
 
 	* lib/libgloss.exp(find_gcc): Don't be quite so choosy about
 	the name of the compiler. But, make sure we look in all the
 	right places.
-	
+
 	* lib/remote.exp(standard_close): Return 0.
-	
+
 	* lib/mondfe.exp(mondfe_close): Return 0 if the connection is
 	already closed.
 
@@ -3106,11 +3106,11 @@ Fri Jan 31 11:36:12 1997  Bob Manson  <manson@charmed.cygnus.com>
 	* baseboards/mips64-sim.exp: It's basic-sim, not basic-sim.exp.
 
 	* lib/target.exp(default_target_compile): If we end up with no
- 	compiler, or if we can't find it and we're compiling locally, give
- 	an error and return.
+	compiler, or if we can't find it and we're compiling locally, give
+	an error and return.
 
 	* lib/libgloss.exp(get_multilibs): If the host is remote, or if we
- 	have no compiler, or it can't be found, don't look for multilibs.
+	have no compiler, or it can't be found, don't look for multilibs.
 	(find_gcc): Don't even check to see if the compiler exists.
 	(libio_include_flags): Don't bother looking for the include dir if we
 	haven't got libio.a.
@@ -3173,7 +3173,7 @@ Thu Jan 30 11:48:29 1997  Bob Manson  <manson@charmed.cygnus.com>
 	protocol to dos.
 
 	* runtest.exp(load_generic_config): Don't set the generic name of
- 	the board if it already has one.
+	the board if it already has one.
 
 	* config/gdb-comm.exp: Remove definition of ${board}_init, and move
 	initialization to gdb_comm_start. Change $prompt to $gdb_prompt.
@@ -3416,7 +3416,7 @@ Mon Jun 24 17:26:20 1996  Jason Molenda  (crash@godzilla.cygnus.co.jp)
 	* example/configure.in (AC_PREREQ): autoconf 2.5 or higher.
 	* example/configure: Rebuilt.
 	* example/calc/configure.in (AC_PREREQ): autoconf 2.5 or higher.
-	* example/calc/configure: Rebuilt.	
+	* example/calc/configure: Rebuilt.
 	* testsuite/configure.in (AC_PREREQ): autoconf 2.5 or higher.
 	* testsuite/configure: Rebuilt.
 	* testsuite/aclocal.m4: New.  Include ../aclocal.m4.
@@ -3465,7 +3465,7 @@ Tue Feb 20 19:43:47 1996  Doug Evans  <dje@charmed.cygnus.com>
 	* runtest.exp (main loop): Handle a=b=c in $MULTIPASS.
 
 Fri Feb  2 10:25:32 1996  Jeffrey A Law  (law@cygnus.com)
-	
+
 	* site.tmpl (hppa*-*-proelf*): Update.
 
 	* lib/target.exp (compile): Add a space before appending $arg
@@ -5764,7 +5764,7 @@ Wed Oct 14 00:30:07 1992  Fred Fish  (fnf@cygnus.com)
 	Also remove some junk leftover from gdbtest case conversion.
 	* gdb.t21/{Makefile.in, configure.in, in-gdbme.C, cplusfuncs.exp,
 	demangle.exp}:  New test case for demangling and C++ function
-	lookups.	
+	lookups.
 
 Mon Oct 12 09:10:22 1992  Fred Fish  (fnf@cygnus.com)
 
@@ -5788,9 +5788,10 @@ Sat Oct 10 18:23:20 1992  Rob Savoye  (rob at darkstar.cygnus.com)
 	expects to find all the binaries in your path.
 	* gdb.t13/bitfields.exp: Added a line after every test to dump the
 	output to the detail file.
-	* gdb.t15/funcargs.exp: Added a line after every test to dump the	output to the detail file.
+	* gdb.t15/funcargs.exp: Added a line after every test to dump the
+	output to the detail file.
 	* configure.in: Do a "make runtest" for post target.
-    	* Makefile.in: Has new target for making runtest. Runtest is a
+	* Makefile.in: Has new target for making runtest. Runtest is a
 	bourne shell script that start $srcdir/runtest.exp.
 	* runtest.exp: made the printing of the summary counts a proc so a
 	^C or SIGQUIT will print the summary, then exit.
@@ -6017,4 +6018,3 @@ Tue Jun 30 22:22:00 1992  Rob Savoye  (rob at darkstar.cygnus.com)
 Thu May 21 17:20:23 1992  Rob Savoye  (rob@darkstar.cygnus.com)
 
 	* Hacking in better detailed reports.
-
