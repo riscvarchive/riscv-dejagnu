@@ -3375,7 +3375,7 @@ execute the configure script from the source tree like this:
 
 @example
 
-        ../dejagnu-1.4.5/configure
+        ../dejagnu-1.5.1/configure
       
 @end example
 

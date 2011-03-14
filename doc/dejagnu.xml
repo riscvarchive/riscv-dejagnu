@@ -2,8 +2,8 @@
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.1.2//EN"
     "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd" [
   <!ENTITY legal SYSTEM "legal.xml">
-  <!ENTITY appversion "1.4.5">
-  <!ENTITY version "1.4.5">
+  <!ENTITY appversion "1.5.1">
+  <!ENTITY version "1.5.1">
   <!ENTITY manrevision "1.0">
   <!ENTITY date "Feb 2004">
   <!ENTITY app "<application>DejaGnu</application>">
