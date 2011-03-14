@@ -1,3 +1,7 @@
+2011-03-15  H.J. Lu  <hjl.tools@gmail.com>
+
+	* lib/remote.exp (local_exec): Ignore SIGHUP.
+
 2011-03-14  Ben Elliston  <bje@gnu.org>
 
 	* runtest.exp (frame_version): Set to 1.5.1.
