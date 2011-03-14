@@ -11,12 +11,13 @@
 good insight into how &dj; works, else you might run into a lot of
 subtle problems. You have been warned.</para> 
 
-<para>It should be no big problems installing &dj; using your
-package manager or from the source code. Under a Debian/GNU/Linux
-systems just type (as root) <programlisting>apt-get install
-dejagnu</programlisting>. These examples were run on a primary machine
-with a AMD K6 and a Mac Powerbook G3 serving as a remote
-target.</para> 
+<para>It should be no big problems installing &dj; using your package
+manager or from the source code. On the Debian GNU/Linux system just
+run (as root):
+<programlisting>apt-get install dejagnu</programlisting>
+
+These examples were run on a primary machine with a AMD K6 and a Mac
+Powerbook G3 serving as a remote target.</para>
 
 <para> The tests for Windows were run under Windows using the actual
 Cygwin version (1.3.x as of October 2001). Its target system was a PPC
@@ -452,18 +453,20 @@ set verbose 9
 <sect3>
 <title>Testing &quot;Hello world&quot; locally</title>
 
-<para>This test checks, whether the built-in shell command &quot;echo Hello world&quot;
- will really write &quot;Hello world&quot; on the console.
-Create the file ~/dejagnu.test/testsuite/calc.test/local_echo.exp.
-It should contain the following lines</para>
+<para>This test checks whether the shell command <command>echo Hello
+ world</command> will really output &quot;Hello world&quot; to the
+ console.  Create the file
+ <filename>~/dejagnu.test/testsuite/calc.test/local_echo.exp</filename>.
+ It should contain the following lines:</para>
 
 <example>
 <title>A first (local) test case</title>
 <programlisting>
 set test "Local Hello World"
-send "echo Hello World"
+spawn echo Hello World
 expect {
-   -re "Hello World"  { pass "$test" }
+   "Hello World"  { pass $test }
+   default { fail $test }
 }
 </programlisting>
 </example>

@@ -446,19 +446,17 @@ Follow these instructions as closely a possible in order get a
 good insight into how DejaGnu works, else you might run into a lot of
 subtle problems. You have been warned.
 
-It should be no big problems installing DejaGnu using your
-package manager or from the source code. Under a Debian/GNU/Linux
-systems just type (as root) 
+It should be no big problems installing DejaGnu using your package
+manager or from the source code. On the Debian GNU/Linux system just
+run (as root):
 
 @example
-apt-get install
-dejagnu
+apt-get install dejagnu
 @end example
 
 @noindent
-. These examples were run on a primary machine
-with a AMD K6 and a Mac Powerbook G3 serving as a remote
-target.
+These examples were run on a primary machine with a AMD K6 and a Mac
+Powerbook G3 serving as a remote target.
 
 The tests for Windows were run under Windows using the actual
 Cygwin version (1.3.x as of October 2001). Its target system was a PPC
@@ -924,19 +922,21 @@ set verbose 9
 @node Testing "Hello world" locally, , When trouble strikes, Our first automated tests
 @subsection Testing "Hello world" locally
 
-This test checks, whether the built-in shell command "echo Hello world"
-will really write "Hello world" on the console.
-Create the file ~/dejagnu.test/testsuite/calc.test/local_echo.exp.
-It should contain the following lines
+This test checks whether the shell command @code{echo Hello
+world} will really output "Hello world" to the
+console.  Create the file
+@file{~/dejagnu.test/testsuite/calc.test/local_echo.exp}.
+It should contain the following lines:
 
 @strong{A first (local) test case}
 
 @example
 
 set test "Local Hello World"
-send "echo Hello World"
+spawn echo Hello World
 expect @{
-   -re "Hello World"  @{ pass "$test" @}
+   "Hello World"  @{ pass $test @}
+   default @{ fail $test @}
 @}
 @end example
 

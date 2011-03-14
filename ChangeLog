@@ -1,3 +1,11 @@
+2011-03-14  Ben Elliston  <bje@gnu.org>
+
+	Reported by Flash Sheridan <flash@pobox.com>:
+	* doc/user.xml (Testing "Hello world" locally): Improve the
+	example test script and make it robust to failures.  Tidy some
+	formatting errors.
+	* doc/dejagnu.texi: Regenerate.
+
 2011-03-14  Jan Kratochvil  <jan.kratochvil@redhat.com>
 
 	* runtest.exp (runtest): Call reset_vars at initialisation so that
