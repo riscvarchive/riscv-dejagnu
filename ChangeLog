@@ -1,5 +1,9 @@
 2011-03-14  Ben Elliston  <bje@gnu.org>
 
+	* dejagnu.h: Whitespace cleanups.
+
+2011-03-14  Ben Elliston  <bje@gnu.org>
+
 	* baseboards/cris-sim.exp: Remove trailing semicolon(s).
 	* baseboards/mt-sid.exp: Likewise.
 	* baseboards/tx39-sim.exp: Likewise.
