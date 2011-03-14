@@ -336,9 +336,9 @@ proc default_target_compile {source destfile type options} {
 		append add_flags " [target_info adaflags]"
 	    }
 	    if {[board_info $dest exists gnatmake]} {
-		set compiler [target_info gnatmake];
+		set compiler [target_info gnatmake]
 	    } else {
-		set compiler [find_gnatmake];
+		set compiler [find_gnatmake]
 	    }
 	}
 	

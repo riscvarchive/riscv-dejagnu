@@ -1,5 +1,12 @@
 2011-03-14  Ben Elliston  <bje@gnu.org>
 
+	* baseboards/cris-sim.exp: Remove trailing semicolon(s).
+	* baseboards/mt-sid.exp: Likewise.
+	* baseboards/tx39-sim.exp: Likewise.
+	* lib/target.exp (default_target_compile): Likewise.
+
+2011-03-14  Ben Elliston  <bje@gnu.org>
+
 	Reported by Flash Sheridan <flash@pobox.com>:
 	* doc/user.xml (Testing "Hello world" locally): Improve the
 	example test script and make it robust to failures.  Tidy some

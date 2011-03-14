@@ -45,8 +45,8 @@ if {[istarget *-*-linux*]} {
 
 # Support different multilibs and targets.
 foreach x $board_variant_list {
-    regsub -all "^\[ \t\]*" "$x" "" x;
-    regsub -all "\[ \t\]*$" "$x" "" x;
+    regsub -all "^\[ \t\]*" "$x" "" x
+    regsub -all "\[ \t\]*$" "$x" "" x
 
     switch -- $x {
 	# We force the arch to either pre-v32 (i.e. v10) or v32 for the

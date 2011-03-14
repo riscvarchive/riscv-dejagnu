@@ -48,7 +48,7 @@ set_board_info sim,defaultendian "-EB"
 load_generic_config "sid"
 
 # Tells the test harness to use pre-generated sid configurations.
-set_board_info sim,protocol "sid";
+set_board_info sim,protocol "sid"
 
 # This is the name of our entry point symbol.
 set_board_info gdb,start_symbol _start
