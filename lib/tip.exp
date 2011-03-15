@@ -107,7 +107,7 @@ proc tip_open { hostname } {
 	"~\[set\]*" {
 	    verbose "Setting verbose mode" 1
 	    send "verbose\n\n\n"
-	}	
+	}
     }
 
     if { $result < 0 } {
@@ -172,11 +172,11 @@ proc tip_download { dest file args } {
 		    perror "Timed out trying to download."
 		}
 	    }
-	}	
+	}
 	timeout {
 	    perror "Timed out waiting for response to put command."
 	}
-    }	
+    }
     set timeout 10
     return $result
 }

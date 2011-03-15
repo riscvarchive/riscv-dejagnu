@@ -455,7 +455,7 @@ proc get_multilibs { args } {
 
     # extract the options and their directory names as know by gcc
     foreach i "[exec $compiler --print-multi-lib]" {
-    	if {$extra != ""} {
+	if {$extra != ""} {
 	    # string trimright would do the wrong thing if we included
 	    # the leading @@ in $extra
 	    set i [string trimright $i $extra]
@@ -474,9 +474,9 @@ proc get_multilibs { args } {
 	if { [llength $args] > 0 } {
 	    set override_opt [lindex $args 0]
 	    foreach j $opts {
-	        if {$j == $override_opt} {
-	    	    set mopts $override_opt
-	        }
+		if {$j == $override_opt} {
+		    set mopts $override_opt
+		}
 	    }
 	}
     }
@@ -729,7 +729,7 @@ proc find_nm {} {
     if {![is_remote host]} {
 	set NM [lookfor_file $tool_root_dir nm-new]
 	if {$NM == ""} {
- 	    set NM [lookfor_file $tool_root_dir binutils/nm-new]
+	    set NM [lookfor_file $tool_root_dir binutils/nm-new]
 	}
     }
     if { $NM == ""} {

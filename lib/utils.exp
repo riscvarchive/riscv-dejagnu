@@ -27,7 +27,7 @@
 #     args: the first is the dir to look in, the next
 #         is the pattern to match. It
 #         defaults to *. Patterns are csh style
-#   	  globbing rules
+#	  globbing rules
 #     options: -all  search the tree recursively
 #     returns: a list of dirs or NULL; the root directory is not returned.
 #
@@ -71,7 +71,7 @@ proc getdirs { args } {
 		    }
 		}
 	    }
-	}	
+	}
     } else {
 	perror "$tmp"
 	return ""
@@ -242,7 +242,7 @@ proc slay { name } {
 #
 proc absolute { path } {
     if {[string match "." $path]} {
-        return [pwd]
+	return [pwd]
     }
 
     set basedir [pwd]
@@ -319,64 +319,64 @@ proc diff { file_1 file_2 } {
     set differences 0
 
     if {[file exists ${file_1}]} {
-        set file_a [open ${file_1} r]
-        fconfigure $file_a -encoding binary
+	set file_a [open ${file_1} r]
+	fconfigure $file_a -encoding binary
     } else {
-        warning "${file_1} doesn't exist"
-        return 0
+	warning "${file_1} doesn't exist"
+	return 0
     }
 
     if {[file exists ${file_2}]} {
-        set file_b [open ${file_2} r]
-        fconfigure $file_b -encoding binary
+	set file_b [open ${file_2} r]
+	fconfigure $file_b -encoding binary
     } else {
-        warning "${file_2} doesn't exist"
-        return 0
+	warning "${file_2} doesn't exist"
+	return 0
     }
 
     verbose "# Diff'ing: ${file_1} ${file_2}\n" 1
 
     set list_a ""
     while { [gets ${file_a} line] != ${eof} } {
-        if {[regexp "^#.*$" ${line}]} {
-            continue
-        } else {
-            lappend list_a ${line}
-        }
+	if {[regexp "^#.*$" ${line}]} {
+	    continue
+	} else {
+	    lappend list_a ${line}
+	}
     }
     close ${file_a}
 
     set list_b ""
     while { [gets ${file_b} line] != ${eof} } {
-        if {[regexp "^#.*$" ${line}]} {
-            continue
-        } else {
-            lappend list_b ${line}
-        }
+	if {[regexp "^#.*$" ${line}]} {
+	    continue
+	} else {
+	    lappend list_b ${line}
+	}
     }
     close ${file_b}
     for { set i 0 } { $i < [llength $list_a] } { incr i } {
-        set line_a [lindex ${list_a} ${i}]
-        set line_b [lindex ${list_b} ${i}]
+	set line_a [lindex ${list_a} ${i}]
+	set line_b [lindex ${list_b} ${i}]
 
 	#        verbose "\t${file_1}: ${i}: ${line_a}\n" 3
 	#        verbose "\t${file_2}: ${i}: ${line_b}\n" 3
-        if {[string compare ${line_a} ${line_b}]} {
+	if {[string compare ${line_a} ${line_b}]} {
 	    verbose "line #${i}\n" 2
-            verbose "\< ${line_a}\n" 2
-            verbose "\> ${line_b}\n" 2
+	    verbose "\< ${line_a}\n" 2
+	    verbose "\> ${line_b}\n" 2
 
 	    send_log "line #${i}\n"
-            send_log "\< ${line_a}\n"
-            send_log "\> ${line_b}\n"
+	    send_log "\< ${line_a}\n"
+	    send_log "\> ${line_b}\n"
 
-            set differences -1
-        }
+	    set differences -1
+	}
     }
 
     if { $differences == -1 || [llength ${list_a}] != [llength ${list_b}] } {
 	verbose "Files not the same" 2
-        set differences -1
+	set differences -1
     } else {
 	verbose "Files are the same" 2
 	set differences 1
@@ -413,4 +413,3 @@ proc getenv { var } {
 	return ""
     }
 }
-

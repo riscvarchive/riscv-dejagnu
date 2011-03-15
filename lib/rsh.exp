@@ -150,7 +150,7 @@ proc rsh_download {desthost srcfile destfile} {
     if {[board_info $desthost exists rcp_prog]} {
 	set RCP [board_info $desthost rcp_prog]
     } else {
-        set RCP rcp
+	set RCP rcp
     }
 
     if {[board_info $desthost exists rsh_prog]} {
@@ -194,7 +194,7 @@ proc rsh_upload {desthost srcfile destfile} {
     if {[board_info $desthost exists rcp_prog]} {
 	set RCP [board_info $desthost rcp_prog]
     } else {
-        set RCP rcp
+	set RCP rcp
     }
 
     if {[board_info $desthost exists username]} {

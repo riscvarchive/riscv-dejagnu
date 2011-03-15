@@ -134,7 +134,7 @@ proc prune_warnings { text } {
 
     # See Brendan for the raison d'etre of this one.
     if {[ishost "alpha*-*-*"]} {
-        regsub -all "(^|\n)(/usr/(ucb|bin)/ld.*without exceptions was\[^\n\]+\n?)" $text "\\1" text
+	regsub -all "(^|\n)(/usr/(ucb|bin)/ld.*without exceptions was\[^\n\]+\n?)" $text "\\1" text
     }
     if {[ishost "hppa*-*-hpux*"]} {
        # Ignore the compiler's warnings about PA incompatibility.
@@ -245,7 +245,7 @@ proc prune_warnings { text } {
 
     # See Brendan for the raison d'etre of this one.
     if {[string match "alpha*-*-*" $host_triplet]} {
-        regsub -all "(^|\n)(/usr/(ucb|bin)/ld.*without exceptions was\[^\n\]+\n?)" $text "\\1" text
+	regsub -all "(^|\n)(/usr/(ucb|bin)/ld.*without exceptions was\[^\n\]+\n?)" $text "\\1" text
     }
 
     # Don't pay attention to the AIX4 linker warnings.
@@ -295,9 +295,9 @@ proc prune_warnings { text } {
 proc target_compile {source destfile type options} {
     set target [target_info name]
     if { [info proc ${target}_compile] != "" } {
-        return [${target}_compile $source $destfile $type $options]
+	return [${target}_compile $source $destfile $type $options]
     } else {
-        return [default_target_compile $source $destfile $type $options]
+	return [default_target_compile $source $destfile $type $options]
     }
 }
 
@@ -341,7 +341,7 @@ proc default_target_compile {source destfile type options} {
 		set compiler [find_gnatmake]
 	    }
 	}
-	
+
 	if { $i == "c++" } {
 	    set compiler_type "c++"
 	    if {[board_info $dest exists cxxflags]} {
@@ -402,15 +402,15 @@ proc default_target_compile {source destfile type options} {
 	if {[regexp "^ldscript=" $i]} {
 	    regsub "^ldscript=" $i "" ldscript
 	}
- 	if {[regexp "^redirect=" $i]} {
- 	    regsub "^redirect=" $i "" redirect
- 	}
- 	if {[regexp "^optimize=" $i]} {
- 	    regsub "^optimize=" $i "" optimize
- 	}
- 	if {[regexp "^timeout=" $i]} {
- 	    regsub "^timeout=" $i "" timeout
- 	}
+	if {[regexp "^redirect=" $i]} {
+	    regsub "^redirect=" $i "" redirect
+	}
+	if {[regexp "^optimize=" $i]} {
+	    regsub "^optimize=" $i "" optimize
+	}
+	if {[regexp "^timeout=" $i]} {
+	    regsub "^timeout=" $i "" timeout
+	}
     }
 
     if {[board_info $host exists cflags_for_target]} {
@@ -589,9 +589,9 @@ proc default_target_compile {source destfile type options} {
     # object, because otherwise, in some situations, libtool will
     # become confused about the name of the actual source file.
     if {$type == "object"} {
-        set opts "$add_flags $sources"
+	set opts "$add_flags $sources"
     } else {
-        set opts "$sources $add_flags"
+	set opts "$sources $add_flags"
     }
 
     if {[is_remote host]} {

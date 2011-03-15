@@ -162,8 +162,8 @@ proc verbose { args } {
 		set newline 0
 	    } elseif { [lindex $args $i] == "-log" } {
 		set logfile 1
-            } elseif { [lindex $args $i] == "-x" } {
-                set xml 1
+	    } elseif { [lindex $args $i] == "-x" } {
+		set xml 1
 	    } elseif { [string index [lindex $args $i] 0] == "-" } {
 		clone_output "ERROR: verbose: illegal argument: [lindex $args $i]"
 		return
@@ -308,10 +308,10 @@ proc load_file { args } {
     set found 0
     foreach file [lrange $args $i end] {
 	verbose "Looking for $file" 2
-        # In Tcl7.5a2, "file exists" can fail if the filename looks
+	# In Tcl7.5a2, "file exists" can fail if the filename looks
 	# like ~/FILE and the environment variable HOME does not
 	# exist.
-        if {! [catch {file exists $file} result] && $result} {
+	if {! [catch {file exists $file} result] && $result} {
 	    set found 1
 	    verbose "Found $file"
 	    if { [catch "uplevel #0 source $file"] == 1 } {
@@ -426,11 +426,11 @@ for { set i 0 } { $i < $argc } { incr i } {
 
     # make all options have two hyphens
     switch -glob -- $option {
-        "--*" {
-        }
-        "-*" {
+	"--*" {
+	}
+	"-*" {
 	    set option "-$option"
-        }
+	}
     }
 
     # split out the argument for options that take them
@@ -447,7 +447,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 	"--ou*" -
 	"--sr*" -
 	"--str*" -
-        "--ta*" -
+	"--ta*" -
 	"--di*" -
 	"--to*" {
 	    incr i
@@ -460,12 +460,12 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    set arg_build_triplet $optarg
 	    continue
 	}
-	
+
 	"--host_bo*" {
 	    set host_board $optarg
 	    continue
 	}
-	
+
 	"--ho*" {			# (--host) the host configuration
 	    set arg_host_triplet $optarg
 	    continue
@@ -480,7 +480,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    set srcdir $optarg
 	    continue
 	}
-	
+
 	"--target_bo*" {
 	    set target_list $optarg
 	    continue
@@ -510,7 +510,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    set tool $optarg
 	    set comm_line_tool $optarg
 	    continue
-        }
+	}
 
 	"--di*" {
 	    set cmdline_dir_to_run $optarg
@@ -556,7 +556,7 @@ if {[string match "" $logname]} {
 		# try getting it with who am i
 		unset tmp
 		catch "set logname [exec who am i]" tmp
-		if {[string match "*Command not found*" $tmp]} {	
+		if {[string match "*Command not found*" $tmp]} {
 		    send_user "ERROR: couldn't get the users login name\n"
 		    set logname "Unknown"
 		} else {
@@ -984,11 +984,11 @@ for { set i 0 } { $i < $argc } { incr i } {
 
     # make all options have two hyphens
     switch -glob -- $option {
-        "--*" {
-        }
-        "-*" {
+	"--*" {
+	}
+	"-*" {
 	    set option "-$option"
-        }
+	}
     }
 
     # split out the argument for options that take them
@@ -1005,7 +1005,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 	"--ou*" -
 	"--sr*" -
 	"--str*" -
-        "--ta*" -
+	"--ta*" -
 	"--di*" -
 	"--to*" {
 	    incr i
@@ -1031,7 +1031,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    # Already parsed (and don't set again).  Let $DEJAGNU rename it.
 	    continue
 	}
-	
+
 	"--ho*" {			# (--host) the host configuration
 	    # Already parsed (and don't set again).  Let $DEJAGNU rename it.
 	    continue
@@ -1042,7 +1042,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    set target_list $optarg
 	    continue
 	}
-	
+
 	"--ta*" {			# (--target) the target configuration
 	    # Already parsed (and don't set again).  Let $DEJAGNU rename it.
 	    continue
@@ -1053,14 +1053,14 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    verbose "Print all test output to screen"
 	    continue
 	}
-	
+
 	"--di*" {
 	    # Already parsed (and don't set again).  Let $DEJAGNU rename it.
 	    # set cmdline_dir_to_run $optarg
 	    continue
 	}
 
-	
+
 	"--de*" {			# (--debug) expect internal debugging
 	    if {[file exists ./dbg.log]} {
 		catch "exec rm -f ./dbg.log"
@@ -1073,25 +1073,25 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    verbose "Expect Debugging is ON"
 	    continue
 	}
-	
+
 	"--D[01]" {			# (-Debug) turn on Tcl debugger
 	    verbose "Tcl debugger is ON"
 	    continue
 	}
-	
+
 	"--m*" {			# (--mail) mail the output
 	    set mailing_list $optarg
-            set mail_logs 1
+	    set mail_logs 1
 	    verbose "Mail results to $mailing_list"
 	    continue
 	}
-	
+
 	"--r*" {			# (--reboot) reboot the target
 	    set reboot 1
 	    verbose "Will reboot the target (if supported)"
 	    continue
 	}
-	
+
 	"--ob*" {			# (--objdir) where the test case object code lives
 	    # Already parsed, but parse again to make sure command line
 	    # options override any config file.
@@ -1099,13 +1099,13 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    verbose "Using test binaries in $objdir"
 	    continue
 	}
-	
+
 	"--ou*" {			# (--outdir) where to put the output files
 	    set outdir $optarg
 	    verbose "Test output put in $outdir"
 	    continue
 	}
-	
+
 	"*.exp" {			#  specify test names to run
 	    set all_runtests($option) ""
 	    verbose "Running only tests $option"
@@ -1119,7 +1119,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    unset tmp
 	    continue
 	}
-	
+
 	"--ig*" {			#  (--ignore) specify test names to exclude
 	    set ignoretests $optarg
 	    verbose "Ignoring test $ignoretests"
@@ -1133,20 +1133,20 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    set srcdir $optarg
 	    continue
 	}
-	
+
 	"--str*" {			# (--strace) expect trace level
 	    set tracelevel $optarg
 	    strace $tracelevel
 	    verbose "Source Trace level is now $tracelevel"
 	    continue
 	}
-	
+
 	"--sta*" {			# (--status) exit status flag
 	    set exit_error 1
 	    verbose "Tcl errors will set an ERROR exit status"
 	    continue
 	}
-	
+
 	"--tool_opt*" {
 	    continue
 	}
@@ -1165,17 +1165,17 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    set tool $optarg
 	    verbose "Testing $tool"
 	    continue
-        }
+	}
 
-        "--x*" {
-            set xml 1
-            verbose "XML logging turned on"
-            continue
+	"--x*" {
+	    set xml 1
+	    verbose "XML logging turned on"
+	    continue
 	}
 
 	"--he*" {			# (--help) help text
 	    usage
-	    exit 0	
+	    exit 0
 	}
 
 	"[A-Z0-9_-.]*=*" { # skip makefile style args like CC=gcc, etc... (processed in first pass)
@@ -1499,8 +1499,8 @@ proc runtest { test_file_name } {
 #
 if {![exp_debug]} {
     foreach sig "{SIGTERM {terminated}} \
-             {SIGINT  {interrupted by user}} \
-             {SIGQUIT {interrupted by user}}" {
+	     {SIGINT  {interrupted by user}} \
+	     {SIGQUIT {interrupted by user}}" {
 	set signal [lindex $sig 0]
 	set str [lindex $sig 1]
 	trap "send_error \"got a \[trap -name\] signal, $str \\n\"; log_and_exit;" $signal
@@ -1660,7 +1660,7 @@ foreach current_target $target_list {
 	    foreach multipass_elem $multipass {
 		set multipass_name [lindex $multipass_elem 0]
 		if {$p == $multipass_name} {
-	    	    lappend passes $multipass_elem
+		    lappend passes $multipass_elem
 		    break
 		}
 	    }
@@ -1734,9 +1734,9 @@ foreach current_target $target_list {
 	    foreach dir "${test_top_dirs}" {
 		if { [string length ${prev_dir}] == 0 ||
 		     [string first "${prev_dir}/" ${dir}] == -1} {
-	            # the first top dir entry, or an entry that
+		    # the first top dir entry, or an entry that
 		    # does not share the previous entry's entire
-	            # pathname, record it as a valid top dir entry.
+		    # pathname, record it as a valid top dir entry.
 		    #
 		    lappend temp_top_dirs ${dir}
 		    set prev_dir ${dir}

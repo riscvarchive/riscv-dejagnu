@@ -1,5 +1,12 @@
 2011-03-15  Ben Elliston  <bje@gnu.org>
 
+	* runtest.exp: Whitespace cleanups.
+	* lib/dejagnu.exp, lib/dg.exp, lib/framework.exp,
+	lib/libgloss.exp, lib/remote.exp, lib/rsh.exp, lib/target.exp,
+	lib/telnet.exp, lib/tip.exp, lib/utils.exp: Likewise.
+
+2011-03-15  Ben Elliston  <bje@gnu.org>
+
 	* runtest: Remove trailing semicolons.
 	* lib/rsh.exp: Likewise.
 

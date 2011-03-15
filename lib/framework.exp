@@ -75,9 +75,9 @@ proc open_logs { } {
     if { $xml } {
 	catch "exec rm -f $outdir/$tool.xml"
 	set xml_file [open [file join $outdir $tool.xml] w]
-        xml_output "<?xml version=\"1.0\"?>"
-        insertdtd
-        xml_output "<testsuite>"
+	xml_output "<?xml version=\"1.0\"?>"
+	insertdtd
+	xml_output "<testsuite>"
     }
     catch "exec rm -f $outdir/$tool.log"
     log_file -a "$outdir/$tool.log"
@@ -96,8 +96,8 @@ proc close_logs { } {
     global xml_file
 
     if { $xml } {
-        xml_output "</testsuite>"
-        catch "close $xml_file"
+	xml_output "</testsuite>"
+	catch "close $xml_file"
     }
 
     catch "close $sum_file"
@@ -441,13 +441,13 @@ proc log_summary { args } {
 	set val $test_counts($x,$which)
 	if { $val > 0 } {
 	    set mess "# of $test_counts($x,name)"
-            if { $xml } {
-                xml_output "  <summary>"
-                xml_output "    <result>$x</result>"
-                xml_output "    <description>$mess</description>"
-                xml_output "    <total>$val</total>"
-                xml_output "  </summary>"
-            }
+	    if { $xml } {
+		xml_output "  <summary>"
+		xml_output "    <result>$x</result>"
+		xml_output "    <description>$mess</description>"
+		xml_output "    <total>$val</total>"
+		xml_output "  </summary>"
+	    }
 	    if { [string length $mess] < 24 } {
 		append mess "\t"
 	    }
@@ -702,25 +702,25 @@ proc record_test { type message args } {
 
     if { $xml } {
 	global errorInfo
-        set error ""
-        if {[info exists errorInfo]} {
+	set error ""
+	if {[info exists errorInfo]} {
 	    set error $errorInfo
-        }
-        global expect_out
+	}
+	global expect_out
 	set rio { "" "" }
 	if { [catch { set rio [split $expect_out(buffer) "\n"] } result]} {
 	    #do nothing - leave as { "" "" }
 	}
-	
-        set output ""
+
+	set output ""
 	set output "expect_out(buffer)"
-        xml_output "  <test>"
-        xml_output "    <input>[string trimright [lindex $rio 0]]</input>"
-        xml_output "    <output>[string trimright [lindex $rio 1]]</output>"
-        xml_output "    <result>$type</result>"
-        xml_output "    <name>$message</name>"
-        xml_output "    <prms_id>$prms_id</prms_id>"
-        xml_output "  </test>"
+	xml_output "  <test>"
+	xml_output "    <input>[string trimright [lindex $rio 0]]</input>"
+	xml_output "    <output>[string trimright [lindex $rio 1]]</output>"
+	xml_output "    <result>$type</result>"
+	xml_output "    <name>$message</name>"
+	xml_output "    <prms_id>$prms_id</prms_id>"
+	xml_output "  </test>"
     }
 
     switch $type {

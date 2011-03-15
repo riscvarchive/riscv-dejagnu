@@ -73,7 +73,7 @@ proc telnet_open { hostname args } {
     }
 
     if {[board_info $connhost exists shell_prompt]} {
-        set shell_prompt [board_info $connhost shell_prompt]
+	set shell_prompt [board_info $connhost shell_prompt]
     }
     if {![info exists shell_prompt]} {
 	# If no prompt, then set it to something generic.

@@ -214,9 +214,9 @@ proc local_exec { commandline inp outp timeout } {
     }
     verbose "output is $output status $status"
     if { $outp == "" || $outp == "|& cat" } {
-        return [list $status $output]
+	return [list $status $output]
     } else {
-        return [list $status ""]
+	return [list $status ""]
     }
 }
 
@@ -605,20 +605,20 @@ proc standard_transmit {dest file} {
     set chars 0
     set fd [open $file r]
     while { [gets $fd cur_line] >= 0 } {
-        set errmess ""
-        catch "send -i $shell_id \"$cur_line\r\"" errmess
-        if {[string match "write\(spawn_id=\[0-9\]+\):" $errmess]} {
-            perror "sent \"$cur_line\" got expect error \"$errmess\""
-            catch "close $fd"
-            return -1
-        }
+	set errmess ""
+	catch "send -i $shell_id \"$cur_line\r\"" errmess
+	if {[string match "write\(spawn_id=\[0-9\]+\):" $errmess]} {
+	    perror "sent \"$cur_line\" got expect error \"$errmess\""
+	    catch "close $fd"
+	    return -1
+	}
 	set chars [expr {$chars + ([string length $cur_line] * 10)}]
 	if { $chars > $baud } {
 	    sleep 1
 	    set chars 0
 	}
-        verbose "." 3
-        verbose "Sent $cur_line" 4
+	verbose "." 3
+	verbose "Sent $cur_line" 4
 	incr lines
     }
     verbose "$lines lines transmitted" 2
@@ -641,7 +641,7 @@ proc standard_send { dest string } {
     } else {
 	set shell_id [board_info $dest fileid]
 	verbose "shell_id in standard_send is $shell_id" 3
-        verbose "send -i [board_info $dest fileid] -- $string" 3
+	verbose "send -i [board_info $dest fileid] -- $string" 3
 	if {[catch "send -i [board_info $dest fileid] -- \$string" errorInfo]} {
 	    return "$errorInfo"
 	} else {
@@ -848,13 +848,13 @@ proc standard_spawn { dest commandline } {
     global board_info
 
     if {![board_info $dest exists rsh_prog]} {
-        if { [which remsh] != 0 } {
-            set RSH remsh
-        } else {
-            set RSH rsh
-        }
+	if { [which remsh] != 0 } {
+	    set RSH remsh
+	} else {
+	    set RSH rsh
+	}
     } else {
-        set RSH [board_info $dest rsh_prog]
+	set RSH [board_info $dest rsh_prog]
     }
 
     if {[board_info $dest exists hostname]} {
@@ -864,9 +864,9 @@ proc standard_spawn { dest commandline } {
     }
 
     if {![board_info $dest exists username]} {
-        spawn $RSH $remote $commandline
+	spawn $RSH $remote $commandline
     } else {
-        spawn $RSH -l [board_info $dest username] $remote $commandline
+	spawn $RSH -l [board_info $dest username] $remote $commandline
     }
 
     set board_info($dest,fileid) $spawn_id
@@ -1142,7 +1142,7 @@ proc check_for_board_status  { variable } {
     if {[regexp "(^|\[\r\n\])\\*\\*\\* EXIT code" $output]} {
 	regsub "^.*\\*\\*\\* EXIT code " $output "" result
 	regsub "\[\r\n\].*$" $result "" result
-        regsub -all "(^|\[\r\n\]|\r\n)\\*\\*\\* EXIT code \[^\r\n\]*(\[\r\n\]\[\r\n\]?|$)" $output "" output
+	regsub -all "(^|\[\r\n\]|\r\n)\\*\\*\\* EXIT code \[^\r\n\]*(\[\r\n\]\[\r\n\]?|$)" $output "" output
 	regsub "^\[^0-9\]*" $result "" result
 	regsub "\[^0-9\]*$" $result "" result
 	verbose "got board status $result" 3
@@ -1248,7 +1248,7 @@ proc remote_expect { board timeout args } {
     }
 
     if {$code == 1} {
-        if {[info exists string]} {send_user "ERROR OCCURED: $errorInfo $errorCode $string"}
+	if {[info exists string]} {send_user "ERROR OCCURED: $errorInfo $errorCode $string"}
 
 	if { $error_sect != "" } {
 	    set code [catch {uplevel $error_sect} string]

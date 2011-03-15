@@ -672,10 +672,10 @@ proc dg-test { args } {
     # Define our own "special function" `unknown' so we catch spelling errors.
     # But first rename the existing one so we can restore it afterwards.
     if { [info procs dg-save-unknown] == [list] } {
-        rename unknown dg-save-unknown
-        proc unknown { args } {
+	rename unknown dg-save-unknown
+	proc unknown { args } {
 	    return -code error "unknown dg option: $args"
-        }
+	}
     }
 
     set tmp [dg-get-options $prog]
@@ -700,8 +700,8 @@ proc dg-test { args } {
 
     # Restore normal error handling.
     if { [info procs dg-save-unknown] != [list] } {
-        rename unknown ""
-        rename dg-save-unknown unknown
+	rename unknown ""
+	rename dg-save-unknown unknown
     }
 
     # If we're not supposed to try this test on this target, we're done.
@@ -737,7 +737,7 @@ proc dg-test { args } {
 	set comment [lindex $i 3]
 	#send_user "Before:\n$comp_output\n"
 	if {[regsub -all "(^|\n)(\[^\n\]+$line\[^\n\]*($pattern)\[^\n\]*\n?)+" $comp_output "\n" comp_output]} {
-            set comp_output [string trimleft $comp_output]
+	    set comp_output [string trimleft $comp_output]
 	    set ok pass
 	    set uhoh fail
 	} else {
