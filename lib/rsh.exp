@@ -268,7 +268,7 @@ proc rsh_exec { boardname program pargs inp outp } {
     verbose "$RSH status is $status, output is $output"
 
     # `status' doesn't mean much here other than rsh worked ok.
-    # What we want is whether $program ran ok.  Return $status;
+    # What we want is whether $program ran ok.  Return $status
     # if the program timed out, status will be 1 indicating that
     # rsh ran and failed.  If rsh fails, we will get FAIL rather
     # than UNRESOLVED - this will help the problem be noticed.
