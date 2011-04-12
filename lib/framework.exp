@@ -70,16 +70,16 @@ proc open_logs { } {
     if { ${tool} ==  "" } {
 	set tool testrun
     }
-    catch "exec rm -f $outdir/$tool.sum"
+    catch "file delete -force -- $outdir/$tool.sum"
     set sum_file [open [file join $outdir $tool.sum] w]
     if { $xml } {
-	catch "exec rm -f $outdir/$tool.xml"
+	catch "file delete -force -- $outdir/$tool.xml"
 	set xml_file [open [file join $outdir $tool.xml] w]
 	xml_output "<?xml version=\"1.0\"?>"
 	insertdtd
 	xml_output "<testsuite>"
     }
-    catch "exec rm -f $outdir/$tool.log"
+    catch "file delete -force -- $outdir/$tool.log"
     log_file -a "$outdir/$tool.log"
     verbose "Opening log files in $outdir"
     if { ${tool} ==  "testrun" } {

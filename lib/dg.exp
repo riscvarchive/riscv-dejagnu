@@ -897,7 +897,7 @@ proc dg-test { args } {
     # When testing an interpreter, we don't compile something and leave an
     # output file.
     if { ! ${keep} && ${dg-interpreter-batch-mode} == 0 } {
-	catch "exec rm -f $output_file"
+	catch "file delete -force -- $output_file"
     }
 }
 

@@ -199,8 +199,7 @@ proc ${board}_load { dest prog args } {
 	-i $shell_id -re "$shell_prompt" {}
     }
 
-    catch [exec rm -f $lnk]
-    catch [exec rm -f $nlm]
+    catch [file delete -force -- $lnk $nlm]
 
     if { $ret == 0 } {
 	return "pass"

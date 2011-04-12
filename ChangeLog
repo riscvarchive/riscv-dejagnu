@@ -1,3 +1,14 @@
+2011-04-12  Ben Elliston  <bje@gnu.org>
+
+	* config/vxworks.exp (vxworks_file): Use "file delete", not "exec
+	rm", for better portability.
+	* config/netware.exp (${board}_load): Likewise.
+	* lib/dg.exp (dg-test): Likewise.
+	* lib/framework.exp (open_logs): Likewise.
+	* lib/remote.exp (standard_file): Likewise.
+	* runtest.exp: Likewise.
+	* testsuite/runtest.all/options.exp: Likewise.
+
 2011-03-15  Ben Elliston  <bje@gnu.org>
 
 	* runtest.exp: Whitespace cleanups.

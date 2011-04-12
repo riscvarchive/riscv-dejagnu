@@ -188,7 +188,7 @@ proc vxworks_file { dest op args } {
 		foreach x $args {
 		    set x "${dir}/[file tail $x]"
 		    if { [file exists $x] && [file isfile $x] } {
-			exec rm -f $x
+			file delete -force -- $x
 		    }
 		}
 		return

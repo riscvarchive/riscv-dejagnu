@@ -709,7 +709,7 @@ proc standard_file { dest op args } {
 	    delete {
 		foreach x $args {
 		    if { [file exists $x] && [file isfile $x] } {
-			exec rm -f $x
+			file delete -force -- $x
 		    }
 		}
 		return

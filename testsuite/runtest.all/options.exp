@@ -84,10 +84,10 @@ close $fd
 
 # clean up log files left by the child runtest
 if [file exists $objdir/x.sum] {
-    exec rm -f $objdir/x.*
+    file delete [glob $objdir/x.*]
 }
 if [file exists $objdir/xXx.sum] {
-    exec rm -f $objdir/xXx.*
+    file delete [glob $objdir/xXx.*]
 }
 if [file exists dbg.log] {
     file delete dbg.log
