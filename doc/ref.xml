@@ -4146,6 +4146,19 @@
         </funcsynopsis>
 	</sect4>
 
+	<sect4 id="findgfortran" xreflabel="find_gfortran procedure">
+	  <title>Find_gfortran Procedure</title>
+
+	  <para></para>
+
+	<funcsynopsis role="tcl">
+          <funcprototype>
+            <funcdef><function>find_gfortran</function></funcdef>
+	    <paramdef><parameter></parameter></paramdef>
+           </funcprototype>
+        </funcsynopsis>
+	</sect4>
+
 	<sect4 id="processmultiliboptions" xreflabel="process_multilib_options
 	procedure">
 	  <title>Process_multilib_options Procedure</title>

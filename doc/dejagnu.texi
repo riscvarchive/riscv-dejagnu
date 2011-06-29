@@ -6548,6 +6548,7 @@ executable image for an embedded systems.
 * Find_gcj Procedure: find_gcj procedure.
 * Find_g++ Procedure: find_g++ procedure.
 * Find_g77 Procedure: find_g77 procedure.
+* Find_gfortran Procedure: find_gfortran procedure.
 * Process_multilib_options Procedure: process_multilib_options procedure.
 * Add_multilib_option Procedure: add_multilib_option procedure.
 * Find_gas Procedure: find_gas procedure.
@@ -6752,7 +6753,7 @@ executable image for an embedded systems.
 @t{@b{find_g++}(@i{});}
 @end quotation
 
-@node find_g77 procedure, process_multilib_options procedure, find_g++ procedure, Libgloss
+@node find_g77 procedure, find_gfortran procedure, find_g++ procedure, Libgloss
 @subsubsection Find_g77 Procedure
 
 
@@ -6761,7 +6762,16 @@ executable image for an embedded systems.
 @t{@b{find_g77}(@i{});}
 @end quotation
 
-@node process_multilib_options procedure, add_multilib_option procedure, find_g77 procedure, Libgloss
+@node find_gfortran procedure, process_multilib_options procedure, find_g77 procedure, Libgloss
+@subsubsection Find_gfortran Procedure
+
+
+@quotation
+
+@t{@b{find_gfortran}(@i{});}
+@end quotation
+
+@node process_multilib_options procedure, add_multilib_option procedure, find_gfortran procedure, Libgloss
 @subsubsection Process_multilib_options Procedure
 
 

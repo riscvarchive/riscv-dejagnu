@@ -1,3 +1,11 @@
+2011-06-30  Tom Tromey  <tromey@redhat.com>
+
+	* doc/ref.xml: Document find_gfortran.
+	* doc/dejagnu.texi: Regenerate.
+	* lib/target.exp (default_target_compile): Handle f90.
+	(default_target_compile): Likewise.
+	* lib/libgloss.exp (find_gfortran): New proc.
+
 2011-06-30  Ben Elliston  <bje@gnu.org>
 
 	* Makefile.am (all-local): New rule.

@@ -1,5 +1,5 @@
 # Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001
-# 2002, 2003, 2005, 2006, 2007, 2008, 2009, 2010 Free Software Foundation, Inc.
+# 2002, 2003, 2005, 2006, 2007, 2008, 2009, 2010, 2011 Free Software Foundation, Inc.
 #
 # This file is part of DejaGnu.
 #
@@ -367,6 +367,18 @@ proc default_target_compile {source destfile type options} {
 	    }
 	}
 
+	if { $i == "f90" } {
+	    set compiler_type "f90"
+	    if {[board_info $dest exists f90flags]} {
+		append add_flags " [target_info f90flags]"
+	    }
+	    if {[board_info $dest exists f90compiler]} {
+		set compiler [target_info f90compiler]
+	    } else {
+		set compiler [find_gfortran]
+	    }
+	}
+
 	if {[regexp "^dest=" $i]} {
 	    regsub "^dest=" $i "" tmp
 	    if {[board_info $tmp exists name]} {
@@ -420,6 +432,7 @@ proc default_target_compile {source destfile type options} {
     global CC_FOR_TARGET
     global CXX_FOR_TARGET
     global F77_FOR_TARGET
+    global F90_FOR_TARGET
     global GNATMAKE_FOR_TARGET
 
     if {[info exists GNATMAKE_FOR_TARGET]} {
@@ -443,6 +456,12 @@ proc default_target_compile {source destfile type options} {
     if {[info exists F77_FOR_TARGET]} {
 	if { $compiler_type == "f77" } {
 	    set compiler $F77_FOR_TARGET
+	}
+    }
+
+    if {[info exists F90_FOR_TARGET]} {
+	if { $compiler_type == "f90" } {
+	    set compiler $F90_FOR_TARGET
 	}
     }
 
