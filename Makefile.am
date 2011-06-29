@@ -29,6 +29,10 @@ EXTRA_DIST = ChangeLog-1992 MAINTAINERS runtest site.tmpl \
 
 DISTCLEANFILES = xXx.log xXx.sum x.log x.sum testrun.log testrun.sum
 
+# Give a reassuring message so that users know the "build" worked.
+all-local:
+	@echo "Done. Now run 'make install'."
+
 bin_SCRIPTS = runtest
 include_HEADERS = dejagnu.h
 

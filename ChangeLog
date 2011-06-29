@@ -1,3 +1,8 @@
+2011-06-30  Ben Elliston  <bje@gnu.org>
+
+	* Makefile.am (all-local): New rule.
+	* Makefile.in: Regenerate.
+
 2011-04-12  Ben Elliston  <bje@gnu.org>
 
 	* config/vxworks.exp (vxworks_file): Use "file delete", not "exec

@@ -1207,7 +1207,8 @@ check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) $(check_PROGRAMS)
 	$(MAKE) $(AM_MAKEFLAGS) check-DEJAGNU
 check: check-am
-all-am: Makefile $(INFO_DEPS) $(SCRIPTS) $(MANS) $(DATA) $(HEADERS)
+all-am: Makefile $(INFO_DEPS) $(SCRIPTS) $(MANS) $(DATA) $(HEADERS) \
+		all-local
 installdirs:
 	for dir in "$(DESTDIR)$(baseboarddir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(configdir)" "$(DESTDIR)$(djlibexecdir)" "$(DESTDIR)$(pkgdatadir)" "$(DESTDIR)$(infodir)" "$(DESTDIR)$(man1dir)" "$(DESTDIR)$(baseboarddir)" "$(DESTDIR)$(configdir)" "$(DESTDIR)$(pkgdatadir)" "$(DESTDIR)$(includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
@@ -1400,33 +1401,37 @@ uninstall-man: uninstall-man1
 
 .MAKE: check-am install-am install-strip
 
-.PHONY: CTAGS GTAGS all all-am am--refresh check check-DEJAGNU \
-	check-am clean clean-aminfo clean-checkPROGRAMS clean-generic \
-	ctags dist dist-all dist-bzip2 dist-gzip dist-info dist-lzma \
-	dist-shar dist-tarZ dist-xz dist-zip distcheck distclean \
-	distclean-DEJAGNU distclean-compile distclean-generic \
-	distclean-tags distcleancheck distdir distuninstallcheck dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-baseboardDATA install-baseboardSCRIPTS \
-	install-binSCRIPTS install-configDATA install-configSCRIPTS \
-	install-data install-data-am install-djlibexecSCRIPTS \
-	install-dvi install-dvi-am install-exec install-exec-am \
-	install-html install-html-am install-includeHEADERS \
-	install-info install-info-am install-man install-man1 \
-	install-pdf install-pdf-am install-pkgdataDATA \
-	install-pkgdataSCRIPTS install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-aminfo maintainer-clean-generic mostlyclean \
-	mostlyclean-aminfo mostlyclean-compile mostlyclean-generic pdf \
-	pdf-am ps ps-am tags uninstall uninstall-am \
-	uninstall-baseboardDATA uninstall-baseboardSCRIPTS \
-	uninstall-binSCRIPTS uninstall-configDATA \
-	uninstall-configSCRIPTS uninstall-djlibexecSCRIPTS \
-	uninstall-dvi-am uninstall-html-am uninstall-includeHEADERS \
-	uninstall-info-am uninstall-man uninstall-man1 \
-	uninstall-pdf-am uninstall-pkgdataDATA \
+.PHONY: CTAGS GTAGS all all-am all-local am--refresh check \
+	check-DEJAGNU check-am clean clean-aminfo clean-checkPROGRAMS \
+	clean-generic ctags dist dist-all dist-bzip2 dist-gzip \
+	dist-info dist-lzma dist-shar dist-tarZ dist-xz dist-zip \
+	distcheck distclean distclean-DEJAGNU distclean-compile \
+	distclean-generic distclean-tags distcleancheck distdir \
+	distuninstallcheck dvi dvi-am html html-am info info-am \
+	install install-am install-baseboardDATA \
+	install-baseboardSCRIPTS install-binSCRIPTS install-configDATA \
+	install-configSCRIPTS install-data install-data-am \
+	install-djlibexecSCRIPTS install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-includeHEADERS install-info install-info-am \
+	install-man install-man1 install-pdf install-pdf-am \
+	install-pkgdataDATA install-pkgdataSCRIPTS install-ps \
+	install-ps-am install-strip installcheck installcheck-am \
+	installdirs maintainer-clean maintainer-clean-aminfo \
+	maintainer-clean-generic mostlyclean mostlyclean-aminfo \
+	mostlyclean-compile mostlyclean-generic pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-baseboardDATA \
+	uninstall-baseboardSCRIPTS uninstall-binSCRIPTS \
+	uninstall-configDATA uninstall-configSCRIPTS \
+	uninstall-djlibexecSCRIPTS uninstall-dvi-am uninstall-html-am \
+	uninstall-includeHEADERS uninstall-info-am uninstall-man \
+	uninstall-man1 uninstall-pdf-am uninstall-pkgdataDATA \
 	uninstall-pkgdataSCRIPTS uninstall-ps-am
 
+
+# Give a reassuring message so that users know the "build" worked.
+all-local:
+	@echo "Done. Now run 'make install'."
 
 dejagnu.pdf: $(XML)
 	$(DOCBOOK2PDF) $(srcdir)/doc/dejagnu.xml
