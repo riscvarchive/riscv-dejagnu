@@ -65,7 +65,7 @@
     <sect3 id="installing"  xreflabel="Installing DejaGnu">
       <title>Installing &dj;</title>
 
-      <para>To install &dj; in your filesystem (either in
+      <para>To install &dj; in your file system (either in
       <filename>/usr/local</filename>, or as specified by your
       <option>--prefix</option> option to <emphasis>configure</emphasis>),
       execute.</para>
@@ -204,8 +204,8 @@
 	<sect4 id="is3way" xreflabel="is3way procedure">
 	  <title>is3way Procedure</title>
 
-	  <para>Tests for a canadian cross. This is when the tests will be run
-	  on a remotely hosted cross compiler. If it is a canadian cross, then
+	  <para>Tests for a Canadian cross. This is when the tests will be run
+	  on a remotely hosted cross compiler. If it is a Canadian cross, then
 	  the result is <emphasis>1</emphasis>; otherwise the result is
 	  <emphasis>0</emphasis>.</para>
 
@@ -2160,31 +2160,6 @@
           </varlistentry>
 	</variablelist>
 	</sect4>
-
-<!-- FIXME: this doesn't seem to exist anymore
-	<sect4 id="exitremoteshell" xreflabel="exit_remote_shell procedure">
-	  <title>exit_remote_shell Procedure</title>
-
-	  <para></para>
-
-          <funcsynopsis role="tcl">
-          <funcprototype>
-            <funcdef><function>exit_remote_shell</function></funcdef>
-              <paramdef><parameter>spawnid</parameter></paramdef>
-           </funcprototype>
-            </funcsynopsis>
-            <variablelist>
-              <varlistentry>
-                <term><parameter>spawnid</parameter></term>
-                <listitem><para>Exits a remote process started by any
-                of the connection procedures. <symbol>spawnid</symbol>
-                is the result of the connection procedure that started
-                the remote process.</para></listitem>
-           </varlistentry>
-         </variablelist>
-	 </sect4>
--->
-
     </sect3>
 
     <sect3 id="connprocs" xreflabel="connprocs">
@@ -3381,7 +3356,7 @@
 	  <command>exec</command> as this version utilizes the target config
 	  info to execute this command on the build machine or a remote
 	  host. All config information for the remote host must be setup to
-	  have this command work. If this is a canadian cross, (where we test a
+	  have this command work. If this is a Canadian cross (where we test a
 	  cross compiler that runs on a different host then where &dj; is
 	  running) then a connection is made to the remote host and the command
 	  is executed there. It returns either REMOTERROR (for an error) or the
@@ -4772,3 +4747,6 @@ sgml-local-catalogs:nil
 sgml-local-ecat-files:nil
 End:
 -->
+
+<!--  LocalWords:  spawnid
+ -->

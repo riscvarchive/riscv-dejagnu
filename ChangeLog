@@ -1,5 +1,12 @@
 2011-12-30  Ben Elliston  <bje@gnu.org>
 
+	* doc/user.xml: Various spelling and consistency fixes.
+	* doc/ref.xml: Likewise.
+	(exit_remote_shell): Remove, as this procedure is defunct.
+	* doc/dejagnu.texi: Regenerate.
+
+2011-12-30  Ben Elliston  <bje@gnu.org>
+
 	* config.guess: Update to version 2011-12-29.
 	* config.sub: Update to version 2011-11-11.
 

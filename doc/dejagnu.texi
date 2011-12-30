@@ -554,9 +554,9 @@ distribution
 @node A simple project without the GNU autotools, Using autoconf/autoheader/automake, , Create a minimal project; e_g_ calc
 @subsection A simple project without the GNU autotools
 
-The runtest program can be run standalone. All the
+The runtest program can be run stand-alone. All the
 autoconf/automake support is just cause those programs are commonly
-used for other GNU applications. The key to running runtest standalone
+used for other GNU applications. The key to running runtest stand-alone
 is having the local site.exp file setup correctly, which automake
 does.
 
@@ -804,7 +804,7 @@ make[1]: Leaving directory `/home/Dgt/dejagnu.test' make: *** [check-am] Fehler 
 Did you see the  line "FAIL:"? The test cases for calc catch the bug in the calc.c file. Fix the error in calc.c later as the following examples assume a unchanged calc.c.
 
 Examine the output files calc.sum and calc.log. Try to
-understand the testcases written in
+understand the test cases written in
 ~/dejagnu.test/testsuite/calc.test/calc.exp. To understand Expect you
 might take a look at the book "Exploring Expect", which is
 an excellent resource for learning and using Expect. (Pub: O'Reilly,
@@ -911,8 +911,9 @@ runtest -v -v -v --tool calc CALC=`pwd`/calc --srcdir ./testsuite
 
 Calling runtest with the '--debug'-flag logs a lot of details to dbg.log where you can analyse it afterwards. 
 
-In all test cases you can temporary adjust the verbosity of information by adding the following Tcl-command to any tcl file that gets loaded by
-dejagnu, for instance, ~/.dejagnurc:
+In all test cases you can temporary adjust the verbosity of
+information by adding the following Tcl command to any Tcl file that
+gets loaded by dejagnu, for instance, ~/.dejagnurc:
 
 @example
 
@@ -947,7 +948,7 @@ Run runtest again and verify the output "calc.log"
 
 Testing remote targets is a lot trickier especially if you are using an
 embedded target
-which has no built in support for things like a compiler, ftp server or a Bash-shell.
+which has no built in support for things like a compiler, FTP server or a Bash-shell.
 Before you can test calc on a remote target you have to acquire a few basics skills.
 
 @menu
@@ -966,7 +967,7 @@ Before you can test calc on a remote target you have to acquire a few basics ski
 The easiest remote host is usually the host you are working on.
 In this example we will use telnet to login in your own workstation.
 For security reasons you should never have a telnet daemon running on
-machine connected on the internet, as password and usernames are transmitted
+machine connected on the Internet, as password and user names are transmitted
 in clear text.
 We assume you know how to setup your machine for a telnet daemon.
 
@@ -1102,7 +1103,7 @@ Have a look at the procedures in /usr/share/dejagnu/remote.exp to have an overvi
 
 Now setup a real target.
 In the following example we assume as target a PowerBook running Debian.
-As above add a test user "dgt", install telnet and FTP servers.
+As above add a test user "dgt", install Telnet and FTP servers.
 In order to distinguish it from the host add the line
 
 @example
@@ -1417,7 +1418,7 @@ itself).
 ``triple'' name as used by @code{configure}. This
 is the type of machine DejaGnu and the tools to be tested are built
 on. For a normal cross this is the same as the host, but for a
-canadian cross, they are separate.
+Canadian cross, they are separate.
 
 @item @code{--host [string]}
 @code{string} is a full configuration
@@ -1434,7 +1435,7 @@ are affected by @code{--host}. In this usage,
 be run on, which may not be the same as the
 @emph{build} machine. If @code{--build}
 is also specified, then @code{--host} refers to the
-machine that the tests wil, be run on, not the machine DejaGnu is run
+machine that the tests will be run on, not the machine DejaGnu is run
 on.
 
 @item @code{--host_board [name]}
@@ -2100,7 +2101,7 @@ that for a centralized testing lab where people have to share a
 target between multiple developers. There are settings for both
 remote targets and remote hosts.  Here's an example of a Master
 Config File (also called the Global config file) for a
-@emph{canadian cross}. A canadian cross is when
+@emph{Canadian cross}. A Canadian cross is when
 you build and test a cross compiler on a machine other than the
 one it's to be hosted on.
 
@@ -2149,7 +2150,7 @@ that all run on this host. For testing on operating systems that
 don't support Expect, DejaGnu can be run on the local build
 machine, and it can connect to the remote host and run all the
 tests for this cross compiler on that host. All the remote OS
-requires is a working telnetd.
+requires is a working Telnet server.
 
 As you can see, all one does is set the variable
 @code{target_list} to the list of targets and options to
@@ -2244,12 +2245,12 @@ comprising of non GPL'd code.
 
 @strong{Note}
 
-Thanks to Dj Delorie for the original paper that
+Thanks to DJ Delorie for the original paper that
 this section is based on.
 @end quotation
 
 DejaGnu also supports running the tests on a remote
-host. To set this up, the remote host needs an ftp server, and a
+host. To set this up, the remote host needs an FTP server, and a
 telnet server. Currently foreign operating systems used as
 remote hosts are VxWorks, VRTX, DOS/Windows 3.1, MacOS and Windows.
 
@@ -2379,7 +2380,7 @@ are optional.
 @section Config File Values
 
 DejaGnu uses a named array in Tcl to hold all the info for
-each machine. In the case of a canadian cross, this means host
+each machine. In the case of a Canadian cross, this means host
 information as well as target information. The named array is
 called @code{target_info}, and it has two indices. The
 following fields are part of the array.
@@ -3323,7 +3324,7 @@ test.
 
 DejaGnu uses a single header file to assist in unit
 testing. As this file also produces its one test state output,
-it can be run standalone, which is very useful for testing on
+it can be run stand-alone, which is very useful for testing on
 embedded systems. This header file has a C and C++ API for the
 test states, with simple totals, and standardized
 output. Because the output has been standardized, DejaGnu can be
@@ -3405,7 +3406,7 @@ suites.
 @node Installing DejaGnu, , Configuring DejaGnu, Installation
 @subsection Installing DejaGnu
 
-To install DejaGnu in your filesystem (either in
+To install DejaGnu in your file system (either in
 @file{/usr/local}, or as specified by your
 @code{--prefix} option to @emph{configure}),
 execute.
@@ -3580,8 +3581,8 @@ configuration.
 @node is3way procedure, ishost procedure, is_remote procedure, Core Internal Procedures
 @subsubsection is3way Procedure
 
-Tests for a canadian cross. This is when the tests will be run
-on a remotely hosted cross compiler. If it is a canadian cross, then
+Tests for a Canadian cross. This is when the tests will be run
+on a remotely hosted cross compiler. If it is a Canadian cross, then
 the result is @emph{1}; otherwise the result is
 @emph{0}.
 
@@ -6082,7 +6083,7 @@ host. This should be used as a replacement for the Tcl command
 @code{exec} as this version utilizes the target config
 info to execute this command on the build machine or a remote
 host. All config information for the remote host must be setup to
-have this command work. If this is a canadian cross, (where we test a
+have this command work. If this is a Canadian cross (where we test a
 cross compiler that runs on a different host then where DejaGnu is
 running) then a connection is made to the remote host and the command
 is executed there. It returns either REMOTERROR (for an error) or the

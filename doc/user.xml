@@ -98,9 +98,9 @@ distribution</para>
 
 <sect3><title>A simple project without the GNU autotools</title>
 
-<para>The runtest program can be run standalone. All the
+<para>The runtest program can be run stand-alone. All the
 autoconf/automake support is just cause those programs are commonly
-used for other GNU applications. The key to running runtest standalone
+used for other GNU applications. The key to running runtest stand-alone
 is having the local site.exp file setup correctly, which automake
 does.</para> 
 
@@ -337,7 +337,7 @@ make[1]: Leaving directory `/home/Dgt/dejagnu.test' make: *** [check-am] Fehler 
 <para>Did you see the  line &quot;FAIL:&quot;? The test cases for calc catch the bug in the calc.c file. Fix the error in calc.c later as the following examples assume a unchanged calc.c.</para>
 
 <para>Examine the output files calc.sum and calc.log. Try to
-understand the testcases written in
+understand the test cases written in
 ~/dejagnu.test/testsuite/calc.test/calc.exp. To understand Expect you
 might take a look at the book &quot;Exploring Expect&quot;, which is
 an excellent resource for learning and using Expect. (Pub: O'Reilly,
@@ -441,8 +441,9 @@ runtest -v -v -v --tool calc CALC=`pwd`/calc --srcdir ./testsuite
 
 <para>Calling runtest with the '--debug'-flag logs a lot of details to dbg.log where you can analyse it afterwards. </para>
 
-<para>In all test cases you can temporary adjust the verbosity of information by adding the following Tcl-command to any tcl file that gets loaded by
-dejagnu, for instance, ~/.dejagnurc:</para>
+<para>In all test cases you can temporary adjust the verbosity of
+information by adding the following Tcl command to any Tcl file that
+gets loaded by dejagnu, for instance, ~/.dejagnurc:</para>
 
 <programlisting>
 set verbose 9
@@ -480,7 +481,7 @@ expect {
 
 <para>Testing remote targets is a lot trickier especially if you are using an
  embedded target
-which has no built in support for things like a compiler, ftp server or a Bash-shell.
+which has no built in support for things like a compiler, FTP server or a Bash-shell.
 Before you can test calc on a remote target you have to acquire a few basics skills.</para>
 
 <sect3>
@@ -488,7 +489,7 @@ Before you can test calc on a remote target you have to acquire a few basics ski
 <para>The easiest remote host is usually the host you are working on.
 In this example we will use telnet to login in your own workstation.
 For security reasons you should never have a telnet daemon running on
-machine connected on the internet, as password and usernames are transmitted
+machine connected on the Internet, as password and user names are transmitted
  in clear text.
 We assume you know how to setup your machine for a telnet daemon.</para>
 
@@ -621,7 +622,7 @@ remote_expect $target 5 {
 
 <para>Now setup a real target.
 In the following example we assume as target a PowerBook running Debian.
-As above add a test user "dgt", install telnet and FTP servers.
+As above add a test user "dgt", install Telnet and FTP servers.
 In order to distinguish it from the host add the line
 <programlisting>PS1='test:>'</programlisting> to /home/dgt/.bash_profile.
 Also add a corresponding entry "powerbook" to /etc/hosts and verify that you
@@ -949,7 +950,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  ``triple'' name as used by <command>configure</command>. This
 	  is the type of machine &dj; and the tools to be tested are built
 	  on. For a normal cross this is the same as the host, but for a
-	  canadian cross, they are separate.</para></listitem>
+	  Canadian cross, they are separate.</para></listitem>
 	</varlistentry>
 
         <varlistentry>
@@ -968,7 +969,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  be run on, which may not be the same as the
 	  <emphasis>build</emphasis> machine. If <option>--build</option>
 	  is also specified, then <option>--host</option> refers to the
-	  machine that the tests wil, be run on, not the machine &dj; is run
+	  machine that the tests will be run on, not the machine &dj; is run
 	  on.</para></listitem>
 	</varlistentry>
 
@@ -1669,7 +1670,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       target between multiple developers. There are settings for both
       remote targets and remote hosts.  Here's an example of a Master
       Config File (also called the Global config file) for a
-      <emphasis>canadian cross</emphasis>. A canadian cross is when
+      <emphasis>Canadian cross</emphasis>. A Canadian cross is when
       you build and test a cross compiler on a machine other than the
       one it's to be hosted on.</para>
 
@@ -1718,7 +1719,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     don't support Expect, &dj; can be run on the local build
     machine, and it can connect to the remote host and run all the
     tests for this cross compiler on that host. All the remote OS
-    requires is a working telnetd.</para>
+    requires is a working Telnet server.</para>
 
     <para>As you can see, all one does is set the variable
     <symbol>target_list</symbol> to the list of targets and options to
@@ -1815,11 +1816,11 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     <sect2 id="releng" xreflabel="Remote Host Testing">
       <title>Remote Host Testing</title>
 
-      <note><para>Thanks to Dj Delorie for the original paper that
+      <note><para>Thanks to DJ Delorie for the original paper that
       this section is based on.</para></note>
 
       <para>&dj; also supports running the tests on a remote
-      host. To set this up, the remote host needs an ftp server, and a
+      host. To set this up, the remote host needs an FTP server, and a
       telnet server. Currently foreign operating systems used as
       remote hosts are VxWorks, VRTX, DOS/Windows 3.1, MacOS and Windows.</para>
 
@@ -1952,7 +1953,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       <title>Config File Values</title>
 
       <para>&dj; uses a named array in Tcl to hold all the info for
-      each machine. In the case of a canadian cross, this means host
+      each machine. In the case of a Canadian cross, this means host
       information as well as target information. The named array is
       called <symbol>target_info</symbol>, and it has two indices. The
       following fields are part of the array.</para>
@@ -3152,7 +3153,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
       <para>&dj; uses a single header file to assist in unit
       testing. As this file also produces its one test state output,
-      it can be run standalone, which is very useful for testing on
+      it can be run stand-alone, which is very useful for testing on
       embedded systems. This header file has a C and C++ API for the
       test states, with simple totals, and standardized
       output. Because the output has been standardized, &dj; can be
