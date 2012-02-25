@@ -1,3 +1,9 @@
+2012-02-25  Ben Elliston  <bje@gnu.org>
+
+	* runtest: Search /usr/share/dejagnu and /usr/local/share/dejagnu
+	for runtest.exp as a last resort (for usrmove environments, where
+	/bin is a link to /usr/bin). From Honza Horak <hhorak@redhat.com>.
+
 2011-12-30  Ben Elliston  <bje@gnu.org>
 
 	* doc/user.xml: Various spelling and consistency fixes.

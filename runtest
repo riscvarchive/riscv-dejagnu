@@ -109,7 +109,7 @@ fi
 #
 # .. which is a very weak assumption
 
-for i in `echo ${execpath} | sed  -e 's@/[^/]*$@/share/dejagnu@'` `echo ${execpath} | sed  -e 's@/[^/]*/[^/]*$@/share/dejagnu@'` $execpath ; do
+for i in `echo ${execpath} | sed  -e 's@/[^/]*$@/share/dejagnu@'` `echo ${execpath} | sed  -e 's@/[^/]*/[^/]*$@/share/dejagnu@'` $execpath /usr/share/dejagnu /usr/local/share/dejagnu ; do
     if expr $verbose \> 1 > /dev/null ; then
 	echo Looking for $i/runtest.exp.
     fi
