@@ -1,5 +1,9 @@
 2012-03-24  Bernhard Reutner-Fischer  <aldot@gcc.gnu.org>
 
+	* runtest.exp (load_tool_init): Fix typo in -de option handling.
+
+2012-03-24  Bernhard Reutner-Fischer  <aldot@gcc.gnu.org>
+
 	* doc/runtest.1: Correct name of debug file.
 
 2012-02-25  Ben Elliston  <bje@gnu.org>

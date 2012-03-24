@@ -1063,7 +1063,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 
 	"--de*" {			# (--debug) expect internal debugging
 	    if {[file exists ./dbg.log]} {
-		catch [file delete -force -- dbg.log"
+		catch [file delete -force -- dbg.log]
 	    }
 	    if { $verbose > 2 } {
 		exp_internal -f dbg.log 1
