@@ -1,5 +1,5 @@
 # Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000, 2001
-# 2002, 2003, 2005, 2006, 2007, 2008, 2009, 2010 Free Software Foundation, Inc.
+# 2002, 2003, 2005, 2006, 2007, 2008, 2009, 2010, 2012 Free Software Foundation, Inc.
 #
 # This file is part of DejaGnu.
 #
@@ -65,6 +65,7 @@ proc open_logs { } {
     global tool
     global sum_file
     global xml_file
+    global xml_file_name
     global xml
 
     if { ${tool} ==  "" } {
@@ -74,7 +75,10 @@ proc open_logs { } {
     set sum_file [open [file join $outdir $tool.sum] w]
     if { $xml } {
 	catch "file delete -force -- $outdir/$tool.xml"
-	set xml_file [open [file join $outdir $tool.xml] w]
+	if { ![string compare $xml_file_name ""] } {
+	    set xml_file_name $tool.xml
+	}
+	set xml_file [open [file join $outdir $xml_file_name] w]
 	xml_output "<?xml version=\"1.0\"?>"
 	insertdtd
 	xml_output "<testsuite>"

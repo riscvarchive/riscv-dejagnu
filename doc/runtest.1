@@ -92,8 +92,9 @@ Use more than once to increase output further.
 .B --version,\ -V
 Prints out the versions of DejaGnu, Expect and Tcl.
 .TP
-.B --xml,\ -x
-Generate XML output.
+.B --xml[=FILE],\ -x
+Generate XML output.  \fBFILE\fR is optional; if given it is the name of
+the output file.  If not given, the output file is named after the tool.
 .TP
 .B -D[number]
 Activate the Tcl debugger.  \fBnumber\fR can be either 1 or 0. If it

@@ -1,3 +1,11 @@
+2012-06-11  Tom Tromey  <tromey@redhat.com>
+
+	* doc/runtest.1: Update.
+	* runtest.exp (xml_file_name): New global.
+	(usage): Update.
+	Handle optional argument to --xml.
+	* lib/framework.exp (open_logs): Respect xml_file_name.
+
 2012-03-24  Bernhard Reutner-Fischer  <aldot@gcc.gnu.org>
 
 	* runtest.exp (load_tool_init): Fix typo in -de option handling.

@@ -1,6 +1,6 @@
 # runtest.exp -- Test framework driver
 # Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000,
-# 2001, 2002, 2003 Free Software Foundation, Inc.
+# 2001, 2002, 2003, 2012 Free Software Foundation, Inc.
 #
 # This file is part of DejaGnu.
 #
@@ -55,7 +55,8 @@ set kfail_flag  0		;# indicates that it is a known failure
 set kfail_prms	0		;# bug id for the description of the known failure
 set sum_file	""		;# name of the file that contains the summary log
 set base_dir	""		;# the current working directory
-set xml_file    ""              ;# name of the xml output if requested
+set xml_file_name ""		;# name of the xml output if requested
+set xml_file    ""              ;# handle on the xml file if requested
 set xml         0               ;# flag for requesting xml
 set logname     ""		;# the users login name
 set prms_id	0               ;# GNATS prms id number
@@ -395,7 +396,7 @@ proc usage { } {
     send_user "\t--directory (-di) name\tRun only the tests in directory 'name'\n"
     send_user "\t--verbose (-v)\t\tEmit verbose output\n"
     send_user "\t--version (-V)\t\tEmit all version numbers\n"
-    send_user "\t--xml (-x)\t\tTurn on XML output generation\n"
+    send_user "\t--xml\[=name\] (-x)\tTurn on XML output generation\n"
     send_user "\t--D\[0-1\]\t\tTcl debugger\n"
     send_user "\tscript.exp\[=arg(s)\]\tRun these tests only\n"
     if { [info exists tool] } {
@@ -1168,6 +1169,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 	}
 
 	"--x*" {
+	    set xml_file_name $optarg
 	    set xml 1
 	    verbose "XML logging turned on"
 	    continue
