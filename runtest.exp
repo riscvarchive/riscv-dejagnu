@@ -185,7 +185,6 @@ proc verbose { args } {
     set message [lindex $args $i]
 
     if { $verbose >= $level } {
-	# There is no need for the "--" argument here, but play it safe.
 	# We assume send_user also sends the text to the log file (which
 	# appears to be the case though the docs aren't clear on this).
 	if { $newline } {
@@ -195,9 +194,9 @@ proc verbose { args } {
 	}
     } elseif { $logfile } {
 	if { $newline } {
-	    send_log "$message\n"
+	    send_log -- "$message\n"
 	} else {
-	    send_log "$message"
+	    send_log -- "$message"
 	}
     }
 }

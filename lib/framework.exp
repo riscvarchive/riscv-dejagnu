@@ -311,18 +311,18 @@ proc clone_output { message } {
 	"UNSUPPORTED:" -
 	"UNTESTED:" {
 	    if {$all_flag} {
-		send_user "$message\n"
+		send_user -- "$message\n"
 		return "$message"
 	    } else {
-		send_log "$message\n"
+		send_log -- "$message\n"
 	    }
 	}
 	{"ERROR:" "WARNING:" "NOTE:"} {
-	    send_error "$message\n"
+	    send_error -- "$message\n"
 	    return "$message"
 	}
 	default {
-	    send_user "$message\n"
+	    send_user -- "$message\n"
 	    return "$message"
 	}
     }
