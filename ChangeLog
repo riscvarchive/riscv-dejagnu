@@ -1,3 +1,7 @@
+2012-08-22  Steve Ellcey  <sellcey@mips.com>
+
+	* baseboards/generic-sim.exp: New baseboard definition.
+
 2012-06-15  Andreas Schwab  <schwab@linux-m68k.org>
 
 	* lib/framework.exp (clone_output): Protect from leading dash in
