@@ -141,6 +141,12 @@ baseboard_SCRIPTS = \
 	baseboards/mips-sim-idt32.exp \
 	baseboards/mips-sim-idt64.exp \
 	baseboards/mips-sim.exp \
+	baseboards/mips-sim-mti32.exp \
+	baseboards/mips-sim-mti64.exp \
+	baseboards/mips-sim-mti64_n32.exp \
+	baseboards/mips-sim-mti64_64.exp \
+	baseboards/mips-sim-sde32.exp \
+	baseboards/mips-sim-sde64.exp \
 	baseboards/mips64-sim.exp \
 	baseboards/mips64vr4100-sim.exp \
 	baseboards/mmixware-sim.exp \

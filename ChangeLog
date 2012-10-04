@@ -1,3 +1,14 @@
+2012-10-04  Steve Ellcey  <sellcey@mips.com>
+
+	* Makefile.am (baseboard_SCRIPTS): Add new baseboards.
+	* Makefile.in: Regenerate.
+	* baseboards/mips-sim-mti32.exp: New.
+	* baseboards/mips-sim-mti64.exp: New.
+	* baseboards/mips-sim-mti64_n32.exp: New.
+	* baseboards/mips-sim-mti64_64.exp: New.
+	* baseboards/mips-sim-sde32.exp: New.
+	* baseboards/mips-sim-sde64.exp: New.
+
 2012-10-04  Ben Elliston  <bje@gnu.org>
 
 	* aclocal.m4: Regenerate with automake 1.11.3.
