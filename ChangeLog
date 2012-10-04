@@ -1,3 +1,9 @@
+2012-10-04  Ben Elliston  <bje@gnu.org>
+
+	* aclocal.m4: Regenerate with automake 1.11.3.
+	* Makefile.in: Likewise.
+	* configure: Regenerate with autoconf 2.68.
+
 2012-08-22  Steve Ellcey  <sellcey@mips.com>
 
 	* baseboards/generic-sim.exp: New baseboard definition.
