@@ -1,6 +1,0 @@
-2011-03-14  Ben Elliston  <bje@gnu.org>
-
-	* Makefile.in: Regenerate.
-	* aclocal.m4: Likewise.
-	* configure: Likewise.
-	* testsuite/Makefile.in: Likewise.

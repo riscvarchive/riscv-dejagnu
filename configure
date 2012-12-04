@@ -680,7 +680,7 @@ CPPFLAGS
 CXX
 CXXFLAGS
 CCC'
-ac_subdirs_all='example/calc example/hello example/mathhelper'
+ac_subdirs_all='example/calc example/mathhelper'
 
 # Initialize some variables set by options.
 ac_init_help=
@@ -4023,7 +4023,7 @@ fi
 
 
 
-subdirs="$subdirs example/calc example/hello example/mathhelper"
+subdirs="$subdirs example/calc example/mathhelper"
 
 ac_config_files="$ac_config_files Makefile"
 

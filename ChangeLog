@@ -1,3 +1,9 @@
+2012-12-05  Ben Elliston  <bje@gnu.org>
+
+	* example/hello: Remove.
+	* configure.ac: Likewise.
+	* configure: Regenerate.
+
 2012-10-04  Steve Ellcey  <sellcey@mips.com>
 
 	* Makefile.am (baseboard_SCRIPTS): Add new baseboards.

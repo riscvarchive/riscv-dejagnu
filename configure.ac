@@ -56,5 +56,5 @@ else
   AC_MSG_ERROR([Tcl 8.3 or greater is required])
 fi
 
-AC_CONFIG_SUBDIRS([example/calc example/hello example/mathhelper])
+AC_CONFIG_SUBDIRS([example/calc example/mathhelper])
 AC_OUTPUT([Makefile])
