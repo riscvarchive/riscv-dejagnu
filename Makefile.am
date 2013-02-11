@@ -38,14 +38,27 @@ include_HEADERS = dejagnu.h
 
 pkgdata_SCRIPTS = \
   runtest.exp \
-  lib/debugger.exp lib/dejagnu.exp lib/dg.exp lib/framework.exp \
-  lib/ftp.exp lib/kermit.exp lib/libgloss.exp lib/remote.exp \
-  lib/rlogin.exp lib/rsh.exp lib/standard.exp lib/target.exp \
-  lib/targetdb.exp lib/telnet.exp lib/tip.exp lib/utils.exp
+  lib/debugger.exp \
+  lib/dejagnu.exp \
+  lib/dg.exp \
+  lib/framework.exp \
+  lib/ftp.exp \
+  lib/kermit.exp \
+  lib/libgloss.exp \
+  lib/remote.exp \
+  lib/rlogin.exp \
+  lib/rsh.exp \
+  lib/standard.exp \
+  lib/target.exp \
+  lib/targetdb.exp \
+  lib/telnet.exp \
+  lib/tip.exp \
+  lib/utils.exp
 
 configdir = $(pkgdatadir)/config
 config_DATA = config/README
 config_SCRIPTS = \
+	config/adb.exp \
 	config/arc.exp \
 	config/arm-ice.exp \
 	config/base-config.exp \
@@ -90,6 +103,7 @@ config_SCRIPTS = \
 baseboarddir = $(pkgdatadir)/baseboards
 baseboard_DATA = baseboards/README
 baseboard_SCRIPTS = \
+	baseboards/androideabi.exp \
 	baseboards/am33_2.0-libremote.exp \
 	baseboards/arc-sim.exp \
 	baseboards/arm-ice.exp \
