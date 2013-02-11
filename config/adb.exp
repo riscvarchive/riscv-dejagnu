@@ -46,14 +46,19 @@ proc adb_open { hostname } {
     if [board_info ${hostname} exists shell_prompt] {
 	set shell_prompt [board_info ${hostname} shell_prompt]
     } else {
-	set shell_prompt "# "
+	set shell_prompt "root@android:/ # "
     }
 
     if [board_info $hostname exists fileid] {
 	unset board_info($hostname,fileid)
     }
 
-    spawn adb [adb_serial] shell
+    set serial [adb_serial]
+    if { $serial != "" } {
+      spawn adb [adb_serial] shell
+    } else {
+      spawn adb shell
+    }
     if { $spawn_id < 0 } {
 	perror "invalid spawn id from adb"
 	return -1
@@ -80,7 +85,7 @@ proc adb_open { hostname } {
 
     if { $result < 0 } {
 	#	perror "adb shell: couldn't connect after $tries tries."
-	close -i $spawn_id
+	catch "close -i $spawn_id"
 	set spawn_id -1
     } else {
 	set board_info($hostname,fileid) $spawn_id
@@ -94,8 +99,11 @@ proc adb_open { hostname } {
 #
 
 proc adb_download {desthost srcfile destfile} {
-    set status [catch "exec adb [adb_serial] shell rm $destfile |& cat" output]
-    set status [catch "exec adb [adb_serial] push $srcfile $destfile |& cat" output]
+    set serial [adb_serial]
+    verbose "Removing old executable: adb $serial shell rm $destfile" 3
+    set status [catch "exec adb $serial shell rm $destfile |& cat" output]
+    verbose "Downloading: adb $serial shell push $srcfile $destfile" 3
+    set status [catch "exec adb $serial push $srcfile $destfile |& cat" output]
     if { $status == 0 } {
 	verbose "Copied $srcfile to $destfile" 2
 	return $destfile
@@ -132,14 +140,14 @@ proc adb_exec { boardname cmd args } {
 	set inp ""
     }
 
-    verbose "Executing $boardname:$cmd $pargs < $inp"
-
     # If CMD sends any output to stderr, exec will think it failed.  More often
     # than not that will be true, but it doesn't catch the case where there is
     # no output but the exit code is non-zero.
     if { $inp == "" } {
 	set inp "/dev/null"
     }
+
+    verbose "Executing $boardname:$cmd $pargs < $inp "
 
     set status [catch "exec cat $inp | adb [adb_serial] shell \( $cmd $pargs \) \\; echo XYZ\\\$\\\{\?\\\}ZYX |& cat" output]
     # `status' doesn't mean much here other than adb worked ok.

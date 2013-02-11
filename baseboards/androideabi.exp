@@ -23,7 +23,7 @@ load_base_board_description "adb"
 
 set_board_info compiler  "[find_gcc]"
 
-# We need -mandroid.
+# We may need -mandroid.
 set_board_info cflags  "-mandroid"
 
 # Currently the dynamic linker does not support weak-references in
@@ -34,9 +34,9 @@ set_board_info ldflags  "-mandroid -static"
 # load PROG to DEST and run it with ARGS using adb
 #
 proc adb_load { dest prog args } {
-    # /sqlite_stmt_journals uses tmpfs.  So it is the default place to run
+    # This directory uses tmpfs, so it is the best place to run
     # tests to avoid excessive wear of flash.
-    set android_tmp_dir "/sqlite_stmt_journals"
+    set android_tmp_dir "/mnt/sdcard/.android_secure"
 
     if { [llength $args] > 0 } {
 	set pargs [lindex $args 0]
