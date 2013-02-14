@@ -1,10 +1,10 @@
 2013-02-11  Rob Savoye	<rob@welcomehome.org>
-	* .gitignore: Ignore some files when using 'git status'.
+
 	* baseboards/androideabi.exp: Board support for Android using ADB.
-	* config/adb.exp: : Config support for Android using ADB.
-	* Makefile.am: Add config and board files to dist.
-	* aclocal.m5, Makefile.in */configure: Regenerated with newer
-	autotools.
+	* config/adb.exp: Config support for Android using ADB.
+	* Makefile.am (dist): Add new config and board files.
+	* aclocal.m4, Makefile.in, configure, example/calc/configure,
+	example/mathhelper/configure: Regenerated with newer autotools.
 
 2012-12-05  Ben Elliston  <bje@gnu.org>
 
