@@ -1,3 +1,9 @@
+2013-02-15  Rob Savoye  <rob@welcomehome.org>
+
+	* config/adb.exp: Remove the test case after executing
+	it. Otherwise we can fill up all the diskspace on a small target
+	pretty fast.
+
 2013-02-11  Rob Savoye	<rob@welcomehome.org>
 
 	* baseboards/androideabi.exp: Board support for Android using ADB.

@@ -16,6 +16,10 @@
 # along with DejaGnu; if not, write to the Free Software Foundation,
 # Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 
+# If true, all testcases onthe host target are deleted after being executed
+# to save disk space.
+set remove_test true
+
 #
 # Get serial number in case of multiple devices
 #
@@ -128,6 +132,8 @@ proc adb_upload {desthost srcfile destfile} {
 # Execute "$cmd $args[0]" on $boardname.
 #
 proc adb_exec { boardname cmd args } {
+    global remove_test
+
     if { [llength $args] > 0 } {
 	set pargs [lindex $args 0]
 	if { [llength $args] > 1 } {
@@ -150,12 +156,19 @@ proc adb_exec { boardname cmd args } {
     verbose "Executing $boardname:$cmd $pargs < $inp "
 
     set status [catch "exec cat $inp | adb [adb_serial] shell \( $cmd $pargs \) \\; echo XYZ\\\$\\\{\?\\\}ZYX |& cat" output]
+
+    if { $remove_test == true} {
+	verbose "Removing test executable: $cmd" 2
+	set status [catch "exec adb [adb_serial] shell rm $cmd |& cat" rmout]
+    }
+
     # `status' doesn't mean much here other than adb worked ok.
     # What we want is whether $cmd ran ok.
     if { $status != 0 } {
 	regsub "XYZ(\[0-9\]*)ZYX\n?" $output "" output
 	return [list -1 "adb to $boardname failed for $cmd, $output"]
     }
+
     regexp "XYZ(\[0-9\]*)ZYX" $output junk status
     verbose "adb_exec: status:$status text:$output" 4
     if { $status == "" } {
