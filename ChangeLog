@@ -1,3 +1,9 @@
+2013-02-16  Rob Savoye  <rob@build.welcomehome.org>
+
+	* config/adb.exp: Add adb_file so we can remotely delete test
+	cases to save on limited disk space. Don't remove the file after
+	executing it, leave that for the test driver instead.
+
 2013-02-15  Rob Savoye  <rob@welcomehome.org>
 
 	* config/adb.exp: Remove the test case after executing
