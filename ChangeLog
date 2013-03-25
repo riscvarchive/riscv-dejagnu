@@ -1,3 +1,8 @@
+2013-03-26  Ben Elliston  <bje@gnu.org>
+
+	* config.guess: Update to version 2013-02-12.
+	* config.sub: Likewise.
+
 2013-02-16  Rob Savoye  <rob@build.welcomehome.org>
 
 	* config/adb.exp: Add adb_file so we can remotely delete test
