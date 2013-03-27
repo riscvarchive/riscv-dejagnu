@@ -44,7 +44,6 @@ proc make_defaults_file { defs } {
     puts ${fd} "set target_triplet ${target_triplet}"
     puts ${fd} "set target_os ${target_os}"
     puts ${fd} "set target_cpu ${target_cpu}"
-    puts ${fd} "set tool foobar"
     puts ${fd} "set testcnt 0"
     puts ${fd} "set warncnt 0"
     puts ${fd} "set errcnt 0"

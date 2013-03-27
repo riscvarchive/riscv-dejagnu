@@ -1,3 +1,7 @@
+2013-03-28  Gilles Espinasse  <g.esp@free.fr>
+
+	* testsuite/lib/libsup.exp (make_defaults_file): Only set $tool once.
+
 2013-03-26  Ben Elliston  <bje@gnu.org>
 
 	* config.guess: Update to version 2013-02-12.
