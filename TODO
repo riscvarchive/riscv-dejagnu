@@ -49,8 +49,3 @@ My wish list for dejagnu:
   "log_file -a $outdir/$tool.log", so there is already a copy of
   the compiler output in the log file.  Just "verbose ..." or
   nothing at all.
-
-. Reset $warncnt and $errcnt at the start of each script.  Right now,
-  if an error happens in a script and then no tests are run,
-  $errcnt carries over to the next script and forces the first test
-  of the new script to be UNRESOLVED.

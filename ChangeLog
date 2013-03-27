@@ -1,5 +1,9 @@
 2013-03-28  Gilles Espinasse  <g.esp@free.fr>
 
+	* TODO: Remove todo item about warncnt and errcnt.
+
+2013-03-28  Gilles Espinasse  <g.esp@free.fr>
+
 	* testsuite/lib/libsup.exp (make_defaults_file): Only set $tool once.
 
 2013-03-26  Ben Elliston  <bje@gnu.org>
