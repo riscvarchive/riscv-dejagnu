@@ -268,7 +268,7 @@ dejagnu.ps: $(XML)
 dejagnu.rtf: $(XML)
 	$(DOCBOOK2RTF) $(srcdir)/doc/dejagnu.xml
 
-html:
+html-local:
 	$(DOCBOOK2HTML) -o html $(srcdir)/doc/dejagnu.xml
 
 if MAINTAINER_MODE

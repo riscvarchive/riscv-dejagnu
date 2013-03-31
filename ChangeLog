@@ -1,3 +1,10 @@
+2013-03-31  Ben Elliston  <bje@gnu.org>
+
+	* Makefile.am (html-local): Rename target from html.
+	* Makefile.in: Regenerate with automake 1.12.6.
+	* aclocal.m4: Likewise.
+	* configure: Regenerate.
+
 2013-03-28  Gilles Espinasse  <g.esp@free.fr>
 
 	* TODO: Remove todo item about warncnt and errcnt.
