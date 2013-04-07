@@ -133,6 +133,7 @@ proc prune_warnings { text } {
     }
 
     # See Brendan for the raison d'etre of this one.
+    # http://en.wikipedia.org/wiki/Brendan_Kehoe
     if {[ishost "alpha*-*-*"]} {
 	regsub -all "(^|\n)(/usr/(ucb|bin)/ld.*without exceptions was\[^\n\]+\n?)" $text "\\1" text
     }
@@ -244,6 +245,7 @@ proc prune_warnings { text } {
     regsub -all "(^|\n)(ld.so: warning:\[^\n\]*\n?)+" $text "\\1" text
 
     # See Brendan for the raison d'etre of this one.
+    # http://en.wikipedia.org/wiki/Brendan_Kehoe
     if {[string match "alpha*-*-*" $host_triplet]} {
 	regsub -all "(^|\n)(/usr/(ucb|bin)/ld.*without exceptions was\[^\n\]+\n?)" $text "\\1" text
     }
