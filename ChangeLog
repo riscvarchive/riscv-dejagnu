@@ -1,3 +1,12 @@
+2013-06-08  Makoto Fujiwara  <makoto@ki.nu>
+
+	* Makefile.am (pkgdata_DATA): Rename from pkgdata_SCRIPTS.
+	(config_DATA): Likewise for config_SCRIPTS.
+	(baseboard_DATA): Likewise for baseboard_SCRIPTS.
+	(EXTRA_DIST): Remove pkgdata_SCRIPTS, config_SCRIPTS and
+	baseboard_SCRIPTS.
+	* Makefile.in: Regenerate.
+
 2013-06-08  Ben Elliston  <bje@gnu.org>
 
 	* configure: Regenerate with autoconf 2.69.

@@ -22,9 +22,7 @@
 AUTOMAKE_OPTIONS = dejagnu
 
 EXTRA_DIST = ChangeLog-1992 MAINTAINERS runtest site.tmpl \
-	$(pkgdata_DATA) $(pkgdata_SCRIPTS) \
-	$(config_DATA) $(config_SCRIPTS) \
-	$(baseboard_DATA) $(baseboard_SCRIPTS) \
+	$(pkgdata_DATA) $(config_DATA) $(baseboard_DATA) \
 	$(TESTSUITE_FILES) $(XML) $(CONTRIB)
 
 DISTCLEANFILES = xXx.log xXx.sum x.log x.sum testrun.log testrun.sum
@@ -36,7 +34,9 @@ all-local:
 bin_SCRIPTS = runtest
 include_HEADERS = dejagnu.h
 
-pkgdata_SCRIPTS = \
+pkgdata_DATA = \
+  stub-loader.c \
+  testglue.c \
   runtest.exp \
   lib/debugger.exp \
   lib/dejagnu.exp \
@@ -56,8 +56,8 @@ pkgdata_SCRIPTS = \
   lib/utils.exp
 
 configdir = $(pkgdatadir)/config
-config_DATA = config/README
-config_SCRIPTS = \
+config_DATA = \
+	config/README \
 	config/adb.exp \
 	config/arc.exp \
 	config/arm-ice.exp \
@@ -101,8 +101,8 @@ config_SCRIPTS = \
 	config/vxworks.exp
 
 baseboarddir = $(pkgdatadir)/baseboards
-baseboard_DATA = baseboards/README
-baseboard_SCRIPTS = \
+baseboard_DATA = \
+	baseboards/README \
 	baseboards/androideabi.exp \
 	baseboards/am33_2.0-libremote.exp \
 	baseboards/arc-sim.exp \
@@ -207,8 +207,6 @@ baseboard_SCRIPTS = \
 	baseboards/x86-cygmon.exp \
 	baseboards/xscale-cygmon.exp \
 	baseboards/xtensa-sim.exp
-
-pkgdata_DATA = stub-loader.c testglue.c
 
 djlibexecdir = $(pkgdatadir)/libexec
 djlibexec_SCRIPTS = config.guess
