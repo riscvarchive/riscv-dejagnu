@@ -16,7 +16,7 @@ proc lib_pat_test { cmd arg pattern } {
 	return 0
     }
 }
-	
+
 # this tests a proc for a returned value
 proc lib_ret_test { cmd arg val } {
     catch "$cmd \"$arg\"" result
@@ -58,7 +58,7 @@ proc run_tests { tests } {
     }
 }
 
-proc send_log { msg } {
+proc send_log { args } {
     # this is just a stub for testing
 }
 

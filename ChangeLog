@@ -1,3 +1,9 @@
+2013-06-12  Bernhard Reutner-Fischer  <aldot@gcc.gnu.org>
+
+	* testsuite/runtest.all/default_procs.tcl (send_log): Use the
+	magic "args" parameter name, as expect send_log proc accepts -- as
+	a leading option.
+
 2013-06-08  Makoto Fujiwara  <makoto@ki.nu>
 
 	* Makefile.am (pkgdata_DATA): Rename from pkgdata_SCRIPTS.
