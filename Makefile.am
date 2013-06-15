@@ -20,6 +20,7 @@
 # Process this file with automake to generate Makefile.in
 
 AUTOMAKE_OPTIONS = dejagnu
+export DEJAGNU
 
 EXTRA_DIST = ChangeLog-1992 MAINTAINERS runtest site.tmpl \
 	$(pkgdata_DATA) $(config_DATA) $(baseboard_DATA) \

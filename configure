@@ -590,6 +590,7 @@ am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
 subdirs
+DEJAGNU
 EXPECT
 DOCBOOK2TEXI
 DOCBOOK2PS
@@ -4055,6 +4056,12 @@ $as_echo "${ac_cv_dg_tcl_modern}" >&6; }
 else
   as_fn_error $? "Tcl 8.3 or greater is required" "$LINENO" 5
 fi
+
+if test x"$DEJAGNU" = x
+then
+  DEJAGNU="/dev/null"
+fi
+
 
 
 

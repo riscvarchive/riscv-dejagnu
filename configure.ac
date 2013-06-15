@@ -56,5 +56,11 @@ else
   AC_MSG_ERROR([Tcl 8.3 or greater is required])
 fi
 
+if test x"$DEJAGNU" = x
+then
+  DEJAGNU="/dev/null"
+fi
+AC_SUBST(DEJAGNU)
+
 AC_CONFIG_SUBDIRS([example/calc example/mathhelper])
 AC_OUTPUT([Makefile])

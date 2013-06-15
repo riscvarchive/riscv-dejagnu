@@ -193,6 +193,7 @@ CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
+DEJAGNU = @DEJAGNU@
 DEPDIR = @DEPDIR@
 DOCBOOK2HTML = @DOCBOOK2HTML@
 DOCBOOK2PDF = @DOCBOOK2PDF@
@@ -1444,6 +1445,7 @@ uninstall-man: uninstall-man1
 	uninstall-man1 uninstall-pdf-am uninstall-pkgdataDATA \
 	uninstall-ps-am
 
+export DEJAGNU
 
 # Give a reassuring message so that users know the "build" worked.
 all-local:

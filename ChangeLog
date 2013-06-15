@@ -1,3 +1,10 @@
+2013-06-15  Ben Elliston  <bje@gnu.org>
+
+	* configure.ac: If DEJAGNU is unset, set it to /dev/null.
+	* Makefile.am: Export DEJAGNU.
+	* configure: Likewise.
+	* Makefile.in: Regenerate.
+
 2013-06-15  Bernhard Reutner-Fischer  <aldot@gcc.gnu.org>
 
 	* doc/user.xml: Fix typos.
