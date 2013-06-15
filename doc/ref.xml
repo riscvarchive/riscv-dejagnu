@@ -510,7 +510,7 @@
 	<sect4 id="xpass" xreflabel="xpass procedure">
           <title>Xpass Procedure</title>
 
-	  <para>Declares a test to have unexpectably passed, when it was
+	  <para>Declares a test to have unexpectedly passed, when it was
 	  expected to be a failure.  <function>xpass</function>
 	  writes in the log files a message beginning with
 	  <emphasis>XPASS</emphasis> (or <emphasis>XFAIL</emphasis>, if failure
@@ -535,7 +535,7 @@
 	<sect4 id="xfail" xreflabel="xfail procedure">
           <title>Xfail Procedure</title>
 
-	  <para>Declares a test to have expectably
+	  <para>Declares a test to have expectedly
 	  failed. <function>xfail</function>
 	  writes in the log files a message beginning with
 	  <emphasis>XFAIL</emphasis> (or <emphasis>PASS</emphasis>, if success
@@ -3386,7 +3386,7 @@
 
       <para>Each combination of target and tool requires some
       target-dependent procedures.  The names of these procedures have
-      a common form: the tool name, followed by an underbar
+      a common form: the tool name, followed by an underscore
       <emphasis>_</emphasis>, and finally a suffix describing the
       procedure's purpose.  For example, a procedure to extract the
       version from <productname>GDB</productname> is called

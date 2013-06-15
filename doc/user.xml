@@ -17,7 +17,7 @@ run (as root):</para>
 <programlisting>apt-get install dejagnu</programlisting>
 <para>
 These examples were run on a primary machine with a AMD K6 and a Mac
-Powerbook G3 serving as a remote target.</para>
+PowerBook G3 serving as a remote target.</para>
 
 <para> The tests for Windows were run under Windows using the actual
 Cygwin version (1.3.x as of October 2001). Its target system was a PPC
@@ -129,7 +129,7 @@ dgt:~/dejagnu.test$ cp -r /usr/share/doc/dejagnu/examples/calc/\
 {configure.in,Makefile.am,calc.c,testsuite} .
 </programlisting>
 
-<para>In Makemake.am note the presence of the AUTOMAKE_OPTIONS = dejagnu. This option is needed.</para>
+<para>In Makefile.am note the presence of the AUTOMAKE_OPTIONS = dejagnu. This option is needed.</para>
 
 <para>Run aclocal to generate aclocal.m4, which is a collection of
 macros needed by configure.in</para> 

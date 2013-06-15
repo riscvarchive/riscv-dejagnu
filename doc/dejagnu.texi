@@ -455,7 +455,7 @@ apt-get install dejagnu
 @end example
 
 These examples were run on a primary machine with a AMD K6 and a Mac
-Powerbook G3 serving as a remote target.
+PowerBook G3 serving as a remote target.
 
 The tests for Windows were run under Windows using the actual
 Cygwin version (1.3.x as of October 2001). Its target system was a PPC
@@ -587,7 +587,7 @@ dgt:~/dejagnu.test$ cp -r /usr/share/doc/dejagnu/examples/calc/\
 @{configure.in,Makefile.am,calc.c,testsuite@} .
 @end example
 
-In Makemake.am note the presence of the AUTOMAKE_OPTIONS = dejagnu. This option is needed.
+In Makefile.am note the presence of the AUTOMAKE_OPTIONS = dejagnu. This option is needed.
 
 Run aclocal to generate aclocal.m4, which is a collection of
 macros needed by configure.in
@@ -3822,7 +3822,7 @@ message.
 @node xpass procedure, xfail procedure, fail procedure, Core Internal Procedures
 @subsubsection Xpass Procedure
 
-Declares a test to have unexpectably passed, when it was
+Declares a test to have unexpectedly passed, when it was
 expected to be a failure.  @code{xpass}
 writes in the log files a message beginning with
 @emph{XPASS} (or @emph{XFAIL}, if failure
@@ -3844,7 +3844,7 @@ state.
 @node xfail procedure, set_warning_threshold procedure, xpass procedure, Core Internal Procedures
 @subsubsection Xfail Procedure
 
-Declares a test to have expectably
+Declares a test to have expectedly
 failed. @code{xfail}
 writes in the log files a message beginning with
 @emph{XFAIL} (or @emph{PASS}, if success
@@ -6095,7 +6095,7 @@ running the tool to be tested, not a test case.
 
 Each combination of target and tool requires some
 target-dependent procedures.  The names of these procedures have
-a common form: the tool name, followed by an underbar
+a common form: the tool name, followed by an underscore
 @emph{_}, and finally a suffix describing the
 procedure's purpose.  For example, a procedure to extract the
 version from GDB is called
