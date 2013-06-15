@@ -2943,7 +2943,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
        controls the depth of definitions expanded.</para></listitem>
 
        <listitem><para>Finally, if the value of
-       <emphasis>verbose</emphasis> is 3 or greater,&dj; turns on
+       <emphasis>verbose</emphasis> is 3 or greater, &dj; turns on
        the expect command <command>log_user</command>.  This command
        prints all expect actions to the expect standard output, to the
        detailed log file, and (if <option>--debug</option> is on) to

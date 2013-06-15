@@ -3117,7 +3117,7 @@ controls the depth of definitions expanded.
 
 @item
 Finally, if the value of
-@emph{verbose} is 3 or greater,DejaGnu turns on
+@emph{verbose} is 3 or greater, DejaGnu turns on
 the expect command @code{log_user}.  This command
 prints all expect actions to the expect standard output, to the
 detailed log file, and (if @code{--debug} is on) to
