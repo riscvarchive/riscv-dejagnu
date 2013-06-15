@@ -1979,10 +1979,11 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	<table frame="all" rowsep="0" colsep="0">
 	  <title>Tcl Variables For Command Line Options</title>
 
-	  <tgroup cols="5" align="char" rowsep="1" colsep="0">
+	  <tgroup cols="3" align="char" rowsep="1" colsep="0">
 	  <thead><row>
-	    <entry>runtest</entry><entry>Tcl</entry>
-	    <entry>option</entry><entry>variable</entry><entry>description</entry>
+	    <entry>runtest option</entry>
+	    <entry>Tcl variable</entry>
+	    <entry>description</entry>
 	  </row></thead>
 	  <tbody>
 

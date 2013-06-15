@@ -2406,46 +2406,46 @@ explanations of the command-line options.
 
 @strong{Tcl Variables For Command Line Options}
 
-@multitable @columnfractions 0.2 0.2 0.2 0.2 0.2
+@multitable @columnfractions 0.333333333333333 0.333333333333333 0.333333333333333
 @item
-runtest@tab Tcl@tab option@tab variable@tab description
+runtest option@tab Tcl variable@tab description
 @item
---all@tab all_flag@tab display all test results if set@tab 
+--all@tab all_flag@tab display all test results if set
 @item
 --baud@tab baud@tab set the default baud rate to something other than
-9600.@tab 
+9600.
 @item
 --connect@tab connectmode@tab @code{rlogin},
 @code{telnet}, @code{rsh},
 @code{kermit}, @code{tip}, or
-@code{mondfe}@tab 
+@code{mondfe}
 @item
 --outdir@tab outdir@tab directory for @file{tool.sum} and
-@file{tool.log.}@tab 
+@file{tool.log.}
 @item
---objdir@tab objdir@tab directory for pre-compiled binaries@tab 
+--objdir@tab objdir@tab directory for pre-compiled binaries
 @item
 --reboot@tab reboot@tab reboot the target if set to
 @emph{"1"}; do not reboot if set to
-@emph{"0"} (the default).@tab 
+@emph{"0"} (the default).
 @item
---srcdir@tab srcdir@tab directory of test subdirectories@tab 
+--srcdir@tab srcdir@tab directory of test subdirectories
 @item
---strace@tab tracelevel@tab a number: Tcl trace depth@tab 
+--strace@tab tracelevel@tab a number: Tcl trace depth
 @item
---tool@tab tool@tab name of tool to test; identifies init, test subdir@tab 
+--tool@tab tool@tab name of tool to test; identifies init, test subdir
 @item
 --verbose@tab verbose@tab verbosity level.  As option, use multiple times; as
-variable, set a number, 0 or greater.@tab 
+variable, set a number, 0 or greater.
 @item
---target@tab target_triplet@tab The canonical configuration string for the target.@tab 
+--target@tab target_triplet@tab The canonical configuration string for the target.
 @item
---host@tab host_triplet@tab The canonical configuration string for the host.@tab 
+--host@tab host_triplet@tab The canonical configuration string for the host.
 @item
 --build@tab build_triplet@tab The canonical configuration string for the build
-host.@tab 
+host.
 @item
---mail@tab address@tab Email the output log to the specified address.@tab 
+--mail@tab address@tab Email the output log to the specified address.
 @end multitable
 
 @node Personal Config File, , Option Variables, Config File Values
