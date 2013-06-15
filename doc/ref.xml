@@ -859,8 +859,11 @@
 	  exclude. This makes a result be a <emphasis>FAIL</emphasis>, even if
 	  the included options are found. To set the conditional, set
 	  the variable <symbol>compiler_conditional_xfail_data</symbol> to the
-	  fields <programlisting>"[message string] [targets list] [includes
-	  list] [excludes list]"</programlisting> (descriptions below). This is
+	  fields</para>
+	  <programlisting>
+	  "[message string] [targets list] [includes list] [excludes list]"
+	  </programlisting>
+	  <para> (descriptions below). This is
 	  the checked at pass/fail decision time, so there is no need to call
 	  the procedure yourself, unless you wish to know if it gets
 	  triggered. After a pass/fail, the variable is reset, so it doesn't
@@ -3677,8 +3680,9 @@
 	  <emphasis>testcase</emphasis> and return <emphasis>1</emphasis> if
 	  found, <emphasis>0</emphasis> if not. <emphasis>runtests</emphasis>
 	  is a list of two elements.  The first is a copy of what was on
-	  the right side of the <emphasis>=</emphasis> if	
-	  <programlisting>foo.exp="..."</programlisting>" was specified, or
+	  the right side of the <emphasis>=</emphasis> if</para>
+	  <programlisting>foo.exp="..."</programlisting>
+	  <para>was specified, or
 	  an empty string if no such argument is present. The second is the
 	  pathname of the current testcase under consideration. This is used
 	  by tools like compilers where each testcase is a file.</para>

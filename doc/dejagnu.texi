@@ -454,7 +454,6 @@ run (as root):
 apt-get install dejagnu
 @end example
 
-@noindent
 These examples were run on a primary machine with a AMD K6 and a Mac
 Powerbook G3 serving as a remote target.
 
@@ -1110,7 +1109,6 @@ In order to distinguish it from the host add the line
 PS1='test:>'
 @end example
 
-@noindent
 to /home/dgt/.bash_profile.
 Also add a corresponding entry "powerbook" to /etc/hosts and verify that you
 are able to ping, telnet and ftp to the target "powerbook".
@@ -2406,7 +2404,6 @@ options and variables you can set in
 @file{site.exp}.  @ref{Invoking Runtest}, for
 explanations of the command-line options.
 
-
 @strong{Tcl Variables For Command Line Options}
 
 @multitable @columnfractions 0.2 0.2 0.2 0.2 0.2
@@ -2879,7 +2876,6 @@ all set by using the @code{set_board_info} procedure. The
 parameters are the field name, followed by the value to set the field
 to.
 
-
 @strong{Common Board Info Fields}
 
 @multitable @columnfractions 0.333333333333333 0.333333333333333 0.333333333333333
@@ -2924,7 +2920,6 @@ only useful to somewhat trying to debug a new board file for one of
 these tools. Many of these are used only by a few testcases, and their
 purpose is esoteric. These are listed with sample values as a guide to
 better guessing if you need to change any of these.
-
 
 @strong{Board Info Fields For GCC & GDB}
 
@@ -3135,16 +3130,12 @@ all of which are slightly different; examine the directories for
 the tool of interest to see which (if any) is most suitable.
 
 Adding a GCC test can be very simple: just add the C code
-to any directory beginning with @file{gcc}. and it
-runs on the next 
+to any directory beginning with @file{gcc} and it
+runs on the next: 
 
 @example
-runtest --tool
-      gcc
+runtest --tool gcc
 @end example
-
-@noindent
-.
 
 To add a test to GDB, first add any source code you will
 need to the test directory. Then you can either create a new
@@ -3217,11 +3208,10 @@ usually too dependent on terminal settings.
 Always escape punctuation, such as @emph{(}
 or @emph{"}, in your patterns; for example, write
 @emph{\(}.  If you forget to escape punctuation,
-you will usually see an error message like 
+you will usually see an error message like:
 
 @example
-extra
-      characters after close-quote.
+extra characters after close-quote
 @end example
 
 If you have trouble understanding why a pattern does not
@@ -4132,14 +4122,14 @@ an ordinary @emph{FAIL}. You can also specify flags to
 exclude. This makes a result be a @emph{FAIL}, even if
 the included options are found. To set the conditional, set
 the variable @code{compiler_conditional_xfail_data} to the
-fields 
+fields
 
 @example
-"[message string] [targets list] [includes
-	  list] [excludes list]"
+
+	  "[message string] [targets list] [includes list] [excludes list]"
+	  
 @end example
 
-@noindent
 (descriptions below). This is
 the checked at pass/fail decision time, so there is no need to call
 the procedure yourself, unless you wish to know if it gets
@@ -6392,14 +6382,13 @@ Search @emph{runtest}s for
 @emph{testcase} and return @emph{1} if
 found, @emph{0} if not. @emph{runtests}
 is a list of two elements.  The first is a copy of what was on
-the right side of the @emph{=} if 
+the right side of the @emph{=} if
 
 @example
 foo.exp="..."
 @end example
 
-@noindent
-" was specified, or
+was specified, or
 an empty string if no such argument is present. The second is the
 pathname of the current testcase under consideration. This is used
 by tools like compilers where each testcase is a file.

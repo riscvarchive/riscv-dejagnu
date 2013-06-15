@@ -13,9 +13,9 @@ subtle problems. You have been warned.</para>
 
 <para>It should be no big problems installing &dj; using your package
 manager or from the source code. On the Debian GNU/Linux system just
-run (as root):
+run (as root):</para>
 <programlisting>apt-get install dejagnu</programlisting>
-
+<para>
 These examples were run on a primary machine with a AMD K6 and a Mac
 Powerbook G3 serving as a remote target.</para>
 
@@ -623,8 +623,9 @@ remote_expect $target 5 {
 <para>Now setup a real target.
 In the following example we assume as target a PowerBook running Debian.
 As above add a test user "dgt", install Telnet and FTP servers.
-In order to distinguish it from the host add the line
-<programlisting>PS1='test:>'</programlisting> to /home/dgt/.bash_profile.
+In order to distinguish it from the host add the line</para>
+<programlisting>PS1='test:>'</programlisting>
+<para> to /home/dgt/.bash_profile.
 Also add a corresponding entry "powerbook" to /etc/hosts and verify that you
 are able to ping, telnet and ftp to the target "powerbook".</para>
 
@@ -1975,7 +1976,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	<filename>site.exp</filename>.  <xref linkend="invoking"/>, for
 	explanations of the command-line options.</para>
 
-	<para><table frame="all" rowsep="0" colsep="0">
+	<table frame="all" rowsep="0" colsep="0">
 	  <title>Tcl Variables For Command Line Options</title>
 
 	  <tgroup cols="5" align="char" rowsep="1" colsep="0">
@@ -2080,8 +2081,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
 	  </tbody>
 	  </tgroup>
-	  </table>
-	</para>
+	</table>
 
     </sect3>
 
@@ -2509,7 +2509,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       parameters are the field name, followed by the value to set the field
       to.</para>
 
-  	 <para><table frame="all" rowsep="0" colsep="0">
+	<table frame="all" rowsep="0" colsep="0">
 	  <title>Common Board Info Fields</title>
 
 	  <tgroup cols="3" align="char" rowsep="1" colsep="0">
@@ -2618,8 +2618,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
 	  </tbody>
 	  </tgroup>
-	  </table>
-	</para>
+	</table>
 
 	 <para>These fields are used by the GCC and GDB tests, and are mostly
 	 only useful to somewhat trying to debug a new board file for one of
@@ -2627,7 +2626,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	 purpose is esoteric. These are listed with sample values as a guide to
 	 better guessing if you need to change any of these.</para>
 
-  	 <para><table frame="all" rowsep="0" colsep="0">
+	<table frame="all" rowsep="0" colsep="0">
 	  <title>Board Info Fields For GCC &amp; GDB</title>
 
 	  <tgroup cols="3" align="char" rowsep="1" colsep="0">
@@ -2832,8 +2831,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
 	  </tbody>
 	  </tgroup>
-	  </table>
-	</para>
+	</table>
 
     </sect2>
 
@@ -2963,9 +2961,9 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       the tool of interest to see which (if any) is most suitable.</para>
 
       <para>Adding a GCC test can be very simple: just add the C code
-      to any directory beginning with <filename>gcc</filename>. and it
-      runs on the next <programlisting>runtest --tool
-      gcc</programlisting>.</para>
+      to any directory beginning with <filename>gcc</filename> and it
+      runs on the next: </para>
+      <programlisting>runtest --tool gcc</programlisting>
 
       <para>To add a test to GDB, first add any source code you will
       need to the test directory. Then you can either create a new
@@ -3036,8 +3034,8 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
       <para>Always escape punctuation, such as <emphasis>(</emphasis>
       or <emphasis>&quot;</emphasis>, in your patterns; for example, write
       <emphasis>\(</emphasis>.  If you forget to escape punctuation,
-      you will usually see an error message like <programlisting>extra
-      characters after close-quote.</programlisting></para>
+      you will usually see an error message like:</para>
+      <programlisting>extra characters after close-quote</programlisting>
 
       <para>If you have trouble understanding why a pattern does not
       match the program output, try using the <option>--debug</option>

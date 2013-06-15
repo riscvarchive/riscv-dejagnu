@@ -1,5 +1,11 @@
 2013-06-15  Bernhard Reutner-Fischer  <aldot@gcc.gnu.org>
 
+	* doc/user.xml: Fix rendering errors around programlisting.
+	* doc/ref.xml: Likewise.
+	* doc/dejagnu.texi: Regenerate.
+
+2013-06-15  Bernhard Reutner-Fischer  <aldot@gcc.gnu.org>
+
 	* doc/user.xml: Fix spacing before productname.
 	* doc/dejagnu.texi: Regenerate.
 
