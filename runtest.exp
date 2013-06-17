@@ -589,7 +589,7 @@ proc lookfor_file { dir name } {
 # source tree, (up one or two levels), then in the current dir.
 #
 proc load_lib { file } {
-    global verbose libdir srcdir base_dir execpath tool
+    global verbose libdir libdirs srcdir base_dir execpath tool
     global loaded_libs
 
     if {[info exists loaded_libs($file)]} {
@@ -597,8 +597,11 @@ proc load_lib { file } {
     }
 
     set loaded_libs($file) ""
-
-    if { [search_and_load_file "library file" $file [list ../lib $libdir $libdir/lib [file dirname [file dirname $srcdir]]/dejagnu/lib $srcdir/lib $execpath/lib . [file dirname [file dirname [file dirname $srcdir]]]/dejagnu/lib]] == 0 } {
+    set search_dirs [list ../lib $libdir $libdir/lib [file dirname [file dirname $srcdir]]/dejagnu/lib $srcdir/lib $execpath/lib . [file dirname [file dirname [file dirname $srcdir]]]/dejagnu/lib]
+    if {[info exists libdirs]} {
+        lappend search_dirs $libdirs
+    }
+    if { [search_and_load_file "library file" $file $search_dirs ] == 0 } {
 	send_error "ERROR: Couldn't find library file $file.\n"
 	exit 1
     }
@@ -652,6 +655,8 @@ set libdir   [file dirname $execpath]/dejagnu
 if {[info exists env(DEJAGNULIBS)]} {
     set libdir $env(DEJAGNULIBS)
 }
+# list of extra search directories used by load_lib to look for libs
+set libdirs {}
 
 verbose "Using $libdir to find libraries"
 

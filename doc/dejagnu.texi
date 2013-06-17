@@ -4257,7 +4257,8 @@ to print string without a trailing newline.  Use the optional
 @node load_lib procedure, , verbose procedure, Core Internal Procedures
 @subsubsection Load_lib Procedure
 
-Loads a DejaGnu library file by searching a fixed path built
+Loads a DejaGnu library file by searching the default fixed paths
+built
 into DejaGnu. If DejaGnu has been installed, it looks in a path
 starting with the installed library directory.  If you are running
 DejaGnu directly from a source directory, without first running
@@ -4278,6 +4279,20 @@ earlier ones.
 The name of the DejaGnu library file to
 load.
 @end table
+
+The global variable @code{libdirs}, handled
+as a list, is appended to the default fixed paths built
+into DejaGnu.
+
+@strong{Additional search directories for load_lib}
+
+@example
+# append a non-standard search path
+	    global libdirs
+	    lappend libdirs $srcdir/../../gcc/testsuite/lib
+	    # now loading $srcdir/../../gcc/testsuite/lib/foo.exp works
+	    load_lib foo.exp
+@end example
 
 @node Procedures For Remote Communication, connprocs, Core Internal Procedures, Builtin Procedures
 @subsection Procedures For Remote Communication

@@ -1,3 +1,13 @@
+2013-06-17  Bernhard Reutner-Fischer  <aldot@gcc.gnu.org>
+
+	* runtest.exp (libdirs): New global variable.
+	(load_lib): Append libdirs to search_and_load_files directories.
+	* doc/ref.xml (load_lib): Document global variable libdirs.
+	* doc/dejagnu.texi: Regenerate.
+	* testsuite/runtest.all/load_lib.exp: New testcase.
+	* Makefile.am (TESTSUITE_FILES): Add new testcase.
+	* Makefile.in: Regenerate.
+
 2013-06-15  Ben Elliston  <bje@gnu.org>
 
 	* configure.ac: If DEJAGNU is unset, set it to /dev/null.

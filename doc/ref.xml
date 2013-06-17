@@ -1015,7 +1015,8 @@
 	<sect4 id="loadlib" xreflabel="load_lib procedure">
 	  <title>Load_lib Procedure</title>
 
-	  <para>Loads a &dj; library file by searching a fixed path built
+	  <para>Loads a &dj; library file by searching the default fixed paths
+	  built
 	  into &dj;. If &dj; has been installed, it looks in a path
 	  starting with the installed library directory.  If you are running
 	  &dj; directly from a source directory, without first running
@@ -1038,6 +1039,18 @@
 	    load.</para></listitem>
           </varlistentry>
 	</variablelist>
+	  <para>The global variable <parameter>libdirs</parameter>, handled
+	  as a list, is appended to the default fixed paths built
+	  into &dj;.</para>
+	  <example>
+	    <title>Additional search directories for <function>load_lib</function></title>
+	    <programlisting># append a non-standard search path
+	    global libdirs
+	    lappend libdirs $srcdir/../../gcc/testsuite/lib
+	    # now loading $srcdir/../../gcc/testsuite/lib/foo.exp works
+	    load_lib foo.exp</programlisting>
+	  </example>
+
 	</sect4>
 
     </sect3>
