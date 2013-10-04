@@ -35,3 +35,8 @@ if { [istarget "*-*-cygwin*"] } {
 if { [istarget "alpha*-*"] } {
     set_board_info ieee_multilib_flags "-mieee"
 }
+
+# Hardware breakpoints are not supported in sparc64 on GNU/Linux
+if { [istarget "sparc64-*-linux-gnu"] } {
+    set_board_info gdb,no_hardware_watchpoints 1
+}
