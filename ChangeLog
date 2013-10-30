@@ -1,3 +1,10 @@
+2013-10-31  Anton Kolesov  <anton.kolesov@synopsys.com>
+
+	* lib/remote.exp (standard_reboot): Return 1 instead of an empty string.
+	(remote_reboot): Add comment explaining return value of this procedure.
+	* doc/ref.xml (remote_reboot, standard_reboot): Document procedures.
+	* doc/dejagnu.texi: Regenerate.
+
 2013-10-05  Jose E. Marchesi  <jose.marchesi@oracle.com>
 
 	* baseboards/unix.exp: Add gdb settings to not use hardware

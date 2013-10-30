@@ -344,7 +344,10 @@ proc remote_raw_binary { host } {
 }
 
 
-
+# Return value of this function depends on actual implementation of reboot that
+# will be used, in practice it is expected that remote_reboot returns 1 on
+# success and 0 on failure.
+#
 proc remote_reboot { host } {
     clone_output "\nRebooting ${host}\n"
     # FIXME: don't close the host connection, or all the remote
@@ -360,8 +363,12 @@ proc remote_reboot { host } {
     return $status
 }
 
+# It looks like that this proc is never called, instead ${board}_reboot defined
+# in base-config.exp will be used because it has higher priority and
+# base-config.exp is always imported by runtest.
+#
 proc standard_reboot { host } {
-    return ""
+    return 1
 }
 #
 # Download file FILE to DEST. If the optional DESTFILE is specified,

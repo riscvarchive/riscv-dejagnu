@@ -1725,7 +1725,10 @@
 	<sect4 id="remotereboot" xreflabel="remote_reboot procedure">
 	  <title>Remote_reboot Procedure</title>
 
-	  <para></para>
+	  <para>Return value of this function depends on actual implementation
+	      of reboot that will be used, in practice it is expected that
+	      <function>remote_reboot</function> returns <emphasis>1</emphasis>
+	      on success and <emphasis>0</emphasis> on failure.</para>
 
 	<funcsynopsis role="tcl">
           <funcprototype>
@@ -2013,7 +2016,11 @@
 	<sect4 id="standardreboot" xreflabel="standard_reboot procedure">
 	  <title>Standard_reboot Procedure</title>
 
-	  <para></para>
+	  <para>It looks like that this procedure is never called, instead
+	      <function>${board}_reboot</function> defined in
+	      <filename>base-config.exp</filename> will be used because it has
+	      higher priority and <filename>base-config.exp</filename> is
+	      always imported by <command>runtest</command>.</para>
 
 	<funcsynopsis role="tcl">
           <funcprototype>

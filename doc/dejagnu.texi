@@ -4830,6 +4830,10 @@ the @code{target_info} array.
 @node remote_reboot procedure, remote_send procedure, remote_raw_wait procedure, Procedures For Remote Communication
 @subsubsection Remote_reboot Procedure
 
+Return value of this function depends on actual implementation
+of reboot that will be used, in practice it is expected that
+@code{remote_reboot} returns @emph{1}
+on success and @emph{0} on failure.
 
 @quotation
 
@@ -5035,6 +5039,11 @@ the @code{target_info} array.
 @node standard_reboot procedure, standard_send procedure, standard_load procedure, Procedures For Remote Communication
 @subsubsection Standard_reboot Procedure
 
+It looks like that this procedure is never called, instead
+@code{$@{board@}_reboot} defined in
+@file{base-config.exp} will be used because it has
+higher priority and @file{base-config.exp} is
+always imported by @code{runtest}.
 
 @quotation
 
