@@ -171,6 +171,7 @@ baseboard_DATA = \
 	baseboards/mn10300-sim.exp \
 	baseboards/msparc-cygmon.exp \
 	baseboards/mt-sid.exp \
+	baseboards/multi-sim.exp \
 	baseboards/op50n.exp \
 	baseboards/powerpc-bug.exp \
 	baseboards/powerpc-bug1.exp \

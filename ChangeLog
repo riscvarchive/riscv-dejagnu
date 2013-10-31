@@ -1,3 +1,9 @@
+2013-11-01  Steve Ellcey  <sellcey@mips.com>
+
+	* Makefile.am (baseboard_SCRIPTS): Add multi-sim.exp baseboard.
+	* Makefile.in: Regenerate.
+	* baseboards/multi-sim.exp: New.
+
 2013-10-31  Anton Kolesov  <anton.kolesov@synopsys.com>
 
 	* lib/remote.exp (standard_reboot): Return 1 instead of an empty string.
