@@ -16,6 +16,14 @@
 	* doc/ref.xml (remote_reboot, standard_reboot): Document procedures.
 	* doc/dejagnu.texi: Regenerate.
 
+2013-10-15  Alexander Ivchenko  <alexander.ivchenko@intel.com>
+
+       * baseboards/androideabi.exp (process_multilib_options): Add option.
+       * config/adb.exp: Remove hardcoded -static option.
+       (adb_load): Add the possibility to change the temp directory. Also
+       handle permission potential problems.
+       (adb_exec): Do cd to android_tmp_dir first.
+
 2013-10-05  Jose E. Marchesi  <jose.marchesi@oracle.com>
 
 	* baseboards/unix.exp: Add gdb settings to not use hardware

@@ -128,7 +128,7 @@ proc adb_file {dest op args} {
 }
 
 proc adb_upload {desthost srcfile destfile} {
-    set status [catch "exec adb [adb_serial] pull $srcfile $destfile" output]
+    set status [catch "exec adb [adb_serial] pull $srcfile $destfile |& cat" output]
     if { $status == 0 } {
 	verbose "Copied $srcfile to $destfile" 2
 	return $destfile
@@ -165,7 +165,9 @@ proc adb_exec { boardname cmd args } {
 
     verbose "Executing $boardname:$cmd $pargs < $inp "
 
-    set status [catch "exec cat $inp | adb [adb_serial] shell \( $cmd $pargs \) \\; echo XYZ\\\$\\\{\?\\\}ZYX |& cat" output]
+    # Execute commands only from temporary folder, therefore do "cd" first
+    global android_tmp_dir
+    set status [catch "exec cat $inp | adb [adb_serial] shell cd $android_tmp_dir \&\& \( $cmd $pargs \) \\; echo XYZ\\\$\\\{\?\\\}ZYX |& cat" output]
 
     # `status' doesn't mean much here other than adb worked ok.
     # What we want is whether $cmd ran ok.

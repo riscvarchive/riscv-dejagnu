@@ -16,6 +16,8 @@
 # along with DejaGnu; if not, write to the Free Software Foundation,
 # Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.
 
+process_multilib_options ""
+
 load_generic_config "adb"
 
 # We need this for find_gcc and *_include_flags/*_link_flags.
@@ -25,18 +27,21 @@ set_board_info compiler  "[find_gcc]"
 
 # We may need -mandroid.
 set_board_info cflags  "-mandroid"
-
-# Currently the dynamic linker does not support weak-references in
-# shared libraries.  So we need to workaround using -static
-set_board_info ldflags  "-mandroid -static"
+set_board_info ldflags  "-mandroid"
 
 #
 # load PROG to DEST and run it with ARGS using adb
 #
 proc adb_load { dest prog args } {
-    # This directory uses tmpfs, so it is the best place to run
+    # Default directory uses tmpfs, so it is the best place to run
     # tests to avoid excessive wear of flash.
-    set android_tmp_dir "/mnt/sdcard/.android_secure"
+    global android_tmp_dir
+    if { $android_tmp_dir != "" } {
+	verbose -log "android temporary directory is set to $android_tmp_dir" 3
+    } else {
+	set android_tmp_dir "/mnt/sdcard/.android_secure"
+	verbose -log "android temporary directory will be used by default $android_tmp_dir" 3
+    }
 
     if { [llength $args] > 0 } {
 	set pargs [lindex $args 0]
@@ -58,11 +63,21 @@ proc adb_load { dest prog args } {
     }
 
     if [is_remote $dest] {
+	set localfile "./[file tail $prog].[pid]"
 	set remotefile "$android_tmp_dir/[file tail $prog].[pid]"
 	set remotefile [remote_download $dest $prog $remotefile]
 	if { $remotefile == "" } {
 	    verbose -log "Download of $prog to [board_info $dest name] failed." 3
 	    return "unresolved"
+	}
+	set retval [remote_exec $dest "test -x $remotefile"]
+	if { $retval != "0 {}" } {
+	    # Android doesn't support symbolic input for chmod, therefore set executable permission by number
+	    set retval [remote_exec $dest "chmod 755 $remotefile"]
+	    if { $retval != "0 {}" } {
+		verbose -log "Setting executable permissions of $prog on [board_info $dest name] failed." 3
+		return "unresolved"
+	    }
 	}
 	if [board_info $dest exists remote_link] {
 	    if [[board_info $dest remote_link] $remotefile] {
@@ -73,7 +88,7 @@ proc adb_load { dest prog args } {
 		return "unresolved"
 	    }
 	}
-	set status [remote_exec $dest $remotefile $pargs $inp]
+	set status [remote_exec $dest $localfile $pargs $inp]
 	remote_exec $dest rm $remotefile
     } else {
 	set status [remote_exec $dest $prog $pargs $inp]
