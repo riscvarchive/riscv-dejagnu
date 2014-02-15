@@ -133,10 +133,6 @@ proc sim_upload { dest srcfile args } {
     return [remote_upload host $srcfile $args]
 }
 
-proc sim_exec { dest srcfile args } {
-    return [remote_exec host $srcfile $args]
-}
-
 set_board_info protocol  "sim"
 
 # By default, assume the simulator is slow.  This causes some tests

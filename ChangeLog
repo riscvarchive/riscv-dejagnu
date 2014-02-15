@@ -1,7 +1,3 @@
-2014-02-15  Steve Ellcey  <sellcey@mips.com>
-
-	* config/sim.exp (sim_exec): New.
-
 2013-12-08  Richard Sandiford  <rdsandiford@googlemail.com>
 
 	* lib/dg.exp (dg-test): Don't put the expected and actual output
