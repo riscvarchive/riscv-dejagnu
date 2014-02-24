@@ -133,6 +133,16 @@ proc sim_upload { dest srcfile args } {
     return [remote_upload host $srcfile $args]
 }
 
+proc sim_exec { dest srcfile args } {
+    perror "Remote execution for simulators not implemented."
+    verbose -log "Remote execution for simulators not implemented."
+    return -1
+}
+
+proc sim_file { board args } {
+    return [eval [list remote_file host] $args]
+}
+
 set_board_info protocol  "sim"
 
 # By default, assume the simulator is slow.  This causes some tests
