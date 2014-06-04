@@ -1,3 +1,8 @@
+2014-06-04  Ben Elliston  <bje@gnu.org>
+
+	* aclocal.m4: Regenerate with Automake 1.14.1.
+	* configure: Regenerate with Autoconf 2.69.
+
 2014-03-15  Steve Ellcey  <sellcey@mips.com>
 
 	* baseboards/multi-sim.exp (rpath_flags): Add libatomic.so check.
