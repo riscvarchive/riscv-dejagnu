@@ -1,5 +1,10 @@
 2014-06-04  Ben Elliston  <bje@gnu.org>
 
+	* Makefile.in: Regenerate with Automake 1.14.1.
+	* compile: Add missing file.
+
+2014-06-04  Ben Elliston  <bje@gnu.org>
+
 	* config.guess: Update to version 2014-03-23.
 	* config.sub: Likewise.
 
