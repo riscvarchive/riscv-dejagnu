@@ -103,17 +103,16 @@ check_PROGRAMS = unit$(EXEEXT)
 subdir = .
 DIST_COMMON = INSTALL NEWS README AUTHORS ChangeLog \
 	$(srcdir)/Makefile.in $(srcdir)/Makefile.am \
-	$(top_srcdir)/configure $(am__configure_deps) mkinstalldirs \
-	depcomp texinfo.tex $(dist_man_MANS) $(include_HEADERS) \
-	COPYING TODO compile config.guess config.sub install-sh \
-	missing
+	$(top_srcdir)/configure $(am__configure_deps) depcomp \
+	texinfo.tex $(dist_man_MANS) $(include_HEADERS) COPYING TODO \
+	compile config.guess config.sub install-sh missing ltmain.sh
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
-mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs
+mkinstalldirs = $(install_sh) -d
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am_unit_OBJECTS = unit.$(OBJEXT)
