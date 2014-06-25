@@ -571,8 +571,8 @@ if {[string match "" $logname]} {
 # lookfor_file -- try to find a file by searching up multiple directory levels
 #
 proc lookfor_file { dir name } {
-    foreach x ".. ../.. ../../.. ../../../.." {
-	verbose "$dir/$name" 2
+    foreach x ". .. ../.. ../../.. ../../../.." {
+	verbose "$dir/$x/$name" 2
 	if {[file exists [file join $dir $name]]} {
 	    return [file join $dir $name]
 	}
