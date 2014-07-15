@@ -2871,10 +2871,11 @@ procedures are the ones in square braces
 @node Board File Values, Writing A Test Case, Adding A New Board, Extending DejaGnu
 @section Board Config File Values
 
-These fields are all in the @code{board_info} These are
-all set by using the @code{set_board_info} procedure. The
-parameters are the field name, followed by the value to set the field
-to.
+These fields are all in the @code{board_info} array.
+These are all set by using the @code{set_board_info}
+and @code{add_board_info} procedures as required. The
+parameters are the field name, followed by the value that the field
+is set to or is added to the field, respectively.
 
 @strong{Common Board Info Fields}
 
@@ -2937,8 +2938,6 @@ gdb_sect_offset@tab "0x41000000";@tab
 @item
 gdb_stub_ldscript@tab "-Wl,-Teva-stub.ld"@tab The linker script to use with a GDB stub.
 @item
-gdb_init_command@tab "set mipsfpu none"@tab 
-@item
 gdb,cannot_call_functions@tab 1@tab Whether GDB can call functions on the target,
 @item
 gdb,noargs@tab 1@tab Whether the target can take command line arguments.
@@ -2953,7 +2952,11 @@ gdb,target_sim_options@tab "-sparclite"@tab Special options to pass to the simul
 @item
 gdb,timeout@tab 540@tab Timeout value to use for remote communication.
 @item
-gdb_init_command@tab "print/x \$fsr = 0x0"@tab 
+gdb_init_command@tab "set mipsfpu none"@tab A single command to send to GDB before the program being
+debugged is started.
+@item
+gdb_init_commands@tab "print/x \$fsr = 0x0"@tab Same as @emph{gdb_init_command}, except
+that this is a list, more commands can be added.
 @item
 gdb_load_offset@tab "0x12020000"@tab 
 @item
@@ -5828,6 +5831,7 @@ download.
 * Board_info Procedure: board_info procedure.
 * Host_info Procedure: host_info procedure.
 * Set_board_info Procedure: set_board_info procedure.
+* Add_board_info Procedure: add_board_info procedure.
 * Set_currtarget_info Procedure: set_currtarget_info procedure.
 * Target_info Procedure: target_info procedure.
 * Unset_board_info Procedure: unset_board_info procedure.
@@ -5880,9 +5884,12 @@ download.
 @item @code{args}
 @end table
 
-@node set_board_info procedure, set_currtarget_info procedure, host_info procedure, target database library file
+@node set_board_info procedure, add_board_info procedure, host_info procedure, target database library file
 @subsubsection Set_board_info Procedure
 
+This checks if @code{board_info} array's field
+@emph{entry} has been set already and if not, then
+sets it to @emph{value}.
 
 @quotation
 
@@ -5893,11 +5900,37 @@ download.
 @table @asis
 
 @item @code{entry}
+The name of a @code{board_info} field
+to operate on.
 
 @item @code{value}
+The value to set the field to.
 @end table
 
-@node set_currtarget_info procedure, target_info procedure, set_board_info procedure, target database library file
+@node add_board_info procedure, set_currtarget_info procedure, set_board_info procedure, target database library file
+@subsubsection Add_board_info Procedure
+
+This treats @code{board_info} array's field
+@emph{entry} as a TCL list and adds
+@emph{value} at the end.
+
+@quotation
+
+@t{@b{add_board_info}(@i{entry}
+@i{value});}
+@end quotation
+
+@table @asis
+
+@item @code{entry}
+The name of a @code{board_info} field
+to operate on.
+
+@item @code{value}
+The value to add to the field.
+@end table
+
+@node set_currtarget_info procedure, target_info procedure, add_board_info procedure, target database library file
 @subsubsection Set_currtarget_info Procedure
 
 
@@ -5934,6 +5967,9 @@ download.
 @node unset_board_info procedure, unset_currtarget_info procedure, target_info procedure, target database library file
 @subsubsection Unset_board_info Procedure
 
+This checks if @code{board_info} array's field
+@emph{entry} has been set and if so, then removes
+it.
 
 @quotation
 
@@ -5943,6 +5979,8 @@ download.
 @table @asis
 
 @item @code{entry}
+The name of a @code{board_info} field
+to operate on.
 @end table
 
 @node unset_currtarget_info procedure, push_target procedure, unset_board_info procedure, target database library file

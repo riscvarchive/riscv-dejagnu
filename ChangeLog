@@ -1,3 +1,14 @@
+2014-07-15  Maciej W. Rozycki  <macro@mips.com>
+	    Maciej W. Rozycki  <macro@codesourcery.com>
+
+	* lib/targetdb.exp (add_board_info): New procedure.
+	* doc/ref.xml (Add_board_info Procedure): New section.
+	(Set_board_info Procedure): Add description.
+	(Unset_board_info Procedure): Likewise.
+	* doc/user.xml (Board Config File Values): Add `add_board_info'
+	reference.  Reorder `gdb_init_command' table rows and remove a
+	duplicate entry, reusing it for `gdb_init_commands'.
+
 2014-06-06  Ben Elliston  <bje@gnu.org>
 
 	* depcomp, install-sh, missing: Update to latest versions.

@@ -3104,7 +3104,9 @@
 	<sect4 id="setboardinfo" xreflabel="set_board_info procedure">
 	  <title>Set_board_info Procedure</title>
 
-	  <para></para>
+	  <para>This checks if <symbol>board_info</symbol> array's field
+	  <emphasis>entry</emphasis> has been set already and if not, then
+	  sets it to <emphasis>value</emphasis>.</para>
 
 	<funcsynopsis role="tcl">
           <funcprototype>
@@ -3116,12 +3118,40 @@
 	<variablelist>
           <varlistentry>
 	    <term><parameter>entry</parameter></term>
-	    <listitem><para></para></listitem>
+	    <listitem><para>The name of a <symbol>board_info</symbol> field
+	    to operate on.</para></listitem>
           </varlistentry>
           <varlistentry>
 	    <term><parameter>value</parameter></term>
-	    <listitem><para></para></listitem>
+	    <listitem><para>The value to set the field to.</para></listitem>
           </varlistentry>
+	</variablelist>
+	</sect4>
+
+	<sect4 id="addboardinfo" xreflabel="add_board_info procedure">
+	  <title>Add_board_info Procedure</title>
+
+	  <para>This treats <symbol>board_info</symbol> array's field
+	  <emphasis>entry</emphasis> as a TCL list and adds
+	  <emphasis>value</emphasis> at the end.</para>
+
+	<funcsynopsis role="tcl">
+	  <funcprototype>
+	    <funcdef><function>add_board_info</function></funcdef>
+	    <paramdef><parameter>entry</parameter>
+	    <parameter>value</parameter></paramdef>
+	   </funcprototype>
+	</funcsynopsis>
+	<variablelist>
+	  <varlistentry>
+	    <term><parameter>entry</parameter></term>
+	    <listitem><para>The name of a <symbol>board_info</symbol> field
+	    to operate on.</para></listitem>
+	  </varlistentry>
+	  <varlistentry>
+	    <term><parameter>value</parameter></term>
+	    <listitem><para>The value to add to the field.</para></listitem>
+	  </varlistentry>
 	</variablelist>
 	</sect4>
 
@@ -3177,7 +3207,9 @@
 	<sect4 id="unsetboardinfo" xreflabel="unset_board_info procedure">
 	  <title>Unset_board_info Procedure</title>
 
-	  <para></para>
+	  <para>This checks if <symbol>board_info</symbol> array's field
+	  <emphasis>entry</emphasis> has been set and if so, then removes
+	  it.</para>
 
 	<funcsynopsis role="tcl">
           <funcprototype>
@@ -3188,7 +3220,8 @@
 	<variablelist>
           <varlistentry>
 	    <term><parameter>entry</parameter></term>
-	    <listitem><para></para></listitem>
+	    <listitem><para>The name of a <symbol>board_info</symbol> field
+	    to operate on.</para></listitem>
           </varlistentry>
 	</variablelist>
 	</sect4>

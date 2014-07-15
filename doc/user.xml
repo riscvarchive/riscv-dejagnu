@@ -2505,10 +2505,11 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     <sect2 id="boarddefs" xreflabel="Board File Values">
       <title>Board Config File Values</title>
 
-      <para>These fields are all in the <symbol>board_info</symbol> These are
-      all set by using the <function>set_board_info</function> procedure. The
-      parameters are the field name, followed by the value to set the field
-      to.</para>
+      <para>These fields are all in the <symbol>board_info</symbol> array.
+      These are all set by using the <function>set_board_info</function>
+      and <function>add_board_info</function> procedures as required. The
+      parameters are the field name, followed by the value that the field
+      is set to or is added to the field, respectively.</para>
 
 	<table frame="all" rowsep="0" colsep="0">
 	  <title>Common Board Info Fields</title>
@@ -2667,11 +2668,6 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  </row>
 
 	  <row>
-	    <entry>gdb_init_command</entry>
-	    <entry>"set mipsfpu none"</entry>
-	  </row>
-
-	  <row>
 	    <entry>gdb,cannot_call_functions</entry>
 	    <entry>1</entry>
 	    <entry>Whether GDB can call functions on the target,</entry>
@@ -2714,7 +2710,16 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
 	  <row>
 	    <entry>gdb_init_command</entry>
+	    <entry>"set mipsfpu none"</entry>
+	    <entry>A single command to send to GDB before the program being
+	    debugged is started.</entry>
+	  </row>
+
+	  <row>
+	    <entry>gdb_init_commands</entry>
 	    <entry>"print/x \$fsr = 0x0"</entry>
+	    <entry>Same as <emphasis>gdb_init_command</emphasis>, except
+	    that this is a list, more commands can be added.</entry>
 	  </row>
 
 	  <row>

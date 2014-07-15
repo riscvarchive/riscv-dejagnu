@@ -73,6 +73,15 @@ proc set_board_info { entry value } {
     }
 }
 
+#
+# Add VALUE to ENTRY for the current board being defined.
+#
+proc add_board_info { entry value } {
+    global board_info board
+
+    lappend board_info($board,$entry) $value
+}
+
 # Fill in ENTRY with VALUE for the current target.
 #
 proc set_currtarget_info { entry value } {
