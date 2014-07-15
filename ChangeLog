@@ -9,6 +9,11 @@
 	reference.  Reorder `gdb_init_command' table rows and remove a
 	duplicate entry, reusing it for `gdb_init_commands'.
 
+2014-06-25  Rob Savoye  <rob.savoye@linaro.org>
+
+	* runtest.exp: (lookfor-file): Fix bug were none of the relative
+	paths were actually being used for file lookup.
+
 2014-06-06  Ben Elliston  <bje@gnu.org>
 
 	* depcomp, install-sh, missing: Update to latest versions.
