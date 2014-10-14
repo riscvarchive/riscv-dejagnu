@@ -1,5 +1,10 @@
 2014-10-14  Ben Elliston  <bje@gnu.org>
 
+	* runtest.exp: Only match $directory, not *${directory}* when the
+	user passes the --directory option. Reported by Sergey Alyoshin.
+
+2014-10-14  Ben Elliston  <bje@gnu.org>
+
 	* lib/dejagnu.exp (host_execute): Remove buffer_full check. This
 	is not the right command keyword -- it is full_buffer. Reported by
 	David Malcolm.

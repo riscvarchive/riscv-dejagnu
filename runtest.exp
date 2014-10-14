@@ -1838,7 +1838,7 @@ foreach current_target $target_list {
 			# list of directories.  Look for match on each item.
 			set found 0
 			foreach directory $cmdline_dir_to_run {
-			    if {[string match "*${directory}*" $dir]} {
+			    if {[string match $directory $dir]} {
 				set found 1
 				break
 			    }
