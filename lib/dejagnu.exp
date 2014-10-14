@@ -113,8 +113,6 @@ proc host_execute {args} {
     set timetol 0
     set arguments ""
 
-    expect_before buffer_full { perror "Buffer full" }
-
     if { [llength $args] == 0} {
 	set executable $args
     } else {
