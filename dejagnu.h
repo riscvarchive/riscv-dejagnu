@@ -60,7 +60,7 @@ wait (void)
 #endif
 }
 
-inline void
+static inline void
 pass (const char* fmt, ...)
 {
   va_list ap;
@@ -73,7 +73,7 @@ pass (const char* fmt, ...)
   wait ();
 }
 
-inline void
+static inline void
 xpass (const char* fmt, ...)
 {
   va_list ap;
@@ -86,7 +86,7 @@ xpass (const char* fmt, ...)
   wait ();
 }
 
-inline void
+static inline void
 fail (const char* fmt, ...)
 {
   va_list ap;
@@ -99,7 +99,7 @@ fail (const char* fmt, ...)
   wait ();
 }
 
-inline void
+static inline void
 xfail (const char* fmt, ...)
 {
   va_list ap;
@@ -112,7 +112,7 @@ xfail (const char* fmt, ...)
   wait ();
 }
 
-inline void
+static inline void
 untested (const char* fmt, ...)
 {
   va_list ap;
@@ -125,7 +125,7 @@ untested (const char* fmt, ...)
   wait ();
 }
 
-inline void
+static inline void
 unresolved (const char* fmt, ...)
 {
   va_list ap;
@@ -138,7 +138,7 @@ unresolved (const char* fmt, ...)
   wait ();
 }
 
-inline void
+static inline void
 note (const char* fmt, ...)
 {
   va_list ap;
@@ -150,7 +150,7 @@ note (const char* fmt, ...)
   wait ();
 }
 
-inline void
+static inline void
 totals (void)
 {
   printf ("\nTotals:\n");
