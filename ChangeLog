@@ -1,5 +1,9 @@
 2014-10-28  Ben Elliston  <bje@gnu.org>
 
+	* Makefile.in: Regenerate.
+
+2014-10-28  Ben Elliston  <bje@gnu.org>
+
 	* example: Remove stale examples.
 
 2014-10-24  Steve Ellcey  <sellcey@mips.com>
