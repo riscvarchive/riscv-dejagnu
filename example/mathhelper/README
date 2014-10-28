@@ -1,9 +1,0 @@
-Commands to autotoolize in order:
-
-aclocal
-libtoolize
-automake --add-missing
-autoconf
-./configure
-make
-

@@ -1,3 +1,7 @@
+2014-10-28  Ben Elliston  <bje@gnu.org>
+
+	* example: Remove stale examples.
+
 2014-10-24  Steve Ellcey  <sellcey@mips.com>
 
 	* dejagnu.h (pass): Make function static as well as inline.

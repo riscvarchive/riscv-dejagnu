@@ -1,6 +1,0 @@
-2004-03-23	Lou Woods <Lou.Woods@OARcorp.com>
-
-	* Makefile.am, divzero.c:
-	* divzero.exp, site.exp, testmost.c, testmost.exp: New files.
-	* main.c: Removed.
-
