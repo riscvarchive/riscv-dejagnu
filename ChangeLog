@@ -1,3 +1,8 @@
+2014-11-25  Ben Elliston  <bje@gnu.org>
+
+	* lib/dejagnu.exp (host_execute): Remove stray leading hyphen.
+	Reported by David Malcolm.
+
 2014-10-28  Ben Elliston  <bje@gnu.org>
 
 	* Makefile.in: Regenerate.
