@@ -1,3 +1,9 @@
+2015-01-22  Eric Botcazou  <ebotcazou@adacore.com>
+
+	* Makefile.am (baseboard_DATA): Add baseboards/visium-sim.exp.
+	* Makefile.in: Regenerate.
+	* baseboards/visium-sim.exp: New file.
+
 2014-11-25  Ben Elliston  <bje@gnu.org>
 
 	* lib/dejagnu.exp (host_execute): Remove stray leading hyphen.
