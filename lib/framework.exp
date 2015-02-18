@@ -368,6 +368,9 @@ proc log_and_exit {} {
     cleanup
     verbose -log "runtest completed at [timestamp -format %c]"
     if {$mail_logs} {
+	if { ${tool} ==  "" } {
+	    set tool testrun
+	}
 	mail_file $outdir/$tool.sum $mailing_list "Dejagnu Summary Log"
     }
     remote_close host
