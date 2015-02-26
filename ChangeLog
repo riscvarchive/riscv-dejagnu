@@ -1,3 +1,8 @@
+2015-02-26  H.J. Lu  <hjl.tools@gmail.com>
+
+	* lib/target.exp (default_target_compile): Prepend multilib_flags,
+	instead of appending it.
+
 2015-02-18  Ben Elliston  <bje@gnu.org>
 
 	* lib/framework.exp (log_and_exit): Set tool to "testrun" if

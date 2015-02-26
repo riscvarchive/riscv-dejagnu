@@ -577,7 +577,7 @@ proc default_target_compile {source destfile type options} {
     }
 
     if {[board_info $dest exists multilib_flags]} {
-	append add_flags " [board_info $dest multilib_flags]"
+	set add_flags "[board_info $dest multilib_flags] $add_flags"
     }
 
     verbose "doing compile"
