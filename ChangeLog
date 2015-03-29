@@ -1,3 +1,13 @@
+2015-03-30  Ben Elliston  <bje@gnu.org>
+
+	Revert the following change which causes breakage reported here:
+	https://lists.gnu.org/archive/html/dejagnu/2015-03/msg00003.html
+
+	2011-03-14  Jan Kratochvil  <jan.kratochvil@redhat.com>
+
+	* runtest.exp (runtest): Call reset_vars at initialisation so that
+	perror does not affect test results in other test scripts.
+
 2015-02-26  H.J. Lu  <hjl.tools@gmail.com>
 
 	* lib/target.exp (default_target_compile): Prepend multilib_flags,

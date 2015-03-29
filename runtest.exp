@@ -1441,13 +1441,16 @@ proc load_base_board_description { board_name } {
 #
 
 proc runtest { test_file_name } {
+    global prms_id
+    global bug_id
     global test_result
     global errcnt
     global errorInfo
     global tool
 
     clone_output "Running $test_file_name ..."
-    reset_vars
+    set prms_id	0
+    set bug_id	0
     set test_result ""
 
     if {[file exists $test_file_name]} {
