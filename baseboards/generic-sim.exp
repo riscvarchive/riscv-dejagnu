@@ -66,6 +66,10 @@ if {[info exists env(DEJAGNU_SIM_LDSCRIPT)]} {
     set_board_info ldscript "$env(DEJAGNU_SIM_LDSCRIPT)"
 }
 
+if {[info exists env(DEJAGNU_SIM_OPTIONS)]} {
+    set_board_info sim,options "$env(DEJAGNU_SIM_OPTIONS)"
+}
+
 if {[info exists env(DEJAGNU_SIM_BOARD_INFO)]} {
     foreach e $env(DEJAGNU_SIM_BOARD_INFO) {
 	set_board_info [lindex $e 0] [lindex $e 1]
