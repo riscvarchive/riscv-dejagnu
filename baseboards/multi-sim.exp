@@ -40,25 +40,37 @@ load_generic_config "sim"
 # basic-sim.exp is a basic description for the standard Cygnus simulator.
 load_base_board_description "basic-sim"
 
+proc get_library_dirlist { args } {
+  global board
+  set compiler "[board_info $board compiler]"
+  set mflags "[board_info $board multilib_flags]"
+  set result [remote_exec host "$compiler $mflags --print-search-dirs"]
+  set regresult [regexp {(libraries: =)(\S*)} $result dummy1 dummy2 libdirlist]
+  if {$regresult == 0} {
+    perror "Could not find compilers library search path."
+  }
+  return [split $libdirlist :]
+}
+
 proc dynamic_linker_flag { args } {
   global board
   set compiler "[board_info $board compiler]"
   set mflags "[board_info $board multilib_flags]"
-  set result [remote_exec host "$compiler $mflags --print-sysroot"]
-  set output [lindex $result 1]
-  set toutput [string trimright $output]
-  set dynlinkerdir "$toutput/usr/lib"
-  set dynlinker [glob -directory $dynlinkerdir ld-*.so]
+  foreach i [get_library_dirlist] {
+    set dynlinker [glob -nocomplain -directory $i ld-*.so]
+    if { $dynlinker != "" } break
+  }
   verbose "dynamic_linker_flag: -Wl,--dynamic-linker=$dynlinker"
   return "-Wl,--dynamic-linker=$dynlinker"
 }
+
 proc rpath_flags { args } {
   global board
   set compiler "[board_info $board compiler]"
   set mflags "[board_info $board multilib_flags] [libgloss_include_flags] [newlib_include_flags] [libgloss_link_flags] [libgloss_link_flags]"
   set rpathflags ""
   set gccpath [get_multilibs]
-  foreach i {libgcc_s.so  libstdc++.so libgfortran.so libatomic.so libc.so} {
+  foreach i {libgcc_s.so  libstdc++.so libgfortran.so libatomic.so} {
     set result [remote_exec host "$compiler $mflags --print-file-name=$i"]
     set output [lindex $result 1]
     set rpathdir [file dirname $output]
@@ -85,6 +97,9 @@ proc rpath_flags { args } {
     } else {
       set rpathflags "$rpathflags -Wl,-rpath=$rpathdir"
     }
+  }
+  foreach i [get_library_dirlist] {
+    set rpathflags "$rpathflags -Wl,-rpath=$i"
   }
   verbose "rpath_flags: $rpathflags"
   return $rpathflags

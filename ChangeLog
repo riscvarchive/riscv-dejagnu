@@ -1,3 +1,10 @@
+2015-05-14  Steve Ellcey  <sellcey@imgtec.com>
+
+	* baseboards/multi-sim.exp (get_library_dirlist): New.
+	(dynamic_linker_flag): Use get_library_dirlist to find dynamic
+	linker.
+	(rpath_flags): Use get_library_dirlist to set rpath.
+
 2015-05-12  Steve Ellcey  <sellcey@imgtec.com>
 
 	* baseboards/generic-sim.exp: Check $DEJAGNU_SIM_OPTION.
