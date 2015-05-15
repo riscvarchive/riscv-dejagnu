@@ -408,7 +408,7 @@
         <para>&dj; uses the same output procedures to produce these messages
 	for all testsuites and these procedures are already known to conform
 	to POSIX 1003.3.  For a &dj; testsuite to conform to POSIX 1003.3,
-	you must avoid the <emphasis>setup</emphasis>xfail} procedure as
+	you must avoid the <emphasis>setup_xfail</emphasis> procedure as
 	described in the <emphasis>PASS</emphasis> section above and you must
 	be careful to return <emphasis>UNRESOLVED</emphasis> where appropriate,
 	as described in the <emphasis>UNRESOLVED</emphasis> section

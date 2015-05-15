@@ -46,10 +46,10 @@
       supporting code installed.  By default, installation is in subdirectories
       of <filename>/usr/local</filename>, but you can select any alternate
       directory <symbol>altdir</symbol> by including
-      <option>--prefix</option>{altdir}} on the
+      <option>--prefix altdir</option> on the
       <command>configure</command> command line. (This value is captured in
       the Makefile variables <emphasis>prefix</emphasis> and
-      <emphasis>exec</emphasis>prefix}.)</para>
+      <emphasis>exec_prefix</emphasis>.)</para>
 
       <para>Save for a small number of example tests, the &dj; distribution
       itself does not include any testsuites; these are available
@@ -3451,7 +3451,7 @@
       arguments.</para>
 
       <para>The other two procedures, <symbol>${tool}_start</symbol>
-      and <symbol>${tool}_load</symbol>}, are only called by the test
+      and <symbol>${tool}_load</symbol>, are only called by the test
       suites themselves (or by testsuite-specific initialization
       code); they may take arguments  or not, depending on the
       conventions used within each testsuite.</para>

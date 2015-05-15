@@ -964,7 +964,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  affects <emphasis>only</emphasis> &dj; procedures that compare the
 	  host string with particular values.  The procedures
 	  <emphasis>ishost</emphasis>, <emphasis>istarget</emphasis>,
-	  <emphasis>isnative</emphasis>, and <emphasis>setup</emphasis>xfail}
+	  <emphasis>isnative</emphasis>, and <emphasis>setup_xfail</emphasis>
 	  are affected by <option>--host</option>. In this usage,
 	  <emphasis>host</emphasis> refers to the machine that the tests are to
 	  be run on, which may not be the same as the
@@ -998,7 +998,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  <filename>dbg.log</filename>. The extra debugging output does
 	  <emphasis>not</emphasis> appear on standard output, unless the
 	  verbose level is greater than 2 (for instance, to see debug output
-	  immediately, specify <option>--debug</option>-v -v}). The
+	  immediately, specify <option>--debug -v -v</option>). The
 	  debugging output shows all attempts at matching the test output of
 	  the tool with the scripted patterns describing expected output.  The
 	  output generated with <option>--strace</option> also goes into
@@ -1030,10 +1030,9 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
         <varlistentry>
           <term><option>--outdir [path]</option></term>
 	  <listitem><para>Write output logs in directory
-	  <filename>path</filename>.  The default is <emphasis>.},
-	  the</emphasis> directory where you start
-	  <emphasis>runtest</emphasis>. This option affects only the summary
-	  and the detailed log files
+	  <filename>path</filename>.  The default is <emphasis>.</emphasis>,
+	  the directory where you start <emphasis>runtest</emphasis>. This
+	  option affects only the summary and the detailed log files
 	  <filename>tool.sum</filename> and
 	  <filename>tool.log</filename>. The &dj; debug
 	  log <filename>dbg.log</filename> always appears (when requested) in
@@ -1064,7 +1063,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	  for test scripts to run. <emphasis>runtest</emphasis> looks in this
 	  directory for any subdirectory whose name begins with the toolname
 	  (specified with <option>--tool</option>). For instance, with
-	  <option>--tool</option>gdb}, <emphasis>runtest</emphasis> uses
+	  <option>--tool gdb</option>, <emphasis>runtest</emphasis> uses
 	  tests in subdirectories <filename>gdb.*</filename> (with the usual
 	  shell-like filename expansion).  If you do not use
 	  <option>--srcdir</option>, <emphasis>runtest</emphasis> looks for
@@ -1154,7 +1153,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
           <term><option>--verbose</option> (-v)</term>
 	  <listitem><para>Turns on more output. Repeating this option increases
           the amount of output displayed. Level one (<emphasis>-v</emphasis>)
-          is simply test output. Level two (<emphasis>-v</emphasis>-v}) shows
+          is simply test output. Level two (<emphasis>-v -v</emphasis>) shows
           messages on options, configuration, and process control.  Verbose
           messages appear in the detailed (<filename>*.log</filename>) log
           file, but not in the summary (<filename>*.sum</filename>) log
@@ -2397,7 +2396,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
       <para>Usually the best way to write a new initialization module is to
       edit an existing initialization module; some trial and error will be
-      required. If necessary, you can use the @samp{--debug} option to see what
+      required. If necessary, you can use the <option>--debug</option> option to see what
       is really going on.</para>
 
       <para>When you code an initialization module, be generous in printing
@@ -3093,7 +3092,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
           <varlistentry>
             <term>$prms_id</term>
 	    <listitem><para>The tracking system (e.g. GNATS) number identifying
-	    a corresponding bugreport.  (<emphasis>0</emphasis>} if you do not
+	    a corresponding bugreport.  (<emphasis>0</emphasis> if you do not
 	    specify it in the test script.)</para></listitem>
           </varlistentry>
 
