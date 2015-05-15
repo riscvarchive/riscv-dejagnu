@@ -1488,6 +1488,13 @@ and the detailed log files
 log @file{dbg.log} always appears (when requested) in
 the local directory.
 
+@item @code{--log_dialog}
+Emit Expect output to stdout.
+The @emph{expect} output is usually only written to
+@file{tool.log}. By enabling this option, they are also
+be printed to the stdout of the @emph{runtest}
+invocation.
+
 @item @code{--reboot [name]}
 Reboot the target board when
 @emph{runtest} initializes. Usually, when running tests

@@ -133,6 +133,9 @@ if {![info exists tracelevel]} {
 if {![info exists verbose]} {
     set verbose 0
 }
+if {![info exists log_dialog]} {
+    set log_dialog 0
+}
 
 #
 # verbose [-n] [-log] [--] message [level]
@@ -385,6 +388,7 @@ proc usage { } {
     send_user "\t--ignore \[name(s)\]\tThe names of specific tests to ignore\n"
     send_user "\t--objdir \[name\]\t\tThe test suite binary directory\n"
     send_user "\t--outdir \[name\]\t\tThe directory to put logs in\n"
+    send_user "\t--log_dialog\t\t\Emit Expect output on stdout\n"
     send_user "\t--reboot \[name\]\t\tReboot the target (if supported)\n"
     send_user "\t--srcdir \[name\]\t\tThe test suite source code directory\n"
     send_user "\t--strace \[number\]\tSet expect tracing ON\n"
@@ -1111,6 +1115,11 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    continue
 	}
 
+	"--log_dialog*" {
+	    incr log_dialog
+	    continue
+	}
+
 	"*.exp" {			#  specify test names to run
 	    set all_runtests($option) ""
 	    verbose "Running only tests $option"
@@ -1214,7 +1223,7 @@ if {![info exists tool]} {
 #
 # initialize a few Tcl variables to something other than their default
 #
-if { $verbose > 2 } {
+if { $verbose > 2 || $log_dialog } {
     log_user 1
 } else {
     log_user 0

@@ -1,3 +1,10 @@
+2015-05-15  Filipe Brandenburger  <filbranden@google.com>
+
+	* runtest.exp (runtest): Introduce new --log_dialog option.
+	* doc/runtest.1: Document it.
+	* doc/user.xml: Likewise.
+	* doc/dejagnu.texi: Regenerate.
+
 2015-05-14  Steve Ellcey  <sellcey@imgtec.com>
 
 	* baseboards/multi-sim.exp (get_library_dirlist): New.

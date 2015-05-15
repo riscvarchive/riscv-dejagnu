@@ -1041,6 +1041,15 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 	</varlistentry>
 
         <varlistentry>
+          <term><option>--log_dialog</option></term>
+	  <listitem><para>Emit Expect output to stdout.
+	  The <emphasis>expect</emphasis> output is usually only written to
+	  <filename>tool.log</filename>. By enabling this option, they are also
+	  be printed to the stdout of the <emphasis>runtest</emphasis>
+	  invocation.</para></listitem>
+	</varlistentry>
+
+        <varlistentry>
           <term><option>--reboot [name]</option></term>
 	  <listitem><para>Reboot the target board when
 	  <emphasis>runtest</emphasis> initializes. Usually, when running tests
