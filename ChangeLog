@@ -1,3 +1,8 @@
+2015-05-16  Filipe Brandenburger  <filbranden@google.com>
+
+	* configure.ac: Enable subdir-objects, require automake 1.14.
+	* Makefile.in: Regenerate.
+
 2015-05-15  Filipe Brandenburger  <filbranden@google.com>
 
 	* doc/dejagnu.xml: Fix typos such as stray }'s and @samp{...},
