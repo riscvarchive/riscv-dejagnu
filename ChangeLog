@@ -1,3 +1,7 @@
+2015-05-23  Ben Elliston  <bje@gnu.org>
+
+	* doc/runtest.1 (log_dialog): Improve documentation.
+
 2015-05-16  Filipe Brandenburger  <filbranden@google.com>
 
 	* configure.ac: Enable subdir-objects, require automake 1.14.
