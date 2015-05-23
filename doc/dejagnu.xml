@@ -107,7 +107,7 @@
 	<productname>Expect</productname>, which in turn uses
 	<productname>Tcl</productname> -- Tool command
 	language. There is more information on Tcl at the <ulink
-	url="http://www.scriptics.com">Scriptics</ulink> web site and the
+	url="http://www.tcl.tk">Tcl/Tk</ulink> web site and the
 	Expect web site is at <ulink
 	url="http://expect.nist.gov">NIST</ulink>.</para>
 	
@@ -115,10 +115,9 @@
         an earlier testing framework at Cygnus Support she had written
         for <command>GDB</command>. When we replaced it with the
         Expect-based framework, it was like &dj; all over again.
-        More importantly, it was also named after my daughter, <ulink
-        url="http://www.welcomehome.org/deja/">Deja Snow Savoye</ulink>
-        (now 14 years old as of Feb 2004), who was a toddler
-        during &dj;'s beginnings.</para>
+        More importantly, it was also named after my daughter, Deja
+        Snow Savoye, who was a toddler during &dj;'s
+        beginnings.</para>
 
     <para>&dj; offers several advantages for testing:</para>
 

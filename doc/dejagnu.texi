@@ -128,16 +128,16 @@ or tool. Each program can have multiple testsuites, all
 supported by a single test harness. DejaGnu is written in
 Expect, which in turn uses
 Tcl -- Tool command
-language. There is more information on Tcl at the @uref{http://www.scriptics.com,Scriptics} web site and the
+language. There is more information on Tcl at the @uref{http://www.tcl.tk,Tcl/Tk} web site and the
 Expect web site is at @uref{http://expect.nist.gov,NIST}.
 
 Julia Menapace first coined the term ``DejaGnu'' to describe
 an earlier testing framework at Cygnus Support she had written
 for @code{GDB}. When we replaced it with the
 Expect-based framework, it was like DejaGnu all over again.
-More importantly, it was also named after my daughter, @uref{http://www.welcomehome.org/deja/,Deja Snow Savoye}
-(now 14 years old as of Feb 2004), who was a toddler
-during DejaGnu's beginnings.
+More importantly, it was also named after my daughter, Deja
+Snow Savoye, who was a toddler during DejaGnu's
+beginnings.
 
 DejaGnu offers several advantages for testing:
 
@@ -955,7 +955,7 @@ Before you can test calc on a remote target you have to acquire a few basics ski
 * A test case for login via telnet::
 * Remote testing "Hello world"::
 * Transferring files from/to the target::
-* Preparing for crosscompilation::
+* Preparing for cross-compilation::
 * Remote testing of calc::
 * Using Windows as host and vxWorks as target::
 @end menu
@@ -1128,7 +1128,7 @@ set_board_info hostname        "powerbook"
 
 Now call runtest again with the same arguments and verify whether all went okay by taking a close look at calc.log.
 
-@node Transferring files from/to the target, Preparing for crosscompilation, Remote testing "Hello world", A first remote test
+@node Transferring files from/to the target, Preparing for cross-compilation, Remote testing "Hello world", A first remote test
 @subsection Transferring files from/to the target
 
 A simple procedure like this will do the job for you:
@@ -1167,10 +1167,10 @@ set_board_info ftp_username    "dgt"
 set_board_info ftp_password    "1234"
 @end example
 
-@node Preparing for crosscompilation, Remote testing of calc, Transferring files from/to the target, A first remote test
-@subsection Preparing for crosscompilation
+@node Preparing for cross-compilation, Remote testing of calc, Transferring files from/to the target, A first remote test
+@subsection Preparing for cross-compilation
 
-For crosscompiling you need working binutils, gcc and a base library like
+For cross-compilation you need working binutils, gcc and a base library like
 libc or glib for your target.
 It is beyond the scope of this document to describe how to get it working.
 The following examples assume a cross compiler for PowerPC which is called linux-powerpc-gcc.
@@ -1225,7 +1225,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
 @end example
 
-@node Remote testing of calc, Using Windows as host and vxWorks as target, Preparing for crosscompilation, A first remote test
+@node Remote testing of calc, Using Windows as host and vxWorks as target, Preparing for cross-compilation, A first remote test
 @subsection Remote testing of calc
 
 Not yet written, as I have problem getting libc6-dev-powerpc to work. Probably I first have to build my cross compiler. 

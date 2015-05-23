@@ -1,5 +1,10 @@
 2015-05-23  Ben Elliston  <bje@gnu.org>
 
+	* doc/dejagnu.xml: Fix broken URLs.
+	* doc/dejagnu.texi: Regenerate.
+
+2015-05-23  Ben Elliston  <bje@gnu.org>
+
 	* doc/user.xml: Fix 'crosscompilation'.
 
 2015-05-23  Ben Elliston  <bje@gnu.org>
