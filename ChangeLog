@@ -1,5 +1,9 @@
 2015-05-23  Ben Elliston  <bje@gnu.org>
 
+	* doc/user.xml: Fix 'crosscompilation'.
+
+2015-05-23  Ben Elliston  <bje@gnu.org>
+
 	* doc/runtest.1 (log_dialog): Improve documentation.
 
 2015-05-16  Filipe Brandenburger  <filbranden@google.com>

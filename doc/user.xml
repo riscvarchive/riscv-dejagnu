@@ -690,9 +690,9 @@ set_board_info ftp_password    "1234"
 </sect3>
 
 <sect3>
-<title>Preparing for crosscompilation</title>
+<title>Preparing for cross-compilation</title>
 
-<para>For crosscompiling you need working binutils, gcc and a base library like
+<para>For cross-compilation you need working binutils, gcc and a base library like
 libc or glib for your target.
 It is beyond the scope of this document to describe how to get it working.
 The following examples assume a cross compiler for PowerPC which is called linux-powerpc-gcc.
