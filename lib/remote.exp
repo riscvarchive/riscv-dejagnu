@@ -56,6 +56,61 @@ proc remote_raw_open { args } {
     return [eval call_remote raw open $args]
 }
 
+# Close a spawn ID, and wait for the process to die.  If PID is not
+# -1, then if the process doesn't exit gracefully promptly, we kill
+# it.
+#
+proc close_wait_program { program_id pid {wres_varname ""} } {
+    if {$wres_varname != "" } {
+	upvar 1 $wres_varname wres
+    }
+
+    set exec_pid -1
+
+    if { $pid > 0 } {
+	# Tcl has no kill primitive, so we have to execute an external
+	# command in order to kill the process.
+	verbose "doing kill, pid is $pid"
+	# Prepend "-" to generate the "process group ID" needed by
+	# kill.
+	set pgid "-$pid"
+	# Send SIGINT to give the program a better chance to interrupt
+	# whatever it might be doing and react to stdin closing.
+	# E.g., in case of GDB, this should get it back to the prompt.
+	exec sh -c "exec > /dev/null 2>&1 && (kill -2 $pgid || kill -2 $pid)"
+
+	# If the program doesn't exit gracefully when stdin closes,
+	# we'll need to kill it.  But only do this after 'wait'ing a
+	# bit, to avoid killing the wrong process in case of a
+	# PID-reuse race.  The extra sleep at the end is there to give
+	# time to kill $exec_pid without having _that_ be subject to a
+	# PID reuse race.
+	set secs 5
+	set sh_cmd "exec > /dev/null 2>&1"
+	append sh_cmd " && sleep $secs && (kill -15 $pgid || kill -15 $pid)"
+	append sh_cmd " && sleep $secs && (kill -9 $pgid || kill -9 $pid)"
+	append sh_cmd " && sleep $secs"
+	set exec_pid [exec sh -c "$sh_cmd" &]
+    }
+    verbose "pid is $pid"
+
+    # This closes the program's stdin.  This should cause well behaved
+    # interactive programs to exit.  This will hang if the kill
+    # doesn't work.  Nothin' to do, and it's not OK.
+    catch "close -i $program_id"
+
+    # Reap it.
+    set res [catch "wait -i $program_id" wres]
+    if {$exec_pid != -1} {
+	# We reaped the process, so cancel the pending force-kills, as
+	# otherwise if the PID is reused for some other unrelated
+	# process, we'd kill the wrong process.
+	exec sh -c "exec > /dev/null 2>&1 && kill -9 $exec_pid"
+    }
+
+    return $res
+}
+
 # Run the specified COMMANDLINE on the local machine, redirecting input
 # to file INP (if non-empty), redirecting output to file OUTP (if non-empty),
 # and waiting TIMEOUT seconds for the command to complete before killing
@@ -174,18 +229,10 @@ proc local_exec { commandline inp outp timeout } {
 
     # Uuuuuuugh. Now I'm getting really sick.
     # If we didn't get an EOF, we have to kill the poor defenseless program.
-    # However, Tcl has no kill primitive, so we have to execute an external
-    # command in order to execute the execution. (English. Gotta love it.)
-    if { ! $got_eof } {
-	verbose "killing $pid $pgid"
-	# This is very, very nasty. SH, instead of EXPECT, is used to
-	# run this in the background since, on older CYGWINs, a
-	# strange file I/O error occures.
-	exec sh -c "exec > /dev/null 2>&1 && (kill -2 $pgid || kill -2 $pid) && sleep 5 && (kill -15 $pgid || kill $pid) && sleep 5 && (kill -9 $pgid || kill -9 $pid) &"
+    if { $got_eof } {
+	set pid -1
     }
-    # This will hang if the kill doesn't work. Nothin' to do, and it's not ok.
-    catch "close -i $spawn_id"
-    set r2 [catch "wait -i $spawn_id" wres]
+    set r2 [close_wait_program $spawn_id $pid wres]
     if { $id > 0 } {
 	set r2 [catch "close $id" res]
     } else {
@@ -312,20 +359,13 @@ proc standard_close { host } {
 		}
 	    }
 	}
-	if { $pid > 0 } {
-	    verbose "doing kill, pid is $pid"
-	    # This is very, very nasty. SH, instead of EXPECT, is used
-	    # to run this in the background since, on older CYGWINs, a
-	    # strange file I/O error occures.
-	    set pgid "-[join $pid { -}]"
-	    exec sh -c "exec > /dev/null 2>&1 && (kill -2 $pgid || kill -2 $pid) && sleep 5 && (kill $pgid || kill $pid) && sleep 5 && (kill -9 $pgid || kill -9 $pid) &"
-	}
-	verbose "pid is $pid"
-	catch "close -i $shell_id"
+
+	close_wait_program $shell_id $pid
+
 	if {[info exists oid]} {
 	    catch "close $oid"
 	}
-	catch "wait -i $shell_id"
+
 	unset board_info(${host},fileid)
 	verbose "Shell closed."
     }
