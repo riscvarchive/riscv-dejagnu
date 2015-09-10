@@ -70,7 +70,7 @@ proc rpath_flags { args } {
   set mflags "[board_info $board multilib_flags] [libgloss_include_flags] [newlib_include_flags] [libgloss_link_flags] [libgloss_link_flags]"
   set rpathflags ""
   set gccpath [get_multilibs]
-  foreach i {libgcc_s.so  libstdc++.so libgfortran.so libatomic.so} {
+  foreach i {libgcc_s.so  libstdc++.so libgfortran.so libatomic.so libgomp.so} {
     set result [remote_exec host "$compiler $mflags --print-file-name=$i"]
     set output [lindex $result 1]
     set rpathdir [file dirname $output]
@@ -92,6 +92,11 @@ proc rpath_flags { args } {
       if [string match $i "libatomic.so"] {
        if [file exists "$gccpath/libatomic/.libs/libatomic.so"] {
 	 set rpathflags "$rpathflags -Wl,-rpath=$gccpath/libatomic/.libs"
+       }
+      }
+      if [string match $i "libgomp.so"] {
+       if [file exists "$gccpath/libgomp/.libs/libgomp.so"] {
+	 set rpathflags "$rpathflags -Wl,-rpath=$gccpath/libgomp/.libs"
        }
       }
     } else {
