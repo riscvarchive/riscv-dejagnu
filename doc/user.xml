@@ -99,10 +99,10 @@ distribution</para>
 <sect3><title>A simple project without the GNU autotools</title>
 
 <para>The runtest program can be run stand-alone. All the
-autoconf/automake support is just cause those programs are commonly
-used for other GNU applications. The key to running runtest stand-alone
-is having the local site.exp file setup correctly, which automake
-does.</para> 
+autoconf/automake support is just because those programs are commonly
+used for other GNU applications. The key to running runtest
+stand-alone is having the local site.exp file setup correctly, which
+automake does.</para>
 
 <para>The generated site.exp should like like:</para>
 <programlisting>
@@ -115,14 +115,14 @@ set objdir /home/dgt/dejagnu.test
 <title>Using autoconf/autoheader/automake</title>
 
 <para>We have to prepare some input file in order to run autoconf and
-automake. There is book &quot;GNU autoconf, automake and
-libtool&quot; by Garry V. Vaughan, et al. NewRider, ISBN
-1-57870-190-2 which describes this process thoroughly.</para> 
+automake. There is a book &quot;GNU autoconf, automake and
+libtool&quot; by Garry V. Vaughan, et al. NewRider, ISBN 1-57870-190-2
+which describes this process thoroughly.</para>
 
 <para>From the calc example distributed with the &dj; documentation
 you should copy the program file itself (calc.c) and some additional
-files, which you might examine a little bit close to derive their
-meanings.</para> 
+files, which you might examine a little bit closer to derive their
+meanings.</para>
 
 <programlisting>
 dgt:~/dejagnu.test$ cp -r /usr/share/doc/dejagnu/examples/calc/\
@@ -152,16 +152,16 @@ Run it to generate calc.h.in. </para>
 dgt:~/dejagnu.test$ autoheader
 </programlisting>
 
-<para>The Makefile.am of this example was developed as port of the &dj;
+<para>The Makefile.am of this example was developed as part of the &dj;
 distribution.
 Adapt Makefile.am for this test. Replace the line
-&quot;#noinst_PROGRAMS = calc&quot; to
+&quot;#noinst_PROGRAMS = calc&quot; with
 &quot;bin_PROGRAMS = calc&quot;.
 Change the RUNTESTDEFAULTFLAGS from
 &quot;$$srcdir/testsuite&quot; to
 &quot;./testsuite&quot;.</para>
 
-<para>Running automake at this point contains a series of warning in
+<para>Running automake at this point generates a series of warnings in
 its output as shown in the following example:</para>
 
 <example>
@@ -182,8 +182,8 @@ Makefile.am:6: required directory ./doc does not exist
 </programlisting>
 </example>
 
-<para>Create a empty directory doc and empty files
-INSTALL, NEWS, README, AUTHORS, ChangeLog and COPYING.
+<para>Create an empty directory doc and empty files
+INSTALL, NEWS, README, AUTHORS, and ChangeLog.
 The default COPYING will point to the GNU Public License (GPL).
 In a real project it would be time to add some meaningful text in each file.
 </para>
@@ -219,7 +219,7 @@ creating Makefile creating calc.h
 </example>
 
 <para>If you are familiar with GNU software,
-this output should not contain any surprise to you.
+this output should not contain any surprise for you.
 Any errors should be easy to fix for such a simple program.</para>
 
 <para>Build the calc executable:</para>
@@ -235,9 +235,9 @@ gcc -g -O2 -o calc calc.o
 </example>
 
 <para>You prepared a few files and then called some
-commands. Respecting the right order assures a automatic and correctly
-compiled calc program. The following example resumes the correct
-order.</para>
+commands. Respecting the right order assures an automatic and
+correctly compiled calc program. The following example summarises the
+correct order.</para>
 
 <example>
 <title>Creating the calc program using the GNU autotools</title>
@@ -293,7 +293,7 @@ Making a new site.exp file...
 <title>Our first automated tests</title>
 <sect3><title>Running the test for the calc example</title>
 
-<para>Now we are ready to call the automated tests </para>
+<para>Now we are ready to call the automated tests.</para>
 
 <example>
 <title>Sample output of runtest in a configured directory</title>
@@ -329,12 +329,14 @@ FAIL: multiply2 (bad match)
 # of expected passes 5
 # of unexpected failures 1
 /home/Dgt/dejagnu.test/calc version Version: 1.1
-make[1]: *** [check-DEJAGNU] Fehler 1
-make[1]: Leaving directory `/home/Dgt/dejagnu.test' make: *** [check-am] Fehler 2
+make[1]: *** [check-DEJAGNU] Error 1
+make[1]: Leaving directory `/home/Dgt/dejagnu.test' make: *** [check-am] Error 2
 </programlisting>
 </example>
 
-<para>Did you see the  line &quot;FAIL:&quot;? The test cases for calc catch the bug in the calc.c file. Fix the error in calc.c later as the following examples assume a unchanged calc.c.</para>
+<para>Did you see the line &quot;FAIL:&quot;? The test cases for calc
+catch the bug in the calc.c file. Fix the error in calc.c later as the
+following examples assume an unchanged calc.c.</para>
 
 <para>Examine the output files calc.sum and calc.log. Try to
 understand the test cases written in
@@ -423,9 +425,8 @@ for target.
 </example>
 
 <para>It is up to you to decide when and where to use any of the above
-mentioned config files for customizing.
-This chapters showed you where and in which order the different config
-files are run.</para>
+mentioned config files for customizing.  This chapter showed you where
+and in which order the different config files are run.</para>
 </sect3>
 
 <sect3>

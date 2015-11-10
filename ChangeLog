@@ -1,3 +1,9 @@
+2015-11-10  Ben Elliston  <bje@gnu.org>
+
+	* doc/dejagnu.xml: Update month and year.
+	* doc/user.xml: Lots of editorial fixes from Daniel Thibault
+	<Daniel.Thibault@drdc-rddc.gc.ca>.
+
 2015-09-10  Robert Suchanek  <Robert.Suchanek@imgtec.com>
 
 	* baseboards/multi-sim.exp (rpath_flags): Add libgomp.so check.
