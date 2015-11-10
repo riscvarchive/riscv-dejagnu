@@ -1,5 +1,9 @@
 2015-11-10  Ben Elliston  <bje@gnu.org>
 
+	* doc/user.xml: Fix runtest output formatting in <programlisting>.
+
+2015-11-10  Ben Elliston  <bje@gnu.org>
+
 	* doc/dejagnu.xml: Update month and year.
 	* doc/user.xml: Lots of editorial fixes from Daniel Thibault
 	<Daniel.Thibault@drdc-rddc.gc.ca>.

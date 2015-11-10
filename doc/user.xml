@@ -46,11 +46,14 @@ runtest. The expected output is shown</para>
 <programlisting>
 dgt:~/dejagnu.test$ runtest
 WARNING: Couldn't find the global config file.
-WARNING: No tool specified Test
-Run By dgt on Sun Nov 25 17:07:03 2001 Native configuration is i586-pc-linux-gnu
+WARNING: No tool specified
+Test Run By dgt on Sun Nov 25 17:07:03 2001
+Native configuration is i586-pc-linux-gnu
 === tests ===
-Schedule of variations: unix
-Running target unix Using /usr/share/dejagnu/baseboards/unix.exp as board description file for target.
+Schedule of variations:
+    unix
+Running target unix
+Using /usr/share/dejagnu/baseboards/unix.exp as board description file for target.
 Using /usr/share/dejagnu/config/unix.exp as generic interface file for target.
 ERROR: Couldn't find tool config file for unix.
 === Summary ===</programlisting>
