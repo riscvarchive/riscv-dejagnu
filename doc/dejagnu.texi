@@ -492,11 +492,14 @@ runtest. The expected output is shown
 
 dgt:~/dejagnu.test$ runtest
 WARNING: Couldn't find the global config file.
-WARNING: No tool specified Test
-Run By dgt on Sun Nov 25 17:07:03 2001 Native configuration is i586-pc-linux-gnu
+WARNING: No tool specified
+Test Run By dgt on Sun Nov 25 17:07:03 2001
+Native configuration is i586-pc-linux-gnu
 === tests ===
-Schedule of variations: unix
-Running target unix Using /usr/share/dejagnu/baseboards/unix.exp as board description file for target.
+Schedule of variations:
+    unix
+Running target unix
+Using /usr/share/dejagnu/baseboards/unix.exp as board description file for target.
 Using /usr/share/dejagnu/config/unix.exp as generic interface file for target.
 ERROR: Couldn't find tool config file for unix.
 === Summary ===
@@ -554,10 +557,10 @@ distribution
 @subsection A simple project without the GNU autotools
 
 The runtest program can be run stand-alone. All the
-autoconf/automake support is just cause those programs are commonly
-used for other GNU applications. The key to running runtest stand-alone
-is having the local site.exp file setup correctly, which automake
-does.
+autoconf/automake support is just because those programs are commonly
+used for other GNU applications. The key to running runtest
+stand-alone is having the local site.exp file setup correctly, which
+automake does.
 
 The generated site.exp should like like:
 
@@ -572,13 +575,13 @@ set objdir /home/dgt/dejagnu.test
 @subsection Using autoconf/autoheader/automake
 
 We have to prepare some input file in order to run autoconf and
-automake. There is book "GNU autoconf, automake and
-libtool" by Garry V. Vaughan, et al. NewRider, ISBN
-1-57870-190-2 which describes this process thoroughly.
+automake. There is a book "GNU autoconf, automake and
+libtool" by Garry V. Vaughan, et al. NewRider, ISBN 1-57870-190-2
+which describes this process thoroughly.
 
 From the calc example distributed with the DejaGnu documentation
 you should copy the program file itself (calc.c) and some additional
-files, which you might examine a little bit close to derive their
+files, which you might examine a little bit closer to derive their
 meanings.
 
 @example
@@ -613,16 +616,16 @@ Run it to generate calc.h.in.
 dgt:~/dejagnu.test$ autoheader
 @end example
 
-The Makefile.am of this example was developed as port of the DejaGnu
+The Makefile.am of this example was developed as part of the DejaGnu
 distribution.
 Adapt Makefile.am for this test. Replace the line
-"#noinst_PROGRAMS = calc" to
+"#noinst_PROGRAMS = calc" with
 "bin_PROGRAMS = calc".
 Change the RUNTESTDEFAULTFLAGS from
 "$$srcdir/testsuite" to
 "./testsuite".
 
-Running automake at this point contains a series of warning in
+Running automake at this point generates a series of warnings in
 its output as shown in the following example:
 
 @strong{Sample output of automake with missing files}
@@ -643,8 +646,8 @@ configure.in: 4: required file `./calc.h.in' not found
 Makefile.am:6: required directory ./doc does not exist
 @end example
 
-Create a empty directory doc and empty files
-INSTALL, NEWS, README, AUTHORS, ChangeLog and COPYING.
+Create an empty directory doc and empty files
+INSTALL, NEWS, README, AUTHORS, and ChangeLog.
 The default COPYING will point to the GNU Public License (GPL).
 In a real project it would be time to add some meaningful text in each file.
 
@@ -680,7 +683,7 @@ creating Makefile creating calc.h
 @end example
 
 If you are familiar with GNU software,
-this output should not contain any surprise to you.
+this output should not contain any surprise for you.
 Any errors should be easy to fix for such a simple program.
 
 Build the calc executable:
@@ -696,9 +699,9 @@ gcc -g -O2 -o calc calc.o
 @end example
 
 You prepared a few files and then called some
-commands. Respecting the right order assures a automatic and correctly
-compiled calc program. The following example resumes the correct
-order.
+commands. Respecting the right order assures an automatic and
+correctly compiled calc program. The following example summarises the
+correct order.
 
 @strong{Creating the calc program using the GNU autotools}
 
@@ -760,7 +763,7 @@ Making a new site.exp file...
 @node Running the test for the calc example, The various config files or how to avoid warnings, , Our first automated tests
 @subsection Running the test for the calc example
 
-Now we are ready to call the automated tests 
+Now we are ready to call the automated tests.
 
 @strong{Sample output of runtest in a configured directory}
 
@@ -796,11 +799,13 @@ FAIL: multiply2 (bad match)
 # of expected passes 5
 # of unexpected failures 1
 /home/Dgt/dejagnu.test/calc version Version: 1.1
-make[1]: *** [check-DEJAGNU] Fehler 1
-make[1]: Leaving directory `/home/Dgt/dejagnu.test' make: *** [check-am] Fehler 2
+make[1]: *** [check-DEJAGNU] Error 1
+make[1]: Leaving directory `/home/Dgt/dejagnu.test' make: *** [check-am] Error 2
 @end example
 
-Did you see the  line "FAIL:"? The test cases for calc catch the bug in the calc.c file. Fix the error in calc.c later as the following examples assume a unchanged calc.c.
+Did you see the line "FAIL:"? The test cases for calc
+catch the bug in the calc.c file. Fix the error in calc.c later as the
+following examples assume an unchanged calc.c.
 
 Examine the output files calc.sum and calc.log. Try to
 understand the test cases written in
@@ -892,9 +897,8 @@ for target.
 @end example
 
 It is up to you to decide when and where to use any of the above
-mentioned config files for customizing.
-This chapters showed you where and in which order the different config
-files are run.
+mentioned config files for customizing.  This chapter showed you where
+and in which order the different config files are run.
 
 @node When trouble strikes, Testing "Hello world" locally, The various config files or how to avoid warnings, Our first automated tests
 @subsection When trouble strikes

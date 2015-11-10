@@ -1,3 +1,7 @@
+2015-11-11  Ben Elliston  <bje@gnu.org>
+
+	* doc/dejagnu.texi: Regenerate.
+
 2015-11-10  Ben Elliston  <bje@gnu.org>
 
 	* doc/user.xml: Fix runtest output formatting in <programlisting>.
