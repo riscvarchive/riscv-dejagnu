@@ -980,13 +980,6 @@ proc perror { args } {
 #
 proc note { message } {
     clone_output "NOTE: $message"
-
-    # ??? It's not clear whether we should do this.  Let's not, and only do
-    # so if we find a real need for it.
-    #global errorInfo
-    #if [info exists errorInfo] {
-    #	unset errorInfo
-    #}
 }
 
 # untested -- mark the test case as untested.
