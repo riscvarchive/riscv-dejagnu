@@ -1313,7 +1313,7 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
 
       <para>If any of your tests use the procedures
       <command>unresolved</command>, <command>unsupported</command>,
-      or <command>runtested</command>, the summary output also
+      or <command>untested</command>, the summary output also
       tabulates the corresponding outcomes.</para>
 
       <para>For example, after <command>runtest --tool

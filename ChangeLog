@@ -1,3 +1,8 @@
+2015-11-11  Ben Elliston  <bje@gnu.org>
+
+	* doc/user.xml (Summary File): 'untested', not 'runtested'.
+	* doc/dejagnu.texi: Regenerate.
+
 2015-11-11  Michael Forney  <forney@google.com>
 
 	* lib/target.exp (default_target_compile): Honor LDFLAGS_FOR_TARGET.

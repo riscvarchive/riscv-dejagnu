@@ -1736,7 +1736,7 @@ regardless of whether or not you specify
 
 If any of your tests use the procedures
 @code{unresolved}, @code{unsupported},
-or @code{runtested}, the summary output also
+or @code{untested}, the summary output also
 tabulates the corresponding outcomes.
 
 For example, after @code{runtest --tool
