@@ -307,6 +307,7 @@ proc default_target_compile {source destfile type options} {
     global target_triplet
     global tool_root_dir
     global CFLAGS_FOR_TARGET
+    global LDFLAGS_FOR_TARGET
     global compiler_flags
 
     if { $destfile == "" && $type != "preprocess" && $type != "none" } {
@@ -322,6 +323,10 @@ proc default_target_compile {source destfile type options} {
 
     if {[info exists CFLAGS_FOR_TARGET]} {
 	append add_flags " $CFLAGS_FOR_TARGET"
+    }
+
+    if {[info exists LDFLAGS_FOR_TARGET]} {
+	append ldflags " $LDFLAGS_FOR_TARGET"
     }
 
     if {[info exists target_info(host,name)]} {
