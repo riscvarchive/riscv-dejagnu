@@ -1,5 +1,9 @@
 2015-11-12  Ben Elliston  <bje@gnu.org>
 
+	* runtest.exp (usage): Sort options in usage.
+
+2015-11-12  Ben Elliston  <bje@gnu.org>
+
 	* lib/framework.exp (note): Remove old commented-out code.
 
 2015-11-11  Ben Elliston  <bje@gnu.org>
