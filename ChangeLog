@@ -1,3 +1,7 @@
+2015-11-14  Ben Elliston  <bje@gnu.org>
+
+	* runtest.exp (usage): Improve help text.
+
 2015-11-12  Ben Elliston  <bje@gnu.org>
 
 	* runtest.exp (usage): Sort options in usage.
