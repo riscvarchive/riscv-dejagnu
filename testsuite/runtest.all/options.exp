@@ -48,7 +48,7 @@ set tests {
     { "--tool x" "Couldn't find tool init file" "Bad tool name" }
     { "--help" "USAGE:*" "Display help" }
     { "-v -v -v" "Verbose level is 3" "Verbose set correctly" }
-    { "-V" "Expect version is.*Tcl version is.*Framework version is*" "--version" }
+    { "-V" "DejaGnu version is.*Expect version is.*Tcl version is.*" "--version" }
     { "-v --target m68k-vxworks" "Target is m68k-vxworks" "--target option" }
     { "-v --host sparc-sun-sunos4.1.9" "Native configuration is sparc-sun-sunos4.1.9" "--host option" }
     { "-v -a" "Print all test output to screen" "--all option" }
