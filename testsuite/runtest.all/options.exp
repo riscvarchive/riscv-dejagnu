@@ -55,12 +55,9 @@ set tests {
     { "-v --objdir xXx" "Using test binaries in xXx" "--objdir option" }
     { "-v --tool xXx" "Testing xXx" "--tool option" }
     { "-v --debug" "Expect Debugging is ON" "--debug option" }
+    { "-v --strace 1" "Source Trace level is now 1.* 1  if" "--strace option" }
     { "-v --D0" "Tcl debugger is ON" "--D0 option" }
 }
-
-# Commented out for now--this is failing because of a TCL8 strace interaction.
-#    { "-v --strace 1" "Source Trace level is now 1.* 1  if" "--strace option" }
-
 
 foreach i $tests {
     if [util_test "$RUNTEST" "[lindex $i 0] -srcdir ${srcdir}/runtest.all" "" "[lindex $i 1]"] {
