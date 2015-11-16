@@ -1,5 +1,9 @@
 2015-11-16  Ben Elliston  <bje@gnu.org>
 
+	* testsuite/runtest.all/options.exp: Remove some commented code.
+
+2015-11-16  Ben Elliston  <bje@gnu.org>
+
 	* runtest.exp: Refer to "DejaGnu version", not "Framework
 	version" in --version output.
 	* testsuite/runtest.all/options.exp: Update test case.

@@ -62,10 +62,6 @@ set tests {
 #    { "-v --strace 1" "Source Trace level is now 1.* 1  if" "--strace option" }
 
 
-# Old tests not used anymore
-#    { "-v --build sparc-sun-sunos4.1.9" "Native configuration is sparc-sun-sunos4.1.9" "--build option" }
-#    { "-v --srcdir xXx" "Using test sources in xXx" "--srcdir option" }
-
 foreach i $tests {
     if [util_test "$RUNTEST" "[lindex $i 0] -srcdir ${srcdir}/runtest.all" "" "[lindex $i 1]"] {
         fail "[lindex $i 2]"
