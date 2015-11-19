@@ -35,8 +35,13 @@ load_lib remote.exp
 
 proc unix_load { dest prog args } {
     global ld_library_path
+    global test_timeout
     set output ""
     set orig_ld_library_path ""
+
+    if {![info exists test_timeout]} {
+	set test_timeout 300
+    }
 
     if { [llength $args] > 0 } {
 	set parg [lindex $args 0]
@@ -72,13 +77,14 @@ proc unix_load { dest prog args } {
 	setenv LD_LIBRARY_PATH "$ld_library_path:$orig_ld_library_path"
 	setenv SHLIB_PATH "$ld_library_path:$orig_ld_library_path"
 	verbose -log "Setting LD_LIBRARY_PATH to $ld_library_path:$orig_ld_library_path" 2
+	verbose -log "Execution timeout is: $test_timeout" 2
 
 	set id [remote_spawn $dest "$command" "readonly"]
 	if { $id < 0 } {
 	    set output "remote_spawn failed"
 	    set status -1
 	} else {
-	    set status [remote_wait $dest 300]
+	    set status [remote_wait $dest $test_timeout]
 	    set output [lindex $status 1]
 	    set status [lindex $status 0]
 	}

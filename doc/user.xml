@@ -1673,6 +1673,12 @@ powerpc-linux-gcc -g -O2 -o calc calc.o
     are supplied by &dj; itself for cross testing, but to test a
     compiler, GCC needs to manipulate these itself.</para>
 
+    <para>The local <filename>site.exp</filename> may also set Tcl
+    variables such as <symbol>test_timeout</symbol> which can control
+    the amount of time (in seconds) to wait for a remote test to
+    complete. If not specified, <symbol>test_timeout</symbol> defaults
+    to 300 seconds.</para>
+
     </sect2>
      <sect2 id="global" xreflabel="Global Config File">
       <title>Global Config File</title>

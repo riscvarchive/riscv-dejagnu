@@ -2100,6 +2100,12 @@ the GCC testsuite. For most test cases, the CXXFLAGS and LDFLAGS
 are supplied by DejaGnu itself for cross testing, but to test a
 compiler, GCC needs to manipulate these itself.
 
+The local @file{site.exp} may also set Tcl
+variables such as @code{test_timeout} which can control
+the amount of time (in seconds) to wait for a remote test to
+complete. If not specified, @code{test_timeout} defaults
+to 300 seconds.
+
 @node Global Config File, Board Config File, Local Config File, Customizing DejaGnu
 @section Global Config File
 

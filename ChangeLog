@@ -1,3 +1,9 @@
+2015-11-16  Brooks Moses  <bmoses@google.com>
+
+	* config/unix.exp: Add ability to set test timeout from site.exp.
+	* doc/user.xml: Document new test_timeout variable in site.exp.
+	* doc/dejagnu.texi: Regenerate.
+
 2015-11-16  Ben Elliston  <bje@gnu.org>
 
 	* testsuite/runtest.all/options.exp: Re-enable --strace 1 test.
