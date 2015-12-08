@@ -1,3 +1,8 @@
+2015-12-09  Yoshinori Sato  <ysato@users.sourceforge.jp>
+
+	* Makefile.am (baseboard_DATA): Add missing rx-sim.exp.
+	* Makefile.in: Regenerate.
+
 2015-11-16  Brooks Moses  <bmoses@google.com>
 
 	* config/unix.exp: Add ability to set test timeout from site.exp.

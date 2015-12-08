@@ -518,6 +518,7 @@ baseboard_DATA = \
 	baseboards/powerpc-sim.exp \
 	baseboards/powerpcle-sim.exp \
 	baseboards/rom68k-idp.exp \
+	baseboards/rx-sim.exp \
 	baseboards/sh-hms.exp \
 	baseboards/sh-sid.exp \
 	baseboards/sh-sim.exp \
