@@ -7,137 +7,104 @@
 * DejaGnu: (dejagnu).           The GNU testing framework.
 @end direntry
 
-@node Top, Abstract, , (dir)
+@node Top, Introduction, , (dir)
 @top DejaGnu
 
 @menu
-* Abstract::
-* Overview::
-* Getting DejaGnu up and running::
+* Introduction::
 * Running Tests::
 * Customizing DejaGnu::
 * Extending DejaGnu::
 * Unit Testing::
 * Reference::
-* Unit Testing API::
 
 @detailmenu
 --- The Detailed Node Listing ---
 
-Overview
+Introduction
 
-* What is DejaGnu ?::
+* What is DejaGnu?::
 * New In This Release: Release Notes.
 * Design Goals::
-* A POSIX conforming test framework: A POSIX Conforming Test Framework.
-
-Getting DejaGnu up and running
-
-* Test your installation::
-* Create a minimal project, e.g. calc: Create a minimal project; e_g_ calc.
-* Our first automated tests::
-* A first remote test::
+* A POSIX compliant test framework: A POSIX Conforming Test Framework.
+* Installation::
 
 Running Tests
 
-* Make check: Make Check.
-* Runtest::
-* The files DejaGnu produces.: Output Files.
+* Running 'make check': Make Check.
+* Running runtest: Runtest.
+* Output files: Output Files.
 
 Customizing DejaGnu
 
 * Local Config File::
 * Global Config File::
-* Board Config File::
+* Board Configuration File: Board Config File.
 * Remote Host Testing::
 * Config File Values::
 
 Extending DejaGnu
 
-* Adding A New Testsuite: Adding a new Testsuite.
-* Adding A New Tool::
+* Adding a new testsuite::
+* Adding a new tool: Adding A New Tool.
 * Adding A New Target::
-* Adding A New Board::
-* Board Config File Values: Board File Values.
+* Adding a new board::
+* Board Configuration File Values: Board File Values.
 * Writing A Test Case::
 * Debugging A Test Case::
-* Adding A Test Case To A Testsuite.: Adding A Test Case To A Testsuite.
+* Adding a test case to a testsuite::
 * Hints On Writing A Test Case::
-* Special variables used by test cases.: Test Case Variables.
+* Test case special variables: Test case variables.
 
 Unit Testing
 
-* What Is Unit Testing ?::
-* The dejagnu.h Header File: The dejagnu_h Header File.
+* What Is Unit Testing?::
+* The dejagnu.h header file: The dejagnu_h header file.
+* C Unit Testing API::
+* C++ Unit Testing API::
 
 Reference
 
-* Obtaining DejaGnu::
-* Installation::
 * Builtin Procedures::
-* File Map::
-
-Unit Testing API
-
-* C Unit Testing API::
-* C++ Unit Testing API::
 
 @end detailmenu
 @end menu
 
-@node Abstract, Overview, Top, Top
-@chapter Abstract
-
-This document describes the functionality of DejaGnu, the
-testing framework of the GNU project. DejaGnu is written in
-Expect, which uses
-Tcl as a command
-language. Expect acts as a very
-programmable shell.  As with other Unix command shells, you can
-run any program, but once the program is started, your test script
-has programmable control over its input and output.  This does not
-just apply to the programs under test; @code{expect}
-can also run any auxiliary program, such as
-@code{diff} or @code{sh}, with full
-control over its input and output.
-
-DejaGnu itself is merely a framework for the creation of
-testsuites. Testsuites are distributed with each
-application.
-
-@node Overview, Getting DejaGnu up and running, Abstract, Top
-@chapter Overview
+@node Introduction, Running Tests, Top, Top
+@chapter Introduction
 
 @menu
-* What is DejaGnu ?::
+* What is DejaGnu?::
 * New In This Release: Release Notes.
 * Design Goals::
-* A POSIX conforming test framework: A POSIX Conforming Test Framework.
+* A POSIX compliant test framework: A POSIX Conforming Test Framework.
+* Installation::
 @end menu
 
-@node What is DejaGnu ?, Release Notes, , Overview
-@section What is DejaGnu ?
+@node What is DejaGnu?, Release Notes, , Introduction
+@section What is DejaGnu?
 
-DejaGnu is a framework for
-testing other programs.  Its purpose is to provide a single
-front end for all tests. Think of it as a custom library of
-Tcl procedures crafted to support writing a test harness. A
-@emph{Test Harness} is the testing
+DejaGnu is a framework for testing
+other programs, providing a single front-end for all
+tests. You can think of it as a custom library of Tcl
+procedures crafted to help with writing a test harness. A
+@emph{test harness} is the testing
 infrastructure that is created to support a specific program
 or tool. Each program can have multiple testsuites, all
 supported by a single test harness. DejaGnu is written in
 Expect, which in turn uses
-Tcl -- Tool command
-language. There is more information on Tcl at the @uref{http://www.tcl.tk,Tcl/Tk} web site and the
-Expect web site is at @uref{http://expect.nist.gov,NIST}.
+Tcl, the Tool command
+language. There is more information on Tcl at
+the @uref{http://www.tcl.tk,Tcl/Tk} web site and
+the Expect web site is
+at @uref{http://expect.nist.gov,NIST}.
 
-Julia Menapace first coined the term ``DejaGnu'' to describe
-an earlier testing framework at Cygnus Support she had written
-for @code{GDB}. When we replaced it with the
-Expect-based framework, it was like DejaGnu all over again.
-More importantly, it was also named after my daughter, Deja
-Snow Savoye, who was a toddler during DejaGnu's
-beginnings.
+Julia Menapace first coined the term ``DejaGnu'' to describe an
+earlier testing framework she wrote at Cygnus Support for
+testing GDB. When we replaced it with the Expect-based
+framework, it was like DejaGnu all over again.  More importantly,
+it was also named after my daughter, Deja Snow Savoye, who was
+a toddler during DejaGnu's beginnings.
 
 DejaGnu offers several advantages for testing:
 
@@ -181,73 +148,22 @@ suffix; for example, the main implementation of the DejaGnu test
 driver is in the file
 runtest.exp.)
 
-@node Release Notes, Design Goals, What is DejaGnu ?, Overview
+@node Release Notes, Design Goals, What is DejaGnu?, Introduction
 @section New In This Release
-
-This release has a number of substantial changes over version
-1.3. The most visible change is that the version of Expect and Tcl
-included in the release are up-to-date with the current stable net
-releases. The biggest change is years of modifications to the
-target configuration system, used for cross testing. While this
-greatly improved cross testing, it has made that subsystem very
-complicated. The goal is to have this entirely rewritten using
-iTcl by the next release. Other changes
-are:
 
 @itemize 
 
 @item
-More built-in support for building target binaries
-with the correct linker flags. Currently this only works with
-GCC as the cross compiler,
-preferably with a target supported by
-@ref{Libgloss}.
-
-@item
-Lots of little bug fixes from years of heavy
-use at Cygnus Solutions.
-
-@item
-DejaGnu now uses
-Automake for Makefile
-configuration.
-
-@item
-Updated documentation, now in DocBook XML.
-
-@item
-Windows support. There is beta level support for
-Windows that is still a work in progress. This requires the
-@uref{http://www.cygwin.com/,Cygwin} POSIX
-subsystem for Windows.
+A completely new manual.
 @end itemize
 
-@menu
-* Windows Support::
-@end menu
-
-@node Windows Support, , , Release Notes
-@subsection Windows Support
-
-To use DejaGnu on Windows, you need to first install the
-@uref{http://www.cygwin.com/,Cygwin}
-release. This works as of the B20.1 release. Cygwin is a POSIX
-system for Windows. This covers both utility programs and a library
-that adds POSIX system calls to Windows. Among them is pseudo tty
-support for Windows that emulates the POSIX pty standard. The
-latest Cygwin is always available from @uref{http://www.cygwin.com/,this location}. This
-works well enough to run @emph{"make check"} of
-the GNU development tree on Windows after a native build. But the
-nature of ptys on Windows is still evolving. Your mileage may
-vary.
-
-@node Design Goals, A POSIX Conforming Test Framework, Release Notes, Overview
+@node Design Goals, A POSIX Conforming Test Framework, Release Notes, Introduction
 @section Design Goals
 
-DejaGnu grew out of the internal needs of Cygnus Solutions,
-the company formerly known as Cygnus Support. Cygnus maintained
-and enhanced a variety of free programs in many different
-environments and we needed a testing tool that:
+DejaGnu grew out of the internal needs of Cygnus Solutions
+(formerly Cygnus Support). Cygnus maintained and enhanced a
+variety of free programs in many different environments and needed
+a testing tool that:
 
 @itemize 
 
@@ -264,21 +180,20 @@ was portable among a variety of host
 computers;
 
 @item
-supported cross-development
-testing;
+supported a cross-development environment;
 
 @item
-permitted testing interactive programs, like
-@code{GDB}; and 
+permitted testing of interactive programs
+like @code{GDB}; and 
 
 @item
-permitted testing batch oriented programs, like
-@code{GCC}.
+permitted testing of batch-oriented programs
+like @code{GCC}.
 @end itemize
 
 Some of the requirements proved challenging.  For example,
 interactive programs do not lend themselves very well to automated testing.
-But all the requirements are important: for instance, it is imperative to
+But all the requirements are important. For instance, it is imperative to
 make sure that @code{GDB} works as well when cross-debugging
 as it does in a native configuration. 
 
@@ -289,26 +204,27 @@ packaged boards from vendors there are many differences.  The
 communication interfaces vary from a serial line to Ethernet.
 DejaGnu was designed with a modular communication setup, so that
 each kind of communication can be added as required and supported
-thereafter.  Once a communication procedure is coded, any test can
+thereafter.  Once a communication procedure is written, any test can
 use it.  Currently DejaGnu can use @code{rsh},
 @code{rlogin}, @code{telnet},
-@code{tip}, @code{kermit} and
-@code{mondfe} for remote communications.
+@code{tip}, and @code{kermit} for remote
+communications.
 
-@node A POSIX Conforming Test Framework, , Design Goals, Overview
-@section A POSIX conforming test framework
+@node A POSIX Conforming Test Framework, Installation, Design Goals, Introduction
+@section A POSIX compliant test framework
 
 DejaGnu conforms to the POSIX 1003.3 standard for test
 frameworks. Rob Savoye was a member of that committee.
 
-The POSIX standard 1003.3 defines what a testing framework needs to
-provide, in order to permit the creation of POSIX conformance test
-suites. This standard is primarily oriented to running POSIX conformance
-tests, but its requirements also support testing of features not related
-to POSIX conformance.  POSIX 1003.3 does not specify a particular testing
-framework, but at this time there is only one other POSIX conforming test
-framework: TET. TET was created by Unisoft for a consortium comprised of
-X/Open, Unix International and the Open Software Foundation.
+POSIX standard 1003.3 defines what a testing framework
+needs to provide to create a POSIX compliant testsuite. This
+standard is primarily oriented to checking POSIX conformance,
+but its requirements also support testing of features not
+related to POSIX conformance.  POSIX 1003.3 does not specify a
+particular testing framework, but at this time there is only one
+other POSIX conforming test framework. TET was created by
+Unisoft for a consortium comprised of X/Open, Unix International
+and the Open Software Foundation.
 
 The POSIX documentation refers to @dfn{assertions}.
 An assertion is a description of behavior.  For example, if a standard
@@ -318,22 +234,31 @@ depending on whether it is day or night.  It is important to note
 that the standard being tested is never 1003.3; the standard being tested
 is some other standard, for which the assertions were written.
 
-As there is no testsuite to test testing frameworks for POSIX
-1003.3 conformance, verifying conformance to this standard is done by
-repeatedly reading the standard and experimenting.  One of the main
-things 1003.3 does specify is the set of allowed output messages and
-their definitions.  Four messages are supported for a required feature of
-POSIX conforming systems and a fifth for a conditional feature. DejaGnu
-supports the use of all five output messages.  In this sense a testsuite
-that uses exactly these messages can be considered POSIX conforming.
-These definitions specify the output of a test
-case:
+As there is no testsuite to verify that testing frameworks
+are POSIX 1003.3 compliant, this is done by repeatedly reading
+the standard and experimenting.  One of the main things POSIX
+1003.3 does specify is the set of allowed output messages and
+their definitions.  Four messages are supported for a required
+feature of POSIX conforming systems and a fifth for a
+conditional feature. DejaGnu supports all five output messages.  In
+this sense a testsuite that uses exactly these messages can be
+considered POSIX compliant.  These definitions specify the
+output of a test case:
 
 @table @asis
 
 @item PASS
 A test has succeeded.  That is, it demonstrated that
 the assertion is true.
+
+@item FAIL
+A test has not succeeded -- the assertion is
+false.  The @emph{FAIL} message is based on
+this test case only.  Other messages are used to indicate a
+failure of the framework. As with @emph{PASS},
+POSIX tests must return
+@emph{FAIL} rather than @emph{XFAIL} even
+if a failure was expected.
 
 @item XFAIL
 POSIX 1003.3 does not incorporate the notion of
@@ -343,19 +268,10 @@ which were expected to fail and did not.  This means that
 @emph{PASS} is in some sense more ambiguous than if
 @emph{XPASS} is also used.
 
-@item FAIL
-A test has produced the bug it was intended to
-capture.  That is, it has demonstrated that the assertion is false.
-The @emph{FAIL} message is based on the test case only.
-Other messages are used to indicate a failure of the framework. As
-with @emph{PASS}, POSIX tests must return
-@emph{FAIL} rather than @emph{XFAIL} even
-if a failure was expected.
-
 @item UNRESOLVED
 A test produced indeterminate results.  Usually, this
-means the test executed in an unexpected fashion; this outcome
-requires that a human being go over results, to determine if the test
+means the test executed in an unexpected fashion. This outcome
+requires a human to go over results to determine if the test
 should have passed or failed.  This message is also used for any test
 that requires human intervention because it is beyond the abilities
 of the testing framework.  Any unresolved test should resolved to
@@ -378,7 +294,7 @@ Here are some of the ways a test may wind up
 @itemize 
 
 @item
-A test's execution is
+Execution of a test is
 interrupted.
 
 @item
@@ -389,13 +305,13 @@ the test, or because there were three or more
 @emph{WARNING} messages. Any
 @emph{WARNING} or @emph{ERROR}
 messages can invalidate the output of the test.  This
-usually requires a human being to examine the output to
-determine what really happened---and to improve the test
+usually requires a human to examine the output to
+determine what really happened -- and to improve the test
 case.
 
 @item
 A test depends on a previous test, which
-fails.
+has failed.
 
 @item
 The test was set up
@@ -405,13 +321,10 @@ incorrectly.
 @table @asis
 
 @item UNTESTED
-A test was not run.  This is a place-holder, used
-when there is no real test case yet.
+A test was not run.  This is a placeholder
+used when there is no real test case
+yet.
 @end table
-
-The only remaining output message left is intended to test
-features that are specified by the applicable POSIX standard as
-conditional:
 
 @table @asis
 
@@ -435,838 +348,48 @@ be careful to return @emph{UNRESOLVED} where appropriate,
 as described in the @emph{UNRESOLVED} section
 above.
 
-@node Getting DejaGnu up and running, Running Tests, Overview, Top
-@chapter Getting DejaGnu up and running
-
-This chapter was originally written by Niklaus Giger
-(ngiger@@mus.ch) because he lost a week to figure out how DejaGnu works
-and how to write a first test.
-
-Follow these instructions as closely a possible in order get a
-good insight into how DejaGnu works, else you might run into a lot of
-subtle problems. You have been warned.
-
-It should be no big problems installing DejaGnu using your package
-manager or from the source code. On the Debian GNU/Linux system just
-run (as root):
-
-@example
-apt-get install dejagnu
-@end example
-
-These examples were run on a primary machine with a AMD K6 and a Mac
-PowerBook G3 serving as a remote target.
-
-The tests for Windows were run under Windows using the actual
-Cygwin version (1.3.x as of October 2001). Its target system was a PPC
-embedded system running vxWorks.  
-
-@menu
-* Test your installation::
-* Create a minimal project, e.g. calc: Create a minimal project; e_g_ calc.
-* Our first automated tests::
-* A first remote test::
-@end menu
-
-@node Test your installation, Create a minimal project; e_g_ calc, , Getting DejaGnu up and running
-@section Test your installation
-
-Create a new user called "dgt" (DejaGnuTest), which uses bash as
-it login shell. PS1 must be set to '\u:\w\$ ' in its ~/.bashrc. Login
-as this user, create an empty directory and change the working
-directory to it. e.g
-
-@example
-
-dgt:~$ mkdir ~/dejagnu.test
-dgt:~$ cd ~/dejagnu.test
-@end example
-
-Now you are ready to test DejaGnu's main program called
-runtest. The expected output is shown
-
-@strong{Runtest output in a empty directory
-}
-
-@example
-
-dgt:~/dejagnu.test$ runtest
-WARNING: Couldn't find the global config file.
-WARNING: No tool specified
-Test Run By dgt on Sun Nov 25 17:07:03 2001
-Native configuration is i586-pc-linux-gnu
-=== tests ===
-Schedule of variations:
-    unix
-Running target unix
-Using /usr/share/dejagnu/baseboards/unix.exp as board description file for target.
-Using /usr/share/dejagnu/config/unix.exp as generic interface file for target.
-ERROR: Couldn't find tool config file for unix.
-=== Summary ===
-@end example
-
-We will show you later how to get rid of all the WARNING- and
-ERROR-messages. The files testrun.sum and testrun.log have been
-created, which do not interest us at this point. Let's remove
-them.
-
-@example
-:~/dejagnu.test$ rm testrun.sum testrun.log
-@end example
-
-@menu
-* Windows::
-* Getting the source code for the calc example::
-@end menu
-
-@node Windows, Getting the source code for the calc example, , Test your installation
-@subsection Windows
-
-On Windows systems DejaGnu is part of a port of a lot of Unix
-tools to the Windows OS, called Cygwin. Cygwin may be downloaded and
-installed from a mirror of http://www.cygwin.com/. All examples were
-also run on Windows. If nothing is said, you can assume that you
-should get the same output as on a Unix system.
-
-You will need a telnet daemon if you want to use a Windows box
-as a remote target. There seems to be a freeware telnet daemon at
-http://www.fictional.net/.
-
-@node Getting the source code for the calc example, , Windows, Test your installation
-@subsection Getting the source code for the calc example
-
-If you are running a Debian distribution you can find the
-examples under /usr/share/doc/dejagnu/examples. These examples seem to
-be missing in Red Hat's RPM. In this case download the sources of
-DejaGnu and adjust the paths to the DejaGnu examples
-accordingly.
-
-@node Create a minimal project; e_g_ calc, Our first automated tests, Test your installation, Getting DejaGnu up and running
-@section Create a minimal project, e.g. calc
-
-In this section you will to start a small project,
-using the sample application calc, which is part of your DejaGnu
-distribution
-
-@menu
-* A simple project without the GNU autotools::
-* Using autoconf/autoheader/automake::
-@end menu
-
-@node A simple project without the GNU autotools, Using autoconf/autoheader/automake, , Create a minimal project; e_g_ calc
-@subsection A simple project without the GNU autotools
-
-The runtest program can be run stand-alone. All the
-autoconf/automake support is just because those programs are commonly
-used for other GNU applications. The key to running runtest
-stand-alone is having the local site.exp file setup correctly, which
-automake does.
-
-The generated site.exp should like like:
-
-@example
-
-set tool calc
-set srcdir .
-set objdir /home/dgt/dejagnu.test
-@end example
-
-@node Using autoconf/autoheader/automake, , A simple project without the GNU autotools, Create a minimal project; e_g_ calc
-@subsection Using autoconf/autoheader/automake
-
-We have to prepare some input file in order to run autoconf and
-automake. There is a book "GNU autoconf, automake and
-libtool" by Garry V. Vaughan, et al. NewRider, ISBN 1-57870-190-2
-which describes this process thoroughly.
-
-From the calc example distributed with the DejaGnu documentation
-you should copy the program file itself (calc.c) and some additional
-files, which you might examine a little bit closer to derive their
-meanings.
-
-@example
-
-dgt:~/dejagnu.test$ cp -r /usr/share/doc/dejagnu/examples/calc/\
-@{configure.in,Makefile.am,calc.c,testsuite@} .
-@end example
-
-In Makefile.am note the presence of the AUTOMAKE_OPTIONS = dejagnu. This option is needed.
-
-Run aclocal to generate aclocal.m4, which is a collection of
-macros needed by configure.in
-
-@example
-
-dgt:~/dejagnu.test$ aclocal
-@end example
-
-autoconf is another part of the auto-tools. Run it to generate
-configure based on information contained in configure.in.
-
-@example
-
-dgt:~/dejagnu.test$ autoconf
-@end example
-
-autoheader is another part of the auto-tools.
-Run it to generate calc.h.in. 
-
-@example
-
-dgt:~/dejagnu.test$ autoheader
-@end example
-
-The Makefile.am of this example was developed as part of the DejaGnu
-distribution.
-Adapt Makefile.am for this test. Replace the line
-"#noinst_PROGRAMS = calc" with
-"bin_PROGRAMS = calc".
-Change the RUNTESTDEFAULTFLAGS from
-"$$srcdir/testsuite" to
-"./testsuite".
-
-Running automake at this point generates a series of warnings in
-its output as shown in the following example:
-
-@strong{Sample output of automake with missing files}
-
-@example
-
-dgt:~/dejagnu.test$ automake --add-missing
-automake: configure.in: installing `./install-sh'
-automake: configure.in: installing `./mkinstalldirs'
-automake: configure.in: installing `./missing'
-automake: Makefile.am: installing `./INSTALL'
-automake: Makefile.am: required file `./NEWS' not found
-automake: Makefile.am: required file `./README' not found
-automake: Makefile.am: installing `./COPYING'
-automake: Makefile.am: required file `./AUTHORS' not found
-automake: Makefile.am: required file `./ChangeLog' not found
-configure.in: 4: required file `./calc.h.in' not found
-Makefile.am:6: required directory ./doc does not exist
-@end example
-
-Create an empty directory doc and empty files
-INSTALL, NEWS, README, AUTHORS, and ChangeLog.
-The default COPYING will point to the GNU Public License (GPL).
-In a real project it would be time to add some meaningful text in each file.
-
-Adapt calc to your environment by calling configure.
-
-@strong{Sample output of configure
-}
-
-@example
-
-dgt:~/dejagnu.test$ ./configure
-creating cache ./config.cache
-checking whether to enable maintainer-specific portions of Makefiles... no
-checking for a BSD compatible install... /usr/bin/install -c
-checking whether build environment is sane... yes
-checking whether make sets $@{MAKE@}... yes
-checking for working aclocal... found
-checking for working autoconf... found
-checking for working automake... found
-checking for working autoheader... found
-checking for working makeinfo... found
-checking for gcc... gcc checking whether the C compiler (gcc ) works... yes
-checking whether the C compiler (gcc ) is a cross-compiler... no
-checking whether we are using GNU C... yes
-checking whether gcc accepts -g... yes
-checking for a BSD compatible install... /usr/bin/install -c
-checking how to run the C preprocessor... gcc -E
-checking for stdlib.h... yes
-checking for strcmp... yes
-updating cache ./config.cache
-creating ./config.status
-creating Makefile creating calc.h
-@end example
-
-If you are familiar with GNU software,
-this output should not contain any surprise for you.
-Any errors should be easy to fix for such a simple program.
-
-Build the calc executable:
-
-@strong{Sample output building calc
-}
-
-@example
-
-dgt:~/dejagnu.test$ make
-gcc -DHAVE_CONFIG_H -I. -I. -I. -g -O2 -c calc.c
-gcc -g -O2 -o calc calc.o
-@end example
-
-You prepared a few files and then called some
-commands. Respecting the right order assures an automatic and
-correctly compiled calc program. The following example summarises the
-correct order.
-
-@strong{Creating the calc program using the GNU autotools}
-
-@example
-
-dgt:~/dejagnu.test$ aclocal
-dgt:~/dejagnu.test$ autoconf
-dgt:~/dejagnu.test$ autoheader
-dgt:~/dejagnu.test$ automake --add-missing
-dgt:~/dejagnu.test$ ./configure
-dgt:~/dejagnu.test$ make
-
-@end example
-
-Play with calc and verify whether it works correctly.
-A sample session might look like this:
-
-@example
-
-dgt:~/dejagnu.test$ ./calc
-calc: version
-Version: 1.1
-calc: add 3 4
-7
-calc: multiply 3 4 
-12
-calc: multiply 2 4 
-12
-calc: quit
-
-@end example
-
-Look at the intentional bug that 2 times 4 equals 12.
-
-The tests run by DejaGnu need a file called site.exp,
-which is automatically generated if we call "make
-site.exp". This was the purpose of the "AUTOMAKE_OPTIONS =
-dejagnu" in Makefile.am.
-
-@strong{Sample output generating a site.exp}
-
-@example
-
-dgt: make site.exp
-dgt:~/dejagnu.test$ make site.exp
-Making a new site.exp file...
-@end example
-
-@node Our first automated tests, A first remote test, Create a minimal project; e_g_ calc, Getting DejaGnu up and running
-@section Our first automated tests
-
-@menu
-* Running the test for the calc example::
-* The various config files or how to avoid warnings::
-* When trouble strikes::
-* Testing "Hello world" locally::
-@end menu
-
-@node Running the test for the calc example, The various config files or how to avoid warnings, , Our first automated tests
-@subsection Running the test for the calc example
-
-Now we are ready to call the automated tests.
-
-@strong{Sample output of runtest in a configured directory}
-
-@example
-
-dgt:~/dejagnu.test$ make check
-make check-DEJAGNU
-make[1]: Entering directory `/home/dgt/dejagnu.test' srcdir=`cd . && pwd`; export srcdir; \
-EXPECT=expect; export EXPECT; \ runtest=runtest; \
-if /bin/sh -c "$runtest --version" > /dev/null 2>&1; then \
-$runtest --tool calc CALC=`pwd`/calc --srcdir ./testsuite ; \
-else echo "WARNING: could not find \`runtest'" 1>&2; :;\
-fi
-WARNING: Couldn't find the global config file.
-WARNING: Couldn't find tool init file
-Test Run By dgt on Sun Nov 25 21:42:21 2001
-Native configuration is i586-pc-linux-gnu
-
-       === calc tests ===
-
-Schedule of variations:
-   unix
-
-Running target unix
-Using /usr/share/dejagnu/baseboards/unix.exp as board description file for target.
-Using /usr/share/dejagnu/config/unix.exp as generic interface file for target.
-Using ./testsuite/config/unix.exp as tool-and-target-specific interface file.
-Running ./testsuite/calc.test/calc.exp ...
-FAIL: multiply2 (bad match)
-
-=== calc Summary ===
-
-# of expected passes 5
-# of unexpected failures 1
-/home/Dgt/dejagnu.test/calc version Version: 1.1
-make[1]: *** [check-DEJAGNU] Error 1
-make[1]: Leaving directory `/home/Dgt/dejagnu.test' make: *** [check-am] Error 2
-@end example
-
-Did you see the line "FAIL:"? The test cases for calc
-catch the bug in the calc.c file. Fix the error in calc.c later as the
-following examples assume an unchanged calc.c.
-
-Examine the output files calc.sum and calc.log. Try to
-understand the test cases written in
-~/dejagnu.test/testsuite/calc.test/calc.exp. To understand Expect you
-might take a look at the book "Exploring Expect", which is
-an excellent resource for learning and using Expect. (Pub: O'Reilly,
-ISBN 1-56592-090-2) The book contains hundreds of examples and also
-includes a tutorial on Tcl. Exploring Expect is 602 pages
-long.
-
-@node The various config files or how to avoid warnings, When trouble strikes, Running the test for the calc example, Our first automated tests
-@subsection The various config files or how to avoid warnings
-
-DejaGnu may be customized by each user. It first searches for a
-file called ~/.dejagnurc. Create the file ~/.dejagnurc and insert the
-following line:
-
-@example
-
-puts "I am ~/.dejagnurc"
-@end example
-
-Rerun make check. Test whether the output contains "I am ~/.dejagnurc".
-Create ~/my_dejagnu.exp and insert the following line:
-
-@example
-
-puts "I am ~/my_dejagnu.exp"
-@end example
-
-In a Bash-Shell enter
-
-@example
-
-dgt:~/dejagnu.test$ export DEJAGNU=~/my_dejagnu.exp
-@end example
-
-Run "make check" again. The output should not contain
-"WARNING: Couldn't find the global config file.".
-Create the sub-directory lib. Create the file "calc.exp" in it and insert the following line:
-
-@example
-
-puts "I am lib/calc.exp"
-@end example
-
-The last warning "WARNING: Couldn't find tool init file"
-should not be part of the output of make check.
-Create the directory ~/boards. Create the file ~/boards/standard.exp and insert the following line:
-
-@example
-
-puts "I am boards/standard.exp"
-@end example
-
-If the variable DEJAGNU is still not empty then the (abbreviated) output of "make check" should look like this:
-
-@strong{Sample output of runtest with the usual configuration files}
-
-@example
-
-dgt:~/dejagnu.test$ make check
-<...>
-fi
-I am ~/.dejagnurc
-I am ~/my_dejagnu.exp
-I am lib/calc.exp
-Test Run By dgt on Sun Nov 25 22:19:14 2001
-Native configuration is i586-pc-linux-gnu
-
-     === calc tests ===
-Using /home/Dgt/boards/standard.exp as standard board description\
-file for build.
-I am ~/boards/standard.exp
-Using /home/Dgt/boards/standard.exp as standard board description\
- file for host.
-I am ~/boards/standard.exp
-
-Schedule of variations:
-  unix
-
-Running target unix
-Using /home/Dgt/boards/standard.exp as standard board description\
- file for target.
-I am ~/boards/standard.exp
-Using /usr/share/dejagnu/baseboards/unix.exp as board description file\
-for target.
-<...>
-@end example
-
-It is up to you to decide when and where to use any of the above
-mentioned config files for customizing.  This chapter showed you where
-and in which order the different config files are run.
-
-@node When trouble strikes, Testing "Hello world" locally, The various config files or how to avoid warnings, Our first automated tests
-@subsection When trouble strikes
-
-Calling runtest with the '-v'-flag shows you in even more details which files are searched in which order. Passing it several times gives more and more details. 
-
-@strong{Displaying details about runtest execution}
-
-@example
-
-runtest -v -v -v --tool calc CALC=`pwd`/calc --srcdir ./testsuite
-@end example
-
-Calling runtest with the '--debug'-flag logs a lot of details to dbg.log where you can analyse it afterwards. 
-
-In all test cases you can temporary adjust the verbosity of
-information by adding the following Tcl command to any Tcl file that
-gets loaded by dejagnu, for instance, ~/.dejagnurc:
-
-@example
-
-set verbose 9
-@end example
-
-@node Testing "Hello world" locally, , When trouble strikes, Our first automated tests
-@subsection Testing "Hello world" locally
-
-This test checks whether the shell command @code{echo Hello
-world} will really output "Hello world" to the
-console.  Create the file
-@file{~/dejagnu.test/testsuite/calc.test/local_echo.exp}.
-It should contain the following lines:
-
-@strong{A first (local) test case}
-
-@example
-
-set test "Local Hello World"
-spawn echo Hello World
-expect @{
-   "Hello World"  @{ pass $test @}
-   default @{ fail $test @}
-@}
-@end example
-
-Run runtest again and verify the output "calc.log"
-
-@node A first remote test, , Our first automated tests, Getting DejaGnu up and running
-@section A first remote test
-
-Testing remote targets is a lot trickier especially if you are using an
-embedded target
-which has no built in support for things like a compiler, FTP server or a Bash-shell.
-Before you can test calc on a remote target you have to acquire a few basics skills.
-
-@menu
-* Setup telnet to your own host::
-* A test case for login via telnet::
-* Remote testing "Hello world"::
-* Transferring files from/to the target::
-* Preparing for cross-compilation::
-* Remote testing of calc::
-* Using Windows as host and vxWorks as target::
-@end menu
-
-@node Setup telnet to your own host, A test case for login via telnet, , A first remote test
-@subsection Setup telnet to your own host
-
-The easiest remote host is usually the host you are working on.
-In this example we will use telnet to login in your own workstation.
-For security reasons you should never have a telnet daemon running on
-machine connected on the Internet, as password and user names are transmitted
-in clear text.
-We assume you know how to setup your machine for a telnet daemon.
-
-Next try whether you may login in your own host by issuing the
-command "telnet localhost.1". In order to be able to
-distinguish between a normal session and a telnet login add the following lines to /home/dgt/.bashrc.
-
-@example
-
-if [ "$REMOTEHOST" ]
-then
-   PS1='remote:\w\$ '
-fi
-@end example
-
-Now on the machine a "remote" login looks like this:
-
-@strong{Sample log of a telnet login to localhost}
-
-@example
-
-dgt:~/dejagnu.test$ telnet localhost
-Trying 127.0.0.1...
-Connected to 127.0.0.1.
-Escape character is '^]'.
-Debian GNU/Linux testing/unstable Linux
-K6Linux login: dgt
-Password:
-Last login: Sun Nov 25 22:46:34 2001 from localhost on pts/4
-Linux K6Linux 2.4.14 #1 Fre Nov 16 19:28:25 CET 2001 i586 unknown
-No mail.
-remote:~$ exit
-logout
-Connection closed by foreign host.
-@end example
-
-@node A test case for login via telnet, Remote testing "Hello world", Setup telnet to your own host, A first remote test
-@subsection A test case for login via telnet
-
-In order to define a correct setup we have add a line containing
-"set target unix" either to ~/.dejagnurc or to ~/my_dejagnu.exp.
-In ~/boards/standard.exp add the following four lines to define a few patterns for the DejaGnu telnet login procedure.
-
-@strong{Defining a remote target board}
-
-@example
-
-set_board_info shell_prompt    "remote:"
-set_board_info telnet_username "dgt"
-set_board_info telnet_password "top_secret"
-set_board_info hostname        "localhost"
-
-@end example
-
-As DejaGnu will be parsing the telnet session output for some well
-known pattern the output there are a lot of things that can go wrong.
-If you have any problems verify your setup:
-
-@itemize 
-
-@item
-Is @file{/etc/motd} empty?
-
-@item
-Is @file{/etc/issue.net} empty?
-
-@item
-Exists a empty @file{~/.hushlogin}?
-
-@item
-The LANG environment variable must be either empty or set to "C". 
-@end itemize
-
-To test the login via telnet write a sample test case.
-Create the file ~/dejagnu.test/testsuite/calc.test/remote_echo.exp and
-add the following few lines:
-
-@strong{DejaGnu script for logging in into a remote target}
-
-@example
-
-puts "this is remote_echo.exp target for $target "
-target_info $target
-#set verbose 9
-set shell_id [remote_open $target]
-set test "Remote login to $target"
-#set verbose 0
-puts "Spawn id for remote shell is $shell_id"
-if @{ $shell_id > 0 @} @{
-   pass "$test"
-@} else @{
-   fail "Remote open to $target"
-@}
-@end example
-
-In the runtest output you should find something like:
-
-@example
-
-Running ./testsuite/calc.test/local_echo.exp ...
-Running ./testsuite/calc.test/remote_echo.exp ...
-this is remote_echo.exp target is unix
-Spawn id for remote shell is exp7
-@end example
-
-Have again a look at calc.log to get a feeling how DejaGnu and expect
-parse the input. 
-
-@node Remote testing "Hello world", Transferring files from/to the target, A test case for login via telnet, A first remote test
-@subsection Remote testing "Hello world"
-
-Next you will transform the above "hello world" example to
-its remote equivalent.
-This can be done by adding the following lines to our file remote_echo.exp.
-
-@strong{A first (local) remote "Hello world" test}
-
-@example
-
-set test "Remote_send Hello World"
-set status [remote_send $target "echo \"Hello\" \"World\"\n" ]
-pass "$test"
-set test "Remote_expect Hello World"
-remote_expect $target 5 @{
-   -re "Hello World"  @{ pass "$test" @}
-@}
-@end example
-
-Call make check. The output should contain
-"# of expected passes 9" and "# of unexpected failures 1".
-
-Have a look at the procedures in /usr/share/dejagnu/remote.exp to have an overview of the offered procedures and their features. 
-
-Now setup a real target.
-In the following example we assume as target a PowerBook running Debian.
-As above add a test user "dgt", install Telnet and FTP servers.
-In order to distinguish it from the host add the line
-
-@example
-PS1='test:>'
-@end example
-
-to /home/dgt/.bash_profile.
-Also add a corresponding entry "powerbook" to /etc/hosts and verify that you
-are able to ping, telnet and ftp to the target "powerbook".
-
-In order to let runtest run its test on the "powerbook" target change the following lines in ~/boards/standard.exp:
-
-@strong{Board definition for a remote target}
-
-@example
-
-set_board_info protocol        "telnet"
-set_board_info telnet_username "dgt"
-set_board_info telnet_password "top_secret"
-set_board_info shell_prompt    "test:> "
-set_board_info hostname        "powerbook"
-@end example
-
-Now call runtest again with the same arguments and verify whether all went okay by taking a close look at calc.log.
-
-@node Transferring files from/to the target, Preparing for cross-compilation, Remote testing "Hello world", A first remote test
-@subsection Transferring files from/to the target
-
-A simple procedure like this will do the job for you:
-
-@strong{Test script to transfer a file to a remote target}
-
-@example
-
-set test "Remote_download"
-puts "Running Remote_download"
-# set verbose 9
-set remfile /home/dgt/dejagnu2
-
-set status [remote_download $target /home/dgt/.dejagnurc $remfile]
-if @{ "$status" == "" @} @{
-     fail "Remote download to $remfile on $target"
-@} else @{
-   pass "$test"
-@}
-
-puts "status of remote_download ist $status"
-# set verbose 0
-@end example
-
-After running runtest again, check whether the file dejagnu2 exists on the target.
-This example will only work if the rcp command works with your target.
-If you have a working FTP-server on the target you can use it by adding the
-following lines to ~/boards/standard.exp:
-
-@strong{Defining a board to use FTP as file transport}
-
-@example
-
-set_board_info file_transfer   "ftp"
-set_board_info ftp_username    "dgt"
-set_board_info ftp_password    "1234"
-@end example
-
-@node Preparing for cross-compilation, Remote testing of calc, Transferring files from/to the target, A first remote test
-@subsection Preparing for cross-compilation
-
-For cross-compilation you need working binutils, gcc and a base library like
-libc or glib for your target.
-It is beyond the scope of this document to describe how to get it working.
-The following examples assume a cross compiler for PowerPC which is called linux-powerpc-gcc.
-
-Add AC_CANONICAL_TARGET in dejagnu.test/configure.in at the following location. Copy config.guess from /usr/share/automake to dejagnu.test.
-
-@example
-
-AM_CONFIG_HEADER(calc.h)
-AC_CANONICAL_TARGET([])
-AM_INIT_AUTOMAKE(calc, 1.1)
-@end example
-
-You need to run automake 2.5 or later.
-Depending on your installation calling autoconf2.5 instead of autoconf is not needed.
-The sequence to regenerate all files is:
-
-@strong{Using autotools for cross development}
-
-@example
-
-$ autoconf2.5
-$ autoheader
-$ automake
-$ ./configure --host=powerpc-linux --target=powerpc-linux
-configure: WARNING: If you wanted to set the --build type, don't use --host.
-    If a cross compiler is detected then cross compile mode will be used.
-checking build system type... ./config.guess: ./config.guess: No such file or directory
-configure: error: cannot guess build type; you must specify one
-$ cp /usr/share/automake/config.guess .
-$ ./configure --host=powerpc-linux --target=powerpc-linux
-configure: WARNING: If you wanted to set the --build type, don't use --host.
-If a cross compiler is detected then cross compile mode will be used. \
-checking build system type... i586-pc-linux-gnu
-checking host system type... powerpc-unknown-linux-gnu
-<...>
-checking whether we are cross compiling... yes
-<...>
-Configuration:
-Source code location: .
-C Compiler: powerpc-linux-gcc
-C Compiler flags: -g -O2
-
-@end example
-
-Everything should be ready to recompile for the target:
-
-@example
-$ make
-powerpc-linux-gcc -DHAVE_CONFIG_H -I. -I. -I. -g -O2 -c calc.c
-powerpc-linux-gcc -g -O2 -o calc calc.o
-
-@end example
-
-@node Remote testing of calc, Using Windows as host and vxWorks as target, Preparing for cross-compilation, A first remote test
-@subsection Remote testing of calc
-
-Not yet written, as I have problem getting libc6-dev-powerpc to work. Probably I first have to build my cross compiler. 
-
-@node Using Windows as host and vxWorks as target, , Remote testing of calc, A first remote test
-@subsection Using Windows as host and vxWorks as target
-
-A more thorough walk-through will be written in a few weeks.
-
-In order to test the vxWorks as a target I changed boards/standards.exp to reflect my settings (IP, username, password). Then I reconfigured vxWorks to include a FTP and telnet server (using the same username/password combination ad in boards/standard.exp).
-
-With this setup and some minor modification (e.g. replacing echo by printf) in my test cases I could test my vxWorks system. It sure does not seem to be a correct setup by DejaGnu standard. For instance, it still loading /usr/share/dejagnu/baseboards/unix.exp instead of vxWorks. In any case I found that (at least under Windows) I did not find out how the command line would let me override settings in my personal config files.
-
-@node Running Tests, Customizing DejaGnu, Getting DejaGnu up and running, Top
+@node Installation, , A POSIX Conforming Test Framework, Introduction
+@section Installation
+
+Refer to the @file{INSTALL} in the source
+distribution for detailed installation instructions.  Note that
+there is no compilation step as with many other GNU packages, as
+DejaGnu consists of interpreted code only.
+
+Save for its own small testsuite, the DejaGnu distribution does
+not include any testsuites. Testsuites for the various GNU
+development tools are included with those packages. After
+configuring the top-level DejaGnu directory, unpack and configure
+the test directories for the tools you want to test; then, in
+each test directory, run @emph{make check} to
+build auxiliary programs required by some of the tests, and run
+the test suites.
+
+@node Running Tests, Customizing DejaGnu, Introduction, Top
 @chapter Running Tests
 
 There are two ways to execute a testsuite. The most
 common way is when there is existing support in the
-@file{Makefile}. This support consists of a
+@file{Makefile} of the tool being tested. This
+usually consists of a
 @emph{check} target. The other way is to execute the
 @code{runtest} program directly. To run
 @code{runtest} directly from the command line requires
-either all the correct options, or the @ref{Local Config File} must be setup
-correctly.
+either all of the correct command line options, or a
+@ref{Local Config File} must be set up correctly.
 
 @menu
-* Make check: Make Check.
-* Runtest::
-* The files DejaGnu produces.: Output Files.
+* Running 'make check': Make Check.
+* Running runtest: Runtest.
+* Output files: Output Files.
 @end menu
 
 @node Make Check, Runtest, , Running Tests
-@section Make check
+@section Running 'make check'
 
 To run tests from an existing collection, first use
-@code{configure} as usual to set up the
-build directory. Then try typing:
+@code{configure} as usual to set up the build
+directory. Then type:
 
 @example
 
@@ -1277,17 +400,18 @@ build directory. Then try typing:
 If the @emph{check} target exists, it
 usually saves you some trouble. For instance, it can set up any
 auxiliary programs or other files needed by the tests. The most
-common file the check builds is the
-@emph{site.exp}. The site.exp file contains
-various variables that DejaGnu used to determine the
-configuration of the program being tested. This is mostly for
-supporting remote testing.
+common file the @emph{check} target depends on is
+the
+@file{site.exp} file. The site.exp file contains
+various variables that DejaGnu used to determine the configuration
+of the program being tested. This is mostly for supporting
+remote testing.
 
 The @emph{check} target is supported by GNU
 Automake. To have DejaGnu support added to your
 generated @file{Makefile.in}, just add the keyword
-dejagnu to the AUTOMAKE_OPTIONS variable in your
-@file{Makefile.am} file.
+@code{dejagnu} to the AUTOMAKE_OPTIONS variable in
+your @file{Makefile.am} file.
 
 Once you have run @emph{make check} to build
 any auxiliary files, you can invoke the test driver
@@ -1298,38 +422,38 @@ directly for test collections with no
 @file{Makefile}.
 
 @node Runtest, Output Files, Make Check, Running Tests
-@section Runtest
+@section Running runtest
 
-@code{runtest} is the executable test driver
-for DejaGnu. You can specify two kinds of things on the
+@code{runtest} is the test driver for
+DejaGnu. You can specify two kinds of things on the
 @code{runtest} command line: command line options,
-and Tcl variables for the test scripts. The options are listed
-alphabetically below.
+and Tcl variables that are passed to the test scripts. The
+options are listed alphabetically below.
 
 @code{runtest} returns an exit code of
-@emph{1} if any test has an unexpected result; otherwise
-(if all tests pass or fail as expected) it returns @emph{0}
-as the exit code.
+@emph{1} if any test has an unexpected result. If
+all tests pass or fail as expected, @code{runtest}
+returns @emph{0} as the exit code.
 
 @menu
 * Output States::
-* Invoking Runtest::
+* Invoking runtest::
 * Common Options: Common Operations.
 @end menu
 
-@node Output States, Invoking Runtest, , Runtest
+@node Output States, Invoking runtest, , Runtest
 @subsection Output States
 
 @file{runtest} flags the outcome of each
-test as one of these cases. @ref{A POSIX Conforming Test Framework} for a
+test as one of these cases. See @ref{A POSIX Conforming Test Framework} for a
 discussion of how POSIX specifies the meanings of these
 cases.
 
 @table @asis
 
 @item PASS
-The most desirable outcome: the test succeeded, and
-was expected to succeed.
+The most desirable outcome: the test was
+expected to succeed and did succeed.
 
 @item XPASS
 A pleasant kind of failure: a test was expected to
@@ -1370,7 +494,8 @@ not work on a particular target because its operating system support
 does not include a required subroutine.
 @end table
 
-runtest may also display the following messages:
+@code{runtest} may also display the following
+messages:
 
 @table @asis
 
@@ -1393,16 +518,16 @@ An informational message about the test
 case.
 @end table
 
-@node Invoking Runtest, Common Operations, Output States, Runtest
-@subsection Invoking Runtest
+@node Invoking runtest, Common Operations, Output States, Runtest
+@subsection Invoking runtest
 
 This is the full set of command line options that
-@file{runtest} recognizes. Arguments may be
+@code{runtest} recognizes. Option names may be
 abbreviated to the shortest unique string.
 
 @table @asis
 
-@item @code{--all} (-a)
+@item @code{-a}, @code{--all}
 Display all test output. By default,
 @emph{runtest} shows only the output of tests that
 produce unexpected results; that is, tests with status
@@ -1415,21 +540,23 @@ with status @emph{PASS} (success, as expected)
 @emph{WARNING} (minor error in the test case
 itself).
 
-@item @code{--build [string]}
-@emph{string} is a full configuration
-``triple'' name as used by @code{configure}. This
-is the type of machine DejaGnu and the tools to be tested are built
-on. For a normal cross this is the same as the host, but for a
-Canadian cross, they are separate.
+@item @code{--build [triplet]}
+@emph{string} is a
+configuration triplet as used
+by @code{configure}. This is the type of machine
+DejaGnu and the tools to be tested are built on. For a normal
+cross this is the same as the host, but for a Canadian
+cross, they are separate.
 
-@item @code{--host [string]}
-@code{string} is a full configuration
-``triple'' name as used by @emph{configure}.  Use this
+@item @code{--host [triplet]}
+@code{string} is a configuration
+triplet as used by @emph{configure}.  Use this
 option to override the default string recorded by your
-configuration's choice of host.  This choice does not change how
-anything is actually configured unless --build is also specified; it
-affects @emph{only} DejaGnu procedures that compare the
-host string with particular values.  The procedures
+configuration's choice of host.  This choice does not change
+how anything is actually configured unless --build is also
+specified; it affects @emph{only} DejaGnu
+procedures that compare the host string with particular
+values.  The procedures
 @emph{ishost}, @emph{istarget},
 @emph{isnative}, and @emph{setup_xfail}
 are affected by @code{--host}. In this usage,
@@ -1443,18 +570,20 @@ on.
 @item @code{--host_board [name]}
 The host board to use.
 
-@item @code{--target [string]}
-Use this option to override the default setting
-(running native tests). @emph{string} is a full
-configuration ``triple'' name of the form
+@item @code{--target [triplet]}
+Use this option to override the default
+setting (running native tests). @emph{triplet}
+is a configuration triplet of the form
 @emph{cpu-vendor-os} as used by
 @code{configure}. This option changes the
-configuration @emph{runtest} uses for the default tool
-names, and other setup information.
+configuration @code{runtest} uses for the
+default tool names, and other setup
+information.
 
-@item @code{--debug} (-de)
-Turns on the @emph{expect} internal
-debugging output. Debugging output is displayed as part of the
+@item @code{--debug}
+Turns on
+the Expect internal debugging
+output. Debugging output is displayed as part of the
 @emph{runtest} output, and logged to a file called
 @file{dbg.log}. The extra debugging output does
 @emph{not} appear on standard output, unless the
@@ -1465,45 +594,46 @@ the tool with the scripted patterns describing expected output.  The
 output generated with @code{--strace} also goes into
 @file{dbg.log}.
 
-@item @code{--help} (-he)
+@item @code{--help}
 Prints out a short summary of the
 @emph{runtest} options, then exits (even if you also
 specify other options).
 
 @item @code{--ignore [name(s)] }
-The names of specific tests to
+The name(s) of specific tests to
 ignore.
 
 @item @code{--objdir [path]}
-Use @emph{path} as the top directory
-containing any auxiliary compiled test code. This defaults to
-@file{.}.  Use this option to locate pre-compiled test
-code.  You can normally prepare any auxiliary files needed with
+Use @emph{path} as the top
+directory containing any auxiliary compiled test code. The
+default is '.'.  Use this option to locate pre-compiled
+test code.  You can normally prepare any auxiliary files
+needed with
 @emph{make}.
 
 @item @code{--outdir [path]}
-Write output logs in directory
-@file{path}.  The default is @emph{.},
-the directory where you start @emph{runtest}. This
-option affects only the summary and the detailed log files
-@file{tool.sum} and
-@file{tool.log}. The DejaGnu debug
-log @file{dbg.log} always appears (when requested) in
-the local directory.
+Write log files in directory
+@file{path}.  The default is '.', the
+directory where you start @emph{runtest}. This
+option affects only the summary (@file{.sum})
+and the detailed log files (@file{.log}).  The
+DejaGnu debug log @file{dbg.log} always appears
+(when requested) in the local directory.
 
 @item @code{--log_dialog}
 Emit Expect output to stdout.
-The @emph{expect} output is usually only written to
+The expect output is usually only
+written to
 @file{tool.log}. By enabling this option, they are also
 be printed to the stdout of the @emph{runtest}
 invocation.
 
 @item @code{--reboot [name]}
 Reboot the target board when
-@emph{runtest} initializes. Usually, when running tests
-on a separate target board, it is safer to reboot the target to be
-certain of its state.  However, when developing test scripts,
-rebooting takes a lot of time.
+@code{runtest} starts. When running tests on a
+separate target board, it is safer to reboot the target to
+be certain of its state.  However, when developing test
+scripts, rebooting can take a lot of time.
 
 @item @code{--srcdir [path]}
 Use @file{path} as the top directory
@@ -1527,34 +657,11 @@ Each procedure call or control structure counts as one ``level''. The
 output is recorded in the same file, @file{dbg.log},
 used for output from @code{--debug}.
 
-@item @code{--connect [program]}
-Connect to a target testing environment as specified
-by @emph{type}, if the target is not the computer
-running @emph{runtest}.  For example, use
-@code{--connect} to change the program used to connect
-to a ``bare board'' boot monitor.  The choices for
-@emph{type} in the DejaGnu 1.4 distribution are
-@emph{rlogin}, @emph{telnet},
-@emph{rsh}, @emph{tip},
-@emph{kermit}, and @emph{mondfe}.
-
-The default for this option depends on the configuration most
-convenient communication method available, but often other
-alternatives work as well; you may find it useful to try alternative
-connect methods if you suspect a communication problem with your
-testing target.
-
-@item @code{--baud [number]}
-Set the default baud rate to something other than
-9600. (Some serial interface programs, like @emph{tip},
-use a separate initialization file instead of this
-value.)
-
 @item @code{--target_board [name(s)]}
 The list of target boards to run tests
 on.
 
-@anchor{--tool[name[s]]}@item @code{--tool[name(s)]}
+@anchor{--tool [name[s]]}@item @code{--tool [name(s)]}
 Specifies which testsuite to run, and what
 initialization module to use. @code{--tool} is used
 @emph{only} for these two purposes. It is
@@ -1581,7 +688,7 @@ test.
 A list of additional options to pass to the
 tool.
 
-@item @code{--verbose} (-v)
+@item @code{-v}, @code{--verbose}
 Turns on more output. Repeating this option increases
 the amount of output displayed. Level one (@emph{-v})
 is simply test output. Level two (@emph{-v -v}) shows
@@ -1590,12 +697,11 @@ messages appear in the detailed (@file{*.log}) log
 file, but not in the summary (@file{*.sum}) log
 file.
 
-@item @code{--version} (-V)
+@item @code{-V}, @code{--version}
 Prints out the version numbers of DejaGnu,
-@emph{expect} and Tcl, and exits without running any
-tests.
+Expect, and Tcl.
 
-@item @code{--D[0-1]}
+@item @code{--D0}, @code{--D1}
 Start the internal Tcl debugger. The Tcl debugger
 supports breakpoints, single stepping, and other common debugging
 activities. See the document "Debugger for Tcl Applications" by Don
@@ -1606,7 +712,7 @@ Libes. (Distributed in PostScript form with
 at a breakpoint as soon as DejaGnu invokes it. If you specify
 @emph{-D0}, DejaGnu starts as usual, but you can enter
 the debugger by sending an interrupt (e.g. by typing
-@key{C}@key{c}).
+@key{Control}@key{c}).
 
 @item @file{testfile}.exp[=arg(s)]
 Specify the names of testsuites to run. By default,
@@ -1640,13 +746,15 @@ the main DejaGnu @emph{Makefile}; their values are
 captured in the @file{site.exp} file.
 @end table
 
-@node Common Operations, , Invoking Runtest, Runtest
+@node Common Operations, , Invoking runtest, Runtest
 @subsection Common Options
 
-Typically, you don't need must to use any command-line options.
-@code{--tool} used is only required when there are more than
-one testsuite in the same directory. The default options are in the
-local site.exp file, created by "make site.exp".
+Typically, you don't need to use any command line
+options.  The @code{--tool} option is only required
+when there is more than one testsuite in the same
+directory. The default options are in the
+local @file{site.exp} file, created
+by @code{make site.exp}.
 
 For example, if the directory @file{gdb/testsuite}
 contains a collection of DejaGnu tests for GDB, you can run them like
@@ -1654,12 +762,12 @@ this:
 
 @example
 
-	  eg$ cd gdb/testsuite
-	  eg$ runtest --tool gdb
+	  $ cd gdb/testsuite
+	  $ runtest --tool gdb
 	
 @end example
 
-Test output follows, ending with:
+The test output follows, then ends with:
 
 @example
 
@@ -1676,7 +784,7 @@ some other directory containing a collection of tests:
 
 @example
 
-	  eg$ runtest--srcdir /devo/gdb/testsuite
+	  $ runtest --srcdir /devo/gdb/testsuite
 	
 @end example
 
@@ -1687,71 +795,68 @@ failed.  To display output from all tests (whether or not they behave
 as expected), use the @code{--all} option.  For more
 verbose output about processes being run, communication, and so on, use
 @code{--verbose}. To see even more output, use multiple
-@code{--verbose} options. for a more detailed explanation
-of each @code{runtest} option.
-
-Test output goes into two files in your current directory:
-summary output in @file{tool.sum},
-and detailed output in @file{
-tool.log}. (@emph{tool}
-refers to the collection of tests; for example, after a run with
-@code{--tool} gdb, look for output files
-@file{gdb.sum} and
-@file{gdb.log}.)
+@code{--verbose} options.
+The @code{--help} for a more detailed explanation of
+each @code{runtest} option.
 
 @node Output Files, , Runtest, Running Tests
-@section The files DejaGnu produces.
+@section Output files
 
-DejaGnu always writes two kinds of output files: summary
-logs and detailed logs.  The contents of both of these are
-determined by your tests.
-
-For troubleshooting, a third kind of output file is useful:
-use @code{--debug} to request an output file showing
-details of what Expect is doing
-internally.
+DejaGnu always writes two kinds of output files.  Summary
+output is written to the @file{.sum} file, and
+detailed output is written to the @file{.log} file.
+The tool name determines the prefix for these files. For example,
+after running with
+@code{--tool gdb}, the output files will be called
+@file{gdb.sum} and
+@file{gdb.log}. For troubleshooting, a debug log
+file that logs the operation
+of Expect is available.  Each of
+these will be described in turn.
 
 @menu
-* Summary File::
-* Log File::
-* Debug Log File::
+* Summary log file::
+* Detailed log file::
+* Debug log file::
 @end menu
 
-@node Summary File, Log File, , Output Files
-@subsection Summary File
+@node Summary log file, Detailed log file, , Output Files
+@subsection Summary log file
 
-DejaGnu always produces a summary output file
-@file{tool.sum}. This summary shows the names of
-all test files run; for each test file, one line of output from
+DejaGnu always produces a summary (@file{.sum})
+output file. This summary lists the names of all test files run.
+For each test file, one line of output from
 each @code{pass} command (showing status
 @emph{PASS} or @emph{XPASS}) or
 @code{fail} command (status
-@emph{FAIL} or @emph{XFAIL});
+@emph{FAIL} or @emph{XFAIL}),
 trailing summary statistics that count passing and failing tests
-(expected and unexpected); and the full pathname and version
-number of the tool tested.  (All possible outcomes, and all
-errors, are always reflected in the summary output file,
+(expected and unexpected), the full pathname of the tool tested,
+and the version number of the tool.  All possible outcomes, and
+all errors, are always reflected in the summary output file,
 regardless of whether or not you specify
-@code{--all}.)
+@code{--all}.
 
 If any of your tests use the procedures
 @code{unresolved}, @code{unsupported},
 or @code{untested}, the summary output also
 tabulates the corresponding outcomes.
 
-For example, after @code{runtest --tool
-binutils}, look for a summary log in
+For example, after running @code{runtest --tool
+binutils} a summary log file will be written to
 @file{binutils.sum}. Normally, DejaGnu writes this
-file in your current working directory; use the
-@code{--outdir} option to select a different
+file in your current working directory. Use the
+@code{--outdir} option to select a different output
 directory.
 
-@strong{Here is a short sample summary log}
+@strong{Sample summary log}
 
 @example
 
-	Test Run By rob on Mon May 25 21:40:57 PDT 1992
+	Test Run By bje on Sat Nov 14 21:04:30 AEDT 2015
+
 		 === gdb tests ===
+
 	Running ./gdb.t00/echo.exp ...
 	PASS:   Echo test
 	Running ./gdb.all/help.exp ...
@@ -1762,7 +867,9 @@ directory.
 	Running ./gdb.t10/crossload.exp ...
 	PASS:   m68k-elf (elf-big) explicit format; loaded
 	XFAIL:  mips-ecoff (ecoff-bigmips) "ptype v_signed_char" signed C types
+
                 === gdb Summary ===
+
 	# of expected passes 5
 	# of expected failures 1
 	# of unexpected failures 1
@@ -1770,31 +877,31 @@ directory.
       
 @end example
 
-@node Log File, Debug Log File, Summary File, Output Files
-@subsection Log File
+@node Detailed log file, Debug log file, Summary log file, Output Files
+@subsection Detailed log file
 
 DejaGnu also saves a detailed log file
-@file{tool.log}, showing any output generated by
-tests as well as the summary output. For example, after
-@code{runtest --tool binutils}, look for a detailed
-log in @file{binutils.log}. Normally, DejaGnu
-writes this file in your current working directory; use the
-@code{--outdir} option to select a different
+(@file{.log}), showing any output generated by
+test cases as well as the summary output. For example, after
+running
+@code{runtest --tool binutils}, a detailed log file
+will be written to @file{binutils.log}. Normally,
+DejaGnu writes this file in your current working directory. Use the
+@code{--outdir} option to select a different output
 directory.
 
-@strong{Here is a brief example showing a detailed log for
-G++ tests}
+@strong{Sample detailed log for g++ tests}
 
 @example
 
-	Test Run By rob on Mon May 25 21:40:43 PDT 1992
+	Test Run By bje on Sat Nov 14 21:07:23 AEDT 2015
 
                 === g++ tests ===
 
-	--- Running ./g++.other/t01-1.exp ---
+	Running ./g++.other/t01-1.exp ...
         PASS:   operate delete
 
-	--- Running ./g++.other/t01-2.exp ---
+	Running ./g++.other/t01-2.exp ...
         FAIL:   i960 bug EOF
 	p0000646.C: In function `int  warn_return_1 ()':
 	p0000646.C:109: warning: control reaches end of non-void function
@@ -1804,11 +911,10 @@ G++ tests}
 	p0000646.C:125: warning: control reaches end of non-void function
 	p0000646.C: In function `struct foo warn_return_foo ()':
 	p0000646.C:132: warning: control reaches end of non-void function
-
-	--- Running ./g++.other/t01-4.exp ---
+	Running ./g++.other/t01-4.exp ...
         FAIL:   abort
 	900403_04.C:8: zero width for bit-field `foo'
-	--- Running ./g++.other/t01-3.exp ---
+	Running ./g++.other/t01-3.exp ...
         FAIL:   segment violation
 	900519_12.C:9: parse error before `;'
 	900519_12.C:12: Segmentation violation
@@ -1822,46 +928,43 @@ G++ tests}
 	
 @end example
 
-@node Debug Log File, , Log File, Output Files
-@subsection Debug Log File
+@node Debug log file, , Detailed log file, Output Files
+@subsection Debug log file
 
-With the @code{--debug} option, you can request
-a log file showing the output from
-Expect itself, running in debugging
-mode. This file (@file{dbg.log}, in the directory
-where you start @code{runtest}) shows each pattern
-Expect considers in analyzing test
-output.
+The @code{runtest}
+option @code{--debug} creates a file showing the
+output from
+Expect in debugging mode. The
+@file{dbg.log} file is created in the directory
+where you start @code{runtest}.  The log file shows
+the string sent to the tool under test by
+each @code{send} command and the pattern it compares
+with the tool output by each @code{expect}
+command.
 
-This file reflects each @code{send} command,
-showing the string sent as input to the tool under test; and
-each Expect command, showing each
-pattern it compares with the tool output.
-
-@strong{The log messages begin with a message of the form}
+The log messages begin with a message of the form:
 
 @example
 
-
 	expect: does @{tool output@} (spawn_id n)
-	 match pattern @{expected pattern@}?
-
+ 	   match pattern @{expected pattern@}?
         
 @end example
 
 For every unsuccessful match,
 Expect issues a
-@emph{no} after this message; if other patterns
+@emph{no} after this message. If other patterns
 are specified for the same Expect
 command, they are reflected also, but without the first part of
-the message (@emph{expect... match pattern}).
+the message (@emph{expect... match
+pattern}).
 
 When Expect finds a match, the
 log for the successful match ends with @emph{yes},
 followed by a record of the Expect
 variables set to describe a successful match.
 
-@strong{Here is an excerpt from the debugging log for a
+@strong{Debug log excerpt for a
 GDB test:}
 
 @example
@@ -2001,7 +1104,7 @@ line.
 @menu
 * Local Config File::
 * Global Config File::
-* Board Config File::
+* Board Configuration File: Board Config File.
 * Remote Host Testing::
 * Config File Values::
 @end menu
@@ -2175,7 +1278,7 @@ target is more complicated. Here it sets the list to three target
 boards. One is the default mips target, and both
 @emph{wilma} @emph{barney} are
 symbolic names for other mips boards. Symbolic names are covered
-in the @ref{Adding A New Board} chapter. The more complicated
+in the @ref{Adding a new board} chapter. The more complicated
 example is the one for @emph{mips-lsi-elf}. This one
 runs the tests with multiple iterations using all possible
 combinations of the @code{--soft-float} and the
@@ -2183,14 +1286,14 @@ combinations of the @code{--soft-float} and the
 this last feature is mostly compiler specific.
 
 @node Board Config File, Remote Host Testing, Global Config File, Customizing DejaGnu
-@section Board Config File
+@section Board Configuration File
 
 The board config file is where board specific config data
 is stored. A board config file contains all the higher-level
 configuration settings. There is a rough inheritance scheme, where it is
 possible to base a new board description file on an existing one. There
 are also collections of custom procedures for common environments. For
-more information on adding a new board config file, go to the @ref{Adding A New Board} chapter. 
+more information on adding a new board config file, go to the @ref{Adding a new board} chapter. 
 
 An example board config file for a GNU simulator is as
 follows. @code{set_board_info} is a procedure that sets the
@@ -2201,7 +1304,7 @@ image that may reside in various locations. This is mostly of use for
 when the startup code, the standard C libraries, or the tool chain itself
 is part of your build tree.
 
-@strong{Board Config File}
+@strong{Board Configuration File}
 
 @example
 
@@ -2417,7 +1520,7 @@ Tcl @code{set} command to specify a new default
 value (as for the configuration variables).  The following
 table describes the correspondence between command line
 options and variables you can set in
-@file{site.exp}.  @ref{Invoking Runtest}, for
+@file{site.exp}.  @ref{Invoking runtest}, for
 explanations of the command-line options.
 
 @strong{Tcl Variables For Command Line Options}
@@ -2497,53 +1600,44 @@ machines within a local network here.
 @chapter Extending DejaGnu
 
 @menu
-* Adding A New Testsuite: Adding a new Testsuite.
-* Adding A New Tool::
+* Adding a new testsuite::
+* Adding a new tool: Adding A New Tool.
 * Adding A New Target::
-* Adding A New Board::
-* Board Config File Values: Board File Values.
+* Adding a new board::
+* Board Configuration File Values: Board File Values.
 * Writing A Test Case::
 * Debugging A Test Case::
-* Adding A Test Case To A Testsuite.: Adding A Test Case To A Testsuite.
+* Adding a test case to a testsuite::
 * Hints On Writing A Test Case::
-* Special variables used by test cases.: Test Case Variables.
+* Test case special variables: Test case variables.
 @end menu
 
-@node Adding a new Testsuite, Adding A New Tool, , Extending DejaGnu
-@section Adding A New Testsuite
+@node Adding a new testsuite, Adding A New Tool, , Extending DejaGnu
+@section Adding a new testsuite
 
 The testsuite for a new tool should always be located in that tools
 source directory. DejaGnu require the directory be named
-@file{testsuite}. Under this directory, the test cases go
-in a subdirectory whose name begins with the tool name. For example, for
-a tool named @emph{flubber}, each subdirectory containing
-testsuites must start with @emph{"flubber."}.
+@file{testsuite}. Under this directory, the test
+cases go in a subdirectory whose name begins with the tool
+name. For example, for a tool named @emph{myprog},
+each subdirectory containing testsuites must start
+with @emph{"myprog."}.
 
-@node Adding A New Tool, Adding A New Target, Adding a new Testsuite, Extending DejaGnu
-@section Adding A New Tool
+@node Adding A New Tool, Adding A New Target, Adding a new testsuite, Extending DejaGnu
+@section Adding a new tool
 
-In general, the best way to learn how to write (code or even prose)
-is to read something similar.  This principle applies to test cases and
-to testsuites.  Unfortunately, well-established testsuites have a way
-of developing their own conventions: as test writers become more
-experienced with DejaGnu and with Tcl, they accumulate more utilities,
-and take advantage of more and more features of
-Expect and Tcl in
-general.
-
-Inspecting such established testsuites may make the prospect of
-creating an entirely new testsuite appear overwhelming.  Nevertheless,
-it is quite straightforward to get a new testsuite going.
-
-There is one testsuite that is guaranteed not to grow more
-elaborate over time: both it and the tool it tests were created expressly
-to illustrate what it takes to get started with DejaGnu.  The
-@file{example/} directory of the DejaGnu distribution
-contains both an interactive tool called @code{calc}, and a
-testsuite for it.  Reading this testsuite, and experimenting with it,
-is a good way to supplement the information in this section.  (Thanks to
-Robert Lupton for creating calc and its testsuite---and also the first
-version of this section of the manual!)
+In general, the best way to learn how to write code, or
+even prose, is to read something similar.  This principle
+applies to test cases and to testsuites.  Unfortunately,
+well-established testsuites have a way of developing their own
+conventions: as test writers become more experienced with DejaGnu
+and with Tcl, they accumulate more utilities, and take advantage
+of more and more features of
+Expect
+and Tcl in general.  Inspecting such
+established testsuites may make the prospect of creating an
+entirely new testsuite appear overwhelming.  Nevertheless, it is
+straightforward to start a new testsuite.
 
 To help orient you further in this task, here is an outline of the
 steps to begin building a testsuite for a program example.
@@ -2569,28 +1663,30 @@ configure system you use.  This example is a minimal configure.in for use
 with GNU Autoconf. 
 
 @item
-Create @file{Makefile.in} (if you are using
-Autoconf), or @file{Makefile.am}(if you are using
+Create @file{Makefile.in} (if using
+Autoconf), or @file{Makefile.am} (if using
 Automake), the source file used by configure to build your
 @file{Makefile}. If you are using GNU Automake.just add the
 keyword @emph{dejagnu} to the
 @emph{AUTOMAKE_OPTIONS} variable in your
-@file{Makefile.am} file. This will add all the Makefile
-support needed to run DejaGnu, and support the @ref{Make Check}
-target.
+@file{Makefile.am} file. This will add all
+the @file{Makefile} support needed to run DejaGnu,
+and support the @ref{Make Check} target.
 
 You also need to include two targets important to DejaGnu:
 @emph{check}, to run the tests, and
 @emph{site.exp}, to set up the Tcl copies of
-configuration-dependent values. This is called the @ref{Local Config File}
-The check target must run the @code{runtest} program to
-execute the tests.
+configuration-dependent values. This is called the
+@ref{Local Config File} The @emph{check} target
+must invoke the @code{runtest} program to run the
+tests.
 
-The @file{site.exp} target should usually set up
-(among other things) the $tool variable for the name of your program. If
-the local site.exp file is setup correctly, it is possible to execute the
-tests by merely typing @code{runtest} on the command
-line.
+The @emph{site.exp} target should usually
+set up (among other things) the @emph{$tool}
+variable for the name of your program. If the
+local @file{site.exp} file is setup correctly, it
+is possible to execute the tests by merely
+typing @code{runtest} on the command line.
 
 @strong{Sample Makefile.in Fragment}
 
@@ -2603,7 +1699,7 @@ line.
 	       echo runtest; \
 	     fi`
 
-	# The flags to pass to runtest
+	# Flags to pass to runtest
 	RUNTESTFLAGS =
 
 	# Execute the tests
@@ -2654,39 +1750,35 @@ called @file{config}. Make a @emph{Tool Init
 File} in this directory. Its name must start with the
 @code{target_abbrev} value, or be named
 @file{default.exp} so call it
-@file{config/unix.exp} for our Unix based example. This
-is the file that contains the target-dependent procedures.
-Fortunately, on Unix, most of them do not have to do very much in
-order for @code{runtest} to run.
+@file{config/unix.exp} for our Unix based
+example. This is the file that contains the target-dependent
+procedures.  Fortunately, on a native Unix system, most of
+them do not have to do very much in order
+for @code{runtest} to run.  If the program being
+tested is not interactive, you can get away with this
+minimal @file{unix.exp} to begin with:
 
-If the program being tested is not interactive, you can get
-away with this minimal @file{unix.exp} to begin
-with:
-
-@strong{Simple Batch Program Tool Init File}
+@strong{Simple tool init file for batch programs}
 
 @example
 
-
-	  proc foo_exit @{@} @{@}
-	  proc foo_version @{@} @{@}
-
+	  proc myprog_exit @{@} @{@}
+	  proc myprog_version @{@} @{@}
 	  
 @end example
 
 If the program being tested is interactive, however, you might
 as well define a @emph{start} routine and invoke it by
-using an init file like this:
+using a tool init file like this:
 
-@strong{Simple Interactive Program Tool Init File}
+@strong{Simple tool init file for interactive programs}
 
 @example
 
-	
-	  proc foo_exit @{@} @{@}
-	  proc foo_version @{@} @{@}
+	  proc myprog_exit @{@} @{@}
+	  proc myprog_version @{@} @{@}
 
-	  proc foo_start @{@} @{
+	  proc myprog_start @{@} @{
 	    global $@{examplename@}
 	    spawn $@{examplename@}
 	    expect @{
@@ -2695,16 +1787,15 @@ using an init file like this:
 	  @}
 
 	  # Start the program running we want to test
-	  foo_start
-
+	  myprog_start
 	  
 @end example
 
 @item
 Create a directory whose name begins with your tool's
 name, to contain tests. For example, if your tool's name is
-@emph{gcc}, then the directories all need to start with
-@emph{"gcc."}.
+@emph{myprog}, then the directories all need to start with
+@emph{"myprog."}.
 
 @item
 Create a sample test file. Its name must end with
@@ -2730,15 +1821,15 @@ path, if a suitable configure is not available in your execution
 path.
 
 @item
-You are now ready to triumphantly type @code{make
-check} or @code{runtest}.  You should see
-something like this:
+You are now ready to type @code{make
+check} or @code{runtest}.  You should
+see something like this:
 
 @strong{Example Test Case Run}
 
 @example
 
-	  Test Run By rhl on Fri Jan 29 16:25:44 EST 1993
+	  Test Run By bje on Sat Nov 14 15:08:54 AEDT 2015
 
                 === example tests ===
 
@@ -2750,9 +1841,9 @@ something like this:
 	 
 @end example
 
-There is no output in the summary, because so far the example
-does not call any of the procedures that establish a test
-outcome.
+There is no output in the summary, because so far the
+example does not call any of the procedures that report a
+test outcome.
 
 @item
 Write some real tests. For an interactive tool, you
@@ -2761,7 +1852,7 @@ any case, you should also write a real version routine
 soon. 
 @end itemize
 
-@node Adding A New Target, Adding A New Board, Adding A New Tool, Extending DejaGnu
+@node Adding A New Target, Adding a new board, Adding A New Tool, Extending DejaGnu
 @section Adding A New Target
 
 DejaGnu has some additional requirements for target support, beyond
@@ -2777,14 +1868,13 @@ edit an existing initialization module; some trial and error will be
 required. If necessary, you can use the @code{--debug} option to see what
 is really going on.
 
-When you code an initialization module, be generous in printing
-information controlled by the @code{verbose}
-procedure.
-
-For cross targets, most of the work is in getting the
-communications right. Communications code (for several situations
-involving IP networks or serial lines) is available in a DejaGnu library
-file.
+When you code an initialization module, be generous in
+printing information controlled by
+the @code{verbose} procedure.  In
+cross-development environments, most of the work is in getting
+the communications right. Code for communicating via TCP/IP
+networks or serial lines is available in a DejaGnu library files
+such as @file{lib/telnet.exp}.
 
 If you suspect a communication problem, try running the connection
 interactively from Expect.  (There are three
@@ -2803,11 +1893,11 @@ Expect altogether.)  Run the program whose name is recorded in
 least be able to get a prompt from any target that is physically
 connected.
 
-@node Adding A New Board, Board File Values, Adding A New Target, Extending DejaGnu
-@section Adding A New Board
+@node Adding a new board, Board File Values, Adding A New Target, Extending DejaGnu
+@section Adding a new board
 
-Adding a new board consists of creating a new board config
-file. Examples are in
+Adding a new board consists of creating a new board
+configuration file. Examples are in
 @file{dejagnu/baseboards}. Usually to make a new
 board file, it's easiest to copy an existing one. It is also
 possible to have your file be based on a
@@ -2828,7 +1918,7 @@ board description file is where the board specific settings go. Commonly
 there are similar target environments with just different
 processors.
 
-@strong{Testing a New Board Config File}
+@strong{Testing a New Board Configuration File}
 
 @example
 
@@ -2845,7 +1935,7 @@ are in the same tree as the new dejagnu files. The helper
 procedures are the ones in square braces
 @emph{[]}, which is the Tcl execution characters.
 
-@strong{Example Board Config File}
+@strong{Example Board Configuration File}
 
 @example
 
@@ -2867,7 +1957,7 @@ procedures are the ones in square braces
       set_board_info ldflags "[newlib_link_flags]"
 
       # No linker script for this board.
-      set_board_info ldscript "-Tsim.ld";
+      set_board_info ldscript "-Tsim.ld"
 
       # The simulator doesn't return exit statuses and we need to indicate this.
       set_board_info needs_status_wrapper 1
@@ -2884,8 +1974,8 @@ procedures are the ones in square braces
       
 @end example
 
-@node Board File Values, Writing A Test Case, Adding A New Board, Extending DejaGnu
-@section Board Config File Values
+@node Board File Values, Writing A Test Case, Adding a new board, Extending DejaGnu
+@section Board Configuration File Values
 
 These fields are all in the @code{board_info} array.
 These are all set by using the @code{set_board_info}
@@ -3038,7 +2128,7 @@ compile them all using a generic procedure. This procedure and a
 few others supporting for these tests are kept in the library
 module @file{lib/c-torture.exp} in the GCC test
 suite. Most tests of this kind use very few
-expect features, and are coded almost
+Expect features, and are coded almost
 purely in Tcl.
 
 Writing the complete suite of C tests, then, consisted of
@@ -3079,7 +2169,7 @@ existing GDB tests, for reporting purposes. Thereafter, new GDB
 tests built up a family of Tcl procedures specialized for GDB
 testing.
 
-@node Debugging A Test Case, Adding A Test Case To A Testsuite, Writing A Test Case, Extending DejaGnu
+@node Debugging A Test Case, Adding a test case to a testsuite, Writing A Test Case, Extending DejaGnu
 @section Debugging A Test Case
 
 These are the kinds of debugging information available
@@ -3138,8 +2228,8 @@ detailed log file, and (if @code{--debug} is on) to
 @file{dbg.log}.
 @end itemize
 
-@node Adding A Test Case To A Testsuite, Hints On Writing A Test Case, Debugging A Test Case, Extending DejaGnu
-@section Adding A Test Case To A Testsuite.
+@node Adding a test case to a testsuite, Hints On Writing A Test Case, Debugging A Test Case, Extending DejaGnu
+@section Adding a test case to a testsuite
 
 There are two slightly different ways to add a test
 case. One is to add the test case to an existing directory. The
@@ -3199,7 +2289,7 @@ configure and make, you must also create a
 @file{configure.in}.
 @end itemize
 
-@node Hints On Writing A Test Case, Test Case Variables, Adding A Test Case To A Testsuite, Extending DejaGnu
+@node Hints On Writing A Test Case, Test case variables, Adding a test case to a testsuite, Extending DejaGnu
 @section Hints On Writing A Test Case
 
 It is safest to write patterns that match all the output
@@ -3259,35 +2349,32 @@ situation should not fail either. Instead, print an error
 message by calling one of the DejaGnu procedures
 @code{error} or @code{warning}.
 
-@node Test Case Variables, , Hints On Writing A Test Case, Extending DejaGnu
-@section Special variables used by test cases.
+@node Test case variables, , Hints On Writing A Test Case, Extending DejaGnu
+@section Test case special variables
 
-There are special variables used by test cases. These contain
-other information from DejaGnu. Your test cases can use these variables,
-with conventional meanings (as well as the variables saved in
-@file{site.exp}. You can use the value of these variables,
-but they should never be changed.
+There are special variables that contain other information
+from DejaGnu. Your test cases can inspect these variables, as well
+as the variables saved in
+@file{site.exp}. These variables should never be
+changed.
 
 @table @asis
 
 @item $prms_id
-The tracking system (e.g. GNATS) number identifying
-a corresponding bugreport.  (@emph{0} if you do not
-specify it in the test script.)
+The bug tracking system (eg. PRMS/GNATS)
+number identifying a corresponding bug report
+(@emph{0} if you do not specify
+it).
 
-@item $item bug_id
-An optional bug id; may reflect a bug
-identification from another organization.  (@emph{0}
-if you do not specify it.)
+@item $bug_id
+An optional bug ID, perhaps a bug
+identification number from another organization
+(@emph{0} if you do not specify
+it).
 
 @item $subdir
 The subdirectory for the current test
 case.
-
-@item $expect_out(buffer)
-The output from the last command. This is an
-internal variable set by Expect. More information can be found in
-the Expect manual.
 
 @item $exec_output
 This is the output from a
@@ -3301,26 +2388,33 @@ This is the output from a
 used for batch oriented programs, like GCC and GAS, that may
 produce interesting output (warnings, errors) without further
 interaction.
+
+@item $expect_out(buffer)
+The output from the last command. This is an
+internal variable set by Expect. More information can be found in
+the Expect manual.
 @end table
 
 @node Unit Testing, Reference, Extending DejaGnu, Top
 @chapter Unit Testing
 
 @menu
-* What Is Unit Testing ?::
-* The dejagnu.h Header File: The dejagnu_h Header File.
+* What Is Unit Testing?::
+* The dejagnu.h header file: The dejagnu_h header file.
+* C Unit Testing API::
+* C++ Unit Testing API::
 @end menu
 
-@node What Is Unit Testing ?, The dejagnu_h Header File, , Unit Testing
-@section What Is Unit Testing ?
+@node What Is Unit Testing?, The dejagnu_h header file, , Unit Testing
+@section What Is Unit Testing?
 
-Most regression testing as done by DejaGnu is system
-testing. This is the complete application is tested all at
-once. Unit testing is for testing single files, or small
-libraries. In this case, each file is linked with a test case in
-C or C++, and each function or class and method is tested in
-series, with the test case having to check private data or
-global variables to see if the function or method worked.
+Most regression testing as done by DejaGnu is system testing:
+the complete application is tested all at once. Unit testing is
+for testing single files, or small libraries. In this case, each
+file is linked with a test case in C or C++, and each function
+or class and method is tested in series, with the test case
+having to check private data or global variables to see if the
+function or method worked.
 
 This works particularly well for testing APIs and at level
 where it is easier to debug them, than by needing to trace through
@@ -3328,10 +2422,11 @@ the entire application. Also if there is a specification for the
 API to be tested, the testcase can also function as a compliance
 test.
 
-@node The dejagnu_h Header File, , What Is Unit Testing ?, Unit Testing
-@section The dejagnu.h Header File
+@node The dejagnu_h header file, C Unit Testing API, What Is Unit Testing?, Unit Testing
+@section The dejagnu.h header file
 
-DejaGnu uses a single header file to assist in unit
+DejaGnu uses a single header
+file, @file{dejagnu.h} to assist in unit
 testing. As this file also produces its one test state output,
 it can be run stand-alone, which is very useful for testing on
 embedded systems. This header file has a C and C++ API for the
@@ -3341,126 +2436,159 @@ made to work with this test case, without writing almost any
 Tcl. The library module, dejagnu.exp, will look for the output
 messages, and then merge them into DejaGnu's.
 
-@node Reference, Unit Testing API, Unit Testing, Top
+@node C Unit Testing API, C++ Unit Testing API, The dejagnu_h header file, Unit Testing
+@section C Unit Testing API
+
+All of the functions that take a
+@code{msg} parameter use a C char * that is the
+message to be displayed. There currently is no support for
+variable length arguments.
+
+@menu
+* Pass Function: pass function.
+* Fail Function: fail function.
+* Untested Function: untested function.
+* Unresolved Function: unresolved function.
+* Totals Function: totals function.
+@end menu
+
+@node pass function, fail function, , C Unit Testing API
+@subsection Pass Function
+
+This prints a message for a successful test
+completion.
+
+@quotation
+
+@t{@b{pass}(@i{msg});}
+@end quotation
+
+@node fail function, untested function, pass function, C Unit Testing API
+@subsection Fail Function
+
+This prints a message for an unsuccessful test
+completion.
+
+@quotation
+
+@t{@b{fail}(@i{msg});}
+@end quotation
+
+@node untested function, unresolved function, fail function, C Unit Testing API
+@subsection Untested Function
+
+This prints a message for an test case that isn't run
+for some technical reason.
+
+@quotation
+
+@t{@b{untested}(@i{msg});}
+@end quotation
+
+@node unresolved function, totals function, untested function, C Unit Testing API
+@subsection Unresolved Function
+
+This prints a message for an test case that is run,
+but there is no clear result. These output states require a
+human to look over the results to determine what happened.
+
+@quotation
+
+@t{@b{unresolved}(@i{msg});}
+@end quotation
+
+@node totals function, , unresolved function, C Unit Testing API
+@subsection Totals Function
+
+This prints out the total numbers of all the test
+state outputs.
+
+@quotation
+
+@t{@b{totals}(@i{});}
+@end quotation
+
+@node C++ Unit Testing API, , C Unit Testing API, Unit Testing
+@section C++ Unit Testing API
+
+All of the methods that take a
+@code{msg} parameter use a C char *
+or STL string, that is the message to be
+displayed. There currently is no support for variable
+length arguments.
+
+@menu
+* Pass Method: pass method.
+* Fail Method: fail method.
+* Untested Method: untested method.
+* Unresolved Method: unresolved method.
+* Totals Method: totals method.
+@end menu
+
+@node pass method, fail method, , C++ Unit Testing API
+@subsection Pass Method
+
+This prints a message for a successful test
+completion.
+
+@quotation
+
+@t{@b{TestState::pass}(@i{msg});}
+@end quotation
+
+@node fail method, untested method, pass method, C++ Unit Testing API
+@subsection Fail Method
+
+This prints a message for an unsuccessful test
+completion.
+
+@quotation
+
+@t{@b{TestState::fail}(@i{msg});}
+@end quotation
+
+@node untested method, unresolved method, fail method, C++ Unit Testing API
+@subsection Untested Method
+
+This prints a message for an test case that isn't run
+for some technical reason.
+
+@quotation
+
+@t{@b{TestState::untested}(@i{msg});}
+@end quotation
+
+@node unresolved method, totals method, untested method, C++ Unit Testing API
+@subsection Unresolved Method
+
+This prints a message for an test case that is run,
+but there is no clear result. These output states require a
+human to look over the results to determine what happened.
+
+@quotation
+
+@t{@b{TestState::unresolved}(@i{msg});}
+@end quotation
+
+@node totals method, , unresolved method, C++ Unit Testing API
+@subsection Totals Method
+
+This prints out the total numbers of all the test
+state outputs.
+
+@quotation
+
+@t{@b{TestState::totals}(@i{});}
+@end quotation
+
+@node Reference, , Unit Testing, Top
 @chapter Reference
 
 @menu
-* Obtaining DejaGnu::
-* Installation::
 * Builtin Procedures::
-* File Map::
 @end menu
 
-@node Obtaining DejaGnu, Installation, , Reference
-@section Obtaining DejaGnu
-
-You can obtain DejaGnu from the DejaGnu web site at the
-@uref{http://www.gnu.org,Free Software Foundation},
-which is at @uref{http://www.gnu.org/software/dejagnu/,www.gnu.org/software/dejagnu/  }
-
-@node Installation, Builtin Procedures, Obtaining DejaGnu, Reference
-@section Installation
-
-Once you have the DejaGnu source unpacked and available, you must
-first configure the software to specify where it is to run (and the
-associated defaults); then you can proceed to installing it.
-
-@menu
-* Configuring DejaGnu::
-* Installing DejaGnu::
-@end menu
-
-@node Configuring DejaGnu, Installing DejaGnu, , Installation
-@subsection Configuring DejaGnu
-
-It is usually best to configure in a directory separate from the
-source tree, specifying where to find the source with the optional
-@code{--srcdir} option to
-@emph{configure}. DejaGnu uses the GNU
-@emph{autoconf} to configure itself. For more info on using
-autoconf, read the GNU autoconf manual. To configure, execute the
-@file{configure} program, no other options are
-required. For an example, to configure in a separate tree for objects,
-execute the configure script from the source tree like this:
-
-@example
-
-        ../dejagnu-1.5.1/configure
-      
-@end example
-
-DejaGnu doesn't care at config time if it's for testing a native
-system or a cross system. That is determined at runtime by using the
-config files.
-
-You may also want to use the @code{configure} option
-@code{--prefix} to specify where you want DejaGnu and its
-supporting code installed.  By default, installation is in subdirectories
-of @file{/usr/local}, but you can select any alternate
-directory @code{altdir} by including
-@code{--prefix altdir} on the
-@code{configure} command line. (This value is captured in
-the Makefile variables @emph{prefix} and
-@emph{exec_prefix}.)
-
-Save for a small number of example tests, the DejaGnu distribution
-itself does not include any testsuites; these are available
-separately. Testsuites for the GNU development tools are included in
-those releases. After configuring the top-level DejaGnu directory, unpack
-and configure the test directories for the tools you want to test; then,
-in each test directory, run @emph{make check} to build
-auxiliary programs required by some of the tests, and run the test
-suites.
-
-@node Installing DejaGnu, , Configuring DejaGnu, Installation
-@subsection Installing DejaGnu
-
-To install DejaGnu in your file system (either in
-@file{/usr/local}, or as specified by your
-@code{--prefix} option to @emph{configure}),
-execute.
-
-@example
-
-        eg$ make install
-      
-@end example
-
-@emph{make install}does these things for
-DejaGnu:
-
-@itemize 
-
-@item
-Look in the path specified for executables
-@code{$exec_prefix}) for directories called
-@file{lib} and @file{bin}. If these
-directories do not exist, @emph{make install} creates
-them.
-
-@item
-Create another directory in the
-@file{share} directory, called
-@file{dejagnu}, and copy all the library files into
-it.
-
-@item
-Create a directory in the
-@file{dejagnu/share} directory, called
-@file{config}, and copy all the configuration files into
-it.
-
-@item
-Copy the @emph{runtest} shell script into
-@file{$exec_prefix/bin}.
-
-@item
-Copy @file{runtest.exp} into
-@file{$exec_prefix/lib/dejagnu}. This is the main Tcl
-code implementing DejaGnu.
-@end itemize
-
-@node Builtin Procedures, File Map, Installation, Reference
+@node Builtin Procedures, , , Reference
 @section Builtin Procedures
 
 DejaGnu provides these Tcl procedures.
@@ -4316,14 +3444,14 @@ into DejaGnu.
 @node Procedures For Remote Communication, connprocs, Core Internal Procedures, Builtin Procedures
 @subsection Procedures For Remote Communication
 
-@file{lib/remote.exp} defines these
-functions, for establishing and managing communications. Each
-of these procedures tries to establish the connection up to
-three times before returning. Warnings (if retries will
-continue) or errors (if the attempt is abandoned) report on
-communication failures.  The result for any of these
-procedures is either @emph{-1}, when the
-connection cannot be established, or the spawn ID returned by
+@file{lib/remote.exp} defines procedures for
+establishing and managing communications. Each of these
+procedures tries to establish the connection up to three times
+before returning. Warnings (if retries will continue) or
+errors (if the attempt is abandoned) report on communication
+failures.  The result for any of these procedures is
+either @emph{-1}, when the connection cannot be
+established, or the spawn ID returned by
 the Expect command
 @code{spawn}.
 
@@ -7154,241 +6282,5 @@ This makes runtest exit. It is abbreviated as
 
 @item @code{}
 @end table
-
-@node File Map, , Builtin Procedures, Reference
-@section File Map
-
-This is a map of the files in DejaGnu.
-
-@itemize 
-
-@item
-runtest
-
-@item
-runtest.exp
-
-@item
-stub-loader.c
-
-@item
-testglue.c
-
-@item
-config
-
-@item
-baseboards
-
-@item
-lib/debugger.exp
-
-@item
-lib/dg.exp
-
-@item
-lib/framework.exp
-
-@item
-lib/ftp.exp
-
-@item
-lib/kermit.exp
-
-@item
-lib/libgloss.exp
-
-@item
-lib/mondfe.exp
-
-@item
-lib/remote.exp
-
-@item
-lib/rlogin.exp
-
-@item
-lib/rsh.exp
-
-@item
-lib/standard.exp
-
-@item
-lib/target.exp
-
-@item
-lib/targetdb.exp
-
-@item
-lib/telnet.exp
-
-@item
-lib/tip.exp
-
-@item
-lib/util-defs.exp
-
-@item
-lib/utils.exp
-
-@item
-lib/xsh.exp
-
-@item
-lib/dejagnu.exp
-@end itemize
-
-@node Unit Testing API, , Reference, Top
-@chapter Unit Testing API
-
-@menu
-* C Unit Testing API::
-* C++ Unit Testing API::
-@end menu
-
-@node C Unit Testing API, C++ Unit Testing API, , Unit Testing API
-@section C Unit Testing API
-
-All of the functions that take a
-@code{msg} parameter use a C char * that is
-the message to be displayed. There currently is no support for
-variable length arguments.
-
-@menu
-* Pass Function: pass function.
-* Fail Function: fail function.
-* Untested Function: untested function.
-* Unresolved Function: unresolved function.
-* Totals Function: totals function.
-@end menu
-
-@node pass function, fail function, , C Unit Testing API
-@subsection Pass Function
-
-This prints a message for a successful test
-completion.
-
-@quotation
-
-@t{@b{pass}(@i{msg});}
-@end quotation
-
-@node fail function, untested function, pass function, C Unit Testing API
-@subsection Fail Function
-
-This prints a message for an unsuccessful test
-completion.
-
-@quotation
-
-@t{@b{fail}(@i{msg});}
-@end quotation
-
-@node untested function, unresolved function, fail function, C Unit Testing API
-@subsection Untested Function
-
-This prints a message for an test case that isn't run
-for some technical reason.
-
-@quotation
-
-@t{@b{untested}(@i{msg});}
-@end quotation
-
-@node unresolved function, totals function, untested function, C Unit Testing API
-@subsection Unresolved Function
-
-This prints a message for an test case that is run,
-but there is no clear result. These output states require a
-human to look over the results to determine what happened.
-
-@quotation
-
-@t{@b{unresolved}(@i{msg});}
-@end quotation
-
-@node totals function, , unresolved function, C Unit Testing API
-@subsection Totals Function
-
-This prints out the total numbers of all the test
-state outputs.
-
-@quotation
-
-@t{@b{totals}(@i{});}
-@end quotation
-
-@node C++ Unit Testing API, , C Unit Testing API, Unit Testing API
-@section C++ Unit Testing API
-
-All of the methods that take a
-@code{msg} parameter use a C char *
-or STL string, that is the message to be
-displayed. There currently is no support for variable
-length arguments.
-
-@menu
-* Pass Method: pass method.
-* Fail Method: fail method.
-* Untested Method: untested method.
-* Unresolved Method: unresolved method.
-* Totals Method: totals method.
-@end menu
-
-@node pass method, fail method, , C++ Unit Testing API
-@subsection Pass Method
-
-This prints a message for a successful test
-completion.
-
-@quotation
-
-@t{@b{TestState::pass}(@i{msg});}
-@end quotation
-
-@node fail method, untested method, pass method, C++ Unit Testing API
-@subsection Fail Method
-
-This prints a message for an unsuccessful test
-completion.
-
-@quotation
-
-@t{@b{TestState::fail}(@i{msg});}
-@end quotation
-
-@node untested method, unresolved method, fail method, C++ Unit Testing API
-@subsection Untested Method
-
-This prints a message for an test case that isn't run
-for some technical reason.
-
-@quotation
-
-@t{@b{TestState::untested}(@i{msg});}
-@end quotation
-
-@node unresolved method, totals method, untested method, C++ Unit Testing API
-@subsection Unresolved Method
-
-This prints a message for an test case that is run,
-but there is no clear result. These output states require a
-human to look over the results to determine what happened.
-
-@quotation
-
-@t{@b{TestState::unresolved}(@i{msg});}
-@end quotation
-
-@node totals method, , unresolved method, C++ Unit Testing API
-@subsection Totals Method
-
-This prints out the total numbers of all the test
-state outputs.
-
-@quotation
-
-@t{@b{TestState::totals}(@i{});}
-@end quotation
 
 @bye
