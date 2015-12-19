@@ -1,3 +1,7 @@
+2015-12-20  Ben Elliston  <bje@gnu.org>
+
+	* doc/runtest.1: Miscellaneous minor improvements.
+
 2015-12-09  Yoshinori Sato  <ysato@users.sourceforge.jp>
 
 	* Makefile.am (baseboard_DATA): Add missing rx-sim.exp.

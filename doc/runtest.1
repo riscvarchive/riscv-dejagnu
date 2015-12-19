@@ -1,4 +1,4 @@
-.TH runtest 1 "2008-02-25"
+.TH runtest 1 "2015-12-20"
 .SH NAME
 runtest \- DejaGnu test driver
 .SH SYNOPSIS
@@ -13,13 +13,13 @@ is the driver program for
 It controls what tests to run and how to run them.
 .SH OPTIONS
 .TP
-.B --all
+.B --all,\ -a
 Output all test results. By default, only unexpected results are
 displayed.
 .TP
 .B --debug
 Turn on
-.B expect
+.B Expect
 internal debugging output. The output is logged to a file called
 \fBdbg.log\fR.
 .TP
@@ -30,7 +30,7 @@ The configuration TRIPLET for the build system.
 Run only tests in the specified DIRECTORY.
 .TP
 .B --help
-Prints out a help screen and then exits.
+Prints a usage message and then exits.
 .TP
 .BI --host \ TRIPLET
 The configuration TRIPLET for the host system.
@@ -68,7 +68,7 @@ Set the exit status to fail on Tcl errors.
 .TP
 .BI --strace \ N
 Turns on
-.B expect
+.B Expect
 internal tracing to \fIN\fR levels deep. The output is logged to a
 file called \fBdbg.log\fR.
 .TP
@@ -101,9 +101,10 @@ the output file.  If not given, the output file is named after the tool.
 .TP
 .B -D[number]
 Activate the Tcl debugger.  \fBnumber\fR can be either 1 or 0. If it
-is 1, then the expect shell will break when it starts to run. The
+is 1, then the Expect shell will break when it starts to run. The
 interrupt key will cause DejaGnu to drop to the debugger prompt. If it
-is 0, DejaGnu starts as usual, but a ^C drops to the debugger prompt.
+is 0, DejaGnu starts as usual, but Control-C drops to the debugger
+prompt.
 .TP 0
 Any file name on the command line is assumed to be a subset of the
 test names to run.  Usually these are the names of the test scripts
@@ -121,7 +122,7 @@ Rob Savoye (rob@welcomehome.org)
 .SH "REPORTING BUGS"
 Report bugs to <bug\-dejagnu@gnu.org>.
 .SH COPYRIGHT
-Copyright \(co 2005, 2007, 2008 Free Software Foundation, Inc.
+Copyright \(co 2005, 2007, 2008, 2015 Free Software Foundation, Inc.
 .br
 This is free software.  You may redistribute copies of it under the terms of
 the GNU General Public License <http://www.gnu.org/licenses/gpl.html>.
