@@ -765,8 +765,7 @@ proc standard_file { dest op args } {
     }
     switch $op {
 	exists {
-	    # mmmm, quotes.
-	    set status [remote_exec $dest "sh -c 'exit `\[ -f $file \]`'"]
+	    set status [remote_exec $dest "test -f $file"]
 	    return [lindex $status 0]
 	}
 	delete {
