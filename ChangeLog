@@ -1,3 +1,7 @@
+2016-01-16  Ben Elliston  <bje@gnu.org>
+
+	* runtest.exp (runtest): Improve comment about --status.
+
 2016-01-12  Simon Marchi  <simon.marchi@ericsson.com>
 
 	* lib/remote.exp (standard_file): The [ operator does not actually

@@ -1472,8 +1472,8 @@ proc runtest { test_file_name } {
 	}
 
 	if { [catch "uplevel #0 source $test_file_name"] == 1 } {
-	    # If we have a Tcl error, propogate the exit status do make
-	    # notices the error.
+	    # If we have a Tcl error, propagate the exit status so
+	    # that 'make' (if it invokes runtest) notices the error.
 	    global exit_status exit_error
 	    # exit error is set by a command line option
 	    if { $exit_status == 0 } {
