@@ -762,21 +762,22 @@ proc standard_file { dest op args } {
 		return
 	    }
 	}
-    }
-    switch $op {
-	exists {
-	    set status [remote_exec $dest "test -f $file"]
-	    return [lindex $status 0]
-	}
-	delete {
-	    set file ""
-	    # Allow multiple files to be deleted at once.
-	    foreach x $args {
-		append file " $x"
+    } else {
+	switch $op {
+	    exists {
+		set status [remote_exec $dest "test -f $file"]
+		return [lindex $status 0]
 	    }
-	    verbose "remote_file deleting $file"
-	    set status [remote_exec $dest "rm -f $file"]
-	    return [lindex $status 0]
+	    delete {
+		set file ""
+		# Allow multiple files to be deleted at once.
+		foreach x $args {
+		    append file " $x"
+		}
+		verbose "remote_file deleting $file"
+		set status [remote_exec $dest "rm -f $file"]
+		return [lindex $status 0]
+	    }
 	}
     }
 }
