@@ -766,7 +766,7 @@ proc standard_file { dest op args } {
 	switch $op {
 	    exists {
 		set status [remote_exec $dest "test -f $file"]
-		return [lindex $status 0]
+		return [expr [lindex $status 0] == 0]
 	    }
 	    delete {
 		set file ""

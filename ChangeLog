@@ -1,5 +1,10 @@
 2016-01-23  Simon Marchi  <simon.marchi@ericsson.com>
 
+	* lib/remote.exp (standard_file): Reverse return logic for remote
+	exists case.
+
+2016-01-23  Simon Marchi  <simon.marchi@ericsson.com>
+
 	* lib/remote.exp (standard_file); Add else clause.
 
 2016-01-16  Ben Elliston  <bje@gnu.org>
