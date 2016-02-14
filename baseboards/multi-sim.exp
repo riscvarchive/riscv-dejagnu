@@ -42,7 +42,12 @@ load_base_board_description "basic-sim"
 
 proc get_library_dirlist { args } {
   global board
-  set compiler "[board_info $board compiler]"
+  global GCC_UNDER_TEST
+  if [info exists GCC_UNDER_TEST] then {
+    set compiler $GCC_UNDER_TEST
+  } else {
+    set compiler "[board_info $board compiler]"
+  }
   set mflags "[board_info $board multilib_flags]"
   set result [remote_exec host "$compiler $mflags --print-search-dirs"]
   set regresult [regexp {(libraries: =)(\S*)} $result dummy1 dummy2 libdirlist]
@@ -66,7 +71,12 @@ proc dynamic_linker_flag { args } {
 
 proc rpath_flags { args } {
   global board
-  set compiler "[board_info $board compiler]"
+  global GCC_UNDER_TEST
+  if [info exists GCC_UNDER_TEST] then {
+    set compiler $GCC_UNDER_TEST
+  } else {
+    set compiler "[board_info $board compiler]"
+  }
   set mflags "[board_info $board multilib_flags] [libgloss_include_flags] [newlib_include_flags] [libgloss_link_flags] [libgloss_link_flags]"
   set rpathflags ""
   set gccpath [get_multilibs]
