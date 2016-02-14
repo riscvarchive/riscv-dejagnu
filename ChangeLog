@@ -1,3 +1,7 @@
+2016-02-14  Ben Elliston  <bje@gnu.org>
+
+	* doc/runtest.1: Tweak.
+
 2016-02-14  Steve Ellcey  <sellcey@mips.com>
 
 	* baseboards/multi-sim.exp (dynamic_linker_flag): Check
