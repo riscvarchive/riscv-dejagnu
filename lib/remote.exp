@@ -297,6 +297,10 @@ proc remote_exec { hostname program args } {
 	set outp ""
     }
 
+    # call_remote below gets its timeout from global variable, so set
+    # it here.
+    global timeout
+    set old_timeout $timeout
     # 300 is probably a lame default.
     if { [llength $args] > 3 } {
 	set timeout "[lindex $args 3]"
@@ -312,6 +316,9 @@ proc remote_exec { hostname program args } {
     } else {
 	return [call_remote "" exec $hostname $program $pargs $inp $outp]
     }
+
+    # Restore timeout.
+    set timeout $old_timeout
 }
 
 proc standard_exec { hostname args } {
