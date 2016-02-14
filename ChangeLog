@@ -1,3 +1,8 @@
+2016-02-15  Ben Elliston  <bje@gnu.org>
+
+	* config.guess: Update to version 2016-02-11.
+	* config.sub: Update to version 2016-01-01.
+
 2016-02-14  Maxim Kuvyrkov  <maxim.kuvyrkov@linaro.org>
 
 	* lib/remote.exp (remote_exec): Set global timeout for benefit of
