@@ -111,13 +111,14 @@ proc close_wait_program { program_id pid {wres_varname ""} } {
     return $res
 }
 
-# Run the specified COMMANDLINE on the local machine, redirecting input
-# to file INP (if non-empty), redirecting output to file OUTP (if non-empty),
-# and waiting TIMEOUT seconds for the command to complete before killing
-# it. A two-member list is returned; the first member is the exit status
-# of the command, the second is any output produced from the command
-# (if output is redirected, this may or may not be empty). If output is
-# redirected, both stdout and stderr will appear in the specified file.
+# Run the specified COMMANDLINE on the local machine, redirecting
+# input from file INP (if non-empty), redirecting output to file OUTP
+# (if non-empty), and waiting TIMEOUT seconds for the command to
+# complete before killing it. A list of two elements is returned: the
+# first member is the exit status of the command, the second is any
+# output produced from the command (if output is redirected, this may
+# or may not be empty). If output is redirected, both stdout and
+# stderr will appear in the specified file.
 #
 # Caveats: A pipeline is used if input or output is redirected. There
 # will be problems with killing the program if a pipeline is used. Either
@@ -126,8 +127,8 @@ proc close_wait_program { program_id pid {wres_varname ""} } {
 # the kill command will be invoked.
 #
 proc local_exec { commandline inp outp timeout } {
-    # Tcl's exec is a pile of crap. It does two very inappropriate things
-    # firstly, it has no business returning an error if the program being
+    # Tcl's exec is a pile of crap. It does two very inappropriate things.
+    # Firstly, it has no business returning an error if the program being
     # executed happens to write to stderr. Secondly, it appends its own
     # error messages to the output of the command if the process exits with
     # non-zero status.
@@ -137,10 +138,10 @@ proc local_exec { commandline inp outp timeout } {
     # redirected I/O. We also hope that nobody passes in a command that's
     # a pipeline, because spawn can't handle it.
     #
-    # We want to use spawn in most cases, because tcl's pipe mechanism
+    # We want to use spawn in most cases, because Tcl's pipe mechanism
     # doesn't assign process groups correctly and we can't reliably kill
-    # programs that bear children. We can't use tcl's exec because it has
-    # no way to timeout programs that hang. *sigh*
+    # programs that bear children. We can't use Tcl's exec because it has
+    # no way to timeout programs that hang.
     #
     # The expect command will close the connection when it sees
     # EOF. Closing the connection may send SIGHUP to the child and
@@ -157,8 +158,6 @@ proc local_exec { commandline inp outp timeout } {
 	    set result2 5
 	}
     } else {
-	# Can you say "uuuuuugly"? I knew you could!
-	# All in the name of non-infinite hangs.
 	if { $inp != "" } {
 	    set inp "< $inp"
 	    set mode "r"
@@ -227,8 +226,7 @@ proc local_exec { commandline inp outp timeout } {
 	}
     }
 
-    # Uuuuuuugh. Now I'm getting really sick.
-    # If we didn't get an EOF, we have to kill the poor defenseless program.
+    # If we didn't get EOF, we have to kill the poor defenseless program.
     if { $got_eof } {
 	set pid -1
     }
