@@ -365,7 +365,6 @@ proc log_and_exit {} {
 	}
     }
     close_logs
-    cleanup
     verbose -log "runtest completed at [timestamp -format %c]"
     if {$mail_logs} {
 	if { ${tool} ==  "" } {
@@ -461,18 +460,6 @@ proc log_summary { args } {
 	    clone_output "$mess\t$val"
 	}
     }
-}
-
-# Close all open files, remove temp file and core files.
-#
-proc cleanup {} {
-    global sum_file
-    global exit_status
-    global done_list
-    global subdir
-
-    #catch "exec rm -f [glob xgdb core *.x *.o *_soc a.out]"
-    #catch "exec rm -f [glob -nocomplain $subdir/*.o $subdir/*.x $subdir/*_soc]"
 }
 
 # Setup a flag to control whether a failure is expected or not

@@ -2623,7 +2623,6 @@ DejaGnu provides these Tcl procedures.
 * Reset_vars Procedure: reset_vars procedure.
 * Log_and_exit Procedure: log_and_exit procedure.
 * Log_summary Procedure: log_summary procedure.
-* Cleanup Procedure: cleanup procedure.
 * Setup_xfail Procedure: setup_xfail procedure.
 * Record_test Procedure: record_test procedure.
 * Pass Procedure: pass procedure.
@@ -2831,7 +2830,7 @@ a @emph{1}; otherwise it returns a
 @t{@b{log_and_exit}(@i{});}
 @end quotation
 
-@node log_summary procedure, cleanup procedure, log_and_exit procedure, Core Internal Procedures
+@node log_summary procedure, setup_xfail procedure, log_and_exit procedure, Core Internal Procedures
 @subsubsection Log_summary Procedure
 
 
@@ -2845,16 +2844,7 @@ a @emph{1}; otherwise it returns a
 @item @code{args}
 @end table
 
-@node cleanup procedure, setup_xfail procedure, log_summary procedure, Core Internal Procedures
-@subsubsection Cleanup Procedure
-
-
-@quotation
-
-@t{@b{cleanup}(@i{});}
-@end quotation
-
-@node setup_xfail procedure, record_test procedure, cleanup procedure, Core Internal Procedures
+@node setup_xfail procedure, record_test procedure, log_summary procedure, Core Internal Procedures
 @subsubsection Setup_xfail Procedure
 
 Declares that the test is expected to fail on a particular set

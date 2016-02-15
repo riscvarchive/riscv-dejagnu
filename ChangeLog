@@ -1,5 +1,12 @@
 2016-02-15  Ben Elliston  <bje@gnu.org>
 
+	* lib/framework.exp (cleanup): Remove do-nothing proc.
+	(log_and_exit): Remove call to cleanup.
+	* doc/ref.xml: Remove documentation for cleanup.
+	* doc/dejagnu.texi: Regenerate.
+
+2016-02-15  Ben Elliston  <bje@gnu.org>
+
 	Reported by David Malcolm.
 	* lib/dejagnu.exp (text): Allow angle brackets in test messages.
 

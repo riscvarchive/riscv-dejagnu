@@ -265,19 +265,6 @@
 	</variablelist>
 	</sect4>	
 
-	<sect4 id="cleanup" xreflabel="cleanup procedure">
-	  <title>Cleanup Procedure</title>
-
-	  <para></para>
-
-	<funcsynopsis role="tcl">
-          <funcprototype>
-            <funcdef><function>cleanup</function></funcdef>
-	    <paramdef><parameter></parameter></paramdef>
-           </funcprototype>
-        </funcsynopsis>
-	</sect4>
-
 	<sect4 id="setupxfail" xreflabel="setup_xfail procedure">
 	  <title>Setup_xfail Procedure</title>
 
