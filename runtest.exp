@@ -26,13 +26,12 @@ if {![info exists argv0]} {
     exit 1
 }
 
-#
 # trap some signals so we know whats happening. These definitions are only
 # temporary until we read in the library stuff
 #
-trap { send_user "\nterminated\n";             exit 1 } SIGTERM
-trap { send_user "\ninterrupted by user\n";    exit 1 } SIGINT
-trap { send_user "\nsigquit\n";                exit 1 } SIGQUIT
+trap { send_user "\ninterrupted by user\n"; exit 130 } SIGINT
+trap { send_user "\nquit\n";                exit 131 } SIGQUIT
+trap { send_user "\nterminated\n";          exit 143 } SIGTERM
 
 #
 # Initialize a few global variables used by all tests.
@@ -1511,17 +1510,17 @@ proc runtest { test_file_name } {
     }
 }
 
-#
 # Trap some signals so we know what's happening.  These replace the previous
 # ones because we've now loaded the library stuff.
 #
 if {![exp_debug]} {
-    foreach sig "{SIGTERM {terminated}} \
-	     {SIGINT  {interrupted by user}} \
-	     {SIGQUIT {interrupted by user}}" {
+    foreach sig {{SIGINT {interrupted by user} 130} \
+		     {SIGQUIT {interrupted by user} 131} \
+		     {SIGTERM {terminated} 143}} {
 	set signal [lindex $sig 0]
 	set str [lindex $sig 1]
-	trap "send_error \"got a \[trap -name\] signal, $str \\n\"; log_and_exit;" $signal
+	set code [lindex $sig 2]
+	trap "send_error \"got a \[trap -name\] signal, $str \\n\"; set exit_status $code; log_and_exit;" $signal
 	verbose "setting trap for $signal to $str" 1
     }
     unset signal str sig

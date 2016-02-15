@@ -1,5 +1,11 @@
 2016-02-15  Ben Elliston  <bje@gnu.org>
 
+	* runtest.exp: Use the traditional exit codes when runtest is
+	interrupted. This makes it possible to tell if runtest ran to
+	completion or not. Suggested by Michael Chastain.
+
+2016-02-15  Ben Elliston  <bje@gnu.org>
+
 	* lib/framework.exp (cleanup): Remove do-nothing proc.
 	(log_and_exit): Remove call to cleanup.
 	* doc/ref.xml: Remove documentation for cleanup.
