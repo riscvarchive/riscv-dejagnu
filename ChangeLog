@@ -1,5 +1,10 @@
 2016-02-15  Ben Elliston  <bje@gnu.org>
 
+	Reported by David Malcolm.
+	* lib/dejagnu.exp (text): Allow angle brackets in test messages.
+
+2016-02-15  Ben Elliston  <bje@gnu.org>
+
 	* config.guess: Update to version 2016-02-11.
 	* config.sub: Update to version 2016-01-01.
 

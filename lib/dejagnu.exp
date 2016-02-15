@@ -20,7 +20,7 @@
 # This file was written by Rob Savoye <rob@welcomehome.org>.
 
 # A hairy pattern to recognize text.
-set text "\[- A-Za-z0-9\.\;\"\_\:\'\`\(\)\!\#\=\+\?\&\*]"
+set text "\[- A-Za-z0-9\.\;\"\_\:\'\`\(\)\!\#\=\+\?\&\*<>]"
 
 set SIZE size
 if { [which $SIZE] == 0 } {
