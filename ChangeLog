@@ -1,5 +1,10 @@
 2016-02-15  Ben Elliston  <bje@gnu.org>
 
+	* lib/dg.exp (dg-test): Remove comment about proc unresolved not
+	setting exit_status to 1 -- it does.
+
+2016-02-15  Ben Elliston  <bje@gnu.org>
+
 	* lib/framework.exp (cleanup): Remove do-nothing proc.
 	(log_and_exit): Remove call to cleanup.
 	* doc/ref.xml: Remove documentation for cleanup.

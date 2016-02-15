@@ -692,7 +692,6 @@ proc dg-test { args } {
 	    }
 	    # ??? The call to unresolved here is necessary to clear `errcnt'.
 	    # What we really need is a proc like perror that doesn't set errcnt.
-	    # It should also set exit_status to 1.
 	    unresolved "$name: $errmsg for \"$op\""
 	    return
 	}
@@ -889,7 +888,6 @@ proc dg-test { args } {
 	    perror "$name: error executing dg-final: $errmsg"
 	    # ??? The call to unresolved here is necessary to clear `errcnt'.
 	    # What we really need is a proc like perror that doesn't set errcnt.
-	    # It should also set exit_status to 1.
 	    unresolved "$name: error executing dg-final: $errmsg"
 	}
     }
