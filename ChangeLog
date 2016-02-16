@@ -1,3 +1,9 @@
+2016-02-16  Ben Elliston  <bje@gnu.org>
+
+	* runtest.exp: Use the traditional exit codes when runtest is
+	interrupted. This makes it possible to tell if runtest ran to
+	completion or not. Suggested by Michael Chastain.
+
 2016-02-15  Ben Elliston  <bje@gnu.org>
 
 	* TODO: Add ideas produced from Cauldron 2013.
