@@ -1,4 +1,11 @@
-2016-02-15  Ben Elliston  <bje@gnu.org>
+2016-02-17  Ben Elliston  <bje@gnu.org>
+
+	* lib/target.exp (default_target_compile): Do not pass -log to
+	verbose when outputting the captured compiler/assembler/linker
+	diagnostic output as it will already be in the .log file courtesy
+	of Expect.
+
+2016-02-17  Ben Elliston  <bje@gnu.org>
 
 	* runtest.exp: Enable --status by default.
 	(runtest): Set exit status to 2 if there is any error sourcing

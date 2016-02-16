@@ -655,7 +655,7 @@ proc default_target_compile {source destfile type options} {
 	verbose -log "compiler exited with status [lindex $status 0]"
     }
     if { [lindex $status 1] != "" } {
-	verbose -log "output is:\n[lindex $status 1]" 2
+	verbose "output is:\n[lindex $status 1]" 2
     }
     if { [lindex $status 0] != 0 && "${comp_output}" == "" } {
 	set comp_output "exit status is [lindex $status 0]"
@@ -711,7 +711,7 @@ proc default_target_assemble { source destfile flags } {
 	verbose -log "assembler exited with status [lindex $status 0]"
     }
     if { [lindex $status 1] != "" } {
-	verbose -log "assembler output is:\n[lindex $status 1]" 2
+	verbose "assembler output is:\n[lindex $status 1]" 2
     }
     return ${comp_output}
 }
@@ -803,7 +803,7 @@ proc default_link { board objects destfile flags } {
 	verbose -log "linker exited with status [lindex $status 0]"
     }
     if { [lindex $status 1] != "" } {
-	verbose -log "linker output is:\n[lindex $status 1]" 2
+	verbose "linker output is:\n[lindex $status 1]" 2
     }
     return ${comp_output}
 }
