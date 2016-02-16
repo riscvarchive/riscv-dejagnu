@@ -280,7 +280,7 @@ proc unknown args {
 	if {[info exists errorInfo]} {
 	    send_error "The info on the error is:\n$errorInfo\n"
 	}
-	set exit_status 1
+	set exit_status 2
 	log_and_exit
     }
 }

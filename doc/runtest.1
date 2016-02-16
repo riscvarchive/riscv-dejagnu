@@ -109,14 +109,20 @@ prompt.
 Any file name on the command line is assumed to be a subset of the
 test names to run.  Usually these are the names of the test scripts
 (eg. foo.exp).
-
+.PP
 Makefile-style variables are used to specify tool names and their
 flags; these and other configuration dependent values are saved in the
 file \fBsite.exp\fR, created during configuration.
-.SH EXIT CODES
-.B runtest
-sets the exit code to 1 if any of the tests failed, or
-sets it to 0 if all the tests passed.
+.SS "Exit status:"
+.TP
+0
+if all tests passed including expected failures and unsupported tests,
+.TP
+1
+if any test failed, passed unexpectedly, or was unresolved,
+.TP
+2
+if Expect encountered any error in the test scripts.
 .SH AUTHOR
 Rob Savoye (rob@welcomehome.org)
 .SH "REPORTING BUGS"

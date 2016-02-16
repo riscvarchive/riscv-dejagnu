@@ -1,3 +1,12 @@
+2016-02-15  Ben Elliston  <bje@gnu.org>
+
+	* runtest.exp: Enable --status by default.
+	(runtest): Set exit status to 2 if there is any error sourcing
+	the Tcl scripts.
+	* lib/framework.exp (unknown): Likewise, set exit status to 2.
+	* doc/runtest.1: Clarify exit status codes.
+	* NEWS: Update.
+
 2016-02-17  Ben Elliston  <bje@gnu.org>
 
 	* lib/remote.exp (local_exec): Call exp_continue until eof is

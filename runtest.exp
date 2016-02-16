@@ -68,8 +68,8 @@ set reboot      0
 set configfile  site.exp	;# (local to this file)
 set multipass   ""		;# list of passes and var settings
 set errno	"";		;#
-set exit_error  0		;# Toggle for whether to set the exit status
-;# on Tcl bugs in test case drivers.
+set exit_error  1		;# Toggle for whether to set the exit status
+				;# on Tcl bugs in test case drivers.
 #
 # These describe the host and target environments.
 #
@@ -1155,8 +1155,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 	}
 
 	"--sta*" {			# (--status) exit status flag
-	    set exit_error 1
-	    verbose "Tcl errors will set an ERROR exit status"
+	    # preserved for compatability, do nothing
 	    continue
 	}
 
@@ -1474,9 +1473,9 @@ proc runtest { test_file_name } {
 	    # If we have a Tcl error, propagate the exit status so
 	    # that 'make' (if it invokes runtest) notices the error.
 	    global exit_status exit_error
-	    # exit error is set by a command line option
+	    # exit error is set by the --status command line option
 	    if { $exit_status == 0 } {
-		set exit_status $exit_error
+		set exit_status 2
 	    }
 	    # We can't call `perror' here, it resets `errorInfo'
 	    # before we want to look at it.  Also remember that perror
