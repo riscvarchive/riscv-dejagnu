@@ -1,3 +1,8 @@
+2016-02-17  Ben Elliston  <bje@gnu.org>
+
+	* lib/remote.exp (local_exec): Call exp_continue until eof is
+	matched.
+
 2016-02-16  Ben Elliston  <bje@gnu.org>
 
 	* runtest.exp: Use the traditional exit codes when runtest is

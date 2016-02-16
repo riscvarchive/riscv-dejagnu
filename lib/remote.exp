@@ -214,9 +214,7 @@ proc local_exec { commandline inp outp timeout } {
     expect {
 	-i $spawn_id -timeout $timeout -re ".+" {
 	    append output $expect_out(buffer)
-	    if { [string length $output] < 512000 } {
-		exp_continue -continue_timer
-	    }
+	    exp_continue -continue_timer
 	}
 	timeout {
 	    warning "program timed out."
