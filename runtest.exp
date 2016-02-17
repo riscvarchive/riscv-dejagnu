@@ -1237,7 +1237,7 @@ set timeout 10
 open_logs
 
 # print the config info
-clone_output "Test Run By $logname on [timestamp -format %c]"
+clone_output "Test run by $logname on [timestamp -format %c]"
 if {[is3way]} {
     clone_output "Target is $target_triplet"
     clone_output "Host   is $host_triplet"
