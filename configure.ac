@@ -43,17 +43,17 @@ if test -z $ac_cv_path_EXPECT ; then
    AC_MSG_ERROR([unable to locate expect])
 fi
 
-dnl Check the Tcl version is >= 8.3.
-AC_MSG_CHECKING([Tcl version 8.3 or greater])
+dnl Check the Tcl version is >= 8.6.
+AC_MSG_CHECKING([Tcl version 8.6 or greater])
 AC_CACHE_VAL(ac_cv_dg_tcl_modern,[
   ac_cv_dg_tcl_modern=`$EXPECT << EOF
-if @<:@ expr \\${tcl_version} >= 8.3  @:>@ then { puts yes } else { puts no }
+if @<:@ expr \\${tcl_version} >= 8.6  @:>@ then { puts yes } else { puts no }
 EOF`
 ])
 if test x${ac_cv_dg_tcl_modern} = xyes ; then
   AC_MSG_RESULT(${ac_cv_dg_tcl_modern})
 else
-  AC_MSG_ERROR([Tcl 8.3 or greater is required])
+  AC_MSG_ERROR([Tcl 8.6 or greater is required])
 fi
 
 if test x"$DEJAGNU" = x

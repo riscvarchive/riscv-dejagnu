@@ -1,3 +1,8 @@
+2016-02-18  Ben Elliston  <bje@gnu.org>
+
+	* configure.ac: Require Tcl version 8.6 at a minimum.
+	* configure: Regenerate.
+
 2016-02-17  Ben Elliston  <bje@gnu.org>
 
 	* runtest.exp: Tweak "Test run by .." output.
