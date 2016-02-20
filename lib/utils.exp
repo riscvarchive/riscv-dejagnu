@@ -252,27 +252,7 @@ proc absolute { path } {
     return $path
 }
 
-#
-# Source a file and trap any real errors. This ignores extraneous
-# output. returns a 1 if there was an error, otherwise it returns 0.
-#
-proc psource { file } {
-    global errorInfo
-    global errorCode
 
-    unset errorInfo
-    if {[file exists $file]} {
-	catch "source $file"
-	if {[info exists errorInfo]} {
-	    send_error "ERROR: errors in $file\n"
-	    send_error "$errorInfo"
-	    return 1
-	}
-    }
-    return 0
-}
-
-#
 # Check if a testcase should be run or not
 #
 # RUNTESTS is a copy of global `runtests'.

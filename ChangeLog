@@ -1,5 +1,11 @@
 2016-02-20  Ben Elliston  <bje@gnu.org>
 
+	* lib/utils.exp (psource): Remove proc.
+	* doc/ref.xml: Update documentation.
+	* doc/dejagnu.texi: Regenerate.
+
+2016-02-20  Ben Elliston  <bje@gnu.org>
+
 	* lib/targetdb.exp (board_info): Simplify return logic.
 
 2016-02-19  Ben Elliston  <bje@gnu.org>
