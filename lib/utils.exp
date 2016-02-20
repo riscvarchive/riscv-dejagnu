@@ -220,23 +220,6 @@ proc prune { list pattern } {
     return $tmp
 }
 
-#
-# Attempt to kill a process that you started on the local machine.
-#
-proc slay { name } {
-    set in [open [concat "|ps"] r]
-    while {[gets $in line]>-1} {
-	if {![string match "*expect*slay*" $line]} {
-	    if {[string match "*$name*" $line]} {
-		set pid [lindex $line 0]
-		catch "exec kill -9 $pid"
-		verbose "Killing $name, pid = $pid\n"
-	    }
-	}
-    }
-    close $in
-}
-
 
 # Check if a testcase should be run or not
 #
