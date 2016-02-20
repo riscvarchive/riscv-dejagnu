@@ -1,5 +1,9 @@
 2016-02-20  Ben Elliston  <bje@gnu.org>
 
+	* lib/utils.exp (getdirs): Ignore .git and .svn directories.
+
+2016-02-20  Ben Elliston  <bje@gnu.org>
+
 	* lib/utils.exp: Improve comments.
 	* NEWS: Update.
 

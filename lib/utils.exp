@@ -54,6 +54,8 @@ proc getdirs { args } {
 		    "testsuite" -
 		    "config" -
 		    "lib" -
+		    ".git" -
+		    ".svn" -
 		    "CVS" -
 		    "RCS" -
 		    "SCCS" {
