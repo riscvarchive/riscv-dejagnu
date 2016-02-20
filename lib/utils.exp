@@ -208,7 +208,7 @@ proc grep { args } {
 #
 # This proc hides the details of global `runtests' from the test scripts, and
 # implements uniform handling of "script arguments" where those arguments are
-# file names (ie: the "foo" in make check RUNTESTFLAGS="bar.exp=foo").
+# file names (eg, "foo.c" in make check RUNTESTFLAGS="bar.exp=foo.c").
 # "glob" style expressions are supported as well as multiple files (with
 # spaces between them).
 # Eg: RUNTESTFLAGS="bar.exp=foo1.c foo2.c foo3*.c bar/baz*.c"
@@ -228,16 +228,7 @@ proc runtest_file_p { runtests testcase } {
     return 1
 }
 
-#
-# Delete various system verbosities from TEXT on SYSTEM
-#
-# An example is:
-# ld.so: warning: /usr/lib/libc.so.1.8.1 has older revision than expected 9
-#
-# SYSTEM is typical $target_triplet or $host_triplet.
-#
 
-#
 # Compares two files line-by-line
 #     returns 1 it the files match,
 #     returns 0 if there was a file error,
