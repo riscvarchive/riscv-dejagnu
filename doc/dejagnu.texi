@@ -5414,7 +5414,6 @@ tool, and its version number.
 * Grep Procedure: grep procedure.
 * Prune Procedure: prune procedure.
 * Slay Procedure: slay procedure.
-* Absolute Procedure: absolute procedure.
 * Runtest_file_p Procedure: runtest_file_p procedure.
 * Diff Procedure: diff procedure.
 * Setenv Procedure: setenv procedure.
@@ -5546,7 +5545,7 @@ the next release of DejaGnu.  If a testsuite uses this
 procedure, a copy of the procedure should be made and placed
 in the lib directory of the testsuite.
 
-@node slay procedure, absolute procedure, prune procedure, Utility Procedures
+@node slay procedure, runtest_file_p procedure, prune procedure, Utility Procedures
 @subsubsection Slay Procedure
 
 This procedure is deprecated and will be removed in
@@ -5554,15 +5553,7 @@ the next release of DejaGnu.  If a testsuite uses this
 procedure, a copy of the procedure should be made and placed
 in the lib directory of the testsuite.
 
-@node absolute procedure, runtest_file_p procedure, slay procedure, Utility Procedures
-@subsubsection Absolute Procedure
-
-This procedure is deprecated and will be removed in
-the next release of DejaGnu.  If a testsuite uses this
-procedure, a copy of the procedure should be made and placed
-in the lib directory of the testsuite.
-
-@node runtest_file_p procedure, diff procedure, absolute procedure, Utility Procedures
+@node runtest_file_p procedure, diff procedure, slay procedure, Utility Procedures
 @subsubsection Runtest_file_p Procedure
 
 Search @emph{runtest}s for

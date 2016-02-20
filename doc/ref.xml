@@ -3594,14 +3594,6 @@
 	  in the lib directory of the testsuite.</para>
 	</sect4>
 
-	<sect4 id="absolute" xreflabel="absolute procedure">
-	  <title>Absolute Procedure</title>
-	  <para>This procedure is deprecated and will be removed in
-	  the next release of &dj;.  If a testsuite uses this
-	  procedure, a copy of the procedure should be made and placed
-	  in the lib directory of the testsuite.</para>
-	</sect4>
-
 	<sect4 id="runtestfilep" xreflabel="runtest_file_p procedure">
 	  <title>Runtest_file_p Procedure</title>
 

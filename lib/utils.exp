@@ -237,21 +237,6 @@ proc slay { name } {
     close $in
 }
 
-#
-# Convert a relative path to an absolute one on the local machine.
-#
-proc absolute { path } {
-    if {[string match "." $path]} {
-	return [pwd]
-    }
-
-    set basedir [pwd]
-    cd $path
-    set path [pwd]
-    cd $basedir
-    return $path
-}
-
 
 # Check if a testcase should be run or not
 #
