@@ -1,5 +1,11 @@
 2016-02-20  Ben Elliston  <bje@gnu.org>
 
+	* lib/utils.exp (prune): Remove proc.
+	* doc/ref.xml: Update documentation.
+	* doc/dejagnu.texi: Regenerate.
+
+2016-02-20  Ben Elliston  <bje@gnu.org>
+
 	* lib/utils.exp (slay): Remove proc.
 	* doc/ref.xml: Update documentation.
 	* doc/dejagnu.texi: Regenerate.
