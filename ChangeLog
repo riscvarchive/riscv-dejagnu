@@ -1,3 +1,7 @@
+2016-02-20  Ben Elliston  <bje@gnu.org>
+
+	* lib/targetdb.exp (board_info): Simplify return logic.
+
 2016-02-19  Ben Elliston  <bje@gnu.org>
 
 	* configure.ac: Require Tcl version 8.5 at a minimum.
