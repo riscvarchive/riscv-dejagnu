@@ -256,7 +256,7 @@ proc diff { file_1 file_2 } {
 	return 0
     }
 
-    verbose "# Diff'ing: ${file_1} ${file_2}\n" 1
+    verbose "# Diff'ing: ${file_1} ${file_2}" 1
 
     set list_a ""
     while { [gets ${file_a} line] != ${eof} } {
@@ -281,17 +281,10 @@ proc diff { file_1 file_2 } {
 	set line_a [lindex ${list_a} ${i}]
 	set line_b [lindex ${list_b} ${i}]
 
-	#        verbose "\t${file_1}: ${i}: ${line_a}\n" 3
-	#        verbose "\t${file_2}: ${i}: ${line_b}\n" 3
 	if {[string compare ${line_a} ${line_b}]} {
-	    verbose "line #${i}\n" 2
-	    verbose "\< ${line_a}\n" 2
-	    verbose "\> ${line_b}\n" 2
-
-	    send_log "line #${i}\n"
-	    send_log "\< ${line_a}\n"
-	    send_log "\> ${line_b}\n"
-
+	    verbose -log "line #${i}" 2
+	    verbose -log "\< ${line_a}" 2
+	    verbose -log "\> ${line_b}" 2
 	    set differences -1
 	}
     }

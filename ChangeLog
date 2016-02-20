@@ -1,5 +1,11 @@
 2016-02-20  Ben Elliston  <bje@gnu.org>
 
+	* lib/utils.exp (diff): Replace calls to verbose followed by
+	send_log with a single call to verbose -log. Remove additional
+	newlines from the log messages.
+
+2016-02-20  Ben Elliston  <bje@gnu.org>
+
 	* lib/utils.exp (getdirs): Ignore .git and .svn directories.
 
 2016-02-20  Ben Elliston  <bje@gnu.org>
