@@ -14,6 +14,7 @@ Changes since 1.5.3:
    and `slay' have been removed.  If a testsuite uses any of these
    procedures, a copy of the procedure should be made and placed in
    the lib directory of the testsuite.
+5. Support was added for testing the D compiler.
 
 
 Changes since 1.4.4:

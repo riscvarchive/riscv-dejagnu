@@ -362,6 +362,18 @@ proc default_target_compile {source destfile type options} {
 	    }
 	}
 
+	if { $i == "d" } {
+	    set compiler_type "d"
+	    if {[board_info $dest exists dflags]} {
+		append add_flags " [target_info dflags]"
+	    }
+	    if {[board_info $dest exists dcompiler]} {
+		set compiler [target_info dcompiler]
+	    } else {
+		set compiler [find_gdc]
+	    }
+	}
+
 	if { $i == "f77" } {
 	    set compiler_type "f77"
 	    if {[board_info $dest exists f77flags]} {
@@ -438,6 +450,7 @@ proc default_target_compile {source destfile type options} {
 
     global CC_FOR_TARGET
     global CXX_FOR_TARGET
+    global D_FOR_TARGET
     global F77_FOR_TARGET
     global F90_FOR_TARGET
     global GNATMAKE_FOR_TARGET
@@ -457,6 +470,12 @@ proc default_target_compile {source destfile type options} {
     if {[info exists CXX_FOR_TARGET]} {
 	if { $compiler_type == "c++" } {
 	    set compiler $CXX_FOR_TARGET
+	}
+    }
+
+    if {[info exists D_FOR_TARGET]} {
+	if { $compiler_type == "d" } {
+	    set compiler $D_FOR_TARGET
 	}
     }
 

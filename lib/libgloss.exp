@@ -683,6 +683,25 @@ proc find_g++ {} {
     return $CC
 }
 
+proc find_gdc {} {
+    global tool_root_dir
+
+    if {![is_remote host]} {
+	set file [lookfor_file $tool_root_dir gdc]
+	if { $file == "" } {
+	    set file [lookfor_file $tool_root_dir gcc/gdc]
+	}
+	if { $file != "" } {
+	    set CC "$file -B[file dirname $file]/"
+	} else {
+	    set CC [transform gdc]
+	}
+    } else {
+	set CC [transform gdc]
+    }
+    return $CC
+}
+
 proc find_g77 {} {
     global tool_root_dir
 

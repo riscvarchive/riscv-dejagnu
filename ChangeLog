@@ -1,3 +1,9 @@
+2016-02-23  Iain Buclaw  <ibuclaw@gdcproject.org>
+
+	* lib/libgloss.exp (find_gdc): New proc.
+	* lib/target.exp (default_target_compile): Add D support.
+	* NEWS: Update.
+
 2016-02-20  Ben Elliston  <bje@gnu.org>
 
 	* lib/utils.exp (diff): Replace calls to verbose followed by
