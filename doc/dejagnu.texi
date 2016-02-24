@@ -5412,6 +5412,7 @@ tool, and its version number.
 * Find Procedure: find procedure.
 * Which Procedure: which procedure.
 * Grep Procedure: grep procedure.
+* Prune Procedure: prune procedure.
 * Runtest_file_p Procedure: runtest_file_p procedure.
 * Diff Procedure: diff procedure.
 * Setenv Procedure: setenv procedure.
@@ -5498,7 +5499,7 @@ The executable program or shell script to look
 for.
 @end table
 
-@node grep procedure, runtest_file_p procedure, which procedure, Utility Procedures
+@node grep procedure, prune procedure, which procedure, Utility Procedures
 @subsubsection Grep Procedure
 
 Search the file called @file{filename} (a fully
@@ -5535,7 +5536,15 @@ Prefix the line number to each line where the
 regexp matches.
 @end table
 
-@node runtest_file_p procedure, diff procedure, grep procedure, Utility Procedures
+@node prune procedure, runtest_file_p procedure, grep procedure, Utility Procedures
+@subsubsection Prune Procedure
+
+This procedure is deprecated and will be removed in
+the next release of DejaGnu.  If a testsuite uses this
+procedure, a copy of the procedure should be made and placed
+in the lib directory of the testsuite.
+
+@node runtest_file_p procedure, diff procedure, prune procedure, Utility Procedures
 @subsubsection Runtest_file_p Procedure
 
 Search @emph{runtest}s for

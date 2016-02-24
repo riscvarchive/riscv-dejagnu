@@ -1,3 +1,10 @@
+2016-02-24  Ben Elliston  <bje@gnu.org>
+
+	* lib/utils.exp (prune): Restore this proc.
+	* doc/ref.xml: Update documentation.
+	* doc/dejagnu.texi: Regenerate.
+	* NEWS: Update.
+
 2016-02-23  Iain Buclaw  <ibuclaw@gdcproject.org>
 
 	* lib/libgloss.exp (find_gdc): New proc.
