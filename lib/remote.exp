@@ -543,8 +543,6 @@ proc standard_upload { dest srcfile destfile } {
     } else {
 	return $destfile
     }
-
-    return [rsh_upload $dest $srcfile $destfile]
 }
 
 # A standard procedure to call the appropriate function. It first looks

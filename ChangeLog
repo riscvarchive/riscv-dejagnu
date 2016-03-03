@@ -1,3 +1,7 @@
+2016-03-04  Yvan Roux  <yvan.roux@linaro.org>
+
+	* lib/remote.exp (standard_upload): Remove dead code.
+
 2016-02-24  Ben Elliston  <bje@gnu.org>
 
 	* lib/utils.exp (prune): Restore this proc.
