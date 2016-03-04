@@ -310,13 +310,14 @@ proc remote_exec { hostname program args } {
 
     # Run it locally if appropriate.
     if { ![is_remote $hostname] } {
-	return [local_exec "$program $pargs" $inp $outp $timeout]
+	set result [local_exec "$program $pargs" $inp $outp $timeout]
     } else {
-	return [call_remote "" exec $hostname $program $pargs $inp $outp]
+	set result [call_remote "" exec $hostname $program $pargs $inp $outp]
     }
 
     # Restore timeout.
     set timeout $old_timeout
+    return $result
 }
 
 proc standard_exec { hostname args } {
