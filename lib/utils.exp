@@ -323,11 +323,9 @@ proc diff { file_1 file_2 } {
 #
 proc setenv { var val } {
     global env
-
     set env($var) $val
 }
 
-#
 # Unset an environment variable
 #
 proc unsetenv { var } {
@@ -335,12 +333,10 @@ proc unsetenv { var } {
     unset env($var)
 }
 
-#
 # Get a value from an environment variable
 #
 proc getenv { var } {
     global env
-
     if {[info exists env($var)]} {
 	return $env($var)
     } else {

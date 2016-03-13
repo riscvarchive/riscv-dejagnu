@@ -1,5 +1,9 @@
 2016-03-13  Ben Elliston  <bje@gnu.org>
 
+	* lib/utils.exp: Whitespace fixes.
+
+2016-03-13  Ben Elliston  <bje@gnu.org>
+
 	* lib/dg.exp (dg-process-target): Remove old commented code.
 	* lib/dg.exp (dg-test): Likewise.
 
