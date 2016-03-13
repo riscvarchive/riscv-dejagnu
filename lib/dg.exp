@@ -39,15 +39,15 @@
 # dg-do do-what-keyword [{ target/xfail selector }]
 #	`do-what-keyword' is tool specific and is passed unchanged to
 #	${tool}-dg-test.  An example is gcc where `keyword' can be any of:
-#	preprocess|compile|assemble|link|run
+#	preprocess | compile | assemble | link | run
 #	and will do one of: produce a .i, produce a .s, produce a .o,
 #	produce an a.out, or produce an a.out and run it (the default is
-#	compile).
+#	'compile').
 #
 # dg-error regexp comment [{ target/xfail selector } [{.|0|linenum}]]
 #	indicate an error message <regexp> is expected on this line
 #	(the test fails if it doesn't occur)
-#	Linenum=0 for general tool messages (eg: -V arg missing).
+#	linenum=0 for general tool messages (eg: -V arg missing).
 #	"." means the current line.
 #
 # dg-warning regexp comment [{ target/xfail selector } [{.|0|linenum}]]
@@ -72,8 +72,8 @@
 #	indicate the expected output of the program is <regexp>
 #	(there may be multiple occurrences of this, they are concatenated)
 #
-# dg-final { tcl code }
-#	add some tcl code to be run at the end
+# dg-final { tcl script }
+#	add some Tcl script to be run at the end
 #	(there may be multiple occurrences of this, they are concatenated)
 #	(unbalanced braces must be \-escaped)
 #
@@ -96,9 +96,8 @@
 #       [ ... some complicated code ... ]
 #	return a; /* { dg-build "fatal" "ran out of spill regs" { xfail i386-*-* } } */
 #
-# In this example, the compiler use to crash on the "return a;" for some
-# target and that it still does crash on i386-*-*.  Admittedly, this is a
-# contrived example.
+# In this contrived example, the compiler used to crash on the "return
+# a;" for some target and it still does crash on i386-*-*.
 #
 # ??? It might be possible to add additional optional arguments by having
 # something like: { dg-error ".*syntax.*" "syntax error" { { foo 1 } ... } }
