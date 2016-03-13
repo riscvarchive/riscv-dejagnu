@@ -231,11 +231,8 @@ proc dg-process-target { selector } {
 	error "syntax error in target selector \"$selector\""
     }
 
-    # ??? This should work but it doesn't.  tcl bug?
-    #if [regexp "^${what}(( \[^ \]+-\[^ \]+-\[^ \]+)|( native))+$" $selector tmp selector]
     if {[regexp "^${what}( \[^ \]+-\[^ \]+-\[^ \]+| native)+$" $selector]} {
 	regsub "^${what} " $selector "" selector
-	#send_user "selector: $selector\n"
 	foreach triplet $selector {
 	    if {[string match $triplet $target_triplet]} {
 		set triplet_match 1
@@ -721,10 +718,6 @@ proc dg-test { args } {
     set comp_output [lindex $results 0]
     set output_file [lindex $results 1]
 
-    #send_user "\nold_dejagnu.exp: comp_output1 = :$comp_output:\n\n"
-    #send_user "\nold_dejagnu.exp: message = :$message:\n\n"
-    #send_user "\nold_dejagnu.exp: message length = [llength $message]\n\n"
-
     foreach i ${dg-messages} {
 	verbose "Scanning for message: $i" 4
 
@@ -775,9 +768,7 @@ proc dg-test { args } {
 	    "EXEC" { }
 	    "XEXEC" { }
 	}
-	#send_user "\nold_dejagnu.exp: comp_output2= :$comp_output:\n\n"
     }
-    #send_user "\nold_dejagnu.exp: comp_output3 = :$comp_output:\n\n"
 
     # Remove messages from the tool that we can ignore.
     #send_user "comp_output: $comp_output\n"
