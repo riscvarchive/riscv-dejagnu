@@ -1,5 +1,12 @@
 2016-03-15  Ben Elliston  <bje@gnu.org>
 
+	* lib/utils.exp (diff): Remove proc.
+	* doc/ref.xml: Update documentation.
+	* doc/dejagnu.texi: Regenerate.
+	* NEWS: Update.
+
+2016-03-15  Ben Elliston  <bje@gnu.org>
+
 	Revert this change:
 	2016-02-14  Steve Ellcey  <sellcey@mips.com>
 

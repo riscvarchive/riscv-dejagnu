@@ -3620,33 +3620,6 @@
 	</variablelist>
 	</sect4>
 
-	<sect4 id="diff" xreflabel="diff procedure">
-	  <title>Diff Procedure</title>
-
-	  <para>Compares the two files and returns a <emphasis>1</emphasis> if
-	  they match, or a <emphasis>0</emphasis> if they don't. If
-	  <symbol>verbose</symbol> is set, then it'll print the differences to
-	  the screen.</para>
-
-	<funcsynopsis role="tcl">
-          <funcprototype>
-            <funcdef><function>diff</function></funcdef>
-	    <paramdef><parameter>file_1</parameter>
-	    <parameter>file_2</parameter></paramdef>
-           </funcprototype>
-	</funcsynopsis>
-	<variablelist>
-          <varlistentry>
-	    <term><parameter>file_1</parameter></term>
-	    <listitem><para>The first file to compare.</para></listitem>
-          </varlistentry>
-          <varlistentry>
-	    <term><parameter>file_2</parameter></term>
-	    <listitem><para>The second file to compare.</para></listitem>
-          </varlistentry>
-	</variablelist>
-	</sect4>
-
 	<sect4 id="setenv" xreflabel="setenv procedure">
 	  <title>Setenv Procedure</title>
 

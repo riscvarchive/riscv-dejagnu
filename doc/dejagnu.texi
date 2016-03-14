@@ -5414,7 +5414,6 @@ tool, and its version number.
 * Grep Procedure: grep procedure.
 * Prune Procedure: prune procedure.
 * Runtest_file_p Procedure: runtest_file_p procedure.
-* Diff Procedure: diff procedure.
 * Setenv Procedure: setenv procedure.
 * unsetenv Procedure: unsetenv procedure.
 * Getenv Procedure: getenv procedure.
@@ -5544,7 +5543,7 @@ the next release of DejaGnu.  If a testsuite uses this
 procedure, a copy of the procedure should be made and placed
 in the lib directory of the testsuite.
 
-@node runtest_file_p procedure, diff procedure, prune procedure, Utility Procedures
+@node runtest_file_p procedure, setenv procedure, prune procedure, Utility Procedures
 @subsubsection Runtest_file_p Procedure
 
 Search @emph{runtest}s for
@@ -5577,30 +5576,7 @@ The list of patterns to compare against.
 The test case filename.
 @end table
 
-@node diff procedure, setenv procedure, runtest_file_p procedure, Utility Procedures
-@subsubsection Diff Procedure
-
-Compares the two files and returns a @emph{1} if
-they match, or a @emph{0} if they don't. If
-@code{verbose} is set, then it'll print the differences to
-the screen.
-
-@quotation
-
-@t{@b{diff}(@i{file_1}
-@i{file_2});}
-@end quotation
-
-@table @asis
-
-@item @code{file_1}
-The first file to compare.
-
-@item @code{file_2}
-The second file to compare.
-@end table
-
-@node setenv procedure, unsetenv procedure, diff procedure, Utility Procedures
+@node setenv procedure, unsetenv procedure, runtest_file_p procedure, Utility Procedures
 @subsubsection Setenv Procedure
 
 Sets the environment variable @emph{var} to the
