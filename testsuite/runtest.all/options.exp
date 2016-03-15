@@ -1,5 +1,5 @@
 # Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999, 2000,
-# 20001, 2002, 2003 Free Software Foundation, Inc.
+# 2001, 2002, 2003, 2016 Free Software Foundation, Inc.
 #
 # This file is part of DejaGnu.
 #
@@ -50,20 +50,27 @@ set tests {
     { "-v -v -v" "Verbose level is 3" "Verbose set correctly" }
     { "-V" "DejaGnu version is.*Expect version is.*Tcl version is.*" "--version" }
     { "-v --target m68k-vxworks" "Target is m68k-vxworks" "--target option" }
+    { "-v --target_board flash" "Running target flash" "--target_board option" }
     { "-v --host sparc-sun-sunos4.1.9" "Native configuration is sparc-sun-sunos4.1.9" "--host option" }
     { "-v -a" "Print all test output to screen" "--all option" }
+    { "-v --all" "Print all test output to screen" "--all option" }
+    { "-v --ignore foo.exp" "Ignoring test foo.exp" "--ignore option" }
     { "-v --objdir xXx" "Using test binaries in xXx" "--objdir option" }
     { "-v --tool xXx" "Testing xXx" "--tool option" }
     { "-v --debug" "Expect Debugging is ON" "--debug option" }
+    { "-v --reboot" "Will reboot the target" "--reboot option" }
     { "-v --strace 1" "Source Trace level is now 1.* 1  if" "--strace option" }
     { "-v --D0" "Tcl debugger is ON" "--D0 option" }
+    { "-v -V" "DejaGnu version is" "-V option" }
+    { "-v --version" "DejaGnu version is" "--version option" }
+    { "-v --xml" "XML logging turned on" "--xml option" }
 }
 
-foreach i $tests {
-    if [util_test "$RUNTEST" "[lindex $i 0] -srcdir ${srcdir}/runtest.all" "" "[lindex $i 1]"] {
-        fail "[lindex $i 2]"
+foreach t $tests {
+    if [util_test "$RUNTEST" "[lindex $t 0] -srcdir ${srcdir}/runtest.all" "" "[lindex $t 1]"] {
+        fail "[lindex $t 2]"
     } else {
-        pass "[lindex $i 2]"
+        pass "[lindex $t 2]"
     }
 }
 
