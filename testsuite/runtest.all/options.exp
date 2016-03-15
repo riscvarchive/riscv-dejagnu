@@ -83,12 +83,7 @@ puts ${fd} "set tmpdir $objdir/tmpdir"
 close $fd
 
 # clean up log files left by the child runtest
-if [file exists $objdir/x.sum] {
-    file delete [glob $objdir/x.*]
+foreach f [concat [glob $objdir/x.*] [glob $objdir/xXx.*]] {
+    file delete $f
 }
-if [file exists $objdir/xXx.sum] {
-    file delete [glob $objdir/xXx.*]
-}
-if [file exists dbg.log] {
-    file delete dbg.log
-}
+file delete dbg.log
