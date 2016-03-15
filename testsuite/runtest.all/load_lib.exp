@@ -1,6 +1,6 @@
 # test load_lib
 
-# Verify that load_lib searches for a lib not only in it's default
+# Verify that load_lib searches for a lib not only in its default
 # search_dirs but also in the libdirs list of directories.
 
 # load_lib f exits with a failure if it does not find f.
@@ -29,9 +29,10 @@ global libdirs
 lappend libdirs $extradir
 verbose "now added libdirs: $libdirs" 2
 
-# In this testcase, we did not exit 1 from load_lib as per above rename.
-# subfile1 thus is in the loaded_libs LUT and we won't walk the
-# search_dirs again. Use another file for testing the lappend worked.
+# In this testcase, we did not exit 1 from load_lib as per above
+# rename.  subfile1 thus is in the loaded_libs LUT and we won't walk
+# the search_dirs again. Use another file for testing the lappend
+# worked.
 
 if { [load_lib "subfile2"] == ""} {
     pass "load_lib subfile2 loaded"

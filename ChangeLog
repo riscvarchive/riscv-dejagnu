@@ -1,5 +1,9 @@
 2016-03-15  Ben Elliston  <bje@gnu.org>
 
+	* testsuite/runtest.all/load_lib.exp: Typo fixes.
+
+2016-03-15  Ben Elliston  <bje@gnu.org>
+
 	* testsuite/runtest.all/options.exp: Add more tests.
 
 2016-03-15  Ben Elliston  <bje@gnu.org>
