@@ -1,3 +1,14 @@
+2016-03-16  Ben Elliston  <bje@gnu.org>
+
+	Revert this change (the GCC testsuite uses diff):
+
+	2016-03-15  Ben Elliston  <bje@gnu.org>
+
+	* lib/utils.exp (diff): Remove proc.
+	* doc/ref.xml: Update documentation.
+	* doc/dejagnu.texi: Regenerate.
+	* NEWS: Update.
+
 2016-03-15  Ben Elliston  <bje@gnu.org>
 
 	* testsuite/runtest.all/options.exp: Properly clean up log files
