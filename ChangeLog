@@ -1,5 +1,14 @@
 2016-03-20  Ben Elliston  <bje@gnu.org>
 
+	* runtest.exp: Load .dejagnurc last not first.
+	(load_file): Update comment about Tcl 7.5a2.
+	* doc/user.xml (Customizing DejaGnu): Document new search order
+	for site.exp files.
+	* doc/dejagnu.texi: Regenerate.
+	* NEWS: Update.
+
+2016-03-20  Ben Elliston  <bje@gnu.org>
+
 	* lib/dg.exp (dg-runtest): Improve arg naming to remove a FIXME.
 
 2016-03-20  Ben Elliston  <bje@gnu.org>

@@ -15,7 +15,9 @@ Changes since 1.5.3:
    procedures, a copy of the procedure should be made and placed in
    the lib directory of the testsuite.
 5. Support was added for testing the D compiler.
-
+6. ~/.dejagnurc is now loaded last, not first. This allows the user to
+   have the ability to override anything in their environment (even
+   the site.exp file specified by $DEJAGNU).
 
 Changes since 1.4.4:
 

@@ -1060,7 +1060,7 @@ it is possible to execute a testsuite merely by typing
 
 DejaGnu supports two @file{site.exp}
 files. The multiple instances of @file{site.exp} are
-loaded in a fixed order built into DejaGnu. The first file loaded
+loaded in a fixed order. The first file loaded
 is the local file @file{site.exp}, and then the
 optional global @file{site.exp} file as
 pointed to by the @code{DEJAGNU} environment
@@ -1090,8 +1090,8 @@ site.exp} in the testsuite directory, after the test
 suite is configured.
 
 You can also have a file in your home directory called
-@file{.dejagnurc}. This gets loaded first before the
-other config files. Usually this is used for personal stuff, like
+@file{.dejagnurc}. This gets loaded after the other
+config files. Usually this is used for personal stuff, like
 setting the @code{all_flag} so all the output gets
 printed, or your own verbosity levels. This file is usually
 restricted to setting command line options.

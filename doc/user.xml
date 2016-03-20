@@ -744,7 +744,7 @@
 
     <para>&dj; supports two <filename>site.exp</filename>
     files. The multiple instances of <filename>site.exp</filename> are
-    loaded in a fixed order built into &dj;. The first file loaded
+    loaded in a fixed order. The first file loaded
     is the local file <filename>site.exp</filename>, and then the
     optional global <filename>site.exp</filename> file as
     pointed to by the <symbol>DEJAGNU</symbol> environment
@@ -774,8 +774,8 @@
     suite is configured.</para>
 
     <para>You can also have a file in your home directory called
-    <filename>.dejagnurc</filename>. This gets loaded first before the
-    other config files. Usually this is used for personal stuff, like
+    <filename>.dejagnurc</filename>. This gets loaded after the other
+    config files. Usually this is used for personal stuff, like
     setting the <symbol>all_flag</symbol> so all the output gets
     printed, or your own verbosity levels. This file is usually
     restricted to setting command line options.</para>

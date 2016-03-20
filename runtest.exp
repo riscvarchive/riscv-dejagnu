@@ -307,9 +307,8 @@ proc load_file { args } {
     set found 0
     foreach file [lrange $args $i end] {
 	verbose "Looking for $file" 2
-	# In Tcl7.5a2, "file exists" can fail if the filename looks
-	# like ~/FILE and the environment variable HOME does not
-	# exist.
+	# In Tcl, "file exists" fails if the filename looks like
+	# ~/FILE and the environment variable HOME does not exist.
 	if {! [catch {file exists $file} result] && $result} {
 	    set found 1
 	    verbose "Found $file"
@@ -614,17 +613,14 @@ verbose "Login name is $logname"
 # All are sourced in order.
 #
 # Search order:
-#	$HOME/.dejagnurc -> $base_dir/$configfile -> $objdir/$configfile
-#	-> installed -> $DEJAGNU
-#
-# ??? It might be nice to do $HOME last as it would allow it to be the
-# ultimate override.  Though at present there is still $DEJAGNU.
+#	$base_dir/$configfile -> $objdir/$configfile ->
+#	installed -> $DEJAGNU -> $HOME/.dejagnurc
 #
 # For the normal case, we rely on $base_dir/$configfile to set
 # host_triplet and target_triplet.
 #
 
-load_file ~/.dejagnurc $base_dir/$configfile
+load_file $base_dir/$configfile
 
 #
 # If objdir didn't get set in $base_dir/$configfile, set it to $base_dir.
@@ -880,6 +876,9 @@ if {[info exists env(DEJAGNU)]} {
 	set boards_dir "[file dirname $env(DEJAGNU)]/boards"
     }
 }
+
+# Load user .dejagnurc file last as the ultimate override.
+load_file ~/.dejagnurc
 
 if {![info exists boards_dir]} {
     set boards_dir ""
