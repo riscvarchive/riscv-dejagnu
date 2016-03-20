@@ -1,5 +1,9 @@
 2016-03-20  Ben Elliston  <bje@gnu.org>
 
+	* lib/dg.exp: Remove commented-out calls to send_user.
+
+2016-03-20  Ben Elliston  <bje@gnu.org>
+
 	* runtest.exp (load_file): Remove old comment.
 
 2016-03-20  Ben Elliston  <bje@gnu.org>

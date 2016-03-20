@@ -189,16 +189,12 @@ proc dg-get-options { prog } {
     set tmp [grep $prog "{\[ \t\]\+dg-\[-a-z\]\+\[ \t\]\+.*\[ \t\]\+}" line]
     if {![string match "" $tmp]} {
 	foreach i $tmp {
-	    #send_user "Found: $i\n"
 	    # FIXME: When to use "+" and "\+" isn't clear.
 	    # Seems to me it took awhile to get this to work.
 	    regexp "(\[0-9\]\+)\[ \t\]\+{\[ \t\]+(dg-\[-a-z\]+)\[ \t\]\+(.*)\[ \t\]+}\[^\}\]*(\n|$)" $i i line cmd args
-	    #send_user "Found: $cmd $line $args\n"
 	    append result " { $cmd $line $args }"
 	}
     }
-
-    #send_user "Returning: $result\n"
     return $result
 }
 
@@ -217,8 +213,6 @@ proc dg-process-target { selector } {
 
     set isnative [isnative]
     set triplet_match 0
-
-    #send_user "dg-process-target: $selector\n"
 
     set selector [string trim $selector]
     if {[regexp "^xfail " $selector]} {
@@ -545,7 +539,6 @@ proc dg-final { args } {
 	return
     }
 
-    #send_user "dg-final: $args\n"
     append final-code "[lindex $args 1]\n"
 }
 
@@ -724,7 +717,6 @@ proc dg-test { args } {
 	set line [lindex $i 0]
 	set pattern [lindex $i 2]
 	set comment [lindex $i 3]
-	#send_user "Before:\n$comp_output\n"
 	if {[regsub -all "(^|\n)(\[^\n\]+$line\[^\n\]*($pattern)\[^\n\]*\n?)+" $comp_output "\n" comp_output]} {
 	    set comp_output [string trimleft $comp_output]
 	    set ok pass
@@ -733,7 +725,6 @@ proc dg-test { args } {
 	    set ok fail
 	    set uhoh pass
 	}
-	#send_user "After:\n$comp_output\n"
 
 	# $line will either be a formatted line number or a number all by
 	# itself.  Delete the formatting.
@@ -769,7 +760,6 @@ proc dg-test { args } {
     }
 
     # Remove messages from the tool that we can ignore.
-    #send_user "comp_output: $comp_output\n"
     set comp_output [prune_warnings $comp_output]
 
     if { [info proc ${tool}-dg-prune] != "" } {
@@ -796,7 +786,6 @@ proc dg-test { args } {
     # See if someone forgot to delete the extra lines.
     regsub -all "\n+" $comp_output "\n" comp_output
     regsub "^\n+" $comp_output "" comp_output
-    #send_user "comp_output: $comp_output\n"
 
     # Don't do this if we're testing an interpreter.
     # FIXME: why?
@@ -824,7 +813,6 @@ proc dg-test { args } {
 	    set result [${tool}_load $output_file]
 	    set status [lindex $result 0]
 	    set output [lindex $result 1]
-	    #send_user "After exec, status: $status\n"
 	    if { [lindex ${dg-do-what} 2] == "F" } {
 		setup_xfail "*-*-*"
 	    }
@@ -832,7 +820,6 @@ proc dg-test { args } {
 		pass "$name execution test"
 		verbose "Exec succeeded." 3
 		if { [llength ${dg-output-text}] > 1 } {
-		    #send_user "${dg-output-text}\n"
 		    if { [lindex ${dg-output-text} 0] == "F" } {
 			setup_xfail "*-*-*"
 		    }
