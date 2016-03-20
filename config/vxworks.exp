@@ -231,9 +231,6 @@ proc vxworks_open { dest args } {
 		verbose "Set default user." 2
 	    }
 	    timeout {
-		# ??? This is really an error.  It's not clear whether `perror'
-		# or `warning' should be used here.  There are *lots* of other
-		# cases like this.
 		perror "Couldn't set default user."
 		return -1
 	    }

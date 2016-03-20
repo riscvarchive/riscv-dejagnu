@@ -42,6 +42,5 @@ set_board_info ldflags "[libgloss_link_flags] [newlib_link_flags]"
 set_board_info ldscript "-Tmon960.ld"
 
 # And, it can't do arguments, and doesn't have real signals.
-# ??? Unknown if this is right.
 set_board_info noargs 1
 set_board_info gdb,nosignals 1

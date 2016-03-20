@@ -1,5 +1,10 @@
 2016-03-20  Ben Elliston  <bje@gnu.org>
 
+	* baseboards/i960-sim.exp: Remove stale ??? comment.
+	* config/vxworks.exp: Likewise.
+
+2016-03-20  Ben Elliston  <bje@gnu.org>
+
 	* runtest.exp: Load .dejagnurc last not first.
 	(load_file): Update comment about Tcl 7.5a2.
 	* doc/user.xml (Customizing DejaGnu): Document new search order
