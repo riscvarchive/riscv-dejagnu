@@ -553,12 +553,11 @@ proc dg-init { } {
 
 # dg-runtest -- simple main loop useful to most testsuites
 #
-# FLAGS is a set of options to always pass.
-# DEFAULT_EXTRA_FLAGS is a set of options to pass if the testcase doesn't
-# specify any (with dg-option).
-# ??? We're flipping between "flag" and "option" here.
+# OPTIONS is a set of options to always pass.
+# DEFAULT_EXTRA_OPTIONS is a set of options to pass if the testcase
+# doesn't specify any (with dg-option).
 
-proc dg-runtest { testcases flags default-extra-flags } {
+proc dg-runtest { testcases options default-extra-options } {
     global runtests
 
     foreach testcase $testcases {
@@ -567,7 +566,7 @@ proc dg-runtest { testcases flags default-extra-flags } {
 	    continue
 	}
 	verbose "Testing [file tail [file dirname $testcase]]/[file tail $testcase]"
-	dg-test $testcase $flags ${default-extra-flags}
+	dg-test $testcase $options ${default-extra-options}
     }
 }
 

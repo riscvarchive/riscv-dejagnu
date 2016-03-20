@@ -1,5 +1,9 @@
 2016-03-20  Ben Elliston  <bje@gnu.org>
 
+	* lib/dg.exp (dg-runtest): Improve arg naming to remove a FIXME.
+
+2016-03-20  Ben Elliston  <bje@gnu.org>
+
 	* lib/dg.exp: Remove commented-out calls to send_user.
 
 2016-03-20  Ben Elliston  <bje@gnu.org>
