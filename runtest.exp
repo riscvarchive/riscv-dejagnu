@@ -293,9 +293,6 @@ proc findfile { args } {
 # If a tcl error occurs while sourcing a file, we print an error message
 # and exit.
 #
-# ??? Perhaps add an optional argument of some descriptive text to add to
-# verbose and error messages (eg: -t "library file" ?).
-#
 proc load_file { args } {
     set i 0
     set only_one 0
