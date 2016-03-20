@@ -1499,13 +1499,7 @@ proc runtest { test_file_name } {
     } else {
 	# This should never happen, but maybe if the file got removed
 	# between the `find' above and here.
-	perror "$test_file_name does not exist."
-	# ??? This is a hack.  We want to send a message to stderr and
-	# to the summary file (just like perror does), but we don't
-	# want the next testcase to get a spurious "unresolved" because
-	# errcnt != 0.  Calling `clone_output' is also supposed to be a
-	# no-no (see the comments for clone_output).
-	set errcnt 0
+	perror "$test_file_name does not exist." 0
     }
 }
 

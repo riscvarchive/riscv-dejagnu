@@ -686,9 +686,7 @@ proc dg-test { args } {
 	    } else {
 		perror "$name: $errmsg for \"$op\"\n"
 	    }
-	    # ??? The call to unresolved here is necessary to clear `errcnt'.
-	    # What we really need is a proc like perror that doesn't set errcnt.
-	    unresolved "$name: $errmsg for \"$op\""
+	    perror "$name: $errmsg for \"$op\"" 0
 	    return
 	}
     }
@@ -875,10 +873,7 @@ proc dg-test { args } {
 	verbose "Running dg-final tests." 3
 	verbose "dg-final-proc:\n[info body dg-final-proc]" 4
 	if {[catch "dg-final-proc $prog" errmsg]} {
-	    perror "$name: error executing dg-final: $errmsg"
-	    # ??? The call to unresolved here is necessary to clear `errcnt'.
-	    # What we really need is a proc like perror that doesn't set errcnt.
-	    unresolved "$name: error executing dg-final: $errmsg"
+	    perror "$name: error executing dg-final: $errmsg" 0
 	}
     }
 

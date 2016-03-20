@@ -1,3 +1,9 @@
+2016-03-20  Ben Elliston  <bje@gnu.org>
+
+	* lib/dg.exp (dg-test): There is no need to call unresolved to
+	clear errcnt. Instead, pass 0 as argument 2 to perror.
+	* runtest.exp (runtest): Likewise.
+
 2016-03-16  Ben Elliston  <bje@gnu.org>
 
 	Revert this change (the GCC testsuite uses diff):
