@@ -57,8 +57,7 @@ proc remote_raw_open { args } {
 }
 
 # Close a spawn ID, and wait for the process to die.  If PID is not
-# -1, then if the process doesn't exit gracefully promptly, we kill
-# it.
+# -1, then the process is killed if it doesn't exit gracefully.
 #
 proc close_wait_program { program_id pid {wres_varname ""} } {
     if {$wres_varname != "" } {
@@ -76,7 +75,7 @@ proc close_wait_program { program_id pid {wres_varname ""} } {
 	set pgid "-$pid"
 	# Send SIGINT to give the program a better chance to interrupt
 	# whatever it might be doing and react to stdin closing.
-	# E.g., in case of GDB, this should get it back to the prompt.
+	# eg, in case of GDB, this should get it back to the prompt.
 	exec sh -c "exec > /dev/null 2>&1 && (kill -2 $pgid || kill -2 $pid)"
 
 	# If the program doesn't exit gracefully when stdin closes,
@@ -158,6 +157,7 @@ proc local_exec { commandline inp outp timeout } {
 	    set result2 5
 	}
     } else {
+	# Use a command pipeline with open.
 	if { $inp != "" } {
 	    set inp "< $inp"
 	    set mode "r"
@@ -217,7 +217,7 @@ proc local_exec { commandline inp outp timeout } {
 	    exp_continue -continue_timer
 	}
 	timeout {
-	    warning "program timed out."
+	    warning "program timed out"
 	}
 	eof {
 	    set got_eof 1

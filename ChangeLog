@@ -1,5 +1,12 @@
 2016-03-21  Ben Elliston  <bje@gnu.org>
 
+	* runtest.exp: Whitespace, comment and typo fixes.
+	* lib/dejagnu.exp: Likewise.
+	* lib/remote.exp: Likewise.
+	* lib/utils.exp: Likewise.
+
+2016-03-21  Ben Elliston  <bje@gnu.org>
+
 	* baseboards/mcore-moto-sim.exp: Remove old FIXME comment.
 	* baseboards/mmixware-sim.exp: Likewise.
 	* config/sim.exp: Likewise.

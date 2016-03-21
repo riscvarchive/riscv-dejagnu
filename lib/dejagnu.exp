@@ -83,7 +83,7 @@ proc host_compile {compline} {
     # prune common warnings and other stuff we can safely ignore
     set comp_output [prune_warnings $comp_output]
 
-    # Trim multiple CR/LF pairs out to keep things consistant
+    # Trim multiple CR/LF pairs out to keep things consistent
     regsub "^\[\r\n\]+" $comp_output "" comp_output
 
     # if we got a compiler error, log it

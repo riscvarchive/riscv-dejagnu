@@ -585,7 +585,7 @@ proc lookfor_file { dir name } {
 #
 # If there a multiple files with the same name, stop after the first one found.
 # The order is first look in the install dir, then in a parallel dir in the
-# source tree, (up one or two levels), then in the current dir.
+# source tree (up one or two levels), then in the current dir.
 #
 proc load_lib { file } {
     global verbose libdir libdirs srcdir base_dir execpath tool
@@ -683,7 +683,7 @@ unset arg_host_triplet arg_build_triplet
 # If the build machine type hasn't been specified by now, use config.guess.
 #
 
-if {[expr  { $build_triplet == ""  &&  $host_triplet == ""} ]} {
+if {[expr {$build_triplet == "" && $host_triplet == ""}]} {
     # find config.guess
     foreach dir "$libdir $libdir/libexec $libdir/.. $execpath $srcdir $srcdir/.. $srcdir/../.." {
 	verbose "Looking for ${dir}/config.guess" 2
@@ -711,7 +711,6 @@ if {[expr  { $build_triplet == ""  &&  $host_triplet == ""} ]} {
     if { $host_triplet == "" } {
 	set host_triplet $build_triplet
     }
-
 }
 
 #

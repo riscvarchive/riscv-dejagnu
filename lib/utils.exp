@@ -23,6 +23,7 @@
 # This file is sourced by runtest.exp, so they are usable by any test
 # script.
 
+
 # Gets the directories in a directory, or in a directory tree.
 #     args: the first is the dir to look in, the next
 #         is the pattern to match. It
@@ -86,6 +87,7 @@ proc getdirs { args } {
     }
 }
 
+
 # Finds paths of all non-directory files, recursively, whose names match
 # a pattern.  Certain directory name are not searched (see proc getdirs).
 #     rootdir - search in this directory and its subdirectories, recursively.
@@ -114,6 +116,7 @@ proc find { rootdir pattern } {
 
     return $files
 }
+
 
 # Search the path for a file. This is basically a version of the BSD
 # Unix which(1) utility. This procedure depends on the shell
@@ -250,10 +253,11 @@ proc runtest_file_p { runtests testcase } {
 }
 
 
-# Compares two files line-by-line
-#     returns 1 it the files match,
-#     returns 0 if there was a file error,
-#     returns -1 if they didn't match.
+# Compares two files line-by-line just like the Unix diff(1) utility.
+#
+# Returns 1 if the files match,
+#         0 if there was a file error,
+#         -1 if they did not match.
 #
 proc diff { file_1 file_2 } {
     set eof -1
@@ -296,6 +300,7 @@ proc diff { file_1 file_2 } {
 	}
     }
     close ${file_b}
+
     for { set i 0 } { $i < [llength $list_a] } { incr i } {
 	set line_a [lindex ${list_a} ${i}]
 	set line_b [lindex ${list_b} ${i}]
@@ -315,10 +320,10 @@ proc diff { file_1 file_2 } {
 	verbose "Files are the same" 2
 	set differences 1
     }
-    return ${differences}
+    return $differences
 }
 
-#
+
 # Set an environment variable
 #
 proc setenv { var val } {
@@ -332,6 +337,7 @@ proc unsetenv { var } {
     global env
     unset env($var)
 }
+
 
 # Get a value from an environment variable
 #
