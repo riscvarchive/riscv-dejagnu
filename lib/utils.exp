@@ -130,24 +130,34 @@ proc which { file } {
     # strip off any extraneous arguments (like flags to the compiler)
     set file [lindex $file 0]
 
-    # if it exists then the path must be OK
-    # ??? What if $file has no path and "." isn't in $PATH?
-    if {[file exists $file]} {
-	return $file
+    # if the filename has a path component, then the file must exist
+    if {[llength [file split $file]] > 1} {
+	verbose "Checking $file" 2
+	if {[file exists $file] && \
+		[file executable $file] && [file type $file] == "file"} {
+	    verbose "file $file is executable and not a link" 2
+	    return [file normalize $file]
+	} else {
+	    return 0
+	}
     }
+
+    # Otherwise the file must exist in the PATH
     if {[info exists env(PATH)]} {
 	set path [split $env(PATH) ":"]
     } else {
 	return 0
     }
 
-    foreach i $path {
-	verbose "Checking against $i" 3
-	if {[file exists [file join $i $file]]} {
-	    if {[file executable [file join $i $file]]} {
-		return [file join $i $file]
+    foreach dir $path {
+	verbose "Checking $dir for $file" 3
+	set filename [file join $dir $file]
+	if {[file exists $filename]} {
+	    if {[file executable $filename] && [file type $filename] == "file"} {
+		verbose "file $filename is executable and not a link" 2
+		return $filename
 	    } else {
-		warning "[file join $i $file] exists but is not an executable"
+		warning "file $filename exists but is not executable or is a link"
 	    }
 	}
     }

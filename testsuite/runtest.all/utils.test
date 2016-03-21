@@ -101,7 +101,30 @@ if [info exists env(TESTRUN)] {
     untested "unsetenv, unset an environment variable"
 }
 
-# which file
+# Test 'which' using a relative path.
+#
+if {[which ./config.status] != 0} {
+  pass "which, relative path to config.status"
+} else {
+  fail "which, relative path to config.status"
+}
+
+# Test 'which' using an absolute path.
+#
+if {[which [file join $objdir config.status]] != 0} {
+  pass "which, absolute path to config.status"
+} else {
+  fail "which, absolute path to config.status"
+}
+
+# Test 'which make'.
+#
+if {[which make] != 0} {
+  pass "which, make"
+} else {
+  pass "which, make"
+}
+
 # grep args
 # diff file_1 file_2
 # runtest_file_p
