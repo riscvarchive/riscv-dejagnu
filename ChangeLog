@@ -1,3 +1,8 @@
+2016-03-21  Ben Elliston  <bje@gnu.org>
+
+	* lib/dg.exp (dg-get-options): Clean up regular expression and
+	remove FIXME comment about it.
+
 2016-03-20  Ben Elliston  <bje@gnu.org>
 
 	* baseboards/i960-sim.exp: Remove stale ??? comment.

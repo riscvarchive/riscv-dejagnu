@@ -189,9 +189,7 @@ proc dg-get-options { prog } {
     set tmp [grep $prog "{\[ \t\]\+dg-\[-a-z\]\+\[ \t\]\+.*\[ \t\]\+}" line]
     if {![string match "" $tmp]} {
 	foreach i $tmp {
-	    # FIXME: When to use "+" and "\+" isn't clear.
-	    # Seems to me it took awhile to get this to work.
-	    regexp "(\[0-9\]\+)\[ \t\]\+{\[ \t\]+(dg-\[-a-z\]+)\[ \t\]\+(.*)\[ \t\]+}\[^\}\]*(\n|$)" $i i line cmd args
+	    regexp "(\[0-9\]+)\[ \t\]+{\[ \t\]+(dg-\[-a-z\]+)\[ \t\]+(.*)\[ \t\]+}\[^\}\]*(\n|$)" $i i line cmd args
 	    append result " { $cmd $line $args }"
 	}
     }
