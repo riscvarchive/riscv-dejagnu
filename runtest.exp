@@ -1694,7 +1694,6 @@ foreach current_target $target_list {
 		lappend restore "$var"
 	    }
 	    # Handle "CFLAGS=$CFLAGS foo".
-	    # FIXME: Do we need to `catch' this?
 	    eval set $var \[string range \"$varval\" [expr {$tmp + 1}] end\]
 	    verbose "$var is now [eval concat \$$var]"
 	    unset tmp var

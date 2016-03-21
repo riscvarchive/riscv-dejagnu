@@ -73,6 +73,3 @@ set_board_info ldscript ""
 
 # Return codes aren't supported by the simulator.
 set_board_info needs_status_wrapper 1
-
-# FIXME: Some gdb board variables are usually here.  I currently have
-# no clue what to set them to, so I won't.

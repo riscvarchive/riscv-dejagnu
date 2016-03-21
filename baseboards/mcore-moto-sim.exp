@@ -109,9 +109,6 @@ proc sim_load { dest prog args } {
 	set status $status2
     }
 
-    # FIXME: Do we need to examine $status?
-    # Yes, we do--what if the simulator itself gets an error and coredumps?
-
     verbose "Return status was: $status" 2
     if { $status == 0 } {
 	set result "pass"
