@@ -1,3 +1,8 @@
+2016-03-22  Ben Elliston  <bje@gnu.org>
+
+	* lib/target.exp (only--Ls): Change '???' comment to a note. This
+	isn't a serious shortcoming, but the comment should be retained.
+
 2016-03-22  Rob Savoye  <rob.savoye@linaro.org>
 
 	* baseboards/generic-sim.exp: If DEJAGNU_SIM_SPECFILE exists in

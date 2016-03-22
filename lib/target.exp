@@ -753,8 +753,8 @@ proc default_link { board objects destfile flags } {
 	set ldflags [split $ldflags]
 	set len [llength $ldflags]
 	for { set i 0 } { $i < $len } { incr i } {
-	    # ??? We ignore the situation where a -L is actually the argument
-	    # to an option.
+	    # Note: We ignore the situation where a -L is actually the
+	    # argument to an option.
 	    set arg [lindex $ldflags $i]
 	    regsub "^-Wl," $arg "" arg
 	    if {[regexp "^-L" $arg]} {
