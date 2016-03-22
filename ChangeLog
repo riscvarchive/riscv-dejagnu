@@ -1,5 +1,15 @@
 2016-03-23  Ben Elliston  <bje@gnu.org>
 
+	* Makefile.am (baseboard_DATA): Remove cygwin.exp, mcore-elf.exp,
+	mcore-pe.exp, vx4300.exp, vx68k.exp, vx960.exp, vxsparc.exp.
+	* Makefile.in: Regenerate.
+	* baseboards/cygwin.exp, baseboards/mcore-elf.exp,
+	baseboards/mcore-pe.exp, baseboards/vx4300.exp,
+	baseboards/vx68k.exp, baseboards/vx960.exp,
+	baseboards/vxsparc.exp: Remove.
+
+2016-03-23  Ben Elliston  <bje@gnu.org>
+
 	* baseboards/README: Remove mention of devo.
 	* baseboards/iq2000-sim.exp: Likewise.
 	* baseboards/moxie-sim.exp: Likewise.

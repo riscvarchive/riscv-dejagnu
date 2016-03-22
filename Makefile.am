@@ -79,7 +79,6 @@ baseboard_DATA = \
 	baseboards/basic-sid.exp \
 	baseboards/basic-sim.exp \
 	baseboards/cris-sim.exp \
-	baseboards/cygwin.exp \
 	baseboards/d30v-sim.exp \
 	baseboards/fr30-sim.exp \
 	baseboards/frv-sim.exp \
@@ -90,9 +89,7 @@ baseboard_DATA = \
 	baseboards/linux-gdbserver.exp \
 	baseboards/linux-libremote.exp \
 	baseboards/m68k-sid.exp \
-	baseboards/mcore-elf.exp \
 	baseboards/mcore-moto-sim.exp \
-	baseboards/mcore-pe.exp \
 	baseboards/mcore-sim.exp \
 	baseboards/mips-lnews-sim.exp \
 	baseboards/mips-lsi-sim.exp \
@@ -126,10 +123,6 @@ baseboard_DATA = \
 	baseboards/vr4100-sim.exp \
 	baseboards/vr4111-sim.exp \
 	baseboards/vr4300-sim.exp \
-	baseboards/vx4300.exp \
-	baseboards/vx68k.exp \
-	baseboards/vx960.exp \
-	baseboards/vxsparc.exp \
 	baseboards/xtensa-sim.exp
 
 djlibexecdir = $(pkgdatadir)/libexec
