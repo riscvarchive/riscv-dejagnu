@@ -73,7 +73,9 @@ baseboard_DATA = \
 	baseboards/README \
 	baseboards/androideabi.exp \
 	baseboards/am33_2.0-libremote.exp \
+	baseboards/arm-ice.exp \
 	baseboards/arm-sid.exp \
+	baseboards/arm-sim.exp \
 	baseboards/basic-sid.exp \
 	baseboards/basic-sim.exp \
 	baseboards/cris-sim.exp \

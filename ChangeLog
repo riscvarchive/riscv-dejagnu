@@ -1,5 +1,12 @@
 2016-03-23  Ben Elliston  <bje@gnu.org>
 
+	* Makefile.am (baseboard_DATA): Add arm-ice.exp, arm-sim.exp.
+	* Makefile.in: Regenerate.
+	* baseboards/arm-ice.exp: Reinstate.
+	* baseboards/arm-sim.exp: Likewise.
+
+2016-03-23  Ben Elliston  <bje@gnu.org>
+
 	* Makefile.am (config_DATA): Update.
 	(baseboard_DATA): Likewise.
 	* Makefile.in: Regenerate.
