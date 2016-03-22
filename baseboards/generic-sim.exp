@@ -1,4 +1,4 @@
-# Copyright (C) 2012 Free Software Foundation, Inc.
+# Copyright (C) 2012, 2013, 2014, 2015, 2016 Free Software Foundation, Inc.
 #
 # This file is part of DejaGnu.
 #
@@ -64,6 +64,9 @@ if {[info exists env(DEJAGNU_SIM_LINK_FLAGS)]} {
 }
 if {[info exists env(DEJAGNU_SIM_LDSCRIPT)]} {
     set_board_info ldscript "$env(DEJAGNU_SIM_LDSCRIPT)"
+}
+if {[info exists env(DEJAGNU_SIM_SPECFILE)]} {
+    set_board_info specfile "-specs=$env(DEJAGNU_SIM_SPECFILE)"
 }
 
 if {[info exists env(DEJAGNU_SIM_OPTIONS)]} {

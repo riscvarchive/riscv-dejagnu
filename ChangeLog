@@ -1,3 +1,8 @@
+2016-03-22  Rob Savoye  <rob.savoye@linaro.org>
+
+	* baseboards/generic-sim.exp: If DEJAGNU_SIM_SPECFILE exists in
+	the environment, use that as the spec file for bare metal testing.
+
 2016-03-22  Ben Elliston  <bje@gnu.org>
 
 	* Makefile.am (config_DATA): Add config/aarch64-fv8.exp.
