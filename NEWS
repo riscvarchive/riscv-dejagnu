@@ -2,20 +2,24 @@
 
 Changes since 1.5.3:
 
-1. The --status command line option is now the default. This means
+1. A large number of very old config and baseboard files have been
+   removed.  If you need to resurrect these, you can get them from
+   version 1.5.3.  If you can show that a board is still in use, it
+   can be put back in the distribution.
+2. The --status command line option is now the default. This means
    that any error in the testsuite Tcl scripts will cause runtest to
    abort with exit status code 2.
-2. runtest now exits with exit code 0 if the testsuite "passed", 1 if
+3. runtest now exits with exit code 0 if the testsuite "passed", 1 if
    something unexpected happened (eg, FAIL, XPASS or UNRESOLVED), and
    2 if an exception is raised by the Tcl interpreter.
-3. runtest now exits with the standard exit codes of programs that are
+4. runtest now exits with the standard exit codes of programs that are
    terminated by the SIGINT, SIGTERM and SIGQUIT signals.
-4. The user-visible utility procedures `absolute', `psource' and
+5. The user-visible utility procedures `absolute', `psource' and
    `slay' have been removed.  If a testsuite uses any of these
    procedures, a copy of the procedure should be made and placed in
    the lib directory of the testsuite.
-5. Support was added for testing the D compiler.
-6. ~/.dejagnurc is now loaded last, not first. This allows the user to
+6. Support was added for testing the D compiler.
+7. ~/.dejagnurc is now loaded last, not first. This allows the user to
    have the ability to override anything in their environment (even
    the site.exp file specified by $DEJAGNU).
 

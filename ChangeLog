@@ -1,3 +1,36 @@
+2016-03-23  Ben Elliston  <bje@gnu.org>
+
+	* Makefile.am (config_DATA): Update.
+	(baseboard_DATA): Likewise.
+	* Makefile.in: Regenerate.
+	* NEWS: Update.
+
+	Remove the following old config files:
+
+	* arc.exp, arm-ice.exp, base-config.exp, base68k.exp, bug.exp,
+	cfdbug.exp, cygmon.exp, d10v.exp, ddb-ether.exp, ddb.exp, dos.exp,
+	dve.exp, h8300.exp, i386-bozo.exp, i960.exp, m32r-stub.exp,
+	m32r.exp, m68hc11.exp, m68k-emc.exp, mips-idt.exp,
+	mn10200-eval.exp, mn10300-eval.exp, netware.exp, powerpc-bug.exp,
+	proelf.exp, rom68k.exp, sh.exp, slite.exp, sparclet.exp,
+	tic80.exp, vr4100.exp, vr4300.exp, vr5000.exp: Remove.
+
+	Remove the following old baseboard files:
+
+	* arc-sim.exp, arm-ice.exp, arm-sim.exp, cf.exp, cygmon.exp,
+	d10v-sim.exp, d10v.exp, danlite-elf.exp, dos.exp, fr30-cygmon.exp,
+	fr30-elf.exp, frv-elf.exp, frv-tiger.exp, frv-tomcat.exp,
+	h8300-sim.exp, h8300.exp, i386-bozo.exp, i960-cyclone.exp,
+	i960-sim.exp, m32r-elf.exp, m32r-linux-sim.exp, m32r-sid.exp,
+	m32r-sim.exp, m68hc11-sim.exp, m68k-emc.exp, mips-idt.exp,
+	mips64-sim.exp, mips64vr4100-sim.exp, mn10200-cygmon.exp,
+	mn10300-cygmon.exp, msparc-cygmon.exp, op50n.exp, powerpc-bug.exp,
+	powerpc-bug1.exp, rom68k-idp.exp, sh-hms.exp, sparclet-aout.exp,
+	sparclite-coff.exp, sparclite-cygmon.exp, strongarm-cygmon.exp,
+	tic80-sim.exp, tx39-dve.exp, usparc-cygmon.exp, vr4100-ddb.exp,
+	vr4300-ddb.exp, vr4300.exp, vr5000-ddb.exp, x86-cygmon.exp,
+	xscale-cygmon.exp: Remove.
+
 2016-03-22  Ben Elliston  <bje@gnu.org>
 
 	* lib/target.exp (only--Ls): Change '???' comment to a note. This

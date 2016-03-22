@@ -60,45 +60,12 @@ config_DATA = \
 	config/README \
 	config/adb.exp \
 	config/aarch64-fv8.exp \
-	config/arc.exp \
-	config/arm-ice.exp \
-	config/base-config.exp \
-	config/base68k.exp \
-	config/bug.exp \
-	config/cfdbug.exp \
-	config/cygmon.exp \
-	config/d10v.exp \
-	config/ddb-ether.exp \
-	config/ddb.exp \
 	config/default.exp \
-	config/dos.exp \
-	config/dve.exp \
 	config/gdb-comm.exp \
 	config/gdb_stub.exp \
-	config/h8300.exp \
-	config/i386-bozo.exp \
-	config/i960.exp \
-	config/m32r-stub.exp \
-	config/m32r.exp \
-	config/m68hc11.exp \
-	config/m68k-emc.exp \
-	config/mips-idt.exp \
-	config/mn10200-eval.exp \
-	config/mn10300-eval.exp \
-	config/netware.exp \
-	config/powerpc-bug.exp \
-	config/proelf.exp \
-	config/rom68k.exp \
-	config/sh.exp \
 	config/sid.exp \
 	config/sim.exp \
-	config/slite.exp \
-	config/sparclet.exp \
-	config/tic80.exp \
 	config/unix.exp \
-	config/vr4100.exp \
-	config/vr4300.exp \
-	config/vr5000.exp \
 	config/vxworks.exp
 
 baseboarddir = $(pkgdatadir)/baseboards
@@ -106,51 +73,25 @@ baseboard_DATA = \
 	baseboards/README \
 	baseboards/androideabi.exp \
 	baseboards/am33_2.0-libremote.exp \
-	baseboards/arc-sim.exp \
-	baseboards/arm-ice.exp \
 	baseboards/arm-sid.exp \
-	baseboards/arm-sim.exp \
 	baseboards/basic-sid.exp \
 	baseboards/basic-sim.exp \
-	baseboards/cf.exp \
 	baseboards/cris-sim.exp \
-	baseboards/cygmon.exp \
 	baseboards/cygwin.exp \
-	baseboards/d10v-sim.exp \
-	baseboards/d10v.exp \
 	baseboards/d30v-sim.exp \
-	baseboards/danlite-elf.exp \
-	baseboards/dos.exp \
-	baseboards/fr30-cygmon.exp \
-	baseboards/fr30-elf.exp \
 	baseboards/fr30-sim.exp \
-	baseboards/frv-elf.exp \
 	baseboards/frv-sim.exp \
-	baseboards/frv-tiger.exp \
-	baseboards/frv-tomcat.exp \
 	baseboards/gdbserver-sample.exp \
-	baseboards/h8300-sim.exp \
-	baseboards/h8300.exp \
-	baseboards/i386-bozo.exp \
 	baseboards/i386-sid.exp \
-	baseboards/i960-cyclone.exp \
-	baseboards/i960-sim.exp \
 	baseboards/iq2000-sim.exp \
 	baseboards/jmr3904-sim.exp \
 	baseboards/linux-gdbserver.exp \
 	baseboards/linux-libremote.exp \
-	baseboards/m32r-elf.exp \
-	baseboards/m32r-linux-sim.exp \
-	baseboards/m32r-sid.exp \
-	baseboards/m32r-sim.exp \
-	baseboards/m68hc11-sim.exp \
-	baseboards/m68k-emc.exp \
 	baseboards/m68k-sid.exp \
 	baseboards/mcore-elf.exp \
 	baseboards/mcore-moto-sim.exp \
 	baseboards/mcore-pe.exp \
 	baseboards/mcore-sim.exp \
-	baseboards/mips-idt.exp \
 	baseboards/mips-lnews-sim.exp \
 	baseboards/mips-lsi-sim.exp \
 	baseboards/mips-sim-idt32.exp \
@@ -162,54 +103,31 @@ baseboard_DATA = \
 	baseboards/mips-sim-mti64_64.exp \
 	baseboards/mips-sim-sde32.exp \
 	baseboards/mips-sim-sde64.exp \
-	baseboards/mips64-sim.exp \
-	baseboards/mips64vr4100-sim.exp \
 	baseboards/mmixware-sim.exp \
-	baseboards/mn10200-cygmon.exp \
 	baseboards/mn10200-sim.exp \
-	baseboards/mn10300-cygmon.exp \
 	baseboards/mn10300-sim.exp \
-	baseboards/msparc-cygmon.exp \
 	baseboards/mt-sid.exp \
 	baseboards/multi-sim.exp \
-	baseboards/op50n.exp \
-	baseboards/powerpc-bug.exp \
-	baseboards/powerpc-bug1.exp \
 	baseboards/powerpc-sim.exp \
 	baseboards/powerpcle-sim.exp \
-	baseboards/rom68k-idp.exp \
 	baseboards/rx-sim.exp \
-	baseboards/sh-hms.exp \
 	baseboards/sh-sid.exp \
 	baseboards/sh-sim.exp \
 	baseboards/sparc-sim.exp \
 	baseboards/sparc64-sim.exp \
-	baseboards/sparclet-aout.exp \
-	baseboards/sparclite-coff.exp \
-	baseboards/sparclite-cygmon.exp \
 	baseboards/sparclite-sim-le.exp \
 	baseboards/sparclite-sim.exp \
-	baseboards/strongarm-cygmon.exp \
-	baseboards/tic80-sim.exp \
-	baseboards/tx39-dve.exp \
 	baseboards/tx39-sim.exp \
 	baseboards/unix.exp \
-	baseboards/usparc-cygmon.exp \
 	baseboards/v850-sim.exp \
 	baseboards/visium-sim.exp \
-	baseboards/vr4100-ddb.exp \
 	baseboards/vr4100-sim.exp \
 	baseboards/vr4111-sim.exp \
-	baseboards/vr4300-ddb.exp \
 	baseboards/vr4300-sim.exp \
-	baseboards/vr4300.exp \
-	baseboards/vr5000-ddb.exp \
 	baseboards/vx4300.exp \
 	baseboards/vx68k.exp \
 	baseboards/vx960.exp \
 	baseboards/vxsparc.exp \
-	baseboards/x86-cygmon.exp \
-	baseboards/xscale-cygmon.exp \
 	baseboards/xtensa-sim.exp
 
 djlibexecdir = $(pkgdatadir)/libexec
