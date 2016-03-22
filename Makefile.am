@@ -59,6 +59,7 @@ configdir = $(pkgdatadir)/config
 config_DATA = \
 	config/README \
 	config/adb.exp \
+	config/aarch64-fv8.exp \
 	config/arc.exp \
 	config/arm-ice.exp \
 	config/base-config.exp \

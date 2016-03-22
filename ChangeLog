@@ -1,3 +1,8 @@
+2016-03-22  Ben Elliston  <bje@gnu.org>
+
+	* Makefile.am (config_DATA): Add config/aarch64-fv8.exp.
+	* Makefile.in: Regenerate.
+
 2016-03-22  Rob Savoye  <rob.savoye@linaro.org>
 
 	* config/aarch64-fv8.exp: Add support for testing armv8 using the
