@@ -1122,17 +1122,15 @@ proc standard_wait { dest timeout } {
     remote_expect $dest $timeout {
 	-re ".+" {
 	    append output $expect_out(buffer)
-	    if { [string length $output] > 512000 } {
-		remote_close $dest
-		set status 1
-	    } else {
-		exp_continue -continue_timer
-	    }
+	    exp_continue -continue_timer
 	}
 	timeout {
 	    warning "program timed out."
 	}
 	eof {
+	    # There may be trailing characters in the buffer.
+	    # Append them, too.
+	    append output $expect_out(buffer)
 	    if {[board_info $dest exists fileid_origid]} {
 		global board_info
 

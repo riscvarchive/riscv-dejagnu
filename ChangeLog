@@ -1,3 +1,10 @@
+2016-03-27  Ben Elliston  <bje@gnu.org>
+
+	* lib/remote.exp (standard_wait): Append any trailing characters
+	to $output that may be still in $expect_out(buffer) when eof is
+	matched. Remove arbitrary limitation in the ".+" matching case,
+	similar to the change to local_exec on 2016-02-17.
+
 2016-03-23  Ben Elliston  <bje@gnu.org>
 
 	* Makefile.am (baseboard_DATA): Remove cygwin.exp, mcore-elf.exp,
