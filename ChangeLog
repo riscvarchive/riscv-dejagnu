@@ -1,5 +1,9 @@
 2016-03-28  Ben Elliston  <bje@gnu.org>
 
+	* NEWS: Update.
+
+2016-03-28  Ben Elliston  <bje@gnu.org>
+
 	* lib/utils.exp (which): Reimplement to more closely mimic the
 	behaviour of the UNIX which utility.
 	* testsuite/runtest.all/utils.test: Test proc which.
