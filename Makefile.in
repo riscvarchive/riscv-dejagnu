@@ -288,11 +288,6 @@ CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
 DEJAGNU = @DEJAGNU@
 DEPDIR = @DEPDIR@
-DOCBOOK2HTML = @DOCBOOK2HTML@
-DOCBOOK2PDF = @DOCBOOK2PDF@
-DOCBOOK2PS = @DOCBOOK2PS@
-DOCBOOK2RTF = @DOCBOOK2RTF@
-DOCBOOK2TEXI = @DOCBOOK2TEXI@
 ECHO_C = @ECHO_C@
 ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
@@ -502,7 +497,6 @@ unit_SOURCES = testsuite/libdejagnu/unit.cc
 # Documentation.
 dist_man_MANS = doc/runtest.1
 info_TEXINFOS = doc/dejagnu.texi
-XML = doc/dejagnu.xml doc/legal.xml doc/ref.xml doc/user.xml
 all: all-am
 
 .SUFFIXES:
@@ -1245,7 +1239,7 @@ dvi-am: $(DVIS)
 
 html: html-am
 
-html-am: $(HTMLS) html-local
+html-am: $(HTMLS)
 
 info: info-am
 
@@ -1410,7 +1404,7 @@ uninstall-man: uninstall-man1
 	dist-shar dist-tarZ dist-xz dist-zip distcheck distclean \
 	distclean-DEJAGNU distclean-compile distclean-generic \
 	distclean-tags distcleancheck distdir distuninstallcheck dvi \
-	dvi-am html html-am html-local info info-am install install-am \
+	dvi-am html html-am info info-am install install-am \
 	install-baseboardDATA install-binSCRIPTS install-configDATA \
 	install-data install-data-am install-djlibexecSCRIPTS \
 	install-dvi install-dvi-am install-exec install-exec-am \
@@ -1433,22 +1427,6 @@ export DEJAGNU
 # Give a reassuring message so that users know the "build" worked.
 all-local:
 	@echo "Done. Now run 'make install'."
-
-dejagnu.pdf: $(XML)
-	$(DOCBOOK2PDF) $(srcdir)/doc/dejagnu.xml
-
-dejagnu.ps: $(XML)
-	$(DOCBOOK2PS) $(srcdir)/doc/dejagnu.xml
-
-dejagnu.rtf: $(XML)
-	$(DOCBOOK2RTF) $(srcdir)/doc/dejagnu.xml
-
-html-local:
-	$(DOCBOOK2HTML) -o html $(srcdir)/doc/dejagnu.xml
-
-@MAINTAINER_MODE_TRUE@doc/dejagnu.texi: $(XML)
-@MAINTAINER_MODE_TRUE@	$(DOCBOOK2TEXI) --string-param directory-description="The GNU testing framework." --string-param directory-category="Programming" $(srcdir)/doc/dejagnu.xml
-@MAINTAINER_MODE_TRUE@	mv dejagnu.texi $(srcdir)/doc
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

@@ -166,29 +166,3 @@ unit_SOURCES = testsuite/libdejagnu/unit.cc
 
 dist_man_MANS = doc/runtest.1
 info_TEXINFOS = doc/dejagnu.texi
-
-DOCBOOK2PDF = @DOCBOOK2PDF@
-DOCBOOK2RTF = @DOCBOOK2RTF@
-DOCBOOK2PS = @DOCBOOK2PS@
-DOCBOOK2HTML = @DOCBOOK2HTML@
-DOCBOOK2TEXI = @DOCBOOK2TEXI@
-
-XML = doc/dejagnu.xml doc/legal.xml doc/ref.xml doc/user.xml
-
-dejagnu.pdf: $(XML)
-	$(DOCBOOK2PDF) $(srcdir)/doc/dejagnu.xml
-
-dejagnu.ps: $(XML)
-	$(DOCBOOK2PS) $(srcdir)/doc/dejagnu.xml
-
-dejagnu.rtf: $(XML)
-	$(DOCBOOK2RTF) $(srcdir)/doc/dejagnu.xml
-
-html-local:
-	$(DOCBOOK2HTML) -o html $(srcdir)/doc/dejagnu.xml
-
-if MAINTAINER_MODE
-doc/dejagnu.texi: $(XML)
-	$(DOCBOOK2TEXI) --string-param directory-description="The GNU testing framework." --string-param directory-category="Programming" $(srcdir)/doc/dejagnu.xml
-	mv dejagnu.texi $(srcdir)/doc
-endif

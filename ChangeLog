@@ -1,5 +1,16 @@
 2016-03-28  Ben Elliston  <bje@gnu.org>
 
+	* Makefile.am: Remove references to Docbook and friends.
+	* configure.ac: Likewise.
+	* Makefile.in: Regenerate.
+	* configure: Regenerate.
+	* doc/dejagnu.xml: Remove.
+	* doc/legal.xml: Likewise.
+	* doc/ref.xml: Likewise.
+	* doc/user.xml: Likewise.
+
+2016-03-28  Ben Elliston  <bje@gnu.org>
+
 	* lib/framework.exp (exp_continue): Remove old compatibility
 	wrapper. Expect deprecated 'continue -expect' in August 1997.
 
