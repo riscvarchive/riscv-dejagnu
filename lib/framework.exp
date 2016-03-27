@@ -1036,13 +1036,3 @@ proc incr_count { name args } {
 	perror "$name doesn't exist in incr_count"
     }
 }
-
-# Create an exp_continue proc if it doesn't exist.
-# For compatibility with old versions.
-#
-global argv0
-if {![info exists argv0]} {
-    proc exp_continue { } {
-	continue -expect
-    }
-}

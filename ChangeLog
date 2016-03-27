@@ -1,5 +1,10 @@
 2016-03-28  Ben Elliston  <bje@gnu.org>
 
+	* lib/framework.exp (exp_continue): Remove old compatibility
+	wrapper. Expect deprecated 'continue -expect' in August 1997.
+
+2016-03-28  Ben Elliston  <bje@gnu.org>
+
 	* NEWS: Update.
 
 2016-03-28  Ben Elliston  <bje@gnu.org>
