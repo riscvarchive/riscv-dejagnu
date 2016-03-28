@@ -55,14 +55,14 @@ proc adb_load { dest prog args } {
 	set inp ""
     }
 
-    if ![file exists $prog] then {
+    if {![file exists $prog]} then {
 	# We call both here because this should never happen.
 	perror "$prog does not exist in standard_load."
 	verbose -log "$prog does not exist." 3
 	return "untested"
     }
 
-    if [is_remote $dest] {
+    if {[is_remote $dest]} {
 	set localfile "./[file tail $prog].[pid]"
 	set remotefile "$android_tmp_dir/[file tail $prog].[pid]"
 	set remotefile [remote_download $dest $prog $remotefile]
@@ -79,8 +79,8 @@ proc adb_load { dest prog args } {
 		return "unresolved"
 	    }
 	}
-	if [board_info $dest exists remote_link] {
-	    if [[board_info $dest remote_link] $remotefile] {
+	if {[board_info $dest exists remote_link]} {
+	    if {[[board_info $dest remote_link] $remotefile]} {
 		verbose -log "Couldn't do remote link"
 		# Can't use remote_file delete since /system/bin/rm does not
 		# support -f on Android.
@@ -101,7 +101,7 @@ proc adb_load { dest prog args } {
     set status [lindex $status 0]
 
     verbose -log "Executed $prog, status $status" 2
-    if ![string match "" $output] {
+    if {![string match "" $output]} {
 	verbose -log -- "$output" 2
     }
     if { $status == 0 } {

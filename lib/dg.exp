@@ -569,7 +569,7 @@ proc dg-runtest { testcases options default-extra-options } {
 #
 proc dg-trim-dirname { dir_name file_name } {
     set special_character "\[\?\+\-\.\(\)\$\|\]"
-    regsub -all $special_character $dir_name "\\\\&" dir_name
+    regsub -all -- $special_character $dir_name "\\\\&" dir_name
     regsub "^$dir_name/?" $file_name "" file_name
     return $file_name
 }
@@ -587,7 +587,7 @@ proc dg-test { args } {
     global dg-do-what-default dg-interpreter-batch-mode dg-linenum-format
     global errorCode errorInfo
     global tool
-    global srcdir		;# eg: /calvin/dje/build/gcc/./testsuite/
+    global srcdir
     global host_triplet target_triplet
 
     set keep 0

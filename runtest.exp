@@ -398,7 +398,7 @@ proc usage { } {
     send_user "\t--D\[0-1\]\t\tTcl debugger\n"
     send_user "\tscript.exp\[=arg(s)\]\tRun these tests only\n"
     if { [info exists tool] } {
-	if { [info proc ${tool}_option_help] != "" } {
+	if { [info procs ${tool}_option_help] != "" } {
 	    ${tool}_option_help
 	}
     }

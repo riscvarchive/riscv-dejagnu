@@ -1,3 +1,13 @@
+2016-03-29  Ben Elliston  <bje@gnu.org>
+
+	* runtest.exp: More fixes identified by the Frink static analyser.
+	* lib/dg.exp: Likewise.
+	* config/adb.exp: Likewise.
+	* config/vxworks.exp: Likewise.
+	* baseboards/androideabi.exp: Likewise.
+	* baseboards/basic-sid.exp: Likewise.
+	* baseboards/multi-sim.exp: Likewise.
+
 2016-03-28  Dominik Vogt  <vogt@linux.vnet.ibm.com>
 
 	* dg.exp (dg-do): Do not change the previously selected action if

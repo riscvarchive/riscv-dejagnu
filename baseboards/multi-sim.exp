@@ -78,24 +78,24 @@ proc rpath_flags { args } {
 	# libraries, if testing a built but not installed compiler it will not
 	# find libraries like libstdc++.so or libgfortran.so so we add the
 	# extra hack/search so it can work.
-	if [string match "." $rpathdir] {
-	    if [string match $i "libstdc++.so"] {
-		if [file exists "$gccpath/libstdc++-v3/src/.libs/libstdc++.so"] {
+	if {[string match "." $rpathdir]} {
+	    if {[string match $i "libstdc++.so"]} {
+		if {[file exists "$gccpath/libstdc++-v3/src/.libs/libstdc++.so"]} {
 		    set rpathflags "$rpathflags -Wl,-rpath=$gccpath/libstdc++-v3/src/.libs"
 		}
 	    }
-	    if [string match $i "libgfortran.so"] {
-		if [file exists "$gccpath/libgfortran/.libs/libgfortran.so"] {
+	    if {[string match $i "libgfortran.so"]} {
+		if {[file exists "$gccpath/libgfortran/.libs/libgfortran.so"]} {
 		    set rpathflags "$rpathflags -Wl,-rpath=$gccpath/libgfortran/.libs"
 		}
 	    }
-	    if [string match $i "libatomic.so"] {
-		if [file exists "$gccpath/libatomic/.libs/libatomic.so"] {
+	    if {[string match $i "libatomic.so"]} {
+		if {[file exists "$gccpath/libatomic/.libs/libatomic.so"]} {
 		    set rpathflags "$rpathflags -Wl,-rpath=$gccpath/libatomic/.libs"
 		}
 	    }
-	    if [string match $i "libgomp.so"] {
-		if [file exists "$gccpath/libgomp/.libs/libgomp.so"] {
+	    if {[string match $i "libgomp.so"]} {
+		if {[file exists "$gccpath/libgomp/.libs/libgomp.so"]} {
 		    set rpathflags "$rpathflags -Wl,-rpath=$gccpath/libgomp/.libs"
 		}
 	    }

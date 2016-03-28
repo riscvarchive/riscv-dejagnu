@@ -179,7 +179,7 @@ proc vxworks_file { dest op args } {
     set file [lindex $args 0]
     if {[board_info $dest exists vxworks_homedir]} {
 	set dir "[board_info $dest vxworks_homedir]"
-	switch $op {
+	switch -- $op {
 	    exists {
 		set file "${dir}/[file tail $file]"
 		return [file exists $file]
@@ -191,7 +191,7 @@ proc vxworks_file { dest op args } {
 			file delete -force -- $x
 		    }
 		}
-		return
+		return {}
 	    }
 	}
     }

@@ -43,13 +43,13 @@ proc adb_open { hostname } {
     set tries 0
     set result -1
 
-    if [board_info ${hostname} exists shell_prompt] {
+    if {[board_info ${hostname} exists shell_prompt]} {
 	set shell_prompt [board_info ${hostname} shell_prompt]
     } else {
 	set shell_prompt "root@android:/ # "
     }
 
-    if [board_info $hostname exists fileid] {
+    if {[board_info $hostname exists fileid]} {
 	unset board_info($hostname,fileid)
     }
 
@@ -116,7 +116,7 @@ proc adb_download {desthost srcfile destfile} {
 proc adb_file {dest op args} {
     set file [lindex $args 0]
     verbose "Executing command: $op $args" 2
-    switch $op {
+    switch -- $op {
 	exists {
 	    set status [catch "exec adb [adb_serial] shell ls |& cat" out]
 	}
@@ -185,5 +185,5 @@ proc adb_exec { boardname cmd args } {
     # Delete one trailing \n because that is what `exec' will do and we want
     # to behave identical to it.
     regsub "\n$" $output "" output
-    return [list [expr $status != 0] $output]
+    return [list [expr {$status != 0}] $output]
 }
