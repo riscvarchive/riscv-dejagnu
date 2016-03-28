@@ -1,3 +1,8 @@
+2016-03-28  Rob Savoye  <rob.savoye@linaro.org>
+
+	* lib/libgloss.exp (find_g++): Look for xgcc++ to use the freshly
+	built compiler, then look in the path.
+
 2016-03-28  Ben Elliston  <bje@gnu.org>
 
 	* lib/utils.exp (which): Don't exclude symbolic links--Debian's
