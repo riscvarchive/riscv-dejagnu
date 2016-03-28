@@ -59,7 +59,7 @@ proc rlogin_open { arg } {
     spawn $RLOGIN $hostname
     if { $spawn_id < 0 } {
 	perror "invalid spawn id from rlogin"
-	return
+	return -1
     }
     set board_info($arg,fileid) $spawn_id
 
