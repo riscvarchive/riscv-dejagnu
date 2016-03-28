@@ -1,5 +1,9 @@
 2016-03-28  Rob Savoye  <rob.savoye@linaro.org>
 
+	* lib/dmucs.exp: New.
+
+2016-03-28  Rob Savoye  <rob.savoye@linaro.org>
+
 	* lib/libgloss.exp (find_g++): Look for xgcc++ to use the freshly
 	built compiler, then look in the path.
 
