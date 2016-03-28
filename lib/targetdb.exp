@@ -33,7 +33,7 @@ proc board_info { machine op args } {
 	if { [llength $args] == 0 } {
 	    return [info exists board_info($machine,name)]
 	} else {
-	    return [info exists "board_info($machine,[lindex $args 0])"]
+	    return [info exists board_info($machine,[lindex $args 0])]
 	}
     }
     if { [llength $args] == 0 } {

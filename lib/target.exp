@@ -296,7 +296,7 @@ proc prune_warnings { text } {
 #
 proc target_compile {source destfile type options} {
     set target [target_info name]
-    if { [info proc ${target}_compile] != "" } {
+    if { [info procs ${target}_compile] != "" } {
 	return [${target}_compile $source $destfile $type $options]
     } else {
 	return [default_target_compile $source $destfile $type $options]

@@ -700,7 +700,7 @@ if {[expr {$build_triplet == "" && $host_triplet == ""}]} {
 	exit 1
     }
     catch "exec $config_guess" build_triplet
-    switch $build_triplet {
+    switch -- $build_triplet {
 	"No uname command or uname output not recognized" -
 	"Unable to guess system type" {
 	    verbose "WARNING: Uname output not recognized"
@@ -826,7 +826,7 @@ proc setup_host_hook { name } {
     unset board
     unset board_type
     push_host $name
-    if { [info proc ${name}_init] != "" } {
+    if { [info procs ${name}_init] != "" } {
 	${name}_init $name
     }
 }
@@ -843,7 +843,7 @@ proc setup_build_hook { name } {
     unset board
     unset board_type
     push_build $name
-    if { [info proc ${name}_init] != "" } {
+    if { [info procs ${name}_init] != "" } {
 	${name}_init $name
     }
 }
@@ -1192,7 +1192,7 @@ for { set i 0 } { $i < $argc } { incr i } {
 
 	default {
 	    if {[info exists tool]} {
-		if { [info proc ${tool}_option_proc] != "" } {
+		if { [info procs ${tool}_option_proc] != "" } {
 		    if {[${tool}_option_proc $option]} {
 			continue
 		    }
@@ -1898,7 +1898,7 @@ foreach current_target $target_list {
 		    set [lindex $varval 0] [lindex $varval 1]
 		} else {
 		    verbose "Restoring [lindex $varval 0] to `unset'" 4
-		    unset [lindex $varval 0]
+		    unset -- [lindex $varval 0]
 		}
 	    }
 	}

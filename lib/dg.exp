@@ -249,11 +249,10 @@ proc dg-process-target { selector } {
 # Tests for optional arguments are coded with ">=" to simplify adding new ones.
 #
 proc dg-prms-id { args } {
-    global prms_id	;# this is a testing framework variable
+    global prms_id
 
     if { [llength $args] > 2 } {
 	error "[lindex $args 0]: too many arguments"
-	return
     }
 
     set prms_id [lindex $args 1]
@@ -271,11 +270,10 @@ proc dg-options { args } {
 
     if { [llength $args] > 3 } {
 	error "[lindex $args 0]: too many arguments"
-	return
     }
 
     if { [llength $args] >= 3 } {
-	switch [dg-process-target [lindex $args 2]] {
+	switch -- [dg-process-target [lindex $args 2]] {
 	    "S" { set extra-tool-flags [lindex $args 1] }
 	    "N" { }
 	    "F" { error "[lindex $args 0]: `xfail' not allowed here" }
@@ -298,14 +296,13 @@ proc dg-do { args } {
 
     if { [llength $args] > 3 } {
 	error "[lindex $args 0]: too many arguments"
-	return
     }
 
     set selected [lindex ${do-what} 1]	;# selected? (""/S/N)
     set expected [lindex ${do-what} 2]	;# expected to pass/fail (P/F)
 
     if { [llength $args] >= 3 } {
-	switch [dg-process-target [lindex $args 2]] {
+	switch -- [dg-process-target [lindex $args 2]] {
 	    "S" {
 		set selected "S"
 	    }
@@ -333,7 +330,7 @@ proc dg-do { args } {
 	set expected P
     }
 
-    switch [lindex $args 1] {
+    switch -- [lindex $args 1] {
 	"preprocess" { }
 	"compile" { }
 	"assemble" { }
@@ -351,12 +348,11 @@ proc dg-error { args } {
 
     if { [llength $args] > 5 } {
 	error "[lindex $args 0]: too many arguments"
-	return
     }
 
     set xfail ""
     if { [llength $args] >= 4 } {
-	switch [dg-process-target [lindex $args 3]] {
+	switch -- [dg-process-target [lindex $args 3]] {
 	    "F" { set xfail "X" }
 	    "P" { set xfail "" }
 	    "N" {
@@ -367,7 +363,7 @@ proc dg-error { args } {
     }
 
     if { [llength $args] >= 5 } {
-	switch [lindex $args 4] {
+	switch -- [lindex $args 4] {
 	    "." { set line [dg-format-linenum [lindex $args 0]] }
 	    "0" { set line "" }
 	    "default" { set line [dg-format-linenum [lindex $args 4]] }
@@ -384,12 +380,11 @@ proc dg-warning { args } {
 
     if { [llength $args] > 5 } {
 	error "[lindex $args 0]: too many arguments"
-	return
     }
 
     set xfail ""
     if { [llength $args] >= 4 } {
-	switch [dg-process-target [lindex $args 3]] {
+	switch -- [dg-process-target [lindex $args 3]] {
 	    "F" { set xfail "X" }
 	    "P" { set xfail "" }
 	    "N" {
@@ -400,7 +395,7 @@ proc dg-warning { args } {
     }
 
     if { [llength $args] >= 5 } {
-	switch [lindex $args 4] {
+	switch -- [lindex $args 4] {
 	    "." { set line [dg-format-linenum [lindex $args 0]] }
 	    "0" { set line "" }
 	    "default" { set line [dg-format-linenum [lindex $args 4]] }
@@ -417,12 +412,11 @@ proc dg-bogus { args } {
 
     if { [llength $args] > 5 } {
 	error "[lindex $args 0]: too many arguments"
-	return
     }
 
     set xfail ""
     if { [llength $args] >= 4 } {
-	switch [dg-process-target [lindex $args 3]] {
+	switch -- [dg-process-target [lindex $args 3]] {
 	    "F" { set xfail "X" }
 	    "P" { set xfail "" }
 	    "N" {
@@ -433,7 +427,7 @@ proc dg-bogus { args } {
     }
 
     if { [llength $args] >= 5 } {
-	switch [lindex $args 4] {
+	switch -- [lindex $args 4] {
 	    "." { set line [dg-format-linenum [lindex $args 0]] }
 	    "0" { set line "" }
 	    "default" { set line [dg-format-linenum [lindex $args 4]] }
@@ -450,12 +444,11 @@ proc dg-build { args } {
 
     if { [llength $args] > 4 } {
 	error "[lindex $args 0]: too many arguments"
-	return
     }
 
     set xfail ""
     if { [ llength $args] >= 4 } {
-	switch [dg-process-target [lindex $args 3]] {
+	switch -- [dg-process-target [lindex $args 3]] {
 	    "F" { set xfail "X" }
 	    "P" { set xfail "" }
 	    "N" {
@@ -473,11 +466,10 @@ proc dg-excess-errors { args } {
 
     if { [llength $args] > 3 } {
 	error "[lindex $args 0]: too many arguments"
-	return
     }
 
     if { [llength $args] >= 3 } {
-	switch [dg-process-target [lindex $args 2]] {
+	switch -- [dg-process-target [lindex $args 2]] {
 	    "F" { set excess-errors-flag 1 }
 	    "S" { set excess-errors-flag 1 }
 	}
@@ -505,14 +497,13 @@ proc dg-output { args } {
 
     if { [llength $args] > 3 } {
 	error "[lindex $args 0]: too many arguments"
-	return
     }
 
     # Allow target dependent output.
 
     set expected [lindex ${output-text} 0]
     if { [llength $args] >= 3 } {
-	switch [dg-process-target [lindex $args 2]] {
+	switch -- [dg-process-target [lindex $args 2]] {
 	    "N" { return }
 	    "S" { }
 	    "F" { set expected "F" }
@@ -534,7 +525,6 @@ proc dg-final { args } {
 
     if { [llength $args] > 2 } {
 	error "[lindex $args 0]: too many arguments"
-	return
     }
 
     append final-code "[lindex $args 1]\n"
@@ -726,7 +716,7 @@ proc dg-test { args } {
 	# $line will either be a formatted line number or a number all by
 	# itself.  Delete the formatting.
 	scan $line ${dg-linenum-format} line
-	switch [lindex $i 1] {
+	switch -- [lindex $i 1] {
 	    "ERROR" {
 		$ok "$name $comment (test for errors, line $line)"
 	    }
@@ -759,9 +749,9 @@ proc dg-test { args } {
     # Remove messages from the tool that we can ignore.
     set comp_output [prune_warnings $comp_output]
 
-    if { [info proc ${tool}-dg-prune] != "" } {
+    if { [info procs ${tool}-dg-prune] != "" } {
 	set comp_output [${tool}-dg-prune $target_triplet $comp_output]
-	switch -glob $comp_output {
+	switch -glob -- $comp_output {
 	    "::untested::*" {
 		regsub "::untested::" $comp_output "" message
 		untested "$name: $message"
@@ -821,7 +811,7 @@ proc dg-test { args } {
 			setup_xfail "*-*-*"
 		    }
 		    set texttmp [lindex ${dg-output-text} 1]
-		    if { ![regexp $texttmp ${output}] } {
+		    if { ![regexp -- $texttmp ${output}] } {
 			fail "$name output pattern test"
 			send_log "Output was:\n${output}\nShould match:\n$texttmp\n"
 			verbose "Failed test for output pattern $texttmp" 3

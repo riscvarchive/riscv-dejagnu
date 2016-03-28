@@ -31,7 +31,7 @@ proc telnet_open { hostname args } {
 
     set raw 0
     foreach arg $args {
-	switch $arg {
+	switch -- $arg {
 	    "raw" { set raw 1 }
 	}
     }

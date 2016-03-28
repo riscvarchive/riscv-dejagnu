@@ -196,7 +196,7 @@ proc grep { args } {
 	if {[regexp -- "$pattern" $cur_line match]} {
 	    if {![string match "" $options]} {
 		foreach opt $options {
-		    switch $opt {
+		    switch -- $opt {
 			"line" {
 			    lappend grep_out [concat $i $match]
 			}
@@ -219,12 +219,12 @@ proc grep { args } {
 #
 # Remove elements based on patterns. elements are delimited by spaces.
 # pattern is the pattern to look for using glob style matching
-# list is the list to check against
+# lst is the list to check against
 # returns the new list
 #
-proc prune { list pattern } {
+proc prune { lst pattern } {
     set tmp {}
-    foreach i $list {
+    foreach i $lst {
 	verbose "Checking pattern \"$pattern\" against $i" 3
 	if {![string match $pattern $i]} {
 	    lappend tmp $i

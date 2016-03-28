@@ -401,7 +401,7 @@ proc remote_reboot { host } {
     if {[board_info $host exists name]} {
 	set host [board_info $host name]
     }
-    if { [info proc ${host}_init] != "" } {
+    if { [info procs ${host}_init] != "" } {
 	${host}_init $host
     }
     return $status
@@ -589,7 +589,7 @@ proc call_remote { type proc dest args } {
     if { $proc == "close" || $proc == "open" } {
 	foreach try "$high_prot [board_info $dest connect] telnet standard" {
 	    if { $try != "" } {
-		if { [info proc "${try}_${proc}"] != "" } {
+		if { [info procs "${try}_${proc}"] != "" } {
 		    verbose "call_remote calling ${try}_${proc}" 3
 		    set result [eval ${try}_${proc} \"$dest\" $args]
 		    break
@@ -597,7 +597,7 @@ proc call_remote { type proc dest args } {
 	    }
 	}
 	set ft "[board_info $dest file_transfer]"
-	if { [info proc "${ft}_${proc}"] != "" } {
+	if { [info procs "${ft}_${proc}"] != "" } {
 	    verbose "calling ${ft}_${proc} $dest $args" 3
 	    set result2 [eval ${ft}_${proc} \"$dest\" $args]
 	}
@@ -613,7 +613,7 @@ proc call_remote { type proc dest args } {
     foreach try "${high_prot} [board_info $dest file_transfer] [board_info $dest connect] telnet standard" {
 	verbose "looking for ${try}_${proc}" 4
 	if { $try != "" } {
-	    if { [info proc "${try}_${proc}"] != "" } {
+	    if { [info procs "${try}_${proc}"] != "" } {
 		verbose "call_remote calling ${try}_${proc}" 3
 		return [eval ${try}_${proc} \"$dest\" $args]
 	    }
@@ -623,7 +623,6 @@ proc call_remote { type proc dest args } {
 	return ""
     }
     error "No procedure for '$proc' in call_remote"
-    return -1
 }
 
 # Send FILE through the existing session established to DEST.
@@ -721,7 +720,7 @@ proc standard_file { dest op args } {
     set file [lindex $args 0]
     verbose "dest in proc standard_file is $dest" 3
     if { ![is_remote $dest] } {
-	switch $op {
+	switch -- $op {
 	    cmp {
 		set otherfile [lindex $args 1]
 		if { [file exists $file] && [file exists $otherfile]
@@ -761,14 +760,14 @@ proc standard_file { dest op args } {
 			file delete -force -- $x
 		    }
 		}
-		return
+		return {}
 	    }
 	}
     } else {
-	switch $op {
+	switch -- $op {
 	    exists {
 		set status [remote_exec $dest "test -f $file"]
-		return [expr [lindex $status 0] == 0]
+		return [expr {[lindex $status 0] == 0}]
 	    }
 	    delete {
 		set file ""

@@ -1,5 +1,22 @@
 2016-03-28  Ben Elliston  <bje@gnu.org>
 
+	* runtest.exp: Fixes identified by the Frink static analyser:
+	  (1) use -- in switch commands for safety,
+	  (2) remove unreachable return commands after error commands,
+	  (3) replace abbreviated "info proc" with "info procs",
+	  (4) use -- in unset commands for safety where the variable name
+	      is itself a variable.
+	* lib/dg.exp: Likewise.
+	* lib/debugger.exp: Likewise.
+	* lib/framework.exp: Likewise.
+	* lib/remote.exp: Likewise.
+	* lib/target.exp: Likewise.
+	* lib/targetdb.exp: Likewise.
+	* lib/telnet.exp: Likewise.
+	* lib/utils.exp: Likewise.
+
+2016-03-28  Ben Elliston  <bje@gnu.org>
+
 	* Makefile.am: Remove references to Docbook and friends.
 	* configure.ac: Likewise.
 	* Makefile.in: Regenerate.
