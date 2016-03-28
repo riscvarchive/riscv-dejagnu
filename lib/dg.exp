@@ -298,6 +298,7 @@ proc dg-do { args } {
 	error "[lindex $args 0]: too many arguments"
     }
 
+    set doaction [lindex $args 1]
     set selected [lindex ${do-what} 1]	;# selected? (""/S/N)
     set expected [lindex ${do-what} 2]	;# expected to pass/fail (P/F)
 
@@ -315,6 +316,8 @@ proc dg-do { args } {
 		# are OR'd together).
 		if { $selected != "S" } {
 		    set selected "N"
+		} else {
+		    set doaction [lindex ${do-what} 0]
 		}
 	    }
 	    "F" { set expected "F" }
@@ -340,7 +343,7 @@ proc dg-do { args } {
 	    error "[lindex $args 0]: syntax error"
 	}
     }
-    set do-what [list [lindex $args 1] $selected $expected]
+    set do-what [list $doaction $selected $expected]
 }
 
 proc dg-error { args } {

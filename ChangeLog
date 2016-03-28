@@ -1,3 +1,8 @@
+2016-03-28  Dominik Vogt  <vogt@linux.vnet.ibm.com>
+
+	* dg.exp (dg-do): Do not change the previously selected action if
+	a de-selected dg-do is encountered.
+
 2016-03-28  Ben Elliston  <bje@gnu.org>
 
 	* lib/framework.exp (check_xml): Remove unused proc.
