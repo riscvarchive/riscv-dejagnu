@@ -1,5 +1,10 @@
 2016-03-28  Ben Elliston  <bje@gnu.org>
 
+	* runtest.exp: Use 'array exists' for testing array existence
+	rather than 'info exists'.
+
+2016-03-28  Ben Elliston  <bje@gnu.org>
+
 	* runtest.exp: Fixes identified by the Frink static analyser:
 	  (1) use -- in switch commands for safety,
 	  (2) remove unreachable return commands after error commands,

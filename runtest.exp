@@ -1750,7 +1750,7 @@ foreach current_target $target_list {
 	}
 	verbose "Top level testsuite dirs are ${test_top_dirs}" 2
 	set testlist ""
-	if {[info exists all_runtests]} {
+	if {[array exists all_runtests]} {
 	    foreach x [array names all_runtests] {
 		verbose "trying to glob ${srcdir}/${x}" 2
 		set s [glob -nocomplain ${srcdir}/$x]
@@ -1876,7 +1876,7 @@ foreach current_target $target_list {
 			# Check to see if the range of tests is limited,
 			# set `runtests' to a list of two elements: the script name
 			# and any arguments ("" if none).
-			if {[info exists all_runtests]} {
+			if {[array exists all_runtests]} {
 			    verbose "searching for $test_name in [array names all_runtests]"
 			    if { 0 > [lsearch [array names all_runtests] [file tail $test_name]]} {
 				if { 0 > [lsearch [array names all_runtests] $test_name] } {
