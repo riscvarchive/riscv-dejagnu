@@ -1,5 +1,9 @@
 2016-03-28  Ben Elliston  <bje@gnu.org>
 
+	* baseboards/multi-sim.exp: Indent properly.
+
+2016-03-28  Ben Elliston  <bje@gnu.org>
+
 	* lib/rlogin.exp (rlogin_open): Return -1 if unable to spawn
 	rlogin. Identified by Frink.
 
