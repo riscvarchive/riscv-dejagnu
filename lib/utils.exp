@@ -133,9 +133,8 @@ proc which { file } {
     # if the filename has a path component, then the file must exist
     if {[llength [file split $file]] > 1} {
 	verbose "Checking $file" 2
-	if {[file exists $file] && \
-		[file executable $file] && [file type $file] == "file"} {
-	    verbose "file $file is executable and not a link" 2
+	if {[file exists $file] && [file executable $file]} {
+	    verbose "file $file is executable" 2
 	    return [file normalize $file]
 	} else {
 	    return 0
@@ -151,13 +150,13 @@ proc which { file } {
 
     foreach dir $path {
 	verbose "Checking $dir for $file" 3
-	set filename [file join $dir $file]
+	set filename [file normalize [file join $dir $file]]
 	if {[file exists $filename]} {
-	    if {[file executable $filename] && [file type $filename] == "file"} {
-		verbose "file $filename is executable and not a link" 2
-		return $filename
+	    if {[file executable $filename]} {
+		verbose "Choosing $filename" 2
+		return [file normalize $filename]
 	    } else {
-		warning "file $filename exists but is not executable or is a link"
+		warning "file $filename exists but is not executable"
 	    }
 	}
     }

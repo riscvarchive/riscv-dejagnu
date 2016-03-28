@@ -1,5 +1,11 @@
 2016-03-28  Ben Elliston  <bje@gnu.org>
 
+	* lib/utils.exp (which): Don't exclude symbolic links--Debian's
+	/bin/which doesn't. Modern systems rely too heavily on symbolic
+	links (eg. alternatives).
+
+2016-03-28  Ben Elliston  <bje@gnu.org>
+
 	* baseboards/multi-sim.exp: Indent properly.
 
 2016-03-28  Ben Elliston  <bje@gnu.org>
