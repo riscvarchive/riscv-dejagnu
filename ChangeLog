@@ -1,3 +1,7 @@
+2016-03-28  Ben Elliston  <bje@gnu.org>
+
+	* lib/framework.exp (check_xml): Remove unused proc.
+
 2016-03-28  Rob Savoye  <rob.savoye@linaro.org>
 
 	* lib/dmucs.exp: New.
