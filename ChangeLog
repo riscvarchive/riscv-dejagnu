@@ -1,3 +1,8 @@
+2016-03-29  Rob Savoye  <rob.savoye@linaro.org>
+
+	* runtest.exp: Only print "searching for <test name>" message at
+	verbose level >= 2 -- too much noise.
+
 2016-03-29  Ben Elliston  <bje@gnu.org>
 
 	* texinfo.tex: Update to latest master version.
