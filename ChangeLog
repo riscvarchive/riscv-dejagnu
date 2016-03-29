@@ -1,5 +1,10 @@
 2016-03-29  Ben Elliston  <bje@gnu.org>
 
+	* texinfo.tex: Update to latest master version.
+	* INSTALL: Likewise.
+
+2016-03-29  Ben Elliston  <bje@gnu.org>
+
 	* runtest.exp: More fixes identified by the Frink static analyser.
 	* lib/dg.exp: Likewise.
 	* config/adb.exp: Likewise.
