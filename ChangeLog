@@ -1,3 +1,7 @@
+2016-03-29  Ben Elliston  <bje@gnu.org>
+
+	* lib/remote.exp (remote_expect): Fix spelling error.
+
 2016-03-29  Rob Savoye  <rob.savoye@linaro.org>
 
 	* runtest.exp: Only print "searching for <test name>" message at

@@ -1294,12 +1294,14 @@ proc remote_expect { board timeout args } {
     }
 
     if {$code == 1} {
-	if {[info exists string]} {send_user "ERROR OCCURED: $errorInfo $errorCode $string"}
+	if {[info exists string]} {
+	    send_user "ERROR OCCURRED: $errorInfo $errorCode $string"
+	}
 
 	if { $error_sect != "" } {
 	    set code [catch {uplevel $error_sect} string]
 	} else {
-	    warning "remote_expect statement without a default case?!"
+	    warning "remote_expect statement without a default case"
 	    return
 	}
     }
