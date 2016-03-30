@@ -668,12 +668,12 @@ if { $arg_build_triplet != "" } {
     set build_triplet $arg_build_triplet
 }
 
-# if we only specify --host, then that must be the build machne too, and we're
-# stuck using the old functionality of a simple cross test
+# If we only specify --host, then that must be the build machine too,
+# and we're stuck using the old functionality of a simple cross test.
 if {[expr { $build_triplet == ""  &&  $host_triplet != "" } ]} {
     set build_triplet $host_triplet
 }
-# if we only specify --build, then we'll use that as the host too
+# If we only specify --build, then we'll use that as the host too.
 if {[expr { $build_triplet != "" && $host_triplet == "" } ]} {
     set host_triplet $build_triplet
 }

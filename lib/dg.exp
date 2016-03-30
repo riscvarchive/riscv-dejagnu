@@ -115,7 +115,7 @@
 #	pattern matching.  This also gives the tool an opportunity to review
 #	the output and check for any conditions which indicate an "untested"
 #	or "unresolved" state.  An example is if a testcase is too big and
-#	fills all available ram (which can happen for 16 bit cpus).  The
+#	fills all available ram (which can happen for 16 bit CPUs).  The
 #	result is either the pruned text or
 #	"::untested|unresolved|unsupported::message"
 #	(eg: "::unsupported::memory full").
@@ -564,7 +564,7 @@ proc dg-runtest { testcases options default-extra-options } {
 # dg-trim-dirname -- rip DIR_NAME out of FILE_NAME
 #
 # Syntax: dg-trim-dirname dir_name file_name
-# We need to go through this contorsion in order to properly support
+# We need to go through this contortion in order to properly support
 # directory-names which might have embedded regexp special characters.
 #
 proc dg-trim-dirname { dir_name file_name } {

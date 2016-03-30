@@ -18,9 +18,9 @@
 # Inc., 51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.
 
 # This is a HACKED version of mcore-sim.exp that is intended to
-# support running tests on Motorola's proprietry MCore simulator.
+# support running tests on Motorola's proprietary MCore simulator.
 
-# It is quite likely that thia file will need to be modified in
+# It is quite likely that this file will need to be modified in
 # order for you to use Motorola's simulator.
 
 # This is a list of toolchains that are supported on this board.

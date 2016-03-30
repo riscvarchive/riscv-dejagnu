@@ -98,8 +98,8 @@ proc host_compile {compline} {
     return ${comp_output}
 }
 
-# Execute the executable file, and anaylyse the output for the
-# test state keywords.
+# Execute the executable file, and analyse the output for the test
+# state keywords.
 #    Returns:
 #	A "" (empty) string if everything worked, or an error message
 #	if there was a problem.

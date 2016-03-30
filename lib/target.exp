@@ -64,14 +64,14 @@ proc push_target { name } {
     push_config target $name
 }
 
-# Set the host connnection.
+# Set the host connection.
 #
 proc push_host { name } {
     pop_config host
     push_config host $name
 }
 
-# Set the build connnection.
+# Set the build connection.
 #
 proc push_build { name } {
     pop_config build

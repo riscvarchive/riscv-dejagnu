@@ -174,7 +174,7 @@ proc is_remote { board } {
     return 1
 }
 
-# If this is a canadian (3 way) cross. This means the tools are
+# If this is a Canadian (3 way) cross. This means the tools are
 # being built with a cross compiler for another host.
 #
 proc is3way {} {
@@ -484,7 +484,7 @@ proc setup_xfail { args } {
 #
 # A bug report ID _MUST_ be specified, and is the first argument.
 # It still must be a string without '-' so we can be sure someone
-# did not just forget it and we end-up using a taget triple as
+# did not just forget it and we end-up using a target triple as
 # bug id.
 #
 # Multiple target triplet patterns can be specified for targets

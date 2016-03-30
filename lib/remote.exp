@@ -1167,7 +1167,7 @@ proc standard_wait { dest timeout } {
     return [list $status $output]
 }
 
-# This checks the value cotained in the variable named "variable" in
+# This checks the value contained in the variable named "variable" in
 # the calling procedure for output from the status wrapper and returns
 # a non-negative value if it exists; otherwise, it returns -1. The
 # output from the wrapper is removed from the variable.
