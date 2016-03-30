@@ -1,3 +1,7 @@
+2016-03-30  Ben Elliston  <bje@gnu.org>
+
+	* lib/remote.exp (remote_expect): Use perror not send_user.
+
 2016-03-29  Ben Elliston  <bje@gnu.org>
 
 	* lib/remote.exp (remote_expect): Fix spelling error.

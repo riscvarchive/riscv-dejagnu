@@ -1295,7 +1295,7 @@ proc remote_expect { board timeout args } {
 
     if {$code == 1} {
 	if {[info exists string]} {
-	    send_user "ERROR OCCURRED: $errorInfo $errorCode $string"
+	    perror "$errorInfo $errorCode $string"
 	}
 
 	if { $error_sect != "" } {
