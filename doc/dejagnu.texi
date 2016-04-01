@@ -197,18 +197,15 @@ But all the requirements are important. For instance, it is imperative to
 make sure that @code{GDB} works as well when cross-debugging
 as it does in a native configuration. 
 
-Probably the greatest challenge was testing in a
-cross-development environment.  Most cross-development
-environments are customized by each developer.  Even when buying
-packaged boards from vendors there are many differences.  The
-communication interfaces vary from a serial line to Ethernet.
-DejaGnu was designed with a modular communication setup, so that
-each kind of communication can be added as required and supported
-thereafter.  Once a communication procedure is written, any test can
-use it.  Currently DejaGnu can use @code{rsh},
-@code{rlogin}, @code{telnet},
-@code{tip}, and @code{kermit} for remote
-communications.
+Probably the greatest challenge was testing in a cross-development
+environment.  Most cross-development environments are customized by each
+developer.  Even when buying packaged boards from vendors there are many
+differences.  The communication interfaces vary from a serial line to
+Ethernet.  DejaGnu was designed with a modular communication setup, so
+that each kind of communication can be added as required and supported
+thereafter.  Once a communication procedure is written, any test can use
+it.  Currently DejaGnu can use @code{ssh}, @code{rsh}, @code{rlogin},
+@code{telnet}, @code{tip}, and @code{kermit} for remote communications.
 
 @node A POSIX Conforming Test Framework, Installation, Design Goals, Introduction
 @section A POSIX compliant test framework
@@ -1534,10 +1531,9 @@ runtest option@tab Tcl variable@tab description
 --baud@tab baud@tab set the default baud rate to something other than
 9600.
 @item
---connect@tab connectmode@tab @code{rlogin},
+--connect@tab connectmode@tab @code{ssh}, @code{rlogin},
 @code{telnet}, @code{rsh},
-@code{kermit}, @code{tip}, or
-@code{mondfe}
+@code{kermit}, or @code{tip}
 @item
 --outdir@tab outdir@tab directory for @file{tool.sum} and
 @file{tool.log.}
@@ -3445,13 +3441,11 @@ established, or the spawn ID returned by
 the Expect command
 @code{spawn}.
 
-It use the value of the @code{connect} field
-in the @code{target_info} array (was
-@code{connectmode} as the type of connection to
-make. Current supported connection types are tip, kermit,
-telnet, rsh, rlogin, and netdata. If the @code{--reboot}
-option was used on the runtest command line, then the target
-is rebooted before the connection is made.
+It use the value of the @code{connect} field in the @code{target_info}
+array (was @code{connectmode} as the type of connection to make. Current
+supported connection types are ssh, tip, kermit, telnet, rsh, and
+rlogin. If the @code{--reboot} option was used on the runtest command
+line, then the target is rebooted before the connection is made.
 
 @menu
 * Call_remote Procedure: call_remote procedure.
@@ -4319,6 +4313,10 @@ telnet, rsh, tip, kermit
 * Rsh_download Procedure: rsh_download procedure.
 * Rsh_upload Procedure: rsh_upload procedure.
 * Rsh_exec Procedure: rsh_exec procedure.
+* ssh_close Procedure: ssh_close procedure.
+* ssh_exec Procedure: ssh_exec procedure.
+* ssh_download Procedure: ssh_download procedure.
+* ssh_upload Procedure: ssh_upload procedure.
 * Ftp_open Procedure: ftp_open procedure.
 * Ftp_upload Procedure: ftp_upload procedure.
 * Ftp_download Procedure: ftp_download procedure.
@@ -4670,9 +4668,60 @@ config array is used for all information.
 @item @code{args}
 @end table
 
-@node ftp_open procedure, ftp_upload procedure, rsh_exec procedure, connprocs
-@subsubsection Ftp_open Procedure
+@node ssh_close procedure, ssh_exec procedure, rsh_exec procedure, connprocs
+@subsubsection ssh_close procedure
 
+@quotation
+@t{@b{ssh_close}(@i{desthost});}
+@end quotation
+
+@table @asis
+@item @code{desthost}
+@end table
+
+@node ssh_exec procedure, ssh_download procedure, ssh_close procedure, connprocs
+@subsubsection ssh_exec procedure
+
+@quotation
+@t{@b{ssh_exec}(@i{boardname program pargs inp outp});}
+@end quotation
+
+@table @asis
+@item @code{boardname}
+@item @code{program}
+@item @code{pargs}
+@item @code{inp}
+@item @code{outp}
+@end table
+
+@node ssh_download procedure, ssh_upload procedure, ssh_exec procedure, connprocs
+@subsubsection ssh_download procedure
+
+@quotation
+@t{@b{ssh_download}(@i{desthost srcfile destfile});}
+@end quotation
+
+@table @asis
+@item @code{desthost}
+@item @code{srcfile}
+@item @code{destfile}
+@end table
+
+@node ssh_upload procedure, ftp_open procedure, ssh_download procedure, connprocs
+@subsubsection ssh_upload procedure
+
+@quotation
+@t{@b{ssh_upload}(@i{desthost srcfile destfile});}
+@end quotation
+
+@table @asis
+@item @code{desthost}
+@item @code{srcfile}
+@item @code{destfile}
+@end table
+
+@node ftp_open procedure, ftp_upload procedure, ssh_upload procedure, connprocs
+@subsubsection Ftp_open Procedure
 
 @quotation
 
