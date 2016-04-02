@@ -1326,7 +1326,7 @@ is part of your build tree.
       set_board_info cflags  "[libgloss_include_flags] [newlib_include_flags]"
       set_board_info ldflags  "[libgloss_link_flags] [newlib_link_flags]"
       # No linker script.
-      set_board_info ldscript "";
+      set_board_info ldscript ""
 
       # Used by a few gcc.c-torture testcases to delimit how large the
       # stack can be.
@@ -2455,8 +2455,7 @@ This prints a message for a successful test
 completion.
 
 @quotation
-
-@t{@b{pass}(@i{msg});}
+@t{@b{pass}@{@i{msg}@}}
 @end quotation
 
 @node fail function, untested function, pass function, C Unit Testing API
@@ -2466,8 +2465,7 @@ This prints a message for an unsuccessful test
 completion.
 
 @quotation
-
-@t{@b{fail}(@i{msg});}
+@t{@b{fail}@{@i{msg}@}}
 @end quotation
 
 @node untested function, unresolved function, fail function, C Unit Testing API
@@ -2477,8 +2475,7 @@ This prints a message for an test case that isn't run
 for some technical reason.
 
 @quotation
-
-@t{@b{untested}(@i{msg});}
+@t{@b{untested}@{@i{msg}@}}
 @end quotation
 
 @node unresolved function, totals function, untested function, C Unit Testing API
@@ -2489,8 +2486,7 @@ but there is no clear result. These output states require a
 human to look over the results to determine what happened.
 
 @quotation
-
-@t{@b{unresolved}(@i{msg});}
+@t{@b{unresolved}@{@i{msg}@}}
 @end quotation
 
 @node totals function, , unresolved function, C Unit Testing API
@@ -2500,8 +2496,7 @@ This prints out the total numbers of all the test
 state outputs.
 
 @quotation
-
-@t{@b{totals}(@i{});}
+@t{@b{totals}}
 @end quotation
 
 @node C++ Unit Testing API, , C Unit Testing API, Unit Testing
@@ -2528,7 +2523,6 @@ This prints a message for a successful test
 completion.
 
 @quotation
-
 @t{@b{TestState::pass}(@i{msg});}
 @end quotation
 
@@ -2539,7 +2533,6 @@ This prints a message for an unsuccessful test
 completion.
 
 @quotation
-
 @t{@b{TestState::fail}(@i{msg});}
 @end quotation
 
@@ -2550,7 +2543,6 @@ This prints a message for an test case that isn't run
 for some technical reason.
 
 @quotation
-
 @t{@b{TestState::untested}(@i{msg});}
 @end quotation
 
@@ -2562,7 +2554,6 @@ but there is no clear result. These output states require a
 human to look over the results to determine what happened.
 
 @quotation
-
 @t{@b{TestState::unresolved}(@i{msg});}
 @end quotation
 
@@ -2573,7 +2564,6 @@ This prints out the total numbers of all the test
 state outputs.
 
 @quotation
-
 @t{@b{TestState::totals}(@i{});}
 @end quotation
 
@@ -2605,50 +2595,49 @@ DejaGnu provides these Tcl procedures.
 @subsection Core Internal Procedures
 
 @menu
-* Mail_file Procedure: mail_file procedure.
-* Open_logs Procedure: open_logs procedure.
-* Close_logs Procedure: close_logs procedure.
-* Isbuild Procedure: isbuild procedure.
-* Is_remote Procedure: is_remote procedure.
-* is3way Procedure: is3way procedure.
-* Ishost Procedure: ishost procedure.
-* Istarget Procedure: istarget procedure.
-* Isnative Procedure: isnative procedure.
-* Unknown Procedure: unknown procedure.
-* Clone_output Procedure: clone_output procedure.
-* Reset_vars Procedure: reset_vars procedure.
-* Log_and_exit Procedure: log_and_exit procedure.
-* Log_summary Procedure: log_summary procedure.
-* Setup_xfail Procedure: setup_xfail procedure.
-* Record_test Procedure: record_test procedure.
-* Pass Procedure: pass procedure.
-* Fail Procedure: fail procedure.
-* Xpass Procedure: xpass procedure.
-* Xfail Procedure: xfail procedure.
-* Set_warning_threshold Procedure: set_warning_threshold procedure.
-* Get_warning_threshold Procedure: get_warning_threshold procedure.
-* Warning Procedure: warning procedure.
-* Perror Procedure: perror procedure.
-* Note Procedure: note procedure.
-* Untested Procedure: untested procedure.
-* Unresolved Procedure: unresolved procedure.
-* Unsupported Procedure: unsupported procedure.
-* Init_testcounts Procedure: init_testcounts procedure.
-* Incr_count Procedure: incr_count procedure.
-* transform Procedure: transform procedure.
-* Check_conditional_xfail Procedure: check_conditional_xfail procedure.
-* Clear_xfail Procedure: clear_xfail procedure.
-* Verbose Procedure: verbose procedure.
-* Load_lib Procedure: load_lib procedure.
+* mail_file Procedure: mail_file procedure
+* open_logs Procedure: open_logs procedure
+* close_logs Procedure: close_logs procedure
+* isbuild Procedure: isbuild procedure
+* is_remote Procedure: is_remote procedure
+* is3way Procedure: is3way procedure
+* ishost Procedure: ishost procedure
+* istarget Procedure: istarget procedure
+* isnative Procedure: isnative procedure
+* unknown Procedure: unknown procedure
+* clone_output Procedure: clone_output procedure
+* reset_vars Procedure: reset_vars procedure
+* log_and_exit Procedure: log_and_exit procedure
+* log_summary Procedure: log_summary procedure
+* setup_xfail Procedure: setup_xfail procedure
+* record_test Procedure: record_test procedure
+* pass Procedure: pass procedure
+* fail Procedure: fail procedure
+* xpass Procedure: xpass procedure
+* xfail Procedure: xfail procedure
+* set_warning_threshold Procedure: set_warning_threshold procedure
+* get_warning_threshold Procedure: get_warning_threshold procedure
+* warning Procedure: warning procedure
+* perror Procedure: perror procedure
+* note Procedure: note procedure
+* untested Procedure: untested procedure
+* unresolved Procedure: unresolved procedure
+* unsupported Procedure: unsupported procedure
+* init_testcounts Procedure: init_testcounts procedure
+* incr_count Procedure: incr_count procedure
+* transform Procedure: transform procedure
+* check_conditional_xfail Procedure: check_conditional_xfail procedure
+* clear_xfail Procedure: clear_xfail procedure
+* verbose Procedure: verbose procedure
+* load_lib Procedure: load_lib procedure
 @end menu
 
 @node mail_file procedure, open_logs procedure, , Core Internal Procedures
-@subsubsection Mail_file Procedure
+@subsubsection mail_file Procedure
 
 @quotation
-
-@t{@b{mail_file}(@i{file to
-subject});}
+@t{@b{mail_file}@{@i{file to
+subject}@}}
 @end quotation
 
 @table @asis
@@ -2657,24 +2646,22 @@ subject});}
 @end table
 
 @node open_logs procedure, close_logs procedure, mail_file procedure, Core Internal Procedures
-@subsubsection Open_logs Procedure
+@subsubsection open_logs Procedure
 
 @quotation
-
-@t{@b{open_logs}(@i{});}
+@t{@b{open_logs}}
 @end quotation
 
 @node close_logs procedure, isbuild procedure, open_logs procedure, Core Internal Procedures
-@subsubsection Close_logs Procedure
+@subsubsection close_logs Procedure
 
 
 @quotation
-
-@t{@b{close_logs}(@i{});}
+@t{@b{close_logs}}
 @end quotation
 
 @node isbuild procedure, is_remote procedure, close_logs procedure, Core Internal Procedures
-@subsubsection Isbuild Procedure
+@subsubsection isbuild Procedure
 
 Tests for a particular build host environment.  If the
 currently configured host matches the argument string, the result is
@@ -2687,8 +2674,7 @@ passed a NULL string, then it returns the name of the build canonical
 configuration.
 
 @quotation
-
-@t{@b{isbuild}(@i{pattern});}
+@t{@b{isbuild}@{@i{pattern}@}}
 @end quotation
 
 @table @asis
@@ -2697,12 +2683,11 @@ configuration.
 @end table
 
 @node is_remote procedure, is3way procedure, isbuild procedure, Core Internal Procedures
-@subsubsection Is_remote Procedure
+@subsubsection is_remote Procedure
 
 
 @quotation
-
-@t{@b{is_remote}(@i{board});}
+@t{@b{is_remote}@{@i{board}@}}
 @end quotation
 
 @table @asis
@@ -2719,12 +2704,11 @@ the result is @emph{1}; otherwise the result is
 @emph{0}.
 
 @quotation
-
-@t{@b{is3way}(@i{});}
+@t{@b{is3way}}
 @end quotation
 
 @node ishost procedure, istarget procedure, is3way procedure, Core Internal Procedures
-@subsubsection Ishost Procedure
+@subsubsection ishost Procedure
 
 Tests for a particular host environment.  If the currently
 configured host matches the argument string, the result is
@@ -2735,8 +2719,7 @@ shorter nicknames supported by configure (but you can use wildcard
 characters, using shell syntax, to specify sets of names).
 
 @quotation
-
-@t{@b{ishost}(@i{pattern});}
+@t{@b{ishost}@{@i{pattern}@}}
 @end quotation
 
 @table @asis
@@ -2745,7 +2728,7 @@ characters, using shell syntax, to specify sets of names).
 @end table
 
 @node istarget procedure, isnative procedure, ishost procedure, Core Internal Procedures
-@subsubsection Istarget Procedure
+@subsubsection istarget Procedure
 
 Tests for a particular target environment.  If the currently
 configured target matches the argument string, the result is
@@ -2758,17 +2741,15 @@ shell syntax, to specify sets of names). If it is passed a
 build canonical configuration.
 
 @quotation
-
-@t{@b{istarget}(@i{args});}
+@t{@b{istarget}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{}
 @end table
 
 @node isnative procedure, unknown procedure, istarget procedure, Core Internal Procedures
-@subsubsection Isnative Procedure
+@subsubsection isnative Procedure
 
 Tests whether the current configuration has the same host and
 target. When it runs in a native configuration this procedure returns
@@ -2776,31 +2757,27 @@ a @emph{1}; otherwise it returns a
 @emph{0}.
 
 @quotation
-
-@t{@b{isnative}(@i{});}
+@t{@b{isnative}}
 @end quotation
 
 @node unknown procedure, clone_output procedure, isnative procedure, Core Internal Procedures
-@subsubsection Unknown Procedure
+@subsubsection unknown Procedure
 
 
 @quotation
-
-@t{@b{unknown}(@i{args});}
+@t{@b{unknown}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node clone_output procedure, reset_vars procedure, unknown procedure, Core Internal Procedures
-@subsubsection Clone_output Procedure
+@subsubsection clone_output Procedure
 
 
 @quotation
-
-@t{@b{clone_output}(@i{message});}
+@t{@b{clone_output}@{@i{message}@}}
 @end quotation
 
 @table @asis
@@ -2809,39 +2786,35 @@ a @emph{1}; otherwise it returns a
 @end table
 
 @node reset_vars procedure, log_and_exit procedure, clone_output procedure, Core Internal Procedures
-@subsubsection Reset_vars Procedure
+@subsubsection reset_vars Procedure
 
 
 @quotation
-
-@t{@b{reset_vars}(@i{});}
+@t{@b{reset_vars}}
 @end quotation
 
 @node log_and_exit procedure, log_summary procedure, reset_vars procedure, Core Internal Procedures
-@subsubsection Log_and_exit Procedure
+@subsubsection log_and_exit Procedure
 
 
 @quotation
-
-@t{@b{log_and_exit}(@i{});}
+@t{@b{log_and_exit}}
 @end quotation
 
 @node log_summary procedure, setup_xfail procedure, log_and_exit procedure, Core Internal Procedures
-@subsubsection Log_summary Procedure
+@subsubsection log_summary Procedure
 
 
 @quotation
-
-@t{@b{log_summary}(@i{args});}
+@t{@b{log_summary}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node setup_xfail procedure, record_test procedure, log_summary procedure, Core Internal Procedures
-@subsubsection Setup_xfail Procedure
+@subsubsection setup_xfail Procedure
 
 Declares that the test is expected to fail on a particular set
 of configurations.  The config argument must be a list of full
@@ -2874,13 +2847,11 @@ results.
 @end quotation
 
 @quotation
-
-@t{@b{setup_xfail}(@i{config}
-@i{bugid});}
+@t{@b{setup_xfail}@{@i{config}
+@i{bugid}@}}
 @end quotation
 
 @table @asis
-
 @item @code{config}
 The config triplet to trigger whether this is an
 unexpected or expect failure.
@@ -2891,27 +2862,23 @@ to a bug tracking system.
 @end table
 
 @node record_test procedure, pass procedure, setup_xfail procedure, Core Internal Procedures
-@subsubsection Record_test Procedure
+@subsubsection record_test Procedure
 
 
 @quotation
-
-@t{@b{record_test}(@i{type}
+@t{@b{record_test}@{@i{type}
 @i{message}
-@i{args});}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{type}
-
 @item @code{message}
-
 @item @code{args}
 @end table
 
 @node pass procedure, fail procedure, record_test procedure, Core Internal Procedures
-@subsubsection Pass Procedure
+@subsubsection pass Procedure
 
 Declares a test to have passed. @code{pass}
 writes in the log files a message beginning with
@@ -2920,8 +2887,7 @@ was expected), appending the argument
 @code{string}.
 
 @quotation
-
-@t{@b{pass}(@i{string});}
+@t{@b{pass}@{@i{string}@}}
 @end quotation
 
 @table @asis
@@ -2932,7 +2898,7 @@ message.
 @end table
 
 @node fail procedure, xpass procedure, pass procedure, Core Internal Procedures
-@subsubsection Fail Procedure
+@subsubsection fail Procedure
 
 Declares a test to have failed.  @code{fail}
 writes in the log files a message beginning with
@@ -2941,8 +2907,7 @@ was expected), appending the argument
 @code{string}.
 
 @quotation
-
-@t{@b{fail}(@i{string});}
+@t{@b{fail}@{@i{string}@}}
 @end quotation
 
 @table @asis
@@ -2953,7 +2918,7 @@ message.
 @end table
 
 @node xpass procedure, xfail procedure, fail procedure, Core Internal Procedures
-@subsubsection Xpass Procedure
+@subsubsection xpass Procedure
 
 Declares a test to have unexpectedly passed, when it was
 expected to be a failure.  @code{xpass}
@@ -2963,8 +2928,7 @@ was expected), appending the argument
 @code{string}.
 
 @quotation
-
-@t{@b{xpass}(@i{string});}
+@t{@b{xpass}@{@i{string}@}}
 @end quotation
 
 @table @asis
@@ -2975,7 +2939,7 @@ state.
 @end table
 
 @node xfail procedure, set_warning_threshold procedure, xpass procedure, Core Internal Procedures
-@subsubsection Xfail Procedure
+@subsubsection xfail Procedure
 
 Declares a test to have expectedly
 failed. @code{xfail}
@@ -2985,8 +2949,7 @@ was expected), appending the argument
 @code{string}.
 
 @quotation
-
-@t{@b{xpass}(@i{string});}
+@t{@b{xpass}@{@i{string}@}}
 @end quotation
 
 @table @asis
@@ -2997,7 +2960,7 @@ state.
 @end table
 
 @node set_warning_threshold procedure, get_warning_threshold procedure, xfail procedure, Core Internal Procedures
-@subsubsection Set_warning_threshold Procedure
+@subsubsection set_warning_threshold Procedure
 
 Sets the value of @code{warning_threshold}. A value
 of @emph{0} disables it: calls to
@@ -3006,8 +2969,7 @@ of @emph{0} disables it: calls to
 @emph{UNRESOLVED}.
 
 @quotation
-
-@t{@b{set_warning_threshold}(@i{threshold});}
+@t{@b{set_warning_threshold}@{@i{threshold}@}}
 @end quotation
 
 @table @asis
@@ -3018,7 +2980,7 @@ threshold.
 @end table
 
 @node get_warning_threshold procedure, warning procedure, set_warning_threshold procedure, Core Internal Procedures
-@subsubsection Get_warning_threshold Procedure
+@subsubsection get_warning_threshold Procedure
 
 Returns the current value of
 @code{@{warning_threshold}. The default value is 3. This
@@ -3026,12 +2988,11 @@ value controls how many @code{warning} procedures can
 be called before becoming @emph{UNRESOLVED}.
 
 @quotation
-
-@t{@b{get_warning_threshold}(@i{});}
+@t{@b{get_warning_threshold}}
 @end quotation
 
 @node warning procedure, perror procedure, get_warning_threshold procedure, Core Internal Procedures
-@subsubsection Warning Procedure
+@subsubsection warning Procedure
 
 Declares detection of a minor error in the test case
 itself. @code{warning} writes in the log files a message
@@ -3055,10 +3016,9 @@ calling this function, and the following test outcome doesn't become
 known side effects.
 
 @quotation
-
-@t{@b{warning}(@i{string}
+@t{@b{warning}@{@i{string}
 @i{number}
-);}
+@}}
 @end quotation
 
 @table @asis
@@ -3074,7 +3034,7 @@ state.
 @end table
 
 @node perror procedure, note procedure, warning procedure, Core Internal Procedures
-@subsubsection Perror Procedure
+@subsubsection perror Procedure
 
 Declares a severe error in the testing framework
 itself. @code{perror} writes in the log files a message
@@ -3092,10 +3052,9 @@ doesn't become @emph{UNRESOLVED}. This can be used for
 errors with no known side effects.
 
 @quotation
-
-@t{@b{perror}(@i{string}
+@t{@b{perror}@{@i{string}
 @i{number}
-);}
+@}}
 @end quotation
 
 @table @asis
@@ -3111,7 +3070,7 @@ state.
 @end table
 
 @node note procedure, untested procedure, perror procedure, Core Internal Procedures
-@subsubsection Note Procedure
+@subsubsection note Procedure
 
 Appends an informational message to the log
 file. @code{note} writes in the log files a message
@@ -3122,8 +3081,7 @@ such messages, but in cases where a message is needed in the log file
 regardless of the verbosity level use @code{note}.
 
 @quotation
-
-@t{@b{note}(@i{string});}
+@t{@b{note}@{@i{string}@}}
 @end quotation
 
 @table @asis
@@ -3133,7 +3091,7 @@ The string to use for this note.
 @end table
 
 @node untested procedure, unresolved procedure, note procedure, Core Internal Procedures
-@subsubsection Untested Procedure
+@subsubsection untested Procedure
 
 Declares a test was not run. @code{untested} writes
 in the log file a message beginning with @emph{UNTESTED},
@@ -3142,8 +3100,7 @@ might use this in a dummy test whose only role is to record that a test
 does not yet exist for some feature.
 
 @quotation
-
-@t{@b{untested}(@i{string});}
+@t{@b{untested}@{@i{string}@}}
 @end quotation
 
 @table @asis
@@ -3154,7 +3111,7 @@ state.
 @end table
 
 @node unresolved procedure, unsupported procedure, untested procedure, Core Internal Procedures
-@subsubsection Unresolved Procedure
+@subsubsection unresolved Procedure
 
 Declares a test to have an unresolved
 outcome. @code{unresolved} writes in the log file a
@@ -3164,8 +3121,7 @@ not execute as expected, and a human being must go over results to
 determine if it passed or failed (and to improve the test case).
 
 @quotation
-
-@t{@b{unresolved}(@i{string});}
+@t{@b{unresolved}@{@i{string}@}}
 @end quotation
 
 @table @asis
@@ -3176,7 +3132,7 @@ state.
 @end table
 
 @node unsupported procedure, init_testcounts procedure, unresolved procedure, Core Internal Procedures
-@subsubsection Unsupported Procedure
+@subsubsection unsupported Procedure
 
 Declares that a test case depends on some facility that does not
 exist in the testing environment. @code{unsupported}
@@ -3184,8 +3140,7 @@ writes in the log file a message beginning with
 @emph{UNSUPPORTED}, appending the argument string.
 
 @quotation
-
-@t{@b{unsupported}(@i{string});}
+@t{@b{unsupported}@{@i{string}@}}
 @end quotation
 
 @table @asis
@@ -3196,22 +3151,20 @@ state.
 @end table
 
 @node init_testcounts procedure, incr_count procedure, unsupported procedure, Core Internal Procedures
-@subsubsection Init_testcounts Procedure
+@subsubsection init_testcounts Procedure
 
 
 @quotation
-
-@t{@b{init_testcounts}(@i{});}
+@t{@b{init_testcounts}}
 @end quotation
 
 @node incr_count procedure, transform procedure, init_testcounts procedure, Core Internal Procedures
-@subsubsection Incr_count Procedure
+@subsubsection incr_count Procedure
 
 
 @quotation
-
-@t{@b{incr_count}(@i{name}
-@i{args});}
+@t{@b{incr_count}@{@i{name}
+@i{args}@}}
 @end quotation
 
 @table @asis
@@ -3233,8 +3186,7 @@ configuration, the result of transform @code{gcc} is
 @code{m68k-vxworks-gcc}.
 
 @quotation
-
-@t{@b{transform}(@i{toolname});}
+@t{@b{transform}@{@i{toolname}@}}
 @end quotation
 
 @table @asis
@@ -3245,7 +3197,7 @@ transform.
 @end table
 
 @node check_conditional_xfail procedure, clear_xfail procedure, transform procedure, Core Internal Procedures
-@subsubsection Check_conditional_xfail Procedure
+@subsubsection check_conditional_xfail Procedure
 
 This procedure adds a conditional xfail, based on compiler
 options used to create a test case executable. If an include options
@@ -3272,11 +3224,10 @@ conditional is true, or @emph{0} if the conditional is
 false.
 
 @quotation
-
-@t{@b{check_conditional_xfail}(@i{message}
+@t{@b{check_conditional_xfail}@{@i{message}
 @i{targets}
 @i{includes}
-@i{excludes});}
+@i{excludes}@}}
 @end quotation
 
 @table @asis
@@ -3325,7 +3276,7 @@ of each other, so a "-Wall -v" matches either "-Wall -v" or "-v
 regular expressions are also permitted.
 
 @node clear_xfail procedure, verbose procedure, check_conditional_xfail procedure, Core Internal Procedures
-@subsubsection Clear_xfail Procedure
+@subsubsection clear_xfail Procedure
 
 Cancel an expected failure (previously declared with
 @code{setup_xfail}) for a particular set of
@@ -3336,8 +3287,7 @@ either @code{pass} or @code{fail}, after
 calling @code{setup_xfail}.
 
 @quotation
-
-@t{@b{clear_xfail}(@i{config});}
+@t{@b{clear_xfail}@{@i{config}@}}
 @end quotation
 
 @table @asis
@@ -3348,7 +3298,7 @@ clear.
 @end table
 
 @node verbose procedure, load_lib procedure, clear_xfail procedure, Core Internal Procedures
-@subsubsection Verbose Procedure
+@subsubsection verbose Procedure
 
 Test cases can use this function to issue helpful messages
 depending on the number of @code{--verbose} options on the
@@ -3363,13 +3313,12 @@ to print string without a trailing newline.  Use the optional
 @code{--} argument if string begins with "-".
 
 @quotation
-
-@t{@b{verbose}(@i{-log}
+@t{@b{verbose}@{@i{-log}
 @i{-x}
 @i{-n}
 @i{-r}
 @i{string}
-@i{number});}
+@i{number}@}}
 @end quotation
 
 @table @asis
@@ -3388,7 +3337,7 @@ to print string without a trailing newline.  Use the optional
 @end table
 
 @node load_lib procedure, , verbose procedure, Core Internal Procedures
-@subsubsection Load_lib Procedure
+@subsubsection load_lib Procedure
 
 Loads a DejaGnu library file by searching the default fixed paths
 built
@@ -3402,8 +3351,7 @@ duplicate definitions, the last one loaded takes precedence over the
 earlier ones.
 
 @quotation
-
-@t{@b{load_lib}(@i{filespec});}
+@t{@b{load_lib}@{@i{filespec}@}}
 @end quotation
 
 @table @asis
@@ -3448,81 +3396,76 @@ rlogin. If the @code{--reboot} option was used on the runtest command
 line, then the target is rebooted before the connection is made.
 
 @menu
-* Call_remote Procedure: call_remote procedure.
-* Check_for_board_status Procedure: check_for_board_status procedure.
-* File_on_build Procedure: file_on_build procedure.
-* File_on_host Procedure: file_on_host procedure.
-* Local_exec Procedure: local_exec procedure.
-* Remote_binary Procedure: remote_binary procedure.
-* Remote_close Procedure: remote_close procedure.
-* Remote_download Procedure: remote_download procedure.
-* Remote_exec Procedure: remote_exec procedure.
-* Remote_expect Procedure: remote_expect procedure.
-* Remote_file Procedure: remote_file procedure.
-* Remote_ld Procedure: remote_ld procedure.
-* Remote_load Procedure: remote_load procedure.
-* Remote_open Procedure: remote_open procedure.
-* Remote_pop_conn Procedure: remote_pop_conn procedure.
-* Remote_push_conn Procedure: remote_push_conn procedure.
-* Remote_raw_binary Procedure: remote_raw_binary procedure.
-* Remote_raw_close Procedure: remote_raw_close procedure.
-* Remote_raw_file Procedure: remote_raw_file procedure.
-* remote_raw_ld Procedure: remote_raw_ld procedure.
-* Remote_raw_load Procedure: remote_raw_load procedure.
-* Remote_raw_open Procedure: remote_raw_open procedure.
-* Remote_raw_send Procedure: remote_raw_send procedure.
-* Remote_raw_spawn Procedure: remote_raw_spawn procedure.
-* Remote_raw_transmit Procedure: remote_raw_transmit procedure.
-* Remote_raw_wait Procedure: remote_raw_wait procedure.
-* Remote_reboot Procedure: remote_reboot procedure.
-* Remote_send Procedure: remote_send procedure.
-* Remote_spawn Procedure: remote_spawn procedure.
-* Remote_swap_conn Procedure: remote_swap_conn procedure.
-* Remote_transmit Procedure: remote_transmit procedure.
-* Remote_upload Procedure: remote_upload procedure.
-* Remote_wait Procedure: remote_wait procedure.
-* Standard_close Procedure: standard_close procedure.
-* Standard_download Procedure: standard_download procedure.
-* Standard_exec Procedure: standard_exec procedure.
-* Standard_file Procedure: standard_file procedure.
-* Standard_load Procedure: standard_load procedure.
-* Standard_reboot Procedure: standard_reboot procedure.
-* Standard_send Procedure: standard_send procedure.
-* Standard_spawn Procedure: standard_spawn procedure.
-* Standard_transmit Procedure: standard_transmit procedure.
-* Standard_upload Procedure: standard_upload procedure.
-* Standard_wait Procedure: standard_wait procedure.
-* Unix_clean_filename Procedure: unix_clean_filename procedure.
+* call_remote Procedure: call_remote procedure
+* check_for_board_status Procedure: check_for_board_status procedure
+* file_on_build Procedure: file_on_build procedure
+* file_on_host Procedure: file_on_host procedure
+* local_exec Procedure: local_exec procedure
+* remote_binary Procedure: remote_binary procedure
+* remote_close Procedure: remote_close procedure
+* remote_download Procedure: remote_download procedure
+* remote_exec Procedure: remote_exec procedure
+* remote_expect Procedure: remote_expect procedure
+* remote_file Procedure: remote_file procedure
+* remote_ld Procedure: remote_ld procedure
+* remote_load Procedure: remote_load procedure
+* remote_open Procedure: remote_open procedure
+* remote_pop_conn Procedure: remote_pop_conn procedure
+* remote_push_conn Procedure: remote_push_conn procedure
+* remote_raw_binary Procedure: remote_raw_binary procedure
+* remote_raw_close Procedure: remote_raw_close procedure
+* remote_raw_file Procedure: remote_raw_file procedure
+* remote_raw_ld Procedure: remote_raw_ld procedure
+* remote_raw_load Procedure: remote_raw_load procedure
+* remote_raw_open Procedure: remote_raw_open procedure
+* remote_raw_send Procedure: remote_raw_send procedure
+* remote_raw_spawn Procedure: remote_raw_spawn procedure
+* remote_raw_transmit Procedure: remote_raw_transmit procedure
+* remote_raw_wait Procedure: remote_raw_wait procedure
+* remote_reboot Procedure: remote_reboot procedure
+* remote_send Procedure: remote_send procedure
+* remote_spawn Procedure: remote_spawn procedure
+* remote_swap_conn Procedure: remote_swap_conn procedure
+* remote_transmit Procedure: remote_transmit procedure
+* remote_upload Procedure: remote_upload procedure
+* remote_wait Procedure: remote_wait procedure
+* standard_close Procedure: standard_close procedure
+* standard_download Procedure: standard_download procedure
+* standard_exec Procedure: standard_exec procedure
+* standard_file Procedure: standard_file procedure
+* standard_load Procedure: standard_load procedure
+* standard_reboot Procedure: standard_reboot procedure
+* standard_send Procedure: standard_send procedure
+* standard_spawn Procedure: standard_spawn procedure
+* standard_transmit Procedure: standard_transmit procedure
+* standard_upload Procedure: standard_upload procedure
+* standard_wait Procedure: standard_wait procedure
+* unix_clean_filename Procedure: unix_clean_filename procedure
 @end menu
 
 @node call_remote procedure, check_for_board_status procedure, , Procedures For Remote Communication
-@subsubsection Call_remote Procedure
+@subsubsection call_remote Procedure
 
 
 @quotation
-
-@t{@b{call_remote}(@i{type}
+@t{@b{call_remote}@{@i{type}
 @i{proc}
 @i{dest}
-@i{args});}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{proc}
-
 @item @code{dest}
-
 @item @code{args}
 @end table
 
 @node check_for_board_status procedure, file_on_build procedure, call_remote procedure, Procedures For Remote Communication
-@subsubsection Check_for_board_status Procedure
+@subsubsection check_for_board_status Procedure
 
 
 @quotation
-
-@t{@b{check_for_board_status}(@i{variable});}
+@t{@b{check_for_board_status}@{@i{variable}@}}
 @end quotation
 
 @table @asis
@@ -3531,87 +3474,71 @@ line, then the target is rebooted before the connection is made.
 @end table
 
 @node file_on_build procedure, file_on_host procedure, check_for_board_status procedure, Procedures For Remote Communication
-@subsubsection File_on_build Procedure
+@subsubsection file_on_build Procedure
 
 
 @quotation
-
-@t{@b{file_on_build}(@i{op}
+@t{@b{file_on_build}@{@i{op}
 @i{file}
-@i{args});}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{op}
-
 @item @code{file}
-
 @item @code{args}
 @end table
 
 @node file_on_host procedure, local_exec procedure, file_on_build procedure, Procedures For Remote Communication
-@subsubsection File_on_host Procedure
+@subsubsection file_on_host Procedure
 
 
 @quotation
-
-@t{@b{file_on_host}(@i{op}
+@t{@b{file_on_host}@{@i{op}
 @i{file}
-@i{args});}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{op}
-
 @item @code{file}
-
 @item @code{args}
 @end table
 
 @node local_exec procedure, remote_binary procedure, file_on_host procedure, Procedures For Remote Communication
-@subsubsection Local_exec Procedure
+@subsubsection local_exec Procedure
 
 
 @quotation
-
-@t{@b{local_exec}(@i{commandline}
+@t{@b{local_exec}@{@i{commandline}
 @i{inp}
 @i{outp}
-@i{timeout});}
+@i{timeout}@}}
 @end quotation
 
 @table @asis
-
 @item @code{inp}
-
 @item @code{outp}
-
 @item @code{timeout}
 @end table
 
 @node remote_binary procedure, remote_close procedure, local_exec procedure, Procedures For Remote Communication
-@subsubsection Remote_binary Procedure
+@subsubsection remote_binary Procedure
 
 
 @quotation
-
-@t{@b{remote_binary}(@i{host});}
+@t{@b{remote_binary}@{@i{host}@}}
 @end quotation
 
 @table @asis
-
 @item @code{host}
 @end table
 
 @node remote_close procedure, remote_download procedure, remote_binary procedure, Procedures For Remote Communication
-@subsubsection Remote_close Procedure
-
+@subsubsection remote_close Procedure
 
 @quotation
-
-@t{@b{remote_close}(@i{shellid});}
+@t{@b{remote_close}@{@i{shellid}@}}
 @end quotation
 
 @table @asis
@@ -3626,73 +3553,60 @@ others. This parameter can be left off if the
 @end table
 
 @node remote_download procedure, remote_exec procedure, remote_close procedure, Procedures For Remote Communication
-@subsubsection Remote_download Procedure
+@subsubsection remote_download Procedure
 
 
 @quotation
-
-@t{@b{remote_download}(@i{dest}
+@t{@b{remote_download}@{@i{dest}
 @i{file}
-@i{args});}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{file}
-
 @item @code{args}
 @end table
 
 @node remote_exec procedure, remote_expect procedure, remote_download procedure, Procedures For Remote Communication
-@subsubsection Remote_exec Procedure
+@subsubsection remote_exec Procedure
 
 
 @quotation
-
-@t{@b{remote_exec}(@i{hostname}
+@t{@b{remote_exec}@{@i{hostname}
 @i{program}
-@i{args});}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{hostname}
-
 @item @code{program}
-
 @item @code{args}
 @end table
 
 @node remote_expect procedure, remote_file procedure, remote_exec procedure, Procedures For Remote Communication
-@subsubsection Remote_expect Procedure
+@subsubsection remote_expect Procedure
 
 
 @quotation
-
-@t{@b{remote_expect}(@i{board}
+@t{@b{remote_expect}@{@i{board}
 @i{timeout}
-@i{args});}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{board}
-
 @item @code{timeout}
-
 @item @code{args}
 @end table
 
 @node remote_file procedure, remote_ld procedure, remote_expect procedure, Procedures For Remote Communication
-@subsubsection Remote_file Procedure
+@subsubsection remote_file Procedure
 
 
 @quotation
-
-@t{@b{remote_file}(@i{dest}
-@i{args});}
+@t{@b{remote_file}@{@i{dest}
+@i{args}@}}
 @end quotation
 
 @table @asis
@@ -3703,49 +3617,40 @@ others. This parameter can be left off if the
 @end table
 
 @node remote_ld procedure, remote_load procedure, remote_file procedure, Procedures For Remote Communication
-@subsubsection Remote_ld Procedure
-
+@subsubsection remote_ld Procedure
 
 @quotation
-
-@t{@b{remote_ld}(@i{dest}
-@i{prog});}
+@t{@b{remote_ld}@{@i{dest}
+@i{prog}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{prog}
 @end table
 
 @node remote_load procedure, remote_open procedure, remote_ld procedure, Procedures For Remote Communication
-@subsubsection Remote_load Procedure
+@subsubsection remote_load Procedure
 
 
 @quotation
-
-@t{@b{remote_load}(@i{dest}
+@t{@b{remote_load}@{@i{dest}
 @i{prog}
-@i{args});}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{prog}
-
 @item @code{args}
 @end table
 
 @node remote_open procedure, remote_pop_conn procedure, remote_load procedure, Procedures For Remote Communication
-@subsubsection Remote_open Procedure
+@subsubsection remote_open Procedure
 
 
 @quotation
-
-@t{@b{remote_open}(@i{type});}
+@t{@b{remote_open}@{@i{type}@}}
 @end quotation
 
 @table @asis
@@ -3767,73 +3672,63 @@ the @code{target_info} array.
 @end table
 
 @node remote_pop_conn procedure, remote_push_conn procedure, remote_open procedure, Procedures For Remote Communication
-@subsubsection Remote_pop_conn Procedure
+@subsubsection remote_pop_conn Procedure
 
 
 @quotation
-
-@t{@b{remote_pop_conn}(@i{host});}
+@t{@b{remote_pop_conn}@{@i{host}@}}
 @end quotation
 
 @table @asis
-
 @item @code{host}
 @end table
 
 @node remote_push_conn procedure, remote_raw_binary procedure, remote_pop_conn procedure, Procedures For Remote Communication
-@subsubsection Remote_push_conn Procedure
+@subsubsection remote_push_conn Procedure
 
 
 @quotation
-
-@t{@b{remote_push_conn}(@i{host});}
+@t{@b{remote_push_conn}@{@i{host}@}}
 @end quotation
 
 @table @asis
-
 @item @code{host}
 @end table
 
 @node remote_raw_binary procedure, remote_raw_close procedure, remote_push_conn procedure, Procedures For Remote Communication
-@subsubsection Remote_raw_binary Procedure
+@subsubsection remote_raw_binary Procedure
 
 
 @quotation
-
-@t{@b{remote_raw_binary}(@i{host});}
+@t{@b{remote_raw_binary}@{@i{host}@}}
 @end quotation
 
 @table @asis
-
 @item @code{host}
 @end table
 
 @node remote_raw_close procedure, remote_raw_file procedure, remote_raw_binary procedure, Procedures For Remote Communication
-@subsubsection Remote_raw_close Procedure
+@subsubsection remote_raw_close Procedure
 
 
 @quotation
-
-@t{@b{remote_raw_close}(@i{host});}
+@t{@b{remote_raw_close}@{@i{host}@}}
 @end quotation
 
 @table @asis
-
 @item @code{host}
 @end table
 
 @node remote_raw_file procedure, remote_raw_ld procedure, remote_raw_close procedure, Procedures For Remote Communication
-@subsubsection Remote_raw_file Procedure
+@subsubsection remote_raw_file Procedure
 
 
 @quotation
-
-@t{@b{remote_raw_file}(@i{dest}
-@i{args});}
+@t{@b{remote_raw_file}@{@i{dest}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
 
 @item @code{args}
@@ -3844,122 +3739,102 @@ the @code{target_info} array.
 
 
 @quotation
-
-@t{@b{remote_raw_ld}(@i{dest}
-@i{prog});}
+@t{@b{remote_raw_ld}@{@i{dest}
+@i{prog}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{prog}
 @end table
 
 @node remote_raw_load procedure, remote_raw_open procedure, remote_raw_ld procedure, Procedures For Remote Communication
-@subsubsection Remote_raw_load Procedure
+@subsubsection remote_raw_load Procedure
 
 
 @quotation
-
-@t{@b{remote_raw_load}(@i{dest}
+@t{@b{remote_raw_load}@{@i{dest}
 @i{prog}
-@i{args});}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{prog}
-
 @item @code{args}
 @end table
 
 @node remote_raw_open procedure, remote_raw_send procedure, remote_raw_load procedure, Procedures For Remote Communication
-@subsubsection Remote_raw_open Procedure
+@subsubsection remote_raw_open Procedure
 
 
 @quotation
-
-@t{@b{remote_raw_open}(@i{args});}
+@t{@b{remote_raw_open}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node remote_raw_send procedure, remote_raw_spawn procedure, remote_raw_open procedure, Procedures For Remote Communication
-@subsubsection Remote_raw_send Procedure
+@subsubsection remote_raw_send Procedure
 
 
 @quotation
 
-@t{@b{remote_raw_send}(@i{dest}
-@i{string});}
+@t{@b{remote_raw_send}@{@i{dest}
+@i{string}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{string}
 @end table
 
 @node remote_raw_spawn procedure, remote_raw_transmit procedure, remote_raw_send procedure, Procedures For Remote Communication
-@subsubsection Remote_raw_spawn Procedure
+@subsubsection remote_raw_spawn Procedure
 
 
 @quotation
-
-@t{@b{remote_raw_spawn}(@i{dest}
-@i{commandline});}
+@t{@b{remote_raw_spawn}@{@i{dest}
+@i{commandline}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{commandline}
 @end table
 
 @node remote_raw_transmit procedure, remote_raw_wait procedure, remote_raw_spawn procedure, Procedures For Remote Communication
-@subsubsection Remote_raw_transmit Procedure
+@subsubsection remote_raw_transmit Procedure
 
 
 @quotation
-
-@t{@b{remote_raw_transmit}(@i{dest}
-@i{file});}
+@t{@b{remote_raw_transmit}@{@i{dest}
+@i{file}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{file}
 @end table
 
 @node remote_raw_wait procedure, remote_reboot procedure, remote_raw_transmit procedure, Procedures For Remote Communication
-@subsubsection Remote_raw_wait Procedure
+@subsubsection remote_raw_wait Procedure
 
 
 @quotation
-
-@t{@b{remote_raw_wait}(@i{dest}
-@i{timeout});}
+@t{@b{remote_raw_wait}@{@i{dest}
+@i{timeout}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{timeout}
 @end table
 
 @node remote_reboot procedure, remote_send procedure, remote_raw_wait procedure, Procedures For Remote Communication
-@subsubsection Remote_reboot Procedure
+@subsubsection remote_reboot Procedure
 
 Return value of this function depends on actual implementation
 of reboot that will be used, in practice it is expected that
@@ -3967,208 +3842,170 @@ of reboot that will be used, in practice it is expected that
 on success and @emph{0} on failure.
 
 @quotation
-
-@t{@b{remote_reboot}(@i{host});}
+@t{@b{remote_reboot}@{@i{host}@}}
 @end quotation
 
 @table @asis
-
 @item @code{host}
 @end table
 
 @node remote_send procedure, remote_spawn procedure, remote_reboot procedure, Procedures For Remote Communication
-@subsubsection Remote_send Procedure
-
+@subsubsection remote_send Procedure
 
 @quotation
-
-@t{@b{remote_send}(@i{dest}
-@i{string});}
+@t{@b{remote_send}@{@i{dest}
+@i{string}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{string}
 @end table
 
 @node remote_spawn procedure, remote_swap_conn procedure, remote_send procedure, Procedures For Remote Communication
-@subsubsection Remote_spawn Procedure
+@subsubsection remote_spawn Procedure
 
 
 @quotation
-
-@t{@b{remote_spawn}(@i{dest}
+@t{@b{remote_spawn}@{@i{dest}
 @i{commandline}
-@i{args});}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{commandline}
-
 @item @code{args}
 @end table
 
 @node remote_swap_conn procedure, remote_transmit procedure, remote_spawn procedure, Procedures For Remote Communication
-@subsubsection Remote_swap_conn Procedure
-
+@subsubsection remote_swap_conn Procedure
 
 @quotation
-
-@t{@b{remote_swap_conn}(@i{host});}
+@t{@b{remote_swap_conn}@{@i{host}@}}
 @end quotation
 
 @table @asis
-
 @item @code{}
 @end table
 
 @node remote_transmit procedure, remote_upload procedure, remote_swap_conn procedure, Procedures For Remote Communication
-@subsubsection Remote_transmit Procedure
+@subsubsection remote_transmit Procedure
 
 
 @quotation
-
-@t{@b{remote_transmit}(@i{dest}
-@i{file});}
+@t{@b{remote_transmit}@{@i{dest}
+@i{file}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{file}
 @end table
 
 @node remote_upload procedure, remote_wait procedure, remote_transmit procedure, Procedures For Remote Communication
-@subsubsection Remote_upload Procedure
+@subsubsection remote_upload Procedure
 
 
 @quotation
-
-@t{@b{remote_upload}(@i{dest}
+@t{@b{remote_upload}@{@i{dest}
 @i{srcfile}
-@i{arg});}
+@i{arg}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{srcfile}
-
 @item @code{arg}
 @end table
 
 @node remote_wait procedure, standard_close procedure, remote_upload procedure, Procedures For Remote Communication
-@subsubsection Remote_wait Procedure
+@subsubsection remote_wait Procedure
 
 
 @quotation
-
-@t{@b{remote_wait}(@i{dest}
-@i{timeout});}
+@t{@b{remote_wait}@{@i{dest}
+@i{timeout}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{timeout}
 @end table
 
 @node standard_close procedure, standard_download procedure, remote_wait procedure, Procedures For Remote Communication
-@subsubsection Standard_close Procedure
+@subsubsection standard_close Procedure
 
 @quotation
-
-@t{@b{standard_close}(@i{host});}
+@t{@b{standard_close}@{@i{host}@}}
 @end quotation
 
 @table @asis
-
 @item @code{host}
 @end table
 
 @node standard_download procedure, standard_exec procedure, standard_close procedure, Procedures For Remote Communication
-@subsubsection Standard_download Procedure
+@subsubsection standard_download Procedure
 
 
 @quotation
-
-@t{@b{standard_download}(@i{dest}
+@t{@b{standard_download}@{@i{dest}
 @i{file}
-@i{destfile});}
+@i{destfile}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{file}
-
 @item @code{destfile}
 @end table
 
 @node standard_exec procedure, standard_file procedure, standard_download procedure, Procedures For Remote Communication
-@subsubsection Standard_exec Procedure
+@subsubsection standard_exec Procedure
 
 
 @quotation
-
-@t{@b{standard_exec}(@i{hostname}
-@i{args});}
+@t{@b{standard_exec}@{@i{hostname}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{hostname}
-
 @item @code{args}
 @end table
 
 @node standard_file procedure, standard_load procedure, standard_exec procedure, Procedures For Remote Communication
-@subsubsection Standard_file Procedure
+@subsubsection standard_file Procedure
 
 
 @quotation
-
-@t{@b{standard_file}(@i{dest}
+@t{@b{standard_file}@{@i{dest}
 @i{op}
-@i{args});}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{}
 @end table
 
 @node standard_load procedure, standard_reboot procedure, standard_file procedure, Procedures For Remote Communication
-@subsubsection Standard_load Procedure
+@subsubsection standard_load Procedure
 
 
 @quotation
-
-@t{@b{standard_load}(@i{dest}
+@t{@b{standard_load}@{@i{dest}
 @i{prog}
-@i{args});}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{prog}
-
 @item @code{args}
 @end table
 
 @node standard_reboot procedure, standard_send procedure, standard_load procedure, Procedures For Remote Communication
-@subsubsection Standard_reboot Procedure
+@subsubsection standard_reboot Procedure
 
 It looks like that this procedure is never called, instead
 @code{$@{board@}_reboot} defined in
@@ -4177,151 +4014,128 @@ higher priority and @file{base-config.exp} is
 always imported by @code{runtest}.
 
 @quotation
-
-@t{@b{standard_reboot}(@i{host});}
+@t{@b{standard_reboot}@{@i{host}@}}
 @end quotation
 
 @table @asis
-
 @item @code{host}
 @end table
 
 @node standard_send procedure, standard_spawn procedure, standard_reboot procedure, Procedures For Remote Communication
-@subsubsection Standard_send Procedure
+@subsubsection standard_send Procedure
 
 
 @quotation
-
-@t{@b{standard_send}(@i{dest}
-@i{string});}
+@t{@b{standard_send}@{@i{dest}
+@i{string}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{string}
 @end table
 
 @node standard_spawn procedure, standard_transmit procedure, standard_send procedure, Procedures For Remote Communication
-@subsubsection Standard_spawn Procedure
+@subsubsection standard_spawn Procedure
 
 
 @quotation
-
-@t{@b{standard_spawn}(@i{dest}
-@i{commandline});}
+@t{@b{standard_spawn}@{@i{dest}
+@i{commandline}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{commandline}
 @end table
 
 @node standard_transmit procedure, standard_upload procedure, standard_spawn procedure, Procedures For Remote Communication
-@subsubsection Standard_transmit Procedure
+@subsubsection standard_transmit Procedure
 
 
 @quotation
-
-@t{@b{standard_transmit}(@i{dest}
-@i{file});}
+@t{@b{standard_transmit}@{@i{dest}
+@i{file}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{file}
 @end table
 
 @node standard_upload procedure, standard_wait procedure, standard_transmit procedure, Procedures For Remote Communication
-@subsubsection Standard_upload Procedure
+@subsubsection standard_upload Procedure
 
 
 @quotation
-
-@t{@b{standard_upload}(@i{dest srcfile destfile});}
+@t{@b{standard_upload}@{@i{dest srcfile destfile}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{srcfile}
-
 @item @code{destfile}
 @end table
 
 @node standard_wait procedure, unix_clean_filename procedure, standard_upload procedure, Procedures For Remote Communication
-@subsubsection Standard_wait Procedure
+@subsubsection standard_wait Procedure
 
 
 @quotation
-
-@t{@b{standard_wait}(@i{dest}
-@i{timeout});}
+@t{@b{standard_wait}@{@i{dest}
+@i{timeout}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{timeout}
 @end table
 
 @node unix_clean_filename procedure, , standard_wait procedure, Procedures For Remote Communication
-@subsubsection Unix_clean_filename Procedure
+@subsubsection unix_clean_filename Procedure
 
 
 @quotation
-
-@t{@b{unix_clean_filename}(@i{dest}
-@i{file});}
+@t{@b{unix_clean_filename}@{@i{dest}
+@i{file}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{file}
 @end table
 
 @node connprocs, Procedures For Target Boards, Procedures For Remote Communication, Builtin Procedures
 @subsection Procedures For Using Utilities to Connect
 
-telnet, rsh, tip, kermit
-
 @menu
-* telnet Procedure: telnet procedure.
-* rsh Procedure: rsh procedure.
-* Tip Procedure: tip procedure.
-* Kermit Procedure: kermit procedure.
-* kermit_open Procedure: kermit_open procedure.
-* Kermit_command Procedure: kermit_command procedure.
-* Kermit_send Procedure: kermit_send procedure.
-* Kermit_transmit Procedure: kermit_transmit procedure.
-* Telnet_open Procedure: telnet_open procedure.
-* Telnet_binary Procedure: telnet_binary procedure.
-* Telnet_transmit Procedure: telnet_transmit procedure.
-* Tip_open Procedure: tip_open procedure.
-* Rlogin_open Procedure: rlogin_open procedure.
-* Rlogin_spawn Procedure: rlogin_spawn procedure.
-* Rsh_open Procedure: rsh_open procedure.
-* Rsh_download Procedure: rsh_download procedure.
-* Rsh_upload Procedure: rsh_upload procedure.
-* Rsh_exec Procedure: rsh_exec procedure.
-* ssh_close Procedure: ssh_close procedure.
-* ssh_exec Procedure: ssh_exec procedure.
-* ssh_download Procedure: ssh_download procedure.
-* ssh_upload Procedure: ssh_upload procedure.
-* Ftp_open Procedure: ftp_open procedure.
-* Ftp_upload Procedure: ftp_upload procedure.
-* Ftp_download Procedure: ftp_download procedure.
-* Ftp_close Procedure: ftp_close procedure.
-* Tip_download Procedure: tip_download procedure.
+* telnet Procedure: telnet procedure
+* rsh Procedure: rsh procedure
+* tip Procedure: tip procedure
+* kermit Procedure: kermit procedure
+* kermit_open Procedure: kermit_open procedure
+* kermit_command Procedure: kermit_command procedure
+* kermit_send Procedure: kermit_send procedure
+* kermit_transmit Procedure: kermit_transmit procedure
+* telnet_open Procedure: telnet_open procedure
+* telnet_binary Procedure: telnet_binary procedure
+* telnet_transmit Procedure: telnet_transmit procedure
+* tip_open Procedure: tip_open procedure
+* rlogin_open Procedure: rlogin_open procedure
+* rlogin_spawn Procedure: rlogin_spawn procedure
+* rsh_open Procedure: rsh_open procedure
+* rsh_download Procedure: rsh_download procedure
+* rsh_upload Procedure: rsh_upload procedure
+* rsh_exec Procedure: rsh_exec procedure
+* ssh_close Procedure: ssh_close procedure
+* ssh_exec Procedure: ssh_exec procedure
+* ssh_download Procedure: ssh_download procedure
+* ssh_upload Procedure: ssh_upload procedure
+* ftp_open Procedure: ftp_open procedure
+* ftp_upload Procedure: ftp_upload procedure
+* ftp_download Procedure: ftp_download procedure
+* ftp_close Procedure: ftp_close procedure
+* tip_download Procedure: tip_download procedure
 @end menu
 
 @node telnet procedure, rsh procedure, , connprocs
@@ -4329,23 +4143,19 @@ telnet, rsh, tip, kermit
 
 
 @quotation
-
-@t{@b{telnet}(@i{hostname}
-@i{port});}
+@t{@b{telnet}@{@i{hostname}
+@i{port}@}}
 @end quotation
 
 @quotation
-
-@t{@b{rlogin}(@i{hostname});}
+@t{@b{rlogin}@{@i{hostname}@}}
 @end quotation
 
 @node rsh procedure, tip procedure, telnet procedure, connprocs
 @subsubsection rsh Procedure
 
-
 @quotation
-
-@t{@b{rsh}(@i{hostname});}
+@t{@b{rsh}@{@i{hostname}@}}
 @end quotation
 
 @table @asis
@@ -4368,12 +4178,11 @@ config array is used for all information.
 @end table
 
 @node tip procedure, kermit procedure, rsh procedure, connprocs
-@subsubsection Tip Procedure
+@subsubsection tip Procedure
 
 
 @quotation
-
-@t{@b{tip}(@i{port});}
+@t{@b{tip}@{@i{port}@}}
 @end quotation
 
 @table @asis
@@ -4397,21 +4206,17 @@ config array is used for all information.
 @end table
 
 @node kermit procedure, kermit_open procedure, tip procedure, connprocs
-@subsubsection Kermit Procedure
+@subsubsection kermit Procedure
 
 
 @quotation
-
-@t{@b{kermit}(@i{port}
-@i{bps});}
+@t{@b{kermit}@{@i{port}
+@i{bps}@}}
 @end quotation
 
 @table @asis
-
 @item @code{port}
-Connect using the program
-@code{kermit}. @code{Port}
-is the device name,
+Connect using the program @code{kermit}. @code{Port} is the device name,
 e.g. @file{/dev/ttyb}.
 
 @item @code{bps}
@@ -4431,240 +4236,196 @@ config array is used for all information.
 
 
 @quotation
-
-@t{@b{kermit_open}(@i{dest}
-@i{args});}
+@t{@b{kermit_open}@{@i{dest}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{args}
 @end table
 
 @node kermit_command procedure, kermit_send procedure, kermit_open procedure, connprocs
-@subsubsection Kermit_command Procedure
+@subsubsection kermit_command Procedure
 
 
 @quotation
-
-@t{@b{kermit_command}(@i{dest}
-@i{args});}
+@t{@b{kermit_command}@{@i{dest}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{args}
 @end table
 
 @node kermit_send procedure, kermit_transmit procedure, kermit_command procedure, connprocs
-@subsubsection Kermit_send Procedure
+@subsubsection kermit_send Procedure
 
 
 @quotation
-
-@t{@b{kermit_send}(@i{dest string args});}
+@t{@b{kermit_send}@{@i{dest string args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{string}
-
 @item @code{args}
 @end table
 
 @node kermit_transmit procedure, telnet_open procedure, kermit_send procedure, connprocs
-@subsubsection Kermit_transmit Procedure
+@subsubsection kermit_transmit Procedure
 
 
 @quotation
-
-@t{@b{kermit_transmit}(@i{dest}
+@t{@b{kermit_transmit}@{@i{dest}
 @i{file}
-@i{args});}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{file}
-
 @item @code{args}
 @end table
 
 @node telnet_open procedure, telnet_binary procedure, kermit_transmit procedure, connprocs
-@subsubsection Telnet_open Procedure
+@subsubsection telnet_open Procedure
 
 
 @quotation
-
-@t{@b{telnet_open}(@i{hostname}
-@i{args});}
+@t{@b{telnet_open}@{@i{hostname}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{hostname}
-
 @item @code{args}
 @end table
 
 @node telnet_binary procedure, telnet_transmit procedure, telnet_open procedure, connprocs
-@subsubsection Telnet_binary Procedure
+@subsubsection telnet_binary Procedure
 
 
 @quotation
-
-@t{@b{telnet_binary}(@i{hostname});}
+@t{@b{telnet_binary}@{@i{hostname}@}}
 @end quotation
 
 @table @asis
-
 @item @code{hostname}
 @end table
 
 @node telnet_transmit procedure, tip_open procedure, telnet_binary procedure, connprocs
-@subsubsection Telnet_transmit Procedure
+@subsubsection telnet_transmit Procedure
 
 
 @quotation
-
-@t{@b{telnet_transmit}(@i{dest}
+@t{@b{telnet_transmit}@{@i{dest}
 @i{file}
-@i{args});}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{file}
-
 @item @code{args}
 @end table
 
 @node tip_open procedure, rlogin_open procedure, telnet_transmit procedure, connprocs
-@subsubsection Tip_open Procedure
+@subsubsection tip_open Procedure
 
 
 @quotation
-
-@t{@b{tip_open}(@i{hostname});}
+@t{@b{tip_open}@{@i{hostname}@}}
 @end quotation
 
 @table @asis
-
 @item @code{hostname}
 @end table
 
 @node rlogin_open procedure, rlogin_spawn procedure, tip_open procedure, connprocs
-@subsubsection Rlogin_open Procedure
+@subsubsection rlogin_open Procedure
 
 
 @quotation
-
-@t{@b{rlogin_open}(@i{arg});}
+@t{@b{rlogin_open}@{@i{arg}@}}
 @end quotation
 
 @table @asis
-
 @item @code{arg}
 @end table
 
 @node rlogin_spawn procedure, rsh_open procedure, rlogin_open procedure, connprocs
-@subsubsection Rlogin_spawn Procedure
+@subsubsection rlogin_spawn Procedure
 
 
 @quotation
-
-@t{@b{rlogin_spawn}(@i{dest}
-@i{cmdline});}
+@t{@b{rlogin_spawn}@{@i{dest}
+@i{cmdline}@}}
 @end quotation
 
 @table @asis
-
 @item @code{dest}
-
 @item @code{cmdline}
 @end table
 
 @node rsh_open procedure, rsh_download procedure, rlogin_spawn procedure, connprocs
-@subsubsection Rsh_open Procedure
+@subsubsection rsh_open Procedure
 
 
 @quotation
-
-@t{@b{rsh_open}(@i{hostname});}
+@t{@b{rsh_open}@{@i{hostname}@}}
 @end quotation
 
 @table @asis
-
 @item @code{hostname}
 @end table
 
 @node rsh_download procedure, rsh_upload procedure, rsh_open procedure, connprocs
-@subsubsection Rsh_download Procedure
+@subsubsection rsh_download Procedure
 
 
 @quotation
-
-@t{@b{rsh_download}(@i{desthost}
+@t{@b{rsh_download}@{@i{desthost}
 @i{srcfile}
-@i{destfile});}
+@i{destfile}@}}
 @end quotation
 
 @table @asis
-
 @item @code{desthost}
-
 @item @code{srcfile}
-
 @item @code{destfile}
 @end table
 
 @node rsh_upload procedure, rsh_exec procedure, rsh_download procedure, connprocs
-@subsubsection Rsh_upload Procedure
+@subsubsection rsh_upload Procedure
 
 
 @quotation
-
-@t{@b{rsh_upload}(@i{desthost}
+@t{@b{rsh_upload}@{@i{desthost}
 @i{srcfile}
-@i{destfile});}
+@i{destfile}@}}
 @end quotation
 
 @table @asis
-
 @item @code{desthost}
-
 @item @code{srcfile}
-
 @item @code{destfile}
 @end table
 
 @node rsh_exec procedure, ftp_open procedure, rsh_upload procedure, connprocs
-@subsubsection Rsh_exec Procedure
+@subsubsection rsh_exec Procedure
 
 
 @quotation
-
-@t{@b{rsh_exec}(@i{boardname}
+@t{@b{rsh_exec}@{@i{boardname}
 @i{cmd}
-@i{args});}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{boardname}
-
 @item @code{cmd}
-
 @item @code{args}
 @end table
 
@@ -4672,7 +4433,7 @@ config array is used for all information.
 @subsubsection ssh_close procedure
 
 @quotation
-@t{@b{ssh_close}(@i{desthost});}
+@t{@b{ssh_close} @{@i{desthost}@}}
 @end quotation
 
 @table @asis
@@ -4683,7 +4444,7 @@ config array is used for all information.
 @subsubsection ssh_exec procedure
 
 @quotation
-@t{@b{ssh_exec}(@i{boardname program pargs inp outp});}
+@t{@b{ssh_exec}@{@i{boardname program pargs inp outp}@}}
 @end quotation
 
 @table @asis
@@ -4698,7 +4459,7 @@ config array is used for all information.
 @subsubsection ssh_download procedure
 
 @quotation
-@t{@b{ssh_download}(@i{desthost srcfile destfile});}
+@t{@b{ssh_download}@{@i{desthost srcfile destfile}@}}
 @end quotation
 
 @table @asis
@@ -4711,7 +4472,7 @@ config array is used for all information.
 @subsubsection ssh_upload procedure
 
 @quotation
-@t{@b{ssh_upload}(@i{desthost srcfile destfile});}
+@t{@b{ssh_upload}@{@i{desthost srcfile destfile}@}}
 @end quotation
 
 @table @asis
@@ -4721,11 +4482,10 @@ config array is used for all information.
 @end table
 
 @node ftp_open procedure, ftp_upload procedure, ssh_upload procedure, connprocs
-@subsubsection Ftp_open Procedure
+@subsubsection ftp_open Procedure
 
 @quotation
-
-@t{@b{ftp_open}(@i{host});}
+@t{@b{ftp_open}@{@i{host}@}}
 @end quotation
 
 @table @asis
@@ -4734,67 +4494,56 @@ config array is used for all information.
 @end table
 
 @node ftp_upload procedure, ftp_download procedure, ftp_open procedure, connprocs
-@subsubsection Ftp_upload Procedure
+@subsubsection ftp_upload Procedure
 
 
 @quotation
-
-@t{@b{ftp_upload}(@i{host}
+@t{@b{ftp_upload}@{@i{host}
 @i{remotefile}
-@i{localfile});}
+@i{localfile}@}}
 @end quotation
 
 @table @asis
-
 @item @code{host}
-
 @item @code{remotefile}
-
 @item @code{localfile}
 @end table
 
 @node ftp_download procedure, ftp_close procedure, ftp_upload procedure, connprocs
-@subsubsection Ftp_download Procedure
+@subsubsection ftp_download Procedure
 
 
 @quotation
-
-@t{@b{ftp_download}(@i{host}
+@t{@b{ftp_download}@{@i{host}
 @i{localfile}
-@i{remotefile});}
+@i{remotefile}@}}
 @end quotation
 
 @table @asis
-
 @item @code{host}
-
 @item @code{localfile}
-
 @item @code{remotefile}
 @end table
 
 @node ftp_close procedure, tip_download procedure, ftp_download procedure, connprocs
-@subsubsection Ftp_close Procedure
+@subsubsection ftp_close Procedure
 
 
 @quotation
-
-@t{@b{ftp_close}(@i{host});}
+@t{@b{ftp_close}@{@i{host}@}}
 @end quotation
 
 @table @asis
-
 @item @code{host}
 @end table
 
 @node tip_download procedure, , ftp_close procedure, connprocs
-@subsubsection Tip_download Procedure
+@subsubsection tip_download Procedure
 
 
 @quotation
-
-@t{@b{tip_download}(@i{spawnid}
-@i{file});}
+@t{@b{tip_download}@{@i{spawnid}
+@i{file}@}}
 @end quotation
 
 @table @asis
@@ -4820,58 +4569,49 @@ download.
 
 
 @menu
-* Default_link Procedure: default_link procedure.
-* Default_target_assemble Procedure: default_target_assemble procedure.
-* default_target_compile Procedure: default_target_compile procedure.
-* Pop_config Procedure: pop_config procedure.
-* Prune_warnings Procedure: prune_warnings procedure.
-* Push_build Procedure: push_build procedure.
-* push_config Procedure: push_config procedure.
-* Reboot_target Procedure: reboot_target procedure.
-* Target_assemble Procedure: target_assemble procedure.
-* Target_compile Procedure: target_compile procedure.
+* default_link Procedure: default_link procedure
+* default_target_assemble Procedure: default_target_assemble procedure
+* default_target_compile Procedure: default_target_compile procedure
+* pop_config Procedure: pop_config procedure
+* prune_warnings Procedure: prune_warnings procedure
+* push_build Procedure: push_build procedure
+* push_config Procedure: push_config procedure
+* reboot_target Procedure: reboot_target procedure
+* target_assemble Procedure: target_assemble procedure
+* target_compile Procedure: target_compile procedure
 @end menu
 
 @node default_link procedure, default_target_assemble procedure, , Procedures For Target Boards
-@subsubsection Default_link Procedure
+@subsubsection default_link Procedure
 
 
 @quotation
-
-@t{@b{default_link}(@i{board}
+@t{@b{default_link}@{@i{board}
 @i{objects}
 @i{destfile}
-@i{flags});}
+@i{flags}@}}
 @end quotation
 
 @table @asis
-
 @item @code{board}
-
 @item @code{objects}
-
 @item @code{destfile}
-
 @item @code{flags}
 @end table
 
 @node default_target_assemble procedure, default_target_compile procedure, default_link procedure, Procedures For Target Boards
-@subsubsection Default_target_assemble Procedure
+@subsubsection default_target_assemble Procedure
 
 
 @quotation
-
-@t{@b{default_target_assemble}(@i{source}
+@t{@b{default_target_assemble}@{@i{source}
 @i{destfile}
-@i{flags});}
+@i{flags}@}}
 @end quotation
 
 @table @asis
-
 @item @code{source}
-
 @item @code{destfile}
-
 @item @code{flags}
 @end table
 
@@ -4880,63 +4620,51 @@ download.
 
 
 @quotation
-
-@t{@b{default_target_compile}(@i{source}
+@t{@b{default_target_compile}@{@i{source}
 @i{destfile}
 @i{type}
-@i{options});}
+@i{options}@}}
 @end quotation
 
 @table @asis
-
 @item @code{source}
-
 @item @code{destfile}
-
 @item @code{type}
-
 @item @code{options}
 @end table
 
 @node pop_config procedure, prune_warnings procedure, default_target_compile procedure, Procedures For Target Boards
-@subsubsection Pop_config Procedure
-
+@subsubsection pop_config Procedure
 
 @quotation
-
-@t{@b{pop_config}(@i{type});}
+@t{@b{pop_config}@{@i{type}@}}
 @end quotation
 
 @table @asis
-
 @item @code{type}
 @end table
 
 @node prune_warnings procedure, push_build procedure, pop_config procedure, Procedures For Target Boards
-@subsubsection Prune_warnings Procedure
+@subsubsection prune_warnings Procedure
 
 
 @quotation
-
-@t{@b{prune_warnings}(@i{text});}
+@t{@b{prune_warnings}@{@i{text}@}}
 @end quotation
 
 @table @asis
-
 @item @code{text}
 @end table
 
 @node push_build procedure, push_config procedure, prune_warnings procedure, Procedures For Target Boards
-@subsubsection Push_build Procedure
+@subsubsection push_build Procedure
 
 
 @quotation
-
-@t{@b{push_build}(@i{name});}
+@t{@b{push_build}@{@i{name}@}}
 @end quotation
 
 @table @asis
-
 @item @code{name}
 @end table
 
@@ -4945,65 +4673,53 @@ download.
 
 
 @quotation
-
-@t{@b{push_config}(@i{type}
-@i{name});}
+@t{@b{push_config}@{@i{type}
+@i{name}@}}
 @end quotation
 
 @table @asis
-
 @item @code{type}
 
 @item @code{name}
 @end table
 
 @node reboot_target procedure, target_assemble procedure, push_config procedure, Procedures For Target Boards
-@subsubsection Reboot_target Procedure
+@subsubsection reboot_target Procedure
 
 
 @quotation
-
-@t{@b{reboot_target}(@i{});}
+@t{@b{reboot_target}}
 @end quotation
 
 @node target_assemble procedure, target_compile procedure, reboot_target procedure, Procedures For Target Boards
-@subsubsection Target_assemble Procedure
+@subsubsection target_assemble Procedure
 
 
 @quotation
-
-@t{@b{target_assemble}(@i{source destfile flags});}
+@t{@b{target_assemble}@{@i{source destfile flags}@}}
 @end quotation
 
 @table @asis
-
 @item @code{source}
-
 @item @code{destfile}
-
 @item @code{flags}
 @end table
 
 @node target_compile procedure, , target_assemble procedure, Procedures For Target Boards
-@subsubsection Target_compile Procedure
+@subsubsection target_compile Procedure
 
 
 @quotation
-
-@t{@b{target_compile}(@i{source}
+@t{@b{target_compile}@{@i{source}
 @i{destfile}
 @i{type}
-@i{options});}
+@i{options}@}}
 @end quotation
 
 @table @asis
-
 @item @code{source}
-
 @item @code{destfile}
-
 @item @code{type}
-
 @item @code{options}
 @end table
 
@@ -5011,73 +4727,65 @@ download.
 @subsection Target Database Procedures
 
 @menu
-* Board_info Procedure: board_info procedure.
-* Host_info Procedure: host_info procedure.
-* Set_board_info Procedure: set_board_info procedure.
-* Add_board_info Procedure: add_board_info procedure.
-* Set_currtarget_info Procedure: set_currtarget_info procedure.
-* Target_info Procedure: target_info procedure.
-* Unset_board_info Procedure: unset_board_info procedure.
-* Unset_currtarget_info Procedure: unset_currtarget_info procedure.
-* Push_target Procedure: push_target procedure.
-* Pop_target Procedure: poptarget procedure.
-* List_targets Procedure: list_targets procedure.
-* Push_host Procedure: push_host procedure.
-* Pop_host Procedure: pop_host procedure.
-* Compile Procedure: compile procedure.
-* Archive Procedure: archive procedure.
-* Ranlib Procedure: ranlib procedure.
-* Execute_anywhere Procedure: execute_anywhere procedure.
+* Board_info Procedure: board_info procedure
+* Host_info Procedure: host_info procedure
+* Set_board_info Procedure: set_board_info procedure
+* Add_board_info Procedure: add_board_info procedure
+* Set_currtarget_info Procedure: set_currtarget_info procedure
+* Target_info Procedure: target_info procedure
+* Unset_board_info Procedure: unset_board_info procedure
+* Unset_currtarget_info Procedure: unset_currtarget_info procedure
+* Push_target Procedure: push_target procedure
+* Pop_target Procedure: poptarget procedure
+* List_targets Procedure: list_targets procedure
+* Push_host Procedure: push_host procedure
+* Pop_host Procedure: pop_host procedure
+* Compile Procedure: compile procedure
+* Archive Procedure: archive procedure
+* Ranlib Procedure: ranlib procedure
+* Execute_anywhere Procedure: execute_anywhere procedure
 @end menu
 
 @node board_info procedure, host_info procedure, , target database library file
-@subsubsection Board_info Procedure
+@subsubsection board_info Procedure
 
 
 @quotation
-
-@t{@b{board_info}(@i{machine}
+@t{@b{board_info}@{@i{machine}
 @i{op}
-@i{args});}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{machine}
-
 @item @code{op}
-
 @item @code{args}
 @end table
 
 @node host_info procedure, set_board_info procedure, board_info procedure, target database library file
-@subsubsection Host_info Procedure
+@subsubsection host_info Procedure
 
 
 @quotation
-
-@t{@b{host_info}(@i{op}
-@i{args});}
+@t{@b{host_info}@{@i{op}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{op}
-
 @item @code{args}
 @end table
 
 @node set_board_info procedure, add_board_info procedure, host_info procedure, target database library file
-@subsubsection Set_board_info Procedure
+@subsubsection set_board_info Procedure
 
 This checks if @code{board_info} array's field
 @emph{entry} has been set already and if not, then
 sets it to @emph{value}.
 
 @quotation
-
-@t{@b{set_board_info}(@i{entry}
-@i{value});}
+@t{@b{set_board_info}@{@i{entry}
+@i{value}@}}
 @end quotation
 
 @table @asis
@@ -5091,16 +4799,15 @@ The value to set the field to.
 @end table
 
 @node add_board_info procedure, set_currtarget_info procedure, set_board_info procedure, target database library file
-@subsubsection Add_board_info Procedure
+@subsubsection add_board_info Procedure
 
 This treats @code{board_info} array's field
 @emph{entry} as a TCL list and adds
 @emph{value} at the end.
 
 @quotation
-
-@t{@b{add_board_info}(@i{entry}
-@i{value});}
+@t{@b{add_board_info}@{@i{entry}
+@i{value}@}}
 @end quotation
 
 @table @asis
@@ -5114,74 +4821,64 @@ The value to add to the field.
 @end table
 
 @node set_currtarget_info procedure, target_info procedure, add_board_info procedure, target database library file
-@subsubsection Set_currtarget_info Procedure
+@subsubsection set_currtarget_info Procedure
 
 
 @quotation
-
-@t{@b{set_currtarget_info}(@i{entry}
-@i{value});}
+@t{@b{set_currtarget_info}@{@i{entry}
+@i{value}@}}
 @end quotation
 
 @table @asis
-
 @item @code{entry}
-
 @item @code{value}
 @end table
 
 @node target_info procedure, unset_board_info procedure, set_currtarget_info procedure, target database library file
-@subsubsection Target_info Procedure
+@subsubsection target_info Procedure
 
 
 @quotation
-
-@t{@b{target_info}(@i{op}
-@i{args});}
+@t{@b{target_info}@{@i{op}
+@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{op}
-
 @item @code{args}
 @end table
 
 @node unset_board_info procedure, unset_currtarget_info procedure, target_info procedure, target database library file
-@subsubsection Unset_board_info Procedure
+@subsubsection unset_board_info Procedure
 
 This checks if @code{board_info} array's field
 @emph{entry} has been set and if so, then removes
 it.
 
 @quotation
-
-@t{@b{unset_board_info}(@i{entry});}
+@t{@b{unset_board_info}@{@i{entry}@}}
 @end quotation
 
 @table @asis
-
 @item @code{entry}
 The name of a @code{board_info} field
 to operate on.
 @end table
 
 @node unset_currtarget_info procedure, push_target procedure, unset_board_info procedure, target database library file
-@subsubsection Unset_currtarget_info Procedure
+@subsubsection unset_currtarget_info Procedure
 
 
 @quotation
-
-@t{@b{unset_currtarget_info}(@i{entry});}
+@t{@b{unset_currtarget_info}@{@i{entry}@}}
 @end quotation
 
 @table @asis
-
 @item @code{entry}
 @end table
 
 @node push_target procedure, poptarget procedure, unset_currtarget_info procedure, target database library file
-@subsubsection Push_target Procedure
+@subsubsection push_target Procedure
 
 This makes the target named @emph{name} be the
 current target connection. The value of @emph{name} is
@@ -5189,40 +4886,35 @@ an index into the @code{target_info} array and is set in
 the global config file.
 
 @quotation
-
-@t{@b{push_target}(@i{name});}
+@t{@b{push_target}@{@i{name}@}}
 @end quotation
 
 @table @asis
-
 @item @code{name}
 The name of the target to make current
 connection.
 @end table
 
 @node poptarget procedure, list_targets procedure, push_target procedure, target database library file
-@subsubsection Pop_target Procedure
+@subsubsection pop_target Procedure
 
 This unsets the current target connection.
 
 @quotation
-
-@t{@b{pop_target}(@i{});}
+@t{@b{pop_target}}
 @end quotation
 
 @node list_targets procedure, push_host procedure, poptarget procedure, target database library file
-@subsubsection List_targets Procedure
+@subsubsection list_targets Procedure
 
-This lists all the supported targets for this
-architecture.
+This lists all the supported targets for this architecture.
 
 @quotation
-
-@t{@b{list_targets}(@i{});}
+@t{@b{list_targets}}
 @end quotation
 
 @node push_host procedure, pop_host procedure, list_targets procedure, target database library file
-@subsubsection Push_host Procedure
+@subsubsection push_host Procedure
 
 This makes the host named @emph{name} be the
 current remote host connection. The value of
@@ -5231,27 +4923,24 @@ current remote host connection. The value of
 file.
 
 @quotation
-
-@t{@b{push_host}(@i{name});}
+@t{@b{push_host}@{@i{name}@}}
 @end quotation
 
 @table @asis
-
 @item @code{name}
 @end table
 
 @node pop_host procedure, compile procedure, push_host procedure, target database library file
-@subsubsection Pop_host Procedure
+@subsubsection pop_host Procedure
 
 This unsets the current host connection.
 
 @quotation
-
-@t{@b{pop_host}(@i{});}
+@t{@b{pop_host}}
 @end quotation
 
 @node compile procedure, archive procedure, pop_host procedure, target database library file
-@subsubsection Compile Procedure
+@subsubsection compile Procedure
 
 This invokes the compiler as set by CC to compile the
 file @file{file}. The default options for many cross
@@ -5264,17 +4953,15 @@ then compiler is run on the remote host using
 @code{execute_anywhere}.
 
 @quotation
-
-@t{@b{compile}(@i{file});}
+@t{@b{compile}@{@i{file}@}}
 @end quotation
 
 @table @asis
-
 @item @code{file}
 @end table
 
 @node archive procedure, ranlib procedure, compile procedure, target database library file
-@subsubsection Archive Procedure
+@subsubsection archive Procedure
 
 This produces an archive file. Any parameters passed to
 @code{archive} are used in addition to the default
@@ -5284,34 +4971,30 @@ host is not the same as the build machines, then then archiver is run
 on the remote host using @code{execute_anywhere}.
 
 @quotation
-
-@t{@b{archive}(@i{file});}
+@t{@b{archive}@{@i{file}@}}
 @end quotation
 
 @table @asis
-
 @item @code{file}
 @end table
 
 @node ranlib procedure, execute_anywhere procedure, archive procedure, target database library file
-@subsubsection Ranlib Procedure
+@subsubsection ranlib Procedure
 
 This generates an index for the archive file for systems that
 aren't POSIX yet. Any parameters passed to @code{ranlib}
 are used in for the flags.
 
 @quotation
-
-@t{@b{ranlib}(@i{file});}
+@t{@b{ranlib}@{@i{file}@}}
 @end quotation
 
 @table @asis
-
 @item @code{file}
 @end table
 
 @node execute_anywhere procedure, , ranlib procedure, target database library file
-@subsubsection Execute_anywhere Procedure
+@subsubsection execute_anywhere Procedure
 
 This executes the @emph{cmdline} on the proper
 host. This should be used as a replacement for the Tcl command
@@ -5326,12 +5009,10 @@ output produced when the command was executed. This is used for
 running the tool to be tested, not a test case.
 
 @quotation
-
-@t{@b{execute_anywhere}(@i{cmdline});}
+@t{@b{execute_anywhere}@{@i{cmdline}@}}
 @end quotation
 
 @table @asis
-
 @item @code{cmdline}
 @end table
 
@@ -5364,10 +5045,10 @@ if the procedure succeeded, @emph{1} if it failed,
 and @emph{-1} if there was a communication error.
 
 @menu
-* $@{tool@}_start Procedure: $@{tool@}_start procedure.
-* $@{tool@}_load Procedure: $@{tool@}_load procedure.
-* $@{tool@}_exit Procedure: $@{tool@}_exit procedure.
-* $@{tool@}_version Procedure: $@{tool@}_version procedure.
+* $@{tool@}_start Procedure: $@{tool@}_start procedure
+* $@{tool@}_load Procedure: $@{tool@}_load procedure
+* $@{tool@}_exit Procedure: $@{tool@}_exit procedure
+* $@{tool@}_version Procedure: $@{tool@}_version procedure
 @end menu
 
 @node $@{tool@}_start procedure, $@{tool@}_load procedure, , platform dependent procedures
@@ -5395,8 +5076,7 @@ for batch-oriented tools, each individual test script calls
 arrangements to run the tool).
 
 @quotation
-
-@t{@b{$@{tool@}_start}(@i{});}
+@t{@b{$@{tool@}_start}}
 @end quotation
 
 @node $@{tool@}_load procedure, $@{tool@}_exit procedure, $@{tool@}_start procedure, platform dependent procedures
@@ -5420,8 +5100,7 @@ downloading. Test scripts call
 @code{$@{tool@}_load}.
 
 @quotation
-
-@t{@b{$@{tool@}_load}(@i{});}
+@t{@b{$@{tool@}_load}}
 @end quotation
 
 @node $@{tool@}_exit procedure, $@{tool@}_version procedure, $@{tool@}_load procedure, platform dependent procedures
@@ -5435,8 +5114,7 @@ tests. @code{runtest} calls
 @code{$@{tool@}_exit}.
 
 @quotation
-
-@t{@b{$@{tool@}_exit}(@i{});}
+@t{@b{$@{tool@}_exit}}
 @end quotation
 
 @node $@{tool@}_version procedure, , $@{tool@}_exit procedure, platform dependent procedures
@@ -5449,42 +5127,39 @@ should consist of the full path name used for the tested
 tool, and its version number.
 
 @quotation
-
-@t{@b{$@{tool@}_version}(@i{});}
+@t{@b{$@{tool@}_version}}
 @end quotation
 
 @node Utility Procedures, Libgloss, platform dependent procedures, Builtin Procedures
 @subsection Utility Procedures
 
 @menu
-* Getdirs Procedure: getdirs procedure.
-* Find Procedure: find procedure.
-* Which Procedure: which procedure.
-* Grep Procedure: grep procedure.
-* Prune Procedure: prune procedure.
-* Runtest_file_p Procedure: runtest_file_p procedure.
-* Diff Procedure: diff procedure.
-* Setenv Procedure: setenv procedure.
-* unsetenv Procedure: unsetenv procedure.
-* Getenv Procedure: getenv procedure.
-* Prune_system_crud Procedure: prune_system_crud procedure.
+* getdirs Procedure: getdirs procedure
+* find Procedure: find procedure
+* which Procedure: which procedure
+* grep Procedure: grep procedure
+* prune Procedure: prune procedure
+* runtest_file_p Procedure: runtest_file_p procedure
+* diff Procedure: diff procedure
+* setenv Procedure: setenv procedure
+* unsetenv Procedure: unsetenv procedure
+* getenv Procedure: getenv procedure
+* prune_system_crud Procedure: prune_system_crud procedure
 @end menu
 
 @node getdirs procedure, find procedure, , Utility Procedures
-@subsubsection Getdirs Procedure
+@subsubsection getdirs Procedure
 
 Returns a list of all the directories in the single
 directory a single directory that match an optional
 pattern. 
 
 @quotation
-
-@t{@b{getdirs}(@i{rootdir}
-@i{pattern});}
+@t{@b{getdirs}@{@i{rootdir}
+@i{pattern}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 
 @item @code{pattern}
@@ -5498,7 +5173,7 @@ returned.
 @end table
 
 @node find procedure, which procedure, getdirs procedure, Utility Procedures
-@subsubsection Find Procedure
+@subsubsection find Procedure
 
 Search for files whose names match @emph{pattern}
 (using shell wildcard characters for filename expansion).  Search
@@ -5509,9 +5184,8 @@ result include all intervening subdirectory names. If no files match
 the pattern, then a NULL string is returned.
 
 @quotation
-
-@t{@b{find}(@i{rootdir}
-@i{pattern});}
+@t{@b{find}@{@i{rootdir}
+@i{pattern}@}}
 @end quotation
 
 @table @asis
@@ -5526,7 +5200,7 @@ the files to find.
 @end table
 
 @node which procedure, grep procedure, find procedure, Utility Procedures
-@subsubsection Which Procedure
+@subsubsection which Procedure
 
 Searches the execution path for an executable file
 @emph{binary}, like the BSD @code{which}
@@ -5537,8 +5211,7 @@ environment variable. If @code{binary} is in the path, it
 returns the full path to @code{binary}.
 
 @quotation
-
-@t{@b{which}(@i{file});}
+@t{@b{which}@{@i{file}@}}
 @end quotation
 
 @table @asis
@@ -5549,7 +5222,7 @@ for.
 @end table
 
 @node grep procedure, prune procedure, which procedure, Utility Procedures
-@subsubsection Grep Procedure
+@subsubsection grep Procedure
 
 Search the file called @file{filename} (a fully
 specified path) for lines that contain a match for regular expression
@@ -5564,10 +5237,9 @@ start lines in the result with the line number in
 flag; type it just as shown @code{--line}.)
 
 @quotation
-
-@t{@b{grep}(@i{filename}
+@t{@b{grep}@{@i{filename}
 @i{regexp}
-@i{--line});}
+@i{--line}@}}
 @end quotation
 
 @table @asis
@@ -5586,7 +5258,7 @@ regexp matches.
 @end table
 
 @node prune procedure, runtest_file_p procedure, grep procedure, Utility Procedures
-@subsubsection Prune Procedure
+@subsubsection prune Procedure
 
 This procedure is deprecated and will be removed in
 the next release of DejaGnu.  If a testsuite uses this
@@ -5594,7 +5266,7 @@ procedure, a copy of the procedure should be made and placed
 in the lib directory of the testsuite.
 
 @node runtest_file_p procedure, diff procedure, prune procedure, Utility Procedures
-@subsubsection Runtest_file_p Procedure
+@subsubsection runtest_file_p Procedure
 
 Search @emph{runtest}s for
 @emph{testcase} and return @emph{1} if
@@ -5612,9 +5284,8 @@ pathname of the current testcase under consideration. This is used
 by tools like compilers where each testcase is a file.
 
 @quotation
-
-@t{@b{runtest_file_p}(@i{runtests}
-@i{testcase});}
+@t{@b{runtest_file_p}@{@i{runtests}
+@i{testcase}@}}
 @end quotation
 
 @table @asis
@@ -5627,7 +5298,7 @@ The test case filename.
 @end table
 
 @node diff procedure, setenv procedure, runtest_file_p procedure, Utility Procedures
-@subsubsection Diff Procedure
+@subsubsection diff Procedure
 
 Compares the two files and returns a @emph{1} if
 they match, or a @emph{0} if they don't. If
@@ -5635,9 +5306,8 @@ they match, or a @emph{0} if they don't. If
 the screen.
 
 @quotation
-
-@t{@b{diff}(@i{file_1}
-@i{file_2});}
+@t{@b{diff}@{@i{file_1}
+@i{file_2}@}}
 @end quotation
 
 @table @asis
@@ -5650,15 +5320,14 @@ The second file to compare.
 @end table
 
 @node setenv procedure, unsetenv procedure, diff procedure, Utility Procedures
-@subsubsection Setenv Procedure
+@subsubsection setenv Procedure
 
 Sets the environment variable @emph{var} to the
 value @emph{val}.
 
 @quotation
-
-@t{@b{setenv}(@i{var}
-@i{val});}
+@t{@b{setenv}@{@i{var}
+@i{val}@}}
 @end quotation
 
 @table @asis
@@ -5677,8 +5346,7 @@ Unsets the environment variable
 @emph{var}.
 
 @quotation
-
-@t{@b{unsetenv}(@i{var});}
+@t{@b{unsetenv}@{@i{var}@}}
 @end quotation
 
 @table @asis
@@ -5689,14 +5357,13 @@ unset.
 @end table
 
 @node getenv procedure, prune_system_crud procedure, unsetenv procedure, Utility Procedures
-@subsubsection Getenv Procedure
+@subsubsection getenv Procedure
 
 Returns the value of @emph{var} in the
 environment if it exists, otherwise it returns NULL.
 
 @quotation
-
-@t{@b{getenv}(@i{var});}
+@t{@b{getenv}@{@i{var}@}}
 @end quotation
 
 @table @asis
@@ -5707,7 +5374,7 @@ of.
 @end table
 
 @node prune_system_crud procedure, , getenv procedure, Utility Procedures
-@subsubsection Prune_system_crud Procedure
+@subsubsection prune_system_crud Procedure
 
 For system @emph{system}, delete text the host or
 target operating system might issue that will interfere with pattern
@@ -5716,9 +5383,8 @@ is the message that is printed if a shared library is out of
 date.
 
 @quotation
-
-@t{@b{prune_system_crud}(@i{system}
-@i{test});}
+@t{@b{prune_system_crud}@{@i{system}
+@i{test}@}}
 @end quotation
 
 @table @asis
@@ -5740,330 +5406,289 @@ Package) commonly used with GCC and G++ to produce a fully linked
 executable image for an embedded systems.
 
 @menu
-* Libgloss_link_flags Procedure: libgloss_link_flags procedure.
-* Libgloss_include_flags Procedure: libgloss_include_flags procedure.
-* Newlib_link_flags Procedure: newlib_link_flags procedure.
-* Newlib_include_flags Procedure: newlib_include_flags procedure.
-* Libio_include_flags Procedure: libio_include_flags procedure.
-* Libio_link_flags Procedure: libio_link_flags procedure.
-* G++_include_flags Procedure: g++_include_flags procedure.
-* G++_link_flags Procedure: g++_link_flags procedure.
-* Libstdc++_include_flags Procedure: libstdc++_include_flags procedure.
-* Libstdc++_link_flags Procedure: libstdc++_link_flags procedure.
-* Get_multilibs Procedure: get_multilibs procedure.
-* Find_binutils_prog Procedure: find_binutils_prog procedure.
-* Find_gcc Procedure: find_gcc procedure.
-* Find_gcj Procedure: find_gcj procedure.
-* Find_g++ Procedure: find_g++ procedure.
-* Find_g77 Procedure: find_g77 procedure.
-* Find_gfortran Procedure: find_gfortran procedure.
-* Process_multilib_options Procedure: process_multilib_options procedure.
-* Add_multilib_option Procedure: add_multilib_option procedure.
-* Find_gas Procedure: find_gas procedure.
-* Find_ld Procedure: find_ld procedure.
-* Build_wrapper Procedure: build_wrapper procedure.
-* Winsup_include_flags Procedure: winsup_include_flags procedure.
-* Winsup_link_flags Procedure: winsup_link_flags procedure.
+* Libgloss_link_flags Procedure: libgloss_link_flags procedure
+* Libgloss_include_flags Procedure: libgloss_include_flags procedure
+* Newlib_link_flags Procedure: newlib_link_flags procedure
+* Newlib_include_flags Procedure: newlib_include_flags procedure
+* Libio_include_flags Procedure: libio_include_flags procedure
+* Libio_link_flags Procedure: libio_link_flags procedure
+* G++_include_flags Procedure: g++_include_flags procedure
+* G++_link_flags Procedure: g++_link_flags procedure
+* Libstdc++_include_flags Procedure: libstdc++_include_flags procedure
+* Libstdc++_link_flags Procedure: libstdc++_link_flags procedure
+* Get_multilibs Procedure: get_multilibs procedure
+* Find_binutils_prog Procedure: find_binutils_prog procedure
+* Find_gcc Procedure: find_gcc procedure
+* Find_gcj Procedure: find_gcj procedure
+* Find_g++ Procedure: find_g++ procedure
+* Find_g77 Procedure: find_g77 procedure
+* Find_gfortran Procedure: find_gfortran procedure
+* Process_multilib_options Procedure: process_multilib_options procedure
+* Add_multilib_option Procedure: add_multilib_option procedure
+* Find_gas Procedure: find_gas procedure
+* Find_ld Procedure: find_ld procedure
+* Build_wrapper Procedure: build_wrapper procedure
+* Winsup_include_flags Procedure: winsup_include_flags procedure
+* Winsup_link_flags Procedure: winsup_link_flags procedure
 @end menu
 
 @node libgloss_link_flags procedure, libgloss_include_flags procedure, , Libgloss
-@subsubsection Libgloss_link_flags Procedure
+@subsubsection libgloss_link_flags Procedure
 
 
 @quotation
-
-@t{@b{libgloss_link_flags}(@i{args});}
+@t{@b{libgloss_link_flags}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node libgloss_include_flags procedure, newlib_link_flags procedure, libgloss_link_flags procedure, Libgloss
-@subsubsection Libgloss_include_flags Procedure
+@subsubsection libgloss_include_flags Procedure
 
 
 @quotation
-
-@t{@b{libgloss_include_flags}(@i{args});}
+@t{@b{libgloss_include_flags}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node newlib_link_flags procedure, newlib_include_flags procedure, libgloss_include_flags procedure, Libgloss
-@subsubsection Newlib_link_flags Procedure
+@subsubsection newlib_link_flags Procedure
 
 
 @quotation
-
-@t{@b{newlib_link_flags}(@i{args});}
+@t{@b{newlib_link_flags}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node newlib_include_flags procedure, libio_include_flags procedure, newlib_link_flags procedure, Libgloss
-@subsubsection Newlib_include_flags Procedure
+@subsubsection newlib_include_flags Procedure
 
 
 @quotation
-
-@t{@b{newlib_include_flags}(@i{args});}
+@t{@b{newlib_include_flags}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node libio_include_flags procedure, libio_link_flags procedure, newlib_include_flags procedure, Libgloss
-@subsubsection Libio_include_flags Procedure
+@subsubsection libio_include_flags Procedure
 
 
 @quotation
-
-@t{@b{libio_include_flags}(@i{args});}
+@t{@b{libio_include_flags}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node libio_link_flags procedure, g++_include_flags procedure, libio_include_flags procedure, Libgloss
-@subsubsection Libio_link_flags Procedure
+@subsubsection libio_link_flags Procedure
 
 
 @quotation
-
-@t{@b{libio_link_flags}(@i{args});}
+@t{@b{libio_link_flags}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node g++_include_flags procedure, g++_link_flags procedure, libio_link_flags procedure, Libgloss
-@subsubsection G++_include_flags Procedure
+@subsubsection g++_include_flags Procedure
 
 
 @quotation
-
-@t{@b{g++_include_flags}(@i{args});}
+@t{@b{g++_include_flags}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node g++_link_flags procedure, libstdc++_include_flags procedure, g++_include_flags procedure, Libgloss
-@subsubsection G++_link_flags Procedure
+@subsubsection g++_link_flags Procedure
 
 
 @quotation
-
-@t{@b{g++_link_flags}(@i{args});}
+@t{@b{g++_link_flags}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node libstdc++_include_flags procedure, libstdc++_link_flags procedure, g++_link_flags procedure, Libgloss
-@subsubsection Libstdc++_include_flags Procedure
+@subsubsection libstdc++_include_flags Procedure
 
 
 @quotation
-
-@t{@b{libstdc++_include_flags}(@i{args});}
+@t{@b{libstdc++_include_flags}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node libstdc++_link_flags procedure, get_multilibs procedure, libstdc++_include_flags procedure, Libgloss
-@subsubsection Libstdc++_link_flags Procedure
+@subsubsection libstdc++_link_flags Procedure
 
 
 @quotation
-
-@t{@b{libstdc++_link_flags}(@i{args});}
+@t{@b{libstdc++_link_flags}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node get_multilibs procedure, find_binutils_prog procedure, libstdc++_link_flags procedure, Libgloss
-@subsubsection Get_multilibs Procedure
+@subsubsection get_multilibs Procedure
 
 
 @quotation
-
-@t{@b{get_multilibs}(@i{args});}
+@t{@b{get_multilibs}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node find_binutils_prog procedure, find_gcc procedure, get_multilibs procedure, Libgloss
-@subsubsection Find_binutils_prog Procedure
+@subsubsection find_binutils_prog Procedure
 
 
 @quotation
-
-@t{@b{find_binutils_prog}(@i{name});}
+@t{@b{find_binutils_prog}@{@i{name}@}}
 @end quotation
 
 @table @asis
-
 @item @code{name}
 @end table
 
 @node find_gcc procedure, find_gcj procedure, find_binutils_prog procedure, Libgloss
-@subsubsection Find_gcc Procedure
+@subsubsection find_gcc Procedure
 
 
 @quotation
-
-@t{@b{find_gcc}(@i{});}
+@t{@b{find_gcc}}
 @end quotation
 
 @node find_gcj procedure, find_g++ procedure, find_gcc procedure, Libgloss
-@subsubsection Find_gcj Procedure
+@subsubsection find_gcj Procedure
 
 
 @quotation
-
-@t{@b{find_gcj}(@i{});}
+@t{@b{find_gcj}}
 @end quotation
 
 @node find_g++ procedure, find_g77 procedure, find_gcj procedure, Libgloss
-@subsubsection Find_g++ Procedure
+@subsubsection find_g++ Procedure
 
 
 @quotation
-
-@t{@b{find_g++}(@i{});}
+@t{@b{find_g++}}
 @end quotation
 
 @node find_g77 procedure, find_gfortran procedure, find_g++ procedure, Libgloss
-@subsubsection Find_g77 Procedure
+@subsubsection find_g77 Procedure
 
 
 @quotation
-
-@t{@b{find_g77}(@i{});}
+@t{@b{find_g77}}
 @end quotation
 
 @node find_gfortran procedure, process_multilib_options procedure, find_g77 procedure, Libgloss
-@subsubsection Find_gfortran Procedure
+@subsubsection find_gfortran Procedure
 
 
 @quotation
-
-@t{@b{find_gfortran}(@i{});}
+@t{@b{find_gfortran}}
 @end quotation
 
 @node process_multilib_options procedure, add_multilib_option procedure, find_gfortran procedure, Libgloss
-@subsubsection Process_multilib_options Procedure
+@subsubsection process_multilib_options Procedure
 
 
 @quotation
-
-@t{@b{process_multilib_options}(@i{args});}
+@t{@b{process_multilib_options}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node add_multilib_option procedure, find_gas procedure, process_multilib_options procedure, Libgloss
-@subsubsection Add_multilib_option Procedure
+@subsubsection add_multilib_option Procedure
 
 
 @quotation
-
-@t{@b{add_multilib_option}(@i{args});}
+@t{@b{add_multilib_option}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node find_gas procedure, find_ld procedure, add_multilib_option procedure, Libgloss
-@subsubsection Find_gas Procedure
+@subsubsection find_gas Procedure
 
 
 @quotation
-
-@t{@b{find_gas}(@i{});}
+@t{@b{find_gas}}
 @end quotation
 
 @node find_ld procedure, build_wrapper procedure, find_gas procedure, Libgloss
-@subsubsection Find_ld Procedure
+@subsubsection find_ld Procedure
 
 
 @quotation
-
-@t{@b{find_ld}(@i{});}
+@t{@b{find_ld}}
 @end quotation
 
 @node build_wrapper procedure, winsup_include_flags procedure, find_ld procedure, Libgloss
-@subsubsection Build_wrapper Procedure
+@subsubsection build_wrapper Procedure
 
 
 @quotation
-
-@t{@b{build_wrapper}(@i{gluefile});}
+@t{@b{build_wrapper}@{@i{gluefile}@}}
 @end quotation
 
 @table @asis
-
 @item @code{gluefile}
 @end table
 
 @node winsup_include_flags procedure, winsup_link_flags procedure, build_wrapper procedure, Libgloss
-@subsubsection Winsup_include_flags Procedure
+@subsubsection winsup_include_flags Procedure
 
 
 @quotation
-
-@t{@b{winsup_include_flags}(@i{args});}
+@t{@b{winsup_include_flags}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node winsup_link_flags procedure, , winsup_include_flags procedure, Libgloss
-@subsubsection Winsup_link_flags Procedure
+@subsubsection winsup_link_flags Procedure
 
 
 @quotation
-
-@t{@b{winsup_link_flags}(@i{args});}
+@t{@b{winsup_link_flags}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
@@ -6074,224 +5699,200 @@ executable image for an embedded systems.
 procedures:
 
 @menu
-* Dumpvars Procedure: dumpvars procedure.
-* Dumplocals Procedure: dumplocals procedure.
-* Dumprocs Procedure: dumprocs procedure.
-* Dumpwatch Procedure: dumpwatch procedure.
-* Watcharray Procedure: watcharray procedure.
-* Watchvar Procedure: watchvar procedure.
-* Watchunset Procedure: watchunset procedure.
-* Watchwrite Procedure: watchwrite procedure.
-* Watchread Procedure: watchread procedure.
-* Watchdel Procedure: watchdel procedure.
-* Print Procedure: print procedure.
-* Quit Procedure: quit procedure.
+* Dumpvars Procedure: dumpvars procedure
+* Dumplocals Procedure: dumplocals procedure
+* Dumprocs Procedure: dumprocs procedure
+* Dumpwatch Procedure: dumpwatch procedure
+* Watcharray Procedure: watcharray procedure
+* Watchvar Procedure: watchvar procedure
+* Watchunset Procedure: watchunset procedure
+* Watchwrite Procedure: watchwrite procedure
+* Watchread Procedure: watchread procedure
+* Watchdel Procedure: watchdel procedure
+* Print Procedure: print procedure
+* Quit Procedure: quit procedure
 @end menu
 
 @node dumpvars procedure, dumplocals procedure, , Debugging Procedures
-@subsubsection Dumpvars Procedure
+@subsubsection dumpvars Procedure
 
 This takes a csh style regular expression (glob rules) and prints
 the values of the global variable names that match.  It is abbreviated
 as @emph{dv}.
 
 @quotation
-
-@t{@b{dumpvars}(@i{vars});}
+@t{@b{dumpvars}@{@i{vars}@}}
 @end quotation
 
 @table @asis
-
 @item @code{vars}
 The variables to dump.
 @end table
 
 @node dumplocals procedure, dumprocs procedure, dumpvars procedure, Debugging Procedures
-@subsubsection Dumplocals Procedure
+@subsubsection dumplocals Procedure
 
 This takes a csh style regular expression (glob rules) and
 prints the values of the local variable names that match. It is
 abbreviated as @emph{dl}.
 
 @quotation
-
-@t{@b{dumplocals}(@i{args});}
+@t{@b{dumplocals}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node dumprocs procedure, dumpwatch procedure, dumplocals procedure, Debugging Procedures
-@subsubsection Dumprocs Procedure
+@subsubsection dumprocs Procedure
 
 This takes a csh style regular expression (glob rules) and
 prints the body of all procs that match. It is abbreviated as
 @emph{dp}.
 
 @quotation
-
-@t{@b{dumprocs}(@i{pattern});}
+@t{@b{dumprocs}@{@i{pattern}@}}
 @end quotation
 
 @table @asis
-
 @item @code{pattern}
 The csh "glob" style pattern to look
 for.
 @end table
 
 @node dumpwatch procedure, watcharray procedure, dumprocs procedure, Debugging Procedures
-@subsubsection Dumpwatch Procedure
+@subsubsection dumpwatch Procedure
 
 This takes a csh style regular expression (glob rules) and
 prints all the watchpoints. It is abbreviated as
 @emph{dw}.
 
 @quotation
-
-@t{@b{dumpwatch}(@i{pattern});}
+@t{@b{dumpwatch}@{@i{pattern}@}}
 @end quotation
 
 @table @asis
-
 @item @code{pattern}
 The csh "glob" style pattern to look
 for.
 @end table
 
 @node watcharray procedure, watchvar procedure, dumpwatch procedure, Debugging Procedures
-@subsubsection Watcharray Procedure
+@subsubsection watcharray Procedure
 
 
 @quotation
-
-@t{@b{watcharray}(@i{element}
-@i{type});}
+@t{@b{watcharray}@{@i{element}
+@i{type}@}}
 @end quotation
 
 @table @asis
-
 @item @code{type}
 The csh "glob" style pattern to look
 for.
 @end table
 
 @node watchvar procedure, watchunset procedure, watcharray procedure, Debugging Procedures
-@subsubsection Watchvar Procedure
+@subsubsection watchvar Procedure
 
 
 @quotation
-
-@t{@b{watchvar}(@i{var}
-@i{type});}
+@t{@b{watchvar}@{@i{var}
+@i{type}@}}
 @end quotation
 
 @table @asis
-
 @item @code{}
 @end table
 
 @node watchunset procedure, watchwrite procedure, watchvar procedure, Debugging Procedures
-@subsubsection Watchunset Procedure
+@subsubsection watchunset Procedure
 
 This breaks program execution when the variable
 @code{var} is unset. It is abbreviated as
 @emph{wu}.
 
 @quotation
-
-@t{@b{watchunset}(@i{arg});}
+@t{@b{watchunset}@{@i{arg}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node watchwrite procedure, watchread procedure, watchunset procedure, Debugging Procedures
-@subsubsection Watchwrite Procedure
+@subsubsection watchwrite Procedure
 
 This breaks program execution when the variable
 @code{var} is written. It is abbreviated as
 @emph{ww}.
 
 @quotation
-
-@t{@b{watchwrite}(@i{var});}
+@t{@b{watchwrite}@{@i{var}@}}
 @end quotation
 
 @table @asis
-
 @item @code{var}
 The variable to watch.
 @end table
 
 @node watchread procedure, watchdel procedure, watchwrite procedure, Debugging Procedures
-@subsubsection Watchread Procedure
+@subsubsection watchread Procedure
 
 This breaks program execution when the variable
 @code{var} is read. It is abbreviated as
 @emph{wr}.
 
 @quotation
-
-@t{@b{watchread}(@i{var});}
+@t{@b{watchread}@{@i{var}@}}
 @end quotation
 
 @table @asis
-
 @item @code{var}
 The variable to watch.
 @end table
 
 @node watchdel procedure, print procedure, watchread procedure, Debugging Procedures
-@subsubsection Watchdel Procedure
+@subsubsection watchdel Procedure
 
 This deletes a watchpoint from the watch list. It is
 abbreviated as @emph{wd}.
 
 @quotation
-
-@t{@b{watchdel}(@i{args});}
+@t{@b{watchdel}@{@i{args}@}}
 @end quotation
 
 @table @asis
-
 @item @code{args}
 @end table
 
 @node print procedure, quit procedure, watchdel procedure, Debugging Procedures
-@subsubsection Print Procedure
+@subsubsection print Procedure
 
 This prints the value of the variable
 @code{var}. It is abbreviated as
 @emph{p}.
 
 @quotation
-
-@t{@b{print}(@i{var});}
+@t{@b{print}@{@i{var}@}}
 @end quotation
 
 @table @asis
-
 @item @code{var}
 @end table
 
 @node quit procedure, , print procedure, Debugging Procedures
-@subsubsection Quit Procedure
+@subsubsection quit Procedure
 
 This makes runtest exit. It is abbreviated as
 @emph{q}.
 
 @quotation
-
-@t{@b{quit}(@i{});}
+@t{@b{quit}}
 @end quotation
 
 @table @asis
-
 @item @code{}
 @end table
 
