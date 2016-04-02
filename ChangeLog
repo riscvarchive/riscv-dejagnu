@@ -1,5 +1,11 @@
 2016-04-03  Ben Elliston  <bje@gnu.org>
 
+	* configure.ac (AC_INIT): Set version to 1.6.
+	* configure: Regenerate.
+	* runtest.exp (frame_version): Set to 1.6.
+
+2016-04-03  Ben Elliston  <bje@gnu.org>
+
 	* doc/dejagnu.texi: More overhauling.
 
 2016-04-02  Ben Elliston  <bje@gnu.org>
