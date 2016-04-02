@@ -1,3 +1,8 @@
+2016-04-02  Ben Elliston  <bje@gnu.org>
+
+	* config.guess: Update to version 2016-04-02.
+	* config.sub: Update to version 2016-03-30.
+
 2016-04-02  Rob Savoye  <rob.savoye@linaro.org>
 
 	* contrib/sum2junit.sh: New.
