@@ -84,69 +84,57 @@ Reference
 @node What is DejaGnu?, Release Notes, , Introduction
 @section What is DejaGnu?
 
-DejaGnu is a framework for testing
-other programs, providing a single front-end for all
-tests. You can think of it as a custom library of Tcl
-procedures crafted to help with writing a test harness. A
-@emph{test harness} is the testing
-infrastructure that is created to support a specific program
-or tool. Each program can have multiple testsuites, all
-supported by a single test harness. DejaGnu is written in
-Expect, which in turn uses
-Tcl, the Tool command
-language. There is more information on Tcl at
-the @uref{http://www.tcl.tk,Tcl/Tk} web site and
-the Expect web site is
-at @uref{http://expect.nist.gov,NIST}.
+DejaGnu is a framework for testing other programs, providing a single
+front-end for all tests. You can think of it as a custom library of Tcl
+procedures crafted to help with writing a test harness. A @emph{test
+harness} is the testing infrastructure that is created to support a
+specific program or tool. Each program can have multiple testsuites, all
+supported by a single test harness. DejaGnu is written in Expect, which
+in turn uses Tcl, the Tool command language. There is more information
+on Tcl at the @uref{http://www.tcl.tk,Tcl/Tk} web site and the Expect
+web site is at @uref{http://expect.nist.gov,NIST}.
 
-Julia Menapace first coined the term ``DejaGnu'' to describe an
-earlier testing framework she wrote at Cygnus Support for
-testing GDB. When we replaced it with the Expect-based
-framework, it was like DejaGnu all over again.  More importantly,
-it was also named after my daughter, Deja Snow Savoye, who was
-a toddler during DejaGnu's beginnings.
+Julia Menapace first coined the term ``DejaGnu'' to describe an earlier
+testing framework she wrote at Cygnus Support for testing GDB. When we
+replaced it with the Expect-based framework, it was like DejaGnu all
+over again.  More importantly, it was also named after my daughter, Deja
+Snow Savoye, who was a toddler during DejaGnu's beginnings.
 
 DejaGnu offers several advantages for testing:
 
 @itemize 
 
 @item
-The flexibility and consistency of the DejaGnu
-framework make it easy to write tests for any program, with
-either batch oriented, or interactive programs.
+The flexibility and consistency of the DejaGnu framework make it easy to
+write tests for any program, with either batch oriented, or interactive
+programs.
 
 @item
-DejaGnu provides a layer of abstraction which
-allows you to write tests that are portable to any host or
-target where a program must be tested. For instance, a test
-for @code{GDB} can run from any supported host
-system on any supported target system. DejaGnu runs tests on
-many single board computers, whose operating software ranges
-from a simple boot monitor to a real-time OS.
+DejaGnu provides a layer of abstraction which allows you to write tests
+that are portable to any host or target where a program must be
+tested. For instance, a test for @code{GDB} can run from any supported
+host system on any supported target system. DejaGnu runs tests on many
+single board computers, whose operating software ranges from a simple
+boot monitor to a real-time OS.
 
 @item
-All tests have the same output format. This
-makes it easy to integrate testing into other software
-development processes. DejaGnu's output is designed to be
-parsed by other filtering script and it is also human
+All tests have the same output format. This makes it easy to integrate
+testing into other software development processes. DejaGnu's output is
+designed to be parsed by other filtering script and it is also human
 readable.
 
 @item
-Using Tcl and Expect, it's easy to create wrappers
-for existing testsuites. By incorporating existing tests under
-DejaGnu, it's easier to have a single set of report analyse
-programs..
+Using Tcl and Expect, it's easy to create wrappers for existing
+testsuites. By incorporating existing tests under DejaGnu, it's easier
+to have a single set of report analyse programs..
 @end itemize
 
-Running tests requires two things: the testing framework and
-the testsuites themselves. Tests are usually written in
-Expect using Tcl, but you can also use
-a Tcl script to run a testsuite that is not based on
-Expect. Expect
-script filenames conventionally use @emph{.exp} as a
-suffix; for example, the main implementation of the DejaGnu test
-driver is in the file
-runtest.exp.)
+Running tests requires two things: the testing framework and the
+testsuites themselves. Tests are usually written in Expect using Tcl,
+but you can also use a Tcl script to run a testsuite that is not based
+on Expect. Expect script filenames conventionally use @emph{.exp} as a
+suffix; for example, the main implementation of the DejaGnu test driver
+is in the file runtest.exp.)
 
 @node Release Notes, Design Goals, What is DejaGnu?, Introduction
 @section New In This Release
@@ -160,42 +148,36 @@ A completely new manual.
 @node Design Goals, A POSIX Conforming Test Framework, Release Notes, Introduction
 @section Design Goals
 
-DejaGnu grew out of the internal needs of Cygnus Solutions
-(formerly Cygnus Support). Cygnus maintained and enhanced a
-variety of free programs in many different environments and needed
-a testing tool that:
+DejaGnu grew out of the internal needs of Cygnus Solutions (formerly
+Cygnus Support). Cygnus maintained and enhanced a variety of free
+programs in many different environments and needed a testing tool that:
 
 @itemize 
 
 @item
-was useful to developers while fixing
-bugs;
+was useful to developers while fixing bugs;
 
 @item
-automated running many tests during a software
-release process;
+automated running many tests during a software release process;
 
 @item
-was portable among a variety of host
-computers;
+was portable among a variety of host computers;
 
 @item
 supported a cross-development environment;
 
 @item
-permitted testing of interactive programs
-like @code{GDB}; and 
+permitted testing of interactive programs like @code{GDB}; and
 
 @item
-permitted testing of batch-oriented programs
-like @code{GCC}.
+permitted testing of batch-oriented programs like @code{GCC}.
 @end itemize
 
-Some of the requirements proved challenging.  For example,
-interactive programs do not lend themselves very well to automated testing.
-But all the requirements are important. For instance, it is imperative to
-make sure that @code{GDB} works as well when cross-debugging
-as it does in a native configuration. 
+Some of the requirements proved challenging.  For example, interactive
+programs do not lend themselves very well to automated testing.  But all
+the requirements are important. For instance, it is imperative to make
+sure that @code{GDB} works as well when cross-debugging as it does in a
+native configuration.
 
 Probably the greatest challenge was testing in a cross-development
 environment.  Most cross-development environments are customized by each
@@ -210,79 +192,71 @@ it.  Currently DejaGnu can use @code{ssh}, @code{rsh}, @code{rlogin},
 @node A POSIX Conforming Test Framework, Installation, Design Goals, Introduction
 @section A POSIX compliant test framework
 
-DejaGnu conforms to the POSIX 1003.3 standard for test
-frameworks. Rob Savoye was a member of that committee.
+DejaGnu conforms to the POSIX 1003.3 standard for test frameworks. Rob
+Savoye was a member of that committee.
 
-POSIX standard 1003.3 defines what a testing framework
-needs to provide to create a POSIX compliant testsuite. This
-standard is primarily oriented to checking POSIX conformance,
-but its requirements also support testing of features not
-related to POSIX conformance.  POSIX 1003.3 does not specify a
-particular testing framework, but at this time there is only one
-other POSIX conforming test framework. TET was created by
-Unisoft for a consortium comprised of X/Open, Unix International
-and the Open Software Foundation.
+POSIX standard 1003.3 defines what a testing framework needs to provide
+to create a POSIX compliant testsuite. This standard is primarily
+oriented to checking POSIX conformance, but its requirements also
+support testing of features not related to POSIX conformance.  POSIX
+1003.3 does not specify a particular testing framework, but at this time
+there is only one other POSIX conforming test framework. TET was created
+by Unisoft for a consortium comprised of X/Open, Unix International and
+the Open Software Foundation.
 
-The POSIX documentation refers to @dfn{assertions}.
-An assertion is a description of behavior.  For example, if a standard
-says ``The sun shall shine'', a corresponding assertion might be ``The
-sun is shining.''  A test based on this assertion would pass or fail
-depending on whether it is day or night.  It is important to note
-that the standard being tested is never 1003.3; the standard being tested
-is some other standard, for which the assertions were written.
+The POSIX documentation refers to @dfn{assertions}.  An assertion is a
+description of behavior.  For example, if a standard says ``The sun
+shall shine'', a corresponding assertion might be ``The sun is
+shining.''  A test based on this assertion would pass or fail depending
+on whether it is day or night.  It is important to note that the
+standard being tested is never 1003.3; the standard being tested is some
+other standard, for which the assertions were written.
 
-As there is no testsuite to verify that testing frameworks
-are POSIX 1003.3 compliant, this is done by repeatedly reading
-the standard and experimenting.  One of the main things POSIX
-1003.3 does specify is the set of allowed output messages and
-their definitions.  Four messages are supported for a required
-feature of POSIX conforming systems and a fifth for a
-conditional feature. DejaGnu supports all five output messages.  In
-this sense a testsuite that uses exactly these messages can be
-considered POSIX compliant.  These definitions specify the
-output of a test case:
+As there is no testsuite to verify that testing frameworks are POSIX
+1003.3 compliant, this is done by repeatedly reading the standard and
+experimenting.  One of the main things POSIX 1003.3 does specify is the
+set of allowed output messages and their definitions.  Four messages are
+supported for a required feature of POSIX conforming systems and a fifth
+for a conditional feature. DejaGnu supports all five output messages.
+In this sense a testsuite that uses exactly these messages can be
+considered POSIX compliant.  These definitions specify the output of a
+test case:
 
 @table @asis
 
 @item PASS
-A test has succeeded.  That is, it demonstrated that
-the assertion is true.
+A test has succeeded.  That is, it demonstrated that the assertion is
+true.
 
 @item FAIL
-A test has not succeeded -- the assertion is
-false.  The @emph{FAIL} message is based on
-this test case only.  Other messages are used to indicate a
-failure of the framework. As with @emph{PASS},
-POSIX tests must return
-@emph{FAIL} rather than @emph{XFAIL} even
-if a failure was expected.
+A test has not succeeded -- the assertion is false.  The @emph{FAIL}
+message is based on this test case only.  Other messages are used to
+indicate a failure of the framework. As with @emph{PASS}, POSIX tests
+must return @emph{FAIL} rather than @emph{XFAIL} even if a failure was
+expected.
 
 @item XFAIL
-POSIX 1003.3 does not incorporate the notion of
-expected failures, so @emph{PASS}, instead of
-@emph{XPASS}, must also be returned for test cases
-which were expected to fail and did not.  This means that
-@emph{PASS} is in some sense more ambiguous than if
-@emph{XPASS} is also used.
+POSIX 1003.3 does not incorporate the notion of expected failures, so
+@emph{PASS}, instead of @emph{XPASS}, must also be returned for test
+cases which were expected to fail and did not.  This means that
+@emph{PASS} is in some sense more ambiguous than if @emph{XPASS} is also
+used.
 
 @item UNRESOLVED
-A test produced indeterminate results.  Usually, this
-means the test executed in an unexpected fashion. This outcome
-requires a human to go over results to determine if the test
-should have passed or failed.  This message is also used for any test
-that requires human intervention because it is beyond the abilities
-of the testing framework.  Any unresolved test should resolved to
-@emph{PASS} or @emph{FAIL} before a test
-run can be considered finished.
+A test produced indeterminate results.  Usually, this means the test
+executed in an unexpected fashion. This outcome requires a human to go
+over results to determine if the test should have passed or failed.
+This message is also used for any test that requires human intervention
+because it is beyond the abilities of the testing framework.  Any
+unresolved test should resolved to @emph{PASS} or @emph{FAIL} before a
+test run can be considered finished.
 
-Note that for POSIX, each assertion must produce a test result
-code.  If the test isn't actually run, it must produce
-@emph{UNRESOLVED} rather than just leaving that test
-out of the output.  This means that you have to be careful when
-writing tests to not carelessly use Tcl commands like
-@emph{return}---if you alter the flow of control of the
-Tcl code you must insure that every test still produces some result
-code.
+Note that for POSIX, each assertion must produce a test result code.  If
+the test isn't actually run, it must produce @emph{UNRESOLVED} rather
+than just leaving that test out of the output.  This means that you have
+to be careful when writing tests to not carelessly use Tcl commands like
+@emph{return}---if you alter the flow of control of the Tcl code you
+must insure that every test still produces some result code.
 
 Here are some of the ways a test may wind up
 @emph{UNRESOLVED}:
@@ -291,89 +265,76 @@ Here are some of the ways a test may wind up
 @itemize 
 
 @item
-Execution of a test is
-interrupted.
+Execution of a test is interrupted.
 
 @item
-A test does not produce a clear
-result. This is usually because there was an
-@emph{ERROR} from DejaGnu while processing
-the test, or because there were three or more
-@emph{WARNING} messages. Any
-@emph{WARNING} or @emph{ERROR}
-messages can invalidate the output of the test.  This
-usually requires a human to examine the output to
-determine what really happened -- and to improve the test
-case.
+A test does not produce a clear result. This is usually because there
+was an @emph{ERROR} from DejaGnu while processing the test, or because
+there were three or more @emph{WARNING} messages. Any @emph{WARNING} or
+@emph{ERROR} messages can invalidate the output of the test.  This
+usually requires a human to examine the output to determine what really
+happened -- and to improve the test case.
 
 @item
-A test depends on a previous test, which
-has failed.
+A test depends on a previous test, which has failed.
 
 @item
-The test was set up
-incorrectly.
+The test was set up incorrectly.
 @end itemize
 
 @table @asis
 
 @item UNTESTED
-A test was not run.  This is a placeholder
-used when there is no real test case
-yet.
+A test was not run.  This is a placeholder used when there is no real
+test case yet.
 @end table
 
 @table @asis
 
 @item UNSUPPORTED
-There is no support for the tested case.  This may
-mean that a conditional feature of an operating system, or of a
-compiler, is not implemented.  DejaGnu also uses this message when
-a testing environment (often a ``bare board'' target) lacks basic
-support for compiling or running the test case.  For example, a
-test for the system subroutine @emph{gethostname}
-would never work on a target board running only a boot
-monitor.
+There is no support for the tested case.  This may mean that a
+conditional feature of an operating system, or of a compiler, is not
+implemented.  DejaGnu also uses this message when a testing environment
+(often a ``bare board'' target) lacks basic support for compiling or
+running the test case.  For example, a test for the system subroutine
+@emph{gethostname} would never work on a target board running only a
+boot monitor.
 @end table
 
-DejaGnu uses the same output procedures to produce these messages
-for all testsuites and these procedures are already known to conform
-to POSIX 1003.3.  For a DejaGnu testsuite to conform to POSIX 1003.3,
-you must avoid the @emph{setup_xfail} procedure as
-described in the @emph{PASS} section above and you must
-be careful to return @emph{UNRESOLVED} where appropriate,
-as described in the @emph{UNRESOLVED} section
-above.
+DejaGnu uses the same output procedures to produce these messages for
+all testsuites and these procedures are already known to conform to
+POSIX 1003.3.  For a DejaGnu testsuite to conform to POSIX 1003.3, you
+must avoid the @emph{setup_xfail} procedure as described in the
+@emph{PASS} section above and you must be careful to return
+@emph{UNRESOLVED} where appropriate, as described in the
+@emph{UNRESOLVED} section above.
 
 @node Installation, , A POSIX Conforming Test Framework, Introduction
 @section Installation
 
-Refer to the @file{INSTALL} in the source
-distribution for detailed installation instructions.  Note that
-there is no compilation step as with many other GNU packages, as
-DejaGnu consists of interpreted code only.
+Refer to the @file{INSTALL} in the source distribution for detailed
+installation instructions.  Note that there is no compilation step as
+with many other GNU packages, as DejaGnu consists of interpreted code
+only.
 
-Save for its own small testsuite, the DejaGnu distribution does
-not include any testsuites. Testsuites for the various GNU
-development tools are included with those packages. After
-configuring the top-level DejaGnu directory, unpack and configure
-the test directories for the tools you want to test; then, in
-each test directory, run @emph{make check} to
-build auxiliary programs required by some of the tests, and run
-the test suites.
+Save for its own small testsuite, the DejaGnu distribution does not
+include any testsuites. Testsuites for the various GNU development tools
+are included with those packages. After configuring the top-level
+DejaGnu directory, unpack and configure the test directories for the
+tools you want to test; then, in each test directory, run @emph{make
+check} to build auxiliary programs required by some of the tests, and
+run the test suites.
 
 @node Running Tests, Customizing DejaGnu, Introduction, Top
 @chapter Running Tests
 
-There are two ways to execute a testsuite. The most
-common way is when there is existing support in the
-@file{Makefile} of the tool being tested. This
-usually consists of a
-@emph{check} target. The other way is to execute the
-@code{runtest} program directly. To run
-@code{runtest} directly from the command line requires
-either all of the correct command line options, or a
-@ref{Local Config File} must be set up correctly.
+There are two ways to execute a testsuite. The most common way is when
+there is existing support in the @file{Makefile} of the tool being
+tested. This usually consists of a @emph{check} target. The other way is
+to execute the @code{runtest} program directly. To run @code{runtest}
+directly from the command line requires either all of the correct
+command line options, or a @ref{Local Config File} must be set up
+correctly.
 
 @menu
 * Running 'make check': Make Check.
@@ -384,9 +345,8 @@ either all of the correct command line options, or a
 @node Make Check, Runtest, , Running Tests
 @section Running 'make check'
 
-To run tests from an existing collection, first use
-@code{configure} as usual to set up the build
-directory. Then type:
+To run tests from an existing collection, first use @code{configure} as
+usual to set up the build directory. Then type:
 
 @example
 
@@ -394,42 +354,33 @@ directory. Then type:
       
 @end example
 
-If the @emph{check} target exists, it
-usually saves you some trouble. For instance, it can set up any
-auxiliary programs or other files needed by the tests. The most
-common file the @emph{check} target depends on is
-the
-@file{site.exp} file. The site.exp file contains
-various variables that DejaGnu used to determine the configuration
-of the program being tested. This is mostly for supporting
-remote testing.
+If the @emph{check} target exists, it usually saves you some
+trouble. For instance, it can set up any auxiliary programs or other
+files needed by the tests. The most common file the @emph{check} target
+depends on is the @file{site.exp} file. The site.exp file contains
+various variables that DejaGnu used to determine the configuration of
+the program being tested. This is mostly for supporting remote testing.
 
-The @emph{check} target is supported by GNU
-Automake. To have DejaGnu support added to your
-generated @file{Makefile.in}, just add the keyword
-@code{dejagnu} to the AUTOMAKE_OPTIONS variable in
-your @file{Makefile.am} file.
+The @emph{check} target is supported by GNU Automake. To have DejaGnu
+support added to your generated @file{Makefile.in}, just add the keyword
+@code{dejagnu} to the AUTOMAKE_OPTIONS variable in your
+@file{Makefile.am} file.
 
-Once you have run @emph{make check} to build
-any auxiliary files, you can invoke the test driver
-@code{runtest} directly to repeat the tests.
-You will also have to execute @code{runtest}
-directly for test collections with no
-@emph{check} target in the
-@file{Makefile}.
+Once you have run @emph{make check} to build any auxiliary files, you
+can invoke the test driver @code{runtest} directly to repeat the tests.
+You will also have to execute @code{runtest} directly for test
+collections with no @emph{check} target in the @file{Makefile}.
 
 @node Runtest, Output Files, Make Check, Running Tests
 @section Running runtest
 
-@code{runtest} is the test driver for
-DejaGnu. You can specify two kinds of things on the
-@code{runtest} command line: command line options,
-and Tcl variables that are passed to the test scripts. The
-options are listed alphabetically below.
+@code{runtest} is the test driver for DejaGnu. You can specify two kinds
+of things on the @code{runtest} command line: command line options, and
+Tcl variables that are passed to the test scripts. The options are
+listed alphabetically below.
 
-@code{runtest} returns an exit code of
-@emph{1} if any test has an unexpected result. If
-all tests pass or fail as expected, @code{runtest}
+@code{runtest} returns an exit code of @emph{1} if any test has an
+unexpected result. If all tests pass or fail as expected, @code{runtest}
 returns @emph{0} as the exit code.
 
 @menu
@@ -441,321 +392,259 @@ returns @emph{0} as the exit code.
 @node Output States, Invoking runtest, , Runtest
 @subsection Output States
 
-@file{runtest} flags the outcome of each
-test as one of these cases. See @ref{A POSIX Conforming Test Framework} for a
-discussion of how POSIX specifies the meanings of these
-cases.
+@file{runtest} flags the outcome of each test as one of these cases. See
+@ref{A POSIX Conforming Test Framework} for a discussion of how POSIX
+specifies the meanings of these cases.
 
 @table @asis
 
 @item PASS
-The most desirable outcome: the test was
-expected to succeed and did succeed.
+The most desirable outcome: the test was expected to succeed and did
+succeed.
 
 @item XPASS
-A pleasant kind of failure: a test was expected to
-fail, but succeeded. This may indicate progress; inspect the test
-case to determine whether you should amend it to stop expecting
-failure.
+A pleasant kind of failure: a test was expected to fail, but
+succeeded. This may indicate progress; inspect the test case to
+determine whether you should amend it to stop expecting failure.
 
 @item FAIL
-A test failed, although it was expected to succeed.
-This may indicate regress; inspect the test case and the failing
-software to locate the bug.
+A test failed, although it was expected to succeed.  This may indicate
+regress; inspect the test case and the failing software to locate the
+bug.
 
 @item XFAIL
-A test failed, but it was expected to fail.  This
-result indicates no change in a known bug.  If a test fails because
-the operating system where the test runs lacks some facility required
-by the test, the outcome is @emph{UNSUPPORTED}
-instead.
+A test failed, but it was expected to fail.  This result indicates no
+change in a known bug.  If a test fails because the operating system
+where the test runs lacks some facility required by the test, the
+outcome is @emph{UNSUPPORTED} instead.
 
 @item UNRESOLVED
-Output from a test requires manual inspection; the
-testsuite could not automatically determine the outcome.  For
-example, your tests can report this outcome is when a test does not
-complete as expected.
+Output from a test requires manual inspection; the testsuite could not
+automatically determine the outcome.  For example, your tests can report
+this outcome is when a test does not complete as expected.
 
 @item UNTESTED
-A test case is not yet complete, and in particular
-cannot yet produce a @emph{PASS} or
-@emph{FAIL}. You can also use this outcome in dummy
+A test case is not yet complete, and in particular cannot yet produce a
+@emph{PASS} or @emph{FAIL}. You can also use this outcome in dummy
 ``tests'' that note explicitly the absence of a real test case for a
 particular property.
 
 @item UNSUPPORTED
-A test depends on a conditionally available feature
-that does not exist (in the configured testing environment).  For
-example, you can use this outcome to report on a test case that does
-not work on a particular target because its operating system support
-does not include a required subroutine.
+A test depends on a conditionally available feature that does not exist
+(in the configured testing environment).  For example, you can use this
+outcome to report on a test case that does not work on a particular
+target because its operating system support does not include a required
+subroutine.
 @end table
 
-@code{runtest} may also display the following
-messages:
+@code{runtest} may also display the following messages:
 
 @table @asis
 
 @item ERROR
-Indicates a major problem (detected by the test case
-itself) in running the test. This is usually an unrecoverable error,
-such as a missing file or loss of communication to the target. (POSIX
-testsuites should not emit this message; use
-@emph{UNSUPPORTED}, @emph{UNTESTED}, or
-@emph{UNRESOLVED} instead, as
-appropriate.)
+Indicates a major problem (detected by the test case itself) in running
+the test. This is usually an unrecoverable error, such as a missing file
+or loss of communication to the target. (POSIX testsuites should not
+emit this message; use @emph{UNSUPPORTED}, @emph{UNTESTED}, or
+@emph{UNRESOLVED} instead, as appropriate.)
 
 @item WARNING
-Indicates a possible problem in running the
-test. Usually warnings correspond to recoverable errors, or display
-an important message about the following tests.
+Indicates a possible problem in running the test. Usually warnings
+correspond to recoverable errors, or display an important message about
+the following tests.
 
 @item NOTE
-An informational message about the test
-case.
+An informational message about the test case.
 @end table
 
 @node Invoking runtest, Common Operations, Output States, Runtest
 @subsection Invoking runtest
 
-This is the full set of command line options that
-@code{runtest} recognizes. Option names may be
-abbreviated to the shortest unique string.
+This is the full set of command line options that @code{runtest}
+recognizes. Option names may be abbreviated to the shortest unique
+string.
 
 @table @asis
 
 @item @code{-a}, @code{--all}
-Display all test output. By default,
-@emph{runtest} shows only the output of tests that
-produce unexpected results; that is, tests with status
-@emph{FAIL} (unexpected failure),
-@emph{XPASS} (unexpected success), or
-@emph{ERROR} (a severe error in the test case
-itself). Specify @code{--all} to see output for tests
-with status @emph{PASS} (success, as expected)
-@emph{XFAIL} (failure, as expected), or
-@emph{WARNING} (minor error in the test case
-itself).
+Display all test output. By default, @emph{runtest} shows only the
+output of tests that produce unexpected results; that is, tests with
+status @emph{FAIL} (unexpected failure), @emph{XPASS} (unexpected
+success), or @emph{ERROR} (a severe error in the test case
+itself). Specify @code{--all} to see output for tests with status
+@emph{PASS} (success, as expected) @emph{XFAIL} (failure, as expected),
+or @emph{WARNING} (minor error in the test case itself).
 
 @item @code{--build [triplet]}
-@emph{string} is a
-configuration triplet as used
-by @code{configure}. This is the type of machine
-DejaGnu and the tools to be tested are built on. For a normal
-cross this is the same as the host, but for a Canadian
-cross, they are separate.
+@emph{string} is a configuration triplet as used by
+@code{configure}. This is the type of machine DejaGnu and the tools to
+be tested are built on. For a normal cross this is the same as the host,
+but for a Canadian cross, they are separate.
 
 @item @code{--host [triplet]}
-@code{string} is a configuration
-triplet as used by @emph{configure}.  Use this
-option to override the default string recorded by your
-configuration's choice of host.  This choice does not change
-how anything is actually configured unless --build is also
-specified; it affects @emph{only} DejaGnu
-procedures that compare the host string with particular
-values.  The procedures
-@emph{ishost}, @emph{istarget},
-@emph{isnative}, and @emph{setup_xfail}
-are affected by @code{--host}. In this usage,
-@emph{host} refers to the machine that the tests are to
-be run on, which may not be the same as the
-@emph{build} machine. If @code{--build}
-is also specified, then @code{--host} refers to the
-machine that the tests will be run on, not the machine DejaGnu is run
-on.
+@code{string} is a configuration triplet as used by @emph{configure}.
+Use this option to override the default string recorded by your
+configuration's choice of host.  This choice does not change how
+anything is actually configured unless --build is also specified; it
+affects @emph{only} DejaGnu procedures that compare the host string with
+particular values.  The procedures @emph{ishost}, @emph{istarget},
+@emph{isnative}, and @emph{setup_xfail} are affected by
+@code{--host}. In this usage, @emph{host} refers to the machine that the
+tests are to be run on, which may not be the same as the @emph{build}
+machine. If @code{--build} is also specified, then @code{--host} refers
+to the machine that the tests will be run on, not the machine DejaGnu is
+run on.
 
 @item @code{--host_board [name]}
 The host board to use.
 
 @item @code{--target [triplet]}
-Use this option to override the default
-setting (running native tests). @emph{triplet}
-is a configuration triplet of the form
-@emph{cpu-vendor-os} as used by
-@code{configure}. This option changes the
-configuration @code{runtest} uses for the
-default tool names, and other setup
-information.
+Use this option to override the default setting (running native
+tests). @emph{triplet} is a configuration triplet of the form
+@emph{cpu-vendor-os} as used by @code{configure}. This option changes
+the configuration @code{runtest} uses for the default tool names, and
+other setup information.
 
 @item @code{--debug}
-Turns on
-the Expect internal debugging
-output. Debugging output is displayed as part of the
-@emph{runtest} output, and logged to a file called
-@file{dbg.log}. The extra debugging output does
-@emph{not} appear on standard output, unless the
-verbose level is greater than 2 (for instance, to see debug output
-immediately, specify @code{--debug -v -v}). The
-debugging output shows all attempts at matching the test output of
-the tool with the scripted patterns describing expected output.  The
-output generated with @code{--strace} also goes into
+Turns on the Expect internal debugging output. Debugging output is
+displayed as part of the @emph{runtest} output, and logged to a file
+called @file{dbg.log}. The extra debugging output does @emph{not} appear
+on standard output, unless the verbose level is greater than 2 (for
+instance, to see debug output immediately, specify @code{--debug -v
+-v}). The debugging output shows all attempts at matching the test
+output of the tool with the scripted patterns describing expected
+output.  The output generated with @code{--strace} also goes into
 @file{dbg.log}.
 
 @item @code{--help}
-Prints out a short summary of the
-@emph{runtest} options, then exits (even if you also
-specify other options).
+Prints out a short summary of the @emph{runtest} options, then exits
+(even if you also specify other options).
 
 @item @code{--ignore [name(s)] }
-The name(s) of specific tests to
-ignore.
+The name(s) of specific tests to ignore.
 
 @item @code{--objdir [path]}
-Use @emph{path} as the top
-directory containing any auxiliary compiled test code. The
-default is '.'.  Use this option to locate pre-compiled
-test code.  You can normally prepare any auxiliary files
-needed with
+Use @emph{path} as the top directory containing any auxiliary compiled
+test code. The default is '.'.  Use this option to locate pre-compiled
+test code.  You can normally prepare any auxiliary files needed with
 @emph{make}.
 
 @item @code{--outdir [path]}
-Write log files in directory
-@file{path}.  The default is '.', the
-directory where you start @emph{runtest}. This
-option affects only the summary (@file{.sum})
-and the detailed log files (@file{.log}).  The
-DejaGnu debug log @file{dbg.log} always appears
-(when requested) in the local directory.
+Write log files in directory @file{path}.  The default is '.', the
+directory where you start @emph{runtest}. This option affects only the
+summary (@file{.sum}) and the detailed log files (@file{.log}).  The
+DejaGnu debug log @file{dbg.log} always appears (when requested) in the
+local directory.
 
 @item @code{--log_dialog}
-Emit Expect output to stdout.
-The expect output is usually only
-written to
-@file{tool.log}. By enabling this option, they are also
-be printed to the stdout of the @emph{runtest}
-invocation.
+Emit Expect output to stdout.  The expect output is usually only written
+to @file{tool.log}. By enabling this option, they are also be printed to
+the stdout of the @emph{runtest} invocation.
 
 @item @code{--reboot [name]}
-Reboot the target board when
-@code{runtest} starts. When running tests on a
-separate target board, it is safer to reboot the target to
-be certain of its state.  However, when developing test
-scripts, rebooting can take a lot of time.
+Reboot the target board when @code{runtest} starts. When running tests
+on a separate target board, it is safer to reboot the target to be
+certain of its state.  However, when developing test scripts, rebooting
+can take a lot of time.
 
 @item @code{--srcdir [path]}
-Use @file{path} as the top directory
-for test scripts to run. @emph{runtest} looks in this
-directory for any subdirectory whose name begins with the toolname
-(specified with @code{--tool}). For instance, with
-@code{--tool gdb}, @emph{runtest} uses
-tests in subdirectories @file{gdb.*} (with the usual
-shell-like filename expansion).  If you do not use
-@code{--srcdir}, @emph{runtest} looks for
-test directories under the current working
-directory.
+Use @file{path} as the top directory for test scripts to
+run. @emph{runtest} looks in this directory for any subdirectory whose
+name begins with the toolname (specified with @code{--tool}). For
+instance, with @code{--tool gdb}, @emph{runtest} uses tests in
+subdirectories @file{gdb.*} (with the usual shell-like filename
+expansion).  If you do not use @code{--srcdir}, @emph{runtest} looks for
+test directories under the current working directory.
 
 @item @code{--strace [number]}
-Turn on internal tracing for
-@emph{expect}, to n levels deep. By adjusting the
-level, you can control the extent to which your output expands
-multi-level Tcl statements.  This allows you to ignore some levels of
-@emph{case} or @emph{if} statements.
-Each procedure call or control structure counts as one ``level''. The
-output is recorded in the same file, @file{dbg.log},
-used for output from @code{--debug}.
+Turn on internal tracing for @emph{expect}, to n levels deep. By
+adjusting the level, you can control the extent to which your output
+expands multi-level Tcl statements.  This allows you to ignore some
+levels of @emph{case} or @emph{if} statements.  Each procedure call or
+control structure counts as one ``level''. The output is recorded in the
+same file, @file{dbg.log}, used for output from @code{--debug}.
 
 @item @code{--target_board [name(s)]}
 The list of target boards to run tests
 on.
 
-@anchor{--tool [name[s]]}@item @code{--tool [name(s)]}
-Specifies which testsuite to run, and what
-initialization module to use. @code{--tool} is used
-@emph{only} for these two purposes. It is
-@emph{not} used to name the executable program to
-test. Executable tool names (and paths) are recorded in
-@file{site.exp} and you can override them by specifying
+@anchor{--tool [name[s]]}@item @code{--tool [name(s)]} Specifies which
+testsuite to run, and what initialization module to use. @code{--tool}
+is used @emph{only} for these two purposes. It is @emph{not} used to
+name the executable program to test. Executable tool names (and paths)
+are recorded in @file{site.exp} and you can override them by specifying
 Tcl variables on the command line.
 
-For example, including "@code{--tool} gcc" on the
-@emph{runtest} command line runs tests from all test
-subdirectories whose names match @file{gcc.*}, and uses
-one of the initialization modules named
-@file{config/*-gcc.exp}. To specify the name of the
-compiler (perhaps as an alternative path to what
-@emph{runtest} would use by default), use
-@emph{GCC=binname} on the @emph{runtest}
-command line.
+For example, including "@code{--tool} gcc" on the @emph{runtest} command
+line runs tests from all test subdirectories whose names match
+@file{gcc.*}, and uses one of the initialization modules named
+@file{config/*-gcc.exp}. To specify the name of the compiler (perhaps as
+an alternative path to what @emph{runtest} would use by default), use
+@emph{GCC=binname} on the @emph{runtest} command line.
 
 @item @code{--tool_exec [name]}
-The path to the tool executable to
-test.
+The path to the tool executable to test.
 
 @item @code{--tool_opts [options]}
-A list of additional options to pass to the
-tool.
+A list of additional options to pass to the tool.
 
 @item @code{-v}, @code{--verbose}
-Turns on more output. Repeating this option increases
-the amount of output displayed. Level one (@emph{-v})
-is simply test output. Level two (@emph{-v -v}) shows
-messages on options, configuration, and process control.  Verbose
-messages appear in the detailed (@file{*.log}) log
-file, but not in the summary (@file{*.sum}) log
-file.
+Turns on more output. Repeating this option increases the amount of
+output displayed. Level one (@emph{-v}) is simply test output. Level two
+(@emph{-v -v}) shows messages on options, configuration, and process
+control.  Verbose messages appear in the detailed (@file{*.log}) log
+file, but not in the summary (@file{*.sum}) log file.
 
 @item @code{-V}, @code{--version}
-Prints out the version numbers of DejaGnu,
-Expect, and Tcl.
+Prints out the version numbers of DejaGnu, Expect, and Tcl.
 
 @item @code{--D0}, @code{--D1}
-Start the internal Tcl debugger. The Tcl debugger
-supports breakpoints, single stepping, and other common debugging
-activities. See the document "Debugger for Tcl Applications" by Don
-Libes. (Distributed in PostScript form with
-@emph{expect} as the file
-@file{expect/tcl-debug.ps.}. If you specify
-@emph{-D1}, the @emph{expect} shell stops
-at a breakpoint as soon as DejaGnu invokes it. If you specify
-@emph{-D0}, DejaGnu starts as usual, but you can enter
-the debugger by sending an interrupt (e.g. by typing
-@key{Control}@key{c}).
+Start the internal Tcl debugger. The Tcl debugger supports breakpoints,
+single stepping, and other common debugging activities. See the document
+"Debugger for Tcl Applications" by Don Libes. (Distributed in PostScript
+form with @emph{expect} as the file @file{expect/tcl-debug.ps.}. If you
+specify @emph{-D1}, the @emph{expect} shell stops at a breakpoint as
+soon as DejaGnu invokes it. If you specify @emph{-D0}, DejaGnu starts as
+usual, but you can enter the debugger by sending an interrupt (e.g. by
+typing @key{Control}@key{c}).
 
 @item @file{testfile}.exp[=arg(s)]
-Specify the names of testsuites to run. By default,
-@emph{runtest} runs all tests for the tool, but you can
-restrict it to particular testsuites by giving the names of the
-@emph{.exp expect} scripts that control
-them. @emph{testsuite}.exp may not include path
-information; use plain filenames.
+Specify the names of testsuites to run. By default, @emph{runtest} runs
+all tests for the tool, but you can restrict it to particular testsuites
+by giving the names of the @emph{.exp expect} scripts that control
+them. @emph{testsuite}.exp may not include path information; use plain
+filenames.
 
 @item @file{testfile}.exp="testfile1 ..."
-Specify a subset of tests in a suite to run. For
-compiler or assembler tests, which often use a single
-@emph{.exp} script covering many different source
-files, this option allows you to further restrict the tests by
-listing particular source files to compile. Some tools even support
-wildcards here.  The wildcards supported depend upon the tool, but
-typically they are @emph{?}, @emph{*},
-and @emph{[chars]}.
+Specify a subset of tests in a suite to run. For compiler or assembler
+tests, which often use a single @emph{.exp} script covering many
+different source files, this option allows you to further restrict the
+tests by listing particular source files to compile. Some tools even
+support wildcards here.  The wildcards supported depend upon the tool,
+but typically they are @emph{?}, @emph{*}, and @emph{[chars]}.
 
 @item @code{tclvar}=value
-You can define Tcl variables for use by your test
-scripts in the same style used with @emph{make} for
-environment variables.  For example, @emph{runtest
-GDB=gdb.old} defines a variable called
-@code{GDB}; when your scripts refer to
-@code{$GDB} in this run, they use the value
+You can define Tcl variables for use by your test scripts in the same
+style used with @emph{make} for environment variables.  For example,
+@emph{runtest GDB=gdb.old} defines a variable called @code{GDB}; when
+your scripts refer to @code{$GDB} in this run, they use the value
 @emph{gdb.old}.
 
-The default Tcl variables used for most tools are defined in
-the main DejaGnu @emph{Makefile}; their values are
-captured in the @file{site.exp} file.
+The default Tcl variables used for most tools are defined in the main
+DejaGnu @emph{Makefile}; their values are captured in the
+@file{site.exp} file.
 @end table
 
 @node Common Operations, , Invoking runtest, Runtest
 @subsection Common Options
 
-Typically, you don't need to use any command line
-options.  The @code{--tool} option is only required
-when there is more than one testsuite in the same
-directory. The default options are in the
-local @file{site.exp} file, created
-by @code{make site.exp}.
+Typically, you don't need to use any command line options.  The
+@code{--tool} option is only required when there is more than one
+testsuite in the same directory. The default options are in the local
+@file{site.exp} file, created by @code{make site.exp}.
 
-For example, if the directory @file{gdb/testsuite}
-contains a collection of DejaGnu tests for GDB, you can run them like
-this:
+For example, if the directory @file{gdb/testsuite} contains a collection
+of DejaGnu tests for GDB, you can run them like this:
 
 @example
 
@@ -776,8 +665,8 @@ The test output follows, then ends with:
 	
 @end example
 
-You can use the option @code{--srcdir} to point to
-some other directory containing a collection of tests:
+You can use the option @code{--srcdir} to point to some other directory
+containing a collection of tests:
 
 @example
 
@@ -785,31 +674,25 @@ some other directory containing a collection of tests:
 	
 @end example
 
-By default, @code{runtest} prints only the
-names of the tests it runs, output from any tests that have unexpected
-results, and a summary showing how many tests passed and how many
-failed.  To display output from all tests (whether or not they behave
-as expected), use the @code{--all} option.  For more
-verbose output about processes being run, communication, and so on, use
-@code{--verbose}. To see even more output, use multiple
-@code{--verbose} options.
-The @code{--help} for a more detailed explanation of
-each @code{runtest} option.
+By default, @code{runtest} prints only the names of the tests it runs,
+output from any tests that have unexpected results, and a summary
+showing how many tests passed and how many failed.  To display output
+from all tests (whether or not they behave as expected), use the
+@code{--all} option.  For more verbose output about processes being run,
+communication, and so on, use @code{--verbose}. To see even more output,
+use multiple @code{--verbose} options.  The @code{--help} for a more
+detailed explanation of each @code{runtest} option.
 
 @node Output Files, , Runtest, Running Tests
 @section Output files
 
-DejaGnu always writes two kinds of output files.  Summary
-output is written to the @file{.sum} file, and
-detailed output is written to the @file{.log} file.
-The tool name determines the prefix for these files. For example,
-after running with
-@code{--tool gdb}, the output files will be called
-@file{gdb.sum} and
-@file{gdb.log}. For troubleshooting, a debug log
-file that logs the operation
-of Expect is available.  Each of
-these will be described in turn.
+DejaGnu always writes two kinds of output files.  Summary output is
+written to the @file{.sum} file, and detailed output is written to the
+@file{.log} file.  The tool name determines the prefix for these
+files. For example, after running with @code{--tool gdb}, the output
+files will be called @file{gdb.sum} and @file{gdb.log}. For
+troubleshooting, a debug log file that logs the operation of Expect is
+available.  Each of these will be described in turn.
 
 @menu
 * Summary log file::
@@ -820,31 +703,24 @@ these will be described in turn.
 @node Summary log file, Detailed log file, , Output Files
 @subsection Summary log file
 
-DejaGnu always produces a summary (@file{.sum})
-output file. This summary lists the names of all test files run.
-For each test file, one line of output from
-each @code{pass} command (showing status
-@emph{PASS} or @emph{XPASS}) or
-@code{fail} command (status
-@emph{FAIL} or @emph{XFAIL}),
-trailing summary statistics that count passing and failing tests
-(expected and unexpected), the full pathname of the tool tested,
-and the version number of the tool.  All possible outcomes, and
-all errors, are always reflected in the summary output file,
-regardless of whether or not you specify
-@code{--all}.
+DejaGnu always produces a summary (@file{.sum}) output file. This
+summary lists the names of all test files run.  For each test file, one
+line of output from each @code{pass} command (showing status @emph{PASS}
+or @emph{XPASS}) or @code{fail} command (status @emph{FAIL} or
+@emph{XFAIL}), trailing summary statistics that count passing and
+failing tests (expected and unexpected), the full pathname of the tool
+tested, and the version number of the tool.  All possible outcomes, and
+all errors, are always reflected in the summary output file, regardless
+of whether or not you specify @code{--all}.
 
-If any of your tests use the procedures
-@code{unresolved}, @code{unsupported},
-or @code{untested}, the summary output also
+If any of your tests use the procedures @code{unresolved},
+@code{unsupported}, or @code{untested}, the summary output also
 tabulates the corresponding outcomes.
 
-For example, after running @code{runtest --tool
-binutils} a summary log file will be written to
-@file{binutils.sum}. Normally, DejaGnu writes this
-file in your current working directory. Use the
-@code{--outdir} option to select a different output
-directory.
+For example, after running @code{runtest --tool binutils} a summary log
+file will be written to @file{binutils.sum}. Normally, DejaGnu writes
+this file in your current working directory. Use the @code{--outdir}
+option to select a different output directory.
 
 @strong{Sample summary log}
 
@@ -877,15 +753,12 @@ directory.
 @node Detailed log file, Debug log file, Summary log file, Output Files
 @subsection Detailed log file
 
-DejaGnu also saves a detailed log file
-(@file{.log}), showing any output generated by
-test cases as well as the summary output. For example, after
-running
-@code{runtest --tool binutils}, a detailed log file
-will be written to @file{binutils.log}. Normally,
-DejaGnu writes this file in your current working directory. Use the
-@code{--outdir} option to select a different output
-directory.
+DejaGnu also saves a detailed log file (@file{.log}), showing any output
+generated by test cases as well as the summary output. For example,
+after running @code{runtest --tool binutils}, a detailed log file will
+be written to @file{binutils.log}. Normally, DejaGnu writes this file in
+your current working directory. Use the @code{--outdir} option to select
+a different output directory.
 
 @strong{Sample detailed log for g++ tests}
 
@@ -928,16 +801,11 @@ directory.
 @node Debug log file, , Detailed log file, Output Files
 @subsection Debug log file
 
-The @code{runtest}
-option @code{--debug} creates a file showing the
-output from
-Expect in debugging mode. The
-@file{dbg.log} file is created in the directory
-where you start @code{runtest}.  The log file shows
-the string sent to the tool under test by
-each @code{send} command and the pattern it compares
-with the tool output by each @code{expect}
-command.
+The @code{runtest} option @code{--debug} creates a file showing the
+output from Expect in debugging mode. The @file{dbg.log} file is created
+in the directory where you start @code{runtest}.  The log file shows the
+string sent to the tool under test by each @code{send} command and the
+pattern it compares with the tool output by each @code{expect} command.
 
 The log messages begin with a message of the form:
 
@@ -948,13 +816,10 @@ The log messages begin with a message of the form:
         
 @end example
 
-For every unsuccessful match,
-Expect issues a
-@emph{no} after this message. If other patterns
-are specified for the same Expect
-command, they are reflected also, but without the first part of
-the message (@emph{expect... match
-pattern}).
+For every unsuccessful match, Expect issues a @emph{no} after this
+message. If other patterns are specified for the same Expect command,
+they are reflected also, but without the first part of the message
+(@emph{expect... match pattern}).
 
 When Expect finds a match, the
 log for the successful match ends with @emph{yes},
@@ -1002,101 +867,81 @@ first glance:
 @itemize 
 
 @item
-Empty output for the first attempted match.  The
-first set of attempted matches shown ran against the output
-@emph{@{@}} --- that is, no
-output. Expect begins
-attempting to match the patterns supplied immediately; often,
-the first pass is against incomplete output (or completely
-before all output, as in this case).
+Empty output for the first attempted match.  The first set of attempted
+matches shown ran against the output @emph{@{@}} --- that is, no
+output. Expect begins attempting to match the patterns supplied
+immediately; often, the first pass is against incomplete output (or
+completely before all output, as in this case).
 
 @item
-Interspersed tool output.  The beginning of
-the log entry for the second attempted match may be hard to
-spot: this is because the prompt @emph{@{(gdb) @}}
-appears on the same line, just before the
-@emph{expect:} that marks the beginning of the
-log entry.
+Interspersed tool output.  The beginning of the log entry for the second
+attempted match may be hard to spot: this is because the prompt
+@emph{@{(gdb) @}} appears on the same line, just before the
+@emph{expect:} that marks the beginning of the log entry.
 
 @item
-Fail-safe patterns.  Many of the patterns
-tested are fail-safe patterns provided by
-GDB testing utilities, to reduce
-possible indeterminacy.  It is useful to anticipate potential
-variations caused by extreme system conditions
-(GDB might issue the message
-@emph{virtual memory exhausted} in rare
-circumstances), or by changes in the tested program
-(@emph{Undefined command} is the likeliest
-outcome if the name of a tested command changes).
+Fail-safe patterns.  Many of the patterns tested are fail-safe patterns
+provided by GDB testing utilities, to reduce possible indeterminacy.  It
+is useful to anticipate potential variations caused by extreme system
+conditions (GDB might issue the message @emph{virtual memory exhausted}
+in rare circumstances), or by changes in the tested program
+(@emph{Undefined command} is the likeliest outcome if the name of a
+tested command changes).
 
-The pattern @emph{@{return@}} is a
-particularly interesting fail-safe to notice; it checks for an
-unexpected @key{RET} prompt.  This may happen,
-for example, if the tested tool can filter output through a
-pager.
+The pattern @emph{@{return@}} is a particularly interesting fail-safe to
+notice; it checks for an unexpected @key{RET} prompt.  This may happen,
+for example, if the tested tool can filter output through a pager.
 
-These fail-safe patterns (like the debugging log itself)
-are primarily useful while developing test scripts.  Use the
-@code{error} procedure to make the actions for
-fail-safe patterns produce messages starting with
-@emph{ERROR} on standard output, and in the
-detailed log file.
+These fail-safe patterns (like the debugging log itself) are primarily
+useful while developing test scripts.  Use the @code{error} procedure to
+make the actions for fail-safe patterns produce messages starting with
+@emph{ERROR} on standard output, and in the detailed log file.
 @end itemize
 
 @node Customizing DejaGnu, Extending DejaGnu, Running Tests, Top
 @chapter Customizing DejaGnu
 
-The site configuration file, @file{site.exp},
-captures configuration-dependent values and propagates them to the
-DejaGnu test environment using Tcl variables.  This ties the
-DejaGnu test scripts into the @code{configure} and
-@code{make} programs. If this file is setup correctly,
-it is possible to execute a testsuite merely by typing
+The site configuration file, @file{site.exp}, captures
+configuration-dependent values and propagates them to the DejaGnu test
+environment using Tcl variables.  This ties the DejaGnu test scripts
+into the @code{configure} and @code{make} programs. If this file is
+setup correctly, it is possible to execute a testsuite merely by typing
 @code{runtest}.
 
-DejaGnu supports two @file{site.exp}
-files. The multiple instances of @file{site.exp} are
-loaded in a fixed order. The first file loaded
-is the local file @file{site.exp}, and then the
-optional global @file{site.exp} file as
-pointed to by the @code{DEJAGNU} environment
+DejaGnu supports two @file{site.exp} files. The multiple instances of
+@file{site.exp} are loaded in a fixed order. The first file loaded is
+the local file @file{site.exp}, and then the optional global
+@file{site.exp} file as pointed to by the @code{DEJAGNU} environment
 variable.
 
-There is an optional @emph{master}
-@file{site.exp}, capturing configuration values that
-apply to DejaGnu across the board, in each configuration-specific
-subdirectory of the DejaGnu library directory.
-@code{runtest} loads these values first. The master
-@file{site.exp} contains the default values for all
-targets and hosts supported by DejaGnu. This master file is
-identified by setting the environment variable
-@code{DEJAGNU} to the name of the file. This is also
-referred to as the ``global'' config file.
+There is an optional @emph{master} @file{site.exp}, capturing
+configuration values that apply to DejaGnu across the board, in each
+configuration-specific subdirectory of the DejaGnu library directory.
+@code{runtest} loads these values first. The master @file{site.exp}
+contains the default values for all targets and hosts supported by
+DejaGnu. This master file is identified by setting the environment
+variable @code{DEJAGNU} to the name of the file. This is also referred
+to as the ``global'' config file.
 
-Any directory containing a configured testsuite also has a
-local @file{site.exp}, capturing configuration values
-specific to the tool under test.  Since @code{runtest}
-loads these values last, the individual test configuration can
-either rely on and use, or override, any of the global values from
-the global @file{site.exp} file.
+Any directory containing a configured testsuite also has a local
+@file{site.exp}, capturing configuration values specific to the tool
+under test.  Since @code{runtest} loads these values last, the
+individual test configuration can either rely on and use, or override,
+any of the global values from the global @file{site.exp} file.
 
-You can usually generate or update the testsuite's local
-@file{site.exp} by typing @code{make
-site.exp} in the testsuite directory, after the test
-suite is configured.
+You can usually generate or update the testsuite's local @file{site.exp}
+by typing @code{make site.exp} in the testsuite directory, after the
+test suite is configured.
 
 You can also have a file in your home directory called
-@file{.dejagnurc}. This gets loaded after the other
-config files. Usually this is used for personal stuff, like
-setting the @code{all_flag} so all the output gets
-printed, or your own verbosity levels. This file is usually
-restricted to setting command line options.
+@file{.dejagnurc}. This gets loaded after the other config
+files. Usually this is used for personal stuff, like setting the
+@code{all_flag} so all the output gets printed, or your own verbosity
+levels. This file is usually restricted to setting command line options.
 
-You can further override the default values in a
-user-editable section of any @file{site.exp}, or by
-setting variables on the @code{runtest} command
-line.
+You can further override the default values in a user-editable section
+of any @file{site.exp}, or by setting variables on the @code{runtest}
+command line.
 
 @menu
 * Local Config File::
@@ -1109,26 +954,22 @@ line.
 @node Local Config File, Global Config File, , Customizing DejaGnu
 @section Local Config File
 
-It is usually more convenient to keep these @emph{manual
-overrides} in the @file{site.exp}
-local to each test directory, rather than in the global
-@file{site.exp} in the installed DejaGnu
-library. This file is mostly for supplying tool specific info
-that is required by the testsuite.
+It is usually more convenient to keep these @emph{manual overrides} in
+the @file{site.exp} local to each test directory, rather than in the
+global @file{site.exp} in the installed DejaGnu library. This file is
+mostly for supplying tool specific info that is required by the
+testsuite.
 
-All local @file{site.exp} files have
-two sections, separated by comment text. The first section is
-the part that is generated by @code{make}. It is
-essentially a collection of Tcl variable definitions based on
-@file{Makefile} environment variables. Since they
-are generated by @code{make}, they contain the
-values as specified by @code{configure}.  (You can
-also customize these values by using the @code{--site}
-option to @code{configure}.) In particular, this
-section contains the @file{Makefile}
-variables for host and target configuration data. Do not edit
-this first section; if you do, your changes are replaced next
-time you run @code{make}.
+All local @file{site.exp} files have two sections, separated by comment
+text. The first section is the part that is generated by @code{make}. It
+is essentially a collection of Tcl variable definitions based on
+@file{Makefile} environment variables. Since they are generated by
+@code{make}, they contain the values as specified by @code{configure}.
+(You can also customize these values by using the @code{--site} option
+to @code{configure}.) In particular, this section contains the
+@file{Makefile} variables for host and target configuration data. Do not
+edit this first section; if you do, your changes are replaced next time
+you run @code{make}.
 
 @strong{The first section starts with}
 
@@ -1140,14 +981,13 @@ time you run @code{make}.
 	
 @end example
 
-In the second section, you can override any default values
-(locally to DejaGnu) for all the variables.  The second section
-can also contain your preferred defaults for all the command
-line options to @code{runtest}. This allows you to
-easily customize @code{runtest} for your preferences
-in each configured test-suite tree, so that you need not type
-options repeatedly on the command line.  (The second section may
-also be empty, if you do not wish to override any defaults.)
+In the second section, you can override any default values (locally to
+DejaGnu) for all the variables.  The second section can also contain
+your preferred defaults for all the command line options to
+@code{runtest}. This allows you to easily customize @code{runtest} for
+your preferences in each configured test-suite tree, so that you need
+not type options repeatedly on the command line.  (The second section
+may also be empty, if you do not wish to override any defaults.)
 
 @strong{The first section ends with this line}
 
@@ -1157,19 +997,16 @@ also be empty, if you do not wish to override any defaults.)
 	
 @end example
 
-You can make any changes under this line. If you wish to
-redefine a variable in the top section, then just put a
-duplicate value in this second section. Usually the values
-defined in this config file are related to the configuration of
-the test run. This is the ideal place to set the variables
-@code{host_triplet}, @code{build_triplet},
-@code{target_triplet}. All other variables are tool
-dependent, i.e., for testing a compiler, the value for
-@code{CC} might be set to a freshly built binary, as
-opposed to one in the user's path.
+You can make any changes under this line. If you wish to redefine a
+variable in the top section, then just put a duplicate value in this
+second section. Usually the values defined in this config file are
+related to the configuration of the test run. This is the ideal place to
+set the variables @code{host_triplet}, @code{build_triplet},
+@code{target_triplet}. All other variables are tool dependent, i.e., for
+testing a compiler, the value for @code{CC} might be set to a freshly
+built binary, as opposed to one in the user's path.
 
-Here's an example local site.exp file, as used for
-GCC/G++ testing.
+Here's an example local site.exp file, as used for GCC/G++ testing.
 
 @strong{Local Config File}
 
@@ -1193,37 +1030,34 @@ GCC/G++ testing.
       
 @end example
 
-This file defines the required fields for a local config
-file, namely the three config triplets, and the srcdir. It also
-defines several other Tcl variables that are used exclusively by
-the GCC testsuite. For most test cases, the CXXFLAGS and LDFLAGS
-are supplied by DejaGnu itself for cross testing, but to test a
-compiler, GCC needs to manipulate these itself.
+This file defines the required fields for a local config file, namely
+the three config triplets, and the srcdir. It also defines several other
+Tcl variables that are used exclusively by the GCC testsuite. For most
+test cases, the CXXFLAGS and LDFLAGS are supplied by DejaGnu itself for
+cross testing, but to test a compiler, GCC needs to manipulate these
+itself.
 
-The local @file{site.exp} may also set Tcl
-variables such as @code{test_timeout} which can control
-the amount of time (in seconds) to wait for a remote test to
-complete. If not specified, @code{test_timeout} defaults
-to 300 seconds.
+The local @file{site.exp} may also set Tcl variables such as
+@code{test_timeout} which can control the amount of time (in seconds) to
+wait for a remote test to complete. If not specified,
+@code{test_timeout} defaults to 300 seconds.
 
 @node Global Config File, Board Config File, Local Config File, Customizing DejaGnu
 @section Global Config File
 
-The master config file is where all the target specific
-config variables for a whole site get set. The idea is
-that for a centralized testing lab where people have to share a
-target between multiple developers. There are settings for both
-remote targets and remote hosts.  Here's an example of a Master
-Config File (also called the Global config file) for a
-@emph{Canadian cross}. A Canadian cross is when
-you build and test a cross compiler on a machine other than the
-one it's to be hosted on.
+The master config file is where all the target specific config variables
+for a whole site get set. The idea is that for a centralized testing lab
+where people have to share a target between multiple developers. There
+are settings for both remote targets and remote hosts.  Here's an
+example of a Master Config File (also called the Global config file) for
+a @emph{Canadian cross}. A Canadian cross is when you build and test a
+cross compiler on a machine other than the one it's to be hosted on.
 
-Here we have the config settings for our California
-office. Note that all config values are site dependent. Here we
-have two sets of values that we use for testing m68k-aout cross
-compilers. As both of these target boards has a different
-debugging protocol, we test on both of them in sequence.
+Here we have the config settings for our California office. Note that
+all config values are site dependent. Here we have two sets of values
+that we use for testing m68k-aout cross compilers. As both of these
+target boards has a different debugging protocol, we test on both of
+them in sequence.
 
 @strong{Global Config file}
 
@@ -1259,47 +1093,43 @@ debugging protocol, we test on both of them in sequence.
       
 @end example
 
-In this case, we have support for several cross compilers,
-that all run on this host. For testing on operating systems that
-don't support Expect, DejaGnu can be run on the local build
-machine, and it can connect to the remote host and run all the
-tests for this cross compiler on that host. All the remote OS
-requires is a working Telnet server.
+In this case, we have support for several cross compilers, that all run
+on this host. For testing on operating systems that don't support
+Expect, DejaGnu can be run on the local build machine, and it can
+connect to the remote host and run all the tests for this cross compiler
+on that host. All the remote OS requires is a working Telnet server.
 
-As you can see, all one does is set the variable
-@code{target_list} to the list of targets and options to
-test. The simple settings, like for
-@emph{sparc64-elf} only require setting the name of
-the single board config file. The @emph{mips-elf}
-target is more complicated. Here it sets the list to three target
-boards. One is the default mips target, and both
-@emph{wilma} @emph{barney} are
-symbolic names for other mips boards. Symbolic names are covered
-in the @ref{Adding a new board} chapter. The more complicated
-example is the one for @emph{mips-lsi-elf}. This one
-runs the tests with multiple iterations using all possible
-combinations of the @code{--soft-float} and the
-@code{--el} (little endian) option. Needless to say,
-this last feature is mostly compiler specific.
+As you can see, all one does is set the variable @code{target_list} to
+the list of targets and options to test. The simple settings, like for
+@emph{sparc64-elf} only require setting the name of the single board
+config file. The @emph{mips-elf} target is more complicated. Here it
+sets the list to three target boards. One is the default mips target,
+and both @emph{wilma} @emph{barney} are symbolic names for other mips
+boards. Symbolic names are covered in the @ref{Adding a new board}
+chapter. The more complicated example is the one for
+@emph{mips-lsi-elf}. This one runs the tests with multiple iterations
+using all possible combinations of the @code{--soft-float} and the
+@code{--el} (little endian) option. Needless to say, this last feature
+is mostly compiler specific.
 
 @node Board Config File, Remote Host Testing, Global Config File, Customizing DejaGnu
 @section Board Configuration File
 
-The board config file is where board specific config data
-is stored. A board config file contains all the higher-level
-configuration settings. There is a rough inheritance scheme, where it is
-possible to base a new board description file on an existing one. There
-are also collections of custom procedures for common environments. For
-more information on adding a new board config file, go to the @ref{Adding a new board} chapter. 
+The board config file is where board specific config data is stored. A
+board config file contains all the higher-level configuration
+settings. There is a rough inheritance scheme, where it is possible to
+base a new board description file on an existing one. There are also
+collections of custom procedures for common environments. For more
+information on adding a new board config file, go to the @ref{Adding a
+new board} chapter.
 
 An example board config file for a GNU simulator is as
-follows. @code{set_board_info} is a procedure that sets the
-field name to the specified value. The procedures in square brackets
-@emph{[]} are @emph{helper procedures}. These
-are used to find parts of a tool chain required to build an executable
-image that may reside in various locations. This is mostly of use for
-when the startup code, the standard C libraries, or the tool chain itself
-is part of your build tree.
+follows. @code{set_board_info} is a procedure that sets the field name
+to the specified value. The procedures in square brackets @emph{[]} are
+@emph{helper procedures}. These are used to find parts of a tool chain
+required to build an executable image that may reside in various
+locations. This is mostly of use for when the startup code, the standard
+C libraries, or the tool chain itself is part of your build tree.
 
 @strong{Board Configuration File}
 
@@ -1339,18 +1169,18 @@ is part of your build tree.
       
 @end example
 
-There are five helper procedures used in this example. The first
-one, @code{find gcc} looks for a copy of the GNU compiler in
-your build tree, or it uses the one in your path. This will also return
-the proper transformed name for a cross compiler if you whole build tree
-is configured for one. The next helper procedures are
-@code{libgloss_include_flags} &
-@code{libgloss_link_flags}. These return the proper flags to
-compiler and link an executable image using @ref{Libgloss}, the GNU BSP (Board Support Package). The final
+There are five helper procedures used in this example. The first one,
+@code{find gcc} looks for a copy of the GNU compiler in your build tree,
+or it uses the one in your path. This will also return the proper
+transformed name for a cross compiler if you whole build tree is
+configured for one. The next helper procedures are
+@code{libgloss_include_flags} & @code{libgloss_link_flags}. These return
+the proper flags to compiler and link an executable image using
+@ref{Libgloss}, the GNU BSP (Board Support Package). The final
 procedures are @code{newlib_include_flag} &
-@code{newlib_include_flag}. These find the Newlib C
-library, which is a reentrant standard C library for embedded systems
-comprising of non GPL'd code.
+@code{newlib_include_flag}. These find the Newlib C library, which is a
+reentrant standard C library for embedded systems comprising of non
+GPL'd code.
 
 @node Remote Host Testing, Config File Values, Board Config File, Customizing DejaGnu
 @section Remote Host Testing
@@ -1359,23 +1189,22 @@ comprising of non GPL'd code.
 
 @strong{Note}
 
-Thanks to DJ Delorie for the original paper that
-this section is based on.
+Thanks to DJ Delorie for the original paper that this section is based
+on.
 @end quotation
 
-DejaGnu also supports running the tests on a remote
-host. To set this up, the remote host needs an FTP server, and a
-telnet server. Currently foreign operating systems used as
-remote hosts are VxWorks, VRTX, DOS/Windows 3.1, MacOS and Windows.
+DejaGnu also supports running the tests on a remote host. To set this
+up, the remote host needs an FTP server, and a telnet server. Currently
+foreign operating systems used as remote hosts are VxWorks, VRTX,
+DOS/Windows 3.1, MacOS and Windows.
 
-The recommended source for a Windows-based FTP
-server is to get IIS (either IIS 1 or Personal Web Server) from
-@uref{http://www.microsoft.com,http://www.microsoft.com}.
-When you install it, make sure you install the FTP server - it's
-not selected by default. Go into the IIS manager and change the
-FTP server so that it does not allow anonymous FTP. Set the home
-directory to the root directory (i.e. c:\) of a suitable
-drive. Allow writing via FTP.
+The recommended source for a Windows-based FTP server is to get IIS
+(either IIS 1 or Personal Web Server) from
+@uref{http://www.microsoft.com,http://www.microsoft.com}.  When you
+install it, make sure you install the FTP server - it's not selected by
+default. Go into the IIS manager and change the FTP server so that it
+does not allow anonymous FTP. Set the home directory to the root
+directory (i.e. c:\) of a suitable drive. Allow writing via FTP.
 
 It will create an account like IUSR_FOOBAR where foobar is
 the name of your machine. Go into the user editor and give that
@@ -1383,23 +1212,21 @@ account a password that you don't mind hanging around in the
 clear (i.e. not the same as your admin or personal
 passwords). Also, add it to all the various permission groups.
 
-You'll also need a telnet server. For Windows, go
-to the @uref{http://ataman.com,Ataman} web site,
-pick up the Ataman Remote Logon Services for Windows, and
-install it. You can get started on the eval period anyway. Add
-IUSR_FOOBAR to the list of allowed users, set the HOME directory
-to be the same as the FTP default directory. Change the Mode
-prompt to simple.
+You'll also need a telnet server. For Windows, go to the
+@uref{http://ataman.com,Ataman} web site, pick up the Ataman Remote
+Logon Services for Windows, and install it. You can get started on the
+eval period anyway. Add IUSR_FOOBAR to the list of allowed users, set
+the HOME directory to be the same as the FTP default directory. Change
+the Mode prompt to simple.
 
-Ok, now you need to pick a directory name to do all the
-testing in. For the sake of this example, we'll call it piggy
-(i.e. c:\piggy). Create this directory.
+Ok, now you need to pick a directory name to do all the testing in. For
+the sake of this example, we'll call it piggy (i.e. c:\piggy). Create
+this directory.
 
-You'll need a unix machine. Create a directory for the
-scripts you'll need. For this example, we'll use
-/usr/local/swamp/testing. You'll need to have a source tree
-somewhere, say /usr/src/devo. Now, copy some files from
-releng's area in SV to your machine:
+You'll need a unix machine. Create a directory for the scripts you'll
+need. For this example, we'll use /usr/local/swamp/testing. You'll need
+to have a source tree somewhere, say /usr/src/devo. Now, copy some files
+from releng's area in SV to your machine:
 
 @strong{Remote host setup}
 
@@ -1415,13 +1242,11 @@ releng's area in SV to your machine:
       
 @end example
 
-You must edit the boards/foobar.exp file to reflect your
-machine; change the hostname (foobar.com), username
-(iusr_foobar), password, and ftp_directory (c:/piggy) to match
-what you selected.
+You must edit the boards/foobar.exp file to reflect your machine; change
+the hostname (foobar.com), username (iusr_foobar), password, and
+ftp_directory (c:/piggy) to match what you selected.
 
-Edit the global @file{ site.exp} to reflect your
-boards directory:
+Edit the global @file{ site.exp} to reflect your boards directory:
 
 @strong{Add The Board Directory}
 
@@ -1431,11 +1256,10 @@ boards directory:
 	
 @end example
 
-Now run MkTestDir, which is in the contrib
-directory. The first parameter is the toolchain prefix, the
-second is the location of your devo tree. If you are testing a
-cross compiler (ex: you have sh-hms-gcc.exe in your PATH on
-the PC), do something like this:
+Now run MkTestDir, which is in the contrib directory. The first
+parameter is the toolchain prefix, the second is the location of your
+devo tree. If you are testing a cross compiler (ex: you have
+sh-hms-gcc.exe in your PATH on the PC), do something like this:
 
 @strong{Setup Cross Remote Testing}
 
@@ -1456,13 +1280,12 @@ gcc.exe in your PATH on the PC), do this:
 	
 @end example
 
-To test the setup, @code{ftp} to your PC
-using the username (iusr_foobar) and password you selected. CD
-to the test directory. Upload a file to the PC. Now telnet to
-your PC using the same username and password. CD to the test
-directory. Make sure the file is there. Type "set" and/or "gcc
--v" (or sh-hms-gcc -v) and make sure the default PATH contains
-the installation you want to test.
+To test the setup, @code{ftp} to your PC using the username
+(iusr_foobar) and password you selected. CD to the test
+directory. Upload a file to the PC. Now telnet to your PC using the same
+username and password. CD to the test directory. Make sure the file is
+there. Type "set" and/or "gcc -v" (or sh-hms-gcc -v) and make sure the
+default PATH contains the installation you want to test.
 
 @strong{Run Test Remotely}
 
@@ -1485,10 +1308,9 @@ MkTestDir created):
 	
 @end example
 
-Note: if you are testing a cross-compiler, put in the
-correct target board. You'll also have to download more .exp
-files and modify them for your local configuration. The -v's
-are optional.
+Note: if you are testing a cross-compiler, put in the correct target
+board. You'll also have to download more .exp files and modify them for
+your local configuration. The -v's are optional.
 
 @node Config File Values, , Remote Host Testing, Customizing DejaGnu
 @section Config File Values
@@ -1507,17 +1329,15 @@ following fields are part of the array.
 @node Option Variables, Personal Config File, , Config File Values
 @subsection Command Line Option Variables
 
-In the user editable second section of the @ref{Personal Config File} you can not only override the configuration
-variables captured in the first section, but also specify
-default values for all on the @code{runtest}
-command line options.  Save for @code{--debug},
-@code{--help}, and @code{--version}, each
-command line option has an associated Tcl variable.  Use the
-Tcl @code{set} command to specify a new default
-value (as for the configuration variables).  The following
-table describes the correspondence between command line
-options and variables you can set in
-@file{site.exp}.  @ref{Invoking runtest}, for
+In the user editable second section of the @ref{Personal Config File}
+you can not only override the configuration variables captured in the
+first section, but also specify default values for all on the
+@code{runtest} command line options.  Save for @code{--debug},
+@code{--help}, and @code{--version}, each command line option has an
+associated Tcl variable.  Use the Tcl @code{set} command to specify a
+new default value (as for the configuration variables).  The following
+table describes the correspondence between command line options and
+variables you can set in @file{site.exp}.  @ref{Invoking runtest}, for
 explanations of the command-line options.
 
 @strong{Tcl Variables For Command Line Options}
@@ -1613,30 +1433,26 @@ machines within a local network here.
 
 The testsuite for a new tool should always be located in that tools
 source directory. DejaGnu require the directory be named
-@file{testsuite}. Under this directory, the test
-cases go in a subdirectory whose name begins with the tool
-name. For example, for a tool named @emph{myprog},
-each subdirectory containing testsuites must start
-with @emph{"myprog."}.
+@file{testsuite}. Under this directory, the test cases go in a
+subdirectory whose name begins with the tool name. For example, for a
+tool named @emph{myprog}, each subdirectory containing testsuites must
+start with @emph{"myprog."}.
 
 @node Adding A New Tool, Adding A New Target, Adding a new testsuite, Extending DejaGnu
 @section Adding a new tool
 
-In general, the best way to learn how to write code, or
-even prose, is to read something similar.  This principle
-applies to test cases and to testsuites.  Unfortunately,
-well-established testsuites have a way of developing their own
-conventions: as test writers become more experienced with DejaGnu
-and with Tcl, they accumulate more utilities, and take advantage
-of more and more features of
-Expect
-and Tcl in general.  Inspecting such
-established testsuites may make the prospect of creating an
-entirely new testsuite appear overwhelming.  Nevertheless, it is
-straightforward to start a new testsuite.
+In general, the best way to learn how to write code, or even prose, is
+to read something similar.  This principle applies to test cases and to
+testsuites.  Unfortunately, well-established testsuites have a way of
+developing their own conventions: as test writers become more
+experienced with DejaGnu and with Tcl, they accumulate more utilities,
+and take advantage of more and more features of Expect and Tcl in
+general.  Inspecting such established testsuites may make the prospect
+of creating an entirely new testsuite appear overwhelming.
+Nevertheless, it is straightforward to start a new testsuite.
 
-To help orient you further in this task, here is an outline of the
-steps to begin building a testsuite for a program example.
+To help orient you further in this task, here is an outline of the steps
+to begin building a testsuite for a program example.
 
 @itemize 
 
@@ -1645,44 +1461,36 @@ Create or select a directory to contain your new
 collection of tests. Change into that directory (shown here as
 @file{testsuite}):
 
-Create a @file{configure.in} file in this directory,
-to control configuration-dependent choices for your tests.  So far as
-DejaGnu is concerned, the important thing is to set a value for the
-variable @code{target_abbrev}; this value is the link to the
-init file you will write soon.  (For simplicity, we assume the
-environment is Unix, and use @emph{unix} as the
-value.)
+Create a @file{configure.in} file in this directory, to control
+configuration-dependent choices for your tests.  So far as DejaGnu is
+concerned, the important thing is to set a value for the variable
+@code{target_abbrev}; this value is the link to the init file you will
+write soon.  (For simplicity, we assume the environment is Unix, and use
+@emph{unix} as the value.)
 
-What else is needed in @file{configure.in} depends on
-the requirements of your tool, your intended test environments, and which
-configure system you use.  This example is a minimal configure.in for use
-with GNU Autoconf. 
+What else is needed in @file{configure.in} depends on the requirements
+of your tool, your intended test environments, and which configure
+system you use.  This example is a minimal configure.in for use with GNU
+Autoconf.
 
 @item
-Create @file{Makefile.in} (if using
-Autoconf), or @file{Makefile.am} (if using
-Automake), the source file used by configure to build your
-@file{Makefile}. If you are using GNU Automake.just add the
-keyword @emph{dejagnu} to the
-@emph{AUTOMAKE_OPTIONS} variable in your
-@file{Makefile.am} file. This will add all
-the @file{Makefile} support needed to run DejaGnu,
-and support the @ref{Make Check} target.
+Create @file{Makefile.in} (if using Autoconf), or @file{Makefile.am} (if
+using Automake), the source file used by configure to build your
+@file{Makefile}. If you are using GNU Automake.just add the keyword
+@emph{dejagnu} to the @emph{AUTOMAKE_OPTIONS} variable in your
+@file{Makefile.am} file. This will add all the @file{Makefile} support
+needed to run DejaGnu, and support the @ref{Make Check} target.
 
-You also need to include two targets important to DejaGnu:
-@emph{check}, to run the tests, and
-@emph{site.exp}, to set up the Tcl copies of
-configuration-dependent values. This is called the
-@ref{Local Config File} The @emph{check} target
-must invoke the @code{runtest} program to run the
-tests.
+You also need to include two targets important to DejaGnu: @emph{check},
+to run the tests, and @emph{site.exp}, to set up the Tcl copies of
+configuration-dependent values. This is called the @ref{Local Config
+File} The @emph{check} target must invoke the @code{runtest} program to
+run the tests.
 
-The @emph{site.exp} target should usually
-set up (among other things) the @emph{$tool}
-variable for the name of your program. If the
-local @file{site.exp} file is setup correctly, it
-is possible to execute the tests by merely
-typing @code{runtest} on the command line.
+The @emph{site.exp} target should usually set up (among other things)
+the @emph{$tool} variable for the name of your program. If the local
+@file{site.exp} file is setup correctly, it is possible to execute the
+tests by merely typing @code{runtest} on the command line.
 
 @strong{Sample Makefile.in Fragment}
 
@@ -1763,9 +1571,9 @@ minimal @file{unix.exp} to begin with:
 	  
 @end example
 
-If the program being tested is interactive, however, you might
-as well define a @emph{start} routine and invoke it by
-using a tool init file like this:
+If the program being tested is interactive, however, you might as well
+define a @emph{start} routine and invoke it by using a tool init file
+like this:
 
 @strong{Simple tool init file for interactive programs}
 
@@ -1810,16 +1618,14 @@ line of Tcl code to issue a message.
 @end example
 
 @item
-Back in the @file{testsuite} (top
-level) directory, run @code{configure}. Typically you do
-this while in the build directory. You may have to specify more of a
-path, if a suitable configure is not available in your execution
-path.
+Back in the @file{testsuite} (top level) directory, run
+@code{configure}. Typically you do this while in the build
+directory. You may have to specify more of a path, if a suitable
+configure is not available in your execution path.
 
 @item
-You are now ready to type @code{make
-check} or @code{runtest}.  You should
-see something like this:
+You are now ready to type @code{make check} or @code{runtest}.  You
+should see something like this:
 
 @strong{Example Test Case Run}
 
@@ -1837,82 +1643,72 @@ see something like this:
 	 
 @end example
 
-There is no output in the summary, because so far the
-example does not call any of the procedures that report a
-test outcome.
+There is no output in the summary, because so far the example does not
+call any of the procedures that report a test outcome.
 
 @item
-Write some real tests. For an interactive tool, you
-should probably write a real exit routine in fairly short order. In
-any case, you should also write a real version routine
-soon. 
+Write some real tests. For an interactive tool, you should probably
+write a real exit routine in fairly short order. In any case, you should
+also write a real version routine soon.
 @end itemize
 
 @node Adding A New Target, Adding a new board, Adding A New Tool, Extending DejaGnu
 @section Adding A New Target
 
-DejaGnu has some additional requirements for target support, beyond
-the general-purpose provisions of configure. DejaGnu must actively
+DejaGnu has some additional requirements for target support, beyond the
+general-purpose provisions of configure. DejaGnu must actively
 communicate with the target, rather than simply generating or managing
 code for the target architecture.  Therefore, each tool requires an
 initialization module for each target.  For new targets, you must supply
 a few Tcl procedures to adapt DejaGnu to the target.  This permits
 DejaGnu itself to remain target independent.
 
-Usually the best way to write a new initialization module is to
-edit an existing initialization module; some trial and error will be
-required. If necessary, you can use the @code{--debug} option to see what
-is really going on.
+Usually the best way to write a new initialization module is to edit an
+existing initialization module; some trial and error will be
+required. If necessary, you can use the @code{--debug} option to see
+what is really going on.
 
-When you code an initialization module, be generous in
-printing information controlled by
-the @code{verbose} procedure.  In
-cross-development environments, most of the work is in getting
-the communications right. Code for communicating via TCP/IP
-networks or serial lines is available in a DejaGnu library files
-such as @file{lib/telnet.exp}.
+When you code an initialization module, be generous in printing
+information controlled by the @code{verbose} procedure.  In
+cross-development environments, most of the work is in getting the
+communications right. Code for communicating via TCP/IP networks or
+serial lines is available in a DejaGnu library files such as
+@file{lib/telnet.exp}.
 
 If you suspect a communication problem, try running the connection
-interactively from Expect.  (There are three
-ways of running Expect as an interactive
-interpreter.  You can run Expect with no
-arguments, and control it completely interactively; or you can use
-@code{expect -i} together with other command-line options and
-arguments; or you can run the command @code{interpreter} from
-any Expect procedure.  Use
-@code{return} to get back to the calling procedure (if any),
-or @code{return -tcl} to make the calling procedure itself
-return to its caller; use @code{exit} or end-of-file to leave
-Expect altogether.)  Run the program whose name is recorded in
-@code{$connectmode}, with the arguments in
-@code{$targetname}, to establish a connection.  You should at
-least be able to get a prompt from any target that is physically
+interactively from Expect.  (There are three ways of running Expect as
+an interactive interpreter.  You can run Expect with no arguments, and
+control it completely interactively; or you can use @code{expect -i}
+together with other command-line options and arguments; or you can run
+the command @code{interpreter} from any Expect procedure.  Use
+@code{return} to get back to the calling procedure (if any), or
+@code{return -tcl} to make the calling procedure itself return to its
+caller; use @code{exit} or end-of-file to leave Expect altogether.)  Run
+the program whose name is recorded in @code{$connectmode}, with the
+arguments in @code{$targetname}, to establish a connection.  You should
+at least be able to get a prompt from any target that is physically
 connected.
 
 @node Adding a new board, Board File Values, Adding A New Target, Extending DejaGnu
 @section Adding a new board
 
-Adding a new board consists of creating a new board
-configuration file. Examples are in
-@file{dejagnu/baseboards}. Usually to make a new
-board file, it's easiest to copy an existing one. It is also
-possible to have your file be based on a
-@emph{baseboard} file with only one or two
-changes needed. Typically, this can be as simple as just
-changing the linker script. Once the new baseboard file is done,
-add it to the @code{boards_DATA} list in the
-@file{dejagnu/baseboards/Makefile.am}, and regenerate the
-Makefile.in using automake. Then just rebuild and install DejaGnu. You
-can test it by:
+Adding a new board consists of creating a new board configuration
+file. Examples are in @file{dejagnu/baseboards}. Usually to make a new
+board file, it's easiest to copy an existing one. It is also possible to
+have your file be based on a @emph{baseboard} file with only one or two
+changes needed. Typically, this can be as simple as just changing the
+linker script. Once the new baseboard file is done, add it to the
+@code{boards_DATA} list in the @file{dejagnu/baseboards/Makefile.am},
+and regenerate the Makefile.in using automake. Then just rebuild and
+install DejaGnu. You can test it by:
 
-There is a crude inheritance scheme going on with board files, so
-you can include one board file into another, The two main procedures used
-to do this are @code{load_generic_config} and
-@code{load_base_board_description}. The generic config file
-contains other procedures used for a certain class of target. The
-board description file is where the board specific settings go. Commonly
-there are similar target environments with just different
-processors.
+There is a crude inheritance scheme going on with board files, so you
+can include one board file into another, The two main procedures used to
+do this are @code{load_generic_config} and
+@code{load_base_board_description}. The generic config file contains
+other procedures used for a certain class of target. The board
+description file is where the board specific settings go. Commonly there
+are similar target environments with just different processors.
 
 @strong{Testing a New Board Configuration File}
 
@@ -1922,14 +1718,13 @@ processors.
       
 @end example
 
-Here's an example of a board config file. There are
-several @emph{helper procedures} used in this
-example. A helper procedure is one that look for a tool of files
-in commonly installed locations. These are mostly used when
-testing in the build tree, because the executables to be tested
-are in the same tree as the new dejagnu files. The helper
-procedures are the ones in square braces
-@emph{[]}, which is the Tcl execution characters.
+Here's an example of a board config file. There are several @emph{helper
+procedures} used in this example. A helper procedure is one that look
+for a tool of files in commonly installed locations. These are mostly
+used when testing in the build tree, because the executables to be
+tested are in the same tree as the new dejagnu files. The helper
+procedures are the ones in square braces @emph{[]}, which is the Tcl
+execution characters.
 
 @strong{Example Board Configuration File}
 
@@ -1973,11 +1768,10 @@ procedures are the ones in square braces
 @node Board File Values, Writing A Test Case, Adding a new board, Extending DejaGnu
 @section Board Configuration File Values
 
-These fields are all in the @code{board_info} array.
-These are all set by using the @code{set_board_info}
-and @code{add_board_info} procedures as required. The
-parameters are the field name, followed by the value that the field
-is set to or is added to the field, respectively.
+These fields are all in the @code{board_info} array.  These are all set
+by using the @code{set_board_info} and @code{add_board_info} procedures
+as required. The parameters are the field name, followed by the value
+that the field is set to or is added to the field, respectively.
 
 @strong{Common Board Info Fields}
 
@@ -2108,62 +1902,53 @@ target_install@tab @{sh-hms@}@tab
 @node Writing A Test Case, Debugging A Test Case, Board File Values, Extending DejaGnu
 @section Writing A Test Case
 
-The easiest way to prepare a new test case is to base it
-on an existing one for a similar situation.  There are two major
-categories of tests: batch or interactive.  Batch oriented tests
-are usually easier to write.
+The easiest way to prepare a new test case is to base it on an existing
+one for a similar situation.  There are two major categories of tests:
+batch or interactive.  Batch oriented tests are usually easier to write.
 
-The GCC tests are a good example of batch oriented tests.
-All GCC tests consist primarily of a call to a single common
-procedure, since all the tests either have no output, or only
-have a few warning messages when successfully compiled.  Any
-non-warning output is a test failure.  All the C code needed is
-kept in the test directory.  The test driver, written in Tcl,
-need only get a listing of all the C files in the directory, and
-compile them all using a generic procedure. This procedure and a
-few others supporting for these tests are kept in the library
-module @file{lib/c-torture.exp} in the GCC test
-suite. Most tests of this kind use very few
-Expect features, and are coded almost
+The GCC tests are a good example of batch oriented tests.  All GCC tests
+consist primarily of a call to a single common procedure, since all the
+tests either have no output, or only have a few warning messages when
+successfully compiled.  Any non-warning output is a test failure.  All
+the C code needed is kept in the test directory.  The test driver,
+written in Tcl, need only get a listing of all the C files in the
+directory, and compile them all using a generic procedure. This
+procedure and a few others supporting for these tests are kept in the
+library module @file{lib/c-torture.exp} in the GCC test suite. Most
+tests of this kind use very few Expect features, and are coded almost
 purely in Tcl.
 
-Writing the complete suite of C tests, then, consisted of
-these steps:
+Writing the complete suite of C tests, then, consisted of these steps:
 
 @itemize 
 
 @item
-Copying all the C code into the test directory.
-These tests were based on the C-torture test created by Torbjorn
-Granlund (on behalf of the Free Software Foundation) for GCC
-development.
+Copying all the C code into the test directory.  These tests were based
+on the C-torture test created by Torbjorn Granlund (on behalf of the
+Free Software Foundation) for GCC development.
 
 @item
-Writing (and debugging) the generic Tcl procedures for
-compilation.
+Writing (and debugging) the generic Tcl procedures for compilation.
 
 @item
-Writing the simple test driver: its main task is to
-search the directory (using the Tcl procedure
-@emph{glob} for filename expansion with wildcards)
-and call a Tcl procedure with each filename.  It also checks for
-a few errors from the testing procedure.
+Writing the simple test driver: its main task is to search the directory
+(using the Tcl procedure @emph{glob} for filename expansion with
+wildcards) and call a Tcl procedure with each filename.  It also checks
+for a few errors from the testing procedure.
 @end itemize
 
-Testing interactive programs is intrinsically more
-complex.  Tests for most interactive programs require some trial
-and error before they are complete.
+Testing interactive programs is intrinsically more complex.  Tests for
+most interactive programs require some trial and error before they are
+complete.
 
-However, some interactive programs can be tested in a
-simple fashion reminiscent of batch tests.  For example, prior
-to the creation of DejaGnu, the GDB distribution already
-included a wide-ranging testing procedure.  This procedure was
-very robust, and had already undergone much more debugging and
-error checking than many recent DejaGnu test cases.
-Accordingly, the best approach was simply to encapsulate the
-existing GDB tests, for reporting purposes. Thereafter, new GDB
-tests built up a family of Tcl procedures specialized for GDB
-testing.
+However, some interactive programs can be tested in a simple fashion
+reminiscent of batch tests.  For example, prior to the creation of
+DejaGnu, the GDB distribution already included a wide-ranging testing
+procedure.  This procedure was very robust, and had already undergone
+much more debugging and error checking than many recent DejaGnu test
+cases.  Accordingly, the best approach was simply to encapsulate the
+existing GDB tests, for reporting purposes. Thereafter, new GDB tests
+built up a family of Tcl procedures specialized for GDB testing.
 
 @node Debugging A Test Case, Adding a test case to a testsuite, Writing A Test Case, Extending DejaGnu
 @section Debugging A Test Case
@@ -2174,193 +1959,160 @@ from DejaGnu:
 @itemize 
 
 @item
-Output controlled by test scripts themselves,
-explicitly allowed for by the test author.  This kind of
-debugging output appears in the detailed output recorded in the
-DejaGnu log file.  To do the same for new tests, use the
-@code{verbose} procedure (which in turn uses the
-variable also called @emph{verbose}) to control
-how much output to generate.  This will make it easier for other
-people running the test to debug it if necessary.  Whenever
-possible, if @emph{$verbose} is
-@emph{0}, there should be no output other than the
-output from @emph{pass},
-@emph{fail}, @emph{error}, and
-@emph{warning}.  Then, to whatever extent is
-appropriate for the particular test, allow successively higher
-values of @emph{$verbose} to generate more
-information.  Be kind to other programmers who use your tests:
-provide for a lot of debugging information.
+Output controlled by test scripts themselves, explicitly allowed for by
+the test author.  This kind of debugging output appears in the detailed
+output recorded in the DejaGnu log file.  To do the same for new tests,
+use the @code{verbose} procedure (which in turn uses the variable also
+called @emph{verbose}) to control how much output to generate.  This
+will make it easier for other people running the test to debug it if
+necessary.  Whenever possible, if @emph{$verbose} is @emph{0}, there
+should be no output other than the output from @emph{pass}, @emph{fail},
+@emph{error}, and @emph{warning}.  Then, to whatever extent is
+appropriate for the particular test, allow successively higher values of
+@emph{$verbose} to generate more information.  Be kind to other
+programmers who use your tests: provide for a lot of debugging
+information.
 
 @item
-Output from the internal debugging functions of
-Tcl and Expect. There is a command
-line options for each; both forms of debugging output are
-recorded in the file @file{dbg.log} in the current
-directory.
+Output from the internal debugging functions of Tcl and Expect. There is
+a command line options for each; both forms of debugging output are
+recorded in the file @file{dbg.log} in the current directory.
 
-Use @code{--debug} for information from the
-expect level; it generates displays of the expect attempts to
-match the tool output with the patterns specified. This output
-can be very helpful while developing test scripts, since it
-shows precisely the characters received.  Iterating between the
-latest attempt at a new test script and the corresponding
-@file{dbg.log} can allow you to create the final
-patterns by ``cut and paste''.  This is sometimes the best way
-to write a test case.
+Use @code{--debug} for information from the expect level; it generates
+displays of the expect attempts to match the tool output with the
+patterns specified. This output can be very helpful while developing
+test scripts, since it shows precisely the characters received.
+Iterating between the latest attempt at a new test script and the
+corresponding @file{dbg.log} can allow you to create the final patterns
+by ``cut and paste''.  This is sometimes the best way to write a test
+case.
 
 @item
-Use @code{--strace} to see more
-detail at the Tcl level; this shows how Tcl procedure
-definitions expand, as they execute. The associated number
+Use @code{--strace} to see more detail at the Tcl level; this shows how
+Tcl procedure definitions expand, as they execute. The associated number
 controls the depth of definitions expanded.
 
 @item
-Finally, if the value of
-@emph{verbose} is 3 or greater, DejaGnu turns on
-the expect command @code{log_user}.  This command
-prints all expect actions to the expect standard output, to the
-detailed log file, and (if @code{--debug} is on) to
-@file{dbg.log}.
+Finally, if the value of @emph{verbose} is 3 or greater, DejaGnu turns
+on the expect command @code{log_user}.  This command prints all expect
+actions to the expect standard output, to the detailed log file, and (if
+@code{--debug} is on) to @file{dbg.log}.
 @end itemize
 
 @node Adding a test case to a testsuite, Hints On Writing A Test Case, Debugging A Test Case, Extending DejaGnu
 @section Adding a test case to a testsuite
 
-There are two slightly different ways to add a test
-case. One is to add the test case to an existing directory. The
-other is to create a new directory to hold your test. The
-existing test directories represent several styles of testing,
-all of which are slightly different; examine the directories for
-the tool of interest to see which (if any) is most suitable.
+There are two slightly different ways to add a test case. One is to add
+the test case to an existing directory. The other is to create a new
+directory to hold your test. The existing test directories represent
+several styles of testing, all of which are slightly different; examine
+the directories for the tool of interest to see which (if any) is most
+suitable.
 
-Adding a GCC test can be very simple: just add the C code
-to any directory beginning with @file{gcc} and it
-runs on the next: 
+Adding a GCC test can be very simple: just add the C code to any
+directory beginning with @file{gcc} and it runs on the next:
 
 @example
 runtest --tool gcc
 @end example
 
-To add a test to GDB, first add any source code you will
-need to the test directory. Then you can either create a new
-expect file, or add your test to an existing one (any
-file with a @emph{.exp} suffix).  Creating a new
-.exp file is probably a better idea if the test is significantly
-different from existing tests. Adding it as a separate file also
-makes upgrading easier. If the C code has to be already compiled
-before the test will run, then you'll have to add it to the
-@file{Makefile.in} file for that test directory,
-then run @code{configure} and
-@code{make}.
+To add a test to GDB, first add any source code you will need to the
+test directory. Then you can either create a new expect file, or add
+your test to an existing one (any file with a @emph{.exp} suffix).
+Creating a new .exp file is probably a better idea if the test is
+significantly different from existing tests. Adding it as a separate
+file also makes upgrading easier. If the C code has to be already
+compiled before the test will run, then you'll have to add it to the
+@file{Makefile.in} file for that test directory, then run
+@code{configure} and @code{make}.
 
-Adding a test by creating a new directory is very
-similar:
+Adding a test by creating a new directory is very similar:
 
 @itemize 
 
 @item
-Create the new directory. All subdirectory names
-begin with the name of the tool to test; e.g. G++ tests might be
-in a directory called @file{g++.other}. There can
-be multiple test directories that start with the same tool name
-(such as @emph{g++}).
+Create the new directory. All subdirectory names begin with the name of
+the tool to test; e.g. G++ tests might be in a directory called
+@file{g++.other}. There can be multiple test directories that start with
+the same tool name (such as @emph{g++}).
 
 @item
-Add the new directory name to the
-@code{configdirs} definition in the
-@file{configure.in} file for the testsuite
-directory. This way when @code{make} and
-@code{configure} next run, they include the new
+Add the new directory name to the @code{configdirs} definition in the
+@file{configure.in} file for the testsuite directory. This way when
+@code{make} and @code{configure} next run, they include the new
 directory.
 
 @item
-Add the new test case to the directory, as
-above. 
+Add the new test case to the directory, as above.
 
 @item
-To add support in the new directory for
-configure and make, you must also create a
-@file{Makefile.in} and a
-@file{configure.in}.
+To add support in the new directory for configure and make, you must
+also create a @file{Makefile.in} and a @file{configure.in}.
 @end itemize
 
 @node Hints On Writing A Test Case, Test case variables, Adding a test case to a testsuite, Extending DejaGnu
 @section Hints On Writing A Test Case
 
-It is safest to write patterns that match all the output
-generated by the tested program; this is called closure.
-If a pattern does not match the entire output, any output that
-remains will be examined by the next @code{expect}
-command. In this situation, the precise boundary that determines
-which @code{expect} command sees what is very
-sensitive to timing between the Expect task and the task running
-the tested tool.  As a result, the test may sometimes appear to
-work, but is likely to have unpredictable results. (This problem
-is particularly likely for interactive tools, but can also
-affect batch tools---especially for tests that take a long time
-to finish.) The best way to ensure closure is to use the
-@code{-re} option for the @code{expect}
-command to write the pattern as a full regular expressions; then
-you can match the end of output using a @emph{$}.
-It is also a good idea to write patterns that match all
-available output by using @emph{.*\} after the
-text of interest; this will also match any intervening blank
-lines.  Sometimes an alternative is to match end of line using
-@emph{\r} or @emph{\n}, but this is
-usually too dependent on terminal settings.
+It is safest to write patterns that match all the output generated by
+the tested program; this is called closure.  If a pattern does not match
+the entire output, any output that remains will be examined by the next
+@code{expect} command. In this situation, the precise boundary that
+determines which @code{expect} command sees what is very sensitive to
+timing between the Expect task and the task running the tested tool.  As
+a result, the test may sometimes appear to work, but is likely to have
+unpredictable results. (This problem is particularly likely for
+interactive tools, but can also affect batch tools---especially for
+tests that take a long time to finish.) The best way to ensure closure
+is to use the @code{-re} option for the @code{expect} command to write
+the pattern as a full regular expressions; then you can match the end of
+output using a @emph{$}.  It is also a good idea to write patterns that
+match all available output by using @emph{.*\} after the text of
+interest; this will also match any intervening blank lines.  Sometimes
+an alternative is to match end of line using @emph{\r} or @emph{\n}, but
+this is usually too dependent on terminal settings.
 
-Always escape punctuation, such as @emph{(}
-or @emph{"}, in your patterns; for example, write
-@emph{\(}.  If you forget to escape punctuation,
-you will usually see an error message like:
+Always escape punctuation, such as @emph{(} or @emph{"}, in your
+patterns; for example, write @emph{\(}.  If you forget to escape
+punctuation, you will usually see an error message like:
 
 @example
 extra characters after close-quote
 @end example
 
-If you have trouble understanding why a pattern does not
-match the program output, try using the @code{--debug}
-option to @code{runtest}, and examine the debug log
-carefully.
+If you have trouble understanding why a pattern does not match the
+program output, try using the @code{--debug} option to @code{runtest},
+and examine the debug log carefully.
 
-Be careful not to neglect output generated by setup rather
-than by the interesting parts of a test case.  For example,
-while testing GDB, I issue a send @emph{set height
-0\n} command.  The purpose is simply to make sure GDB
-never calls a paging program.  The @emph{set
-height} command in GDB does not generate any
-output; but running any command makes GDB issue a new
-@emph{(gdb) } prompt.  If there were no
-@code{expect} command to match this prompt, the
-output @emph{(gdb) } begins the text seen by the
-next @code{expect} command---which might make that
-pattern fail to match.
+Be careful not to neglect output generated by setup rather than by the
+interesting parts of a test case.  For example, while testing GDB, I
+issue a send @emph{set height 0\n} command.  The purpose is simply to
+make sure GDB never calls a paging program.  The @emph{set height}
+command in GDB does not generate any output; but running any command
+makes GDB issue a new @emph{(gdb) } prompt.  If there were no
+@code{expect} command to match this prompt, the output @emph{(gdb) }
+begins the text seen by the next @code{expect} command---which might
+make that pattern fail to match.
 
-To preserve basic sanity, I also recommended that no test
-ever pass if there was any kind of problem in the test case.  To
-take an extreme case, tests that pass even when the tool will
-not spawn are misleading. Ideally, a test in this sort of
-situation should not fail either. Instead, print an error
-message by calling one of the DejaGnu procedures
-@code{error} or @code{warning}.
+To preserve basic sanity, I also recommended that no test ever pass if
+there was any kind of problem in the test case.  To take an extreme
+case, tests that pass even when the tool will not spawn are
+misleading. Ideally, a test in this sort of situation should not fail
+either. Instead, print an error message by calling one of the DejaGnu
+procedures @code{error} or @code{warning}.
 
 @node Test case variables, , Hints On Writing A Test Case, Extending DejaGnu
 @section Test case special variables
 
-There are special variables that contain other information
-from DejaGnu. Your test cases can inspect these variables, as well
-as the variables saved in
-@file{site.exp}. These variables should never be
+There are special variables that contain other information from
+DejaGnu. Your test cases can inspect these variables, as well as the
+variables saved in @file{site.exp}. These variables should never be
 changed.
 
 @table @asis
 
 @item $prms_id
-The bug tracking system (eg. PRMS/GNATS)
-number identifying a corresponding bug report
-(@emph{0} if you do not specify
-it).
+The bug tracking system (eg. PRMS/GNATS) number identifying a
+corresponding bug report (@emph{0} if you do not specify it).
 
 @item $bug_id
 An optional bug ID, perhaps a bug
@@ -2369,26 +2121,22 @@ identification number from another organization
 it).
 
 @item $subdir
-The subdirectory for the current test
-case.
+The subdirectory for the current test case.
 
 @item $exec_output
-This is the output from a
-@code{$@{tool@}_load} command. This only applies to
-tools like GCC and GAS which produce an object file that must in
-turn be executed to complete a test.
+This is the output from a @code{$@{tool@}_load} command. This only
+applies to tools like GCC and GAS which produce an object file that must
+in turn be executed to complete a test.
 
 @item $comp_output
-This is the output from a
-@code{$@{tool@}_start} command.  This is conventionally
-used for batch oriented programs, like GCC and GAS, that may
-produce interesting output (warnings, errors) without further
+This is the output from a @code{$@{tool@}_start} command.  This is
+conventionally used for batch oriented programs, like GCC and GAS, that
+may produce interesting output (warnings, errors) without further
 interaction.
 
 @item $expect_out(buffer)
-The output from the last command. This is an
-internal variable set by Expect. More information can be found in
-the Expect manual.
+The output from the last command. This is an internal variable set by
+Expect. More information can be found in the Expect manual.
 @end table
 
 @node Unit Testing, Reference, Extending DejaGnu, Top
@@ -2404,40 +2152,35 @@ the Expect manual.
 @node What Is Unit Testing?, The dejagnu_h header file, , Unit Testing
 @section What Is Unit Testing?
 
-Most regression testing as done by DejaGnu is system testing:
-the complete application is tested all at once. Unit testing is
-for testing single files, or small libraries. In this case, each
-file is linked with a test case in C or C++, and each function
-or class and method is tested in series, with the test case
-having to check private data or global variables to see if the
-function or method worked.
+Most regression testing as done by DejaGnu is system testing: the
+complete application is tested all at once. Unit testing is for testing
+single files, or small libraries. In this case, each file is linked with
+a test case in C or C++, and each function or class and method is tested
+in series, with the test case having to check private data or global
+variables to see if the function or method worked.
 
-This works particularly well for testing APIs and at level
-where it is easier to debug them, than by needing to trace through
-the entire application. Also if there is a specification for the
-API to be tested, the testcase can also function as a compliance
-test.
+This works particularly well for testing APIs and at level where it is
+easier to debug them, than by needing to trace through the entire
+application. Also if there is a specification for the API to be tested,
+the testcase can also function as a compliance test.
 
 @node The dejagnu_h header file, C Unit Testing API, What Is Unit Testing?, Unit Testing
 @section The dejagnu.h header file
 
-DejaGnu uses a single header
-file, @file{dejagnu.h} to assist in unit
-testing. As this file also produces its one test state output,
-it can be run stand-alone, which is very useful for testing on
-embedded systems. This header file has a C and C++ API for the
-test states, with simple totals, and standardized
-output. Because the output has been standardized, DejaGnu can be
-made to work with this test case, without writing almost any
-Tcl. The library module, dejagnu.exp, will look for the output
-messages, and then merge them into DejaGnu's.
+DejaGnu uses a single header file, @file{dejagnu.h} to assist in unit
+testing. As this file also produces its one test state output, it can be
+run stand-alone, which is very useful for testing on embedded
+systems. This header file has a C and C++ API for the test states, with
+simple totals, and standardized output. Because the output has been
+standardized, DejaGnu can be made to work with this test case, without
+writing almost any Tcl. The library module, dejagnu.exp, will look for
+the output messages, and then merge them into DejaGnu's.
 
 @node C Unit Testing API, C++ Unit Testing API, The dejagnu_h header file, Unit Testing
 @section C Unit Testing API
 
-All of the functions that take a
-@code{msg} parameter use a C char * that is the
-message to be displayed. There currently is no support for
+All of the functions that take a @code{msg} parameter use a C char *
+that is the message to be displayed. There currently is no support for
 variable length arguments.
 
 @menu
@@ -2451,8 +2194,7 @@ variable length arguments.
 @node pass function, fail function, , C Unit Testing API
 @subsection Pass Function
 
-This prints a message for a successful test
-completion.
+This prints a message for a successful test completion.
 
 @quotation
 @t{@b{pass}@{@i{msg}@}}
@@ -2461,8 +2203,7 @@ completion.
 @node fail function, untested function, pass function, C Unit Testing API
 @subsection Fail Function
 
-This prints a message for an unsuccessful test
-completion.
+This prints a message for an unsuccessful test completion.
 
 @quotation
 @t{@b{fail}@{@i{msg}@}}
@@ -2471,8 +2212,8 @@ completion.
 @node untested function, unresolved function, fail function, C Unit Testing API
 @subsection Untested Function
 
-This prints a message for an test case that isn't run
-for some technical reason.
+This prints a message for an test case that isn't run for some technical
+reason.
 
 @quotation
 @t{@b{untested}@{@i{msg}@}}
@@ -2481,9 +2222,9 @@ for some technical reason.
 @node unresolved function, totals function, untested function, C Unit Testing API
 @subsection Unresolved Function
 
-This prints a message for an test case that is run,
-but there is no clear result. These output states require a
-human to look over the results to determine what happened.
+This prints a message for an test case that is run, but there is no
+clear result. These output states require a human to look over the
+results to determine what happened.
 
 @quotation
 @t{@b{unresolved}@{@i{msg}@}}
@@ -2492,8 +2233,7 @@ human to look over the results to determine what happened.
 @node totals function, , unresolved function, C Unit Testing API
 @subsection Totals Function
 
-This prints out the total numbers of all the test
-state outputs.
+This prints out the total numbers of all the test state outputs.
 
 @quotation
 @t{@b{totals}}
@@ -2519,8 +2259,7 @@ length arguments.
 @node pass method, fail method, , C++ Unit Testing API
 @subsection Pass Method
 
-This prints a message for a successful test
-completion.
+This prints a message for a successful test completion.
 
 @quotation
 @t{@b{TestState::pass}(@i{msg});}
@@ -2529,8 +2268,7 @@ completion.
 @node fail method, untested method, pass method, C++ Unit Testing API
 @subsection Fail Method
 
-This prints a message for an unsuccessful test
-completion.
+This prints a message for an unsuccessful test completion.
 
 @quotation
 @t{@b{TestState::fail}(@i{msg});}
@@ -2539,8 +2277,8 @@ completion.
 @node untested method, unresolved method, fail method, C++ Unit Testing API
 @subsection Untested Method
 
-This prints a message for an test case that isn't run
-for some technical reason.
+This prints a message for an test case that isn't run for some technical
+reason.
 
 @quotation
 @t{@b{TestState::untested}(@i{msg});}
@@ -2549,9 +2287,9 @@ for some technical reason.
 @node unresolved method, totals method, untested method, C++ Unit Testing API
 @subsection Unresolved Method
 
-This prints a message for an test case that is run,
-but there is no clear result. These output states require a
-human to look over the results to determine what happened.
+This prints a message for an test case that is run, but there is no
+clear result. These output states require a human to look over the
+results to determine what happened.
 
 @quotation
 @t{@b{TestState::unresolved}(@i{msg});}
@@ -2560,8 +2298,7 @@ human to look over the results to determine what happened.
 @node totals method, , unresolved method, C++ Unit Testing API
 @subsection Totals Method
 
-This prints out the total numbers of all the test
-state outputs.
+This prints out the total numbers of all the test state outputs.
 
 @quotation
 @t{@b{TestState::totals}(@i{});}
@@ -2663,15 +2400,13 @@ subject}@}}
 @node isbuild procedure, is_remote procedure, close_logs procedure, Core Internal Procedures
 @subsubsection isbuild Procedure
 
-Tests for a particular build host environment.  If the
-currently configured host matches the argument string, the result is
-@emph{1}; otherwise the result is
-@emph{0}.  @emph{host} must be a full
-three-part configure host name; in particular, you may not use the
-shorter nicknames supported by configure (but you can use wildcard
-characters, using shell syntax, to specify sets of names). If it is
-passed a NULL string, then it returns the name of the build canonical
-configuration.
+Tests for a particular build host environment.  If the currently
+configured host matches the argument string, the result is @emph{1};
+otherwise the result is @emph{0}.  @emph{host} must be a full three-part
+configure host name; in particular, you may not use the shorter
+nicknames supported by configure (but you can use wildcard characters,
+using shell syntax, to specify sets of names). If it is passed a NULL
+string, then it returns the name of the build canonical configuration.
 
 @quotation
 @t{@b{isbuild}@{@i{pattern}@}}
@@ -2698,10 +2433,9 @@ configuration.
 @node is3way procedure, ishost procedure, is_remote procedure, Core Internal Procedures
 @subsubsection is3way Procedure
 
-Tests for a Canadian cross. This is when the tests will be run
-on a remotely hosted cross compiler. If it is a Canadian cross, then
-the result is @emph{1}; otherwise the result is
-@emph{0}.
+Tests for a Canadian cross. This is when the tests will be run on a
+remotely hosted cross compiler. If it is a Canadian cross, then the
+result is @emph{1}; otherwise the result is @emph{0}.
 
 @quotation
 @t{@b{is3way}}
@@ -2710,13 +2444,12 @@ the result is @emph{1}; otherwise the result is
 @node ishost procedure, istarget procedure, is3way procedure, Core Internal Procedures
 @subsubsection ishost Procedure
 
-Tests for a particular host environment.  If the currently
-configured host matches the argument string, the result is
-@emph{1}; otherwise the result is
-@emph{0}. @emph{host} must be a full
-three-part configure host name; in particular, you may not use the
-shorter nicknames supported by configure (but you can use wildcard
-characters, using shell syntax, to specify sets of names).
+Tests for a particular host environment.  If the currently configured
+host matches the argument string, the result is @emph{1}; otherwise the
+result is @emph{0}. @emph{host} must be a full three-part configure host
+name; in particular, you may not use the shorter nicknames supported by
+configure (but you can use wildcard characters, using shell syntax, to
+specify sets of names).
 
 @quotation
 @t{@b{ishost}@{@i{pattern}@}}
@@ -2730,15 +2463,13 @@ characters, using shell syntax, to specify sets of names).
 @node istarget procedure, isnative procedure, ishost procedure, Core Internal Procedures
 @subsubsection istarget Procedure
 
-Tests for a particular target environment.  If the currently
-configured target matches the argument string, the result is
-@emph{1} ; otherwise the result is
-@emph{0}.  target must be a full three-part configure
+Tests for a particular target environment.  If the currently configured
+target matches the argument string, the result is @emph{1} ; otherwise
+the result is @emph{0}.  target must be a full three-part configure
 target name; in particular, you may not use the shorter nicknames
-supported by configure (but you can use wildcard characters, using
-shell syntax, to specify sets of names). If it is passed a
-@emph{NULL} string, then it returns the name of the
-build canonical configuration.
+supported by configure (but you can use wildcard characters, using shell
+syntax, to specify sets of names). If it is passed a @emph{NULL} string,
+then it returns the name of the build canonical configuration.
 
 @quotation
 @t{@b{istarget}@{@i{args}@}}
@@ -2752,9 +2483,8 @@ build canonical configuration.
 @subsubsection isnative Procedure
 
 Tests whether the current configuration has the same host and
-target. When it runs in a native configuration this procedure returns
-a @emph{1}; otherwise it returns a
-@emph{0}.
+target. When it runs in a native configuration this procedure returns a
+@emph{1}; otherwise it returns a @emph{0}.
 
 @quotation
 @t{@b{isnative}}
@@ -2816,34 +2546,29 @@ a @emph{1}; otherwise it returns a
 @node setup_xfail procedure, record_test procedure, log_summary procedure, Core Internal Procedures
 @subsubsection setup_xfail Procedure
 
-Declares that the test is expected to fail on a particular set
-of configurations.  The config argument must be a list of full
-three-part configure target name; in particular, you may not use the
-shorter nicknames supported by configure (but you can use the common
-shell wildcard characters to specify sets of names).  The
-@emph{bugid} argument is optional, and used only in the
-logging file output; use it as a link to a bug-tracking system such
-as GNATS.
+Declares that the test is expected to fail on a particular set of
+configurations.  The config argument must be a list of full three-part
+configure target name; in particular, you may not use the shorter
+nicknames supported by configure (but you can use the common shell
+wildcard characters to specify sets of names).  The @emph{bugid}
+argument is optional, and used only in the logging file output; use it
+as a link to a bug-tracking system such as GNATS.
 
-Once you use @code{setup_xfail}, the
-@code{fail} and @code{pass} procedures
-produce the messages @emph{XFAIL} and
-@emph{XPASS} respectively, allowing you to distinguish
-expected failures (and unexpected success!) from other test
-outcomes.
+Once you use @code{setup_xfail}, the @code{fail} and @code{pass}
+procedures produce the messages @emph{XFAIL} and @emph{XPASS}
+respectively, allowing you to distinguish expected failures (and
+unexpected success!) from other test outcomes.
 
 @quotation
 
 @strong{Warning}
 
-Warning you must clear the expected failure after
-using setup_xfail in a test case.  Any call to @code{pass
-}or @code{fail} clears the expected failure
-implicitly; if the test has some other outcome, e.g. an error, you
-can call @code{clear_xfail} to clear the expected
-failure explicitly.  Otherwise, the expected-failure declaration
-applies to whatever test runs next, leading to surprising
-results.
+Warning you must clear the expected failure after using setup_xfail in a
+test case.  Any call to @code{pass }or @code{fail} clears the expected
+failure implicitly; if the test has some other outcome, e.g. an error,
+you can call @code{clear_xfail} to clear the expected failure
+explicitly.  Otherwise, the expected-failure declaration applies to
+whatever test runs next, leading to surprising results.
 @end quotation
 
 @quotation
@@ -2853,12 +2578,11 @@ results.
 
 @table @asis
 @item @code{config}
-The config triplet to trigger whether this is an
-unexpected or expect failure.
+The config triplet to trigger whether this is an unexpected or expect
+failure.
 
 @item @code{bugid}
-The optional bugid, used to tie this test case
-to a bug tracking system.
+The optional bugid, used to tie this test case to a bug tracking system.
 @end table
 
 @node record_test procedure, pass procedure, setup_xfail procedure, Core Internal Procedures
@@ -2880,11 +2604,9 @@ to a bug tracking system.
 @node pass procedure, fail procedure, record_test procedure, Core Internal Procedures
 @subsubsection pass Procedure
 
-Declares a test to have passed. @code{pass}
-writes in the log files a message beginning with
-@emph{PASS} (or @emph{XPASS}, if failure
-was expected), appending the argument
-@code{string}.
+Declares a test to have passed. @code{pass} writes in the log files a
+message beginning with @emph{PASS} (or @emph{XPASS}, if failure was
+expected), appending the argument @code{string}.
 
 @quotation
 @t{@b{pass}@{@i{string}@}}
@@ -2900,11 +2622,9 @@ message.
 @node fail procedure, xpass procedure, pass procedure, Core Internal Procedures
 @subsubsection fail Procedure
 
-Declares a test to have failed.  @code{fail}
-writes in the log files a message beginning with
-@emph{FAIL} (or @emph{XFAIL}, if failure
-was expected), appending the argument
-@code{string}.
+Declares a test to have failed.  @code{fail} writes in the log files a
+message beginning with @emph{FAIL} (or @emph{XFAIL}, if failure was
+expected), appending the argument @code{string}.
 
 @quotation
 @t{@b{fail}@{@i{string}@}}
@@ -2920,12 +2640,10 @@ message.
 @node xpass procedure, xfail procedure, fail procedure, Core Internal Procedures
 @subsubsection xpass Procedure
 
-Declares a test to have unexpectedly passed, when it was
-expected to be a failure.  @code{xpass}
-writes in the log files a message beginning with
-@emph{XPASS} (or @emph{XFAIL}, if failure
-was expected), appending the argument
-@code{string}.
+Declares a test to have unexpectedly passed, when it was expected to be
+a failure.  @code{xpass} writes in the log files a message beginning
+with @emph{XPASS} (or @emph{XFAIL}, if failure was expected), appending
+the argument @code{string}.
 
 @quotation
 @t{@b{xpass}@{@i{string}@}}
@@ -2941,12 +2659,9 @@ state.
 @node xfail procedure, set_warning_threshold procedure, xpass procedure, Core Internal Procedures
 @subsubsection xfail Procedure
 
-Declares a test to have expectedly
-failed. @code{xfail}
-writes in the log files a message beginning with
-@emph{XFAIL} (or @emph{PASS}, if success
-was expected), appending the argument
-@code{string}.
+Declares a test to have expectedly failed. @code{xfail} writes in the
+log files a message beginning with @emph{XFAIL} (or @emph{PASS}, if
+success was expected), appending the argument @code{string}.
 
 @quotation
 @t{@b{xpass}@{@i{string}@}}
@@ -2962,11 +2677,9 @@ state.
 @node set_warning_threshold procedure, get_warning_threshold procedure, xfail procedure, Core Internal Procedures
 @subsubsection set_warning_threshold Procedure
 
-Sets the value of @code{warning_threshold}. A value
-of @emph{0} disables it: calls to
-@code{warning} will not turn a
-@emph{PASS} or @emph{FAIL} into an
-@emph{UNRESOLVED}.
+Sets the value of @code{warning_threshold}. A value of @emph{0} disables
+it: calls to @code{warning} will not turn a @emph{PASS} or @emph{FAIL}
+into an @emph{UNRESOLVED}.
 
 @quotation
 @t{@b{set_warning_threshold}@{@i{threshold}@}}
@@ -2975,16 +2688,14 @@ of @emph{0} disables it: calls to
 @table @asis
 
 @item @code{threshold}
-This is the value of the new warning
-threshold.
+This is the value of the new warning threshold.
 @end table
 
 @node get_warning_threshold procedure, warning procedure, set_warning_threshold procedure, Core Internal Procedures
 @subsubsection get_warning_threshold Procedure
 
-Returns the current value of
-@code{@{warning_threshold}. The default value is 3. This
-value controls how many @code{warning} procedures can
+Returns the current value of @code{@{warning_threshold}. The default
+value is 3. This value controls how many @code{warning} procedures can
 be called before becoming @emph{UNRESOLVED}.
 
 @quotation
@@ -2995,25 +2706,21 @@ be called before becoming @emph{UNRESOLVED}.
 @subsubsection warning Procedure
 
 Declares detection of a minor error in the test case
-itself. @code{warning} writes in the log files a message
-beginning with @emph{WARNING}, appending the argument
-@code{string}.  Use @code{warning} rather
-than @code{perror} for cases (such as communication
-failure to be followed by a retry) where the test case can recover from
-the error. If the optional @code{number} is supplied,
-then this is used to set the internal count of warnings to that
-value.
+itself. @code{warning} writes in the log files a message beginning with
+@emph{WARNING}, appending the argument @code{string}.  Use
+@code{warning} rather than @code{perror} for cases (such as
+communication failure to be followed by a retry) where the test case can
+recover from the error. If the optional @code{number} is supplied, then
+this is used to set the internal count of warnings to that value.
 
-As a side effect, @code{warning_threshold} or more
-calls to warning in a single test case also changes the effect of the
-next @code{pass} or @code{fail} command:
-the test outcome becomes @emph{UNRESOLVED} since an
-automatic @emph{PASS} or @emph{FAIL} may
-not be trustworthy after many warnings.  If the optional numeric value
-is @emph{0}, then there are no further side effects to
-calling this function, and the following test outcome doesn't become
-@emph{UNRESOLVED}. This can be used for errors with no
-known side effects.
+As a side effect, @code{warning_threshold} or more calls to warning in a
+single test case also changes the effect of the next @code{pass} or
+@code{fail} command: the test outcome becomes @emph{UNRESOLVED} since an
+automatic @emph{PASS} or @emph{FAIL} may not be trustworthy after many
+warnings.  If the optional numeric value is @emph{0}, then there are no
+further side effects to calling this function, and the following test
+outcome doesn't become @emph{UNRESOLVED}. This can be used for errors
+with no known side effects.
 
 @quotation
 @t{@b{warning}@{@i{string}
@@ -3026,30 +2733,26 @@ known side effects.
 @item @code{string}
 
 @item @code{number}
-The optional number to set the error counter. This
-is only used to fake out the counter when using the
-@code{xfail} procedure to control when it flips the
-output over to @emph{UNRESOLVED}
-state.
+The optional number to set the error counter. This is only used to fake
+out the counter when using the @code{xfail} procedure to control when it
+flips the output over to @emph{UNRESOLVED} state.
 @end table
 
 @node perror procedure, note procedure, warning procedure, Core Internal Procedures
 @subsubsection perror Procedure
 
-Declares a severe error in the testing framework
-itself. @code{perror} writes in the log files a message
-beginning with @emph{ERROR}, appending the argument
-@code{string}.
+Declares a severe error in the testing framework itself. @code{perror}
+writes in the log files a message beginning with @emph{ERROR}, appending
+the argument @code{string}.
 
-As a side effect, perror also changes the effect of the next
-@code{pass} or @code{fail} command: the
-test outcome becomes @emph{UNRESOLVED}, since an
-automatic @emph{PASS} or @emph{FAIL} cannot
-be trusted after a severe error in the test framework.  If the optional
-numeric value is @emph{0}, then there are no further side
-effects to calling this function, and the following test outcome
-doesn't become @emph{UNRESOLVED}. This can be used for
-errors with no known side effects.
+As a side effect, perror also changes the effect of the next @code{pass}
+or @code{fail} command: the test outcome becomes @emph{UNRESOLVED},
+since an automatic @emph{PASS} or @emph{FAIL} cannot be trusted after a
+severe error in the test framework.  If the optional numeric value is
+@emph{0}, then there are no further side effects to calling this
+function, and the following test outcome doesn't become
+@emph{UNRESOLVED}. This can be used for errors with no known side
+effects.
 
 @quotation
 @t{@b{perror}@{@i{string}
@@ -3062,23 +2765,20 @@ errors with no known side effects.
 @item @code{string}
 
 @item @code{number}
-The optional number to set the error counter. This
-is only used to fake out the counter when using the
-@code{xfail} procedure to control when it flips the
-output over to @emph{UNRESOLVED}
-state.
+The optional number to set the error counter. This is only used to fake
+out the counter when using the @code{xfail} procedure to control when it
+flips the output over to @emph{UNRESOLVED} state.
 @end table
 
 @node note procedure, untested procedure, perror procedure, Core Internal Procedures
 @subsubsection note Procedure
 
-Appends an informational message to the log
-file. @code{note} writes in the log files a message
-beginning with @emph{NOTE}, appending the argument
-@code{string}.  Use @code{note}
-sparingly. The @code{verbose} should be used for most
-such messages, but in cases where a message is needed in the log file
-regardless of the verbosity level use @code{note}.
+Appends an informational message to the log file. @code{note} writes in
+the log files a message beginning with @emph{NOTE}, appending the
+argument @code{string}.  Use @code{note} sparingly. The @code{verbose}
+should be used for most such messages, but in cases where a message is
+needed in the log file regardless of the verbosity level use
+@code{note}.
 
 @quotation
 @t{@b{note}@{@i{string}@}}
@@ -3093,11 +2793,10 @@ The string to use for this note.
 @node untested procedure, unresolved procedure, note procedure, Core Internal Procedures
 @subsubsection untested Procedure
 
-Declares a test was not run. @code{untested} writes
-in the log file a message beginning with @emph{UNTESTED},
-appending the argument @emph{string}. For example, you
-might use this in a dummy test whose only role is to record that a test
-does not yet exist for some feature.
+Declares a test was not run. @code{untested} writes in the log file a
+message beginning with @emph{UNTESTED}, appending the argument
+@emph{string}. For example, you might use this in a dummy test whose
+only role is to record that a test does not yet exist for some feature.
 
 @quotation
 @t{@b{untested}@{@i{string}@}}
@@ -3113,12 +2812,11 @@ state.
 @node unresolved procedure, unsupported procedure, untested procedure, Core Internal Procedures
 @subsubsection unresolved Procedure
 
-Declares a test to have an unresolved
-outcome. @code{unresolved} writes in the log file a
-message beginning with @emph{UNRESOLVED}, appending the
-argument @emph{string}.  This usually means the test did
-not execute as expected, and a human being must go over results to
-determine if it passed or failed (and to improve the test case).
+Declares a test to have an unresolved outcome. @code{unresolved} writes
+in the log file a message beginning with @emph{UNRESOLVED}, appending
+the argument @emph{string}.  This usually means the test did not execute
+as expected, and a human being must go over results to determine if it
+passed or failed (and to improve the test case).
 
 @quotation
 @t{@b{unresolved}@{@i{string}@}}
@@ -3177,12 +2875,11 @@ state.
 @node transform procedure, check_conditional_xfail procedure, incr_count procedure, Core Internal Procedures
 @subsubsection transform Procedure
 
-Generates a string for the name of a tool as it was configured
-and installed, given its native name (as the argument
-@code{toolname}). This makes the assumption that all
-tools are installed using the same naming conventions: For example,
-for a cross compiler supporting the @emph{m68k-vxworks}
-configuration, the result of transform @code{gcc} is
+Generates a string for the name of a tool as it was configured and
+installed, given its native name (as the argument @code{toolname}). This
+makes the assumption that all tools are installed using the same naming
+conventions: For example, for a cross compiler supporting the
+@emph{m68k-vxworks} configuration, the result of transform @code{gcc} is
 @code{m68k-vxworks-gcc}.
 
 @quotation
@@ -3215,13 +2912,11 @@ fields
 	  
 @end example
 
-(descriptions below). This is
-the checked at pass/fail decision time, so there is no need to call
-the procedure yourself, unless you wish to know if it gets
-triggered. After a pass/fail, the variable is reset, so it doesn't
-effect other tests. It returns @emph{1} if the
-conditional is true, or @emph{0} if the conditional is
-false.
+(descriptions below). This is the checked at pass/fail decision time, so
+there is no need to call the procedure yourself, unless you wish to know
+if it gets triggered. After a pass/fail, the variable is reset, so it
+doesn't effect other tests. It returns @emph{1} if the conditional is
+true, or @emph{0} if the conditional is false.
 
 @quotation
 @t{@b{check_conditional_xfail}@{@i{message}
@@ -3233,26 +2928,23 @@ false.
 @table @asis
 
 @item @code{message}
-This is the message to print with the normal test
-result.
+This is the message to print with the normal test result.
 
 @item @code{targets}
-This is a string with the list targets to activate
-this conditional on.
+This is a string with the list targets to activate this conditional on.
 
 @item @code{includes}
-This is a list of sets of options to search for in
-the compiler options to activate this conditional.  If the list of
-sets of options is empty or if any set of the options matches,
-then this conditional is true.  (It may be useful to specify an
-empty list of include sets if the conditional is always true
-unless one of the exclude sets matches.)
+This is a list of sets of options to search for in the compiler options
+to activate this conditional.  If the list of sets of options is empty
+or if any set of the options matches, then this conditional is true.
+(It may be useful to specify an empty list of include sets if the
+conditional is always true unless one of the exclude sets matches.)
 
 @item @code{excludes}
-This is a list of sets of options to search for in
-the compiler options to activate this conditional. If any set of
-the options matches, (regardless of whether any of the include sets
-match) then this conditional is de-activated.
+This is a list of sets of options to search for in the compiler options
+to activate this conditional. If any set of the options matches,
+(regardless of whether any of the include sets match) then this
+conditional is de-activated.
 @end table
 
 @strong{Specifying the conditional xfail data}
@@ -3278,13 +2970,11 @@ regular expressions are also permitted.
 @node clear_xfail procedure, verbose procedure, check_conditional_xfail procedure, Core Internal Procedures
 @subsubsection clear_xfail Procedure
 
-Cancel an expected failure (previously declared with
-@code{setup_xfail}) for a particular set of
-configurations.  The @code{config} argument is a list
-of configuration target names.  It is only necessary to call
-@code{clear_xfail} if a test case ends without calling
-either @code{pass} or @code{fail}, after
-calling @code{setup_xfail}.
+Cancel an expected failure (previously declared with @code{setup_xfail})
+for a particular set of configurations.  The @code{config} argument is a
+list of configuration target names.  It is only necessary to call
+@code{clear_xfail} if a test case ends without calling either
+@code{pass} or @code{fail}, after calling @code{setup_xfail}.
 
 @quotation
 @t{@b{clear_xfail}@{@i{config}@}}
@@ -3293,24 +2983,22 @@ calling @code{setup_xfail}.
 @table @asis
 
 @item @code{config}
-The configuration triplets to
-clear.
+The configuration triplets to clear.
 @end table
 
 @node verbose procedure, load_lib procedure, clear_xfail procedure, Core Internal Procedures
 @subsubsection verbose Procedure
 
-Test cases can use this function to issue helpful messages
-depending on the number of @code{--verbose} options on the
-runtest command line.  It prints string if the value of the variable
-@code{verbose} is higher than or equal to the optional
-number. The default value for number is @emph{1}.  Use
-the optional @code{-log} argument to cause string to always
-be added to the log file, even if it won't be printed.  Use the
-optional @code{-x} argument to log the test results into
-a parsable XML file.  Use the optional @code{-n} argument
-to print string without a trailing newline.  Use the optional
-@code{--} argument if string begins with "-".
+Test cases can use this function to issue helpful messages depending on
+the number of @code{--verbose} options on the runtest command line.  It
+prints string if the value of the variable @code{verbose} is higher than
+or equal to the optional number. The default value for number is
+@emph{1}.  Use the optional @code{-log} argument to cause string to
+always be added to the log file, even if it won't be printed.  Use the
+optional @code{-x} argument to log the test results into a parsable XML
+file.  Use the optional @code{-n} argument to print string without a
+trailing newline.  Use the optional @code{--} argument if string begins
+with "-".
 
 @quotation
 @t{@b{verbose}@{@i{-log}
@@ -3339,16 +3027,14 @@ to print string without a trailing newline.  Use the optional
 @node load_lib procedure, , verbose procedure, Core Internal Procedures
 @subsubsection load_lib Procedure
 
-Loads a DejaGnu library file by searching the default fixed paths
-built
-into DejaGnu. If DejaGnu has been installed, it looks in a path
-starting with the installed library directory.  If you are running
-DejaGnu directly from a source directory, without first running
-@code{make install}, this path defaults to the current
-directory.  In either case, it then looks in the current directory
-for a directory called @file{lib}.  If there are
-duplicate definitions, the last one loaded takes precedence over the
-earlier ones.
+Loads a DejaGnu library file by searching the default fixed paths built
+into DejaGnu. If DejaGnu has been installed, it looks in a path starting
+with the installed library directory.  If you are running DejaGnu
+directly from a source directory, without first running @code{make
+install}, this path defaults to the current directory.  In either case,
+it then looks in the current directory for a directory called
+@file{lib}.  If there are duplicate definitions, the last one loaded
+takes precedence over the earlier ones.
 
 @quotation
 @t{@b{load_lib}@{@i{filespec}@}}
@@ -3357,13 +3043,11 @@ earlier ones.
 @table @asis
 
 @item @code{filespec}
-The name of the DejaGnu library file to
-load.
+The name of the DejaGnu library file to load.
 @end table
 
-The global variable @code{libdirs}, handled
-as a list, is appended to the default fixed paths built
-into DejaGnu.
+The global variable @code{libdirs}, handled as a list, is appended to
+the default fixed paths built into DejaGnu.
 
 @strong{Additional search directories for load_lib}
 
@@ -3378,16 +3062,13 @@ into DejaGnu.
 @node Procedures For Remote Communication, connprocs, Core Internal Procedures, Builtin Procedures
 @subsection Procedures For Remote Communication
 
-@file{lib/remote.exp} defines procedures for
-establishing and managing communications. Each of these
-procedures tries to establish the connection up to three times
-before returning. Warnings (if retries will continue) or
-errors (if the attempt is abandoned) report on communication
-failures.  The result for any of these procedures is
-either @emph{-1}, when the connection cannot be
-established, or the spawn ID returned by
-the Expect command
-@code{spawn}.
+@file{lib/remote.exp} defines procedures for establishing and managing
+communications. Each of these procedures tries to establish the
+connection up to three times before returning. Warnings (if retries will
+continue) or errors (if the attempt is abandoned) report on
+communication failures.  The result for any of these procedures is
+either @emph{-1}, when the connection cannot be established, or the
+spawn ID returned by the Expect command @code{spawn}.
 
 It use the value of the @code{connect} field in the @code{target_info}
 array (was @code{connectmode} as the type of connection to make. Current
@@ -3544,11 +3225,9 @@ line, then the target is rebooted before the connection is made.
 @table @asis
 
 @item @code{shellid}
-This is the value returned by a call
-to @code{remote_open}. This closes the
-connection to the target so resources can be used by
-others. This parameter can be left off if the
-@code{fileid} field in the
+This is the value returned by a call to @code{remote_open}. This closes
+the connection to the target so resources can be used by others. This
+parameter can be left off if the @code{fileid} field in the
 @code{target_info} array is set.
 @end table
 
@@ -3656,19 +3335,14 @@ others. This parameter can be left off if the
 @table @asis
 
 @item @code{type}
-This is passed @code{host} or
-@code{target}. Host or target refers to
-whether it is a connection to a remote target, or a
-remote host. This opens the connection to the desired
-target or host using the default values in the
-configuration system. It returns that
-@code{spawn_id} of the process that manages
-the connection. This value can be used in
-Expect or
-@code{exp_send} statements, or passed to
-other procedures that need the connection process's
-id. This also sets the @code{fileid} field in
-the @code{target_info} array.
+This is passed @code{host} or @code{target}. Host or target refers to
+whether it is a connection to a remote target, or a remote host. This
+opens the connection to the desired target or host using the default
+values in the configuration system. It returns that @code{spawn_id} of
+the process that manages the connection. This value can be used in
+Expect or @code{exp_send} statements, or passed to other procedures that
+need the connection process's id. This also sets the @code{fileid} field
+in the @code{target_info} array.
 @end table
 
 @node remote_pop_conn procedure, remote_push_conn procedure, remote_open procedure, Procedures For Remote Communication
@@ -4008,10 +3682,9 @@ on success and @emph{0} on failure.
 @subsubsection standard_reboot Procedure
 
 It looks like that this procedure is never called, instead
-@code{$@{board@}_reboot} defined in
-@file{base-config.exp} will be used because it has
-higher priority and @file{base-config.exp} is
-always imported by @code{runtest}.
+@code{$@{board@}_reboot} defined in @file{base-config.exp} will be used
+because it has higher priority and @file{base-config.exp} is always
+imported by @code{runtest}.
 
 @quotation
 @t{@b{standard_reboot}@{@i{host}@}}
@@ -4161,20 +3834,14 @@ always imported by @code{runtest}.
 @table @asis
 
 @item @code{hostname}
-This refers to the IP address or name
-(for example, an entry in
-@file{/etc/hosts}) for this target. The
-procedure names reflect the Unix utility used to
-establish a connection. The optional
-@code{port} is used to specify the IP
-port number. The value of the
-@code{netport} field in the
-@code{target_info} array is used. (was
-@code{$netport}) This value has two parts,
-the hostname and the port number, separated by a
-@emph{:}. If host or target is used in
-the @code{hostname} field, than the
-config array is used for all information.
+This refers to the IP address or name (for example, an entry in
+@file{/etc/hosts}) for this target. The procedure names reflect the Unix
+utility used to establish a connection. The optional @code{port} is used
+to specify the IP port number. The value of the @code{netport} field in
+the @code{target_info} array is used. (was @code{$netport}) This value
+has two parts, the hostname and the port number, separated by a
+@emph{:}. If host or target is used in the @code{hostname} field, than
+the config array is used for all information.
 @end table
 
 @node tip procedure, kermit procedure, rsh procedure, connprocs
@@ -4188,21 +3855,14 @@ config array is used for all information.
 @table @asis
 
 @item @code{port}
-Connect using the Unix utility
-@code{tip}. @code{Port}must
-be a name from the tip
-configuration file
-@file{/etc/remote}. Often, this is called
-@code{hardwire}, or something like
-@code{ttya}. This file holds all the
-configuration data for the serial port. The value of
-the @code{serial} field in the
-@code{target_info} array is used. (was
-@code{$serialport}) If @code{host}
-or @code{target} is used in the
-@code{port} field, than the config
-array is used for all information. the
-config array is used for all information.
+Connect using the Unix utility @code{tip}. @code{Port}must be a name
+from the tip configuration file @file{/etc/remote}. Often, this is
+called @code{hardwire}, or something like @code{ttya}. This file holds
+all the configuration data for the serial port. The value of the
+@code{serial} field in the @code{target_info} array is used. (was
+@code{$serialport}) If @code{host} or @code{target} is used in the
+@code{port} field, than the config array is used for all
+information. the config array is used for all information.
 @end table
 
 @node kermit procedure, kermit_open procedure, tip procedure, connprocs
@@ -4220,15 +3880,12 @@ Connect using the program @code{kermit}. @code{Port} is the device name,
 e.g. @file{/dev/ttyb}.
 
 @item @code{bps}
-@code{bps} is the line
-speed to use (in its per second) for the
-connection. The value of the @code{serial}
-field in the @code{target_info} array is
-used.  (was @code{$serialport}) If
-@code{host} or @code{target} is
-used in the @code{port} field, than the
-config array is used for all information. the
-config array is used for all information.
+@code{bps} is the line speed to use (in its per second) for the
+connection. The value of the @code{serial} field in the
+@code{target_info} array is used.  (was @code{$serialport}) If
+@code{host} or @code{target} is used in the @code{port} field, than the
+config array is used for all information. the config array is used for
+all information.
 @end table
 
 @node kermit_open procedure, kermit_command procedure, kermit procedure, connprocs
@@ -4549,19 +4206,14 @@ config array is used for all information.
 @table @asis
 
 @item @code{spawnid}
-Download @code{file} to the
-process @code{spawnid} (the value returned
-when the connection was established), using the
-@code{~put} command under
-tip.  Most often used for
-single board computers that require downloading
-programs in ASCII S-records.  Returns
-@emph{1} if an error occurs,
-@emph{0} otherwise.
+Download @code{file} to the process @code{spawnid} (the value returned
+when the connection was established), using the @code{~put} command
+under tip.  Most often used for single board computers that require
+downloading programs in ASCII S-records.  Returns @emph{1} if an error
+occurs, @emph{0} otherwise.
 
 @item @code{file}
-This is the filename to
-download.
+This is the filename to download.
 @end table
 
 @node Procedures For Target Boards, target database library file, connprocs, Builtin Procedures
@@ -4942,15 +4594,13 @@ This unsets the current host connection.
 @node compile procedure, archive procedure, pop_host procedure, target database library file
 @subsubsection compile Procedure
 
-This invokes the compiler as set by CC to compile the
-file @file{file}. The default options for many cross
-compilation targets are @emph{guessed} by DejaGnu, and
-these options can be added to by passing in more parameters as
-arguments to @code{compile}. Optionally, this will also
-use the value of the @emph{cflags} field in the target
-config array. If the host is not the same as the build machines, then
-then compiler is run on the remote host using
-@code{execute_anywhere}.
+This invokes the compiler as set by CC to compile the file
+@file{file}. The default options for many cross compilation targets are
+@emph{guessed} by DejaGnu, and these options can be added to by passing
+in more parameters as arguments to @code{compile}. Optionally, this will
+also use the value of the @emph{cflags} field in the target config
+array. If the host is not the same as the build machines, then then
+compiler is run on the remote host using @code{execute_anywhere}.
 
 @quotation
 @t{@b{compile}@{@i{file}@}}
@@ -4963,12 +4613,11 @@ then compiler is run on the remote host using
 @node archive procedure, ranlib procedure, compile procedure, target database library file
 @subsubsection archive Procedure
 
-This produces an archive file. Any parameters passed to
-@code{archive} are used in addition to the default
-flags. Optionally, this will also use the value of the
-@emph{arflags} field in the target config array. If the
-host is not the same as the build machines, then then archiver is run
-on the remote host using @code{execute_anywhere}.
+This produces an archive file. Any parameters passed to @code{archive}
+are used in addition to the default flags. Optionally, this will also
+use the value of the @emph{arflags} field in the target config array. If
+the host is not the same as the build machines, then then archiver is
+run on the remote host using @code{execute_anywhere}.
 
 @quotation
 @t{@b{archive}@{@i{file}@}}
@@ -4996,16 +4645,15 @@ are used in for the flags.
 @node execute_anywhere procedure, , ranlib procedure, target database library file
 @subsubsection execute_anywhere Procedure
 
-This executes the @emph{cmdline} on the proper
-host. This should be used as a replacement for the Tcl command
-@code{exec} as this version utilizes the target config
-info to execute this command on the build machine or a remote
-host. All config information for the remote host must be setup to
-have this command work. If this is a Canadian cross (where we test a
-cross compiler that runs on a different host then where DejaGnu is
-running) then a connection is made to the remote host and the command
-is executed there. It returns either REMOTERROR (for an error) or the
-output produced when the command was executed. This is used for
+This executes the @emph{cmdline} on the proper host. This should be used
+as a replacement for the Tcl command @code{exec} as this version
+utilizes the target config info to execute this command on the build
+machine or a remote host. All config information for the remote host
+must be setup to have this command work. If this is a Canadian cross
+(where we test a cross compiler that runs on a different host then where
+DejaGnu is running) then a connection is made to the remote host and the
+command is executed there. It returns either REMOTERROR (for an error)
+or the output produced when the command was executed. This is used for
 running the tool to be tested, not a test case.
 
 @quotation
@@ -5019,30 +4667,25 @@ running the tool to be tested, not a test case.
 @node platform dependent procedures, Utility Procedures, target database library file, Builtin Procedures
 @subsection Platform Dependent Procedures
 
-Each combination of target and tool requires some
-target-dependent procedures.  The names of these procedures have
-a common form: the tool name, followed by an underscore
-@emph{_}, and finally a suffix describing the
-procedure's purpose.  For example, a procedure to extract the
-version from GDB is called
-@code{gdb_version}.
+Each combination of target and tool requires some target-dependent
+procedures.  The names of these procedures have a common form: the tool
+name, followed by an underscore @emph{_}, and finally a suffix
+describing the procedure's purpose.  For example, a procedure to extract
+the version from GDB is called @code{gdb_version}.
 
-@code{runtest} itself calls only two of these
-procedures, @code{$@{tool@}_exit} and
-@code{$@{tool@}_version}; these procedures use no
-arguments.
+@code{runtest} itself calls only two of these procedures,
+@code{$@{tool@}_exit} and @code{$@{tool@}_version}; these procedures use
+no arguments.
 
-The other two procedures, @code{$@{tool@}_start}
-and @code{$@{tool@}_load}, are only called by the test
-suites themselves (or by testsuite-specific initialization
-code); they may take arguments  or not, depending on the
-conventions used within each testsuite.
+The other two procedures, @code{$@{tool@}_start} and
+@code{$@{tool@}_load}, are only called by the test suites themselves (or
+by testsuite-specific initialization code); they may take arguments or
+not, depending on the conventions used within each testsuite.
 
-The usual convention for return codes from any of these
-procedures (although it is not required by
-@code{runtest}) is to return @emph{0}
-if the procedure succeeded, @emph{1} if it failed,
-and @emph{-1} if there was a communication error.
+The usual convention for return codes from any of these procedures
+(although it is not required by @code{runtest}) is to return @emph{0} if
+the procedure succeeded, @emph{1} if it failed, and @emph{-1} if there
+was a communication error.
 
 @menu
 * $@{tool@}_start Procedure: $@{tool@}_start procedure
@@ -5055,25 +4698,21 @@ and @emph{-1} if there was a communication error.
 @subsubsection $@{tool@}_start Procedure
 
 Starts a particular tool.  For an interactive tool,
-@code{$@{tool@}_start} starts and initializes the
-tool, leaving the tool up and running for the test cases; an
-example is @code{gdb_start}, the start function
-for GDB. For a batch oriented tool,
-@code{$@{tool@}_start} is optional; the recommended
-convention is to let @code{$@{tool@}_start} run the
-tool, leaving the output in a variable called
-@code{comp_output}.  Test scripts can then analyze
-@code{$comp_output} to determine the test results.
-An example of this second kind of start function is
-@code{gcc_start}, the start function for GCC.
+@code{$@{tool@}_start} starts and initializes the tool, leaving the tool
+up and running for the test cases; an example is @code{gdb_start}, the
+start function for GDB. For a batch oriented tool,
+@code{$@{tool@}_start} is optional; the recommended convention is to let
+@code{$@{tool@}_start} run the tool, leaving the output in a variable
+called @code{comp_output}.  Test scripts can then analyze
+@code{$comp_output} to determine the test results.  An example of this
+second kind of start function is @code{gcc_start}, the start function
+for GCC.
 
-DejaGnu itself does not call
-@code{$@{tool@}_start}.  The initialization
-module @code{$@{tool@}_init.exp} must call
-@code{$@{tool@}_start} for interactive tools;
-for batch-oriented tools, each individual test script calls
-@code{$@{tool@}_start} (or makes other
-arrangements to run the tool).
+DejaGnu itself does not call @code{$@{tool@}_start}.  The initialization
+module @code{$@{tool@}_init.exp} must call @code{$@{tool@}_start} for
+interactive tools; for batch-oriented tools, each individual test script
+calls @code{$@{tool@}_start} (or makes other arrangements to run the
+tool).
 
 @quotation
 @t{@b{$@{tool@}_start}}
@@ -5082,22 +4721,16 @@ arrangements to run the tool).
 @node $@{tool@}_load procedure, $@{tool@}_exit procedure, $@{tool@}_start procedure, platform dependent procedures
 @subsubsection $@{tool@}_load Procedure
 
-Loads something into a tool. For an interactive tool,
-this conditions the tool for a particular test case; for
-example, @code{gdb_load} loads a new
-executable file into the debugger. For batch oriented tools,
-@code{$@{tool@}_load} may do nothing---though,
-for example, the GCC support uses
-@code{gcc_load} to load and run a binary on
-the target environment.  Conventionally,
-@code{$@{tool@}_load} leaves the output of any
-program it runs in a variable called
-@code{$exec_output}. Writing
-@code{$@{tool@}_load} can be the most complex
-part of extending DejaGnu to a new tool or a new target, if
-it requires much communication coding or file
-downloading. Test scripts call
-@code{$@{tool@}_load}.
+Loads something into a tool. For an interactive tool, this conditions
+the tool for a particular test case; for example, @code{gdb_load} loads
+a new executable file into the debugger. For batch oriented tools,
+@code{$@{tool@}_load} may do nothing---though, for example, the GCC
+support uses @code{gcc_load} to load and run a binary on the target
+environment.  Conventionally, @code{$@{tool@}_load} leaves the output of
+any program it runs in a variable called @code{$exec_output}. Writing
+@code{$@{tool@}_load} can be the most complex part of extending DejaGnu
+to a new tool or a new target, if it requires much communication coding
+or file downloading. Test scripts call @code{$@{tool@}_load}.
 
 @quotation
 @t{@b{$@{tool@}_load}}
@@ -5106,12 +4739,10 @@ downloading. Test scripts call
 @node $@{tool@}_exit procedure, $@{tool@}_version procedure, $@{tool@}_load procedure, platform dependent procedures
 @subsubsection $@{tool@}_exit Procedure
 
-Cleans up (if necessary) before DejaGnu exits. For
-interactive tools, this usually ends the interactive
-session.  You can also use @code{$@{tool@}_exit}
-to remove any temporary files left over from the
-tests. @code{runtest} calls
-@code{$@{tool@}_exit}.
+Cleans up (if necessary) before DejaGnu exits. For interactive tools,
+this usually ends the interactive session.  You can also use
+@code{$@{tool@}_exit} to remove any temporary files left over from the
+tests. @code{runtest} calls @code{$@{tool@}_exit}.
 
 @quotation
 @t{@b{$@{tool@}_exit}}
@@ -5120,10 +4751,9 @@ tests. @code{runtest} calls
 @node $@{tool@}_version procedure, , $@{tool@}_exit procedure, platform dependent procedures
 @subsubsection $@{tool@}_version Procedure
 
-Prints the version label and number for
-@code{$@{tool@}}.  This is called by the DejaGnu
-procedure that prints the final summary report.  The output
-should consist of the full path name used for the tested
+Prints the version label and number for @code{$@{tool@}}.  This is
+called by the DejaGnu procedure that prints the final summary report.
+The output should consist of the full path name used for the tested
 tool, and its version number.
 
 @quotation
@@ -5150,9 +4780,8 @@ tool, and its version number.
 @node getdirs procedure, find procedure, , Utility Procedures
 @subsubsection getdirs Procedure
 
-Returns a list of all the directories in the single
-directory a single directory that match an optional
-pattern. 
+Returns a list of all the directories in the single directory a single
+directory that match an optional pattern.
 
 @quotation
 @t{@b{getdirs}@{@i{rootdir}
@@ -5175,13 +4804,12 @@ returned.
 @node find procedure, which procedure, getdirs procedure, Utility Procedures
 @subsubsection find Procedure
 
-Search for files whose names match @emph{pattern}
-(using shell wildcard characters for filename expansion).  Search
-subdirectories recursively, starting at
-@emph{rootdir}. The result is the list of files whose
-names match; if no files match, the result is empty.  Filenames in the
-result include all intervening subdirectory names. If no files match
-the pattern, then a NULL string is returned.
+Search for files whose names match @emph{pattern} (using shell wildcard
+characters for filename expansion).  Search subdirectories recursively,
+starting at @emph{rootdir}. The result is the list of files whose names
+match; if no files match, the result is empty.  Filenames in the result
+include all intervening subdirectory names. If no files match the
+pattern, then a NULL string is returned.
 
 @quotation
 @t{@b{find}@{@i{rootdir}
@@ -5191,24 +4819,20 @@ the pattern, then a NULL string is returned.
 @table @asis
 
 @item @code{rootdir}
-The top level directory to search the search
-from.
+The top level directory to search the search from.
 
 @item @code{pattern}
-A csh "glob" style regular expression representing
-the files to find.
+A csh "glob" style regular expression representing the files to find.
 @end table
 
 @node which procedure, grep procedure, find procedure, Utility Procedures
 @subsubsection which Procedure
 
-Searches the execution path for an executable file
-@emph{binary}, like the BSD @code{which}
-utility.  This procedure uses the shell environment variable
-@emph{PATH}. It returns @emph{0} if the
-binary is not in the path, or if there is no @emph{PATH}
-environment variable. If @code{binary} is in the path, it
-returns the full path to @code{binary}.
+Searches the execution path for an executable file @emph{binary}, like
+the BSD @code{which} utility.  This procedure uses the shell environment
+variable @emph{PATH}. It returns @emph{0} if the binary is not in the
+path, or if there is no @emph{PATH} environment variable. If
+@code{binary} is in the path, it returns the full path to @code{binary}.
 
 @quotation
 @t{@b{which}@{@i{file}@}}
@@ -5217,24 +4841,21 @@ returns the full path to @code{binary}.
 @table @asis
 
 @item @code{binary}
-The executable program or shell script to look
-for.
+The executable program or shell script to look for.
 @end table
 
 @node grep procedure, prune procedure, which procedure, Utility Procedures
 @subsubsection grep Procedure
 
-Search the file called @file{filename} (a fully
-specified path) for lines that contain a match for regular expression
-@emph{regexp}. The result is a list of all the lines that
-match.  If no lines match, the result is an empty string.  Specify
-@emph{regexp} using the standard regular expression style
-used by the Unix utility program grep.
+Search the file called @file{filename} (a fully specified path) for
+lines that contain a match for regular expression @emph{regexp}. The
+result is a list of all the lines that match.  If no lines match, the
+result is an empty string.  Specify @emph{regexp} using the standard
+regular expression style used by the Unix utility program grep.
 
-Use the optional third argument @emph{line} to
-start lines in the result with the line number in
-@file{filename}.  (This argument is simply an option
-flag; type it just as shown @code{--line}.)
+Use the optional third argument @emph{line} to start lines in the result
+with the line number in @file{filename}.  (This argument is simply an
+option flag; type it just as shown @code{--line}.)
 
 @quotation
 @t{@b{grep}@{@i{filename}
@@ -5278,10 +4899,9 @@ the right side of the @emph{=} if
 foo.exp="..."
 @end example
 
-was specified, or
-an empty string if no such argument is present. The second is the
-pathname of the current testcase under consideration. This is used
-by tools like compilers where each testcase is a file.
+was specified, or an empty string if no such argument is present. The
+second is the pathname of the current testcase under consideration. This
+is used by tools like compilers where each testcase is a file.
 
 @quotation
 @t{@b{runtest_file_p}@{@i{runtests}
@@ -5300,10 +4920,9 @@ The test case filename.
 @node diff procedure, setenv procedure, runtest_file_p procedure, Utility Procedures
 @subsubsection diff Procedure
 
-Compares the two files and returns a @emph{1} if
-they match, or a @emph{0} if they don't. If
-@code{verbose} is set, then it'll print the differences to
-the screen.
+Compares the two files and returns a @emph{1} if they match, or a
+@emph{0} if they don't. If @code{verbose} is set, then it'll print the
+differences to the screen.
 
 @quotation
 @t{@b{diff}@{@i{file_1}
@@ -5809,9 +5428,8 @@ for.
 @node watchunset procedure, watchwrite procedure, watchvar procedure, Debugging Procedures
 @subsubsection watchunset Procedure
 
-This breaks program execution when the variable
-@code{var} is unset. It is abbreviated as
-@emph{wu}.
+This breaks program execution when the variable @code{var} is unset. It
+is abbreviated as @emph{wu}.
 
 @quotation
 @t{@b{watchunset}@{@i{arg}@}}
@@ -5840,9 +5458,8 @@ The variable to watch.
 @node watchread procedure, watchdel procedure, watchwrite procedure, Debugging Procedures
 @subsubsection watchread Procedure
 
-This breaks program execution when the variable
-@code{var} is read. It is abbreviated as
-@emph{wr}.
+This breaks program execution when the variable @code{var} is read. It
+is abbreviated as @emph{wr}.
 
 @quotation
 @t{@b{watchread}@{@i{var}@}}
@@ -5870,8 +5487,7 @@ abbreviated as @emph{wd}.
 @node print procedure, quit procedure, watchdel procedure, Debugging Procedures
 @subsubsection print Procedure
 
-This prints the value of the variable
-@code{var}. It is abbreviated as
+This prints the value of the variable @code{var}. It is abbreviated as
 @emph{p}.
 
 @quotation

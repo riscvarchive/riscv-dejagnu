@@ -1,5 +1,9 @@
 2016-04-02  Ben Elliston  <bje@gnu.org>
 
+	* doc/dejagnu.texi: Fill paragraphs.
+
+2016-04-02  Ben Elliston  <bje@gnu.org>
+
 	* doc/dejagnu.texi: Fix capitalisation of procedure names
 	throughout.  Use Tcl syntax in procedure prototypes, not C syntax.
 
