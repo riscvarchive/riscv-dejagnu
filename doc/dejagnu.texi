@@ -2324,8 +2324,8 @@ DejaGnu provides these Tcl procedures.
 * Target Database Procedures: target database library file.
 * Platform Dependent Procedures: platform dependent procedures.
 * Utility Procedures::
-* Libgloss, A Free BSP: Libgloss.
-* Procedures for debugging your Tcl code.: Debugging Procedures.
+* Libgloss, a free board support package (BSP): Libgloss.
+* Procedures for debugging your scripts: Debugging Procedures.
 @end menu
 
 @node Core Internal Procedures, Procedures For Remote Communication, , Builtin Procedures
@@ -4379,23 +4379,23 @@ This is the filename to download.
 @subsection Target Database Procedures
 
 @menu
-* Board_info Procedure: board_info procedure
-* Host_info Procedure: host_info procedure
-* Set_board_info Procedure: set_board_info procedure
-* Add_board_info Procedure: add_board_info procedure
-* Set_currtarget_info Procedure: set_currtarget_info procedure
-* Target_info Procedure: target_info procedure
-* Unset_board_info Procedure: unset_board_info procedure
-* Unset_currtarget_info Procedure: unset_currtarget_info procedure
-* Push_target Procedure: push_target procedure
-* Pop_target Procedure: poptarget procedure
-* List_targets Procedure: list_targets procedure
-* Push_host Procedure: push_host procedure
-* Pop_host Procedure: pop_host procedure
-* Compile Procedure: compile procedure
-* Archive Procedure: archive procedure
-* Ranlib Procedure: ranlib procedure
-* Execute_anywhere Procedure: execute_anywhere procedure
+* board_info Procedure: board_info procedure
+* host_info Procedure: host_info procedure
+* set_board_info Procedure: set_board_info procedure
+* add_board_info Procedure: add_board_info procedure
+* set_currtarget_info Procedure: set_currtarget_info procedure
+* target_info Procedure: target_info procedure
+* unset_board_info Procedure: unset_board_info procedure
+* unset_currtarget_info Procedure: unset_currtarget_info procedure
+* push_target Procedure: push_target procedure
+* pop_target Procedure: poptarget procedure
+* list_targets Procedure: list_targets procedure
+* push_host Procedure: push_host procedure
+* pop_host Procedure: pop_host procedure
+* compile Procedure: compile procedure
+* archive Procedure: archive procedure
+* ranlib Procedure: ranlib procedure
+* execute_anywhere Procedure: execute_anywhere procedure
 @end menu
 
 @node board_info procedure, host_info procedure, , target database library file
@@ -5018,37 +5018,37 @@ text.
 @end table
 
 @node Libgloss, Debugging Procedures, Utility Procedures, Builtin Procedures
-@subsection Libgloss, A Free BSP
+@subsection Libgloss, a free board support package (BSP)
 
 Libgloss is a free @dfn{BSP} (Board Support
 Package) commonly used with GCC and G++ to produce a fully linked
 executable image for an embedded systems.
 
 @menu
-* Libgloss_link_flags Procedure: libgloss_link_flags procedure
-* Libgloss_include_flags Procedure: libgloss_include_flags procedure
-* Newlib_link_flags Procedure: newlib_link_flags procedure
-* Newlib_include_flags Procedure: newlib_include_flags procedure
-* Libio_include_flags Procedure: libio_include_flags procedure
-* Libio_link_flags Procedure: libio_link_flags procedure
-* G++_include_flags Procedure: g++_include_flags procedure
-* G++_link_flags Procedure: g++_link_flags procedure
-* Libstdc++_include_flags Procedure: libstdc++_include_flags procedure
-* Libstdc++_link_flags Procedure: libstdc++_link_flags procedure
-* Get_multilibs Procedure: get_multilibs procedure
-* Find_binutils_prog Procedure: find_binutils_prog procedure
-* Find_gcc Procedure: find_gcc procedure
-* Find_gcj Procedure: find_gcj procedure
-* Find_g++ Procedure: find_g++ procedure
-* Find_g77 Procedure: find_g77 procedure
-* Find_gfortran Procedure: find_gfortran procedure
-* Process_multilib_options Procedure: process_multilib_options procedure
-* Add_multilib_option Procedure: add_multilib_option procedure
-* Find_gas Procedure: find_gas procedure
-* Find_ld Procedure: find_ld procedure
-* Build_wrapper Procedure: build_wrapper procedure
-* Winsup_include_flags Procedure: winsup_include_flags procedure
-* Winsup_link_flags Procedure: winsup_link_flags procedure
+* libgloss_link_flags Procedure: libgloss_link_flags procedure
+* libgloss_include_flags Procedure: libgloss_include_flags procedure
+* newlib_link_flags Procedure: newlib_link_flags procedure
+* newlib_include_flags Procedure: newlib_include_flags procedure
+* libio_include_flags Procedure: libio_include_flags procedure
+* libio_link_flags Procedure: libio_link_flags procedure
+* g++_include_flags Procedure: g++_include_flags procedure
+* g++_link_flags Procedure: g++_link_flags procedure
+* libstdc++_include_flags Procedure: libstdc++_include_flags procedure
+* libstdc++_link_flags Procedure: libstdc++_link_flags procedure
+* get_multilibs Procedure: get_multilibs procedure
+* find_binutils_prog Procedure: find_binutils_prog procedure
+* find_gcc Procedure: find_gcc procedure
+* find_gcj Procedure: find_gcj procedure
+* find_g++ Procedure: find_g++ procedure
+* find_g77 Procedure: find_g77 procedure
+* find_gfortran Procedure: find_gfortran procedure
+* process_multilib_options Procedure: process_multilib_options procedure
+* add_multilib_option Procedure: add_multilib_option procedure
+* find_gas Procedure: find_gas procedure
+* find_ld Procedure: find_ld procedure
+* build_wrapper Procedure: build_wrapper procedure
+* winsup_include_flags Procedure: winsup_include_flags procedure
+* winsup_link_flags Procedure: winsup_link_flags procedure
 @end menu
 
 @node libgloss_link_flags procedure, libgloss_include_flags procedure, , Libgloss
@@ -5312,24 +5312,24 @@ executable image for an embedded systems.
 @end table
 
 @node Debugging Procedures, , Libgloss, Builtin Procedures
-@subsection Procedures for debugging your Tcl code.
+@subsection Procedures for debugging your scripts
 
 @file{lib/debugger.exp}defines these utility
 procedures:
 
 @menu
-* Dumpvars Procedure: dumpvars procedure
-* Dumplocals Procedure: dumplocals procedure
-* Dumprocs Procedure: dumprocs procedure
-* Dumpwatch Procedure: dumpwatch procedure
-* Watcharray Procedure: watcharray procedure
-* Watchvar Procedure: watchvar procedure
-* Watchunset Procedure: watchunset procedure
-* Watchwrite Procedure: watchwrite procedure
-* Watchread Procedure: watchread procedure
-* Watchdel Procedure: watchdel procedure
-* Print Procedure: print procedure
-* Quit Procedure: quit procedure
+* dumpvars Procedure: dumpvars procedure
+* dumplocals Procedure: dumplocals procedure
+* dumprocs Procedure: dumprocs procedure
+* dumpwatch Procedure: dumpwatch procedure
+* watcharray Procedure: watcharray procedure
+* watchvar Procedure: watchvar procedure
+* watchunset Procedure: watchunset procedure
+* watchwrite Procedure: watchwrite procedure
+* watchread Procedure: watchread procedure
+* watchdel Procedure: watchdel procedure
+* print Procedure: print procedure
+* quit Procedure: quit procedure
 @end menu
 
 @node dumpvars procedure, dumplocals procedure, , Debugging Procedures
