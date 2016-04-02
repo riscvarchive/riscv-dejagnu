@@ -1,3 +1,12 @@
+2016-04-02  Rob Savoye  <rob.savoye@linaro.org>
+
+	* contrib/mysql/create-db.sql: New file.
+	* contrib/mysql/importxml.sh: Likewise.
+	* contrib/mysql/make-datafile.sh: Likewise.
+	* contrib/mysql/plot.sh: Likewise.
+	* contrib/mysql/README: Likewise.
+	* contrib/mysql/sum2xml.sh: Likewise.
+
 2016-04-02  Ben Elliston  <bje@gnu.org>
 
 	* config.guess: Update to version 2016-04-02.
