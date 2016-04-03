@@ -1059,7 +1059,6 @@ for { set i 0 } { $i < $argc } { incr i } {
 
 	"--di*" {
 	    # Already parsed (and don't set again).  Let $DEJAGNU rename it.
-	    # set cmdline_dir_to_run $optarg
 	    continue
 	}
 
@@ -1078,6 +1077,8 @@ for { set i 0 } { $i < $argc } { incr i } {
 	}
 
 	"--D[01]" {			# (-Debug) turn on Tcl debugger
+	    # The runtest shell script handles this option, but it
+	    # still appears in the options in the Tcl code.
 	    verbose "Tcl debugger is ON"
 	    continue
 	}

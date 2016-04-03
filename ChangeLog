@@ -1,5 +1,9 @@
 2016-04-03  Ben Elliston  <bje@gnu.org>
 
+	* runtest.exp: Document the magical handling of -D[01].
+
+2016-04-03  Ben Elliston  <bje@gnu.org>
+
 	* doc/runtest.1: Do not document obsolete --status option. It is
 	still accepted for compatibility, but does nothing.
 
