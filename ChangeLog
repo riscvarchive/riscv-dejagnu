@@ -1,3 +1,9 @@
+2016-04-04  Ben Elliston  <bje@gnu.org>
+
+	* site.tmpl: Delete.
+	* Makefile.am (EXTRA_DIST): Remove site.tmpl.
+	* Makefile.in: Regenerate.
+
 2016-04-03  Ben Elliston  <bje@gnu.org>
 
 	* doc/dejagnu.texi: More overhauling.
