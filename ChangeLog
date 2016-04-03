@@ -1,5 +1,9 @@
 2016-04-03  Ben Elliston  <bje@gnu.org>
 
+	* doc/runtest.1 (OPTIONS): Place short forms (-v, -V, -x) first.
+
+2016-04-03  Ben Elliston  <bje@gnu.org>
+
 	* doc/runtest.1 (OPTIONS): Sort options.
 
 2016-04-03  Ben Elliston  <bje@gnu.org>
