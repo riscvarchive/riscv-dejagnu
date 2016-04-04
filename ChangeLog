@@ -1,5 +1,10 @@
 2016-04-04  Ben Elliston  <bje@gnu.org>
 
+	* lib/targetdb.exp (set_board_info): Improve comment.
+	(add_board_info): Likewise.
+
+2016-04-04  Ben Elliston  <bje@gnu.org>
+
 	* NEWS: Add some more detail.
 
 2016-04-04  Ben Elliston  <bje@gnu.org>
