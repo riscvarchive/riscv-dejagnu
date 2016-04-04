@@ -500,11 +500,6 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    continue
 	}
 
-	"--tool_ro*" {
-	    set tool_root_dir $optarg
-	    continue
-	}
-
 	"--to*" {			# (--tool) specify tool name
 	    set tool $optarg
 	    set comm_line_tool $optarg
@@ -1161,11 +1156,6 @@ for { set i 0 } { $i < $argc } { incr i } {
 
 	"--tool_exec*" {
 	    set TOOL_EXECUTABLE $optarg
-	    continue
-	}
-
-	"--tool_ro*" {
-	    set tool_root_dir $optarg
 	    continue
 	}
 
