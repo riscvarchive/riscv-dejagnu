@@ -1,5 +1,9 @@
 2016-04-04  Ben Elliston  <bje@gnu.org>
 
+	* NEWS: Add some more detail.
+
+2016-04-04  Ben Elliston  <bje@gnu.org>
+
 	* site.tmpl: Delete.
 	* Makefile.am (EXTRA_DIST): Remove site.tmpl.
 	* Makefile.in: Regenerate.

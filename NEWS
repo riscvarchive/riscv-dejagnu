@@ -9,7 +9,9 @@ Changes since 1.5.3:
    can be put back in the distribution.
 3. The --status command line option is now the default. This means
    that any error in the testsuite Tcl scripts will cause runtest to
-   abort with exit status code 2.
+   abort with exit status code 2.  The --status option has been
+   removed from the documentation, but will continue to be accepted
+   for backward compatibility.
 4. runtest now exits with exit code 0 if the testsuite "passed", 1 if
    something unexpected happened (eg, FAIL, XPASS or UNRESOLVED), and
    2 if an exception is raised by the Tcl interpreter.
