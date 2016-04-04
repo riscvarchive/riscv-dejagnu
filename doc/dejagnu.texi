@@ -29,9 +29,9 @@ This file documents DejaGnu version 1.6.
 Introduction
 
 * What is DejaGnu?::
-* New in this release: Release Notes.
+* New in this release: Release Notes
 * Design goals::
-* A POSIX compliant test framework: A POSIX Conforming Test Framework.
+* A POSIX conforming test framework: A POSIX Conforming Test Framework.
 * Installation::
 
 Running tests
@@ -58,7 +58,6 @@ Extending DejaGnu
 * Writing a test case::
 * Debugging a test case::
 * Adding a test case to a testsuite::
-* Hints on writing a test case::
 * Test case special variables: Test case variables.
 
 Unit testing
@@ -90,20 +89,21 @@ Reference
 @section What is DejaGnu?
 
 DejaGnu is a framework for testing other programs, providing a single
-front-end for all tests. You can think of it as a custom library of Tcl
-procedures crafted to help with writing a test harness. A @emph{test
-harness} is the testing infrastructure that is created to support a
-specific program or tool. Each program can have multiple testsuites, all
-supported by a single test harness. DejaGnu is written in Expect, which
-in turn uses Tcl, the Tool command language. There is more information
-on Tcl at the @uref{http://www.tcl.tk,Tcl/Tk} web site and the Expect
-web site is at @uref{http://expect.nist.gov,NIST}.
+front-end for all tests. You can think of it as a library of Tcl
+procedures to help with writing a test harness. A @emph{test harness} is
+the infrastructure that is created to test a specific program or
+tool. Each program can have multiple testsuites, all supported by a
+single test harness. DejaGnu is written in Expect, which in turn uses
+Tcl, the Tool command language. There is more information on Tcl at the
+@uref{http://www.tcl.tk,Tcl/Tk web site} and the
+@uref{http://expect.nist.gov,Expect web site}.
 
-Julia Menapace first coined the term ``DejaGnu'' to describe an earlier
-testing framework she wrote at Cygnus Support for testing GDB. When we
-replaced it with the Expect-based framework, it was like DejaGnu all
-over again.  More importantly, it was also named after my daughter, Deja
-Snow Savoye, who was a toddler during DejaGnu's beginnings.
+Julia Menapace first coined the term @emph{DejaGnu} to describe an
+earlier testing framework she wrote at Cygnus Support for testing
+GDB. When we replaced it with the Expect-based framework, it was like
+DejaGnu all over again.  More importantly, it was also named after my
+daughter, Deja Snow Savoye, who was a toddler during DejaGnu's
+beginnings.
 
 DejaGnu offers several advantages for testing:
 
@@ -137,18 +137,64 @@ to have a single set of report analyse programs..
 Running tests requires two things: the testing framework and the
 testsuites themselves. Tests are usually written in Expect using Tcl,
 but you can also use a Tcl script to run a testsuite that is not based
-on Expect. Expect script filenames conventionally use @emph{.exp} as a
-suffix; for example, the main implementation of the DejaGnu test driver
-is in the file runtest.exp.)
+on Expect. Expect script filenames conventionally use @file{.exp} as a
+suffix. For example, the main implementation of the DejaGnu test driver
+is in the file @file{runtest.exp}.
 
 @node Release Notes, Design goals, What is DejaGnu?, Introduction
 @section New in this release
 
-@itemize 
+The following major, user-visible changes have been introduced since
+version 1.5.3.
+
+@enumerate
 
 @item
-A completely new manual.
-@end itemize
+Support for target communication via SSH has been added.
+
+@item
+A large number of very old config and baseboard files have been
+   removed. If you need to resurrect these, you can get them from
+   version 1.5.3.  If you can show that a board is still in use, it can
+   be put back in the distribution.
+
+@item
+The @command{--status} command line option is now the default. This
+   means that any error in the testsuite Tcl scripts will cause runtest
+   to abort with exit status code 2. The @command{--status} option has
+   been removed from the documentation, but will continue to be accepted
+   for backward compatibility.
+
+@item
+@command{runtest} now exits with exit code 0 if the testsuite "passed",
+   1 if something unexpected happened (eg, FAIL, XPASS or UNRESOLVED),
+   and 2 if an exception is raised by the Tcl interpreter.
+
+@item
+@command{runtest} now exits with the standard exit codes of programs that
+   are terminated by the SIGINT, SIGTERM and SIGQUIT signals.
+
+@item
+The user-visible utility procedures @code{absolute}, @code{psource} and
+   @code{slay} have been removed.  If a testsuite uses any of these
+   procedures, a copy of the procedure should be made and placed in the
+   lib directory of the testsuite.
+
+@item
+Support was added for testing the D compiler.
+
+@item
+@file{~/.dejagnurc} is now loaded last, not first. This allows the user
+   to have the ability to override anything in their environment (even
+   the @file{site.exp} file specified by @code{$DEJAGNU}).
+
+@item
+The user-visible utility procedure @code{unsetenv} is
+   @strong{deprecated} and will be removed in the next release.  If a
+   testsuite uses this procedure, a copy should be made and placed in
+   the lib directory of the testsuite.
+
+@end enumerate
 
 @node Design goals, A POSIX Conforming Test Framework, Release Notes, Introduction
 @section Design goals
@@ -807,9 +853,9 @@ a different output directory.
 
 The @code{runtest} option @code{--debug} creates a file showing the
 output from Expect in debugging mode. The @file{dbg.log} file is created
-in the directory where you start @code{runtest}.  The log file shows the
-string sent to the tool under test by each @code{send} command and the
-pattern it compares with the tool output by each @code{expect} command.
+in the current directory.  The log file shows the string sent to the
+tool being tested by each @code{send} command and the pattern it
+compares with the tool output by each @code{expect} command.
 
 The log messages begin with a message of the form:
 
@@ -823,13 +869,11 @@ message. If other patterns are specified for the same Expect command,
 they are reflected also, but without the first part of the message
 (@emph{expect... match pattern}).
 
-When Expect finds a match, the
-log for the successful match ends with @emph{yes},
-followed by a record of the Expect
-variables set to describe a successful match.
+When Expect finds a match, the log for the successful match ends with
+@emph{yes}, followed by a record of the Expect variables set to describe
+a successful match.
 
-@strong{Debug log excerpt for a
-GDB test:}
+@strong{Example debug log file for a GDB test}
 
 @example
 	send: sent @{break gdbme.c:34\n@} to spawn id 6
@@ -860,10 +904,8 @@ GDB test:}
 	
 @end example
 
-This example exhibits three properties of
-Expect and
-DejaGnu that might be surprising at
-first glance:
+This example exhibits three properties of Expect and DejaGnu that might
+be surprising at first glance:
 
 @itemize 
 
@@ -897,6 +939,7 @@ These fail-safe patterns (like the debugging log itself) are primarily
 useful while developing test scripts.  Use the @code{error} procedure to
 make the actions for fail-safe patterns produce messages starting with
 @emph{ERROR} on standard output, and in the detailed log file.
+
 @end itemize
 
 @node Customizing DejaGnu, Extending DejaGnu, Running tests, Top
@@ -915,18 +958,16 @@ the local file @file{site.exp}, and then the optional global
 @file{site.exp} file as pointed to by the @code{DEJAGNU} environment
 variable.
 
-There is an optional @emph{master} @file{site.exp}, capturing
-configuration values that apply to DejaGnu across the board, in each
-configuration-specific subdirectory of the DejaGnu library directory.
-@code{runtest} loads these values first. The master @file{site.exp}
-contains the default values for all targets and hosts supported by
-DejaGnu. This master file is identified by setting the environment
-variable @code{DEJAGNU} to the name of the file. This is also referred
-to as the ``global'' config file.
+There is an optional global @file{site.exp}, containing configuration
+values that apply to DejaGnu site-wide.  @code{runtest} loads these
+values first. The global @file{site.exp} contains the default values for
+all targets and hosts supported by DejaGnu. This global file is
+identified by setting the environment variable @code{DEJAGNU} to the
+name of the file.
 
 Any directory containing a configured testsuite also has a local
 @file{site.exp}, capturing configuration values specific to the tool
-under test.  Since @code{runtest} loads these values last, the
+being tested.  Since @code{runtest} loads these values last, the
 individual test configuration can either rely on and use, or override,
 any of the global values from the global @file{site.exp} file.
 
@@ -961,32 +1002,29 @@ global @file{site.exp} in the installed DejaGnu library. This file is
 mostly for supplying tool specific info that is required by the
 testsuite.
 
-All local @file{site.exp} files have two sections, separated by comment
-text. The first section is the part that is generated by @code{make}. It
-is essentially a collection of Tcl variable definitions based on
+All local @file{site.exp} files have two sections, separated by
+comments. The first section is generated by @code{make}. It is
+essentially a collection of Tcl variable definitions based on
 @file{Makefile} environment variables. Since they are generated by
 @code{make}, they contain the values as specified by @code{configure}.
-(You can also customize these values by using the @code{--site} option
-to @code{configure}.) In particular, this section contains the
-@file{Makefile} variables for host and target configuration data. Do not
-edit this first section; if you do, your changes are replaced next time
-you run @code{make}.
-
-@strong{The first section starts with}
+In particular, this section contains the @file{Makefile} variables for
+host and target configuration data. Do not edit this first section; if
+you do, your changes will be overwritten the next time you run
+@code{make}.  The first section starts with:
 
 @example
-	## these variables are automatically generated by make ##
-	# Do not edit here. If you wish to override these values
-	# add them to the last section
+## these variables are automatically generated by make ##
+# Do not edit here. If you wish to override these values
+# add them to the last section
 @end example
 
-In the second section, you can override any default values (locally to
-DejaGnu) for all the variables.  The second section can also contain
-your preferred defaults for all the command line options to
-@code{runtest}. This allows you to easily customize @code{runtest} for
-your preferences in each configured test-suite tree, so that you need
-not type options repeatedly on the command line.  (The second section
-may also be empty, if you do not wish to override any defaults.)
+In the second section, you can override any default values for all the
+variables.  The second section can also contain your preferred defaults
+for all the command line options to @code{runtest}. This allows you to
+easily customize @code{runtest} for your preferences in each configured
+testsuite tree, so that you need not type options repeatedly on the
+command line.  The second section may also be empty if you do not wish
+to override any defaults.
 
 @strong{The first section ends with this line}
 
@@ -1008,22 +1046,20 @@ Here's an example local site.exp file, as used for GCC/G++ testing.
 @strong{Local Config File}
 
 @example
-      ## these variables are automatically generated by make ##
-      # Do not edit here. If you wish to override these values
-      # add them to the last section
-      set rootme "/build/devo-builds/i586-pc-linux-gnulibc1/gcc"
-      set host_triplet i586-pc-linux-gnulibc1
-      set build_triplet i586-pc-linux-gnulibc1
-      set target_triplet i586-pc-linux-gnulibc1
-      set target_alias i586-pc-linux-gnulibc1
-      set CFLAGS ""
-      set CXXFLAGS "-isystem /build/devo-builds/i586-pc-linux-gnulibc1/gcc/../libio -isystem $srcdir/../libg++/src -isystem $srcdir/../libio -isystem $srcdir/../libstdc++ -isystem $srcdir/../libstdc++/stl -L/build/devo-builds/i586-pc-linux-gnulibc1/gcc/../libg++ -L/build/devo-builds/i586-pc-linux-gnulibc1/gcc/../libstdc++"
-      append LDFLAGS " -L/build/devo-builds/i586-pc-linux-gnulibc1/gcc/../ld"
-      set tmpdir /build/devo-builds/i586-pc-linux-gnulibc1/gcc/testsuite
-      set srcdir "$@{srcdir@}/testsuite"
-      ## All variables above are generated by configure. Do Not Edit ##
-
-      
+## these variables are automatically generated by make ##
+# Do not edit here. If you wish to override these values
+# add them to the last section
+set rootme "/build/devo-builds/i686-pc-linux-gnu/gcc"
+set host_triplet i686-pc-linux-gnu
+set build_triplet i686-pc-linux-gnu
+set target_triplet i686-pc-linux-gnu
+set target_alias i686-pc-linux-gnu
+set CFLAGS ""
+set CXXFLAGS "-isystem /build/devo-builds/i686-pc-linux-gnu/gcc/../libio -isystem $srcdir/../libg++/src -isystem $srcdir/../libio -isystem $srcdir/../libstdc++ -isystem $srcdir/../libstdc++/stl -L/build/devo-builds/i686-pc-linux-gnu/gcc/../libg++ -L/build/devo-builds/i686-pc-linux-gnu/gcc/../libstdc++"
+append LDFLAGS " -L/build/devo-builds/i686-pc-linux-gnu/gcc/../ld"
+set tmpdir /build/devo-builds/i686-pc-linux-gnu/gcc/testsuite
+set srcdir "$@{srcdir@}/testsuite"
+## All variables above are generated by configure. Do Not Edit ##
 @end example
 
 This file defines the required fields for a local config file, namely
@@ -1407,14 +1443,13 @@ as rsh is mostly used to test Unix machines within a local network.
 
 @menu
 * Adding a new testsuite::
-* Adding a new tool: Adding a new tool
+* Adding a new tool::
 * Adding a new target::
 * Adding a new board::
 * Board file values::
 * Writing a test case::
 * Debugging a test case::
 * Adding a test case to a testsuite::
-* Hints on writing a test case::
 * Test case special variables: Test case variables.
 @end menu
 
@@ -1710,15 +1745,15 @@ set_board_info gdb,cannot_call_functions 1
 @node Board file values, Writing a test case, Adding a new board, Extending DejaGnu
 @section Board configuration file values
 
-These fields are all in the @code{board_info} array.  These are all set
-by using the @code{set_board_info} and @code{add_board_info} procedures
-as required. The parameters are the field name, followed by the value
-that the field is set to or is added to the field, respectively.  Some
+The following fields are in the @code{board_info} array.  These are set
+by the @code{set_board_info} procedure (or @code{add_board_info}
+procedure for appending to lists). Both procedures take a field name and
+a value for the field (or is added to the field), respectively.  Some
 common board info fields are shown below.
 
 @multitable @columnfractions 0.2 0.2 0.6
 @item
-@strong{Field} @tab @strong{Sample value} @tab @strong{Description}
+@strong{Field} @tab @strong{Example value} @tab @strong{Description}
 @item
 compiler@tab "[find_gcc]"@tab The path to the compiler to use.
 @item
@@ -1879,108 +1914,7 @@ cases.  Accordingly, the best approach was simply to encapsulate the
 existing GDB tests, for reporting purposes. Thereafter, new GDB tests
 built up a family of Tcl procedures specialized for GDB testing.
 
-@node Debugging a test case, Adding a test case to a testsuite, Writing a test case, Extending DejaGnu
-@section Debugging a test case
-
-These are the kinds of debugging information available
-from DejaGnu:
-
-@itemize 
-
-@item
-Output controlled by test scripts themselves, explicitly allowed for by
-the test author.  This kind of debugging output appears in the detailed
-output recorded in the DejaGnu log file.  To do the same for new tests,
-use the @code{verbose} procedure (which in turn uses the variable also
-called @emph{verbose}) to control how much output to generate.  This
-will make it easier for other people running the test to debug it if
-necessary.  Whenever possible, if @emph{$verbose} is @emph{0}, there
-should be no output other than the output from @emph{pass}, @emph{fail},
-@emph{error}, and @emph{warning}.  Then, to whatever extent is
-appropriate for the particular test, allow successively higher values of
-@emph{$verbose} to generate more information.  Be kind to other
-programmers who use your tests: provide for a lot of debugging
-information.
-
-@item
-Output from the internal debugging functions of Tcl and Expect. There is
-a command line options for each; both forms of debugging output are
-recorded in the file @file{dbg.log} in the current directory.
-
-Use @code{--debug} for information from the expect level; it generates
-displays of the expect attempts to match the tool output with the
-patterns specified. This output can be very helpful while developing
-test scripts, since it shows precisely the characters received.
-Iterating between the latest attempt at a new test script and the
-corresponding @file{dbg.log} can allow you to create the final patterns
-by ``cut and paste''.  This is sometimes the best way to write a test
-case.
-
-@item
-Use @code{--strace} to see more detail at the Tcl level; this shows how
-Tcl procedure definitions expand, as they execute. The associated number
-controls the depth of definitions expanded.
-
-@item
-Finally, if the value of @emph{verbose} is 3 or greater, DejaGnu turns
-on the expect command @code{log_user}.  This command prints all expect
-actions to the expect standard output, to the detailed log file, and (if
-@code{--debug} is on) to @file{dbg.log}.
-@end itemize
-
-@node Adding a test case to a testsuite, Hints on writing a test case, Debugging a test case, Extending DejaGnu
-@section Adding a test case to a testsuite
-
-There are two slightly different ways to add a test case. One is to add
-the test case to an existing directory. The other is to create a new
-directory to hold your test. The existing test directories represent
-several styles of testing, all of which are slightly different; examine
-the directories for the tool of interest to see which (if any) is most
-suitable.
-
-Adding a GCC test can be very simple: just add the C code to any
-directory beginning with @file{gcc} and it runs on the next:
-
-@example
-runtest --tool gcc
-@end example
-
-To add a test to GDB, first add any source code you will need to the
-test directory. Then you can either create a new expect file, or add
-your test to an existing one (any file with a @emph{.exp} suffix).
-Creating a new .exp file is probably a better idea if the test is
-significantly different from existing tests. Adding it as a separate
-file also makes upgrading easier. If the C code has to be already
-compiled before the test will run, then you'll have to add it to the
-@file{Makefile.in} file for that test directory, then run
-@code{configure} and @code{make}.
-
-Adding a test by creating a new directory is very similar:
-
-@itemize 
-
-@item
-Create the new directory. All subdirectory names begin with the name of
-the tool to test; e.g. G++ tests might be in a directory called
-@file{g++.other}. There can be multiple test directories that start with
-the same tool name (such as @emph{g++}).
-
-@item
-Add the new directory name to the @code{configdirs} definition in the
-@file{configure.in} file for the testsuite directory. This way when
-@code{make} and @code{configure} next run, they include the new
-directory.
-
-@item
-Add the new test case to the directory, as above.
-
-@item
-To add support in the new directory for configure and make, you must
-also create a @file{Makefile.in} and a @file{configure.in}.
-@end itemize
-
-@node Hints on writing a test case, Test case variables, Adding a test case to a testsuite, Extending DejaGnu
-@section Hints on writing a test case
+@subsection Hints on writing a test case
 
 It is safest to write patterns that match all the output generated by
 the tested program; this is called closure.  If a pattern does not match
@@ -2029,7 +1963,81 @@ misleading. Ideally, a test in this sort of situation should not fail
 either. Instead, print an error message by calling one of the DejaGnu
 procedures @code{error} or @code{warning}.
 
-@node Test case variables, , Hints on writing a test case, Extending DejaGnu
+
+@node Debugging a test case, Adding a test case to a testsuite, Writing a test case, Extending DejaGnu
+@section Debugging a test case
+
+These are the kinds of debugging information available from DejaGnu:
+
+@itemize 
+
+@item
+Output controlled by test scripts themselves, explicitly allowed for by
+the test author.  This kind of debugging output appears in the detailed
+output recorded in the DejaGnu log file.  To do the same for new tests,
+use the @code{verbose} procedure (which in turn uses the Tcl variable
+@samp{verbose}) to control how much output to generate.  This will make
+it easier for other people running the test to debug it if necessary.
+If @samp{verbose} is zero, there should be no output other than the
+output from the framework (eg. FAIL).  Then, to whatever extent is
+appropriate for the particular test, allow successively higher values of
+@samp{verbose} to generate more information.  Be kind to other
+programmers who use your tests -- provide plenty of debugging
+information.
+
+@item
+Output from the internal debugging functions of Tcl and Expect. There is
+a command line options for each; both forms of debugging output are
+recorded in the file @file{dbg.log} in the current directory.
+
+Use @code{--debug} for information from Expect. It logs how Expect
+attempts to match the tool output with the patterns specified. This can
+be very helpful while developing test scripts, since it shows precisely
+the characters received.  Iterating between the latest attempt at a new
+test script and the corresponding @file{dbg.log} can allow you to create
+the final patterns by ``cut and paste''.  This is sometimes the best way
+to write a test case.
+
+@item
+Use @code{--strace} to see more detail from Tcl. This logs how Tcl
+procedure definitions are expanded as they execute. The trace level
+argument controls the depth of definitions expanded.
+
+@item
+If the value of @samp{verbose} is 3 or greater (@code{runtest -v -v
+-v}), DejaGnu activates the Expect command @code{log_user}.  This
+command prints all Expect actions to standard output, to the @file{.log}
+file and, if @code{--debug} is given, to @file{dbg.log}.
+@end itemize
+
+@node Adding a test case to a testsuite, Test case variables, Debugging a test case, Extending DejaGnu
+@section Adding a test case to a testsuite
+
+There are two slightly different ways to add a test case. One is to add
+the test case to an existing directory. The other is to create a new
+directory to hold your test. The existing test directories represent
+several styles of testing, all of which are slightly different. Examine
+the testsuite subdirectories for the tool of interest to see which
+approach is most suitable.
+
+Adding a GCC test may be very simple: just add the source file to any
+test directory beginning with @file{gcc.} and it will be tested on the
+next test run.
+
+Adding a test by creating a new directory involves:
+
+@enumerate
+@item
+Create the new directory. All subdirectory names begin with the name of
+the tool to test; e.g. G++ tests might be in a directory called
+@file{g++.other}. There can be multiple testsuite subdirectories with
+the same tool name prefix.
+
+@item
+Add the new test case to the directory, as above.
+@end enumerate
+
+@node Test case variables, , Adding a test case to a testsuite, Extending DejaGnu
 @section Test case special variables
 
 There are special variables that contain other information from
@@ -2037,7 +2045,7 @@ DejaGnu. Your test cases can inspect these variables, as well as the
 variables saved in @file{site.exp}. These variables should never be
 changed.
 
-@table @asis
+@table @code
 
 @item $prms_id
 The bug tracking system (eg. PRMS/GNATS) number identifying a
