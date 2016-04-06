@@ -3857,7 +3857,7 @@ all information.
 @item @code{destfile}
 @end table
 
-@node rsh_exec procedure, ftp_open procedure, rsh_upload procedure, connprocs
+@node rsh_exec procedure, ssh_close procedure, rsh_upload procedure, connprocs
 @subsubsection rsh_exec Procedure
 
 

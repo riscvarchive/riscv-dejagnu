@@ -1,3 +1,8 @@
+2016-04-07  Ben Elliston  <bje@gnu.org>
+
+	Reported by Faraz Shahbazker.
+	* doc/dejagnu.texi (rsh_exec procedure): Fix broken @node.
+
 2016-04-06  Yvan Roux  <yvan.roux@linaro.org>
 
 	* lib/remote.exp (remnote_download): Create a remote directory if
