@@ -1,3 +1,13 @@
+2016-04-06  Yvan Roux  <yvan.roux@linaro.org>
+
+	* lib/remote.exp (remnote_download): Create a remote directory if
+	needed and use it.
+	(remote_exec): Execute program inside remotedir when it exists.
+	(standard_load): Set remotedir board field if not present.
+	* config/unix.exp (unix_load): Handle remotedir in board field.
+	(remotedir): Set board info field.
+	* doc/dejagnu.texi (Board File Values): Document remotedir.
+
 2016-04-06  Ben Elliston  <bje@gnu.org>
 
 	* doc/dejagnu.texi (Global config file): Put before node 'Local

@@ -312,6 +312,10 @@ proc remote_exec { hostname program args } {
     if { ![is_remote $hostname] } {
 	set result [local_exec "$program $pargs" $inp $outp $timeout]
     } else {
+        if { [board_info $hostname exists remotedir] } {
+            set remotedir [board_info $hostname remotedir]
+            set program "test -d $remotedir && cd $remotedir && $program"
+        }
 	set result [call_remote "" exec $hostname $program $pargs $inp $outp]
     }
 
@@ -448,6 +452,15 @@ proc remote_download { dest file args } {
 		return $destfile
 	    }
 	}
+    }
+    if { [board_info $dest exists remotedir] } {
+        set remotedir [board_info $dest remotedir]
+        set status [remote_exec $dest mkdir "-p $remotedir"]
+        if { [lindex $status 0] != 0 } {
+            perror "Couldn't create remote directory $remotedir on $dest"
+	    return ""
+        }
+        set destfile "$remotedir/$destfile"
     }
 
     return [call_remote "" download $dest $file $destfile]
@@ -1029,6 +1042,8 @@ proc remote_raw_load { dest prog args } {
 # remote_download and remote_exec to load and execute the program.
 #
 proc standard_load { dest prog args } {
+    global board_info
+
     if { [llength $args] > 0 } {
 	set pargs [lindex $args 0]
     } else {
@@ -1049,7 +1064,10 @@ proc standard_load { dest prog args } {
     }
 
     if {[is_remote $dest]} {
-	set remotefile "/tmp/[file tail $prog].[pid]"
+        if {![board_info $dest exists remotedir]} {
+            set board_info($dest,remotedir) "/tmp/runtest.[pid]"
+        }
+	set remotefile [file tail $prog]
 	set remotefile [remote_download $dest $prog $remotefile]
 	if { $remotefile == "" } {
 	    verbose -log "Download of $prog to [board_info $dest name] failed." 3

@@ -1784,6 +1784,8 @@ objcopy@tab $tempfil@tab The path to the @code{objcopy} program.
 support_libs@tab "$@{prefix_dir@}/i386-coff/"@tab Support libraries needed for cross compiling.
 @item
 addl_link_flags@tab "-N"@tab Additional link flags, rarely used.
+@item
+remotedir@tab "/tmp/runtest.[pid]"@tab Directory on the remote target in which executables are downloaded and executed.
 @end multitable
 
 These fields are used by the GCC and GDB tests, and are mostly

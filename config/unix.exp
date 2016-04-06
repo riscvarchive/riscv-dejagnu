@@ -97,7 +97,7 @@ proc unix_load { dest prog args } {
 	    setenv SHLIB_PATH $orig_ld_library_path
 	}
     } else {
-	set remotefile "/tmp/[file tail $prog].[pid]"
+	set remotefile [file tail $prog]
 	set remotefile [remote_download $dest $prog $remotefile]
 	if { $remotefile == "" } {
 	    verbose -log "Download of $prog to [board_info $dest name] failed." 3
@@ -145,4 +145,5 @@ proc unix_load { dest prog args } {
     return [list $result $output]
 }
 
+set_board_info remotedir "/tmp/runtest.[pid]"
 set_board_info protocol  "unix"
