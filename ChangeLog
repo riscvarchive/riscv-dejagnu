@@ -1,5 +1,10 @@
 2016-04-07  Ben Elliston  <bje@gnu.org>
 
+	* lib/remote.exp (remote_exec): Join cd $remotedir and $program on
+	the command line with ';' and not &&.
+
+2016-04-07  Ben Elliston  <bje@gnu.org>
+
 	Reported by Faraz Shahbazker.
 	* doc/dejagnu.texi (rsh_exec procedure): Fix broken @node.
 

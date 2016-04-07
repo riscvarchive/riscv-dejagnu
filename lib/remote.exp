@@ -314,7 +314,11 @@ proc remote_exec { hostname program args } {
     } else {
         if { [board_info $hostname exists remotedir] } {
             set remotedir [board_info $hostname remotedir]
-            set program "test -d $remotedir && cd $remotedir && $program"
+	    # This is a bit too clever. Join cd $remotedir and
+	    # $program on the command line with ';' and not '&&'. When
+	    # called, $program may be mkdir to initially create the
+	    # remote directory, in which case cd would fail.
+            set program "test -d $remotedir && cd $remotedir; $program"
         }
 	set result [call_remote "" exec $hostname $program $pargs $inp $outp]
     }
