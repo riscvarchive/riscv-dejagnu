@@ -29,9 +29,9 @@ This file documents DejaGnu version 1.6.
 Introduction
 
 * What is DejaGnu?::
-* New in this release: Release Notes.
+* New in this release: Release Notes
 * Design goals::
-* A POSIX compliant test framework: A POSIX Conforming Test Framework.
+* A POSIX conforming test framework: A POSIX Conforming Test Framework.
 * Installation::
 
 Running tests
@@ -42,8 +42,8 @@ Running tests
 
 Customizing DejaGnu
 
-* Local config file::
 * Global config file::
+* Local config file::
 * Board config file::
 * Remote host testing::
 * Config file values::
@@ -58,7 +58,6 @@ Extending DejaGnu
 * Writing a test case::
 * Debugging a test case::
 * Adding a test case to a testsuite::
-* Hints on writing a test case::
 * Test case special variables: Test case variables.
 
 Unit testing
@@ -90,20 +89,21 @@ Reference
 @section What is DejaGnu?
 
 DejaGnu is a framework for testing other programs, providing a single
-front-end for all tests. You can think of it as a custom library of Tcl
-procedures crafted to help with writing a test harness. A @emph{test
-harness} is the testing infrastructure that is created to support a
-specific program or tool. Each program can have multiple testsuites, all
-supported by a single test harness. DejaGnu is written in Expect, which
-in turn uses Tcl, the Tool command language. There is more information
-on Tcl at the @uref{http://www.tcl.tk,Tcl/Tk} web site and the Expect
-web site is at @uref{http://expect.nist.gov,NIST}.
+front-end for all tests. You can think of it as a library of Tcl
+procedures to help with writing a test harness. A @emph{test harness} is
+the infrastructure that is created to test a specific program or
+tool. Each program can have multiple testsuites, all supported by a
+single test harness. DejaGnu is written in Expect, which in turn uses
+Tcl, the Tool command language. There is more information on Tcl at the
+@uref{http://www.tcl.tk,Tcl/Tk web site} and the
+@uref{http://expect.nist.gov,Expect web site}.
 
-Julia Menapace first coined the term ``DejaGnu'' to describe an earlier
-testing framework she wrote at Cygnus Support for testing GDB. When we
-replaced it with the Expect-based framework, it was like DejaGnu all
-over again.  More importantly, it was also named after my daughter, Deja
-Snow Savoye, who was a toddler during DejaGnu's beginnings.
+Julia Menapace first coined the term @emph{DejaGnu} to describe an
+earlier testing framework she wrote at Cygnus Support for testing
+GDB. When we replaced it with the Expect-based framework, it was like
+DejaGnu all over again.  More importantly, it was also named after my
+daughter, Deja Snow Savoye, who was a toddler during DejaGnu's
+beginnings.
 
 DejaGnu offers several advantages for testing:
 
@@ -137,18 +137,64 @@ to have a single set of report analyse programs..
 Running tests requires two things: the testing framework and the
 testsuites themselves. Tests are usually written in Expect using Tcl,
 but you can also use a Tcl script to run a testsuite that is not based
-on Expect. Expect script filenames conventionally use @emph{.exp} as a
-suffix; for example, the main implementation of the DejaGnu test driver
-is in the file runtest.exp.)
+on Expect. Expect script filenames conventionally use @file{.exp} as a
+suffix. For example, the main implementation of the DejaGnu test driver
+is in the file @file{runtest.exp}.
 
 @node Release Notes, Design goals, What is DejaGnu?, Introduction
 @section New in this release
 
-@itemize 
+The following major, user-visible changes have been introduced since
+version 1.5.3.
+
+@enumerate
 
 @item
-A completely new manual.
-@end itemize
+Support for target communication via SSH has been added.
+
+@item
+A large number of very old config and baseboard files have been
+   removed. If you need to resurrect these, you can get them from
+   version 1.5.3.  If you can show that a board is still in use, it can
+   be put back in the distribution.
+
+@item
+The @command{--status} command line option is now the default. This
+   means that any error in the testsuite Tcl scripts will cause runtest
+   to abort with exit status code 2. The @command{--status} option has
+   been removed from the documentation, but will continue to be accepted
+   for backward compatibility.
+
+@item
+@command{runtest} now exits with exit code 0 if the testsuite "passed",
+   1 if something unexpected happened (eg, FAIL, XPASS or UNRESOLVED),
+   and 2 if an exception is raised by the Tcl interpreter.
+
+@item
+@command{runtest} now exits with the standard exit codes of programs that
+   are terminated by the SIGINT, SIGTERM and SIGQUIT signals.
+
+@item
+The user-visible utility procedures @code{absolute}, @code{psource} and
+   @code{slay} have been removed.  If a testsuite uses any of these
+   procedures, a copy of the procedure should be made and placed in the
+   lib directory of the testsuite.
+
+@item
+Support was added for testing the D compiler.
+
+@item
+@file{~/.dejagnurc} is now loaded last, not first. This allows the user
+   to have the ability to override anything in their environment (even
+   the @file{site.exp} file specified by @code{$DEJAGNU}).
+
+@item
+The user-visible utility procedure @code{unsetenv} is
+   @strong{deprecated} and will be removed in the next release.  If a
+   testsuite uses this procedure, a copy should be made and placed in
+   the lib directory of the testsuite.
+
+@end enumerate
 
 @node Design goals, A POSIX Conforming Test Framework, Release Notes, Introduction
 @section Design goals
@@ -351,30 +397,25 @@ correctly.
 @section Running 'make check'
 
 To run tests from an existing collection, first use @code{configure} as
-usual to set up the build directory. Then type:
-
-@example
-
-      make check
-      
-@end example
-
-If the @emph{check} target exists, it usually saves you some
-trouble. For instance, it can set up any auxiliary programs or other
-files needed by the tests. The most common file the @emph{check} target
-depends on is the @file{site.exp} file. The site.exp file contains
-various variables that DejaGnu used to determine the configuration of
-the program being tested. This is mostly for supporting remote testing.
-
-The @emph{check} target is supported by GNU Automake. To have DejaGnu
-support added to your generated @file{Makefile.in}, just add the keyword
-@code{dejagnu} to the AUTOMAKE_OPTIONS variable in your
-@file{Makefile.am} file.
+usual to set up the build directory. Then type @code{make check}.  If
+the @emph{check} target exists, it usually saves you some trouble. For
+instance, it can set up any auxiliary programs or other files needed by
+the tests. The most common file the @emph{check} target depends on is
+the @file{site.exp} file. The @file{site.exp} contains various variables
+that DejaGnu uses to determine the configuration of the program being
+tested.
 
 Once you have run @emph{make check} to build any auxiliary files, you
 can invoke the test driver @code{runtest} directly to repeat the tests.
 You will also have to execute @code{runtest} directly for test
 collections with no @emph{check} target in the @file{Makefile}.
+
+GNU Automake has built-in support for DejaGnu.  To add DejaGnu support
+to your generated @file{Makefile.in}, just add the keyword
+@code{dejagnu} to the AUTOMAKE_OPTIONS variable in
+@file{Makefile.am}. This will ensure that the generated
+@file{Makefile.in} has a @code{check} target that invokes DejaGnu
+correctly.
 
 @node Runtest, Output Files, Make Check, Running tests
 @section Running runtest
@@ -384,9 +425,16 @@ of things on the @code{runtest} command line: command line options, and
 Tcl variables that are passed to the test scripts. The options are
 listed alphabetically below.
 
-@code{runtest} returns an exit code of @emph{1} if any test has an
-unexpected result. If all tests pass or fail as expected, @code{runtest}
-returns @emph{0} as the exit code.
+@code{runtest} returns one of the following exit codes:
+
+@table @asis
+@item 0
+if all tests passed including expected failures and unsupported tests.
+@item 1
+if any test failed, passed unexpectedly, or was unresolved.
+@item 2
+if Expect encountered any error in the test scripts.
+@end table
 
 @menu
 * Output States::
@@ -481,13 +529,37 @@ itself). Specify @code{--all} to see output for tests with status
 or @emph{WARNING} (minor error in the test case itself).
 
 @item @code{--build [triplet]}
-@emph{string} is a configuration triplet as used by
-@code{configure}. This is the type of machine DejaGnu and the tools to
-be tested are built on. For a normal cross this is the same as the host,
-but for a Canadian cross, they are separate.
+@emph{triplet} is a system triplet of the form
+@emph{cpu-vendor-os}. This is the type of machine DejaGnu and the tools
+to be tested are built on. For a normal cross environment this is the
+same as the host, but for a Canadian cross, they are different.
+
+@item @code{-D0}, @code{-D1}
+Start the internal Tcl debugger. The Tcl debugger supports breakpoints,
+single stepping, and other common debugging activities. See the document
+@uref{http://expect.sourceforge.net/doc/tcl-debug.ps, Debugger for Tcl
+Applications} by Don Libes. If you specify @emph{-D1}, the @emph{expect}
+shell stops at a breakpoint as soon as DejaGnu invokes it. If you
+specify @emph{-D0}, DejaGnu starts as usual, but you can enter the
+debugger by sending an interrupt (e.g. by typing @key{Control}@key{c}).
+
+@item @code{--debug}
+Turns on the Expect internal debugging output. Debugging output is
+displayed as part of the @emph{runtest} output, and logged to a file
+called @file{dbg.log}. The extra debugging output does @emph{not} appear
+on standard output, unless the verbose level is greater than 2 (for
+instance, to see debug output immediately, specify @code{--debug -v
+-v}). The debugging output shows all attempts at matching the test
+output of the tool with the scripted patterns describing expected
+output.  The output generated with @code{--strace} also goes into
+@file{dbg.log}.
+
+@item @code{--help}
+Prints out a short summary of the @emph{runtest} options, then exits
+(even if you specify other options).
 
 @item @code{--host [triplet]}
-@code{string} is a configuration triplet as used by @emph{configure}.
+@emph{triplet} is a system triplet of the form @emph{cpu-vendor-os}.
 Use this option to override the default string recorded by your
 configuration's choice of host.  This choice does not change how
 anything is actually configured unless --build is also specified; it
@@ -503,30 +575,16 @@ run on.
 @item @code{--host_board [name]}
 The host board to use.
 
-@item @code{--target [triplet]}
-Use this option to override the default setting (running native
-tests). @emph{triplet} is a configuration triplet of the form
-@emph{cpu-vendor-os} as used by @code{configure}. This option changes
-the configuration @code{runtest} uses for the default tool names, and
-other setup information.
-
-@item @code{--debug}
-Turns on the Expect internal debugging output. Debugging output is
-displayed as part of the @emph{runtest} output, and logged to a file
-called @file{dbg.log}. The extra debugging output does @emph{not} appear
-on standard output, unless the verbose level is greater than 2 (for
-instance, to see debug output immediately, specify @code{--debug -v
--v}). The debugging output shows all attempts at matching the test
-output of the tool with the scripted patterns describing expected
-output.  The output generated with @code{--strace} also goes into
-@file{dbg.log}.
-
-@item @code{--help}
-Prints out a short summary of the @emph{runtest} options, then exits
-(even if you also specify other options).
-
 @item @code{--ignore [name(s)] }
 The name(s) of specific tests to ignore.
+
+@item @code{--log_dialog}
+Emit Expect output to stdout.  The Expect output is usually only written
+to the @file{.log} file. By enabling this option, they are also printed
+to standard output.
+
+@item @code{--mail [address(es)]}
+Send test results to one or more email addresses.
 
 @item @code{--objdir [path]}
 Use @emph{path} as the top directory containing any auxiliary compiled
@@ -540,11 +598,6 @@ directory where you start @emph{runtest}. This option affects only the
 summary (@file{.sum}) and the detailed log files (@file{.log}).  The
 DejaGnu debug log @file{dbg.log} always appears (when requested) in the
 local directory.
-
-@item @code{--log_dialog}
-Emit Expect output to stdout.  The expect output is usually only written
-to @file{tool.log}. By enabling this option, they are also be printed to
-the stdout of the @emph{runtest} invocation.
 
 @item @code{--reboot [name]}
 Reboot the target board when @code{runtest} starts. When running tests
@@ -561,7 +614,7 @@ subdirectories @file{gdb.*} (with the usual shell-like filename
 expansion).  If you do not use @code{--srcdir}, @emph{runtest} looks for
 test directories under the current working directory.
 
-@item @code{--strace [number]}
+@item @code{--strace [n]}
 Turn on internal tracing for @emph{expect}, to n levels deep. By
 adjusting the level, you can control the extent to which your output
 expands multi-level Tcl statements.  This allows you to ignore some
@@ -569,23 +622,29 @@ levels of @emph{case} or @emph{if} statements.  Each procedure call or
 control structure counts as one ``level''. The output is recorded in the
 same file, @file{dbg.log}, used for output from @code{--debug}.
 
+@item @code{--target [triplet]}
+Use this option to override the default setting (native
+testing). @emph{triplet} is a system triplet of the form
+@emph{cpu-vendor-os}. This option changes the configuration
+@code{runtest} uses for the default tool names, and other setup
+information.
+
 @item @code{--target_board [name(s)]}
-The list of target boards to run tests
-on.
+The list of target boards to run tests on.
 
-@anchor{--tool [name[s]]}@item @code{--tool [name(s)]} Specifies which
-testsuite to run, and what initialization module to use. @code{--tool}
-is used @emph{only} for these two purposes. It is @emph{not} used to
-name the executable program to test. Executable tool names (and paths)
-are recorded in @file{site.exp} and you can override them by specifying
-Tcl variables on the command line.
+@item @code{--tool [name(s)]}
+Specifies which testsuite to run, and what initialization module to
+use. @code{--tool} is used @emph{only} for these two purposes. It is
+@emph{not} used to name the executable program to test. Executable tool
+names (and paths) are recorded in @file{site.exp} and you can override
+them by specifying Tcl variables on the command line.
 
-For example, including "@code{--tool} gcc" on the @emph{runtest} command
-line runs tests from all test subdirectories whose names match
-@file{gcc.*}, and uses one of the initialization modules named
-@file{config/*-gcc.exp}. To specify the name of the compiler (perhaps as
-an alternative path to what @emph{runtest} would use by default), use
-@emph{GCC=binname} on the @emph{runtest} command line.
+For example, including @code{--tool} gcc on the command line runs tests
+from all test subdirectories whose names match @file{gcc.*}, and uses
+one of the initialization modules named @file{config/*-gcc.exp}. To
+specify the name of the compiler (perhaps as an alternative path to what
+@emph{runtest} would use by default), use @emph{GCC=path-to-gcc} on the
+@emph{runtest} command line.
 
 @item @code{--tool_exec [name]}
 The path to the tool executable to test.
@@ -603,30 +662,24 @@ file, but not in the summary (@file{*.sum}) log file.
 @item @code{-V}, @code{--version}
 Prints out the version numbers of DejaGnu, Expect, and Tcl.
 
-@item @code{--D0}, @code{--D1}
-Start the internal Tcl debugger. The Tcl debugger supports breakpoints,
-single stepping, and other common debugging activities. See the document
-"Debugger for Tcl Applications" by Don Libes. (Distributed in PostScript
-form with @emph{expect} as the file @file{expect/tcl-debug.ps.}. If you
-specify @emph{-D1}, the @emph{expect} shell stops at a breakpoint as
-soon as DejaGnu invokes it. If you specify @emph{-D0}, DejaGnu starts as
-usual, but you can enter the debugger by sending an interrupt (e.g. by
-typing @key{Control}@key{c}).
+@item @code{-x}, @code{--xml=FILE}
+Generate XML output. FILE is optional; if given it is the name of the
+output file.  If not given, the output file is named after the tool.
 
 @item @file{testfile}.exp[=arg(s)]
 Specify the names of testsuites to run. By default, @emph{runtest} runs
 all tests for the tool, but you can restrict it to particular testsuites
 by giving the names of the @emph{.exp expect} scripts that control
-them. @emph{testsuite}.exp may not include path information; use plain
+them. @emph{testsuite}.exp cannot include directory names, only plain
 filenames.
 
-@item @file{testfile}.exp="testfile1 ..."
-Specify a subset of tests in a suite to run. For compiler or assembler
-tests, which often use a single @emph{.exp} script covering many
-different source files, this option allows you to further restrict the
-tests by listing particular source files to compile. Some tools even
-support wildcards here.  The wildcards supported depend upon the tool,
-but typically they are @emph{?}, @emph{*}, and @emph{[chars]}.
+@code{arg(s)} specifies a subset of tests in a suite to run. For
+compiler or assembler tests, which often use a single @emph{.exp} script
+covering many different source files, this option allows you to further
+restrict the tests by listing particular source files to compile. Some
+tools even support wildcards here.  The wildcards supported depend upon
+the tool, but typically @emph{?}, @emph{*}, and @emph{[chars]} are
+recognized.
 
 @item @code{tclvar}=value
 You can define Tcl variables for use by your test scripts in the same
@@ -652,41 +705,35 @@ For example, if the directory @file{gdb/testsuite} contains a collection
 of DejaGnu tests for GDB, you can run them like this:
 
 @example
-
-	  $ cd gdb/testsuite
-	  $ runtest --tool gdb
-	
+$ cd gdb/testsuite
+$ runtest --tool gdb
 @end example
 
 The test output follows, then ends with:
 
 @example
+=== gdb Summary ===
 
-		=== gdb Summary ===
-
-		# of expected passes 508
-		# of expected failures 103
-		/usr/latest/bin/gdb version 4.14.4 -nx
-	
+# of expected passes 508
+# of expected failures 103
+/usr/latest/bin/gdb version 4.14.4 -nx
 @end example
 
 You can use the option @code{--srcdir} to point to some other directory
 containing a collection of tests:
 
 @example
-
-	  $ runtest --srcdir /devo/gdb/testsuite
-	
+$ runtest --srcdir /devo/gdb/testsuite
 @end example
 
 By default, @code{runtest} prints only the names of the tests it runs,
 output from any tests that have unexpected results, and a summary
 showing how many tests passed and how many failed.  To display output
 from all tests (whether or not they behave as expected), use the
-@code{--all} option.  For more verbose output about processes being run,
-communication, and so on, use @code{--verbose}. To see even more output,
-use multiple @code{--verbose} options.  The @code{--help} for a more
-detailed explanation of each @code{runtest} option.
+@code{-a} (all) option.  For more verbose output about processes being
+run, communication, and so on, use @code{-v} (verbose). To see even more
+output, use multiple @code{-v} options.  See @ref{Invoking runtest} for
+a more detailed explanation of each @code{runtest} option.
 
 @node Output Files, , Runtest, Running tests
 @section Output files
@@ -730,7 +777,6 @@ option to select a different output directory.
 @strong{Sample summary log}
 
 @example
-
 	Test Run By bje on Sat Nov 14 21:04:30 AEDT 2015
 
 		 === gdb tests ===
@@ -768,7 +814,6 @@ a different output directory.
 @strong{Sample detailed log for g++ tests}
 
 @example
-
 	Test Run By bje on Sat Nov 14 21:07:23 AEDT 2015
 
                 === g++ tests ===
@@ -808,17 +853,15 @@ a different output directory.
 
 The @code{runtest} option @code{--debug} creates a file showing the
 output from Expect in debugging mode. The @file{dbg.log} file is created
-in the directory where you start @code{runtest}.  The log file shows the
-string sent to the tool under test by each @code{send} command and the
-pattern it compares with the tool output by each @code{expect} command.
+in the current directory.  The log file shows the string sent to the
+tool being tested by each @code{send} command and the pattern it
+compares with the tool output by each @code{expect} command.
 
 The log messages begin with a message of the form:
 
 @example
-
 	expect: does @{tool output@} (spawn_id n)
  	   match pattern @{expected pattern@}?
-        
 @end example
 
 For every unsuccessful match, Expect issues a @emph{no} after this
@@ -826,16 +869,13 @@ message. If other patterns are specified for the same Expect command,
 they are reflected also, but without the first part of the message
 (@emph{expect... match pattern}).
 
-When Expect finds a match, the
-log for the successful match ends with @emph{yes},
-followed by a record of the Expect
-variables set to describe a successful match.
+When Expect finds a match, the log for the successful match ends with
+@emph{yes}, followed by a record of the Expect variables set to describe
+a successful match.
 
-@strong{Debug log excerpt for a
-GDB test:}
+@strong{Example debug log file for a GDB test}
 
 @example
-
 	send: sent @{break gdbme.c:34\n@} to spawn id 6
 	expect: does @{@} (spawn_id 6) match pattern @{Breakpoint.*at.* file
 	gdbme.c, line 34.*\(gdb\) $@}? no
@@ -864,10 +904,8 @@ GDB test:}
 	
 @end example
 
-This example exhibits three properties of
-Expect and
-DejaGnu that might be surprising at
-first glance:
+This example exhibits three properties of Expect and DejaGnu that might
+be surprising at first glance:
 
 @itemize 
 
@@ -901,6 +939,7 @@ These fail-safe patterns (like the debugging log itself) are primarily
 useful while developing test scripts.  Use the @code{error} procedure to
 make the actions for fail-safe patterns produce messages starting with
 @emph{ERROR} on standard output, and in the detailed log file.
+
 @end itemize
 
 @node Customizing DejaGnu, Extending DejaGnu, Running tests, Top
@@ -919,18 +958,16 @@ the local file @file{site.exp}, and then the optional global
 @file{site.exp} file as pointed to by the @code{DEJAGNU} environment
 variable.
 
-There is an optional @emph{master} @file{site.exp}, capturing
-configuration values that apply to DejaGnu across the board, in each
-configuration-specific subdirectory of the DejaGnu library directory.
-@code{runtest} loads these values first. The master @file{site.exp}
-contains the default values for all targets and hosts supported by
-DejaGnu. This master file is identified by setting the environment
-variable @code{DEJAGNU} to the name of the file. This is also referred
-to as the ``global'' config file.
+There is an optional global @file{site.exp}, containing configuration
+values that apply to DejaGnu site-wide.  @code{runtest} loads these
+values first. The global @file{site.exp} contains the default values for
+all targets and hosts supported by DejaGnu. This global file is
+identified by setting the environment variable @code{DEJAGNU} to the
+name of the file.
 
 Any directory containing a configured testsuite also has a local
 @file{site.exp}, capturing configuration values specific to the tool
-under test.  Since @code{runtest} loads these values last, the
+being tested.  Since @code{runtest} loads these values last, the
 individual test configuration can either rely on and use, or override,
 any of the global values from the global @file{site.exp} file.
 
@@ -956,7 +993,67 @@ command line.
 * Config file values::
 @end menu
 
-@node Local config file, Global config file, , Customizing DejaGnu
+@node Global config file, Local config file, , Customizing DejaGnu
+@section Global config file
+
+The global configuration file is where all the target specific
+configuration variables for a site are set. For example, a centralized
+testing lab where multiple developers have to share an embedded
+development board. There are settings for both remote hosts and remote
+targets.  Below is an example of a global configuration file for a
+Canadian cross environment. A Canadian cross is a toolchain that is
+built on, runs on, and targets three different system triplets (for
+example, building a Solaris-hosted MIPS R4000 toolchain on a GNU/Linux
+system).  All configuration values in the example below are
+site-specific.
+
+@strong{Example global configuration file}
+
+@example
+# Make sure we look in the right place for the board description files.
+lappend boards_dir "/nfs/cygint/s1/cygnus/dejagnu/boards"
+
+verbose "Global config file: target_triplet is $target_triplet" 2
+global target_list
+
+case "$target_triplet" in @{
+    @{ "native" @} @{
+        set target_list "unix"
+    @}
+    @{ "sparc64-*elf" @} @{
+        set target_list "sparc64-sim"
+    @}
+    @{ "mips-*elf" @} @{
+        set target_list "mips-sim wilma barney"
+    @}
+    @{ "mips-lsi-elf" @} @{
+        set target_list "mips-lsi-sim@{,soft-float,el@}"
+    @}
+@}
+@end example
+
+In this case, we have support for several cross compilers, that all run
+on this host. To run DejaGnu tests on tools hosted on operating systems
+that do not run Expect, DejaGnu can be run on the build machine and
+connect to the remote host to run all the tests.  As you can see, all
+one does is set the variable @code{target_list} to the list of targets
+and options to test.
+
+In this example, simple cases like @emph{sparc64-elf} only require
+setting the name of the single board configuration file. The
+@emph{mips-elf} target is more complicated and sets the list to three
+target boards. @emph{mips-sim} is a symbolic name for a simulator
+``board'' and @emph{wilma} and @emph{barney} are symbolic names for
+physical boards. Symbolic names are covered in the @ref{Adding a new
+board} section. The more complicated example is the entry for
+@emph{mips-lsi-elf}. This one runs the tests with multiple iterations
+using all possible combinations of the @code{--soft-float} and the
+@code{--el} (little endian) options.  The braced string includes an
+initial comma so that the set of combinations includes no options at
+all. Needless to say, this last target example is mostly specific to
+compiler testing.
+
+@node Local config file, Board config file, Global config file, Customizing DejaGnu
 @section Local config file
 
 It is usually more convenient to keep these @emph{manual overrides} in
@@ -965,41 +1062,34 @@ global @file{site.exp} in the installed DejaGnu library. This file is
 mostly for supplying tool specific info that is required by the
 testsuite.
 
-All local @file{site.exp} files have two sections, separated by comment
-text. The first section is the part that is generated by @code{make}. It
-is essentially a collection of Tcl variable definitions based on
+All local @file{site.exp} files have two sections, separated by
+comments. The first section is generated by @code{make}. It is
+essentially a collection of Tcl variable definitions based on
 @file{Makefile} environment variables. Since they are generated by
 @code{make}, they contain the values as specified by @code{configure}.
-(You can also customize these values by using the @code{--site} option
-to @code{configure}.) In particular, this section contains the
-@file{Makefile} variables for host and target configuration data. Do not
-edit this first section; if you do, your changes are replaced next time
-you run @code{make}.
-
-@strong{The first section starts with}
+In particular, this section contains the @file{Makefile} variables for
+host and target configuration data. Do not edit this first section; if
+you do, your changes will be overwritten the next time you run
+@code{make}.  The first section starts with:
 
 @example
-
-	## these variables are automatically generated by make ##
-	# Do not edit here. If you wish to override these values
-	# add them to the last section
-	
+## these variables are automatically generated by make ##
+# Do not edit here. If you wish to override these values
+# add them to the last section
 @end example
 
-In the second section, you can override any default values (locally to
-DejaGnu) for all the variables.  The second section can also contain
-your preferred defaults for all the command line options to
-@code{runtest}. This allows you to easily customize @code{runtest} for
-your preferences in each configured test-suite tree, so that you need
-not type options repeatedly on the command line.  (The second section
-may also be empty, if you do not wish to override any defaults.)
+In the second section, you can override any default values for all the
+variables.  The second section can also contain your preferred defaults
+for all the command line options to @code{runtest}. This allows you to
+easily customize @code{runtest} for your preferences in each configured
+testsuite tree, so that you need not type options repeatedly on the
+command line.  The second section may also be empty if you do not wish
+to override any defaults.
 
 @strong{The first section ends with this line}
 
 @example
-
-	## All variables above are generated by configure. Do Not Edit ##
-	
+## All variables above are generated by configure. Do Not Edit ##
 @end example
 
 You can make any changes under this line. If you wish to redefine a
@@ -1016,27 +1106,24 @@ Here's an example local site.exp file, as used for GCC/G++ testing.
 @strong{Local Config File}
 
 @example
-
-      ## these variables are automatically generated by make ##
-      # Do not edit here. If you wish to override these values
-      # add them to the last section
-      set rootme "/build/devo-builds/i586-pc-linux-gnulibc1/gcc"
-      set host_triplet i586-pc-linux-gnulibc1
-      set build_triplet i586-pc-linux-gnulibc1
-      set target_triplet i586-pc-linux-gnulibc1
-      set target_alias i586-pc-linux-gnulibc1
-      set CFLAGS ""
-      set CXXFLAGS "-isystem /build/devo-builds/i586-pc-linux-gnulibc1/gcc/../libio -isystem $srcdir/../libg++/src -isystem $srcdir/../libio -isystem $srcdir/../libstdc++ -isystem $srcdir/../libstdc++/stl -L/build/devo-builds/i586-pc-linux-gnulibc1/gcc/../libg++ -L/build/devo-builds/i586-pc-linux-gnulibc1/gcc/../libstdc++"
-      append LDFLAGS " -L/build/devo-builds/i586-pc-linux-gnulibc1/gcc/../ld"
-      set tmpdir /build/devo-builds/i586-pc-linux-gnulibc1/gcc/testsuite
-      set srcdir "$@{srcdir@}/testsuite"
-      ## All variables above are generated by configure. Do Not Edit ##
-
-      
+## these variables are automatically generated by make ##
+# Do not edit here. If you wish to override these values
+# add them to the last section
+set rootme "/build/devo-builds/i686-pc-linux-gnu/gcc"
+set host_triplet i686-pc-linux-gnu
+set build_triplet i686-pc-linux-gnu
+set target_triplet i686-pc-linux-gnu
+set target_alias i686-pc-linux-gnu
+set CFLAGS ""
+set CXXFLAGS "-isystem /build/devo-builds/i686-pc-linux-gnu/gcc/../libio -isystem $srcdir/../libg++/src -isystem $srcdir/../libio -isystem $srcdir/../libstdc++ -isystem $srcdir/../libstdc++/stl -L/build/devo-builds/i686-pc-linux-gnu/gcc/../libg++ -L/build/devo-builds/i686-pc-linux-gnu/gcc/../libstdc++"
+append LDFLAGS " -L/build/devo-builds/i686-pc-linux-gnu/gcc/../ld"
+set tmpdir /build/devo-builds/i686-pc-linux-gnu/gcc/testsuite
+set srcdir "$@{srcdir@}/testsuite"
+## All variables above are generated by configure. Do Not Edit ##
 @end example
 
 This file defines the required fields for a local config file, namely
-the three config triplets, and the srcdir. It also defines several other
+the three system triplets, and the srcdir. It also defines several other
 Tcl variables that are used exclusively by the GCC testsuite. For most
 test cases, the CXXFLAGS and LDFLAGS are supplied by DejaGnu itself for
 cross testing, but to test a compiler, GCC needs to manipulate these
@@ -1047,156 +1134,91 @@ The local @file{site.exp} may also set Tcl variables such as
 wait for a remote test to complete. If not specified,
 @code{test_timeout} defaults to 300 seconds.
 
-@node Global config file, Board config file, Local config file, Customizing DejaGnu
-@section Global config file
-
-The master config file is where all the target specific config variables
-for a whole site get set. The idea is that for a centralized testing lab
-where people have to share a target between multiple developers. There
-are settings for both remote targets and remote hosts.  Here's an
-example of a Master Config File (also called the Global config file) for
-a @emph{Canadian cross}. A Canadian cross is when you build and test a
-cross compiler on a machine other than the one it's to be hosted on.
-
-Here we have the config settings for our California office. Note that
-all config values are site dependent. Here we have two sets of values
-that we use for testing m68k-aout cross compilers. As both of these
-target boards has a different debugging protocol, we test on both of
-them in sequence.
-
-@strong{Global Config file}
-
-@example
-
-
-      # Make sure we look in the right place for the board description files.
-      if ![info exists boards_dir] @{
-          set boards_dir @{@}
-      @}
-      lappend boards_dir "/nfs/cygint/s1/cygnus/dejagnu/boards"
-
-      verbose "Global Config File: target_triplet is $target_triplet" 2
-      global target_list
-
-      case "$target_triplet" in @{
-          @{ "native" @} @{
-              set target_list "unix"
-          @}
-          @{ "sparc64-*elf" @} @{
-              set target_list "sparc64-sim"
-          @}
-          @{ "mips-*elf" @} @{
-              set target_list "mips-sim wilma barney"
-          @}
-          @{ "mips-lsi-elf" @} @{
-              set target_list "mips-lsi-sim@{,soft-float,el@}"
-          @}
-          @{ "sh-*hms" @} @{
-              set target_list @{ "sh-hms-sim" "bloozy" @}
-          @}
-      @}
-      
-@end example
-
-In this case, we have support for several cross compilers, that all run
-on this host. For testing on operating systems that don't support
-Expect, DejaGnu can be run on the local build machine, and it can
-connect to the remote host and run all the tests for this cross compiler
-on that host. All the remote OS requires is a working Telnet server.
-
-As you can see, all one does is set the variable @code{target_list} to
-the list of targets and options to test. The simple settings, like for
-@emph{sparc64-elf} only require setting the name of the single board
-config file. The @emph{mips-elf} target is more complicated. Here it
-sets the list to three target boards. One is the default mips target,
-and both @emph{wilma} @emph{barney} are symbolic names for other mips
-boards. Symbolic names are covered in the @ref{Adding a new board}
-chapter. The more complicated example is the one for
-@emph{mips-lsi-elf}. This one runs the tests with multiple iterations
-using all possible combinations of the @code{--soft-float} and the
-@code{--el} (little endian) option. Needless to say, this last feature
-is mostly compiler specific.
-
-@node Board config file, Remote host testing, Global config file, Customizing DejaGnu
+@node Board config file, Remote host testing, Local config file, Customizing DejaGnu
 @section Board configuration file
 
-The board config file is where board-specific configuration details are
-stored. A board config file contains all the higher-level configuration
-settings. There is a rough inheritance scheme, where it is possible to
-derive a new board description file from an existing one. There are also
-collections of custom procedures for common environments. For more
-information on adding a new board config file, go to the @ref{Adding a
-new board} section.
+The board configuration file is where board-specific configuration
+details are stored. A board configuration file contains all the
+higher-level configuration settings. There is a rough inheritance
+scheme, where it is possible to derive a new board description file from
+an existing one. There are also collections of custom procedures for
+common environments. For more information on adding a new board config
+file, go to the @ref{Adding a new board} section.
 
-An example board config file for a GNU simulator is as
+An example board configuration file for a GNU simulator is as
 follows. @code{set_board_info} is a procedure that sets the field name
-to the specified value. The procedures in square brackets @emph{[]} are
-@emph{helper procedures}. These are used to find parts of a tool chain
+to the specified value. The procedures mentioned in brackets are
+@emph{helper procedures}. These are used to find parts of a toolchain
 required to build an executable image that may reside in various
-locations. This is mostly of use for when the startup code, the standard
-C libraries, or the tool chain itself is part of your build tree.
+locations. This is mostly of use when the startup code, the standard C
+libraries, or the toolchain itself is part of your build tree.
 
-@strong{Board Configuration File}
-
+@strong{Example file}
 @example
+# This is a list of toolchains that are supported on this board.
+set_board_info target_install @{sparc64-elf@}
 
-      # This is a list of toolchains that are supported on this board.
-      set_board_info target_install @{sparc64-elf@}
+# Load the generic configuration for this board. This will define any
+# routines needed by the tool to communicate with the board.
+load_generic_config "sim"
 
-      # Load the generic configuration for this board. This will define any
-      # routines needed by the tool to communicate with the board.
-      load_generic_config "sim"
+# We need this for find_gcc and *_include_flags/*_link_flags.
+load_base_board_description "basic-sim"
 
-      # We need this for find_gcc and *_include_flags/*_link_flags.
-      load_base_board_description "basic-sim"
+# Use long64 by default.
+process_multilib_options "long64"
 
-      # Use long64 by default.
-      process_multilib_options "long64"
+setup_sim sparc64
 
-      setup_sim sparc64
+# We only support newlib on this target. We assume that all multilib
+# options have been specified before we get here.
 
-      # We only support newlib on this target. We assume that all multilib
-      # options have been specified before we get here.
-      set_board_info compiler  "[find_gcc]"
-      set_board_info cflags  "[libgloss_include_flags] [newlib_include_flags]"
-      set_board_info ldflags  "[libgloss_link_flags] [newlib_link_flags]"
-      # No linker script.
-      set_board_info ldscript ""
+set_board_info compiler "[find_gcc]"
+set_board_info cflags "[libgloss_include_flags] [newlib_include_flags]"
+set_board_info ldflags "[libgloss_link_flags] [newlib_link_flags]"
+# No linker script.
+set_board_info ldscript ""
 
-      # Used by a few gcc.c-torture testcases to delimit how large the
-      # stack can be.
-      set_board_info gcc,stack_size 16384
-      # The simulator doesn't return exit statuses and we need to indicate this
-      # the standard GCC wrapper will work with this target.
-      set_board_info needs_status_wrapper 1
-      # We can't pass arguments to programs.
-      set_board_info noargs 1
-      
+# Used by a few gcc.c-torture testcases to delimit how large the
+# stack can be.
+set_board_info gcc,stack_size 16384
+# The simulator doesn't return exit status and we need to indicate this
+# the standard GCC wrapper will work with this target.
+set_board_info needs_status_wrapper 1
+# We can't pass arguments to programs.
+set_board_info noargs 1
 @end example
 
-There are five helper procedures used in this example. The first one,
-@code{find gcc} looks for a copy of the GNU compiler in your build tree,
+There are five helper procedures used in this example:
+
+@itemize
+@item
+@code{find_gcc} looks for a copy of the GNU compiler in your build tree,
 or it uses the one in your path. This will also return the proper
 transformed name for a cross compiler if you whole build tree is
-configured for one. The next helper procedures are
-@code{libgloss_include_flags} & @code{libgloss_link_flags}. These return
-the proper flags to compiler and link an executable image using
-@ref{Libgloss}, the GNU BSP (Board Support Package). The final
-procedures are @code{newlib_include_flag} &
-@code{newlib_include_flag}. These find the Newlib C library, which is a
-reentrant standard C library for embedded systems comprising of non
-GPL'd code.
+configured for one.
+
+@item
+@code{libgloss_include_flags} returns the flags to compile using
+@ref{Libgloss, libgloss}, the GNU board support package (BSP).
+
+@item
+@code{libgloss_link_flags} returns the flags to link an executable using
+@ref{Libgloss, libgloss}.
+
+@item
+@code{newlib_include_flags} returns the flags to compile using
+@uref{https://sourceware.org/newlib, newlib}, a re-entrant standard C
+library for embedded systems comprising of non-GPL'd code
+
+@item
+@code{newlib_link_flags} returns the flags to link an executable with
+@uref{https://sourceware.org/newlib, newlib}.
+
+@end itemize
 
 @node Remote host testing, Config file values, Board config file, Customizing DejaGnu
 @section Remote host testing
-
-@quotation
-
-@strong{Note}
-
-Thanks to DJ Delorie for the original paper that this section is based
-on.
-@end quotation
 
 DejaGnu also supports running the tests on a remote host. To set this
 up, the remote host needs an FTP server, and a telnet server. Currently
@@ -1236,15 +1258,12 @@ from releng's area in SV to your machine:
 @strong{Remote host setup}
 
 @example
-
-      cd /usr/local/swamp/testing
-      mkdir boards
-      scp darkstar.welcomehome.org:/dejagnu/cst/bin/MkTestDir .
-      scp darkstar.welcomehome.org:/dejagnu/site.exp .
-      scp darkstar.welcomehome.org:/dejagnu/boards/useless98r2.exp boards/foobar.exp
-      export DEJAGNU=/usr/local/swamp/testing/site.exp
-
-      
+cd /usr/local/swamp/testing
+mkdir boards
+scp darkstar.welcomehome.org:/dejagnu/cst/bin/MkTestDir .
+scp darkstar.welcomehome.org:/dejagnu/site.exp .
+scp darkstar.welcomehome.org:/dejagnu/boards/useless98r2.exp boards/foobar.exp
+export DEJAGNU=/usr/local/swamp/testing/site.exp
 @end example
 
 You must edit the boards/foobar.exp file to reflect your machine; change
@@ -1256,9 +1275,7 @@ Edit the global @file{ site.exp} to reflect your boards directory:
 @strong{Add The Board Directory}
 
 @example
-
-	lappend boards_dir "/usr/local/swamp/testing/boards"
-	
+lappend boards_dir "/usr/local/swamp/testing/boards"
 @end example
 
 Now run MkTestDir, which is in the contrib directory. The first
@@ -1269,9 +1286,7 @@ sh-hms-gcc.exe in your PATH on the PC), do something like this:
 @strong{Setup Cross Remote Testing}
 
 @example
-
-	./MkTestDir sh-hms /usr/dejagnu/src/devo
-	
+./MkTestDir sh-hms /usr/dejagnu/src/devo
 @end example
 
 If you are testing a native PC compiler (ex: you have
@@ -1280,9 +1295,7 @@ gcc.exe in your PATH on the PC), do this:
 @strong{Setup Native Remote Testing}
 
 @example
-
-	./MkTestDir '' /usr/dejagnu/src/devo
-	
+./MkTestDir '' /usr/dejagnu/src/devo
 @end example
 
 To test the setup, @code{ftp} to your PC using the username
@@ -1295,10 +1308,8 @@ default PATH contains the installation you want to test.
 @strong{Run Test Remotely}
 
 @example
-
-	cd /usr/local/swamp/testing
-	make  -k -w check RUNTESTFLAGS="--host_board foobar --target_board foobar -v -v" > check.out 2>&1
-	
+cd /usr/local/swamp/testing
+make  -k -w check RUNTESTFLAGS="--host_board foobar --target_board foobar -v -v" > check.out 2>&1
 @end example
 
 To run a specific test, use a command like this (for
@@ -1308,9 +1319,7 @@ MkTestDir created):
 @strong{Run a Test Remotely}
 
 @example
-
-	make check RUNTESTFLAGS="--host_board sloth --target_board sloth -v compile.exp=921202-1.c"
-	
+make check RUNTESTFLAGS="--host_board sloth --target_board sloth -v compile.exp=921202-1.c"
 @end example
 
 Note: if you are testing a cross-compiler, put in the correct target
@@ -1328,13 +1337,13 @@ part of the array.
 
 @menu
 * Command line option variables::
-* Personal config file::
+* User configuration file::
 @end menu
 
-@node Command line option variables, Personal config file, , Config file values
+@node Command line option variables, User configuration file, , Config file values
 @subsection Command line option variables
 
-In the user editable second section of the @ref{Personal config file}
+In the user editable second section of the @ref{User configuration file}
 you can not only override the configuration variables captured in the
 first section, but also specify default values for all on the
 @code{runtest} command line options.  Save for @code{--debug},
@@ -1345,49 +1354,76 @@ table describes the correspondence between command line options and
 variables you can set in @file{site.exp}.  @ref{Invoking runtest}, for
 explanations of the command-line options.
 
-@strong{Tcl Variables For Command Line Options}
+@multitable @columnfractions 0.2 0.2 0.6
+@item
+@strong{Option}@tab @strong{Tcl variable}@tab @strong{Description}
 
-@multitable @columnfractions 0.1 0.2 0.7
 @item
-runtest option@tab Tcl variable@tab description
+-a, --all@tab all_flag@tab display all test results if set
+
 @item
---all@tab all_flag@tab display all test results if set
+--build@tab build_triplet@tab system triplet for the build host
+
 @item
---outdir@tab outdir@tab directory for @file{tool.sum} and
-@file{tool.log.}
+--dir@tab cmdline_dir_to_run@tab run only tests in the specified directory
+
+@item
+--host@tab host_triplet@tab system triplet for the host
+
+@item
+--host_board@tab host_board@tab host board definition to use
+
+@item
+--ignore@tab ignoretests @tab do not run the specified tests
+
+@item
+--log_dialog@tab log_dialog@tab emit Expect output to standard output
+
+@item
+--outdir@tab outdir@tab directory for @file{.sum} and @file{.log} files
+
 @item
 --objdir@tab objdir@tab directory for pre-compiled binaries
+
 @item
---reboot@tab reboot@tab reboot the target if set to
-@emph{"1"}; do not reboot if set to
-@emph{"0"} (the default).
+--reboot@tab reboot@tab reboot the target if set to 1
+
 @item
 --srcdir@tab srcdir@tab directory of test subdirectories
+
 @item
---strace@tab tracelevel@tab a number: Tcl trace depth
+--target@tab target_triplet@tab system triplet for the target
+
 @item
---tool@tab tool@tab name of tool to test; identifies init, test subdir
+--target_board@tab target_list@tab list of target boards to run tests on
+
 @item
---verbose@tab verbose@tab verbosity level.  As option, use multiple times; as
-variable, set a number, 0 or greater.
+--tool@tab tool@tab name of tool to test (identifies init, test subdirectory)
+
 @item
---target@tab target_triplet@tab The canonical configuration string for the target.
+--tool_exec@tab TOOL_EXECUTABLE@tab path to the executable to test
+
 @item
---host@tab host_triplet@tab The canonical configuration string for the host.
+--tool_opts@tab TOOL_OPTIONS@tab additional options to pass to the tool
+
 @item
---build@tab build_triplet@tab The canonical configuration string for the build
-host.
+--tool_root_dir@tab tool_root_dir@tab tool root directory
+
 @item
---mail@tab address@tab Email the output log to the specified address.
+-v, --verbose@tab verbose@tab verbosity level greater than or equal to 0
+
 @end multitable
 
-@node Personal config file, , Command line option variables, Config file values
-@subsection Personal config file
+@node User configuration file, , Command line option variables, Config file values
+@subsection Per-user configuration file (.dejagnurc)
 
-The personal config file is used to customize @code{runtest's} behaviour
-for each user. It is typically used to set the user's preference for log
-verbosity, and for storing any experimental Tcl procedures. My personal
+The per-user configuration file is named @file{.dejagnurc} in the user's
+home directory.  It is used to customize the behaviour of @code{runtest}
+for each user -- typically the user's preference for log verbosity, and
+for storing any experimental Tcl procedures. An example
 @file{~/.dejagnurc} file looks like:
+
+@strong{Example .dejagnurc}
 
 @example
 set all_flag 1
@@ -1405,14 +1441,13 @@ as rsh is mostly used to test Unix machines within a local network.
 
 @menu
 * Adding a new testsuite::
-* Adding a new tool: Adding a new tool
+* Adding a new tool::
 * Adding a new target::
 * Adding a new board::
 * Board file values::
 * Writing a test case::
 * Debugging a test case::
 * Adding a test case to a testsuite::
-* Hints on writing a test case::
 * Test case special variables: Test case variables.
 @end menu
 
@@ -1423,8 +1458,8 @@ The testsuite for a new tool should always be located in that tools
 source directory. DejaGnu require the directory be named
 @file{testsuite}. Under this directory, the test cases go in a
 subdirectory whose name begins with the tool name. For example, for a
-tool named @emph{myprog}, each subdirectory containing testsuites must
-start with @emph{"myprog."}.
+tool named @emph{gdb}, each subdirectory containing testsuites must
+start with @samp{gdb.}.
 
 @node Adding a new tool, Adding a new target, Adding a new testsuite, Extending DejaGnu
 @section Adding a new tool
@@ -1442,9 +1477,7 @@ Nevertheless, it is straightforward to start a new testsuite.
 To help orient you further in this task, here is an outline of the steps
 to begin building a testsuite for a program example.
 
-@itemize 
 
-@item
 Create or select a directory to contain your new
 collection of tests. Change into that directory (shown here as
 @file{testsuite}):
@@ -1458,16 +1491,18 @@ write soon.  (For simplicity, we assume the environment is Unix, and use
 
 What else is needed in @file{configure.in} depends on the requirements
 of your tool, your intended test environments, and which configure
-system you use.  This example is a minimal configure.in for use with GNU
-Autoconf.
+system you use.  This example is a minimal @file{configure.ac} for use
+with GNU Autoconf.
 
-@item
+@subsection Sample Makefile.in Fragment
+
 Create @file{Makefile.in} (if using Autoconf), or @file{Makefile.am} (if
 using Automake), the source file used by configure to build your
 @file{Makefile}. If you are using GNU Automake.just add the keyword
 @emph{dejagnu} to the @emph{AUTOMAKE_OPTIONS} variable in your
 @file{Makefile.am} file. This will add all the @file{Makefile} support
-needed to run DejaGnu, and support the @ref{Make Check} target.
+needed to run DejaGnu, and support the @ref{Make Check, make check}
+target.
 
 You also need to include two targets important to DejaGnu: @emph{check},
 to run the tests, and @emph{site.exp}, to set up the Tcl copies of
@@ -1480,165 +1515,125 @@ the @emph{$tool} variable for the name of your program. If the local
 @file{site.exp} file is setup correctly, it is possible to execute the
 tests by merely typing @code{runtest} on the command line.
 
-@strong{Sample Makefile.in Fragment}
-
 @example
+# Look for a local version of DejaGnu, otherwise use one in the path
+RUNTEST = `if test -f $(top_srcdir)/../dejagnu/runtest; then \
+      echo $(top_srcdir) ../dejagnu/runtest; \
+    else \
+      echo runtest; \
+    fi`
 
-	# Look for a local version of DejaGnu, otherwise use one in the path
-	RUNTEST = `if test -f $(top_srcdir)/../dejagnu/runtest; then \
-	      echo $(top_srcdir) ../dejagnu/runtest; \
-	    else \
-	       echo runtest; \
-	     fi`
+# Flags to pass to runtest
+RUNTESTFLAGS =
 
-	# Flags to pass to runtest
-	RUNTESTFLAGS =
+# Execute the tests
+check: site.exp all
+        $(RUNTEST) $(RUNTESTFLAGS) --tool $@{example@} --srcdir $(srcdir)
 
-	# Execute the tests
-	check: site.exp all
-        $(RUNTEST) $(RUNTESTFLAGS) \
-            --tool $@{example@} --srcdir $(srcdir)
+# Make the local config file
+site.exp: ./config.status Makefile
+	@@echo "Making a new config file..."
+        -@@rm -f ./tmp?
+        @@touch site.exp
 
-	# Make the local config file
-	site.exp: ./config.status Makefile
-	    @@echo "Making a new config file..."
-            -@@rm -f ./tmp?
-            @@touch site.exp
-
-            -@@mv site.exp site.bak
-            @@echo "## these variables are automatically\
- generated by make ##" > ./tmp0
-	    @@echo "# Do not edit here. If you wish to\
- override these values" >> ./tmp0
-            @@echo "# add them to the last section" >> ./tmp0
-            @@echo "set host_os $@{host_os@}" >> ./tmp0
-            @@echo "set host_alias $@{host_alias@}" >> ./tmp0
-            @@echo "set host_cpu $@{host_cpu@}" >> ./tmp0
-            @@echo "set host_vendor $@{host_vendor@}" >> ./tmp0
-            @@echo "set target_os $@{target_os@}" >> ./tmp0
-            @@echo "set target_alias $@{target_alias@}" >> ./tmp0
-            @@echo "set target_cpu $@{target_cpu@}" >> ./tmp0
-            @@echo "set target_vendor $@{target_vendor@}" >> ./tmp0
-            @@echo "set host_triplet $@{host_canonical@}" >> ./tmp0
-            @@echo "set target_triplet $@{target_canonical@}">>./tmp0
-            @@echo "set tool binutils" >> ./tmp0
-            @@echo "set srcdir $@{srcdir@}" >> ./tmp0
-            @@echo "set objdir `pwd`" >> ./tmp0
-            @@echo "set $@{examplename@} $@{example@}" >> ./tmp0
-            @@echo "## All variables above are generated by\
- configure. Do Not Edit ##" >> ./tmp0
-            @@cat ./tmp0 > site.exp
-            @@sed < site.bak \
-               -e '1,/^## All variables above are.*##/ d' \
-               >> site.exp
-            -@@rm -f ./tmp?
-
-	    
+        -@@mv site.exp site.bak
+        @@echo "## these variables are automatically generated by make ##" > ./tmp0
+	@@echo "# Do not edit here. If you wish to override these values" >> ./tmp0
+        @@echo "# add them to the last section" >> ./tmp0
+        @@echo "set host_os $@{host_os@}" >> ./tmp0
+        @@echo "set host_alias $@{host_alias@}" >> ./tmp0
+        @@echo "set host_cpu $@{host_cpu@}" >> ./tmp0
+        @@echo "set host_vendor $@{host_vendor@}" >> ./tmp0
+        @@echo "set target_os $@{target_os@}" >> ./tmp0
+        @@echo "set target_alias $@{target_alias@}" >> ./tmp0
+        @@echo "set target_cpu $@{target_cpu@}" >> ./tmp0
+        @@echo "set target_vendor $@{target_vendor@}" >> ./tmp0
+        @@echo "set host_triplet $@{host_canonical@}" >> ./tmp0
+        @@echo "set target_triplet $@{target_canonical@}">>./tmp0
+        @@echo "set tool binutils" >> ./tmp0
+        @@echo "set srcdir $@{srcdir@}" >> ./tmp0
+        @@echo "set objdir `pwd`" >> ./tmp0
+        @@echo "set $@{examplename@} $@{example@}" >> ./tmp0
+        @@echo "## All variables above are generated by configure. Do Not Edit ##" >> ./tmp0
+        @@cat ./tmp0 > site.exp
+        @@sed < site.bak \
+            -e '1,/^## All variables above are.*##/ d' \
+            >> site.exp
+        -@@rm -f ./tmp?
 @end example
 
-@item
-Create a directory (in @file{testsuite})
-called @file{config}. Make a @emph{Tool Init
-File} in this directory. Its name must start with the
-@code{target_abbrev} value, or be named
-@file{default.exp} so call it
-@file{config/unix.exp} for our Unix based
-example. This is the file that contains the target-dependent
-procedures.  Fortunately, on a native Unix system, most of
-them do not have to do very much in order
-for @code{runtest} to run.  If the program being
-tested is not interactive, you can get away with this
-minimal @file{unix.exp} to begin with:
+@subsection Simple tool init file for batch programs
 
-@strong{Simple tool init file for batch programs}
+Create a directory (under @file{testsuite}) called @file{config}. Make a
+tool init file in this directory. Its name must start with the
+@code{target_abbrev} value, or be named @file{default.exp} so call it
+@file{config/unix.exp} for our Unix based example. This is the file that
+contains the target-dependent procedures.  Fortunately, on a native Unix
+system, most of them do not have to do very much in order for
+@code{runtest} to run.  If the program being tested is not interactive,
+you can get away with this minimal @file{unix.exp} to begin with:
 
 @example
-
-	  proc myprog_exit @{@} @{@}
-	  proc myprog_version @{@} @{@}
-	  
+proc myprog_exit @{@} @{@}
+proc myprog_version @{@} @{@}
 @end example
 
 If the program being tested is interactive, however, you might as well
 define a @emph{start} routine and invoke it by using a tool init file
 like this:
 
-@strong{Simple tool init file for interactive programs}
+@subsection Simple tool init file for interactive programs
 
 @example
+proc myprog_exit @{@} @{@}
+proc myprog_version @{@} @{@}
 
-	  proc myprog_exit @{@} @{@}
-	  proc myprog_version @{@} @{@}
+proc myprog_start @{@} @{
+     global $@{examplename@}
+     spawn $@{examplename@}
+     expect @{
+	-re "" @{@}
+     @}
+@}
 
-	  proc myprog_start @{@} @{
-	    global $@{examplename@}
-	    spawn $@{examplename@}
-	    expect @{
-	        -re "" @{@}
-	    @}
-	  @}
-
-	  # Start the program running we want to test
-	  myprog_start
-	  
+# Start the program running we want to test
+myprog_start
 @end example
 
-@item
-Create a directory whose name begins with your tool's
-name, to contain tests. For example, if your tool's name is
-@emph{myprog}, then the directories all need to start with
-@emph{"myprog."}.
-
-@item
-Create a sample test file. Its name must end with
-@file{.exp}. You can use
-@file{first-try.exp}. To begin with, just write there a
-line of Tcl code to issue a message.
-
-@strong{Testing A New Tool Config}
+Create a directory whose name begins with your tool's name, to contain
+tests. For example, if your tool's name is @emph{example}, then the
+directories all need to start with @samp{example.}.  Create a sample
+test file ending in @file{.exp}. You can use @file{first-try.exp}. To
+begin with, just write one line of Tcl code to issue a message:
 
 @example
-
-
-	  send_user "Testing: one, two...\n"
-
-	  
+send_user "Testing: one, two...\n"
 @end example
 
-@item
+@subsection Testing A New Tool Config
+
 Back in the @file{testsuite} (top level) directory, run
-@code{configure}. Typically you do this while in the build
-directory. You may have to specify more of a path, if a suitable
-configure is not available in your execution path.
-
-@item
+@code{configure}. Typically you do this while in the build directory.
 You are now ready to type @code{make check} or @code{runtest}.  You
 should see something like this:
 
-@strong{Example Test Case Run}
-
 @example
+Test Run By bje on Sat Nov 14 15:08:54 AEDT 2015
 
-	  Test Run By bje on Sat Nov 14 15:08:54 AEDT 2015
+          === example tests ===
 
-                === example tests ===
+Running ./example.0/first-try.exp ...
+Testing: one, two...
 
-	  Running ./example.0/first-try.exp ...
-	  Testing: one, two...
-
-                === example Summary ===
-
-	 
+          === example Summary ===
 @end example
 
 There is no output in the summary, because so far the example does not
 call any of the procedures that report a test outcome.
 
-@item
 Write some real tests. For an interactive tool, you should probably
 write a real exit routine in fairly short order. In any case, you should
 also write a real version routine soon.
-@end itemize
 
 @node Adding a new target, Adding a new board, Adding a new tool, Extending DejaGnu
 @section Adding a new target
@@ -1699,9 +1694,7 @@ are similar target environments with just different processors.
 @strong{Testing a New Board Configuration File}
 
 @example
-
-      make check RUNTESTFLAGS="--target_board=newboardfile".
-      
+make check RUNTESTFLAGS="--target_board=newboardfile".
 @end example
 
 Here's an example of a board config file. There are several @emph{helper
@@ -1715,54 +1708,50 @@ execution characters.
 @strong{Example Board Configuration File}
 
 @example
+# Load the generic configuration for this board. This will define a basic
+# set of routines needed by the tool to communicate with the board.
+load_generic_config "sim"
 
+# basic-sim.exp is a basic description for the standard Cygnus simulator.
+load_base_board_description "basic-sim"
 
-      # Load the generic configuration for this board. This will define a basic
-      # set of routines needed by the tool to communicate with the board.
-      load_generic_config "sim"
+# The compiler used to build for this board. This has *nothing* to do
+# with what compiler is tested if we're testing gcc.
+set_board_info compiler "[find_gcc]"
 
-      # basic-sim.exp is a basic description for the standard Cygnus simulator.
-      load_base_board_description "basic-sim"
+# We only support newlib on this target.
+# However, we include libgloss so we can find the linker scripts.
+set_board_info cflags "[newlib_include_flags] [libgloss_include_flags]"
+set_board_info ldflags "[newlib_link_flags]"
 
-      # The compiler used to build for this board. This has *nothing* to do
-      # with what compiler is tested if we're testing gcc.
-      set_board_info compiler "[find_gcc]"
+# No linker script for this board.
+set_board_info ldscript "-Tsim.ld"
 
-      # We only support newlib on this target.
-      # However, we include libgloss so we can find the linker scripts.
-      set_board_info cflags "[newlib_include_flags] [libgloss_include_flags]"
-      set_board_info ldflags "[newlib_link_flags]"
+# The simulator doesn't return exit statuses and we need to indicate this.
+set_board_info needs_status_wrapper 1
 
-      # No linker script for this board.
-      set_board_info ldscript "-Tsim.ld"
+# Can't pass arguments to this target.
+set_board_info noargs 1
 
-      # The simulator doesn't return exit statuses and we need to indicate this.
-      set_board_info needs_status_wrapper 1
+# No signals.
+set_board_info gdb,nosignals 1
 
-      # Can't pass arguments to this target.
-      set_board_info noargs 1
-
-      # No signals.
-      set_board_info gdb,nosignals 1
-
-      # And it can't call functions.
-      set_board_info gdb,cannot_call_functions 1
-
-      
+# And it can't call functions.
+set_board_info gdb,cannot_call_functions 1
 @end example
 
 @node Board file values, Writing a test case, Adding a new board, Extending DejaGnu
 @section Board configuration file values
 
-These fields are all in the @code{board_info} array.  These are all set
-by using the @code{set_board_info} and @code{add_board_info} procedures
-as required. The parameters are the field name, followed by the value
-that the field is set to or is added to the field, respectively.  Some
+The following fields are in the @code{board_info} array.  These are set
+by the @code{set_board_info} procedure (or @code{add_board_info}
+procedure for appending to lists). Both procedures take a field name and
+a value for the field (or is added to the field), respectively.  Some
 common board info fields are shown below.
 
 @multitable @columnfractions 0.2 0.2 0.6
 @item
-@strong{Field} @tab @strong{Sample value} @tab @strong{Description}
+@strong{Field} @tab @strong{Example value} @tab @strong{Description}
 @item
 compiler@tab "[find_gcc]"@tab The path to the compiler to use.
 @item
@@ -1795,6 +1784,8 @@ objcopy@tab $tempfil@tab The path to the @code{objcopy} program.
 support_libs@tab "$@{prefix_dir@}/i386-coff/"@tab Support libraries needed for cross compiling.
 @item
 addl_link_flags@tab "-N"@tab Additional link flags, rarely used.
+@item
+remotedir@tab "/tmp/runtest.[pid]"@tab Directory on the remote target in which executables are downloaded and executed.
 @end multitable
 
 These fields are used by the GCC and GDB tests, and are mostly
@@ -1923,108 +1914,7 @@ cases.  Accordingly, the best approach was simply to encapsulate the
 existing GDB tests, for reporting purposes. Thereafter, new GDB tests
 built up a family of Tcl procedures specialized for GDB testing.
 
-@node Debugging a test case, Adding a test case to a testsuite, Writing a test case, Extending DejaGnu
-@section Debugging a test case
-
-These are the kinds of debugging information available
-from DejaGnu:
-
-@itemize 
-
-@item
-Output controlled by test scripts themselves, explicitly allowed for by
-the test author.  This kind of debugging output appears in the detailed
-output recorded in the DejaGnu log file.  To do the same for new tests,
-use the @code{verbose} procedure (which in turn uses the variable also
-called @emph{verbose}) to control how much output to generate.  This
-will make it easier for other people running the test to debug it if
-necessary.  Whenever possible, if @emph{$verbose} is @emph{0}, there
-should be no output other than the output from @emph{pass}, @emph{fail},
-@emph{error}, and @emph{warning}.  Then, to whatever extent is
-appropriate for the particular test, allow successively higher values of
-@emph{$verbose} to generate more information.  Be kind to other
-programmers who use your tests: provide for a lot of debugging
-information.
-
-@item
-Output from the internal debugging functions of Tcl and Expect. There is
-a command line options for each; both forms of debugging output are
-recorded in the file @file{dbg.log} in the current directory.
-
-Use @code{--debug} for information from the expect level; it generates
-displays of the expect attempts to match the tool output with the
-patterns specified. This output can be very helpful while developing
-test scripts, since it shows precisely the characters received.
-Iterating between the latest attempt at a new test script and the
-corresponding @file{dbg.log} can allow you to create the final patterns
-by ``cut and paste''.  This is sometimes the best way to write a test
-case.
-
-@item
-Use @code{--strace} to see more detail at the Tcl level; this shows how
-Tcl procedure definitions expand, as they execute. The associated number
-controls the depth of definitions expanded.
-
-@item
-Finally, if the value of @emph{verbose} is 3 or greater, DejaGnu turns
-on the expect command @code{log_user}.  This command prints all expect
-actions to the expect standard output, to the detailed log file, and (if
-@code{--debug} is on) to @file{dbg.log}.
-@end itemize
-
-@node Adding a test case to a testsuite, Hints on writing a test case, Debugging a test case, Extending DejaGnu
-@section Adding a test case to a testsuite
-
-There are two slightly different ways to add a test case. One is to add
-the test case to an existing directory. The other is to create a new
-directory to hold your test. The existing test directories represent
-several styles of testing, all of which are slightly different; examine
-the directories for the tool of interest to see which (if any) is most
-suitable.
-
-Adding a GCC test can be very simple: just add the C code to any
-directory beginning with @file{gcc} and it runs on the next:
-
-@example
-runtest --tool gcc
-@end example
-
-To add a test to GDB, first add any source code you will need to the
-test directory. Then you can either create a new expect file, or add
-your test to an existing one (any file with a @emph{.exp} suffix).
-Creating a new .exp file is probably a better idea if the test is
-significantly different from existing tests. Adding it as a separate
-file also makes upgrading easier. If the C code has to be already
-compiled before the test will run, then you'll have to add it to the
-@file{Makefile.in} file for that test directory, then run
-@code{configure} and @code{make}.
-
-Adding a test by creating a new directory is very similar:
-
-@itemize 
-
-@item
-Create the new directory. All subdirectory names begin with the name of
-the tool to test; e.g. G++ tests might be in a directory called
-@file{g++.other}. There can be multiple test directories that start with
-the same tool name (such as @emph{g++}).
-
-@item
-Add the new directory name to the @code{configdirs} definition in the
-@file{configure.in} file for the testsuite directory. This way when
-@code{make} and @code{configure} next run, they include the new
-directory.
-
-@item
-Add the new test case to the directory, as above.
-
-@item
-To add support in the new directory for configure and make, you must
-also create a @file{Makefile.in} and a @file{configure.in}.
-@end itemize
-
-@node Hints on writing a test case, Test case variables, Adding a test case to a testsuite, Extending DejaGnu
-@section Hints on writing a test case
+@subsection Hints on writing a test case
 
 It is safest to write patterns that match all the output generated by
 the tested program; this is called closure.  If a pattern does not match
@@ -2073,7 +1963,81 @@ misleading. Ideally, a test in this sort of situation should not fail
 either. Instead, print an error message by calling one of the DejaGnu
 procedures @code{error} or @code{warning}.
 
-@node Test case variables, , Hints on writing a test case, Extending DejaGnu
+
+@node Debugging a test case, Adding a test case to a testsuite, Writing a test case, Extending DejaGnu
+@section Debugging a test case
+
+These are the kinds of debugging information available from DejaGnu:
+
+@itemize 
+
+@item
+Output controlled by test scripts themselves, explicitly allowed for by
+the test author.  This kind of debugging output appears in the detailed
+output recorded in the DejaGnu log file.  To do the same for new tests,
+use the @code{verbose} procedure (which in turn uses the Tcl variable
+@samp{verbose}) to control how much output to generate.  This will make
+it easier for other people running the test to debug it if necessary.
+If @samp{verbose} is zero, there should be no output other than the
+output from the framework (eg. FAIL).  Then, to whatever extent is
+appropriate for the particular test, allow successively higher values of
+@samp{verbose} to generate more information.  Be kind to other
+programmers who use your tests -- provide plenty of debugging
+information.
+
+@item
+Output from the internal debugging functions of Tcl and Expect. There is
+a command line options for each; both forms of debugging output are
+recorded in the file @file{dbg.log} in the current directory.
+
+Use @code{--debug} for information from Expect. It logs how Expect
+attempts to match the tool output with the patterns specified. This can
+be very helpful while developing test scripts, since it shows precisely
+the characters received.  Iterating between the latest attempt at a new
+test script and the corresponding @file{dbg.log} can allow you to create
+the final patterns by ``cut and paste''.  This is sometimes the best way
+to write a test case.
+
+@item
+Use @code{--strace} to see more detail from Tcl. This logs how Tcl
+procedure definitions are expanded as they execute. The trace level
+argument controls the depth of definitions expanded.
+
+@item
+If the value of @samp{verbose} is 3 or greater (@code{runtest -v -v
+-v}), DejaGnu activates the Expect command @code{log_user}.  This
+command prints all Expect actions to standard output, to the @file{.log}
+file and, if @code{--debug} is given, to @file{dbg.log}.
+@end itemize
+
+@node Adding a test case to a testsuite, Test case variables, Debugging a test case, Extending DejaGnu
+@section Adding a test case to a testsuite
+
+There are two slightly different ways to add a test case. One is to add
+the test case to an existing directory. The other is to create a new
+directory to hold your test. The existing test directories represent
+several styles of testing, all of which are slightly different. Examine
+the testsuite subdirectories for the tool of interest to see which
+approach is most suitable.
+
+Adding a GCC test may be very simple: just add the source file to any
+test directory beginning with @file{gcc.} and it will be tested on the
+next test run.
+
+Adding a test by creating a new directory involves:
+
+@enumerate
+@item
+Create the new directory. All subdirectory names begin with the name of
+the tool to test; e.g. G++ tests might be in a directory called
+@file{g++.other}. There can be multiple testsuite subdirectories with
+the same tool name prefix.
+
+@item
+Add the new test case to the directory, as above.
+@end enumerate
+
+@node Test case variables, , Adding a test case to a testsuite, Extending DejaGnu
 @section Test case special variables
 
 There are special variables that contain other information from
@@ -2081,7 +2045,7 @@ DejaGnu. Your test cases can inspect these variables, as well as the
 variables saved in @file{site.exp}. These variables should never be
 changed.
 
-@table @asis
+@table @code
 
 @item $prms_id
 The bug tracking system (eg. PRMS/GNATS) number identifying a
@@ -2129,7 +2093,7 @@ Most regression testing as done by DejaGnu is system testing: the
 complete application is tested all at once. Unit testing is for testing
 single files, or small libraries. In this case, each file is linked with
 a test case in C or C++, and each function or class and method is tested
-in series, with the test case having to check private data or global
+in turn, with the test case having to check private data or global
 variables to see if the function or method worked.
 
 This works particularly well for testing APIs and at level where it is
@@ -2152,65 +2116,51 @@ the output messages, and then merge them into DejaGnu's.
 @node C unit testing API, C++ unit testing API, The dejagnu_h header file, Unit testing
 @section C unit testing API
 
-All of the functions that take a @code{msg} parameter use a C char *
-that is the message to be displayed. There currently is no support for
-variable length arguments.
+All of the functions that take a @code{msg} parameter use a C @code{char
+*} that is the message to be displayed. There currently is no support
+for variable length arguments.
 
-@menu
-* Pass Function: pass function.
-* Fail Function: fail function.
-* Untested Function: untested function.
-* Unresolved Function: unresolved function.
-* Totals Function: totals function.
-@end menu
-
-@node pass function, fail function, , C unit testing API
-@subsection Pass Function
-
-This prints a message for a successful test completion.
+@itemize
+@item
+@code{pass} prints a message for a successful test completion.
 
 @quotation
-@t{@b{pass}@{@i{msg}@}}
+@t{@b{pass}(@i{msg});}
 @end quotation
 
-@node fail function, untested function, pass function, C unit testing API
-@subsection Fail Function
-
-This prints a message for an unsuccessful test completion.
+@item
+@code{fail} prints a message for an unsuccessful test completion.
 
 @quotation
-@t{@b{fail}@{@i{msg}@}}
+@t{@b{fail}(@i{msg});}
 @end quotation
 
-@node untested function, unresolved function, fail function, C unit testing API
-@subsection Untested Function
-
-This prints a message for an test case that isn't run for some technical
-reason.
+@item
+@code{untested} prints a message for an test case that isn't run for
+some technical reason.
 
 @quotation
-@t{@b{untested}@{@i{msg}@}}
+@t{@b{untested}(@i{msg});}
 @end quotation
 
-@node unresolved function, totals function, untested function, C unit testing API
-@subsection Unresolved Function
-
-This prints a message for an test case that is run, but there is no
-clear result. These output states require a human to look over the
-results to determine what happened.
+@item
+@code{unresolved} prints a message for an test case that is run, but
+there is no clear result. These output states require a human to look
+over the results to determine what happened.
 
 @quotation
-@t{@b{unresolved}@{@i{msg}@}}
+@t{@b{unresolved}(@i{msg});}
 @end quotation
 
-@node totals function, , unresolved function, C unit testing API
-@subsection Totals Function
-
-This prints out the total numbers of all the test state outputs.
+@item
+@code{totals} prints out the total numbers of all the test state
+outputs.
 
 @quotation
-@t{@b{totals}}
+@t{@b{totals}();}
 @end quotation
+
+@end itemize
 
 @node C++ unit testing API, , C unit testing API, Unit testing
 @section C++ unit testing API
@@ -2219,60 +2169,46 @@ All of the methods that take a @code{msg} parameter use a C char * or
 STL string, that is the message to be displayed. There currently is no
 support for variable length arguments.
 
-@menu
-* Pass Method: pass method.
-* Fail Method: fail method.
-* Untested Method: untested method.
-* Unresolved Method: unresolved method.
-* Totals Method: totals method.
-@end menu
+@itemize
 
-@node pass method, fail method, , C++ unit testing API
-@subsection Pass Method
-
-This prints a message for a successful test completion.
+@item
+@code{pass} prints a message for a successful test completion.
 
 @quotation
 @t{@b{TestState::pass}(@i{msg});}
 @end quotation
 
-@node fail method, untested method, pass method, C++ unit testing API
-@subsection Fail Method
-
-This prints a message for an unsuccessful test completion.
+@code{fail} prints a message for an unsuccessful test completion.
 
 @quotation
 @t{@b{TestState::fail}(@i{msg});}
 @end quotation
 
-@node untested method, unresolved method, fail method, C++ unit testing API
-@subsection Untested Method
-
-This prints a message for an test case that isn't run for some reason.
+@code{untested} prints a message for an test case that isn't run for
+some reason.
 
 @quotation
 @t{@b{TestState::untested}(@i{msg});}
 @end quotation
 
-@node unresolved method, totals method, untested method, C++ unit testing API
-@subsection Unresolved Method
-
-This prints a message for an test case that is run, but there is no
-clear result. These output states require a human to look over the
-results to determine what happened.
+@item
+@code{unresolved} prints a message for an test case that is run, but
+there is no clear result. These output states require a human to look
+over the results to determine what happened.
 
 @quotation
 @t{@b{TestState::unresolved}(@i{msg});}
 @end quotation
 
-@node totals method, , unresolved method, C++ unit testing API
-@subsection Totals Method
-
-This prints out the total numbers of all the test state outputs.
+@item
+@code{totals} prints out the total numbers of all the test state
+outputs.
 
 @quotation
 @t{@b{TestState::totals}(@i{});}
 @end quotation
+
+@end itemize
 
 @node Reference, , Unit testing, Top
 @chapter Reference
@@ -2295,7 +2231,7 @@ DejaGnu provides these Tcl procedures.
 * Platform Dependent Procedures: platform dependent procedures.
 * Utility Procedures::
 * Libgloss, a free board support package (BSP): Libgloss.
-* Procedures for debugging your scripts: Debugging Procedures.
+* Debugging Procedures::
 @end menu
 
 @node Core Internal Procedures, Procedures For Remote Communication, , Builtin Procedures
@@ -2762,9 +2698,7 @@ the variable @code{compiler_conditional_xfail_data} to the
 fields
 
 @example
-
-	  "[message string] [targets list] [includes list] [excludes list]"
-	  
+"[message string] [targets list] [includes list] [excludes list]"
 @end example
 
 (descriptions below). This is the checked at pass/fail decision time, so
@@ -2805,14 +2739,12 @@ conditional is de-activated.
 @strong{Specifying the conditional xfail data}
 
 @example
-
 	  set compiler_conditional_xfail_data @{ \
 	       "I sure wish I knew why this was hosed" \
                "sparc*-sun*-* *-pc-*-*" \
                @{"-Wall -v" "-O3"@} \
                @{"-O1" "-Map"@} \
           @}
-	  
 @end example
 
 What this does is it matches only for these two targets if
@@ -2838,7 +2770,7 @@ list of configuration target names.  It is only necessary to call
 @table @asis
 
 @item @code{config}
-The configuration triplets to clear.
+The system triplets to clear.
 @end table
 
 @node verbose procedure, load_lib procedure, clear_xfail procedure, Core Internal Procedures
@@ -3925,7 +3857,7 @@ all information.
 @item @code{destfile}
 @end table
 
-@node rsh_exec procedure, ftp_open procedure, rsh_upload procedure, connprocs
+@node rsh_exec procedure, ssh_close procedure, rsh_upload procedure, connprocs
 @subsubsection rsh_exec Procedure
 
 
@@ -5166,8 +5098,7 @@ executable image for an embedded systems.
 @node Debugging Procedures, , Libgloss, Builtin Procedures
 @subsection Procedures for debugging your scripts
 
-@file{lib/debugger.exp}defines these utility
-procedures:
+@file{lib/debugger.exp} defines the following procedures:
 
 @menu
 * dumpvars Procedure: dumpvars procedure

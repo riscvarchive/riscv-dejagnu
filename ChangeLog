@@ -1,3 +1,78 @@
+2016-04-08  Ben Elliston  <bje@gnu.org>
+
+	Reported by Faraz Shahbazker.
+	* doc/dejagnu.texi (Global config file): Fix broken @node.
+	(Local config file): Likewise.
+
+2016-04-07  Ben Elliston  <bje@gnu.org>
+
+	* lib/remote.exp (remote_exec): Join cd $remotedir and $program on
+	the command line with ';' and not &&.
+
+2016-04-07  Ben Elliston  <bje@gnu.org>
+
+	Reported by Faraz Shahbazker.
+	* doc/dejagnu.texi (rsh_exec procedure): Fix broken @node.
+
+2016-04-06  Yvan Roux  <yvan.roux@linaro.org>
+
+	* lib/remote.exp (remnote_download): Create a remote directory if
+	needed and use it.
+	(remote_exec): Execute program inside remotedir when it exists.
+	(standard_load): Set remotedir board field if not present.
+	* config/unix.exp (unix_load): Handle remotedir in board field.
+	(remotedir): Set board info field.
+	* doc/dejagnu.texi (Board File Values): Document remotedir.
+
+2016-04-06  Ben Elliston  <bje@gnu.org>
+
+	* doc/dejagnu.texi (Global config file): Put before node 'Local
+	config file'.
+
+2016-04-05  Ben Elliston  <bje@gnu.org>
+
+	* runtest.exp: Remove defunct and undocumented --tool_root option.
+
+2016-04-04  Ben Elliston  <bje@gnu.org>
+
+	* doc/dejagnu.texi: More overhauling.
+
+2016-04-04  Ben Elliston  <bje@gnu.org>
+
+	* lib/targetdb.exp (set_board_info): Improve comment.
+	(add_board_info): Likewise.
+
+2016-04-04  Ben Elliston  <bje@gnu.org>
+
+	* NEWS: Add some more detail.
+
+2016-04-04  Ben Elliston  <bje@gnu.org>
+
+	* site.tmpl: Delete.
+	* Makefile.am (EXTRA_DIST): Remove site.tmpl.
+	* Makefile.in: Regenerate.
+
+2016-04-03  Ben Elliston  <bje@gnu.org>
+
+	* doc/dejagnu.texi: More overhauling.
+
+2016-04-03  Ben Elliston  <bje@gnu.org>
+
+	* runtest.exp: Document the magical handling of -D[01].
+
+2016-04-03  Ben Elliston  <bje@gnu.org>
+
+	* doc/runtest.1: Do not document obsolete --status option. It is
+	still accepted for compatibility, but does nothing.
+
+2016-04-03  Ben Elliston  <bje@gnu.org>
+
+	* doc/runtest.1 (OPTIONS): Place short forms (-v, -V, -x) first.
+
+2016-04-03  Ben Elliston  <bje@gnu.org>
+
+	* doc/runtest.1 (OPTIONS): Sort options.
+
 2016-04-03  Ben Elliston  <bje@gnu.org>
 
 	* configure.ac (AC_INIT): Set version to 1.6.

@@ -1,4 +1,4 @@
-.TH runtest 1 "2015-12-20"
+.TH runtest 1 "2016-04-03"
 .SH NAME
 runtest \- DejaGnu test driver
 .SH SYNOPSIS
@@ -17,14 +17,14 @@ It controls what tests to run and how to run them.
 Output all test results. By default, only unexpected results are
 displayed.
 .TP
+.BI --build \ TRIPLET
+The configuration TRIPLET for the build system.
+.TP
 .B --debug
 Turn on
 .B Expect
 internal debugging output. The output is logged to a file called
 \fBdbg.log\fR.
-.TP
-.BI --build \ TRIPLET
-The configuration TRIPLET for the build system.
 .TP
 .BI --directory \ DIRECTORY
 Run only tests in the specified DIRECTORY.
@@ -41,6 +41,9 @@ The host board definition to use.
 .BI --ignore \ test1.exp\ test2.exp\ ...
 Do not run the specified tests.
 .TP
+.B --log_dialog
+Emit Expect output to standard output.
+.TP
 .BI --mail \ \'name1\ name2\ ...\'
 Electronic mail addresses to receive test results.
 .TP
@@ -53,18 +56,12 @@ The network HOSTNAME of the target board.
 .BI --outdir \ DIRECTORY
 The name of a DIRECTORY for test log output.
 .TP
-.B --log_dialog
-Emit Expect output to standard output.
-.TP
 .B --reboot
 Reboot the target board when \fBruntest\fR initializes
 (if supported).
 .TP
 .BI --srcdir \ PATH
 \fIPATH\fR is a directory containing test directories.
-.TP
-.BI --status
-Set the exit status to fail on Tcl errors.
 .TP
 .BI --strace \ N
 Turns on
@@ -88,14 +85,14 @@ Specify the PATH to the executable to test.
 .BI --tool_opts \ OPTIONS
 Additional OPTIONS to pass to the tool.
 .TP
-.B --verbose,\ -v
+.B -v,\ --verbose
 Turns on more debugging output from test cases and DejaGnu utility code.
 Use more than once to increase output further.
 .TP
-.B --version,\ -V
+.B -V,\ --version
 Prints out the versions of DejaGnu, Expect and Tcl.
 .TP
-.B --xml[=FILE],\ -x
+.B -x,\ --xml[=FILE]
 Generate XML output.  \fBFILE\fR is optional; if given it is the name of
 the output file.  If not given, the output file is named after the tool.
 .TP
@@ -128,7 +125,7 @@ Rob Savoye (rob@welcomehome.org)
 .SH "REPORTING BUGS"
 Report bugs to <bug\-dejagnu@gnu.org>.
 .SH COPYRIGHT
-Copyright \(co 2005, 2007, 2008, 2015 Free Software Foundation, Inc.
+Copyright \(co 2005, 2007, 2008, 2015, 2016 Free Software Foundation, Inc.
 .br
 This is free software.  You may redistribute copies of it under the terms of
 the GNU General Public License <http://www.gnu.org/licenses/gpl.html>.

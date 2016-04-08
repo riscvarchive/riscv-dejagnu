@@ -500,11 +500,6 @@ for { set i 0 } { $i < $argc } { incr i } {
 	    continue
 	}
 
-	"--tool_ro*" {
-	    set tool_root_dir $optarg
-	    continue
-	}
-
 	"--to*" {			# (--tool) specify tool name
 	    set tool $optarg
 	    set comm_line_tool $optarg
@@ -1059,7 +1054,6 @@ for { set i 0 } { $i < $argc } { incr i } {
 
 	"--di*" {
 	    # Already parsed (and don't set again).  Let $DEJAGNU rename it.
-	    # set cmdline_dir_to_run $optarg
 	    continue
 	}
 
@@ -1078,6 +1072,8 @@ for { set i 0 } { $i < $argc } { incr i } {
 	}
 
 	"--D[01]" {			# (-Debug) turn on Tcl debugger
+	    # The runtest shell script handles this option, but it
+	    # still appears in the options in the Tcl code.
 	    verbose "Tcl debugger is ON"
 	    continue
 	}
@@ -1160,11 +1156,6 @@ for { set i 0 } { $i < $argc } { incr i } {
 
 	"--tool_exec*" {
 	    set TOOL_EXECUTABLE $optarg
-	    continue
-	}
-
-	"--tool_ro*" {
-	    set tool_root_dir $optarg
 	    continue
 	}
 
