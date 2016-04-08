@@ -993,7 +993,7 @@ command line.
 * Config file values::
 @end menu
 
-@node Global config file, Board config file, Local config file, Customizing DejaGnu
+@node Global config file, Local config file, , Customizing DejaGnu
 @section Global config file
 
 The global configuration file is where all the target specific
@@ -1053,7 +1053,7 @@ initial comma so that the set of combinations includes no options at
 all. Needless to say, this last target example is mostly specific to
 compiler testing.
 
-@node Local config file, Global config file, , Customizing DejaGnu
+@node Local config file, Board config file, Global config file, Customizing DejaGnu
 @section Local config file
 
 It is usually more convenient to keep these @emph{manual overrides} in

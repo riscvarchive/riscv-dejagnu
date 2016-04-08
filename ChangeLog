@@ -1,3 +1,9 @@
+2016-04-08  Ben Elliston  <bje@gnu.org>
+
+	Reported by Faraz Shahbazker.
+	* doc/dejagnu.texi (Global config file): Fix broken @node.
+	(Local config file): Likewise.
+
 2016-04-07  Ben Elliston  <bje@gnu.org>
 
 	* lib/remote.exp (remote_exec): Join cd $remotedir and $program on
