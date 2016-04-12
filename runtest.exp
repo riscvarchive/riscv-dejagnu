@@ -1014,10 +1014,10 @@ for { set i 0 } { $i < $argc } { incr i } {
     switch -glob -- $option {
 	"--V*" -
 	"--vers*" {			# (--version) version numbers
-	    send_user "DejaGnu version is\t$frame_version\n"
-	    send_user "Expect version is\t[exp_version]\n"
-	    send_user "Tcl version is\t\t[ info tclversion ]\n"
-	    exit
+	    send_user "DejaGnu version\t$frame_version\n"
+	    send_user "Expect version\t[exp_version]\n"
+	    send_user "Tcl version\t[ info tclversion ]\n"
+	    exit 0
 	}
 
 	"--v*" {			# (--verbose) verbose output
