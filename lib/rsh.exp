@@ -226,7 +226,7 @@ proc rsh_upload {desthost srcfile destfile} {
 proc rsh_exec { boardname program pargs inp outp } {
     global timeout
 
-    verbose "Executing $boardname:$program $pargs < $inp"
+    verbose "Executing on $boardname:$program $pargs < $inp"
 
     if {![board_info $boardname exists rsh_prog]} {
 	if { [which remsh] != 0 } {

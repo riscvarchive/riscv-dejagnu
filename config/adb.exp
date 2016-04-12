@@ -163,7 +163,7 @@ proc adb_exec { boardname cmd args } {
 	set inp "/dev/null"
     }
 
-    verbose "Executing $boardname:$cmd $pargs < $inp "
+    verbose "Executing on $boardname:$cmd $pargs < $inp "
 
     # Execute commands only from temporary folder, therefore do "cd" first
     global android_tmp_dir

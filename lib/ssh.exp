@@ -128,7 +128,7 @@ proc ssh_exec { boardname program pargs inp outp } {
     set name ""
     set hostname ""
 
-    verbose "Executing $boardname:$program $pargs"
+    verbose "Executing on $boardname:$program $pargs"
 
     if {![board_info $boardname exists ssh_prog]} {
 	set SSH ssh
