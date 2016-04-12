@@ -276,7 +276,9 @@ proc rsh_exec { boardname program pargs inp outp } {
 	regsub "XYZ(\[0-9\]*)ZYX\n?" $output "" output
 	return [list $status "$RSH to $boardname failed for $program, $output"]
     }
-    regexp "XYZ(\[0-9\]*)ZYX" $output junk status
+    if { [regexp "XYZ(\[0-9\]*)ZYX" $output junk status] == 0 } {
+	set status ""
+    }
     verbose "rsh_exec: status:$status text:$output" 4
     if { $status == "" } {
 	return [list -1 "Couldn't parse $RSH output, $output."]
