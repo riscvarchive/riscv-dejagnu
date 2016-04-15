@@ -1,3 +1,22 @@
+2016-04-15  Ben Elliston  <bje@gnu.org>
+
+	* lib/ssh.exp (ssh_exec): Handle regexp return status.
+
+2016-04-13  Ben Elliston  <bje@gnu.org>
+
+	* lib/rsh.exp (rsh_exec): Improve verbose message.
+	* lib/ssh.exp (ssh_exec): Likewise.
+	* config/adb.exp: Likewise.
+
+2016-04-13  Ben Elliston  <bje@gnu.org>
+
+	* runtest.exp: Improve --version (-v) output.
+	* testsuite/runtest.all/options.exp: Update test case.
+
+2016-04-13  Christophe Lyon  <christophe.lyon@linaro.org>
+
+	* lib/rsh.exp (rsh_exec): Handle regexp return status.
+
 2016-04-08  Ben Elliston  <bje@gnu.org>
 
 	Reported by Faraz Shahbazker.

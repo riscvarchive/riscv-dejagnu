@@ -128,7 +128,7 @@ proc ssh_exec { boardname program pargs inp outp } {
     set name ""
     set hostname ""
 
-    verbose "Executing $boardname:$program $pargs"
+    verbose "Executing on $boardname: $program $pargs"
 
     if {![board_info $boardname exists ssh_prog]} {
 	set SSH ssh
@@ -186,7 +186,9 @@ proc ssh_exec { boardname program pargs inp outp } {
 	regsub "XYZ(\[0-9\]*)ZYX\n?" $output "" output
 	return [list $status "$SSH to $boardname failed for $program, $output"]
     }
-    regexp "XYZ(\[0-9\]*)ZYX" $output junk status
+    if { [regexp "XYZ(\[0-9\]*)ZYX" $output junk status] == 0 } {
+	set status ""
+    }
     verbose "ssh_exec: status:$status text:$output" 4
     if { $status == "" } {
 	return [list -1 "Couldn't parse $SSH output, $output."]
