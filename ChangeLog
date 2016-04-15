@@ -1,5 +1,10 @@
 2016-04-15  Ben Elliston  <bje@gnu.org>
 
+	* Makefile.am (CONTRIB): Add new contrib scripts.
+	* Makefile.in: Regenrate.
+
+2016-04-15  Ben Elliston  <bje@gnu.org>
+
 	* lib/ssh.exp (ssh_exec): Handle regexp return status.
 
 2016-04-13  Ben Elliston  <bje@gnu.org>
