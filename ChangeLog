@@ -1,3 +1,7 @@
+2017-06-06  Ian Bolton  <ian.bolton@embecosm.com>
+
+	* baseboards/riscv-spike.exp: New file.
+
 2016-04-15  Ben Elliston  <bje@gnu.org>
 
 	* DejaGnu 1.6 released.
