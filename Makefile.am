@@ -109,6 +109,7 @@ baseboard_DATA = \
 	baseboards/multi-sim.exp \
 	baseboards/powerpc-sim.exp \
 	baseboards/powerpcle-sim.exp \
+	baseboards/riscv-gvsoc.exp \
 	baseboards/riscv-sim.exp \
 	baseboards/riscv-sim-gdb.exp \
 	baseboards/riscv-sim-nano.exp \
